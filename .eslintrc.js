@@ -1,5 +1,4 @@
 const prettierConfig = require('./.prettierrc.json');
-
 module.exports = {
   root: true,
   env: {
@@ -11,6 +10,7 @@ module.exports = {
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/eslint-config-typescript',
+    'plugin:storybook/recommended',
     'plugin:prettier/recommended',
   ],
   parserOptions: {

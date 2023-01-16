@@ -1,6 +1,1 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-
-import './assets/main.css';
-
-createApp(App).mount('#app');
+export { default as TestComponent } from './components/TestComponent.vue';
