@@ -1,21 +1,21 @@
 // Headlines
 @mixin headline-1 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 32px;
   line-height: 40px;
 }
 
 @mixin headline-2 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 28px;
   line-height: 36px;
 }
 
 @mixin headline-3 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 24px;
   line-height: 32px;
 }
@@ -32,7 +32,6 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 20px;
-  letter-spacing: 1%;
 }
 
 @mixin headline-6 {
@@ -40,7 +39,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
-  letter-spacing: 2%;
+  letter-spacing: 0.02em;
 }
 
 
@@ -72,10 +71,10 @@
 // Technical
 @mixin initials-avatar-1 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: 5%;
+  letter-spacing: 0.05em;
 }
 
 @mixin badge-1 {
@@ -83,7 +82,7 @@
   font-weight: 500;
   font-size: 11px;
   line-height: 14px;
-  letter-spacing: 5%;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -92,7 +91,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 24px;
-  letter-spacing: 3%;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
@@ -101,7 +100,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  letter-spacing: 2%;
+  letter-spacing: 0.02em;
 }
 
 @mixin segment {
@@ -109,7 +108,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 24px;
-  letter-spacing: 5%;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -124,15 +123,15 @@
 
 @mixin title {
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
   line-height: 24px;
 }
 
 @mixin title-small {
   font-family: 'Roboto', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   line-height: 20px;
-  letter-spacing: 3%;
+  letter-spacing: 0.03em;
 }
