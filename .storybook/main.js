@@ -1,4 +1,5 @@
 const { mergeConfig } = require('vite');
+const svgLoader = require('vite-svg-loader');
 
 module.exports = {
   "stories": [
@@ -19,10 +20,11 @@ module.exports = {
   },
   async viteFinal(config) {
     return mergeConfig(config, {
+      plugins: [svgLoader()],
       css: {
         preprocessorOptions: {
           scss: {
-            additionalData: `@import "./src/assets/style/colors"; @import "./src/assets/style/fonts";`,
+            additionalData: `@import "./src/assets/style/vars";`,
           },
         },
       },

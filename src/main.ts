@@ -1,1 +1,1 @@
-export { default as TestComponent } from './components/TestComponent.vue';
+export * from './components/cdek-widget';
