@@ -4,6 +4,9 @@ import { computed } from 'vue';
 const props = withDefaults(
   defineProps<{
     color?: 'green' | 'white' | string;
+    /**
+     * small - 24, medium - 32, big - 48
+     */
     size?: 'small' | 'medium' | 'big' | number;
   }>(),
   { color: 'green', size: 'small' }
