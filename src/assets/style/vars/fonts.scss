@@ -1,47 +1,53 @@
 // Headlines
 @mixin headline-1 {
   font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  line-height: 50px;
+}
+
+@mixin headline-2 {
+  font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 32px;
   line-height: 40px;
 }
 
-@mixin headline-2 {
+@mixin headline-3 {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 28px;
   line-height: 36px;
 }
 
-@mixin headline-3 {
+@mixin headline-4 {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 24px;
   line-height: 32px;
 }
 
-@mixin headline-4 {
+@mixin headline-5 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 20px;
   line-height: 28px;
 }
 
-@mixin headline-5 {
+@mixin headline-6 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 16px;
   line-height: 20px;
 }
 
-@mixin headline-6 {
+@mixin headline-7 {
   font-family: 'Roboto', sans-serif;
-  font-weight: 700;
+  font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.02em;
 }
-
 
 // Body
 @mixin body-1 {
@@ -58,7 +64,6 @@
   line-height: 20px;
 }
 
-
 // Caption
 @mixin caption-1 {
   font-family: 'Roboto', sans-serif;
@@ -66,7 +71,6 @@
   font-size: 12px;
   line-height: 16px;
 }
-
 
 // Technical
 @mixin initials-avatar-1 {
@@ -111,7 +115,6 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-
 
 // Technical Title
 @mixin title-counter {
