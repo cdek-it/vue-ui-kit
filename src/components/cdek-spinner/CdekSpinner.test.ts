@@ -15,14 +15,15 @@ const createCdekSpinner = (color?: string, size?: SizeT) => {
 
 describe('Unit: CdekSpinner', () => {
   describe('color', () => {
-    test.todo('Если color = white, то цвет должен быть white');
-    const wrapper = createCdekSpinner('white');
-    expect(wrapper.classes('white')).toBe(true);
-  });
-  describe('color', () => {
-    test.todo('Если color = #000000, то цвет должен быть #000000');
-    const wrapper = createCdekSpinner('#000000');
-    expect(wrapper.attributes('style')).toBe('--spinner-color: #000000;');
+    test('Если color = white, то цвет должен быть white', () => {
+      const wrapper = createCdekSpinner('white');
+      expect(wrapper.classes('white')).toBe(true);
+    });
+
+    test('Если color = #000000, то цвет должен быть #000000', () => {
+      const wrapper = createCdekSpinner('#000000');
+      expect(wrapper.attributes('style')).toBe('--spinner-color: #000000;');
+    });
   });
   describe('size', () => {
     test.each([
