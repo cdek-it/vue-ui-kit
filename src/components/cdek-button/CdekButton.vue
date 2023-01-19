@@ -6,25 +6,29 @@ const props = withDefaults(
   defineProps<{
     theme?: 'primary' | 'secondary' | 'outline' | 'ghost';
     /**
-     * 'auto' - Кнопка растягивается на всю доступную ширину
-     * 'content' - Ширина кнопки определяется по контенту
+     * `'auto'` - Кнопка растягивается на всю доступную ширину
+     *
+     * `'content'` - Ширина кнопки определяется по контенту
      */
     width?: 'auto' | 'content';
     /**
-     * false - Высота кнопки - 48px
-     * true - Высота кнопки - 36px
+     * `false` - Высота кнопки - 48px
+     *
+     * `true` - Высота кнопки - 36px
      */
     small?: boolean;
     disabled?: boolean;
     loading?: boolean;
     /**
-     * false - Спиннер заменяет контент
-     * true - Спиннер располагается перед контентом
+     * `false` - Спиннер заменяет контент
+     *
+     * `true` - Спиннер располагается перед контентом
      */
     spinnerBefore?: boolean;
     /**
-     * false - Размеры кнопки зависят от контента
-     * true - Размеры кнопки - 48х48px (36х36px если small=true)
+     * `false` - Размеры кнопки зависят от контента
+     *
+     * `true` - Размеры кнопки - 48х48px (36х36px если `small=true`)
      */
     icon?: boolean;
   }>(),
