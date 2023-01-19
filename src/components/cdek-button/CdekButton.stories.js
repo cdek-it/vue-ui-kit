@@ -1,5 +1,6 @@
 import CdekButton from './CdekButton.vue';
-import CdekSpinner from '../cdek-spinner/CdekSpinner.vue';
+import ArrowRightIcon from './svg/arrow-right.svg?component';
+import CheckIcon from './svg/check.svg?component';
 
 export default {
   title: 'Ui kit/CdekButton',
@@ -14,24 +15,26 @@ export default {
     width: {
       options: ['auto', 'content'],
     },
-    small: {
-      control: 'boolean',
-    },
-    disabled: {
-      control: 'boolean',
-    },
-    loading: {
-      control: 'boolean',
+    story: {
+      table: {
+        disable: true,
+      },
     },
   },
 };
 
 const Template = (args) => ({
-  components: { CdekButton, CdekSpinner },
+  components: { CdekButton, ArrowRightIcon, CheckIcon },
   setup() {
     return { args };
   },
-  template: `<CdekButton v-bind="args">${args.default}</CdekButton>`,
+  template: `
+    <CdekButton v-bind="args">
+      <CheckIcon v-if="args.story === 'IconBefore'" />
+      ${args.default}
+      <ArrowRightIcon v-if="args.story === 'IconAfter'" />
+    </CdekButton>
+  `,
 });
 
 export const Primary = Template.bind({});
@@ -46,12 +49,25 @@ Primary.parameters = {
   },
 };
 
-export const SecondaryButton = Template.bind({});
-SecondaryButton.args = {
+export const PrimarySmall = Template.bind({});
+PrimarySmall.args = {
+  default: 'Подтвердить',
+  small: true,
+};
+PrimarySmall.parameters = {
+  docs: {
+    source: {
+      code: '<CdekButton small>Подтвердить</CdekButton>',
+    },
+  },
+};
+
+export const Secondary = Template.bind({});
+Secondary.args = {
   theme: 'secondary',
   default: 'Подтвердить',
 };
-SecondaryButton.parameters = {
+Secondary.parameters = {
   docs: {
     source: {
       code: '<CdekButton theme="secondary">Подтвердить</CdekButton>',
@@ -59,12 +75,12 @@ SecondaryButton.parameters = {
   },
 };
 
-export const OutlineButton = Template.bind({});
-OutlineButton.args = {
+export const Outline = Template.bind({});
+Outline.args = {
   theme: 'outline',
   default: 'Подтвердить',
 };
-OutlineButton.parameters = {
+Outline.parameters = {
   docs: {
     source: {
       code: '<CdekButton theme="outline">Подтвердить</CdekButton>',
@@ -72,12 +88,12 @@ OutlineButton.parameters = {
   },
 };
 
-export const GhostButton = Template.bind({});
-GhostButton.args = {
+export const Ghost = Template.bind({});
+Ghost.args = {
   theme: 'ghost',
   default: 'Подтвердить',
 };
-GhostButton.parameters = {
+Ghost.parameters = {
   docs: {
     source: {
       code: '<CdekButton theme="ghost">Подтвердить</CdekButton>',
@@ -85,12 +101,12 @@ GhostButton.parameters = {
   },
 };
 
-export const DisabledButton = Template.bind({});
-DisabledButton.args = {
+export const Disabled = Template.bind({});
+Disabled.args = {
   disabled: true,
   default: 'Подтвердить',
 };
-DisabledButton.parameters = {
+Disabled.parameters = {
   docs: {
     source: {
       code: '<CdekButton disabled>Подтвердить</CdekButton>',
@@ -98,12 +114,12 @@ DisabledButton.parameters = {
   },
 };
 
-export const WidthContentButton = Template.bind({});
-WidthContentButton.args = {
+export const WidthContent = Template.bind({});
+WidthContent.args = {
   width: 'content',
   default: 'Подтвердить',
 };
-WidthContentButton.parameters = {
+WidthContent.parameters = {
   docs: {
     source: {
       code: '<CdekButton width="content">Подтвердить</CdekButton>',
@@ -111,12 +127,12 @@ WidthContentButton.parameters = {
   },
 };
 
-export const ButtonLoading = Template.bind({});
-ButtonLoading.args = {
+export const Loading = Template.bind({});
+Loading.args = {
   default: 'Подтвердить',
   loading: true,
 };
-ButtonLoading.parameters = {
+Loading.parameters = {
   docs: {
     source: {
       code: '<CdekButton loading>Подтвердить</CdekButton>',
@@ -124,14 +140,71 @@ ButtonLoading.parameters = {
   },
 };
 
-export const ButtonLoadingEmpty = Template.bind({});
-ButtonLoadingEmpty.args = {
+export const LoadingWithContent = Template.bind({});
+LoadingWithContent.args = {
+  spinnerBefore: true,
   loading: true,
+  default: 'Подтвердить',
 };
-ButtonLoadingEmpty.parameters = {
+LoadingWithContent.parameters = {
   docs: {
     source: {
-      code: '<CdekButton loading />',
+      code: '<CdekButton loading spinner-before>Подтвердить</CdekButton>',
+    },
+  },
+};
+
+export const IconBefore = Template.bind({});
+IconBefore.args = {
+  default: 'Подтвердить',
+  story: 'IconBefore',
+};
+IconBefore.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekButton>
+  <CheckIcon />
+  Подтвердить
+</CdekButton>
+`,
+    },
+  },
+};
+
+export const IconAfter = Template.bind({});
+IconAfter.args = {
+  default: 'Подтвердить',
+  story: 'IconAfter',
+};
+IconAfter.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekButton>
+  Подтвердить
+  <ArrowRightIcon />
+</CdekButton>
+`,
+    },
+  },
+};
+
+export const IconOnly = Template.bind({});
+IconOnly.args = {
+  default: '',
+  icon: true,
+  story: 'IconBefore',
+  width: 'content',
+};
+IconAfter.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekButton icon width="content">
+  <CheckIcon />
+</CdekButton>
+`,
     },
   },
 };

@@ -10,6 +10,7 @@ const props = withDefaults(
     disabled?: boolean;
     loading?: boolean;
     spinnerBefore?: boolean;
+    icon?: boolean;
   }>(),
   { width: 'auto', theme: 'primary' }
 );
@@ -30,6 +31,7 @@ const spinnerColor = computed(() => {
       [props.theme]: true,
       small: props.small,
       inline: props.width === 'content',
+      icon: props.icon,
     }"
     :disabled="disabled"
   >
@@ -59,11 +61,19 @@ const spinnerColor = computed(() => {
     background: $Primary_Button_Hover;
     border-color: $Primary_Button_Hover;
     color: $Peak;
+
+    &:deep(.spinner) {
+      --spinner-color: #{$Peak};
+    }
   }
   &:active:not([disabled]) {
     background: $Primary_Active;
     border-color: $Primary_Active;
     color: $Peak;
+
+    &:deep(.spinner) {
+      --spinner-color: #{$Peak};
+    }
   }
 
   &.inline {
@@ -93,6 +103,17 @@ const spinnerColor = computed(() => {
   &.ghost {
     background: transparent;
     color: $Primary;
+  }
+
+  &.icon {
+    padding: 0;
+    height: 48px;
+    width: 48px;
+
+    &.small {
+      height: 36px;
+      width: 36px;
+    }
   }
 
   &[disabled] {
