@@ -4,7 +4,12 @@ export default {
   title: 'Ui kit/CdekSpinner',
   component: CdekSpinner,
   parameters: {
-    backgrounds: { default: 'grey' },
+    docs: {
+      description: {
+        component:
+          '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2182%3A8032&t=z1QNDvjqjFqqVZE2-0)',
+      },
+    },
   },
   argTypes: {
     color: {

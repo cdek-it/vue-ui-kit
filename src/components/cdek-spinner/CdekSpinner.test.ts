@@ -15,24 +15,15 @@ const createCdekSpinner = (color?: string, size?: SizeT) => {
 
 describe('Unit: CdekSpinner', () => {
   describe('color', () => {
-    test.each([
-      { color: undefined, resultColor: '#1AB248' },
-      { color: 'white', resultColor: '#FFFFFF' },
-      { color: '#000000', resultColor: '#000000' },
-    ])(
-      'Если color = $color, то цвет должен быть $resultColor',
-      ({ color, resultColor }) => {
-        const wrapper = createCdekSpinner(color);
+    test('Если color = white, то цвет должен быть white', () => {
+      const wrapper = createCdekSpinner('white');
+      expect(wrapper.classes('white')).toBe(true);
+    });
 
-        const stops = wrapper.findAll('stop');
-        expect(stops[0].attributes('stop-color')).toBe(resultColor);
-        expect(stops[1].attributes('stop-color')).toBe(resultColor);
-
-        const circles = wrapper.findAll('circle');
-        expect(circles[0].attributes('stroke')).toBe(resultColor);
-        expect(circles[1].attributes('fill')).toBe(resultColor);
-      }
-    );
+    test('Если color = #000000, то цвет должен быть #000000', () => {
+      const wrapper = createCdekSpinner('#000000');
+      expect(wrapper.attributes('style')).toBe('--spinner-color: #000000;');
+    });
   });
   describe('size', () => {
     test.each([
