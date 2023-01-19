@@ -9,55 +9,41 @@ const props = withDefaults(
     small?: boolean;
     disabled?: boolean;
     loading?: boolean;
+    spinnerBefore?: boolean;
   }>(),
   { width: 'auto', theme: 'primary' }
 );
 
-const themeClass = computed(() => {
-  return props.theme ? ' ' + props.theme : '';
-});
-const isSmallClass = computed(() => {
-  return props.small ? ' small' : '';
-});
-const isDisabledClass = computed(() => {
-  return props.disabled ? ' disabled' : '';
-});
-const widthClass = computed(() => {
-  return props.width === 'content' ? '' : ' width-auto';
-});
 const spinnerColor = computed(() => {
-  if (
-    props.theme === 'secondary' ||
-    props.theme === 'outline' ||
-    props.theme === 'ghost'
-  ) {
-    return 'green';
-  } else {
+  if (props.theme === 'primary' || props.disabled) {
     return 'white';
   }
+
+  return 'green';
 });
 </script>
 
 <template>
-  <div :class="'cdek-button-container' + widthClass">
-    <div :class="'cdek-button' + themeClass + isSmallClass + isDisabledClass">
-      <CdekSpinner :color="spinnerColor" v-if="loading" />
-      <slot />
-    </div>
-  </div>
+  <button
+    class="cdek-button"
+    :class="{
+      [props.theme]: true,
+      small: props.small,
+      inline: props.width === 'content',
+    }"
+    :disabled="disabled"
+  >
+    <CdekSpinner :color="spinnerColor" v-if="loading" />
+    <slot v-if="!loading || spinnerBefore" />
+  </button>
 </template>
 
 <style lang="scss" scoped>
-.cdek-button-container {
-  display: inline-block;
-}
-.width-auto {
-  display: block;
-}
 .cdek-button {
-  display: flex;
+  @include button-1;
+
+  display: inline-flex;
   width: 100%;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 12px 24px;
@@ -66,51 +52,54 @@ const spinnerColor = computed(() => {
   border-radius: 10px;
   box-sizing: border-box;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
-  @include button-1;
+  border: unset;
+  transition: all 0.2s ease-in-out;
 
-  &:hover:not(.disabled) {
+  &:hover:not([disabled]) {
     background: $Primary_Button_Hover;
     border-color: $Primary_Button_Hover;
     color: $Peak;
-    border-radius: 10px;
-    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
   }
-  &:active:not(.disabled) {
+  &:active:not([disabled]) {
     background: $Primary_Active;
     border-color: $Primary_Active;
     color: $Peak;
-    border-radius: 10px;
   }
-}
-.small {
-  height: 36px;
-}
-.primary {
-  background: $Primary;
-  color: $Peak;
-  border-radius: 10px;
-}
-.secondary {
-  background: $Secondary_Button;
-  color: $Primary;
-  border-radius: 10px;
-}
-.outline {
-  background: transparent;
-  color: $Primary;
-  border: 1px solid $Primary;
-  border-radius: 10px;
-}
-.ghost {
-  background: transparent;
-  color: $Primary;
-}
-.disabled {
-  background: $Button_Disable;
-  color: $Peak;
-  border: none;
-  border-radius: 10px;
-  cursor: not-allowed;
+
+  &.inline {
+    width: auto;
+  }
+
+  &.small {
+    height: 36px;
+  }
+
+  &.primary {
+    background: $Primary;
+    color: $Peak;
+  }
+
+  &.secondary {
+    background: $Secondary_Button;
+    color: $Primary;
+  }
+
+  &.outline {
+    background: transparent;
+    color: $Primary;
+    border: 1px solid $Primary;
+  }
+
+  &.ghost {
+    background: transparent;
+    color: $Primary;
+  }
+
+  &[disabled] {
+    background: $Button_Disable;
+    color: $Peak;
+    border: none;
+    pointer-events: none;
+  }
 }
 </style>
