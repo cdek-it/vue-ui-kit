@@ -1,10 +1,9 @@
 import { shallowMount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
-import type { IMessage } from '../CdekToasterService';
-import CdekToast from './CdekToast.vue';
-import { InfoIcon } from './svg';
+import CdekToast from './CdekToaster.vue';
+import InfoIcon from './svg/info.svg?component';
 
-const createCdekToast = (message: IMessage) => {
+const createCdekToast = (message: any) => {
   return shallowMount(CdekToast, {
     props: {
       message,

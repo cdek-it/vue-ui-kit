@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import type { IMessage } from '../CdekToasterService';
-import { CrossIcon } from './svg';
-import { CdekButton } from '../../cdek-button';
+import CrossIcon from './svg/cross.svg?component';
+import { CdekButton } from '@/components/cdek-button';
 
 const props = defineProps<{
-  message: IMessage;
+  message: any;
 }>();
 </script>
 

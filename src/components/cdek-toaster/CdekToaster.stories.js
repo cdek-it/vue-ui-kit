@@ -1,5 +1,8 @@
-import CdekToast from './CdekToast.vue';
-import { CheckInCircleIcon, WarningIcon, InfoIcon, WifiOffIcon } from './svg';
+import CdekToast from './CdekToaster.vue';
+import CheckInCircleIcon from './svg/check-in-circle.svg?component';
+import WarningIcon from './svg/warning.svg?component';
+import InfoIcon from './svg/info.svg?component';
+import WifiOffIcon from './svg/wifi-off.svg?component';
 
 export default {
   title: 'Ui kit/CdekToast',
