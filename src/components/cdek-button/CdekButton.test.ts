@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekButton from './CdekButton.vue';
 
-type ThemeT = 'primary' | 'secondary' | 'outline' | 'ghost';
+type ThemeT = 'primary' | 'secondary' | 'outline' | 'ghost' | 'toaster';
 type WidthT = 'auto' | 'content';
 
 class CdekButtonBuilder {
@@ -69,6 +69,7 @@ describe('Unit: CdekButton', () => {
       { theme: 'secondary', themeClass: 'secondary' },
       { theme: 'outline', themeClass: 'outline' },
       { theme: 'ghost', themeClass: 'ghost' },
+      { theme: 'toaster', themeClass: 'toaster' },
     ])(
       'Если theme = $theme, то должен быть класс $themeClass',
       ({ theme, themeClass }: any) => {
