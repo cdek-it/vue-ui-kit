@@ -15,9 +15,6 @@ export default {
       },
     },
   },
-  argTypes: {
-    message: {},
-  },
 };
 
 const Template = (args) => ({
@@ -32,17 +29,13 @@ const Template = (args) => ({
 
 export const Primary = Template.bind({});
 Primary.args = {
-  message: {
-    content: {
-      title: 'Сообщение',
-      text: 'Аннотация',
-    },
-    icon: InfoIcon,
-    type: 'info',
-    button: {
-      text: 'CLICK',
-      action: () => console.log('CLICK'),
-    },
+  title: 'Сообщение',
+  text: 'Аннотация',
+  icon: InfoIcon,
+  type: 'info',
+  button: {
+    text: 'CLICK',
+    action: () => console.log('CLICK'),
   },
 };
 Primary.parameters = {
@@ -55,17 +48,13 @@ Primary.parameters = {
 
 export const PrimaryLongText = Template.bind({});
 PrimaryLongText.args = {
-  message: {
-    content: {
-      title: 'Почему-то очень длинный заголовок',
-      text: 'Слишком подробное описание сообщения и ещё чего-то, что здесь можно было и не описывать, но раз уж на то пошло, мы выложим текст целиком, посмотрим, что будет. Конец сообщения должен быть виден.',
-    },
-    icon: InfoIcon,
-    type: 'info',
-    button: {
-      text: 'CLICK',
-      action: () => console.log('CLICK'),
-    },
+  title: 'Почему-то очень длинный заголовок',
+  text: 'Слишком подробное описание сообщения и ещё чего-то, что здесь можно было и не описывать, но раз уж на то пошло, мы выложим текст целиком, посмотрим, что будет. Конец сообщения должен быть виден.',
+  icon: InfoIcon,
+  type: 'info',
+  button: {
+    text: 'CLICK',
+    action: () => console.log('CLICK'),
   },
 };
 PrimaryLongText.parameters = {
@@ -78,16 +67,12 @@ PrimaryLongText.parameters = {
 
 export const PrimaryNoIcon = Template.bind({});
 PrimaryNoIcon.args = {
-  message: {
-    content: {
-      title: 'Сообщение',
-      text: 'Аннотация',
-    },
-    type: 'info',
-    button: {
-      text: 'CLICK',
-      action: () => console.log('CLICK'),
-    },
+  title: 'Сообщение',
+  text: 'Аннотация',
+  type: 'info',
+  button: {
+    text: 'CLICK',
+    action: () => console.log('CLICK'),
   },
 };
 PrimaryNoIcon.parameters = {
@@ -100,14 +85,10 @@ PrimaryNoIcon.parameters = {
 
 export const PrimaryNoButton = Template.bind({});
 PrimaryNoButton.args = {
-  message: {
-    content: {
-      title: 'Сообщение',
-      text: 'Аннотация',
-    },
-    icon: InfoIcon,
-    type: 'info',
-  },
+  title: 'Сообщение',
+  text: 'Аннотация',
+  icon: InfoIcon,
+  type: 'info',
 };
 PrimaryNoButton.parameters = {
   docs: {
@@ -119,16 +100,12 @@ PrimaryNoButton.parameters = {
 
 export const PrimaryOnlyMessageTitle = Template.bind({});
 PrimaryOnlyMessageTitle.args = {
-  message: {
-    content: {
-      title: 'Синхронизация завершена',
-    },
-    icon: CheckInCircleIcon,
-    type: 'info',
-    button: {
-      text: 'посмотреть обновления',
-      action: () => console.log('Обновления посмотрены'),
-    },
+  title: 'Синхронизация завершена',
+  icon: CheckInCircleIcon,
+  type: 'info',
+  button: {
+    text: 'посмотреть обновления',
+    action: () => console.log('Обновления посмотрены'),
   },
 };
 PrimaryOnlyMessageTitle.parameters = {
@@ -141,17 +118,13 @@ PrimaryOnlyMessageTitle.parameters = {
 
 export const Success = Template.bind({});
 Success.args = {
-  message: {
-    content: {
-      title: 'Поступила оплата',
-      text: 'Заказ № 33445145, на сумму 2400,45 ₽ оплачен отправителем',
-    },
-    icon: CheckInCircleIcon,
-    type: 'success',
-    button: {
-      text: 'открыть заказ',
-      action: () => console.log('Заказ открыт'),
-    },
+  title: 'Поступила оплата',
+  text: 'Заказ № 33445145, на сумму 2400,45 ₽ оплачен отправителем',
+  icon: CheckInCircleIcon,
+  type: 'success',
+  button: {
+    text: 'открыть заказ',
+    action: () => console.log('Заказ открыт'),
   },
 };
 Success.parameters = {
@@ -164,14 +137,10 @@ Success.parameters = {
 
 export const Error = Template.bind({});
 Error.args = {
-  message: {
-    content: {
-      title: 'Сообщение',
-      text: 'Аннотация',
-    },
-    icon: WarningIcon,
-    type: 'error',
-  },
+  title: 'Сообщение',
+  text: 'Аннотация',
+  icon: WarningIcon,
+  type: 'error',
 };
 Error.parameters = {
   docs: {
@@ -183,13 +152,9 @@ Error.parameters = {
 
 export const ErrorNoWifi = Template.bind({});
 ErrorNoWifi.args = {
-  message: {
-    content: {
-      title: 'Нет связи с интернетом',
-    },
-    icon: WifiOffIcon,
-    type: 'error',
-  },
+  title: 'Нет связи с интернетом',
+  icon: WifiOffIcon,
+  type: 'error',
 };
 ErrorNoWifi.parameters = {
   docs: {

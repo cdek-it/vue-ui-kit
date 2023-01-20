@@ -2,51 +2,59 @@
 import CrossIcon from './svg/cross.svg?component';
 import { CdekButton } from '@/components/cdek-button';
 
-const props = defineProps<{
-  type?: 'info' | 'success' | 'error';
-  title: string;
-  text?: string;
-  button?: {
-    text: string;
-    action: () => void;
-    loading?: boolean;
-  };
-  icon?: any;
-}>();
+const props = withDefaults(
+  defineProps<{
+    type?: 'info' | 'success' | 'error';
+    title: string;
+    text?: string;
+    button?: {
+      text: string;
+      action: () => void;
+      loading?: boolean;
+    };
+    icon?: any;
+    withoutIcon?: boolean;
+  }>(),
+  { type: 'info' }
+);
 </script>
 
 <template>
   <div
     class="toast"
     :class="{
-      info: type === 'info' || type === undefined,
+      info: type === 'info',
       success: type === 'success',
       error: type === 'error',
     }"
   >
-    <div class="header">
-      <div class="message-container">
-        <div v-if="icon" class="message-icon">
-          <component :is="icon" />
-        </div>
-        <div class="message-content">
-          <p class="message-title">
+    <div class="toast__main">
+      <div class="toast__message">
+        <template v-if="!withoutIcon">
+          <component v-if="icon" :is="icon" class="toast__icon" />
+          <InfoIcon v-else-if="type === 'info'" />
+          <CheckInCircleIcon v-else-if="type === 'success'" />
+          <WarningIcon v-else-if="type === 'error'" />
+        </template>
+
+        <div class="toast__content">
+          <p class="toast__title">
             {{ title }}
           </p>
-          <p v-if="text" class="message-text">
+          <p v-if="text" class="toast__text">
             {{ text }}
           </p>
         </div>
       </div>
-      <button @click="$emit('close')" class="cross-container">
+      <button @click="$emit('close-toast')" class="toast__close">
         <CrossIcon />
       </button>
     </div>
     <CdekButton
-      @click="button?.action"
       v-if="button"
-      small
+      @click="button?.action"
       theme="toaster"
+      small
       :loading="button.loading"
       >{{ button.text }}</CdekButton
     >
@@ -79,49 +87,52 @@ p {
     box-shadow: 0px 8px 12px -5px $Error_30;
   }
 
-  & .header {
+  &__main {
     display: flex;
     width: 100%;
     justify-content: space-between;
+  }
 
-    & .message-container {
-      display: flex;
+  &__message {
+    display: flex;
+  }
 
-      & .message-icon {
-        margin-right: 4px;
-        width: 24px;
-        height: 24px;
-      }
-      & .message-content {
-        @include body-2;
+  &__icon {
+    margin-right: 4px;
+    width: 24px;
+    height: 24px;
+  }
 
-        margin-left: 4px;
-        margin-top: 2px;
-        width: 240px;
+  &__content {
+    @include body-2;
 
-        & .message-title {
-          color: $Peak;
-        }
-        & .message-text {
-          margin-top: 4px;
-          color: $Peak_80;
-        }
-      }
-    }
-    & .cross-container {
-      border: unset;
-      background: unset;
-      cursor: pointer;
-      padding: 0;
-      margin-left: 10px;
-      width: 24px;
-      height: 24px;
-      opacity: 0.8;
-      transition: all 0.2s ease-in-out;
+    margin-left: 4px;
+    margin-top: 2px;
+    width: 240px;
+  }
 
-      &:hover {
-        opacity: 1;
-      }
+  &__title {
+    color: $Peak;
+  }
+
+  &__text {
+    margin-top: 4px;
+    color: $Peak_80;
+  }
+
+  &__close {
+    border: unset;
+    background: unset;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+    width: 24px;
+    height: 24px;
+    opacity: 0.8;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      opacity: 1;
     }
   }
 }
