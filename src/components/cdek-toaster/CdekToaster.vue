@@ -1,40 +1,64 @@
 <script lang="ts" setup>
-import CrossIcon from './svg/cross.svg?component';
+import { computed } from 'vue';
+
 import { CdekButton } from '@/components/cdek-button';
+
+import CrossIcon from './svg/cross.svg?component';
+import InfoIcon from './svg/info.svg?component';
+import CheckInCircleIcon from './svg/check-in-circle.svg?component';
+import WarningIcon from './svg/warning.svg?component';
 
 const props = withDefaults(
   defineProps<{
     type?: 'info' | 'success' | 'error';
+    /**
+     * Заголовок
+     */
     title: string;
+    /**
+     * Описание
+     */
     text?: string;
+    /**
+     * Настройки кнопки, можно задать текст, действие
+     *
+     * button.loading включит спиннер
+     */
     button?: {
       text: string;
       action: () => void;
       loading?: boolean;
     };
+    /**
+     * Компонент иконки, при передаче будет показан он, иначе дефолтная иконка
+     */
     icon?: any;
+    /**
+     * Чтобы не показывать иконку вообще, передайте withoutIcon
+     */
     withoutIcon?: boolean;
   }>(),
   { type: 'info' }
 );
+
+const defaultIcons = {
+  info: InfoIcon,
+  success: CheckInCircleIcon,
+  error: WarningIcon,
+};
+
+const defaultIcon = computed(() => {
+  return defaultIcons[props.type];
+});
 </script>
 
 <template>
-  <div
-    class="toast"
-    :class="{
-      info: type === 'info',
-      success: type === 'success',
-      error: type === 'error',
-    }"
-  >
+  <div class="toast" :class="[type]">
     <div class="toast__main">
       <div class="toast__message">
         <template v-if="!withoutIcon">
           <component v-if="icon" :is="icon" class="toast__icon" />
-          <InfoIcon v-else-if="type === 'info'" />
-          <CheckInCircleIcon v-else-if="type === 'success'" />
-          <WarningIcon v-else-if="type === 'error'" />
+          <component v-else :is="defaultIcon" class="toast__icon" />
         </template>
 
         <div class="toast__content">

@@ -1,7 +1,4 @@
 import CdekToaster from './CdekToaster.vue';
-import CheckInCircleIcon from './svg/check-in-circle.svg?component';
-import WarningIcon from './svg/warning.svg?component';
-import InfoIcon from './svg/info.svg?component';
 import WifiOffIcon from './svg/wifi-off.svg?component';
 
 export default {
@@ -13,6 +10,11 @@ export default {
         component:
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1984%3A4894&t=rF3i0PpE4y6w29LG-4)',
       },
+    },
+  },
+  argTypes: {
+    type: {
+      options: ['info', 'success', 'error'],
     },
   },
 };
@@ -30,88 +32,70 @@ const Template = (args) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   title: 'Сообщение',
-  text: 'Аннотация',
-  icon: InfoIcon,
-  type: 'info',
-  button: {
-    text: 'CLICK',
-    action: () => console.log('CLICK'),
-  },
 };
 Primary.parameters = {
   docs: {
     source: {
-      code: '<CdekToast message={...} />',
+      code: '<CdekToast title="Сообщение" />',
     },
   },
 };
 
-export const PrimaryLongText = Template.bind({});
-PrimaryLongText.args = {
+export const LongText = Template.bind({});
+LongText.args = {
   title: 'Почему-то очень длинный заголовок',
   text: 'Слишком подробное описание сообщения и ещё чего-то, что здесь можно было и не описывать, но раз уж на то пошло, мы выложим текст целиком, посмотрим, что будет. Конец сообщения должен быть виден.',
-  icon: InfoIcon,
-  type: 'info',
-  button: {
-    text: 'CLICK',
-    action: () => console.log('CLICK'),
-  },
 };
-PrimaryLongText.parameters = {
+LongText.parameters = {
   docs: {
     source: {
-      code: '<CdekToast message={...} />',
+      code: '<CdekToast title="Почему-то очень..." text="..." />',
     },
   },
 };
 
-export const PrimaryNoIcon = Template.bind({});
-PrimaryNoIcon.args = {
+export const NoIcon = Template.bind({});
+NoIcon.args = {
   title: 'Сообщение',
-  text: 'Аннотация',
-  type: 'info',
-  button: {
-    text: 'CLICK',
-    action: () => console.log('CLICK'),
-  },
+  withoutIcon: true,
 };
-PrimaryNoIcon.parameters = {
+NoIcon.parameters = {
   docs: {
     source: {
-      code: '<CdekToast message={...} />',
+      code: '<CdekToast title="Сообщение" withoutIcon />',
     },
   },
 };
 
-export const PrimaryNoButton = Template.bind({});
-PrimaryNoButton.args = {
+export const WithButton = Template.bind({});
+WithButton.args = {
   title: 'Сообщение',
-  text: 'Аннотация',
-  icon: InfoIcon,
-  type: 'info',
+  button: {
+    text: 'Продолжить',
+    action: () => {},
+  },
 };
-PrimaryNoButton.parameters = {
+WithButton.parameters = {
   docs: {
     source: {
-      code: '<CdekToast message={...} />',
+      code: `<CdekToast :button="{ text: 'Продолжить', action: () => {} }" />`,
     },
   },
 };
 
-export const PrimaryOnlyMessageTitle = Template.bind({});
-PrimaryOnlyMessageTitle.args = {
-  title: 'Синхронизация завершена',
-  icon: CheckInCircleIcon,
-  type: 'info',
+export const WithButtonLoading = Template.bind({});
+WithButtonLoading.args = {
+  title: 'Сообщение',
   button: {
-    text: 'посмотреть обновления',
-    action: () => console.log('Обновления посмотрены'),
+    text: 'Продолжить',
+    action: () => {},
+    loading: true,
   },
 };
-PrimaryOnlyMessageTitle.parameters = {
+WithButtonLoading.parameters = {
   docs: {
     source: {
-      code: '<CdekToast message={...} />',
+      code: `<CdekToast :button="{ text: 'Продолжить', action: () => {}, loading: true }" />`,
     },
   },
 };
@@ -120,17 +104,12 @@ export const Success = Template.bind({});
 Success.args = {
   title: 'Поступила оплата',
   text: 'Заказ № 33445145, на сумму 2400,45 ₽ оплачен отправителем',
-  icon: CheckInCircleIcon,
   type: 'success',
-  button: {
-    text: 'открыть заказ',
-    action: () => console.log('Заказ открыт'),
-  },
 };
 Success.parameters = {
   docs: {
     source: {
-      code: '<CdekToast message={...} />',
+      code: '<CdekToast title="Поступила оплата" text="..." type="success" />',
     },
   },
 };
@@ -139,27 +118,26 @@ export const Error = Template.bind({});
 Error.args = {
   title: 'Сообщение',
   text: 'Аннотация',
-  icon: WarningIcon,
   type: 'error',
 };
 Error.parameters = {
   docs: {
     source: {
-      code: '<CdekToast message={...} />',
+      code: '<CdekToast title="Сообщение" text="Аннотация" type="error" />',
     },
   },
 };
 
-export const ErrorNoWifi = Template.bind({});
-ErrorNoWifi.args = {
+export const ErrorCustomIcon = Template.bind({});
+ErrorCustomIcon.args = {
   title: 'Нет связи с интернетом',
   icon: WifiOffIcon,
   type: 'error',
 };
-ErrorNoWifi.parameters = {
+ErrorCustomIcon.parameters = {
   docs: {
     source: {
-      code: '<CdekToast message={...} />',
+      code: '<CdekToast title="Нет связи..." :icon="WifiOffIcon" type="error" />',
     },
   },
 };
