@@ -3,7 +3,15 @@ import CrossIcon from './svg/cross.svg?component';
 import { CdekButton } from '@/components/cdek-button';
 
 const props = defineProps<{
-  message: any;
+  type?: 'info' | 'success' | 'error';
+  title: string;
+  text?: string;
+  button?: {
+    text: string;
+    action: () => void;
+    loading?: boolean;
+  };
+  icon?: any;
 }>();
 </script>
 
@@ -11,22 +19,22 @@ const props = defineProps<{
   <div
     class="toast"
     :class="{
-      info: message.type === 'info' || message.type === undefined,
-      success: message.type === 'success',
-      error: message.type === 'error',
+      info: type === 'info' || type === undefined,
+      success: type === 'success',
+      error: type === 'error',
     }"
   >
     <div class="header">
       <div class="message-container">
-        <div v-if="message.icon" class="message-icon">
-          <component :is="message.icon" />
+        <div v-if="icon" class="message-icon">
+          <component :is="icon" />
         </div>
         <div class="message-content">
           <p class="message-title">
-            {{ message.content.title }}
+            {{ title }}
           </p>
-          <p v-if="message.content.text" class="message-text">
-            {{ message.content.text }}
+          <p v-if="text" class="message-text">
+            {{ text }}
           </p>
         </div>
       </div>
@@ -35,13 +43,13 @@ const props = defineProps<{
       </button>
     </div>
     <CdekButton
-      @click="message.button?.action"
-      v-if="message.button"
+      @click="button?.action"
+      v-if="button"
       small
       theme="toaster"
-      >{{ message.button.text }}</CdekButton
+      :loading="button.loading"
+      >{{ button.text }}</CdekButton
     >
-    <!-- надо передавать loading -->
   </div>
 </template>
 

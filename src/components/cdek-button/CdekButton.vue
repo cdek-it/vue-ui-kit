@@ -52,10 +52,10 @@ const spinnerColor = computed(() => {
   <button
     class="cdek-button"
     :class="{
-      [props.theme]: true,
-      small: props.small,
-      inline: props.width === 'content',
-      icon: props.icon,
+      [theme]: true,
+      small: small,
+      inline: width === 'content',
+      icon: icon,
     }"
     :disabled="disabled"
   >
