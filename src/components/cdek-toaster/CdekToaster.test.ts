@@ -1,7 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
 import { describe, test, expect, vi } from 'vitest';
 import CdekToaster from './CdekToaster.vue';
-import InfoIcon from './svg/info.svg?component';
 
 type TypeT = 'info' | 'success' | 'error';
 
@@ -15,6 +14,7 @@ class CdekButtonBuilder {
     loading?: boolean;
   };
   icon?: any;
+  withoutIcon?: boolean;
 
   setType(type: TypeT) {
     this.type = type;
@@ -46,13 +46,17 @@ class CdekButtonBuilder {
     (this.button as any).action = buttonAction;
     return this;
   }
-  toggleButtonLoading(loading: boolean) {
+  toggleButtonLoading() {
     this.setDefaultButton();
-    (this.button as any).loading = loading;
+    (this.button as any).loading = !(this.button as any).loading;
     return this;
   }
   setIcon(icon: any) {
     this.icon = icon;
+    return this;
+  }
+  toggleWithoutIcon() {
+    this.withoutIcon = !this.withoutIcon;
     return this;
   }
 
@@ -64,13 +68,14 @@ class CdekButtonBuilder {
         text: this.text,
         button: this.button,
         icon: this.icon,
+        withoutIcon: this.withoutIcon,
       },
     });
   }
 }
 
 describe('Unit: CdekToast', () => {
-  describe('message.type', () => {
+  describe('type', () => {
     test.each([
       { type: undefined, typeClass: 'info' },
       { type: 'info', typeClass: 'info' },
@@ -84,30 +89,25 @@ describe('Unit: CdekToast', () => {
       }
     );
   });
-  describe('message.content', () => {
-    test('Если message.content.title = "Заголовок", то элемент с классом .message-title должен содержать текст "Заголовок"', () => {
-      const wrapper = new CdekButtonBuilder().setTitle('Заголовок').build();
-      const messageTitleContainer = wrapper.find('.message-title');
-      expect(messageTitleContainer.text()).toBe('Заголовок');
-    });
-    test('Если message.content.text = "Текст сообщения", то элемент с классом .message-text должен содержать текст "Текст сообщения"', () => {
-      const wrapper = new CdekButtonBuilder()
-        .setText('Текст сообщения')
-        .build();
-      const messageTextContainer = wrapper.find('.message-text');
-      expect(messageTextContainer.text()).toBe('Текст сообщения');
-    });
+  test('Если title = "Заголовок", то элемент с классом .toast__title должен содержать текст "Заголовок"', () => {
+    const wrapper = new CdekButtonBuilder().setTitle('Заголовок').build();
+    const titleContainer = wrapper.find('.toast__title');
+    expect(titleContainer.text()).toBe('Заголовок');
   });
-  describe('message.icon', () => {
-    test('Если message.icon = компонент иконки, то элемент с классом .message-icon должен существовать', () => {
-      const wrapper = new CdekButtonBuilder().setIcon(InfoIcon).build();
-      const messageIcon = wrapper.find('.message-icon');
-      expect(messageIcon.exists()).toBeTruthy();
-    });
-    test('Если message.icon = undefined, то элемент с классом .message-icon не должен существовать', () => {
-      const wrapper = new CdekButtonBuilder().build();
-      const messageIcon = wrapper.find('.message-icon');
-      expect(messageIcon.exists()).toBeFalsy();
-    });
+  test('Если text = "Текст сообщения", то элемент с классом .toast__text должен содержать текст "Текст сообщения"', () => {
+    const wrapper = new CdekButtonBuilder().setText('Текст сообщения').build();
+    const textContainer = wrapper.find('.toast__text');
+    expect(textContainer.text()).toBe('Текст сообщения');
   });
+  // TODO: если нет text, то блока не должно быть
+  test('Если withoutIcon = true, то элемент с классом .toast__icon не должен существовать', () => {
+    const wrapper = new CdekButtonBuilder().toggleWithoutIcon().build();
+    const icon = wrapper.find('.toast__icon');
+    expect(icon.exists()).toBeFalsy();
+  });
+  // TODO: если button не передаем, кнопки не должно быть
+  // TODO: если button передаем, должен отрендериться компонент кнопки
+  // TODO: при переданном button, должно передаваться название
+  // TODO: при переданном button, должен вешаться клик
+  // TODO: при переданном button, должен передаваться loading
 });
