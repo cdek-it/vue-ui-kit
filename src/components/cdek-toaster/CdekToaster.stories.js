@@ -1,12 +1,12 @@
-import CdekToast from './CdekToaster.vue';
+import CdekToaster from './CdekToaster.vue';
 import CheckInCircleIcon from './svg/check-in-circle.svg?component';
 import WarningIcon from './svg/warning.svg?component';
 import InfoIcon from './svg/info.svg?component';
 import WifiOffIcon from './svg/wifi-off.svg?component';
 
 export default {
-  title: 'Ui kit/CdekToast',
-  component: CdekToast,
+  title: 'Ui kit/CdekToaster',
+  component: CdekToaster,
   parameters: {
     docs: {
       description: {
@@ -14,7 +14,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1984%3A4894&t=rF3i0PpE4y6w29LG-4)',
       },
     },
-    backgrounds: { default: 'stripped' },
   },
   argTypes: {
     message: {},
@@ -22,12 +21,12 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekToast },
+  components: { CdekToaster },
   setup() {
     return { args };
   },
   template: `
-    <CdekToast v-bind="args" />
+    <CdekToaster v-bind="args" />
   `,
 });
 
