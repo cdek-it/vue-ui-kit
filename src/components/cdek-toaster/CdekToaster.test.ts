@@ -4,7 +4,7 @@ import CdekToaster from './CdekToaster.vue';
 
 type TypeT = 'info' | 'success' | 'error';
 
-class CdekButtonBuilder {
+class CdekToasterBuilder {
   type?: TypeT;
   title: string = '';
   text?: string;
@@ -39,6 +39,7 @@ class CdekButtonBuilder {
   setButtonText(buttonText: string) {
     this.setDefaultButton();
     (this.button as any).text = buttonText;
+    console.log('this.button.text: ', (this.button as any).text);
     return this;
   }
   setButtonAction(buttonAction: () => void) {
@@ -84,30 +85,64 @@ describe('Unit: CdekToast', () => {
     ])(
       'Если type = $type, то должен быть класс .$typeClass',
       ({ type, typeClass }: any) => {
-        const wrapper = new CdekButtonBuilder().setType(type).build();
+        const wrapper = new CdekToasterBuilder().setType(type).build();
         expect(wrapper.classes(typeClass)).toBe(true);
       }
     );
   });
   test('Если title = "Заголовок", то элемент с классом .toast__title должен содержать текст "Заголовок"', () => {
-    const wrapper = new CdekButtonBuilder().setTitle('Заголовок').build();
+    const wrapper = new CdekToasterBuilder().setTitle('Заголовок').build();
     const titleContainer = wrapper.find('.toast__title');
     expect(titleContainer.text()).toBe('Заголовок');
   });
   test('Если text = "Текст сообщения", то элемент с классом .toast__text должен содержать текст "Текст сообщения"', () => {
-    const wrapper = new CdekButtonBuilder().setText('Текст сообщения').build();
+    const wrapper = new CdekToasterBuilder().setText('Текст сообщения').build();
     const textContainer = wrapper.find('.toast__text');
     expect(textContainer.text()).toBe('Текст сообщения');
   });
-  // TODO: если нет text, то блока не должно быть
+  test('Если text = undefined, то элемент с классом .toast__text не должен существовать', () => {
+    const wrapper = new CdekToasterBuilder().build();
+    const textContainer = wrapper.find('.toast__text');
+    expect(textContainer.exists()).toBeFalsy();
+  });
   test('Если withoutIcon = true, то элемент с классом .toast__icon не должен существовать', () => {
-    const wrapper = new CdekButtonBuilder().toggleWithoutIcon().build();
+    const wrapper = new CdekToasterBuilder().toggleWithoutIcon().build();
     const icon = wrapper.find('.toast__icon');
     expect(icon.exists()).toBeFalsy();
   });
-  // TODO: если button не передаем, кнопки не должно быть
-  // TODO: если button передаем, должен отрендериться компонент кнопки
-  // TODO: при переданном button, должно передаваться название
-  // TODO: при переданном button, должен вешаться клик
-  // TODO: при переданном button, должен передаваться loading
+  test('Если button = undefined, то компонент cdek-button-stub не должен существовать', () => {
+    const wrapper = new CdekToasterBuilder().build();
+    const button = wrapper.find('cdek-button-stub');
+    expect(button.exists()).toBeFalsy();
+  });
+  test('Если button = {text: "click", action: () => {}}, то компонент cdek-button-stub должен существовать', () => {
+    const wrapper = new CdekToasterBuilder().setButtonText('click').build();
+    const button = wrapper.find('cdek-button-stub');
+    expect(button.exists()).toBeTruthy();
+  });
+  // TODO: разобраться, какого хуя button.text пустой
+  test('Если button = {text: "click", action: () => {}}, то атрибут "text" компонента cdek-button-stub должен быть "click"', () => {
+    const wrapper = new CdekToasterBuilder().setButtonText('click').build();
+    const button = wrapper.find('cdek-button-stub');
+    expect(button.text()).toBe('click');
+  });
+  // TODO: разобраться, какого хуя button.action пустой
+  test('Если button = {text: "click", action: () => {console.log("CLICK")}}, то атрибут "action" компонента cdek-button-stub должен быть "action: () => {console.log("CLICK")}"', () => {
+    const wrapper = new CdekToasterBuilder()
+      .setButtonText('click')
+      .setButtonAction(() => {
+        console.log('CLICK');
+      })
+      .build();
+    const button = wrapper.find('cdek-button-stub');
+    expect(button.attributes('@click')).toBe(() => {
+      console.log('CLICK');
+    });
+  });
+  test('Если loading = true, то атрибут loading компонента cdek-button-stub должен быть true', () => {
+    const wrapper = new CdekToasterBuilder().toggleButtonLoading().build();
+    const button = wrapper.find('cdek-button-stub');
+    console.log(wrapper.html());
+    expect(button.attributes('loading')).toBeTruthy();
+  });
 });
