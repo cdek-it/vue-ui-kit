@@ -9,7 +9,6 @@ const options: PluginOptions = {
   maxToasts: 5,
   draggable: false,
   hideProgressBar: true,
-  timeout: false,
 };
 
 export default function register(app: any) {
