@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 import CdekInput from './CdekInput.vue';
 
 export default {
@@ -11,29 +12,28 @@ export default {
       },
     },
   },
-  argTypes: {},
 };
 
 const Template = (args) => ({
   components: { CdekInput },
   setup() {
-    return { args };
+    const inputVal = ref('');
+
+    return { args, inputVal };
   },
   template: `
-    <CdekInput />
+    <CdekInput v-bind="args" v-model="inputVal" />
   `,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  default: '',
   label: 'Серия и номер паспорта',
-  tip: 'Пояснение или помощь',
 };
 Primary.parameters = {
   docs: {
     source: {
-      code: '<CdekInput /',
+      code: '<CdekInput label="Серия и номер паспорта" />',
     },
   },
 };
