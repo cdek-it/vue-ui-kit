@@ -15,7 +15,7 @@ export default {
   },
   argTypes: {
     theme: {
-      options: ['primary', 'secondary', 'outline', 'ghost'],
+      options: ['primary', 'secondary', 'outline', 'ghost', 'toaster'],
     },
     width: {
       options: ['auto', 'content'],
@@ -104,6 +104,20 @@ Ghost.parameters = {
       code: '<CdekButton theme="ghost">Подтвердить</CdekButton>',
     },
   },
+};
+
+export const Toast = Template.bind({});
+Toast.args = {
+  theme: 'toaster',
+  default: 'Подтвердить',
+};
+Toast.parameters = {
+  docs: {
+    source: {
+      code: '<CdekButton theme="toaster">Подтвердить</CdekButton>',
+    },
+  },
+  backgrounds: { default: 'green' },
 };
 
 export const Disabled = Template.bind({});

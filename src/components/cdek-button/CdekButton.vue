@@ -4,7 +4,7 @@ import CdekSpinner from '../cdek-spinner/CdekSpinner.vue';
 
 const props = withDefaults(
   defineProps<{
-    theme?: 'primary' | 'secondary' | 'outline' | 'ghost';
+    theme?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'toaster';
     /**
      * `'auto'` - Кнопка растягивается на всю доступную ширину
      *
@@ -36,7 +36,11 @@ const props = withDefaults(
 );
 
 const spinnerColor = computed(() => {
-  if (props.theme === 'primary' || props.disabled) {
+  if (
+    props.theme === 'primary' ||
+    props.theme === 'toaster' ||
+    props.disabled
+  ) {
     return 'white';
   }
 
@@ -48,10 +52,10 @@ const spinnerColor = computed(() => {
   <button
     class="cdek-button"
     :class="{
-      [props.theme]: true,
-      small: props.small,
-      inline: props.width === 'content',
-      icon: props.icon,
+      [theme]: true,
+      small: small,
+      inline: width === 'content',
+      icon: icon,
     }"
     :disabled="disabled"
   >
@@ -123,6 +127,18 @@ const spinnerColor = computed(() => {
   &.ghost {
     background: transparent;
     color: $Primary;
+  }
+
+  &.toaster {
+    background: $Peak_20;
+    color: $Peak;
+
+    &:hover:not([disabled]) {
+      background: $Peak_40;
+    }
+    &:active:not([disabled]) {
+      background: $Peak_60;
+    }
   }
 
   &.icon {

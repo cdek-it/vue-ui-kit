@@ -36,7 +36,7 @@ const colorStyle = computed(() => {
 <template>
   <svg
     class="spinner"
-    :class="{ white: props.color === 'white' }"
+    :class="{ white: color === 'white' }"
     :style="colorStyle"
     :width="sizeFinal"
     :height="sizeFinal"
