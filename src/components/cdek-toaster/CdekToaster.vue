@@ -74,7 +74,7 @@ const defaultIcon = computed(() => {
     </div>
     <CdekButton
       v-if="button"
-      @click="button?.action"
+      @click.stop="button?.action"
       theme="toaster"
       small
       :loading="button.loading"

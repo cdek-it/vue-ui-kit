@@ -40,5 +40,12 @@ export default function useCustomToast() {
   customToast.dismiss = toast.dismiss;
   customToast.clear = toast.clear;
 
+  customToast.update = function updateCustomToast(
+    id: any,
+    settings: ToasterProps
+  ) {
+    toast.update(id, { content: { component: CdekToaster, props: settings } });
+  };
+
   return customToast;
 }

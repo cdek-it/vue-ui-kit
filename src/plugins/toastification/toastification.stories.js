@@ -33,6 +33,15 @@ const Template = (args) => ({
       };
     }
 
+    if (args.story === 'show-loading') {
+      args.settings.button.action = () => {
+        toast.update(toastId, {
+          title: 'Какой-то текст',
+          button: { text: 'Начать загрузку', loading: true },
+        });
+      };
+    }
+
     const showToast = () => {
       if (args.type === 'info') {
         toastId = toast.info(args.settings);
@@ -219,6 +228,44 @@ const showToast = () => {
   toast({
     title: 'Какой-то текст',
   });
+};
+`,
+    },
+  },
+};
+
+export const ShowLoading = Template.bind({});
+ShowLoading.args = {
+  settings: {
+    title: 'Какой-то текст',
+    button: {
+      text: 'Начать загрузку',
+      loading: false,
+    },
+  },
+  story: 'show-loading',
+};
+ShowLoading.parameters = {
+  docs: {
+    source: {
+      code: `
+const toast = useToast();
+
+let toastId;
+const toastSettings = {
+  title: 'Какой-то текст',
+  button: {
+    text: 'Начать загрузку',
+    action: () => {
+      toastSettings.button.loading = true;
+      toast.update(toastId, toastSettings);
+    },
+    loading: false,
+  },
+}
+
+const showToast = () => {
+  toastId = toast(toastSettings);
 };
 `,
     },
