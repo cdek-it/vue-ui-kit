@@ -8,38 +8,37 @@ import InfoIcon from './svg/info.svg?component';
 import CheckInCircleIcon from './svg/check-in-circle.svg?component';
 import WarningIcon from './svg/warning.svg?component';
 
-const props = withDefaults(
-  defineProps<{
-    type?: 'info' | 'success' | 'error';
-    /**
-     * Заголовок
-     */
-    title: string;
-    /**
-     * Описание
-     */
-    text?: string;
-    /**
-     * Настройки кнопки, можно задать текст, действие
-     *
-     * button.loading включит спиннер
-     */
-    button?: {
-      text: string;
-      action: () => void;
-      loading?: boolean;
-    };
-    /**
-     * Компонент иконки, при передаче будет показан он, иначе дефолтная иконка
-     */
-    icon?: any;
-    /**
-     * Чтобы не показывать иконку вообще, передайте withoutIcon
-     */
-    withoutIcon?: boolean;
-  }>(),
-  { type: 'info' }
-);
+export type ToasterProps = {
+  type?: 'info' | 'success' | 'error';
+  /**
+   * Заголовок
+   */
+  title: string;
+  /**
+   * Описание
+   */
+  text?: string;
+  /**
+   * Настройки кнопки, можно задать текст, действие
+   *
+   * button.loading включит спиннер
+   */
+  button?: {
+    text: string;
+    action: () => void;
+    loading?: boolean;
+  };
+  /**
+   * Компонент иконки, при передаче будет показан он, иначе дефолтная иконка
+   */
+  icon?: any;
+  /**
+   * Чтобы не показывать иконку вообще, передайте withoutIcon
+   */
+  withoutIcon?: boolean;
+};
+
+const props = withDefaults(defineProps<ToasterProps>(), { type: 'info' });
 
 const defaultIcons = {
   info: InfoIcon,
@@ -54,25 +53,24 @@ const defaultIcon = computed(() => {
 
 <template>
   <div class="toast" :class="[type]">
-    <div class="toast__main">
-      <div class="toast__message">
-        <template v-if="!withoutIcon">
-          <component v-if="icon" :is="icon" class="toast__icon" />
-          <component v-else :is="defaultIcon" class="toast__icon" />
-        </template>
+    <button @click="$emit('close-toast')" class="toast__close">
+      <CrossIcon />
+    </button>
 
-        <div class="toast__content">
-          <p class="toast__title">
-            {{ title }}
-          </p>
-          <p v-if="text" class="toast__text">
-            {{ text }}
-          </p>
-        </div>
+    <div class="toast__main">
+      <template v-if="!withoutIcon">
+        <component v-if="icon" :is="icon" class="toast__icon" />
+        <component v-else :is="defaultIcon" class="toast__icon" />
+      </template>
+
+      <div class="toast__content">
+        <p class="toast__title">
+          {{ title }}
+        </p>
+        <p v-if="text" class="toast__text">
+          {{ text }}
+        </p>
       </div>
-      <button @click="$emit('close-toast')" class="toast__close">
-        <CrossIcon />
-      </button>
     </div>
     <CdekButton
       v-if="button"
@@ -97,7 +95,8 @@ p {
   backdrop-filter: blur(10px);
   border-radius: 12px;
   box-sizing: border-box;
-  width: 328px;
+  width: 100%;
+  max-width: 328px;
   &.info {
     background: $Bottom_66;
     box-shadow: 0px 8px 12px -5px $Tertiary_30;
@@ -114,11 +113,7 @@ p {
   &__main {
     display: flex;
     width: 100%;
-    justify-content: space-between;
-  }
-
-  &__message {
-    display: flex;
+    padding-right: 34px;
   }
 
   &__icon {
@@ -145,11 +140,12 @@ p {
   }
 
   &__close {
+    position: absolute;
     border: unset;
     background: unset;
     cursor: pointer;
     padding: 0;
-    margin-left: 10px;
+    right: 10px;
     width: 24px;
     height: 24px;
     opacity: 0.8;

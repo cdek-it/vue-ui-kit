@@ -1,0 +1,18 @@
+.Vue-Toastification__toast {
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: inherit;
+  max-height: auto;
+  min-height: auto;
+  max-width: auto;
+  min-width: auto;
+  display: inline-block;
+  background-color: transparent !important;
+  color: inherit;
+}
+
+.Vue-Toastification__container.bottom-center {
+  padding-left: 16px;
+  padding-right: 16px;
+}
