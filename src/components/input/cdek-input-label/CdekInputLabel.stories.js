@@ -28,3 +28,6 @@ export const Behind = Template.bind({});
 
 // Label находится в active состоянии всегда, и по позиции встает сверху блока
 export const Readonly = Template.bind({});
+
+// Как изменить цвет текста в лейбле
+export const CustomColor = Template.bind({});
