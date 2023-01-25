@@ -14,12 +14,8 @@ const createCdekHeadline = (size?: SizeT) => {
 
 describe('Unit: CdekHeadline', () => {
   describe('size', () => {
-    test('Если size = "1", то должен быть класс headline-1', () => {
-      const wrapper = createCdekHeadline('1');
-      const container = wrapper.find('h1');
-      expect(container.classes('headline-1')).toBeTruthy();
-    });
     test.each([
+      { size: '1', sizeClass: 'headline-1' },
       { size: '2', sizeClass: 'headline-2' },
       { size: '3', sizeClass: 'headline-3' },
       { size: '4', sizeClass: 'headline-4' },
@@ -30,8 +26,7 @@ describe('Unit: CdekHeadline', () => {
       'Если size = $size, то должен быть класс $sizeClass',
       ({ size, sizeClass }: any) => {
         const wrapper = createCdekHeadline(size);
-        const container = wrapper.find('div');
-        expect(container.classes(sizeClass)).toBeTruthy();
+        expect(wrapper.classes(sizeClass)).toBeTruthy();
       }
     );
   });
