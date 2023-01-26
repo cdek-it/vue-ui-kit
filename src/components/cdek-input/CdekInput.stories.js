@@ -140,3 +140,30 @@ TipIcon.parameters = {
     },
   },
 };
+
+export const Error = Template.bind({});
+Error.args = {
+  placeholder: 'Серия и номер паспорта',
+  error: 'Ошибка',
+};
+Error.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." error="Ошибка"/>',
+    },
+  },
+};
+
+export const ErrorFilled = Template.bind({});
+ErrorFilled.args = {
+  placeholder: 'Серия и номер паспорта',
+  error: 'Ошибка',
+  story: 'PlaceholderFilled',
+};
+ErrorFilled.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." error="Ошибка"/>',
+    },
+  },
+};

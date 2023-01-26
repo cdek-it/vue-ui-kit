@@ -10,9 +10,17 @@ const props = withDefaults(
   defineProps<{
     modelValue: string;
     placeholder?: string;
+    /**
+     * true - валидация пройдена, ошибку показывать не надо
+     *
+     * string - текст ошибки, ошибка показывается
+     */
+    error?: true | string;
   }>(),
   {}
 );
+
+const isError = computed(() => typeof props.error === 'string');
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
@@ -30,22 +38,37 @@ const value = computed({
 
 <template>
   <div class="cdek-input">
-    <label class="cdek-input__control">
+    <label
+      class="cdek-input__control"
+      :class="{ 'cdek-input__control_error': isError }"
+    >
       <!-- название -->
       <div
         v-if="placeholder"
         class="cdek-input__placeholder"
-        :class="{ 'cdek-input__placeholder_filled': value }"
+        :class="{
+          'cdek-input__placeholder_filled': value,
+          'cdek-input__placeholder_error': isError,
+        }"
       >
         {{ placeholder }}
       </div>
 
       <!-- иконки слева -->
-      <input class="cdek-input__input" v-model="value" />
+      <input
+        class="cdek-input__input"
+        :class="{ 'cdek-input__input_error': isError }"
+        v-model="value"
+      />
       <!-- иконки справа -->
     </label>
     <div class="cdek-input__tip">
+      <template v-if="isError">
+        <BanIcon />
+        <span class="error">{{ error }}</span>
+      </template>
       <slot
+        v-else
         name="tip"
         :alert="AlertTriangleIcon"
         :ban="BanIcon"
@@ -88,6 +111,19 @@ const value = computed({
       background: $Peak;
       outline-color: $Primary;
     }
+
+    &_error {
+      background: $Error_5;
+
+      @include media-hover {
+        background: $Error_10;
+      }
+
+      &:focus-within {
+        background: $Peak;
+        outline-color: $Error;
+      }
+    }
   }
 
   &__input {
@@ -99,9 +135,15 @@ const value = computed({
     flex-grow: 1;
     color: $Bottom;
     caret-color: $Primary;
+
+    &_error {
+      caret-color: $Error;
+    }
   }
 
   &__placeholder {
+    $this: &;
+
     @include body-1;
 
     position: absolute;
@@ -116,6 +158,10 @@ const value = computed({
 
       top: 8px;
       transform: translateY(0);
+    }
+
+    .cdek-input__control:not(:focus-within) &_error#{$this}_filled {
+      color: $Error;
     }
   }
 
@@ -134,6 +180,7 @@ const value = computed({
     :slotted(.attention) {
       color: $Attention;
     }
+    .error,
     :slotted(.error) {
       color: $Error;
     }
@@ -141,8 +188,9 @@ const value = computed({
       color: $Success;
     }
 
+    svg,
     :slotted(svg) {
-      vertical-align: bottom;
+      vertical-align: text-bottom;
       margin-right: 4px;
     }
   }
