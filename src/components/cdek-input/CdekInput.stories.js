@@ -12,12 +12,21 @@ export default {
       },
     },
   },
+  argTypes: {
+    story: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 };
 
 const Template = (args) => ({
   components: { CdekInput },
   setup() {
-    const inputVal = ref('');
+    const inputVal = ref(
+      args.story === 'PlaceholderFilled' ? '34 45 – 987 123' : ''
+    );
 
     return { args, inputVal };
   },
@@ -31,6 +40,31 @@ Primary.parameters = {
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal"/>',
+    },
+  },
+};
+
+export const Placeholder = Template.bind({});
+Placeholder.args = {
+  placeholder: 'Серия и номер паспорта',
+};
+Placeholder.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" placeholder="Серия и .."/>',
+    },
+  },
+};
+
+export const PlaceholderFilled = Template.bind({});
+PlaceholderFilled.args = {
+  placeholder: 'Серия и номер паспорта',
+  story: 'PlaceholderFilled',
+};
+PlaceholderFilled.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" placeholder="Серия и .."/>',
     },
   },
 };

@@ -4,6 +4,7 @@ import { computed } from 'vue';
 const props = withDefaults(
   defineProps<{
     modelValue: string;
+    placeholder?: string;
   }>(),
   {}
 );
@@ -24,8 +25,16 @@ const value = computed({
 
 <template>
   <div class="cdek-input">
-    <!-- название -->
     <label class="cdek-input__control">
+      <!-- название -->
+      <div
+        v-if="placeholder"
+        class="cdek-input__placeholder"
+        :class="{ 'cdek-input__placeholder_filled': value }"
+      >
+        {{ placeholder }}
+      </div>
+
       <!-- иконки слева -->
       <input class="cdek-input__input" v-model="value" />
       <!-- иконки справа -->
@@ -39,25 +48,21 @@ const value = computed({
 <style lang="scss" scoped>
 .cdek-input {
   &__control {
-    --border-width: 0px;
-
-    --padding-top: calc(24px - var(--border-width));
-    --padding-left-right: calc(16px - var(--border-width));
-    --padding-bottom: calc(8px - var(--border-width));
-
+    position: relative;
     display: flex;
     align-items: center;
     height: 56px;
 
-    padding-top: var(--padding-top);
-    padding-inline: var(--padding-left-right);
-    padding-bottom: var(--padding-bottom);
+    outline: solid 2px transparent;
+    padding-top: 22px;
+    padding-inline: 14px;
+    padding-bottom: 6px;
 
     box-sizing: border-box;
     background: $Surface_Neutral;
     box-shadow: inset 0px 1px 2px rgba(0, 33, 52, 0.05);
     border-radius: 8px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, outline-color 0.3s ease;
     cursor: text;
 
     @include media-hover {
@@ -65,10 +70,8 @@ const value = computed({
     }
 
     &:focus-within {
-      --border-width: 2px;
-
       background: $Peak;
-      border: 2px solid $Primary;
+      outline-color: $Primary;
     }
   }
 
@@ -81,6 +84,24 @@ const value = computed({
     flex-grow: 1;
     color: $Bottom;
     caret-color: $Primary;
+  }
+
+  &__placeholder {
+    @include body-1;
+
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $Bottom_60;
+    transition: all 0.3s ease;
+
+    &_filled,
+    .cdek-input__control:focus-within & {
+      @include caption-1;
+
+      top: 8px;
+      transform: translateY(0);
+    }
   }
 }
 </style>
