@@ -60,9 +60,31 @@ const value = computed({
       </button>
     </div>
   </label>
+
+  <!-- TODO: более плоская структура -->
+  <div>
+    <!-- TODO: модификаторы по БЭМ -->
+    <label
+      class="cdek-input__label"
+      :class="{ 'cdek-input__label_small': small }"
+    ></label>
+    <!-- по стилям выглядит как инпут -->
+    <div
+      class="cdek-input__control"
+      :class="{ 'cdek-input__control_small': small }"
+    >
+      <!-- иконки слева -->
+      <input />
+      <!-- иконки справа -->
+    </div>
+    <div>
+      <!-- подсказка или ошибка -->
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
+// TODO: все ховеры делать с медиа правилом
 p {
   margin: 0;
 }
