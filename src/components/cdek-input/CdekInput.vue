@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
+import AlertTriangleIcon from './svg/alert-triangle.svg?component';
+import BanIcon from './svg/ban.svg?component';
+import CircleCheckIcon from './svg/circle-check.svg?component';
+import InfoCircleIcon from './svg/info-circle.svg?component';
+
 const props = withDefaults(
   defineProps<{
     modelValue: string;
@@ -40,22 +45,32 @@ const value = computed({
       <!-- иконки справа -->
     </label>
     <div class="cdek-input__tip">
-      <!-- подсказка или ошибка -->
+      <slot
+        name="tip"
+        :alert="AlertTriangleIcon"
+        :ban="BanIcon"
+        :circle="CircleCheckIcon"
+        :info="InfoCircleIcon"
+      />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 .cdek-input {
+  $padding-left: 16px;
+
   &__control {
+    $outline-width: 2px;
+
     position: relative;
     display: flex;
     align-items: center;
     height: 56px;
 
-    outline: solid 2px transparent;
+    outline: solid $outline-width transparent;
     padding-top: 22px;
-    padding-inline: 14px;
+    padding-inline: calc(#{$padding-left} - #{$outline-width});
     padding-bottom: 6px;
 
     box-sizing: border-box;
@@ -101,6 +116,34 @@ const value = computed({
 
       top: 8px;
       transform: translateY(0);
+    }
+  }
+
+  &__tip {
+    @include caption-1;
+
+    padding-left: $padding-left;
+    margin-top: 4px;
+    color: $Bottom_66;
+
+    min-height: 16px;
+
+    :slotted(.tertiary) {
+      color: $Tertiary;
+    }
+    :slotted(.attention) {
+      color: $Attention;
+    }
+    :slotted(.error) {
+      color: $Error;
+    }
+    :slotted(.success) {
+      color: $Success;
+    }
+
+    :slotted(svg) {
+      vertical-align: bottom;
+      margin-right: 4px;
     }
   }
 }

@@ -18,6 +18,14 @@ export default {
         disable: true,
       },
     },
+    tipColor: {
+      options: ['tertiary', 'attention', 'error', 'success'],
+      type: 'select',
+    },
+    tipIcon: {
+      options: ['info', 'alert', 'ban', 'circle'],
+      type: 'select',
+    },
   },
 };
 
@@ -31,7 +39,12 @@ const Template = (args) => ({
     return { args, inputVal };
   },
   template: `
-    <CdekInput v-bind="args" v-model="inputVal" />
+    <CdekInput v-bind="args" v-model="inputVal">
+      <template #tip="{ alert, info, ban, circle }">
+        <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
+        <span :class="args.tipColor">{{ args.tip }}</span>
+      </template>
+    </CdekInput>
   `,
 });
 
@@ -65,6 +78,65 @@ PlaceholderFilled.parameters = {
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" placeholder="Серия и .."/>',
+    },
+  },
+};
+
+export const Tip = Template.bind({});
+Tip.args = {
+  placeholder: 'Серия и номер паспорта',
+  tip: 'Пояснение или помощь',
+};
+Tip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" placeholder="Серия и ..">
+  <template #tip>Пояснение или помощь</template>
+</CdekInput>
+`,
+    },
+  },
+};
+
+export const ColoredTip = Template.bind({});
+ColoredTip.args = {
+  placeholder: 'Серия и номер паспорта',
+  tip: 'Пояснение или помощь',
+  tipColor: 'tertiary',
+};
+ColoredTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" placeholder="Серия и ..">
+  <template #tip>
+    <span class="tertiary">Пояснение или помощь</span>
+  </template>
+</CdekInput>
+`,
+    },
+  },
+};
+
+export const TipIcon = Template.bind({});
+TipIcon.args = {
+  placeholder: 'Серия и номер паспорта',
+  tip: 'Пояснение или помощь',
+  tipIcon: 'info',
+  story: 'TipIcon',
+};
+TipIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" placeholder="Серия и ..">
+  <template #tip="{ info }">
+    <component :is="info" />
+    <span>Пояснение или помощь</span>
+  </template>
+</CdekInput>
+`,
     },
   },
 };
