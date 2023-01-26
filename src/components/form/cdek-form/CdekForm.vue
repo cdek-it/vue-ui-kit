@@ -1,42 +1,88 @@
 <script lang="ts" setup>
-import { provide, reactive } from 'vue';
+import { provide, reactive, ref, onMounted } from 'vue';
 
-const fields: { [key: string]: string } = reactive({});
+const cdekForm = ref<null | HTMLElement>(null);
+
+type FieldsT = { [key: string]: string | boolean };
+type ErrorsT = FieldsT;
+
+const fields: FieldsT = reactive({});
+const errors: ErrorsT = reactive({});
+
+const mounted = ref(false);
 
 provide('cdekFormFields', fields);
+provide('cdekFormErrors', errors);
+provide('cdekFormRef', cdekForm);
+provide('cdekFormMounted', mounted);
 
-const registerField = (name: string, initialValue: string) => {
+const addListenerOnForm = (eventName: string, callback: Function) => {
+  cdekForm.value?.addEventListener(
+    eventName,
+    (e: any) => {
+      e.stopPropagation();
+      callback(e.detail);
+    },
+    false
+  );
+};
+
+const registerField = ({
+  name,
+  initialValue,
+}: {
+  name: string;
+  initialValue: string | boolean;
+}) => {
   fields[name] = initialValue;
 };
 
-const changeField = (name: string, newValue: string) => {
+const changeField = ({
+  name,
+  newValue,
+}: {
+  name: string;
+  newValue: string | boolean;
+}) => {
   fields[name] = newValue;
-  console.log(fields);
 };
 
-const callbacks = {
-  register: registerField,
-  change: changeField,
+const validateField = ({
+  name,
+  validOrError,
+}: {
+  name: string;
+  validOrError: boolean | string;
+}) => {
+  errors[name] = validOrError;
 };
 
-const sendFormEvent = (
-  type: 'register' | 'change',
-  ...args: [string, string]
-) => {
-  callbacks[type](...args);
-};
+onMounted(() => {
+  addListenerOnForm('register-field', registerField);
+  addListenerOnForm('validate-field', validateField);
+  addListenerOnForm('change-field', changeField);
+  mounted.value = true;
+});
 
 const emit = defineEmits<{
-  (e: 'submit', values: { [key: string]: string }): void;
+  (e: 'submit', values: FieldsT): void;
+  (e: 'submitError', errors: ErrorsT): void;
 }>();
 
 const submit = () => {
+  for (const key of Object.getOwnPropertyNames(errors)) {
+    if (typeof errors[key] === 'string') {
+      emit('submitError', errors);
+      return;
+    }
+  }
+
   emit('submit', fields);
 };
 </script>
 
 <template>
-  <form @submit.prevent="submit">
-    <slot :sendFormEvent="sendFormEvent" />
+  <form @submit.prevent="submit" ref="cdekForm">
+    <slot />
   </form>
 </template>
