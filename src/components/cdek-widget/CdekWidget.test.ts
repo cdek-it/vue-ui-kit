@@ -2,25 +2,25 @@ import { describe, test, expect } from 'vitest';
 import { mount } from '@vue/test-utils';
 import CdekWidget from './CdekWidget.vue';
 
-const createCdekWidget = (headline?: string, withoutPaddings?: boolean) => {
+const createCdekWidget = (
+  headline?: string,
+  withoutPaddings?: boolean,
+  slot?: string
+) => {
   return mount(CdekWidget, {
     props: {
       headline,
       withoutPaddings,
     },
     slots: {
-      default: 'Тест',
+      default: slot || '',
     },
   });
 };
 
 describe('Unit: CdekWidget', () => {
   test('Отображает слот', () => {
-    const wrapper = mount(CdekWidget, {
-      slots: {
-        default: 'Тест',
-      },
-    });
+    const wrapper = createCdekWidget(undefined, undefined, 'Тест');
     expect(wrapper.text()).toBe('Тест');
   });
   test('Если headline = "Заголовок", то элемент .cdek-widget__title должен содержать "Заголовок"', () => {
