@@ -23,5 +23,6 @@ const value = computed({
 </script>
 
 <template>
-  <input ref="formControls" v-model="value" />
+  <label :for="name">{{ name }}</label>
+  <input v-model="value" :id="name" />
 </template>
