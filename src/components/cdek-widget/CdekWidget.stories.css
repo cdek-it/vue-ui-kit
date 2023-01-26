@@ -1,4 +1,5 @@
 .cdek-widget {
-  width: 328px;
+  width: 100%;
+  max-width: 328px;
   height: 158px;
 }
