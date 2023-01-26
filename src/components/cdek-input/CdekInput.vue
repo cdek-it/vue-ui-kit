@@ -55,6 +55,7 @@ const value = computed({
       </div>
 
       <!-- иконки слева -->
+      <!-- TODO: $attrs поставить на input -->
       <input
         class="cdek-input__input"
         :class="{ 'cdek-input__input_error': isError }"

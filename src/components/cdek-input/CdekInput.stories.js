@@ -52,7 +52,7 @@ export const Primary = Template.bind({});
 Primary.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal"/>',
+      code: '<CdekInput v-model="inputVal" />',
     },
   },
 };
