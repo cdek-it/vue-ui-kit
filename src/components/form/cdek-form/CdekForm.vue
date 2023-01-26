@@ -1,7 +1,12 @@
 <script lang="ts" setup>
-import { provide, reactive, ref, onMounted } from 'vue';
+import { provide, reactive, ref } from 'vue';
 
-const cdekForm = ref<null | HTMLElement>(null);
+import { useForm } from '@/components/form/useForm';
+import type {
+  RegisterCallback,
+  ValidateCallback,
+  ChangeCallback,
+} from '@/components/form/useForm';
 
 type FieldsT = { [key: string]: string | boolean };
 type ErrorsT = FieldsT;
@@ -9,59 +14,27 @@ type ErrorsT = FieldsT;
 const fields: FieldsT = reactive({});
 const errors: ErrorsT = reactive({});
 
-const mounted = ref(false);
-
 provide('cdekFormFields', fields);
 provide('cdekFormErrors', errors);
-provide('cdekFormRef', cdekForm);
-provide('cdekFormMounted', mounted);
 
-const addListenerOnForm = (eventName: string, callback: Function) => {
-  cdekForm.value?.addEventListener(
-    eventName,
-    (e: any) => {
-      e.stopPropagation();
-      callback(e.detail);
-    },
-    false
-  );
-};
-
-const registerField = ({
-  name,
-  initialValue,
-}: {
-  name: string;
-  initialValue: string | boolean;
-}) => {
+const registerField: RegisterCallback = ({ name, initialValue }) => {
   fields[name] = initialValue;
 };
 
-const changeField = ({
-  name,
-  newValue,
-}: {
-  name: string;
-  newValue: string | boolean;
-}) => {
+const changeField: ChangeCallback = ({ name, newValue }) => {
   fields[name] = newValue;
 };
 
-const validateField = ({
-  name,
-  validOrError,
-}: {
-  name: string;
-  validOrError: boolean | string;
-}) => {
+const validateField: ValidateCallback = ({ name, validOrError }) => {
   errors[name] = validOrError;
 };
 
-onMounted(() => {
-  addListenerOnForm('register-field', registerField);
-  addListenerOnForm('validate-field', validateField);
-  addListenerOnForm('change-field', changeField);
-  mounted.value = true;
+const cdekForm = ref<null | HTMLElement>(null);
+
+useForm(cdekForm, {
+  'change-field': changeField,
+  'register-field': registerField,
+  'validate-field': validateField,
 });
 
 const emit = defineEmits<{

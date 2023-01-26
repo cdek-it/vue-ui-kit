@@ -35,10 +35,12 @@ const triggerEventOnForm = (eventName: string, detail: object) => {
 watch(
   () => cdekFormMounted?.value,
   () => {
-    for (const callback of cdekFormQueue) {
-      callback();
+    if (cdekFormMounted?.value) {
+      for (const callback of cdekFormQueue) {
+        callback();
+      }
+      cdekFormQueue = [];
     }
-    cdekFormQueue = [];
   }
 );
 
