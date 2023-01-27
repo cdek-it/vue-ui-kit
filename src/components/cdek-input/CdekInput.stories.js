@@ -43,6 +43,14 @@ const Template = (args) => ({
       <template #tip="{ alert, info, ban, circle }">
         <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
         <span :class="args.tipColor">{{ args.tip }}</span>
+
+        <template #icons-left>
+          <!-- Иконка лупы просто в svg -->
+        </template>
+
+        <template #icons-right>
+          <!-- Иконка глазика в кнопке -->
+        </template>
       </template>
     </CdekInput>
   `,

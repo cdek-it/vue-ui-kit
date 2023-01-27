@@ -68,7 +68,8 @@ const value = computed({
         {{ placeholder }}
       </div>
 
-      <!-- иконки слева -->
+      <slot name="icons-left" />
+
       <input
         class="cdek-input__input"
         :class="{
@@ -79,7 +80,8 @@ const value = computed({
         v-bind="$attrs"
         :disabled="disabled || readonly"
       />
-      <!-- иконки справа -->
+
+      <slot name="icons-right" />
     </label>
     <div class="cdek-input__tip">
       <template v-if="isError">
