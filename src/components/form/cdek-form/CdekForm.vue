@@ -45,12 +45,12 @@ const emit = defineEmits<{
 const submit = () => {
   for (const key of Object.getOwnPropertyNames(errors)) {
     if (typeof errors[key] === 'string') {
-      emit('submitError', errors);
+      emit('submitError', { ...errors });
       return;
     }
   }
 
-  emit('submit', fields);
+  emit('submit', { ...fields });
 };
 </script>
 
