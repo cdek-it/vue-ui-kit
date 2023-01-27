@@ -43,6 +43,14 @@ const Template = (args) => ({
       <template #tip="{ alert, info, ban, circle }">
         <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
         <span :class="args.tipColor">{{ args.tip }}</span>
+
+        <template #icons-left>
+          <!-- Иконка лупы просто в svg -->
+        </template>
+
+        <template #icons-right>
+          <!-- Иконка глазика в кнопке -->
+        </template>
       </template>
     </CdekInput>
   `,
@@ -181,6 +189,20 @@ Disabled.parameters = {
   },
 };
 
+export const DisabledWithError = Template.bind({});
+DisabledWithError.args = {
+  placeholder: 'Серия и номер паспорта',
+  disabled: true,
+  error: 'Ошибка',
+};
+DisabledWithError.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." disabled error="Ошибка"/>',
+    },
+  },
+};
+
 export const DisabledFilled = Template.bind({});
 DisabledFilled.args = {
   placeholder: 'Серия и номер паспорта',
@@ -205,6 +227,20 @@ ReadonlyFilled.parameters = {
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" placeholder="Серия и .." readonly />',
+    },
+  },
+};
+
+export const ExtraAttrs = Template.bind({});
+ExtraAttrs.args = {
+  placeholder: 'Введите больше 3 символов',
+  maxlength: '3',
+  tip: 'На компонент передан maxlength, он автоматически ставится на input',
+};
+ExtraAttrs.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" placeholder="Введ.." maxlength="3" />',
     },
   },
 };
