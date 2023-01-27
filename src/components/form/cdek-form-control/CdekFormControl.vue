@@ -3,7 +3,12 @@ import { onMounted, inject, computed, ref } from 'vue';
 
 import { FormServiceKey } from '@/components/form/FormService';
 
-const formService = inject(FormServiceKey);
+const props = defineProps<{
+  name: string;
+  rules?: RulesT;
+}>();
+
+const fieldService = inject(FormServiceKey)?.getFieldService(props.name);
 
 type RuleValidator = (val: string) => boolean | string;
 type RulesObjectT = {
@@ -11,14 +16,9 @@ type RulesObjectT = {
 };
 type RulesT = string | RulesObjectT;
 
-const props = defineProps<{
-  name: string;
-  rules?: RulesT;
-}>();
-
 onMounted(() => {
-  formService?.registerField(props.name, '');
-  formService?.validateField(props.name, getErrorKey(validateValue('')));
+  fieldService?.register('');
+  fieldService?.validate(getErrorKey(validateValue('')));
 });
 
 const error = ref<null | true | string>(null);
@@ -62,13 +62,13 @@ const getErrorKey = (error: ValidateResultT) => {
 
 const value = computed({
   get() {
-    return formService?.fields[props.name] || '';
+    return fieldService?.value || '';
   },
   set(newValue) {
-    formService?.changeField(props.name, newValue);
+    fieldService?.change(newValue);
     const errorObj = validateValue(newValue);
     error.value = getErrorMessage(errorObj);
-    formService?.validateField(props.name, getErrorKey(errorObj));
+    fieldService?.validate(getErrorKey(errorObj));
   },
 });
 
