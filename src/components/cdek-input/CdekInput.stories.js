@@ -37,7 +37,7 @@ const Template = (args) => ({
   components: { CdekInput, SearchIcon, EyeIcon },
   setup() {
     const inputVal = ref(
-      ['PlaceholderFilled', 'RightIconDisabled'].includes(args.story)
+      ['LabelFilled', 'RightIconDisabled'].includes(args.story)
         ? '34 45 – 987 123'
         : ''
     );
@@ -52,7 +52,7 @@ const Template = (args) => ({
           <span :class="args.tipColor">{{ args.tip }}</span>
         </template>
 
-        <template #icons-left v-if="false">
+        <template #icons-left v-if="args.story === 'LeftIcon'">
           <SearchIcon />
         </template>
 
@@ -75,39 +75,64 @@ Primary.parameters = {
 
 export const Placeholder = Template.bind({});
 Placeholder.args = {
-  placeholder: 'Серия и номер паспорта',
+  placeholder: 'Поиск',
 };
 Placeholder.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" placeholder="Серия и .."/>',
+      code: '<CdekInput v-model="inputVal" placeholder="Поиск"/>',
     },
   },
 };
 
-export const PlaceholderFilled = Template.bind({});
-PlaceholderFilled.args = {
-  placeholder: 'Серия и номер паспорта',
-  story: 'PlaceholderFilled',
+export const Label = Template.bind({});
+Label.args = {
+  label: 'Серия и номер паспорта',
 };
-PlaceholderFilled.parameters = {
+Label.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" placeholder="Серия и .."/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .."/>',
+    },
+  },
+};
+
+export const LabelFilled = Template.bind({});
+LabelFilled.args = {
+  label: 'Серия и номер паспорта',
+  story: 'LabelFilled',
+};
+LabelFilled.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" label="Серия и .."/>',
+    },
+  },
+};
+
+export const LabelWithPlaceholder = Template.bind({});
+LabelWithPlaceholder.args = {
+  label: 'Серия и номер паспорта',
+  placeholder: '00 00 – 000 000',
+};
+LabelWithPlaceholder.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" label="Серия и .." placeholder="00.." />',
     },
   },
 };
 
 export const Tip = Template.bind({});
 Tip.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   tip: 'Пояснение или помощь',
 };
 Tip.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" placeholder="Серия и ..">
+<CdekInput v-model="inputVal" label="Серия и ..">
   <template #tip>Пояснение или помощь</template>
 </CdekInput>
 `,
@@ -117,7 +142,7 @@ Tip.parameters = {
 
 export const ColoredTip = Template.bind({});
 ColoredTip.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   tip: 'Пояснение или помощь',
   tipColor: 'tertiary',
 };
@@ -125,7 +150,7 @@ ColoredTip.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" placeholder="Серия и ..">
+<CdekInput v-model="inputVal" label="Серия и ..">
   <template #tip>
     <span class="tertiary">Пояснение или помощь</span>
   </template>
@@ -137,7 +162,7 @@ ColoredTip.parameters = {
 
 export const TipIcon = Template.bind({});
 TipIcon.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   tip: 'Пояснение или помощь',
   tipIcon: 'info',
   story: 'TipIcon',
@@ -146,7 +171,7 @@ TipIcon.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" placeholder="Серия и ..">
+<CdekInput v-model="inputVal" label="Серия и ..">
   <template #tip="{ info }">
     <component :is="info" />
     <span>Пояснение или помощь</span>
@@ -159,110 +184,110 @@ TipIcon.parameters = {
 
 export const Error = Template.bind({});
 Error.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   error: 'Ошибка',
 };
 Error.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." error="Ошибка"/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." error="Ошибка"/>',
     },
   },
 };
 
 export const ErrorFilled = Template.bind({});
 ErrorFilled.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   error: 'Ошибка',
-  story: 'PlaceholderFilled',
+  story: 'LabelFilled',
 };
 ErrorFilled.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." error="Ошибка"/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." error="Ошибка"/>',
     },
   },
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   disabled: true,
 };
 Disabled.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." disabled/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." disabled/>',
     },
   },
 };
 
 export const DisabledWithError = Template.bind({});
 DisabledWithError.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   disabled: true,
   error: 'Ошибка',
 };
 DisabledWithError.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." disabled error="Ошибка"/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." disabled error="Ошибка"/>',
     },
   },
 };
 
 export const DisabledFilled = Template.bind({});
 DisabledFilled.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   disabled: true,
-  story: 'PlaceholderFilled',
+  story: 'LabelFilled',
 };
 DisabledFilled.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." disabled />',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." disabled />',
     },
   },
 };
 
 export const ReadonlyFilled = Template.bind({});
 ReadonlyFilled.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   readonly: true,
-  story: 'PlaceholderFilled',
+  story: 'LabelFilled',
 };
 ReadonlyFilled.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." readonly />',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." readonly />',
     },
   },
 };
 
 export const ExtraAttrs = Template.bind({});
 ExtraAttrs.args = {
-  placeholder: 'Введите больше 3 символов',
+  label: 'Введите больше 3 символов',
   maxlength: '3',
   tip: 'На компонент передан maxlength, он автоматически ставится на input',
 };
 ExtraAttrs.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" placeholder="Введ.." maxlength="3" />',
+      code: '<CdekInput v-model="inputVal" label="Введ.." maxlength="3" />',
     },
   },
 };
 
 export const RightIcon = Template.bind({});
 RightIcon.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   story: 'RightIcon',
 };
 RightIcon.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" placeholder="Серия..">
+<CdekInput v-model="inputVal" label="Серия..">
   <template #right-icon>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
@@ -275,7 +300,7 @@ RightIcon.parameters = {
 
 export const RightIconError = Template.bind({});
 RightIconError.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   error: 'Ошибка',
   story: 'RightIcon',
 };
@@ -283,7 +308,7 @@ RightIconError.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" placeholder="Серия.." error="Ошибка">
+<CdekInput v-model="inputVal" label="Серия.." error="Ошибка">
   <template #right-icon>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
@@ -296,7 +321,7 @@ RightIconError.parameters = {
 
 export const RightIconDisabled = Template.bind({});
 RightIconDisabled.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   story: 'RightIconDisabled',
   disabled: true,
 };
@@ -304,7 +329,7 @@ RightIconDisabled.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" placeholder="Серия.." disabled>
+<CdekInput v-model="inputVal" label="Серия.." disabled>
   <template #right-icon>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
@@ -317,7 +342,7 @@ RightIconDisabled.parameters = {
 
 export const RightIconReadonly = Template.bind({});
 RightIconReadonly.args = {
-  placeholder: 'Серия и номер паспорта',
+  label: 'Серия и номер паспорта',
   story: 'RightIconDisabled',
   readonly: true,
 };
@@ -325,10 +350,30 @@ RightIconReadonly.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" placeholder="Серия.." readonly>
+<CdekInput v-model="inputVal" label="Серия.." readonly>
   <template #right-icon>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
+  </template>
+</CdekInput>
+`,
+    },
+  },
+};
+
+export const LeftIcon = Template.bind({});
+LeftIcon.args = {
+  story: 'LeftIcon',
+  placeholder: 'Поиск',
+};
+LeftIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" placeholder="Поиск">
+  <template #left-icon>
+    <!-- иконка должна быть размером 24x24 -->
+    <button><SearchIcon /></button>
   </template>
 </CdekInput>
 `,

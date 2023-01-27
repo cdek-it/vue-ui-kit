@@ -15,7 +15,7 @@ import InfoCircleIcon from './svg/info-circle.svg?component';
 const props = withDefaults(
   defineProps<{
     modelValue: string;
-    placeholder?: string;
+    label?: string;
     /**
      * true - валидация пройдена, ошибку показывать не надо
      *
@@ -48,6 +48,7 @@ const value = computed({
 const slots = useSlots();
 
 const hasRightIcon = computed(() => !!slots['icons-right']);
+const hasLeftIcon = computed(() => !!slots['icons-left']);
 </script>
 
 <template>
@@ -63,27 +64,42 @@ const hasRightIcon = computed(() => !!slots['icons-right']);
       }"
     >
       <div
-        v-if="placeholder"
+        v-if="label"
         class="cdek-input__placeholder"
         :class="{
           'cdek-input__placeholder_filled': value,
           'cdek-input__placeholder_error': isError,
         }"
       >
-        {{ placeholder }}
+        {{ label }}
       </div>
-      <slot name="icons-left" />
+
+      <div v-if="hasLeftIcon" class="cdek-input__left-icon">
+        <slot name="icons-left" />
+      </div>
+
       <input
         class="cdek-input__input"
         :class="{
           'cdek-input__input_error': isError,
           'cdek-input__input_readonly': readonly,
+          'cdek-input__input_no-label': !label,
         }"
         v-model="value"
         v-bind="$attrs"
         :disabled="disabled || readonly"
       />
-      <slot name="icons-right" />
+
+      <div
+        class="cdek-input__right-icon"
+        :class="{
+          'cdek-input__right-icon_red': isError,
+          'cdek-input__right-icon_grey': disabled || readonly,
+        }"
+        v-if="hasRightIcon"
+      >
+        <slot name="icons-right" />
+      </div>
     </label>
     <div class="cdek-input__tip">
       <template v-if="isError">
@@ -125,7 +141,7 @@ const hasRightIcon = computed(() => !!slots['icons-right']);
 
     outline: solid $outline-width transparent;
     padding-inline: calc(#{$padding-left} - #{$outline-width});
-    padding-bottom: 6px;
+    padding-block: 6px;
 
     box-sizing: border-box;
     background: $Surface_Neutral;
@@ -156,41 +172,21 @@ const hasRightIcon = computed(() => !!slots['icons-right']);
       }
     }
 
-    @include slotted-svg-color($Primary);
-
     &_error {
       background: $Error_5;
-
-      @include slotted-svg-color($Error);
     }
 
     &_disabled {
       background: $Input_Disable;
-
-      @include slotted-svg-color($Button_Disable);
     }
 
     &_readonly {
       background: transparent;
       box-shadow: unset;
-
-      @include slotted-svg-color($Button_Disable);
     }
 
     &_right-icon {
       padding-right: 8px;
-    }
-
-    :slotted(button) {
-      width: 36px;
-      height: 36px;
-      background: transparent;
-      border: none;
-      padding: 6px;
-      align-self: center;
-      position: relative;
-      top: $outline-width;
-      outline: none;
     }
   }
 
@@ -216,6 +212,23 @@ const hasRightIcon = computed(() => !!slots['icons-right']);
     &_readonly,
     &_readonly[disabled] {
       color: $Bottom;
+    }
+
+    &_no-label {
+      align-self: center;
+    }
+
+    &:not(&_no-label) {
+      &::placeholder {
+        transition: color 0.2s ease;
+        color: transparent;
+      }
+
+      &:focus {
+        &::placeholder {
+          color: $Button_Disable;
+        }
+      }
     }
   }
 
@@ -270,6 +283,35 @@ const hasRightIcon = computed(() => !!slots['icons-right']);
     :slotted(svg) {
       vertical-align: text-bottom;
       margin-right: 4px;
+    }
+  }
+
+  &__right-icon {
+    :slotted(button) {
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: none;
+      padding: 6px;
+      outline: none;
+    }
+
+    @include slotted-svg-color($Primary);
+
+    &_red {
+      @include slotted-svg-color($Error);
+    }
+
+    &_grey {
+      @include slotted-svg-color($Button_Disable);
+    }
+  }
+
+  &__left-icon {
+    line-height: 0;
+
+    :slotted(svg) {
+      margin-right: 8px;
     }
   }
 }
