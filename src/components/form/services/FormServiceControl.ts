@@ -1,5 +1,6 @@
 import type FormService from './FormService';
 import type { RulesT, ValidateResultT } from './types';
+import { getValidators } from './Validators';
 
 export default class FormServiceControl {
   error?: true | string;
@@ -8,7 +9,9 @@ export default class FormServiceControl {
     public formService: FormService,
     public fieldName: string,
     public rules?: RulesT
-  ) {}
+  ) {
+    this.rules = getValidators().parseRules(this.rules);
+  }
 
   init() {
     this.register('');

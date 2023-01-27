@@ -3,8 +3,8 @@ export type ErrorsT = { [key: string]: true | string };
 
 export type ValidateResultT = true | { key: string; message?: string };
 
-type RuleValidator = (val: string) => boolean | string;
+type RuleValidator = (val: string) => true | string;
 type RulesObjectT = {
-  [key: string]: boolean | string | RuleValidator;
+  [key: string]: true | string | RuleValidator;
 };
 export type RulesT = undefined | string | RulesObjectT;

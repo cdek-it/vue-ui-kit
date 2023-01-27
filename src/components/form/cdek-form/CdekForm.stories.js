@@ -15,9 +15,12 @@ const Template = (args) => ({
     let form = ref({});
     let errors = ref({});
 
-    const rules =
-      args.story === 'WithValidation'
-        ? {
+    const ruleFactory = () => {
+      switch (args.story) {
+        case 'GlobalValidator':
+          return 'alpha';
+        case 'WithValidation':
+          return {
             required: (value) => {
               if (!value.trim()) {
                 return 'Поле обязательное';
@@ -25,8 +28,13 @@ const Template = (args) => ({
 
               return true;
             },
-          }
-        : {};
+          };
+        default:
+          return {};
+      }
+    };
+
+    const rules = ruleFactory();
 
     const submit = (values) => {
       form.value = values;
@@ -145,6 +153,25 @@ const submitError = (errors) => {
     <button>Продолжить<button>
   </CdekForm>
 </template>
+`,
+    },
+  },
+};
+
+export const GlobalValidator = Template.bind({});
+GlobalValidator.args = {
+  story: 'GlobalValidator',
+};
+GlobalValidator.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm @submit="submit">
+  <CdekFormControl name="firstName" rules="alpha" />
+  <CdekFormControl name="surname" />
+
+  <button>Продолжить<button>
+</CdekForm>
 `,
     },
   },
