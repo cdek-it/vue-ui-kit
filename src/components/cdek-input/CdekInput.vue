@@ -4,6 +4,8 @@ import { computed } from 'vue';
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';
 import CircleCheckIcon from './svg/circle-check.svg?component';
+import SearchIcon from './svg/search.svg?component';
+import CrossInCircleIcon from './svg/cross-in-circle.svg?component';
 import InfoCircleIcon from './svg/info-circle.svg?component';
 
 const props = withDefaults(
@@ -65,6 +67,7 @@ export default {
       </div>
 
       <!-- иконки слева -->
+      <slot name="iconsLeft" :search="SearchIcon" />
       <input
         class="cdek-input__input"
         :class="{
@@ -76,6 +79,7 @@ export default {
         :disabled="disabled || readonly"
       />
       <!-- иконки справа -->
+      <slot name="iconsRight" :cross="CrossInCircleIcon" />
     </label>
     <div class="cdek-input__tip">
       <template v-if="isError">
