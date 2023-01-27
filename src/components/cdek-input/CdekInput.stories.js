@@ -1,5 +1,9 @@
 import { ref } from 'vue';
 import CdekInput from './CdekInput.vue';
+import SearchIcon from './svg/search.svg?component';
+import EyeIcon from './svg/eye.svg?component';
+
+import './CdekInput.stories.scss';
 
 export default {
   title: 'Ui kit/CdekInput',
@@ -30,29 +34,33 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekInput },
+  components: { CdekInput, SearchIcon, EyeIcon },
   setup() {
     const inputVal = ref(
-      args.story === 'PlaceholderFilled' ? '34 45 – 987 123' : ''
+      ['PlaceholderFilled', 'RightIconDisabled'].includes(args.story)
+        ? '34 45 – 987 123'
+        : ''
     );
 
     return { args, inputVal };
   },
   template: `
-    <CdekInput v-bind="args" v-model="inputVal">
-      <template #tip="{ alert, info, ban, circle }">
-        <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
-        <span :class="args.tipColor">{{ args.tip }}</span>
-
-        <template #icons-left>
-          <!-- Иконка лупы просто в svg -->
+    <div class="input-story">
+      <CdekInput v-bind="args" v-model="inputVal">
+        <template #tip="{ alert, info, ban, circle }">
+          <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
+          <span :class="args.tipColor">{{ args.tip }}</span>
         </template>
 
-        <template #icons-right>
-          <!-- Иконка глазика в кнопке -->
+        <template #icons-left v-if="false">
+          <SearchIcon />
         </template>
-      </template>
-    </CdekInput>
+
+        <template #icons-right v-if="['RightIconDisabled', 'RightIcon'].includes(args.story)">
+          <button @click="test"><EyeIcon /></button>
+        </template>
+      </CdekInput>
+    </div>
   `,
 });
 
@@ -241,6 +249,89 @@ ExtraAttrs.parameters = {
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" placeholder="Введ.." maxlength="3" />',
+    },
+  },
+};
+
+export const RightIcon = Template.bind({});
+RightIcon.args = {
+  placeholder: 'Серия и номер паспорта',
+  story: 'RightIcon',
+};
+RightIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" placeholder="Серия..">
+  <template #right-icon>
+    <!-- иконка должна быть размером 24x24 -->
+    <button><EyeIcon /></button>
+  </template>
+</CdekInput>
+`,
+    },
+  },
+};
+
+export const RightIconError = Template.bind({});
+RightIconError.args = {
+  placeholder: 'Серия и номер паспорта',
+  error: 'Ошибка',
+  story: 'RightIcon',
+};
+RightIconError.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" placeholder="Серия.." error="Ошибка">
+  <template #right-icon>
+    <!-- иконка должна быть размером 24x24 -->
+    <button><EyeIcon /></button>
+  </template>
+</CdekInput>
+`,
+    },
+  },
+};
+
+export const RightIconDisabled = Template.bind({});
+RightIconDisabled.args = {
+  placeholder: 'Серия и номер паспорта',
+  story: 'RightIconDisabled',
+  disabled: true,
+};
+RightIconDisabled.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" placeholder="Серия.." disabled>
+  <template #right-icon>
+    <!-- иконка должна быть размером 24x24 -->
+    <button><EyeIcon /></button>
+  </template>
+</CdekInput>
+`,
+    },
+  },
+};
+
+export const RightIconReadonly = Template.bind({});
+RightIconReadonly.args = {
+  placeholder: 'Серия и номер паспорта',
+  story: 'RightIconDisabled',
+  readonly: true,
+};
+RightIconReadonly.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" placeholder="Серия.." readonly>
+  <template #right-icon>
+    <!-- иконка должна быть размером 24x24 -->
+    <button><EyeIcon /></button>
+  </template>
+</CdekInput>
+`,
     },
   },
 };

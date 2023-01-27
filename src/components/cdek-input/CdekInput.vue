@@ -5,13 +5,11 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, useSlots } from 'vue';
 
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';
 import CircleCheckIcon from './svg/circle-check.svg?component';
-import SearchIcon from './svg/search.svg?component';
-import CrossInCircleIcon from './svg/cross-in-circle.svg?component';
 import InfoCircleIcon from './svg/info-circle.svg?component';
 
 const props = withDefaults(
@@ -32,7 +30,7 @@ const props = withDefaults(
 
 const isError = computed(() => typeof props.error === 'string');
 
-const isHover = computed(() => !props.disabled && !props.readonly);
+const isUserEvent = computed(() => !props.disabled && !props.readonly);
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
@@ -46,6 +44,10 @@ const value = computed({
     emit('update:modelValue', newValue);
   },
 });
+
+const slots = useSlots();
+
+const hasRightIcon = computed(() => !!slots['icons-right']);
 </script>
 
 <template>
@@ -54,9 +56,10 @@ const value = computed({
       class="cdek-input__control"
       :class="{
         'cdek-input__control_error': isError,
-        'cdek-input__control_hover': isHover,
+        'cdek-input__control_user-event': isUserEvent,
         'cdek-input__control_disabled': disabled,
         'cdek-input__control_readonly': readonly,
+        'cdek-input__control_right-icon': hasRightIcon,
       }"
     >
       <div
@@ -69,9 +72,7 @@ const value = computed({
       >
         {{ placeholder }}
       </div>
-
-      <!-- иконки слева -->
-      <slot name="icons-left" :search="SearchIcon" />
+      <slot name="icons-left" />
       <input
         class="cdek-input__input"
         :class="{
@@ -82,8 +83,7 @@ const value = computed({
         v-bind="$attrs"
         :disabled="disabled || readonly"
       />
-      <!-- иконки справа -->
-      <slot name="icons-right" :cross="CrossInCircleIcon" />
+      <slot name="icons-right" />
     </label>
     <div class="cdek-input__tip">
       <template v-if="isError">
@@ -103,6 +103,14 @@ const value = computed({
 </template>
 
 <style lang="scss" scoped>
+@mixin slotted-svg-color($color) {
+  :slotted(svg) {
+    path {
+      stroke: $color;
+    }
+  }
+}
+
 .cdek-input {
   $padding-left: 16px;
 
@@ -116,7 +124,6 @@ const value = computed({
     height: 56px;
 
     outline: solid $outline-width transparent;
-    padding-top: 22px;
     padding-inline: calc(#{$padding-left} - #{$outline-width});
     padding-bottom: 6px;
 
@@ -127,39 +134,63 @@ const value = computed({
     transition: background-color 0.3s ease, outline-color 0.3s ease;
     cursor: text;
 
-    &_hover {
+    &_user-event {
       @include media-hover {
         background: $Primary_10;
+      }
+
+      &:focus-within {
+        background: $Peak;
+        outline-color: $Primary;
       }
 
       &#{$this}_error {
         @include media-hover {
           background: $Error_10;
         }
+
+        &:focus-within {
+          background: $Peak !important;
+          outline-color: $Error;
+        }
       }
     }
 
-    &:focus-within {
-      background: $Peak;
-      outline-color: $Primary;
-    }
+    @include slotted-svg-color($Primary);
 
     &_error {
       background: $Error_5;
 
-      &:focus-within {
-        background: $Peak !important;
-        outline-color: $Error;
-      }
+      @include slotted-svg-color($Error);
     }
 
     &_disabled {
       background: $Input_Disable;
+
+      @include slotted-svg-color($Button_Disable);
     }
 
     &_readonly {
       background: transparent;
       box-shadow: unset;
+
+      @include slotted-svg-color($Button_Disable);
+    }
+
+    &_right-icon {
+      padding-right: 8px;
+    }
+
+    :slotted(button) {
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: none;
+      padding: 6px;
+      align-self: center;
+      position: relative;
+      top: $outline-width;
+      outline: none;
     }
   }
 
@@ -172,6 +203,7 @@ const value = computed({
     flex-grow: 1;
     color: $Bottom;
     caret-color: $Primary;
+    align-self: flex-end;
 
     &_error {
       caret-color: $Error;
