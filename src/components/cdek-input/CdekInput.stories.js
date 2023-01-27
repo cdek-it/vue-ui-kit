@@ -64,6 +64,8 @@ const Template = (args) => ({
   `,
 });
 
+// TEST: prop modelValue должен лежать внутри инпута
+// TEST: при изменении значения в инпуте, должно эмиттиться событие update:modelValue
 export const Primary = Template.bind({});
 Primary.parameters = {
   docs: {
@@ -73,6 +75,8 @@ Primary.parameters = {
   },
 };
 
+// TEST: при передаче placeholder, он должен отобразиться на инпуте
+// TEST: при передаче placeholder, он не должен быть на корневом div компонента
 export const Placeholder = Template.bind({});
 Placeholder.args = {
   placeholder: 'Поиск',
@@ -85,6 +89,8 @@ Placeholder.parameters = {
   },
 };
 
+// TEST: если передан label он должен отобразиться
+// TEST: если label не передан, то div.cdek-input__placeholder не должен рендериться
 export const Label = Template.bind({});
 Label.args = {
   label: 'Серия и номер паспорта',
@@ -97,6 +103,7 @@ Label.parameters = {
   },
 };
 
+// TEST: Если передан label и есть значение, то должен добавиться класс cdek-input__placeholder_filled
 export const LabelFilled = Template.bind({});
 LabelFilled.args = {
   label: 'Серия и номер паспорта',
