@@ -29,3 +29,11 @@ export const parameters = {
     ],
   },
 };
+
+export const argTypes = {
+  story: {
+    table: {
+      disable: true,
+    },
+  },
+};

@@ -3,13 +3,6 @@ import CdekLink from './CdekLink.vue';
 export default {
   title: 'Ui kit/CdekLink',
   component: CdekLink,
-  argTypes: {
-    story: {
-      table: {
-        disable: true,
-      },
-    },
-  },
 };
 
 const Template = (args) => ({

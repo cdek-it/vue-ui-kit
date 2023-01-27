@@ -20,11 +20,6 @@ export default {
     width: {
       options: ['auto', 'content'],
     },
-    story: {
-      table: {
-        disable: true,
-      },
-    },
   },
 };
 
