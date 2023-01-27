@@ -167,3 +167,44 @@ ErrorFilled.parameters = {
     },
   },
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  placeholder: 'Серия и номер паспорта',
+  disabled: true,
+};
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." disabled/>',
+    },
+  },
+};
+
+export const DisabledFilled = Template.bind({});
+DisabledFilled.args = {
+  placeholder: 'Серия и номер паспорта',
+  disabled: true,
+  story: 'PlaceholderFilled',
+};
+DisabledFilled.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." disabled />',
+    },
+  },
+};
+
+export const ReadonlyFilled = Template.bind({});
+ReadonlyFilled.args = {
+  placeholder: 'Серия и номер паспорта',
+  readonly: true,
+  story: 'PlaceholderFilled',
+};
+ReadonlyFilled.parameters = {
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" placeholder="Серия и .." readonly />',
+    },
+  },
+};

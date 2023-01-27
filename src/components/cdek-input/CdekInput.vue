@@ -16,6 +16,8 @@ const props = withDefaults(
      * string - текст ошибки, ошибка показывается
      */
     error?: true | string;
+    disabled?: boolean;
+    readonly?: boolean;
   }>(),
   {}
 );
@@ -35,14 +37,22 @@ const value = computed({
   },
 });
 </script>
+<script lang="ts">
+export default {
+  inheritAttrs: true,
+};
+</script>
 
 <template>
   <div class="cdek-input">
     <label
       class="cdek-input__control"
-      :class="{ 'cdek-input__control_error': isError }"
+      :class="{
+        'cdek-input__control_error': isError,
+        'cdek-input__control_disabled': disabled,
+        'cdek-input__control_readonly': readonly,
+      }"
     >
-      <!-- название -->
       <div
         v-if="placeholder"
         class="cdek-input__placeholder"
@@ -55,11 +65,15 @@ const value = computed({
       </div>
 
       <!-- иконки слева -->
-      <!-- TODO: $attrs поставить на input -->
       <input
         class="cdek-input__input"
-        :class="{ 'cdek-input__input_error': isError }"
+        :class="{
+          'cdek-input__input_error': isError,
+          'cdek-input__input_readonly': readonly,
+        }"
         v-model="value"
+        v-bind="$attrs"
+        :disabled="disabled || readonly"
       />
       <!-- иконки справа -->
     </label>
@@ -85,6 +99,7 @@ const value = computed({
   $padding-left: 16px;
 
   &__control {
+    $this: &;
     $outline-width: 2px;
 
     position: relative;
@@ -104,11 +119,13 @@ const value = computed({
     transition: background-color 0.3s ease, outline-color 0.3s ease;
     cursor: text;
 
-    @include media-hover {
-      background: $Primary_10;
+    &:not(&_disabled) {
+      @include media-hover {
+        background: $Primary_10;
+      }
     }
 
-    &:focus-within {
+    &:focus-within:not(&_disabled) {
       background: $Peak;
       outline-color: $Primary;
     }
@@ -120,9 +137,22 @@ const value = computed({
         background: $Error_10;
       }
 
-      &:focus-within {
+      &:focus-within:not(#{$this}_disabled) {
         background: $Peak;
         outline-color: $Error;
+      }
+    }
+
+    &_disabled {
+      background: $Input_Disable;
+    }
+
+    &_readonly {
+      background: transparent;
+      box-shadow: unset;
+
+      @include media-hover {
+        background: transparent;
       }
     }
   }
@@ -140,6 +170,14 @@ const value = computed({
     &_error {
       caret-color: $Error;
     }
+
+    &[disabled] {
+      color: $Bottom_66;
+    }
+
+    &_readonly {
+      color: $Bottom;
+    }
   }
 
   &__placeholder {
@@ -154,7 +192,7 @@ const value = computed({
     transition: all 0.3s ease;
 
     &_filled,
-    .cdek-input__control:focus-within & {
+    .cdek-input__control:focus-within:not(.cdek-input__control_disabled) & {
       @include caption-1;
 
       top: 8px;
