@@ -1,3 +1,9 @@
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+};
+</script>
+
 <script lang="ts" setup>
 import { computed } from 'vue';
 
@@ -24,6 +30,8 @@ const props = withDefaults(
 
 const isError = computed(() => typeof props.error === 'string');
 
+const isHover = computed(() => !props.disabled && !props.readonly);
+
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
 }>();
@@ -37,11 +45,6 @@ const value = computed({
   },
 });
 </script>
-<script lang="ts">
-export default {
-  inheritAttrs: true,
-};
-</script>
 
 <template>
   <div class="cdek-input">
@@ -49,6 +52,7 @@ export default {
       class="cdek-input__control"
       :class="{
         'cdek-input__control_error': isError,
+        'cdek-input__control_hover': isHover,
         'cdek-input__control_disabled': disabled,
         'cdek-input__control_readonly': readonly,
       }"
@@ -119,13 +123,19 @@ export default {
     transition: background-color 0.3s ease, outline-color 0.3s ease;
     cursor: text;
 
-    &:not(&_disabled) {
+    &_hover {
       @include media-hover {
         background: $Primary_10;
       }
+
+      &#{$this}_error {
+        @include media-hover {
+          background: $Error_10;
+        }
+      }
     }
 
-    &:focus-within:not(&_disabled) {
+    &:focus-within {
       background: $Peak;
       outline-color: $Primary;
     }
@@ -133,12 +143,8 @@ export default {
     &_error {
       background: $Error_5;
 
-      @include media-hover {
-        background: $Error_10;
-      }
-
-      &:focus-within:not(#{$this}_disabled) {
-        background: $Peak;
+      &:focus-within {
+        background: $Peak !important;
         outline-color: $Error;
       }
     }
@@ -150,10 +156,6 @@ export default {
     &_readonly {
       background: transparent;
       box-shadow: unset;
-
-      @include media-hover {
-        background: transparent;
-      }
     }
   }
 
@@ -175,7 +177,8 @@ export default {
       color: $Bottom_66;
     }
 
-    &_readonly {
+    &_readonly,
+    &_readonly[disabled] {
       color: $Bottom;
     }
   }
