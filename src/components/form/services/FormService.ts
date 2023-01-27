@@ -1,32 +1,14 @@
 import type { InjectionKey } from 'vue';
 export const FormServiceKey = Symbol() as InjectionKey<FormService>;
 
-export type FieldsT = { [key: string]: string };
-export type ErrorsT = { [key: string]: true | string };
-
-class FormServiceControl {
-  constructor(public formService: FormService, public fieldName: string) {}
-
-  register(initialValue: string) {
-    this.formService.registerField(this.fieldName, initialValue);
-  }
-
-  change(newValue: string) {
-    this.formService.changeField(this.fieldName, newValue);
-  }
-
-  validate(validOrError: true | string) {
-    this.formService.validateField(this.fieldName, validOrError);
-  }
-
-  get value() {
-    return this.formService.fields[this.fieldName];
-  }
-}
+import type { FieldsT, ErrorsT, RulesT } from './types';
+import FormServiceControl from './FormServiceControl';
 
 export default class FormService {
   readonly fields: FieldsT = {};
   readonly errors: ErrorsT = {};
+
+  private submitSubscribers: Function[] = [];
 
   /**
    * @param name - название поля
@@ -52,7 +34,17 @@ export default class FormService {
     this.errors[name] = validOrError;
   }
 
-  getFieldService(name: string) {
-    return new FormServiceControl(this, name);
+  triggerSubmit() {
+    for (const cb of this.submitSubscribers) {
+      cb();
+    }
+  }
+
+  subscribeOnSubmit(callback: Function) {
+    this.submitSubscribers.push(callback);
+  }
+
+  getFieldService(...args: [string, RulesT]) {
+    return new FormServiceControl(this, ...args);
   }
 }
