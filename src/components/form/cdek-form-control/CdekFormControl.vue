@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { onMounted, inject, computed, ref, watch } from 'vue';
-import type { Ref } from 'vue';
+import { onMounted, inject, computed, ref } from 'vue';
 
-const values = inject<{ [key: string]: string | boolean }>('cdekFormFields');
-const cdekForm = inject<Ref<null | HTMLElement>>('cdekFormRef');
-const cdekFormMounted = inject<Ref<boolean>>('cdekFormMounted');
+import { FormServiceKey } from '@/components/form/FormService';
+
+const formService = inject(FormServiceKey);
 
 type RuleValidator = (val: string) => boolean | string;
 type RulesObjectT = {
@@ -17,45 +16,15 @@ const props = defineProps<{
   rules?: RulesT;
 }>();
 
-let cdekFormQueue: Function[] = [];
-
-const triggerEventOnForm = (eventName: string, detail: object) => {
-  const callback = () => {
-    const event = new CustomEvent(eventName, { detail });
-    cdekForm?.value?.dispatchEvent(event);
-  };
-
-  if (cdekFormMounted?.value) {
-    callback();
-  } else {
-    cdekFormQueue.push(callback);
-  }
-};
-
-watch(
-  () => cdekFormMounted?.value,
-  () => {
-    if (cdekFormMounted?.value) {
-      for (const callback of cdekFormQueue) {
-        callback();
-      }
-      cdekFormQueue = [];
-    }
-  }
-);
-
 onMounted(() => {
-  triggerEventOnForm('register-field', { name: props.name, initialValue: '' });
-  triggerEventOnForm('validate-field', {
-    name: props.name,
-    validOrError: getErrorKey(validateValue('')),
-  });
+  formService?.registerField(props.name, '');
+  formService?.validateField(props.name, getErrorKey(validateValue('')));
 });
 
-const error = ref<null | boolean | string>(null);
+const error = ref<null | true | string>(null);
 
-type ValidateResultT = boolean | { key: string; message?: string };
-const validateValue = (value: string | boolean): ValidateResultT => {
+type ValidateResultT = true | { key: string; message?: string };
+const validateValue = (value: string): ValidateResultT => {
   if (!props.rules) {
     return true;
   }
@@ -93,16 +62,13 @@ const getErrorKey = (error: ValidateResultT) => {
 
 const value = computed({
   get() {
-    return values?.[props.name] || '';
+    return formService?.fields[props.name] || '';
   },
   set(newValue) {
-    triggerEventOnForm('change-field', { name: props.name, newValue });
+    formService?.changeField(props.name, newValue);
     const errorObj = validateValue(newValue);
     error.value = getErrorMessage(errorObj);
-    triggerEventOnForm('validate-field', {
-      name: props.name,
-      validOrError: getErrorKey(errorObj),
-    });
+    formService?.validateField(props.name, getErrorKey(errorObj));
   },
 });
 

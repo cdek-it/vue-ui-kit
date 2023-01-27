@@ -1,41 +1,11 @@
 <script lang="ts" setup>
-import { provide, reactive, ref } from 'vue';
+import { provide, reactive } from 'vue';
 
-import { useForm } from '@/components/form/useForm';
-import type {
-  RegisterCallback,
-  ValidateCallback,
-  ChangeCallback,
-} from '@/components/form/useForm';
+import FormService, { FormServiceKey } from '@/components/form/FormService';
+import type { FieldsT, ErrorsT } from '@/components/form/FormService';
 
-type FieldsT = { [key: string]: string | boolean };
-type ErrorsT = FieldsT;
-
-const fields: FieldsT = reactive({});
-const errors: ErrorsT = reactive({});
-
-provide('cdekFormFields', fields);
-provide('cdekFormErrors', errors);
-
-const registerField: RegisterCallback = ({ name, initialValue }) => {
-  fields[name] = initialValue;
-};
-
-const changeField: ChangeCallback = ({ name, newValue }) => {
-  fields[name] = newValue;
-};
-
-const validateField: ValidateCallback = ({ name, validOrError }) => {
-  errors[name] = validOrError;
-};
-
-const cdekForm = ref<null | HTMLElement>(null);
-
-useForm(cdekForm, {
-  'change-field': changeField,
-  'register-field': registerField,
-  'validate-field': validateField,
-});
+const formService = reactive(new FormService());
+provide(FormServiceKey, formService);
 
 const emit = defineEmits<{
   (e: 'submit', values: FieldsT): void;
@@ -43,14 +13,14 @@ const emit = defineEmits<{
 }>();
 
 const submit = () => {
-  for (const key of Object.getOwnPropertyNames(errors)) {
-    if (typeof errors[key] === 'string') {
-      emit('submitError', { ...errors });
+  for (const key of Object.getOwnPropertyNames(formService.errors)) {
+    if (typeof formService.errors[key] === 'string') {
+      emit('submitError', { ...formService.errors });
       return;
     }
   }
 
-  emit('submit', { ...fields });
+  emit('submit', { ...formService.fields });
 };
 </script>
 
