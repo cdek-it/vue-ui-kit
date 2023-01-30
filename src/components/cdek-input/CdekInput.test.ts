@@ -1,4 +1,4 @@
-import { mount, shallowMount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekInput from './CdekInput.vue';
 
@@ -12,6 +12,8 @@ class CdekInputBuilder {
   placeholder?: string;
 
   tip?: string;
+
+  attrs: Record<string, string> = {};
 
   setModelValue(modelValue: string) {
     this.modelValue = modelValue;
@@ -44,10 +46,17 @@ class CdekInputBuilder {
     return this;
   }
 
+  setAttr(key: string, value: string) {
+    this.attrs[key] = value;
+    return this;
+  }
+
   build() {
-    return shallowMount(CdekInput, {
+    const wrapper = shallowMount(CdekInput, {
       props: {
         modelValue: this.modelValue,
+        'onUpdate:modelValue': (e: string) =>
+          wrapper.setProps({ modelValue: e }),
         label: this.label,
         error: this.error,
         disabled: this.disabled,
@@ -59,20 +68,19 @@ class CdekInputBuilder {
         'icons-right': '',
         tip: this.tip || '',
       },
+      attrs: this.attrs,
     });
+
+    return wrapper;
   }
 }
 
 describe('Unit: CdekInput', () => {
   describe('modelValue', () => {
     test('input должен содержать свойство modelValue', async () => {
-      const wrapper = mount(CdekInput, {
-        props: {
-          modelValue: 'initialText',
-          'onUpdate:modelValue': (e: string) =>
-            wrapper.setProps({ modelValue: e }),
-        },
-      });
+      const wrapper = new CdekInputBuilder()
+        .setModelValue('initialText')
+        .build();
       await wrapper.find('input').setValue('test');
       expect(wrapper.props('modelValue')).toBe('test');
     });
@@ -90,19 +98,21 @@ describe('Unit: CdekInput', () => {
       const label = wrapper.find('.cdek-input__label');
       expect(label.exists()).toBeFalsy();
     });
-    test('Если modelValue содержит значение и передан label, то элементу .cdek-input__label должен присвоиться класс "filled"', () => {
+    test('Если modelValue содержит значение и передан label, то элементу .cdek-input__label должен присвоиться класс "cdek-input__label_filled"', async () => {
       const wrapper = new CdekInputBuilder()
         .setLabel('Серия и номер паспорта')
-        .setModelValue('1234 567891')
         .build();
+      await wrapper.find('input').setValue('test');
       const label = wrapper.find('.cdek-input__label');
       expect(label.classes('cdek-input__label_filled')).toBeTruthy();
     });
-    test('Если modelValue не содержит значение и передан label, то у элемента .cdek-input__label должен отсутствовать класс "filled"', () => {
+    test('Если modelValue не содержит значение и передан label, то у элемента .cdek-input__label должен отсутствовать класс "cdek-input__label_filled"', async () => {
       const wrapper = new CdekInputBuilder()
         .setLabel('Серия и номер паспорта')
+        .setModelValue('initialText')
         .build();
       const label = wrapper.find('.cdek-input__label');
+      await wrapper.find('input').setValue('');
       expect(label.classes('cdek-input__label_filled')).toBeFalsy();
     });
   });
@@ -130,6 +140,9 @@ describe('Unit: CdekInput', () => {
   });
   describe('custom prop', () => {
     test('Если maxlength = "3", то атрибут maxlength элемента .cdek-input__input должен содержать "3"', () => {
+      const wrapper = new CdekInputBuilder().setAttr('maxlength', '3').build();
+      const input = wrapper.find('.cdek-input__input');
+      expect(input.attributes('maxlength')).toBe('3');
     });
   });
   describe('tip', () => {
