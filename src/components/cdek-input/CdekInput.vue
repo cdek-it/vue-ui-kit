@@ -24,6 +24,7 @@ const props = withDefaults(
     error?: true | string;
     disabled?: boolean;
     readonly?: boolean;
+    small?: boolean;
   }>(),
   {}
 );
@@ -61,14 +62,16 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         'cdek-input__control_disabled': disabled,
         'cdek-input__control_readonly': readonly,
         'cdek-input__control_right-icon': hasRightIcon,
+        'cdek-input__control_small': small,
       }"
     >
       <div
         v-if="label"
-        class="cdek-input__placeholder"
+        class="cdek-input__label"
         :class="{
-          'cdek-input__placeholder_filled': value,
-          'cdek-input__placeholder_error': isError,
+          'cdek-input__label_filled': value,
+          'cdek-input__label_error': isError,
+          'cdek-input__label_small': small,
         }"
       >
         {{ label }}
@@ -188,6 +191,12 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
     &_right-icon {
       padding-right: 8px;
     }
+
+    &_small {
+      height: 36px;
+      padding-right: 0;
+      padding-block: 0;
+    }
   }
 
   &__input {
@@ -230,9 +239,13 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         }
       }
     }
+
+    &_small {
+      padding-block: 6px;
+    }
   }
 
-  &__placeholder {
+  &__label {
     $this: &;
 
     @include body-1;
