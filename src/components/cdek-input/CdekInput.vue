@@ -111,6 +111,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         v-if="hasRightIcon || clearable"
       >
         <slot name="icons-right" >
+          <!-- TODO: здесь лежит дефолтное значение слота, нужно вынести наверх -->
           <button v-if="clearable">
             <CircleXIcon />
           </button>

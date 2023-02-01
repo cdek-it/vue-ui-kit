@@ -5,6 +5,11 @@ import EyeIcon from './svg/eye.svg?component';
 
 import './CdekInput.stories.scss';
 
+// TODO: разделить на несколько категорий
+// 1. Обычный инпут и его состояния
+// 2. Слоты (подсказки и иконки)
+// 3. Маленький инпут
+
 export default {
   title: 'Ui kit/CdekInput',
   component: CdekInput,
@@ -420,6 +425,7 @@ SmallError.parameters = {
   },
 };
 
+// TODO: Хотелось бы еще историю с заполненным инпутом
 export const SmallDisabled = Template.bind({});
 SmallDisabled.args = {
   label: 'Серия и номер паспорта',
