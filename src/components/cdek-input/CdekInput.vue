@@ -11,6 +11,7 @@ import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';
 import CircleCheckIcon from './svg/circle-check.svg?component';
 import InfoCircleIcon from './svg/info-circle.svg?component';
+import CircleXIcon from './svg/circle-x.svg?component';
 
 const props = withDefaults(
   defineProps<{
@@ -25,6 +26,7 @@ const props = withDefaults(
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
+    clearable?: boolean;
   }>(),
   {}
 );
@@ -53,7 +55,12 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
 </script>
 
 <template>
-  <div class="cdek-input">
+  <div 
+    class="cdek-input"
+    :class="{
+      'cdek-input_small': small && label,
+    }"
+  >
     <label
       class="cdek-input__control"
       :class="{
@@ -71,6 +78,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         :class="{
           'cdek-input__label_filled': value,
           'cdek-input__label_error': isError,
+          'cdek-input__label_readonly': readonly,
           'cdek-input__label_small': small,
         }"
       >
@@ -87,6 +95,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
           'cdek-input__input_error': isError,
           'cdek-input__input_readonly': readonly,
           'cdek-input__input_no-label': !label,
+          'cdek-input__input_small': small,
         }"
         v-model="value"
         v-bind="$attrs"
@@ -99,9 +108,13 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
           'cdek-input__right-icon_red': isError,
           'cdek-input__right-icon_grey': disabled || readonly,
         }"
-        v-if="hasRightIcon"
+        v-if="hasRightIcon || clearable"
       >
-        <slot name="icons-right" />
+        <slot name="icons-right" >
+          <button v-if="clearable">
+            <CircleXIcon />
+          </button>
+        </slot>
       </div>
     </label>
     <div class="cdek-input__tip">
@@ -132,6 +145,10 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
 
 .cdek-input {
   $padding-left: 16px;
+
+  &_small {
+    padding-top: 20px;
+  }
 
   &__control {
     $this: &;
@@ -241,6 +258,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
     }
 
     &_small {
+      align-self: center;
       padding-block: 6px;
     }
   }
@@ -266,6 +284,27 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
 
     .cdek-input__control:not(:focus-within) &_error#{$this}_filled {
       color: $Error;
+    }
+
+    &_small {
+      @include body-1;
+
+      &.cdek-input__label_filled,
+      .cdek-input__control:focus-within:not(.cdek-input__control_disabled) & {
+        @include caption-1;
+
+        top: -22px;
+        transform: translateX(-17px);
+
+        &#{$this}_readonly {
+          top: -11px;
+          transform: translateX(0);
+        }
+
+        &#{$this}_error {
+          color: $Error;
+        }
+      }
     }
   }
 
