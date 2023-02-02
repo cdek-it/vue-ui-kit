@@ -18,14 +18,6 @@ export default {
         disable: true,
       },
     },
-    tipColor: {
-      options: ['tertiary', 'attention', 'error', 'success'],
-      type: 'select',
-    },
-    tipIcon: {
-      options: ['info', 'alert', 'ban', 'circle'],
-      type: 'select',
-    },
   },
 };
 
@@ -47,6 +39,12 @@ Tip.parameters = {
 };
 
 export const ColoredTip = Template.bind({});
+ColoredTip.argTypes = {
+  tipColor: {
+    options: ['tertiary', 'attention', 'error', 'success'],
+    type: 'select',
+  },
+};
 ColoredTip.args = {
   label: 'Серия и номер паспорта',
   tip: 'Пояснение или помощь',
@@ -67,6 +65,12 @@ ColoredTip.parameters = {
 };
 
 export const TipIcon = Template.bind({});
+TipIcon.argTypes = {
+  tipIcon: {
+    options: ['info', 'alert', 'ban', 'circle'],
+    type: 'select',
+  },
+};
 TipIcon.args = {
   label: 'Серия и номер паспорта',
   tip: 'Пояснение или помощь',
@@ -111,14 +115,14 @@ RightIcon.parameters = {
 export const RightIconError = Template.bind({});
 RightIconError.args = {
   label: 'Серия и номер паспорта',
-  error: 'Ошибка',
+  validRes: 'Ошибка',
   story: 'RightIcon',
 };
 RightIconError.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" label="Серия.." error="Ошибка">
+<CdekInput v-model="inputVal" label="Серия.." valid-res="Ошибка">
   <template #right-icon>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>

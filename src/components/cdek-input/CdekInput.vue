@@ -15,14 +15,17 @@ import CircleXIcon from './svg/circle-x.svg?component';
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * v-model
+     */
     modelValue: string;
     label?: string;
     /**
-     * true - валидация пройдена, ошибку показывать не надо
+     * `true` - валидация пройдена, ошибку показывать не надо
      *
-     * string - текст ошибки, ошибка показывается
+     * `string` - текст ошибки, ошибка показывается
      */
-    error?: true | string;
+    validRes?: true | string;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
@@ -31,11 +34,14 @@ const props = withDefaults(
   {}
 );
 
-const isError = computed(() => typeof props.error === 'string');
+const isError = computed(() => typeof props.validRes === 'string');
 
 const isUserEvent = computed(() => !props.disabled && !props.readonly);
 
 const emit = defineEmits<{
+  /**
+   * v-model
+   */
   (e: 'update:modelValue', value: string): void;
 }>();
 
@@ -89,6 +95,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
       </div>
 
       <div v-if="hasLeftIcon" class="cdek-input__left-icon">
+        <!-- @slot Прописаны стили для svg -->
         <slot name="icons-left" />
       </div>
 
@@ -117,6 +124,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         }"
         v-if="hasRightIcon"
       >
+        <!-- @slot Прописаны стандартные стили для `button > svg`, у них будет выставлен размер и будут меняться цвета -->
         <slot name="icons-right" >
         </slot>
       </div>
@@ -124,8 +132,10 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
     <div class="cdek-input__tip">
       <template v-if="isError">
         <BanIcon />
-        <span class="error">{{ error }}</span>
+        <span class="error">{{ validRes }}</span>
       </template>
+
+      <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
       <slot
         v-else
         name="tip"

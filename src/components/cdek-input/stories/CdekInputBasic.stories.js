@@ -18,14 +18,6 @@ export default {
         disable: true,
       },
     },
-    tipColor: {
-      options: ['tertiary', 'attention', 'error', 'success'],
-      type: 'select',
-    },
-    tipIcon: {
-      options: ['info', 'alert', 'ban', 'circle'],
-      type: 'select',
-    },
   },
 };
 
@@ -91,12 +83,12 @@ LabelWithPlaceholder.parameters = {
 export const Error = Template.bind({});
 Error.args = {
   label: 'Серия и номер паспорта',
-  error: 'Ошибка',
+  validRes: 'Ошибка',
 };
 Error.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." error="Ошибка"/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка"/>',
     },
   },
 };
@@ -104,13 +96,13 @@ Error.parameters = {
 export const ErrorFilled = Template.bind({});
 ErrorFilled.args = {
   label: 'Серия и номер паспорта',
-  error: 'Ошибка',
+  validRes: 'Ошибка',
   story: 'LabelFilled',
 };
 ErrorFilled.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." error="Ошибка"/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка"/>',
     },
   },
 };
@@ -132,12 +124,12 @@ export const DisabledWithError = Template.bind({});
 DisabledWithError.args = {
   label: 'Серия и номер паспорта',
   disabled: true,
-  error: 'Ошибка',
+  validRes: 'Ошибка',
 };
 DisabledWithError.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." disabled error="Ошибка"/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." disabled valid-res="Ошибка"/>',
     },
   },
 };

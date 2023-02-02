@@ -6,7 +6,7 @@ import CdekInput from './CdekInput.vue';
 class CdekInputBuilder {
   modelValue: string = '';
   label?: string;
-  error?: true | string;
+  validRes?: true | string;
   disabled?: boolean;
   readonly?: boolean;
   small?: boolean;
@@ -26,8 +26,8 @@ class CdekInputBuilder {
     this.label = label;
     return this;
   }
-  setError(error: true | string) {
-    this.error = error;
+  setError(validRes: true | string) {
+    this.validRes = validRes;
     return this;
   }
   toggleDisabled() {
@@ -81,7 +81,7 @@ class CdekInputBuilder {
         'onUpdate:modelValue': (e: string) =>
           wrapper.setProps({ modelValue: e }),
         label: this.label,
-        error: this.error,
+        validRes: this.validRes,
         disabled: this.disabled,
         readonly: this.readonly,
         small: this.small,
@@ -148,8 +148,8 @@ describe('Unit: CdekInput', () => {
     });
   });
 
-  describe('error', () => {
-    test('Если error - строка, то должны добавляться классы-модификаторы на элементы', () => {
+  describe('validRes', () => {
+    test('Если validRes - строка, то должны добавляться классы-модификаторы на элементы', () => {
       const wrapper = new CdekInputBuilder().setLabel('Лейбл').setError('Ошибка').build();
       const control = wrapper.find('.cdek-input__control');
       expect(control.classes('cdek-input__control_error')).toBeTruthy();
@@ -161,7 +161,7 @@ describe('Unit: CdekInput', () => {
       expect(rightIcon.classes('cdek-input__right-icon_red')).toBeTruthy();
     });
 
-    test('Если error = "Ошибка", то элемент .error должен содержать "Ошибка"', () => {
+    test('Если validRes = "Ошибка", то элемент .error должен содержать "Ошибка"', () => {
       const wrapper = new CdekInputBuilder().setError('Ошибка').build();
       const error = wrapper.find('.error');
       // TODO: Проверить иконку

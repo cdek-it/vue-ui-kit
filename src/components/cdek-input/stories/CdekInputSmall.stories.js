@@ -18,14 +18,6 @@ export default {
         disable: true,
       },
     },
-    tipColor: {
-      options: ['tertiary', 'attention', 'error', 'success'],
-      type: 'select',
-    },
-    tipIcon: {
-      options: ['info', 'alert', 'ban', 'circle'],
-      type: 'select',
-    },
   },
 };
 
@@ -58,12 +50,12 @@ export const SmallError = Template.bind({});
 SmallError.args = {
   label: 'Серия и номер паспорта',
   small: true,
-  error: 'Ошибка',
+  validRes: 'Ошибка',
 };
 SmallError.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." small error="Ошибка" />',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." small valid-res="Ошибка" />',
     },
   },
 };
