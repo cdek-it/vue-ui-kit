@@ -47,7 +47,7 @@ const value = computed({
     emit('update:modelValue', newValue);
   },
 });
-const clearAll = () => {
+const clear = () => {
   emit('update:modelValue', '');
 }
 
@@ -105,17 +105,18 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         :disabled="disabled || readonly"
       />
 
+      <button v-if="clearable && value" class="cdek-input__clear" @click="clear">
+        <CircleXIcon />
+      </button>
+
       <div
         class="cdek-input__right-icon"
         :class="{
           'cdek-input__right-icon_red': isError,
           'cdek-input__right-icon_grey': disabled || readonly,
         }"
-        v-if="hasRightIcon || clearable"
+        v-if="hasRightIcon"
       >
-        <button class="clear-all__button" @click="clearAll" v-if="clearable">
-          <CircleXIcon />
-        </button>
         <slot name="icons-right" >
         </slot>
       </div>
@@ -341,15 +342,35 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
     }
   }
 
+  @mixin right-icon {
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    padding: 6px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &__clear {
+    @include right-icon;
+
+    opacity: 0;
+    transition: all 0.2s ease;
+
+    @media (hover: hover) {
+      .cdek-input__control:hover & {
+        opacity: 1;
+      }
+    }
+    .cdek-input__control:focus-within & {
+      opacity: 1;
+    }
+  }
+
   &__right-icon {
-    .clear-all__button,
     :slotted(button) {
-      width: 36px;
-      height: 36px;
-      background: transparent;
-      border: none;
-      padding: 6px;
-      outline: none;
+      @include right-icon;
     }
 
     @include slotted-svg-color($Primary);

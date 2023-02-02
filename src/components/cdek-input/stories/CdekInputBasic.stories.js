@@ -1,8 +1,32 @@
-import settings, { Template } from './settings';
+import { Template } from './settings';
+import CdekInput from '../CdekInput.vue';
 
 export default {
-  ...settings,
-  title: 'Ui kit/CdekInputBasic',
+  title: 'Ui kit/CdekInput/Basic',
+  component: CdekInput,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1998%3A4714&t=G78h9IqBm7eEp4F9-4)',
+      },
+    },
+  },
+  argTypes: {
+    story: {
+      table: {
+        disable: true,
+      },
+    },
+    tipColor: {
+      options: ['tertiary', 'attention', 'error', 'success'],
+      type: 'select',
+    },
+    tipIcon: {
+      options: ['info', 'alert', 'ban', 'circle'],
+      type: 'select',
+    },
+  },
 };
 
 export const Primary = Template.bind({});

@@ -1,8 +1,32 @@
-import settings, { Template } from './settings';
+import { Template } from './settings';
+import CdekInput from '../CdekInput.vue';
 
 export default {
-  ...settings,
-  title: 'Ui kit/CdekInputSlots',
+  title: 'Ui kit/CdekInput/Slots',
+  component: CdekInput,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1998%3A4714&t=G78h9IqBm7eEp4F9-4)',
+      },
+    },
+  },
+  argTypes: {
+    story: {
+      table: {
+        disable: true,
+      },
+    },
+    tipColor: {
+      options: ['tertiary', 'attention', 'error', 'success'],
+      type: 'select',
+    },
+    tipIcon: {
+      options: ['info', 'alert', 'ban', 'circle'],
+      type: 'select',
+    },
+  },
 };
 
 export const Tip = Template.bind({});
@@ -137,6 +161,27 @@ RightIconReadonly.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" label="Серия.." readonly>
+  <template #right-icon>
+    <!-- иконка должна быть размером 24x24 -->
+    <button><EyeIcon /></button>
+  </template>
+</CdekInput>
+`,
+    },
+  },
+};
+
+export const RightIconClearable = Template.bind({});
+RightIconClearable.args = {
+  label: 'Серия и номер паспорта',
+  clearable: true,
+  story: 'RightIcon',
+};
+RightIconClearable.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" label="Серия.." clearable>
   <template #right-icon>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>

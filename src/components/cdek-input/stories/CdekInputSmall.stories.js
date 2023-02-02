@@ -1,8 +1,32 @@
-import settings, { Template } from './settings';
+import { Template } from './settings';
+import CdekInput from '../CdekInput.vue';
 
 export default {
-  ...settings,
-  title: 'Ui kit/CdekInputSmall',
+  title: 'Ui kit/CdekInput/Small',
+  component: CdekInput,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1998%3A4714&t=G78h9IqBm7eEp4F9-4)',
+      },
+    },
+  },
+  argTypes: {
+    story: {
+      table: {
+        disable: true,
+      },
+    },
+    tipColor: {
+      options: ['tertiary', 'attention', 'error', 'success'],
+      type: 'select',
+    },
+    tipIcon: {
+      options: ['info', 'alert', 'ban', 'circle'],
+      type: 'select',
+    },
+  },
 };
 
 export const Small = Template.bind({});
@@ -98,7 +122,7 @@ SmallTip.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" label="Серия и ..">
+<CdekInput v-model="inputVal" small label="Серия и ..">
   <template #tip>Пояснение или помощь</template>
 </CdekInput>
 `,
@@ -116,7 +140,7 @@ SmallLeftIcon.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" placeholder="Поиск">
+<CdekInput v-model="inputVal" small placeholder="Поиск">
   <template #left-icon>
     <!-- иконка должна быть размером 24x24 -->
     <button><SearchIcon /></button>
@@ -137,7 +161,29 @@ SmallRightIcon.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" label="Серия..">
+<CdekInput v-model="inputVal" small label="Серия..">
+  <template #right-icon>
+    <!-- иконка должна быть размером 24x24 -->
+    <button><EyeIcon /></button>
+  </template>
+</CdekInput>
+`,
+    },
+  },
+};
+
+export const SmallRightIconClearable = Template.bind({});
+SmallRightIconClearable.args = {
+  label: 'Серия и номер паспорта',
+  clearable: true,
+  story: 'RightIcon',
+  small: true,
+};
+SmallRightIconClearable.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" label="Серия.." small clearable>
   <template #right-icon>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
