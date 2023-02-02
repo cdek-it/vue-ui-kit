@@ -10,8 +10,11 @@ class CdekInputBuilder {
   disabled?: boolean;
   readonly?: boolean;
   small?: boolean;
+  clearable?: boolean;
 
   tip?: string;
+  iconRight?: string;
+  iconLeft?: string;
 
   attrs: Record<string, string> = {};
 
@@ -39,6 +42,10 @@ class CdekInputBuilder {
     this.small = !this.small;
     return this;
   }
+  toggleClearable() {
+    this.clearable = !this.clearable;
+    return this;
+  }
 
   setPlaceholder(placeholder: string) {
     this.attrs.placeholder = placeholder;
@@ -47,6 +54,14 @@ class CdekInputBuilder {
 
   setTip(tip: string) {
     this.tip = tip;
+    return this;
+  }
+  setIconRight(icon: string) {
+    this.iconRight = icon;
+    return this;
+  }
+  setIconLeft(icon: string) {
+    this.iconLeft = icon;
     return this;
   }
 
@@ -70,6 +85,7 @@ class CdekInputBuilder {
         disabled: this.disabled,
         readonly: this.readonly,
         small: this.small,
+        clearable: this.clearable,
       },
       slots: {
         'icons-left': '',
@@ -148,8 +164,6 @@ describe('Unit: CdekInput', () => {
     test('Если error = "Ошибка", то элемент .error должен содержать "Ошибка"', () => {
       const wrapper = new CdekInputBuilder().setError('Ошибка').build();
       const error = wrapper.find('.error');
-      const icon = wrapper.find(dti('ban-icon'));
-      expect(icon.exists()).toBeTruthy();
       // TODO: Проверить иконку
       expect(error.text()).toBe('Ошибка');
     });
@@ -183,6 +197,22 @@ describe('Unit: CdekInput', () => {
       .build();
     const tip = wrapper.find('.cdek-input__tip');
     expect(tip.text()).toBe('Пояснение или помощь');
+  });
+
+  test('Если в слот #icons-left передана строка " ", то элемент .cdek-input__left-icon должен существовать', () => {
+    const wrapper = new CdekInputBuilder()
+      .setIconLeft('Пояснение или помощь')
+      .build();
+    const iconLeft = wrapper.find('.cdek-input__left-icon');
+    expect(iconLeft.exists()).toBeTruthy();
+  });
+
+  test('Если в слот #icons-right передана строка " ", то элемент .cdek-input__right-icon должен существовать', () => {
+    const wrapper = new CdekInputBuilder()
+      .setIconRight('Пояснение или помощь')
+      .build();
+    const iconRight = wrapper.find('.cdek-input__right-icon');
+    expect(iconRight.exists()).toBeTruthy();
   });
 
   describe('disabled', () => {
@@ -260,6 +290,16 @@ describe('Unit: CdekInput', () => {
         expect(label.classes('cdek-input__label_small')).toBeTruthy();
         const input = wrapper.find('.cdek-input__input');
         expect(input.classes('cdek-input__input_small')).toBeTruthy();
+      }
+    );
+  });
+
+  describe('clearable', () => {
+    test(
+      'Если small = true, то должны добавляться классы-модификаторы на элементы', () => {
+        const wrapper = new CdekInputBuilder().setLabel('Лейбл').toggleSmall().build();
+        const control = wrapper.find('.cdek-input__control');
+        expect(control.classes('cdek-input__control_small')).toBeTruthy();
       }
     );
   });

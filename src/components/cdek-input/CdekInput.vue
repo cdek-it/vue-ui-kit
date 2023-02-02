@@ -47,6 +47,9 @@ const value = computed({
     emit('update:modelValue', newValue);
   },
 });
+const clearAll = () => {
+  emit('update:modelValue', '');
+}
 
 const slots = useSlots();
 
@@ -110,11 +113,10 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         }"
         v-if="hasRightIcon || clearable"
       >
+        <button class="clear-all__button" @click="clearAll" v-if="clearable">
+          <CircleXIcon />
+        </button>
         <slot name="icons-right" >
-          <!-- TODO: здесь лежит дефолтное значение слота, нужно вынести наверх -->
-          <button v-if="clearable">
-            <CircleXIcon />
-          </button>
         </slot>
       </div>
     </label>
@@ -340,6 +342,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
   }
 
   &__right-icon {
+    .clear-all__button,
     :slotted(button) {
       width: 36px;
       height: 36px;
