@@ -99,32 +99,32 @@ describe('Unit: CdekToast', () => {
       }
     );
   });
-  test('Если title = "Заголовок", то элемент .toast__title должен содержать текст "Заголовок"', () => {
+  test('Если title передан, то содержимое должно передаваться в заголовок тоста', () => {
     const wrapper = new CdekToasterBuilder().setTitle('Заголовок').build();
     const titleContainer = wrapper.find('.toast__title');
     expect(titleContainer.text()).toBe('Заголовок');
   });
-  test('Если text = "Текст сообщения", то элемент .toast__text должен содержать текст "Текст сообщения"', () => {
+  test('Если text передан, то содержимое должно передавать в текст тоста', () => {
     const wrapper = new CdekToasterBuilder().setText('Текст сообщения').build();
     const textContainer = wrapper.find('.toast__text');
     expect(textContainer.text()).toBe('Текст сообщения');
   });
-  test('Если text = undefined, то элемент .toast__text не должен существовать', () => {
+  test('Если text не передан, то элемент с текстом тоста не должен существовать', () => {
     const wrapper = new CdekToasterBuilder().build();
     const textContainer = wrapper.find('.toast__text');
     expect(textContainer.exists()).toBeFalsy();
   });
-  test('Если withoutIcon не передан, то элемент .toast__icon существует', () => {
+  test('Если withoutIcon не передан, то иконка отрисовывается', () => {
     const wrapper = new CdekToasterBuilder().build();
     const icon = wrapper.find('.toast__icon');
     expect(icon.exists()).toBeTruthy();
   });
-  test('Если withoutIcon = true, то элемент .toast__icon не должен существовать', () => {
+  test('Если withoutIcon = true, то иконка не отрисовывается', () => {
     const wrapper = new CdekToasterBuilder().toggleWithoutIcon().build();
     const icon = wrapper.find('.toast__icon');
     expect(icon.exists()).toBeFalsy();
   });
-  test('Если передан button, то компонент CdekButton не должен существовать', () => {
+  test('Если не передан button, то компонент CdekButton не должен существовать', () => {
     const wrapper = new CdekToasterBuilder().build();
     const button = wrapper.find(dti('button'));
     expect(button.exists()).toBeFalsy();
