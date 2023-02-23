@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-
 export type BadgeProps = {
   type?: 'success' | 'error' | 'warning' | 'info' | 'disabled' | 'neutral';
 
@@ -13,13 +12,16 @@ export type BadgeProps = {
   text: string;
 };
 
-const props = withDefaults(defineProps<BadgeProps>(), { type: 'info', variant: 'light' });
+const props = withDefaults(defineProps<BadgeProps>(), {
+  type: 'info',
+  variant: 'light',
+});
 </script>
 
 <template>
-<div class="badge" :class="[type, variant]">
-  {{ text }}
-</div>
+  <div class="badge" :class="[type, variant]">
+    {{ text }}
+  </div>
 </template>
 
 <style lang="scss" scoped>

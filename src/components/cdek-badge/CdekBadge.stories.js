@@ -9,7 +9,7 @@ export default {
     },
     variant: {
       options: ['light', 'dark'],
-    }
+    },
   },
 };
 
@@ -25,8 +25,8 @@ const Template = (args) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  text: 'Status'
-}
+  text: 'Status',
+};
 Default.parameters = {
   docs: {
     source: {
@@ -39,8 +39,8 @@ export const SuccessLight = Template.bind({});
 SuccessLight.args = {
   text: 'Status',
   variant: 'light',
-  type: 'success'
-}
+  type: 'success',
+};
 SuccessLight.parameters = {
   docs: {
     source: {
@@ -53,8 +53,8 @@ export const ErrorDark = Template.bind({});
 ErrorDark.args = {
   text: 'Status',
   variant: 'dark',
-  type: 'error'
-}
+  type: 'error',
+};
 ErrorDark.parameters = {
   docs: {
     source: {
