@@ -1,42 +1,34 @@
 <script lang="ts" setup>
 import { provide, reactive } from 'vue';
 
-const fields: { [key: string]: string } = reactive({});
+import FormService, {
+  FormServiceKey,
+} from '@/components/form/services/FormService';
+import type { FieldsT, ErrorsT } from '@/components/form/services/types';
 
-provide('cdekFormFields', fields);
-
-const registerField = (name: string, initialValue: string) => {
-  fields[name] = initialValue;
-};
-
-const changeField = (name: string, newValue: string) => {
-  fields[name] = newValue;
-  console.log(fields);
-};
-
-const callbacks = {
-  register: registerField,
-  change: changeField,
-};
-
-const sendFormEvent = (
-  type: 'register' | 'change',
-  ...args: [string, string]
-) => {
-  callbacks[type](...args);
-};
+const formService = reactive(new FormService());
+provide(FormServiceKey, formService);
 
 const emit = defineEmits<{
-  (e: 'submit', values: { [key: string]: string }): void;
+  (e: 'submit', values: FieldsT): void;
+  (e: 'submitError', errors: ErrorsT): void;
 }>();
 
 const submit = () => {
-  emit('submit', fields);
+  for (const key of Object.getOwnPropertyNames(formService.errors)) {
+    if (typeof formService.errors[key] === 'string') {
+      emit('submitError', { ...formService.errors });
+      formService.triggerSubmit();
+      return;
+    }
+  }
+
+  emit('submit', { ...formService.fields });
 };
 </script>
 
 <template>
-  <form @submit.prevent="submit">
-    <slot :sendFormEvent="sendFormEvent" />
+  <form @submit.prevent="submit" ref="cdekForm">
+    <slot />
   </form>
 </template>

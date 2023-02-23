@@ -1,27 +1,37 @@
 <script lang="ts" setup>
-import { onMounted, inject, computed } from 'vue';
+import { inject, computed, reactive } from 'vue';
 
-const values = inject<{ [key: string]: string }>('cdekFormFields');
+import { FormServiceKey } from '@/components/form/services/FormService';
+import type FormService from '@/components/form/services/FormService';
+import type { RulesT } from '@/components/form/services/types';
 
 const props = defineProps<{
-  emitOnForm: (type: string, ...args: [string, string]) => void;
   name: string;
+  rules?: RulesT;
 }>();
 
-onMounted(() => {
-  props.emitOnForm?.('register', props.name, '');
-});
+const formService = inject(FormServiceKey) as FormService;
+const fieldService = reactive(
+  formService.getFieldService(props.name, props.rules)
+);
+fieldService.init();
 
 const value = computed({
   get() {
-    return values?.[props.name] || '';
+    return fieldService.value || '';
   },
-  set(newVal) {
-    props.emitOnForm('change', props.name, newVal);
+  set(newValue) {
+    fieldService.change(newValue);
   },
 });
+
+const showError = computed(() => typeof fieldService.error === 'string');
 </script>
 
 <template>
-  <input ref="formControls" v-model="value" />
+  <div>
+    <label :for="name">{{ name }}</label>
+    <input v-model="value" :id="name" />
+    <div v-if="showError">{{ fieldService.error }}</div>
+  </div>
 </template>
