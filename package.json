@@ -33,6 +33,7 @@
     "gen:component": "bash ./scripts/generate-component.sh"
   },
   "dependencies": {
+    "@vee-validate/rules": "^4.7.3",
     "vue": "^3.2.45",
     "vue-toastification": "^2.0.0-rc.5"
   },

@@ -1,17 +1,17 @@
 // Peak
-$Peak: #FFFFFF;
-$Peak_80: rgba(#FFFFFF, 80%);
-$Peak_70: rgba(#FFFFFF, 70%);
-$Peak_60: rgba(#FFFFFF, 60%);
-$Peak_50: rgba(#FFFFFF, 50%);
-$Peak_40: rgba(#FFFFFF, 40%);
-$Peak_30: rgba(#FFFFFF, 30%);
-$Peak_20: rgba(#FFFFFF, 20%);
-$Peak_10: rgba(#FFFFFF, 10%);
-$Peak_5: rgba(#FFFFFF, 5%);
+$Peak: #ffffff;
+$Peak_80: rgba(#ffffff, 80%);
+$Peak_70: rgba(#ffffff, 70%);
+$Peak_60: rgba(#ffffff, 60%);
+$Peak_50: rgba(#ffffff, 50%);
+$Peak_40: rgba(#ffffff, 40%);
+$Peak_30: rgba(#ffffff, 30%);
+$Peak_20: rgba(#ffffff, 20%);
+$Peak_10: rgba(#ffffff, 10%);
+$Peak_5: rgba(#ffffff, 5%);
 
 // Bottom
-$Bottom_Calm: #5B6976;
+$Bottom_Calm: #5b6976;
 $Bottom: #000000;
 $Bottom_66: rgba(#000000, 66%);
 $Bottom_60: rgba(#000000, 60%);
@@ -23,32 +23,32 @@ $Bottom_10: rgba(#000000, 10%);
 $Bottom_5: rgba(#000000, 5%);
 
 // Primary
-$Primary_Calm: #688B78;
-$Primary_Active: #127D32;
-$Primary: #1AB248;
-$Primary_70: rgba(#1AB248, 70%);
-$Primary_50: rgba(#1AB248, 50%);
-$Primary_40: rgba(#1AB248, 40%);
-$Primary_30: rgba(#1AB248, 30%);
-$Primary_20: rgba(#1AB248, 20%);
-$Primary_10: rgba(#1AB248, 10%);
-$Primary_5: rgba(#1AB248, 5%);
+$Primary_Calm: #688b78;
+$Primary_Active: #127d32;
+$Primary: #1ab248;
+$Primary_70: rgba(#1ab248, 70%);
+$Primary_50: rgba(#1ab248, 50%);
+$Primary_40: rgba(#1ab248, 40%);
+$Primary_30: rgba(#1ab248, 30%);
+$Primary_20: rgba(#1ab248, 20%);
+$Primary_10: rgba(#1ab248, 10%);
+$Primary_5: rgba(#1ab248, 5%);
 
 // Secondary
-$Secondary_Calm: #847E9D;
-$Secondary_Active: #1A0962;
-$Secondary: #4B3C87;
-$Secondary_70: rgba(#4B3C87, 70%);
-$Secondary_50: rgba(#4B3C87, 50%);
-$Secondary_40: rgba(#4B3C87, 40%);
-$Secondary_30: rgba(#4B3C87, 30%);
-$Secondary_20: rgba(#4B3C87, 20%);
-$Secondary_10: rgba(#4B3C87, 10%);
-$Secondary_5: rgba(#4B3C87, 5%);
+$Secondary_Calm: #847e9d;
+$Secondary_Active: #1a0962;
+$Secondary: #4b3c87;
+$Secondary_70: rgba(#4b3c87, 70%);
+$Secondary_50: rgba(#4b3c87, 50%);
+$Secondary_40: rgba(#4b3c87, 40%);
+$Secondary_30: rgba(#4b3c87, 30%);
+$Secondary_20: rgba(#4b3c87, 20%);
+$Secondary_10: rgba(#4b3c87, 10%);
+$Secondary_5: rgba(#4b3c87, 5%);
 
 // Tertiary
-$Tertiary_Calm: #9DA9B6;
-$Tertiary_Active: #35485F;
+$Tertiary_Calm: #9da9b6;
+$Tertiary_Active: #35485f;
 $Tertiary: #627790;
 $Tertiary_70: rgba(#627790, 70%);
 $Tertiary_50: rgba(#627790, 50%);
@@ -59,89 +59,99 @@ $Tertiary_10: rgba(#627790, 10%);
 $Tertiary_5: rgba(#627790, 5%);
 
 // Error
-$Error_Calm: #E58787;
-$Error_Active: #9F011D;
-$Error: #E40029;
-$Error_70: rgba(#E40029, 70%);
-$Error_50: rgba(#E40029, 50%);
-$Error_40: rgba(#E40029, 40%);
-$Error_30: rgba(#E40029, 30%);
-$Error_20: rgba(#E40029, 20%);
-$Error_10: rgba(#E40029, 10%);
-$Error_5: rgba(#E40029, 5%);
+$Error_Calm: #e58787;
+$Error_Active: #9f011d;
+$Error: #e40029;
+$Error_70: rgba(#e40029, 70%);
+$Error_50: rgba(#e40029, 50%);
+$Error_40: rgba(#e40029, 40%);
+$Error_30: rgba(#e40029, 30%);
+$Error_20: rgba(#e40029, 20%);
+$Error_10: rgba(#e40029, 10%);
+$Error_5: rgba(#e40029, 5%);
 
 // Attention
-$Attention_Calm: #F4A344;
-$Attention_Active: #B55700;
-$Attention: #F47500;
-$Attention_70: rgba(#F47500, 70%);
-$Attention_50: rgba(#F47500, 50%);
-$Attention_40: rgba(#F47500, 40%);
-$Attention_30: rgba(#F47500, 30%);
-$Attention_20: rgba(#F47500, 20%);
-$Attention_10: rgba(#F47500, 10%);
-$Attention_5: rgba(#F47500, 5%);
+$Attention_Calm: #f4a344;
+$Attention_Active: #b55700;
+$Attention: #f47500;
+$Attention_70: rgba(#f47500, 70%);
+$Attention_50: rgba(#f47500, 50%);
+$Attention_40: rgba(#f47500, 40%);
+$Attention_30: rgba(#f47500, 30%);
+$Attention_20: rgba(#f47500, 20%);
+$Attention_10: rgba(#f47500, 10%);
+$Attention_5: rgba(#f47500, 5%);
 
 // Success
-$Success_Calm: #93BB8C;
-$Success_Active: #106F00;
-$Success: #17A000;
-$Success_70: rgba(#17A000, 70%);
-$Success_50: rgba(#17A000, 50%);
-$Success_40: rgba(#17A000, 40%);
-$Success_30: rgba(#17A000, 30%);
-$Success_20: rgba(#17A000, 20%);
-$Success_10: rgba(#17A000, 10%);
-$Success_5: rgba(#17A000, 5%);
+$Success_Calm: #93bb8c;
+$Success_Active: #106f00;
+$Success: #17a000;
+$Success_70: rgba(#17a000, 70%);
+$Success_50: rgba(#17a000, 50%);
+$Success_40: rgba(#17a000, 40%);
+$Success_30: rgba(#17a000, 30%);
+$Success_20: rgba(#17a000, 20%);
+$Success_10: rgba(#17a000, 10%);
+$Success_5: rgba(#17a000, 5%);
 
 // Marine
-$Marine_Calm: #8EC1CC;
+$Marine_Calm: #8ec1cc;
 $Marine_Active: #007089;
-$Marine: #00BBE4;
-$Marine_70: rgba(#00BBE4, 70%);
-$Marine_50: rgba(#00BBE4, 50%);
-$Marine_40: rgba(#00BBE4, 40%);
-$Marine_30: rgba(#00BBE4, 30%);
-$Marine_20: rgba(#00BBE4, 20%);
-$Marine_10: rgba(#00BBE4, 10%);
-$Marine_5: rgba(#00BBE4, 5%);
+$Marine: #00bbe4;
+$Marine_70: rgba(#00bbe4, 70%);
+$Marine_50: rgba(#00bbe4, 50%);
+$Marine_40: rgba(#00bbe4, 40%);
+$Marine_30: rgba(#00bbe4, 30%);
+$Marine_20: rgba(#00bbe4, 20%);
+$Marine_10: rgba(#00bbe4, 10%);
+$Marine_5: rgba(#00bbe4, 5%);
 
 // Specific
-$Primary_Button: #1AB248;
-$Primary_Button_Hover: #30CC5F;
-$Secondary_Button: rgba(#1AB248, 10%);
+$Primary_Button: #1ab248;
+$Primary_Button_Hover: #30cc5f;
+$Secondary_Button: rgba(#1ab248, 10%);
 $Button_Disable: rgba(#000000, 35%);
 $Input_Disable: rgba(#335568, 15%);
-$Background: #F5F8FE;
-$Textmatch: #E8FF58;
-$DarkSpinner: conic-gradient(from 0deg at 100% 47.92%, rgba(6, 151, 152, 0) 0deg, #1AB248 63.75deg, rgba(6, 151, 152, 0) 360deg);
-$LightSpinner: conic-gradient(from 0deg at 100% 47.92%, rgba(255, 255, 255, 0) 0deg, #FFFFFF 127.5deg, rgba(255, 255, 255, 0) 360deg);
+$Background: #f5f8fe;
+$Textmatch: #e8ff58;
+$DarkSpinner: conic-gradient(
+  from 0deg at 100% 47.92%,
+  rgba(6, 151, 152, 0) 0deg,
+  #1ab248 63.75deg,
+  rgba(6, 151, 152, 0) 360deg
+);
+$LightSpinner: conic-gradient(
+  from 0deg at 100% 47.92%,
+  rgba(255, 255, 255, 0) 0deg,
+  #ffffff 127.5deg,
+  rgba(255, 255, 255, 0) 360deg
+);
 
 // Surface
 $Surface_Neutral: rgba(#335568, 5%);
-$Surface_Marine: rgba(#00BBE4, 5%);
-$Surface_Secondary: rgba(#2000E4, 5%);
-$Surface_Error: rgba(#E40029, 5%);
-$Surface_Attention: rgba(#F47500, 5%);
-$Surface_Access: rgba(#17A000, 5%);
-$Surface_Background: rgba(#F5F8FE, 90%);
+$Surface_Marine: rgba(#00bbe4, 5%);
+$Surface_Secondary: rgba(#2000e4, 5%);
+$Surface_Error: rgba(#e40029, 5%);
+$Surface_Attention: rgba(#f47500, 5%);
+$Surface_Access: rgba(#17a000, 5%);
+$Surface_Background: rgba(#f5f8fe, 90%);
 
 // Surface
-$Mint_Hi: linear-gradient(45deg, #004B4E 100%, #01949A 100%);
-$Mint_Mid: linear-gradient(45deg, #008DAC 100%, #9AF3D3 100%);
-$Mint_Low: linear-gradient(45deg, #A5EFFF 100%, #E6FFDA 100%);
-$Violet_Hi: linear-gradient(45deg, #34227B 100%, #7C5BFF 100%);
-$Violet_Mid: linear-gradient(45deg, #9351FF 100%, #6CFAF1 100%);
-$Violet_Low: linear-gradient(45deg, #CDC0FF 100%, #CFFFFC 100%);
-$Pink_Hi: linear-gradient(45deg, #3E004E 100%, #DF5EFF 100%);
-$Pink_Mid: linear-gradient(45deg, #8A01DE 100%, #F2BFFF 100%);
-$Pink_Low: linear-gradient(45deg, #E4B7FF 100%, #FCF2FF 100%);
-$Blue_Hi: linear-gradient(45deg, #00178E 100%, #0097EC 100%);
-$Blue_Mid: linear-gradient(45deg, #3431FB 100%, #57DDFF 100%);
-$Blue_Low: linear-gradient(45deg, #B4DFFF 100%, #E0F9FF 100%);
-$Orange_Hi: linear-gradient(45deg, #840057 100%, #DC9E00 100%);
-$Orange_Mid: linear-gradient(45deg, #FF3CBD 100%, #FFC633 100%);
-$Orange_Low: linear-gradient(45deg, #FFBFE9 100%, #FFECBA 100%);
-$Green_Hi: linear-gradient(45deg, #007A1B 100%, #FEE500 100%);
-$Green_Mid: linear-gradient(45deg, #5EFF81 100%, #FFF503 100%);
-$Green_Low: linear-gradient(45deg, #B5FFC5 100%, #FFFDC2 100%);
+$Mint_Hi: linear-gradient(45deg, #004b4e 100%, #01949a 100%);
+$Mint_Mid: linear-gradient(45deg, #008dac 100%, #9af3d3 100%);
+$Mint_Low: linear-gradient(45deg, #a5efff 100%, #e6ffda 100%);
+$Violet_Hi: linear-gradient(45deg, #34227b 100%, #7c5bff 100%);
+$Violet_Mid: linear-gradient(45deg, #9351ff 100%, #6cfaf1 100%);
+$Violet_Low: linear-gradient(45deg, #cdc0ff 100%, #cffffc 100%);
+$Pink_Hi: linear-gradient(45deg, #3e004e 100%, #df5eff 100%);
+$Pink_Mid: linear-gradient(45deg, #8a01de 100%, #f2bfff 100%);
+$Pink_Low: linear-gradient(45deg, #e4b7ff 100%, #fcf2ff 100%);
+$Blue_Hi: linear-gradient(45deg, #00178e 100%, #0097ec 100%);
+$Blue_Mid: linear-gradient(45deg, #3431fb 100%, #57ddff 100%);
+$Blue_Low: linear-gradient(45deg, #b4dfff 100%, #e0f9ff 100%);
+$Orange_Hi: linear-gradient(45deg, #840057 100%, #dc9e00 100%);
+$Orange_Mid: linear-gradient(45deg, #ff3cbd 100%, #ffc633 100%);
+$Orange_Low: linear-gradient(45deg, #ffbfe9 100%, #ffecba 100%);
+$Green_Hi: linear-gradient(45deg, #007a1b 100%, #fee500 100%);
+$Green_Mid: linear-gradient(45deg, #5eff81 100%, #fff503 100%);
+$Green_Low: linear-gradient(45deg, #b5ffc5 100%, #fffdc2 100%);

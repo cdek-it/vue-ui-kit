@@ -10,11 +10,6 @@ export default {
         disable: true,
       },
     },
-    story: {
-      table: {
-        disable: true,
-      },
-    },
     settings: {
       description: 'Опции, принимаемые CdekToaster',
       required: true,
