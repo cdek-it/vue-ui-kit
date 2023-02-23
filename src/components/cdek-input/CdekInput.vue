@@ -55,7 +55,7 @@ const value = computed({
 });
 const clear = () => {
   emit('update:modelValue', '');
-}
+};
 
 const slots = useSlots();
 
@@ -64,7 +64,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
 </script>
 
 <template>
-  <div 
+  <div
     class="cdek-input"
     :class="{
       'cdek-input_small': small && label,
@@ -112,7 +112,11 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         :disabled="disabled || readonly"
       />
 
-      <button v-if="clearable && value" class="cdek-input__clear" @click="clear">
+      <button
+        v-if="clearable && value"
+        class="cdek-input__clear"
+        @click="clear"
+      >
         <CircleXIcon />
       </button>
 
@@ -125,8 +129,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         v-if="hasRightIcon"
       >
         <!-- @slot Прописаны стандартные стили для `button > svg`, у них будет выставлен размер и будут меняться цвета -->
-        <slot name="icons-right" >
-        </slot>
+        <slot name="icons-right"> </slot>
       </div>
     </label>
     <div class="cdek-input__tip">
@@ -334,13 +337,16 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
     :slotted(.tertiary) {
       color: $Tertiary;
     }
+
     :slotted(.attention) {
       color: $Attention;
     }
+
     .error,
     :slotted(.error) {
       color: $Error;
     }
+
     :slotted(.success) {
       color: $Success;
     }
@@ -373,6 +379,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         opacity: 1;
       }
     }
+
     .cdek-input__control:focus-within & {
       opacity: 1;
     }
