@@ -15,6 +15,11 @@
 - [Eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier Eslint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
 
+VsCode settings for auto-formatting:
+
+- Editor: Format On Save - true
+- Editor: Default Formatter - Prettier Eslint
+
 ## Commands
 
 - Установка пакетов `yarn`

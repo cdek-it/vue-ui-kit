@@ -1,4 +1,5 @@
 const prettierConfig = require('./.prettierrc.json');
+
 module.exports = {
   root: true,
   env: {
