@@ -73,7 +73,7 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
 
 const isOpen = ref(false);
 const toggleIsOpen = (value = !isOpen.value) => {
-  if(isUserEvent) {
+  if(isUserEvent.value) {
     isOpen.value = value;
   }
 }

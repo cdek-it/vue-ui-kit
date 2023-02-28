@@ -4,7 +4,7 @@ import FileDescriptionIcon from './svg/file-description.svg?component'
 import './CdekListItem.stories.scss';
 
 export default {
-  title: 'CdekListItem',
+  title: 'Ui kit/CdekListItem',
   component: CdekListItem,
   parameters: {
     docs: {
