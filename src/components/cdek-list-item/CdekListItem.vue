@@ -28,11 +28,11 @@ const hasLeftIcon = computed(() => Boolean(slots['icon-left']));
 const colorStyle = computed(() => ({'--list-item-color': props.color}));
 
 const emit = defineEmits<{
-  (e: 'onSelect:value', value?: IOption): void;
+  (e: 'select', value?: IOption): void;
 }>();
 
 const onSelect = () => {
-  emit('onSelect:value', props.option);
+  emit('select', props.option);
 }
 </script>
 
@@ -45,7 +45,7 @@ const onSelect = () => {
     'cdek-list-item_selected': selected,
     'cdek-list-item_colored': Boolean(color),
   }"
-  @click="$emit('onSelect:value')"
+  @click="onSelect"
 >
   <div
     class="cdek-list-item__left-icon"
