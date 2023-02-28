@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-export type BadgeProps = {
-  type?: 'success' | 'error' | 'warning' | 'info' | 'disabled' | 'neutral';
+export interface BadgeProps {
+  type?: 'positive' | 'negative' | 'process' | 'info' | 'deactive' | 'neutral';
 
   /**
    * Вариант фона: светлый или темный
@@ -10,7 +10,7 @@ export type BadgeProps = {
    * Текст
    */
   text: string;
-};
+}
 
 const props = withDefaults(defineProps<BadgeProps>(), {
   type: 'info',
@@ -35,15 +35,15 @@ const props = withDefaults(defineProps<BadgeProps>(), {
   &.dark {
     color: $Peak;
 
-    &.success {
+    &.positive {
       background: $Success_70;
     }
 
-    &.warning {
+    &.process {
       background: $Attention;
     }
 
-    &.error {
+    &.negative {
       background: $Error;
     }
 
@@ -51,7 +51,7 @@ const props = withDefaults(defineProps<BadgeProps>(), {
       background: $Secondary_Calm;
     }
 
-    &.disabled {
+    &.deactive {
       background: $Button_Disable;
     }
 
@@ -61,17 +61,17 @@ const props = withDefaults(defineProps<BadgeProps>(), {
   }
 
   &.light {
-    &.success {
+    &.positive {
       background: $Success_5;
       color: $Success;
     }
 
-    &.warning {
+    &.process {
       background: $Attention_5;
       color: $Attention;
     }
 
-    &.error {
+    &.negative {
       background: $Error_5;
       color: $Error;
     }
@@ -81,7 +81,7 @@ const props = withDefaults(defineProps<BadgeProps>(), {
       color: $Secondary;
     }
 
-    &.disabled {
+    &.deactive {
       background: $Surface_Neutral;
       color: $Bottom_50;
     }

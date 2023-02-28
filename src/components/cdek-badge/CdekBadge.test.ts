@@ -1,27 +1,26 @@
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekBadge from './CdekBadge.vue';
 import type { BadgeProps } from '@/components/cdek-badge/CdekBadge.vue';
 
-class CdekBadgeBuilder {
-  build(props: BadgeProps) {
-    return shallowMount(CdekBadge, { props });
-  }
-}
+const createCdekBadge = (props: BadgeProps) => {
+  return mount(CdekBadge, { props, });
+};
+
 describe('Unit: CdekBadge', () => {
   describe('type', () => {
     test.each([
       { type: undefined, typeClass: 'info' },
-      { type: 'success', typeClass: 'success' },
-      { type: 'error', typeClass: 'error' },
-      { type: 'warning', typeClass: 'warning' },
+      { type: 'positive', typeClass: 'positive' },
+      { type: 'negative', typeClass: 'negative' },
+      { type: 'process', typeClass: 'process' },
       { type: 'info', typeClass: 'info' },
-      { type: 'disabled', typeClass: 'disabled' },
+      { type: 'deactive', typeClass: 'deactive' },
       { type: 'neutral', typeClass: 'neutral' },
     ])(
       'Если type = $type, то должен быть класс $typeClass',
       ({ type, typeClass }: any) => {
-        const wrapper = new CdekBadgeBuilder().build({ text: 'Status', type });
+        const wrapper = createCdekBadge({ text: 'Status', type });
         expect(wrapper.classes(typeClass)).toBeTruthy();
       }
     );
@@ -34,7 +33,7 @@ describe('Unit: CdekBadge', () => {
     ])(
       'Если variant = $variant, то должен быть класс $variantClass',
       ({ variant, variantClass }: any) => {
-        const wrapper = new CdekBadgeBuilder().build({
+        const wrapper = createCdekBadge({
           text: 'Status',
           variant,
         });
