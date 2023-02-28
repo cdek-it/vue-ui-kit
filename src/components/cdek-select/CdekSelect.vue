@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { computed, useSlots, ref, onMounted } from "vue";
+import { computed, useSlots, ref, onMounted, onUnmounted } from "vue";
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';
 import CircleCheckIcon from './svg/circle-check.svg?component';
 import InfoCircleIcon from './svg/info-circle.svg?component';
 import ChevronUpIcon from './svg/chevron-up.svg?component';
 
-interface IOption {
+interface ISelectValue {
   value: string | number,
   title: string | number,
   [props: string]: any
@@ -17,7 +17,7 @@ const props = withDefaults(
     /**
      * v-model
      */
-    modelValue: IOption;
+    modelValue: ISelectValue;
     label?: string;
     /**
      * `true` - валидация пройдена, ошибку показывать не надо
@@ -33,8 +33,7 @@ const props = withDefaults(
 );
 
 const labelRef = ref();
-const onOutsideClick = (event) => {
-  console.log('', 'onOutsideClick', labelRef.value.contains(event.target));
+const onOutsideClick = (event:MouseEvent) => {
   if(!labelRef.value.contains(event.target)){
     toggleIsOpen(false)
   }
@@ -42,7 +41,12 @@ const onOutsideClick = (event) => {
 
 onMounted(() => {
   document.addEventListener('click', onOutsideClick)
+});
+
+onUnmounted(() => {
+  document.removeEventListener('click', onOutsideClick)
 })
+
 
 const isError = computed(() => typeof props.validRes === 'string');
 
@@ -69,7 +73,6 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
 
 const isOpen = ref(false);
 const toggleIsOpen = (value = !isOpen.value) => {
-  console.log('v', 'toggleIsOpen', value);
   if(isUserEvent) {
     isOpen.value = value;
   }
@@ -79,9 +82,6 @@ const onControlClick = () => {
   toggleIsOpen();
 }
 
-const onSelect = (a) => {
-  console.log('', '', a);
-}
 </script>
 
 <template>
