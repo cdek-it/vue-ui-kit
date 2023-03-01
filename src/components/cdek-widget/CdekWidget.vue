@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CdekHeadline } from '@/components/cdek-headline';
+import CdekHeadline from '../cdek-headline/CdekHeadline.vue';
 
 const props = withDefaults(
   defineProps<{
