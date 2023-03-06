@@ -1,11 +1,10 @@
-import CdekListItem from './CdekListItem.vue';
+import CdekDropdownItem from './CdekDropdownItem.vue';
+import CdekDropdownBox from './CdekDropdownBox.vue';
 import FileDescriptionIcon from './svg/file-description.svg?component'
 
-import './CdekListItem.stories.scss';
-
 export default {
-  title: 'Ui kit/CdekListItem',
-  component: CdekListItem,
+  title: 'Ui kit/CdekDropdown',
+  component: CdekDropdownItem,
   parameters: {
     docs: {
       description: {
@@ -17,19 +16,19 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekListItem, FileDescriptionIcon },
+  components: { CdekDropdownItem, CdekDropdownBox, FileDescriptionIcon },
   setup() {
     return { args };
   },
   template: `
-<div class="list-item-story">
-  <CdekListItem v-bind="args">
+<CdekDropdownBox>
+  <CdekDropdownItem v-bind="args">
     ${args.default} 
     <template #icon-left v-if="args.story === 'LeftIcon'">
       <FileDescriptionIcon />
     </template>
-  </CdekListItem>
-</div>
+  </CdekDropdownItem>
+</CdekDropdownBox>
   `,
 });
 
@@ -40,7 +39,7 @@ Primary.args = {
 Primary.parameters = {
   docs: {
     source: {
-      code: '<CdekListItem>Envelope, 42×5×5сm, up to 2kg</CdekListItem>',
+      code: '<CdekDropdownItem>Envelope, 42×5×5сm, up to 2kg</CdekDropdownItem>',
     },
   },
 };
@@ -53,7 +52,7 @@ Selected.args = {
 Selected.parameters = {
   docs: {
     source: {
-      code: '<CdekListItem selected>Envelope, 42×5×5сm, up to 2kg</CdekListItem>',
+      code: '<CdekDropdownItem selected>Envelope, 42×5×5сm, up to 2kg</CdekDropdownItem>',
     },
   },
 };
@@ -66,7 +65,7 @@ Disabled.args = {
 Disabled.parameters = {
   docs: {
     source: {
-      code: '<CdekListItem disabled>Envelope, 42×5×5сm, up to 2kg</CdekListItem>',
+      code: '<CdekDropdownItem disabled>Envelope, 42×5×5сm, up to 2kg</CdekDropdownItem>',
     },
   },
 };
@@ -79,7 +78,7 @@ Colored.args = {
 Colored.parameters = {
   docs: {
     source: {
-      code: '<CdekListItem color="red">Envelope, 42×5×5сm, up to 2kg</CdekListItem>',
+      code: '<CdekDropdownItem color="red">Envelope, 42×5×5сm, up to 2kg</CdekDropdownItem>',
     },
   },
 };
@@ -93,12 +92,12 @@ LeftIcon.parameters = {
   docs: {
     source: {
       code: `
-<CdekListItem>
+<CdekDropdownItem>
   <template #icon-left>
     <FileDescriptionIcon />
   </template>
   Envelope, 42×5×5сm, up to 2kg
-</CdekListItem>`,
+</CdekDropdownItem>`,
     },
   },
 };

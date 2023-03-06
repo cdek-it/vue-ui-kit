@@ -1,6 +1,6 @@
 import CdekSelect from './CdekSelect.vue';
-import CdekListItem from '../cdek-list-item/CdekListItem.vue';
-import TrashIcon from '../cdek-list-item/svg/trash.svg?component'
+import TrashIcon from '../cdek-dropdown/svg/trash.svg?component'
+import { ref } from "vue";
 
 export default {
   title: 'Ui kit/CdekSelect',
@@ -15,65 +15,91 @@ export default {
   },
 };
 
-const options = [
-  {value: 1, title: 'Envelope, 42×5×5сm, up to 2kg'},
+const items = [
+  {value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true},
   {value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg'},
   {value: 3, title: 'Box S, 23×19×10cm, up to 2kg'},
   {value: 4, title: 'Box m, 35×25×15cm, up to 5kg'},
 ]
 
 const Template = (args) => ({
-  components: { CdekSelect, CdekListItem, TrashIcon },
+  components: { CdekSelect },
   setup() {
-    const selectValue = args.options.find(option => option.value === args.value) || {};
-    return { args, options: args.options, selectValue };
+    const selectValue = ref(args.value);
+    return { args, items: args.items, selectValue };
   },
   template: `
-    <CdekSelect v-bind="args" v-model="selectValue">        
-       <CdekListItem 
-         v-for="option in options"
-         @selectValue="option.onSelect"
-         :checked="option.value === selectValue.value"
-         :disabled="option.disabled"
-         :value="option"
-         :color="option.color"
-         :key="option.value" 
-       >
-        <template #icon-left v-if="option.icon">
-          <TrashIcon />
-        </template>
-        {{ option.title }}
-       </CdekListItem>
-    </CdekSelect>
+    <CdekSelect v-bind="args" :items="items" v-model="selectValue" />
   `,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   label: 'Вариант действия',
-  options
+  items
 };
 Primary.parameters = {
   docs: {
     source: {
       code: `
-        <CdekSelect label="Вариант действия" v-model="selectVal">
-          <CdekListItem 
-            v-for="option in options"
-            @select="args.onSelect"
-            :checked="option.value === selectValue.value"
-            :disabled="option.disabled"
-            :value="option"
-            :color="option.color"
-            :key="option.value" 
-          >
-            {{ option.title }}
-          </CdekListItem>
-        </CdekSelect>`,
+        <CdekSelect label="Вариант действия" :items="items" v-model="selectVal" />`,
     },
   },
 };
 
+export const Multiple = Template.bind({});
+Multiple.args = {
+  label: 'Вариант действия',
+  multiple: true,
+  value: [],
+  items
+};
+Multiple.parameters = {
+  docs: {
+    source: {
+      code: `
+        <CdekSelect label="Вариант действия" multiple :items="items" v-model="selectVal" />`,
+    },
+  },
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  label: 'Вариант действия',
+  disabled: true,
+  items
+};
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: `
+        <CdekSelect label="Вариант действия" disabled :items="items" v-model="selectVal" />`,
+    },
+  },
+};
+
+export const WithIcon = Template.bind({});
+const WithIconItems = [...items];
+WithIconItems.push({
+  value: 'del',
+  title: 'Удалить',
+  color: 'red',
+  icon: TrashIcon,
+});
+WithIcon.args = {
+  label: 'Вариант действия',
+  items: WithIconItems
+};
+WithIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+        <CdekSelect label="Вариант действия" v-model="selectVal" />`,
+    },
+  },
+};
+
+/*
 export const WithValue = Template.bind({});
 WithValue.args = {
   label: 'Вариант действия',
@@ -85,14 +111,14 @@ WithValue.parameters = {
     source: {
       code: `
         <CdekSelect label="Вариант действия" v-model="selectVal">
-          <CdekListItem 
+          <CdekListItem
             v-for="option in options"
             @select="args.onSelect"
             :checked="option.value === selectValue.value"
             :disabled="option.disabled"
             :value="option"
             :color="option.color"
-            :key="option.value" 
+            :key="option.value"
           >
             {{ option.title }}
           </CdekListItem>
@@ -114,14 +140,14 @@ WithDisabledOption.parameters = {
     source: {
       code: `
         <CdekSelect label="Вариант действия" v-model="selectVal">
-          <CdekListItem 
+          <CdekListItem
             v-for="option in options"
             @select="args.onSelect"
             :checked="option.value === selectValue.value"
             :disabled="option.disabled"
             :value="option"
             :color="option.color"
-            :key="option.value" 
+            :key="option.value"
           >
             {{ option.title }}
           </CdekListItem>
@@ -142,14 +168,14 @@ Small.parameters = {
     source: {
       code: `
         <CdekSelect label="Вариант действия" small v-model="selectVal">
-          <CdekListItem 
+          <CdekListItem
             v-for="option in options"
             @select="args.onSelect"
             :checked="option.value === selectValue.value"
             :disabled="option.disabled"
             :value="option"
             :color="option.color"
-            :key="option.value" 
+            :key="option.value"
           >
             {{ option.title }}
           </CdekListItem>
@@ -170,14 +196,14 @@ Disabled.parameters = {
     source: {
       code: `
         <CdekSelect label="Вариант действия" disabled v-model="selectVal">
-          <CdekListItem 
+          <CdekListItem
             v-for="option in options"
             @select="args.onSelect"
             :checked="option.value === selectValue.value"
             :disabled="option.disabled"
             :value="option"
             :color="option.color"
-            :key="option.value" 
+            :key="option.value"
           >
             {{ option.title }}
           </CdekListItem>
@@ -186,37 +212,5 @@ Disabled.parameters = {
   },
 };
 
-export const WithIcon = Template.bind({});
 
-const WithIconOptions = [...options];
-WithIconOptions.push({
-  value: 'del',
-  title: 'Удалить',
-  color: 'red',
-  icon: true,
-  onSelect: () => {alert('Элемент удален')}
-});
-WithIcon.args = {
-  label: 'Вариант действия',
-  options: WithIconOptions
-};
-WithIcon.parameters = {
-  docs: {
-    source: {
-      code: `
-        <CdekSelect label="Вариант действия" v-model="selectVal">
-          <CdekListItem 
-            v-for="option in options"
-            @select="args.onSelect"
-            :checked="option.value === selectValue.value"
-            :disabled="option.disabled"
-            :value="option"
-            :color="option.color"
-            :key="option.value" 
-          >
-            {{ option.title }}
-          </CdekListItem>
-        </CdekSelect>`,
-    },
-  },
-};
+*/

@@ -1,87 +1,73 @@
 <script lang="ts" setup>
 import { computed, useSlots, ref, onMounted, onUnmounted } from "vue";
-import AlertTriangleIcon from './svg/alert-triangle.svg?component';
-import BanIcon from './svg/ban.svg?component';
-import CircleCheckIcon from './svg/circle-check.svg?component';
-import InfoCircleIcon from './svg/info-circle.svg?component';
+import {
+  Listbox,
+  ListboxLabel,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption,
+} from '@headlessui/vue';
+import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
 import ChevronUpIcon from './svg/chevron-up.svg?component';
 
-interface ISelectValue {
-  value: string | number,
-  title: string | number,
+type Primitive = string | number | boolean | symbol
+
+interface ISelectItem {
+  value: Primitive,
+  title: string,
+  disabled: boolean,
   [props: string]: any
 }
 
 const props = withDefaults(
   defineProps<{
-    /**
-     * v-model
-     */
-    modelValue: ISelectValue;
+    modelValue: Primitive | Array<Primitive>;
+    items: Array<ISelectItem> | Array<Primitive>
     label?: string;
-    /**
-     * `true` - валидация пройдена, ошибку показывать не надо
-     *
-     * `string` - текст ошибки, ошибка показывается
-     */
     validRes?: true | string;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
+    multiple?: boolean;
   }>(),
   {}
 );
 
-const labelRef = ref();
-const onOutsideClick = (event:MouseEvent) => {
-  if(!labelRef.value.contains(event.target)){
-    toggleIsOpen(false)
+const itemsIsObject = computed(() => typeof props.items[0] === 'object')
+
+const options  = computed(() => {
+  if(itemsIsObject.value) {
+    return props.items as Array<ISelectItem>
   }
-}
 
-onMounted(() => {
-  document.addEventListener('click', onOutsideClick)
-});
-
-onUnmounted(() => {
-  document.removeEventListener('click', onOutsideClick)
+  return props.items.map(item => ({value: item, title: item} as ISelectItem));
 })
-
 
 const isError = computed(() => typeof props.validRes === 'string');
 
 const isUserEvent = computed(() => !props.disabled && !props.readonly);
 
 const emit = defineEmits<{
-  /**
-   * v-model
-   */
-  (e: 'update:modelValue', value: string | number): void;
+  (e: 'update:modelValue', value: Array<Primitive>): void;
 }>();
 
 const value = computed({
   get() {
-    return props.modelValue?.title;
+    if(props.multiple && Array.isArray(props.modelValue)) {
+      return options.value.filter(item => props.modelValue.includes(item.value))
+    }
+    return options.value.find(item => props.modelValue === item.value) || {} as ISelectItem
   },
   set(newValue) {
-    emit('update:modelValue', newValue);
+    if(props.multiple && Array.isArray(props.modelValue)) {
+      emit('update:modelValue', newValue.map(item => item.value));
+      return;
+    }
+    emit('update:modelValue', newValue.value);
   },
 });
-
 const slots = useSlots();
 const hasRightIcon = computed(() => Boolean(slots['icons-right']));
-
-const isOpen = ref(false);
-const toggleIsOpen = (value = !isOpen.value) => {
-  if(isUserEvent.value) {
-    isOpen.value = value;
-  }
-}
-
-const onControlClick = () => {
-  toggleIsOpen();
-}
-
 </script>
 
 <template>
@@ -91,90 +77,78 @@ const onControlClick = () => {
       'cdek-select_small': small && label,
     }"
   >
-    <label
-      class="cdek-select__control"
-      :class="{
-        'cdek-select__control_error': isError,
-        'cdek-select__control_user-event': isUserEvent,
-        'cdek-select__control_disabled': disabled,
-        'cdek-select__control_readonly': readonly,
-        'cdek-select__control_right-icon': hasRightIcon,
-        'cdek-select__control_small': small,
-        'cdek-select__control_open': isOpen,
-      }"
-      ref="labelRef"
-      @click="onControlClick"
-    >
-      <div
-        v-if="label"
-        class="cdek-select__label"
-        :class="{
-          'cdek-select__label_filled': value,
-          'cdek-select__label_error': isError,
-          'cdek-select__label_readonly': readonly,
-          'cdek-select__label_small': small,
-          'cdek-select__label_open': isOpen,
-        }"
+    <Listbox v-model="value" :disabled="disabled || readonly" :multiple="multiple">
+      <ListboxButton
+        as="div"
+        v-slot="{ open }"
       >
-        {{ label }}
-      </div>
+        <div
+          class="cdek-select__control"
+          :class="{
+            'cdek-select__control_error': isError,
+            'cdek-select__control_user-event': isUserEvent,
+            'cdek-select__control_disabled': disabled,
+            'cdek-select__control_readonly': readonly,
+            'cdek-select__control_right-icon': hasRightIcon,
+            'cdek-select__control_small': small,
+            'cdek-select__control_open': open,
+          }"
+        >
+          <ListboxLabel
+            class="cdek-select__label" :class="{
+              'cdek-select__label_filled': multiple ? value.length > 0 : Boolean(value.value),
+              'cdek-select__label_error': isError,
+              'cdek-select__label_readonly': readonly,
+              'cdek-select__label_small': small,
+              'cdek-select__label_open': open,
+            }"
+          >
+            {{ label }}
+          </ListboxLabel>
+            <div
+              class="cdek-select__value"
+              :class="{
+                'cdek-select__value_error': isError,
+                'cdek-select__value_readonly': readonly,
+                'cdek-select__value_no-label': !label,
+                'cdek-select__value_small': small,
+                'cdek-select__value_open': open,
+              }"
+            >
+              {{ props.multiple ? value.map(item => item.title).join(', ')
+                  :value.title }}
+            </div>
 
-      <div
-        class="cdek-select__value"
-        :class="{
-          'cdek-select__value_error': isError,
-          'cdek-select__value_readonly': readonly,
-          'cdek-select__value_no-label': !label,
-          'cdek-select__value_small': small,
-          'cdek-select__value_open': isOpen,
-        }"
-      >
-        {{ value }}
-      </div>
-      <ChevronUpIcon
-        class="cdek-select__arrow"
-        :class="{
-          'cdek-select__arrow_red': isError,
-          'cdek-select__arrow_grey': disabled || readonly,
-          'cdek-select__arrow_open': isOpen,
-        }"
-      />
-      <div
-        class="cdek-select__right-icon"
-        :class="{
-          'cdek-select__right-icon_red': isError,
-          'cdek-select__right-icon_grey': disabled || readonly,
-          'cdek-select__right-icon_white': isOpen,
-        }"
-        v-if="hasRightIcon"
-      >
-        <!-- @slot Прописаны стандартные стили для `button > svg`, у них будет выставлен размер и будут меняться цвета -->
-        <slot name="icons-right" >
-        </slot>
-      </div>
-    </label>
-    <div class="cdek-select__tip">
-      <template v-if="isError">
-        <BanIcon />
-        <span class="error">{{ validRes }}</span>
-      </template>
-
-      <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
-      <slot
-        v-else
-        name="tip"
-        :alert="AlertTriangleIcon"
-        :ban="BanIcon"
-        :circle="CircleCheckIcon"
-        :info="InfoCircleIcon"
-      />
-    </div>
-    <Transition>
-      <div v-if="isOpen" class="cdek-select__options">
-        <slot />
-      </div>
-    </Transition>
-
+            <ChevronUpIcon
+              class="cdek-select__arrow"
+              :class="{
+                'cdek-select__arrow_red': isError,
+                'cdek-select__arrow_grey': disabled || readonly,
+                'cdek-select__arrow_open': open,
+              }"
+            />
+        </div>
+      </ListboxButton>
+      <ListboxOptions :as="CdekDropdownBox">
+        <ListboxOption
+          v-for="item in options"
+          v-slot="{ selected, active }"
+          :key="item.value"
+          :value="item"
+          :disabled="item.disabled"
+          as="template"
+        >
+          <CdekDropdownItem
+            :value="item"
+            :disabled="item.disabled"
+            :selected="selected"
+            :active="active"
+          >
+            {{ item.title }}
+          </CdekDropdownItem>
+        </ListboxOption>
+      </ListboxOptions>
+    </Listbox>
   </div>
 </template>
 
@@ -204,6 +178,8 @@ const onControlClick = () => {
     display: flex;
     align-items: center;
     height: 56px;
+    width: 100%;
+    border: none;
 
     outline: solid $outline-width transparent;
     padding-inline: calc(#{$padding-left} - #{$outline-width});
@@ -288,19 +264,6 @@ const onControlClick = () => {
       align-self: center;
     }
 
-    &:not(&_no-label) {
-      &::placeholder {
-        transition: color 0.2s ease;
-        color: transparent;
-      }
-
-      &:focus {
-        &::placeholder {
-          color: $Button_Disable;
-        }
-      }
-    }
-
     &_small {
       align-self: center;
       padding-block: 6px;
@@ -318,8 +281,7 @@ const onControlClick = () => {
     color: $Bottom_60;
     transition: all 0.3s ease;
 
-    &_filled,
-    .cdek-select__control:focus-within:not(.cdek-select__control_disabled) & {
+    &_filled {
       @include caption-1;
 
       top: 8px;
@@ -335,23 +297,18 @@ const onControlClick = () => {
     }
 
     &_small {
-      @include body-1;
+      @include caption-1;
 
-      &.cdek-select__label_filled,
-      .cdek-select__control:focus-within:not(.cdek-select__control_disabled) & {
-        @include caption-1;
+      top: -22px;
+      transform: translateX(-17px);
 
-        top: -22px;
-        transform: translateX(-17px);
+      &#{$this}_readonly {
+        top: -11px;
+        transform: translateX(0);
+      }
 
-        &#{$this}_readonly {
-          top: -11px;
-          transform: translateX(0);
-        }
-
-        &#{$this}_error {
-          color: $Error;
-        }
+      &#{$this}_error {
+        color: $Error;
       }
     }
   }
@@ -437,26 +394,6 @@ const onControlClick = () => {
     &_white {
       @include slotted-svg-color($Peak);
     }
-  }
-
-  &__options {
-    background: $Peak;
-    position: absolute;
-    top: calc(100% - 16px);
-    border-radius: 8px;
-    padding: 12px 0;
-    width: 100%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04)
-  }
-
-  .v-enter-active,
-  .v-leave-active {
-    transition: opacity 0.3s ease;
-  }
-
-  .v-enter-from,
-  .v-leave-to {
-    opacity: 0;
   }
 }
 </style>

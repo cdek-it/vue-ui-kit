@@ -1,70 +1,60 @@
 <script lang="ts" setup>
 import { computed, useSlots } from "vue";
+import type { Component } from "vue";
 import CheckIcon from './svg/check.svg?component';
 
-interface IOption {
+export interface IOption {
   value: string | number,
   title: string | number,
+  icon?: Component,
+  disabled?: boolean,
+  color?: string
   [props: string]: any
 }
 
 const props = withDefaults(
   defineProps<{
-    option?: IOption;
+    value: IOption;
     selected?: boolean;
-    disabled?: boolean;
-    color?: string;
+    active?: boolean;
   }>(),
   {
     selected: false,
-    disabled: false,
-    color: undefined
+    active: false,
   }
 );
-
-const slots = useSlots();
-const hasLeftIcon = computed(() => Boolean(slots['icon-left']));
-
-const colorStyle = computed(() => ({'--list-item-color': props.color}));
-
-const emit = defineEmits<{
-  (e: 'select', value?: IOption): void;
-}>();
-
-const onSelect = () => {
-  emit('select', props.option);
-}
+const colorStyle = computed(() => ({'--list-item-color': props.value.color}));
 </script>
 
 <template>
-<div
-  class="cdek-list-item"
-  :style="colorStyle"
-  :class="{
-    'cdek-list-item_disabled': disabled,
-    'cdek-list-item_selected': selected,
-    'cdek-list-item_colored': Boolean(color),
-  }"
-  @click="onSelect"
->
   <div
-    class="cdek-list-item__left-icon"
-    v-if="hasLeftIcon"
+    class="cdek-dropdown-item"
+    :style="colorStyle"
+    :class="{
+      'cdek-dropdown-item_active': active,
+      'cdek-dropdown-item_selected': selected,
+      'cdek-dropdown-item_disabled': value.disabled,
+      'cdek-dropdown-item_colored': Boolean(value.color),
+    }"
   >
-    <slot name="icon-left" />
+    <div
+      class="cdek-dropdown-item__left-icon"
+      v-if="Boolean(value.icon)"
+    >
+      <component :is="value.icon" />
+    </div>
+    <div class="cdek-dropdown-item__content">
+      <slot />
+    </div>
+    <CheckIcon
+      class="cdek-dropdown-item__checkmark"
+      v-if="selected"
+    />
   </div>
-  <div class="cdek-list-item__content">
-    <slot />
-  </div>
-  <CheckIcon
-    class="cdek-list-item__checkmark"
-    v-if="selected"
-  />
-</div>
 </template>
 
 <style lang="scss" scoped>
-.cdek-list-item {
+.cdek-dropdown-item {
   $this: &;
 
   color: $Bottom;
@@ -75,6 +65,7 @@ const onSelect = () => {
   cursor: pointer;
 
   &:hover:not(&_disabled),
+  &_active:not(&_disabled),
   &_selected {
     background: $Surface_Access;
   }
