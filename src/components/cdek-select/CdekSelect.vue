@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { computed, useSlots, ref, onMounted, onUnmounted } from "vue";
+import { computed, useSlots } from 'vue';
+import type { Component } from 'vue';
 import {
   Listbox,
   ListboxLabel,
@@ -9,20 +10,26 @@ import {
 } from '@headlessui/vue';
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
 import ChevronUpIcon from './svg/chevron-up.svg?component';
+import AlertTriangleIcon from './svg/alert-triangle.svg?component';
+import BanIcon from './svg/ban.svg?component';
+import CircleCheckIcon from './svg/circle-check.svg?component';
+import InfoCircleIcon from './svg/info-circle.svg?component';
 
-type Primitive = string | number | boolean | symbol
+export type Primitive = string | number | boolean | symbol;
 
-interface ISelectItem {
-  value: Primitive,
-  title: string,
-  disabled: boolean,
-  [props: string]: any
+export interface ISelectOption {
+  value: Primitive;
+  title: string;
+  disabled?: boolean;
+  icon?: Component;
+  color?: string;
+  [props: string]: any;
 }
 
 const props = withDefaults(
   defineProps<{
     modelValue: Primitive | Array<Primitive>;
-    items: Array<ISelectItem> | Array<Primitive>
+    items: Array<ISelectOption> | Array<Primitive>;
     label?: string;
     validRes?: true | string;
     disabled?: boolean;
@@ -33,34 +40,44 @@ const props = withDefaults(
   {}
 );
 
-const itemsIsObject = computed(() => typeof props.items[0] === 'object')
+const itemsIsObject = computed(() => typeof props.items[0] === 'object');
 
-const options  = computed(() => {
-  if(itemsIsObject.value) {
-    return props.items as Array<ISelectItem>
+const options = computed(() => {
+  if (itemsIsObject.value) {
+    return props.items as Array<ISelectOption>;
   }
 
-  return props.items.map(item => ({value: item, title: item} as ISelectItem));
-})
+  return props.items.map(
+    (item) => ({ value: item, title: item } as ISelectOption)
+  );
+});
 
 const isError = computed(() => typeof props.validRes === 'string');
 
 const isUserEvent = computed(() => !props.disabled && !props.readonly);
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: Array<Primitive>): void;
+  (e: 'update:modelValue', value: Primitive | Array<Primitive>): void;
 }>();
 
 const value = computed({
   get() {
-    if(props.multiple && Array.isArray(props.modelValue)) {
-      return options.value.filter(item => props.modelValue.includes(item.value))
+    if (props.multiple) {
+      return options.value.filter((item) =>
+        (props.modelValue || []).includes(item.value)
+      );
     }
-    return options.value.find(item => props.modelValue === item.value) || {} as ISelectItem
+    return (
+      options.value.find((item) => props.modelValue === item.value) ||
+      ({} as ISelectOption)
+    );
   },
   set(newValue) {
-    if(props.multiple && Array.isArray(props.modelValue)) {
-      emit('update:modelValue', newValue.map(item => item.value));
+    if (props.multiple && Array.isArray(props.modelValue)) {
+      emit(
+        'update:modelValue',
+        newValue.map((item) => item.value)
+      );
       return;
     }
     emit('update:modelValue', newValue.value);
@@ -77,11 +94,12 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
       'cdek-select_small': small && label,
     }"
   >
-    <Listbox v-model="value" :disabled="disabled || readonly" :multiple="multiple">
-      <ListboxButton
-        as="div"
-        v-slot="{ open }"
-      >
+    <Listbox
+      v-model="value"
+      :disabled="disabled || readonly"
+      :multiple="multiple"
+    >
+      <ListboxButton as="div" v-slot="{ open }">
         <div
           class="cdek-select__control"
           :class="{
@@ -95,8 +113,12 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
           }"
         >
           <ListboxLabel
-            class="cdek-select__label" :class="{
-              'cdek-select__label_filled': multiple ? value.length > 0 : Boolean(value.value),
+            v-if="label"
+            class="cdek-select__label"
+            :class="{
+              'cdek-select__label_filled': multiple
+                ? value.length > 0
+                : Boolean(value.value),
               'cdek-select__label_error': isError,
               'cdek-select__label_readonly': readonly,
               'cdek-select__label_small': small,
@@ -105,28 +127,32 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
           >
             {{ label }}
           </ListboxLabel>
-            <div
-              class="cdek-select__value"
-              :class="{
-                'cdek-select__value_error': isError,
-                'cdek-select__value_readonly': readonly,
-                'cdek-select__value_no-label': !label,
-                'cdek-select__value_small': small,
-                'cdek-select__value_open': open,
-              }"
-            >
-              {{ props.multiple ? value.map(item => item.title).join(', ')
-                  :value.title }}
-            </div>
+          <div
+            class="cdek-select__value"
+            :class="{
+              'cdek-select__value_error': isError,
+              'cdek-select__value_readonly': readonly,
+              'cdek-select__value_no-label': !label,
+              'cdek-select__value_small': small,
+              'cdek-select__value_open': open,
+            }"
+          >
+            {{
+              props.multiple
+                ? value.map((item) => item.title).join(', ')
+                : value.title
+            }}
+          </div>
 
-            <ChevronUpIcon
-              class="cdek-select__arrow"
-              :class="{
-                'cdek-select__arrow_red': isError,
-                'cdek-select__arrow_grey': disabled || readonly,
-                'cdek-select__arrow_open': open,
-              }"
-            />
+          <ChevronUpIcon
+            class="cdek-select__arrow"
+            v-if="!readonly"
+            :class="{
+              'cdek-select__arrow_red': isError,
+              'cdek-select__arrow_grey': disabled,
+              'cdek-select__arrow_open': open,
+            }"
+          />
         </div>
       </ListboxButton>
       <ListboxOptions :as="CdekDropdownBox">
@@ -149,6 +175,22 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
         </ListboxOption>
       </ListboxOptions>
     </Listbox>
+    <div class="cdek-select__tip">
+      <template v-if="isError">
+        <BanIcon />
+        <span class="error">{{ validRes }}</span>
+      </template>
+
+      <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
+      <slot
+        v-else
+        name="tip"
+        :alert="AlertTriangleIcon"
+        :ban="BanIcon"
+        :circle="CircleCheckIcon"
+        :info="InfoCircleIcon"
+      />
+    </div>
   </div>
 </template>
 
@@ -242,6 +284,9 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
     caret-color: $Primary;
     align-self: flex-end;
     transition: color 0.3s ease;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 
     &_error {
       caret-color: $Error;

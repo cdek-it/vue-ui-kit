@@ -1,6 +1,6 @@
 import CdekDropdownItem from './CdekDropdownItem.vue';
 import CdekDropdownBox from './CdekDropdownBox.vue';
-import FileDescriptionIcon from './svg/file-description.svg?component'
+import FileDescriptionIcon from './svg/file-description.svg?component';
 
 export default {
   title: 'Ui kit/CdekDropdown',
@@ -12,7 +12,7 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2004%3A6818&t=NSOzy8XiKkWZ9xTg-4)',
       },
     },
-  }
+  },
 };
 
 const Template = (args) => ({
@@ -23,10 +23,7 @@ const Template = (args) => ({
   template: `
 <CdekDropdownBox>
   <CdekDropdownItem v-bind="args">
-    ${args.default} 
-    <template #icon-left v-if="args.story === 'LeftIcon'">
-      <FileDescriptionIcon />
-    </template>
+    ${args.default}
   </CdekDropdownItem>
 </CdekDropdownBox>
   `,
@@ -35,6 +32,10 @@ const Template = (args) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   default: 'Envelope, 42×5×5сm, up to 2kg',
+  value: {
+    value: 1,
+    title: 'Envelope, 42×5×5сm, up to 2kg',
+  },
 };
 Primary.parameters = {
   docs: {
@@ -47,7 +48,11 @@ Primary.parameters = {
 export const Selected = Template.bind({});
 Selected.args = {
   default: 'Envelope, 42×5×5сm, up to 2kg',
-  selected: true
+  value: {
+    value: 1,
+    title: 'Envelope, 42×5×5сm, up to 2kg',
+  },
+  selected: true,
 };
 Selected.parameters = {
   docs: {
@@ -60,12 +65,16 @@ Selected.parameters = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   default: 'Envelope, 42×5×5сm, up to 2kg',
-  disabled: true
+  value: {
+    value: 1,
+    title: 'Envelope, 42×5×5сm, up to 2kg',
+    disabled: true,
+  },
 };
 Disabled.parameters = {
   docs: {
     source: {
-      code: '<CdekDropdownItem disabled>Envelope, 42×5×5сm, up to 2kg</CdekDropdownItem>',
+      code: '<CdekDropdownItem>Envelope, 42×5×5сm, up to 2kg</CdekDropdownItem>',
     },
   },
 };
@@ -73,12 +82,16 @@ Disabled.parameters = {
 export const Colored = Template.bind({});
 Colored.args = {
   default: 'Envelope, 42×5×5сm, up to 2kg',
-  color: 'red'
+  value: {
+    value: 1,
+    title: 'Envelope, 42×5×5сm, up to 2kg',
+    color: 'red',
+  },
 };
 Colored.parameters = {
   docs: {
     source: {
-      code: '<CdekDropdownItem color="red">Envelope, 42×5×5сm, up to 2kg</CdekDropdownItem>',
+      code: '<CdekDropdownItem>Envelope, 42×5×5сm, up to 2kg</CdekDropdownItem>',
     },
   },
 };
@@ -86,18 +99,16 @@ Colored.parameters = {
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
   default: 'Envelope, 42×5×5сm, up to 2kg',
-  story: 'LeftIcon'
+  value: {
+    value: 1,
+    title: 'Envelope, 42×5×5сm, up to 2kg',
+    icon: FileDescriptionIcon,
+  },
 };
 LeftIcon.parameters = {
   docs: {
     source: {
-      code: `
-<CdekDropdownItem>
-  <template #icon-left>
-    <FileDescriptionIcon />
-  </template>
-  Envelope, 42×5×5сm, up to 2kg
-</CdekDropdownItem>`,
+      code: `<CdekDropdownItem>Envelope, 42×5×5сm, up to 2kg</CdekDropdownItem>`,
     },
   },
 };

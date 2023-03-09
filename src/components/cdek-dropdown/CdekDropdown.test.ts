@@ -1,24 +1,24 @@
-import type { Component } from "vue";
+import type { Component } from 'vue';
 import { shallowMount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekDropdownItem from './CdekDropdownItem.vue';
 import type { IOption } from './CdekDropdownItem.vue';
-import FileDescriptionIcon from './svg/file-description.svg?component'
+import FileDescriptionIcon from './svg/file-description.svg?component';
 
 class CdekDropdownItemBuilder {
   selected?: boolean;
   value: IOption = {
     value: 'value',
-    title: 'Пункт списка'
+    title: 'Пункт списка',
   };
   defaultSlot: string = 'Пункт списка';
 
-  toggleDisabled(){
+  toggleDisabled() {
     this.value.disabled = !this.value.disabled;
     return this;
   }
 
-  toggleSelected(){
+  toggleSelected() {
     this.selected = !this.selected;
     return this;
   }
@@ -37,11 +37,11 @@ class CdekDropdownItemBuilder {
     return shallowMount(CdekDropdownItem, {
       props: {
         value: this.value,
-        selected: this.selected
+        selected: this.selected,
       },
       slots: {
-        default: this.defaultSlot
-      }
+        default: this.defaultSlot,
+      },
     });
   }
 }
@@ -55,37 +55,36 @@ describe('Unit: CdekDropdownItem', () => {
     const wrapper = new CdekDropdownItemBuilder()
       .setIconLeft(FileDescriptionIcon)
       .build();
-    const iconLeft = wrapper.find('.cdek-list-item__left-icon');
+    const iconLeft = wrapper.find('.cdek-dropdown-item__left-icon');
     expect(iconLeft.exists()).toBeTruthy();
   });
   test('Если передан disabled, то компонент должен стилизоваться под состояние disabled', () => {
     const wrapper = new CdekDropdownItemBuilder().toggleDisabled().build();
-    expect(wrapper.classes('cdek-list-item_disabled')).toBeTruthy();
+    expect(wrapper.classes('cdek-dropdown-item_disabled')).toBeTruthy();
   });
 
   describe('selected', () => {
     test('Если передан selected, то компонент должен стилизоваться под состояние selected', () => {
       const wrapper = new CdekDropdownItemBuilder().toggleSelected().build();
-      expect(wrapper.classes('cdek-list-item_selected')).toBeTruthy();
+      expect(wrapper.classes('cdek-dropdown-item_selected')).toBeTruthy();
     });
     test('Если передан selected, то должна отрендерится галочка', () => {
       const wrapper = new CdekDropdownItemBuilder().toggleSelected().build();
-      const checkmark = wrapper.find('.cdek-list-item__checkmark');
+      const checkmark = wrapper.find('.cdek-dropdown-item__checkmark');
 
       expect(checkmark.exists()).toBeTruthy();
     });
   });
 
   describe('color', () => {
-    test('Если передан color, то компоненту должен добавиться класс cdek-list-item_colored', () => {
+    test('Если передан color, то компоненту должен добавиться класс cdek-dropdown-item_colored', () => {
       const wrapper = new CdekDropdownItemBuilder().setColor('red').build();
-      expect(wrapper.classes('cdek-list-item_colored')).toBeTruthy();
+      expect(wrapper.classes('cdek-dropdown-item_colored')).toBeTruthy();
     });
     test('Если передан color, то компоненту должен добавиться атрибут style="--list-item-color: red;"', () => {
       const wrapper = new CdekDropdownItemBuilder().setColor('red').build();
-      const styleAttribute = wrapper.attributes('style')
+      const styleAttribute = wrapper.attributes('style');
       expect(styleAttribute).toMatch('--list-item-color: red;');
     });
   });
 });
-

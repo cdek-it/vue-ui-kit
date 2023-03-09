@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-import { computed, useSlots } from "vue";
-import type { Component } from "vue";
+import { computed } from 'vue';
+import type { Component } from 'vue';
 import CheckIcon from './svg/check.svg?component';
 
 export interface IOption {
-  value: string | number,
-  title: string | number,
-  icon?: Component,
-  disabled?: boolean,
-  color?: string
-  [props: string]: any
+  value: string | number;
+  title: string | number;
+  icon?: Component;
+  disabled?: boolean;
+  color?: string;
+  [props: string]: any;
 }
 
 const props = withDefaults(
@@ -23,7 +23,7 @@ const props = withDefaults(
     active: false,
   }
 );
-const colorStyle = computed(() => ({'--list-item-color': props.value.color}));
+const colorStyle = computed(() => ({ '--list-item-color': props.value.color }));
 </script>
 
 <template>
@@ -37,19 +37,13 @@ const colorStyle = computed(() => ({'--list-item-color': props.value.color}));
       'cdek-dropdown-item_colored': Boolean(value.color),
     }"
   >
-    <div
-      class="cdek-dropdown-item__left-icon"
-      v-if="Boolean(value.icon)"
-    >
+    <div class="cdek-dropdown-item__left-icon" v-if="Boolean(value.icon)">
       <component :is="value.icon" />
     </div>
     <div class="cdek-dropdown-item__content">
       <slot />
     </div>
-    <CheckIcon
-      class="cdek-dropdown-item__checkmark"
-      v-if="selected"
-    />
+    <CheckIcon class="cdek-dropdown-item__checkmark" v-if="selected" />
   </div>
 </template>
 
@@ -63,8 +57,14 @@ const colorStyle = computed(() => ({'--list-item-color': props.value.color}));
   align-items: center;
   padding: 12px 16px;
   cursor: pointer;
+  transition: background-color 0.3s ease, outline-color 0.3s ease;
 
-  &:hover:not(&_disabled),
+  @include media-hover {
+    &:not(#{$this}_disabled) {
+      background: $Surface_Access;
+    }
+  }
+
   &_active:not(&_disabled),
   &_selected {
     background: $Surface_Access;
@@ -93,18 +93,22 @@ const colorStyle = computed(() => ({'--list-item-color': props.value.color}));
 
   &__content {
     @include body-2;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   &__checkmark {
     stroke: $Primary;
     margin-left: auto;
     height: 20px;
+    flex-shrink: 0;
   }
 
   &__left-icon {
     margin-right: 12px;
     stroke: $Primary;
+    flex-shrink: 0;
   }
-
 }
 </style>

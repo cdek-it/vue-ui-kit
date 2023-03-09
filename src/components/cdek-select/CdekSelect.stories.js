@@ -1,6 +1,7 @@
 import CdekSelect from './CdekSelect.vue';
-import TrashIcon from '../cdek-dropdown/svg/trash.svg?component'
-import { ref } from "vue";
+import TrashIcon from '../cdek-dropdown/svg/trash.svg?component';
+import { ref } from 'vue';
+import { TipIcon } from '../cdek-input/stories/CdekInputSlots.stories.js';
 
 export default {
   title: 'Ui kit/CdekSelect',
@@ -16,11 +17,11 @@ export default {
 };
 
 const items = [
-  {value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true},
-  {value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg'},
-  {value: 3, title: 'Box S, 23×19×10cm, up to 2kg'},
-  {value: 4, title: 'Box m, 35×25×15cm, up to 5kg'},
-]
+  { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
+  { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+  { value: 3, title: 'Box S, 23×19×10cm, up to 2kg' },
+  { value: 4, title: 'Box m, 35×25×15cm, up to 5kg' },
+];
 
 const Template = (args) => ({
   components: { CdekSelect },
@@ -29,20 +30,34 @@ const Template = (args) => ({
     return { args, items: args.items, selectValue };
   },
   template: `
-    <CdekSelect v-bind="args" :items="items" v-model="selectValue" />
+<CdekSelect v-bind="args" :items="items" v-model="selectValue">
+  <template #tip="{ alert, info, ban, circle }">
+    <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
+    <span :class="args.tipColor">{{ args.tip }}</span>
+  </template>
+</CdekSelect>
   `,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
   label: 'Вариант действия',
-  items
+  items,
 };
 Primary.parameters = {
   docs: {
     source: {
       code: `
-        <CdekSelect label="Вариант действия" :items="items" v-model="selectVal" />`,
+<CdekSelect 
+  v-model="selectVal" 
+  label="Вариант действия" 
+  :items="[ 
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true }, 
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' }, 
+    .. 
+  ]" 
+/>
+`,
     },
   },
 };
@@ -52,13 +67,23 @@ Multiple.args = {
   label: 'Вариант действия',
   multiple: true,
   value: [],
-  items
+  items,
 };
 Multiple.parameters = {
   docs: {
     source: {
       code: `
-        <CdekSelect label="Вариант действия" multiple :items="items" v-model="selectVal" />`,
+<CdekSelect 
+  multiple 
+  v-model="selectVal" 
+  label="Вариант действия" 
+  :items="[ 
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true }, 
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' }, 
+    .. 
+  ]" 
+/>
+`,
     },
   },
 };
@@ -67,91 +92,23 @@ export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Вариант действия',
   disabled: true,
-  items
+  items,
 };
 Disabled.parameters = {
   docs: {
     source: {
       code: `
-        <CdekSelect label="Вариант действия" disabled :items="items" v-model="selectVal" />`,
-    },
-  },
-};
-
-export const WithIcon = Template.bind({});
-const WithIconItems = [...items];
-WithIconItems.push({
-  value: 'del',
-  title: 'Удалить',
-  color: 'red',
-  icon: TrashIcon,
-});
-WithIcon.args = {
-  label: 'Вариант действия',
-  items: WithIconItems
-};
-WithIcon.parameters = {
-  docs: {
-    source: {
-      code: `
-        <CdekSelect label="Вариант действия" v-model="selectVal" />`,
-    },
-  },
-};
-
-/*
-export const WithValue = Template.bind({});
-WithValue.args = {
-  label: 'Вариант действия',
-  options,
-  value: 1
-};
-WithValue.parameters = {
-  docs: {
-    source: {
-      code: `
-        <CdekSelect label="Вариант действия" v-model="selectVal">
-          <CdekListItem
-            v-for="option in options"
-            @select="args.onSelect"
-            :checked="option.value === selectValue.value"
-            :disabled="option.disabled"
-            :value="option"
-            :color="option.color"
-            :key="option.value"
-          >
-            {{ option.title }}
-          </CdekListItem>
-        </CdekSelect>`,
-    },
-  },
-};
-
-export const WithDisabledOption = Template.bind({});
-const WithDisabledOptionOptions = [...options];
-WithDisabledOptionOptions[2].disabled = true;
-WithDisabledOption.args = {
-  label: 'Вариант действия',
-  value: 1,
-  options: WithDisabledOptionOptions
-};
-WithDisabledOption.parameters = {
-  docs: {
-    source: {
-      code: `
-        <CdekSelect label="Вариант действия" v-model="selectVal">
-          <CdekListItem
-            v-for="option in options"
-            @select="args.onSelect"
-            :checked="option.value === selectValue.value"
-            :disabled="option.disabled"
-            :value="option"
-            :color="option.color"
-            :key="option.value"
-          >
-            {{ option.title }}
-          </CdekListItem>
-        </CdekSelect>`,
+<CdekSelect 
+  disabled 
+  v-model="selectVal" 
+  label="Вариант действия" 
+  :items="[ 
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true }, 
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' }, 
+    .. 
+  ]" 
+/>
+`,
     },
   },
 };
@@ -159,58 +116,151 @@ WithDisabledOption.parameters = {
 export const Small = Template.bind({});
 Small.args = {
   label: 'Вариант действия',
-  value: 1,
-  options,
-  small: true
+  small: true,
+  items,
 };
 Small.parameters = {
   docs: {
     source: {
       code: `
-        <CdekSelect label="Вариант действия" small v-model="selectVal">
-          <CdekListItem
-            v-for="option in options"
-            @select="args.onSelect"
-            :checked="option.value === selectValue.value"
-            :disabled="option.disabled"
-            :value="option"
-            :color="option.color"
-            :key="option.value"
-          >
-            {{ option.title }}
-          </CdekListItem>
-        </CdekSelect>`,
+<CdekSelect 
+  small 
+  v-model="selectVal" 
+  label="Вариант действия" 
+  :items="[ 
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true }, 
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' }, 
+    .. 
+  ]" 
+/>
+`,
     },
   },
 };
 
-export const Disabled = Template.bind({});
-Disabled.args = {
+export const ReadOnly = Template.bind({});
+ReadOnly.args = {
   label: 'Вариант действия',
+  readonly: true,
   value: 1,
-  options,
-  disabled: true
+  items,
 };
-Disabled.parameters = {
+ReadOnly.parameters = {
   docs: {
     source: {
       code: `
-        <CdekSelect label="Вариант действия" disabled v-model="selectVal">
-          <CdekListItem
-            v-for="option in options"
-            @select="args.onSelect"
-            :checked="option.value === selectValue.value"
-            :disabled="option.disabled"
-            :value="option"
-            :color="option.color"
-            :key="option.value"
-          >
-            {{ option.title }}
-          </CdekListItem>
-        </CdekSelect>`,
+<CdekSelect 
+  readonly 
+  v-model="selectVal" 
+  label="Вариант действия" 
+  :items="[ 
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true }, 
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' }, 
+    .. 
+  ]" 
+/>
+`,
     },
   },
 };
 
+export const OptionWithIcon = Template.bind({});
+const OptionWithIconItems = [...items];
+OptionWithIconItems.push({
+  value: 'del',
+  title: 'Удалить',
+  color: 'red',
+  icon: TrashIcon,
+});
+OptionWithIcon.args = {
+  label: 'Вариант действия',
+  items: OptionWithIconItems,
+};
+OptionWithIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect 
+  multiple 
+  v-model="selectVal" 
+  label="Вариант действия" 
+  :items="[ 
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true }, 
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg',  }, 
+    .. 
+    { value: 'del', title: 'Удалить', color: 'red', icon: TrashIcon  },
+  ]" 
+/>
+`,
+    },
+  },
+};
 
-*/
+export const WithTip = Template.bind({});
+WithTip.argTypes = {
+  tipIcon: {
+    options: ['info', 'alert', 'ban', 'circle'],
+    type: 'select',
+  },
+};
+TipIcon.args = {
+  label: 'Серия и номер паспорта',
+  tip: 'Пояснение или помощь',
+  tipIcon: 'info',
+  story: 'TipIcon',
+};
+WithTip.args = {
+  label: 'Вариант действия',
+  story: 'TipIcon',
+  tipIcon: 'info',
+  tip: 'Пояснение или помощь',
+  items,
+};
+WithTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect label="Вариант действия" :items="items" v-model="selectVal">
+  <template #tip="{ info }">
+    <component :is="info" />
+    <span>Пояснение или помощь</span>
+  </template>        
+</CdekSelect>`,
+    },
+  },
+};
+
+export const WithError = Template.bind({});
+WithError.argTypes = {
+  tipIcon: {
+    options: ['info', 'alert', 'ban', 'circle'],
+    type: 'select',
+  },
+};
+WithError.args = {
+  label: 'Серия и номер паспорта',
+  tip: 'Пояснение или помощь',
+  tipIcon: 'info',
+  story: 'TipIcon',
+};
+WithError.args = {
+  label: 'Вариант действия',
+  story: 'TipIcon',
+  tipIcon: 'info',
+  tip: 'Пояснение или помощь',
+  validRes: 'Ошибка',
+  items,
+};
+WithError.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect label="Вариант действия" :items="items" v-model="selectVal" valid-res="Ошибка">
+  <template #tip="{ info }">
+    <component :is="info" />
+    <span>Пояснение или помощь</span>
+  </template>        
+</CdekSelect>`,
+    },
+  },
+};
