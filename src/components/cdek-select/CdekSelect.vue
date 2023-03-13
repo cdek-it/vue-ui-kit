@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { computed, useSlots } from 'vue';
-import type { Component } from 'vue';
 import {
   Listbox,
   ListboxLabel,
@@ -9,32 +8,45 @@ import {
   ListboxOption,
 } from '@headlessui/vue';
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
+import type { IItemValue } from '../cdek-dropdown/CdekDropdownItem.vue';
 import ChevronUpIcon from './svg/chevron-up.svg?component';
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';
 import CircleCheckIcon from './svg/circle-check.svg?component';
 import InfoCircleIcon from './svg/info-circle.svg?component';
 
-export type Primitive = string | number | boolean | symbol;
-
-export interface ISelectOption {
-  value: Primitive;
-  title: string;
-  disabled?: boolean;
-  icon?: Component;
-  color?: string;
-  [props: string]: any;
-}
+export type Primitive = string | number | boolean;
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * Обновляется при выборе из поля value выбранного из массива items элемента
+     *
+     * `string | number | boolean` - в случае, когда multiple = false
+     *
+     * `Array<string | number>` - в случае, когда multiple = true
+     */
     modelValue: Primitive | Array<Primitive>;
-    items: Array<ISelectOption> | Array<Primitive>;
+    /**
+     * Элементы выпадающего списка.
+     * `Array<string | number> | Array<IItemValue>`
+     * [Описание модели](/?path=/story/ui-kit-cdekdropdown--primary)
+     */
+    items: Array<IItemValue> | Array<Primitive>;
     label?: string;
+
+    /**
+     * `true` - валидация пройдена, ошибку показывать не надо
+     *
+     * `string` - текст ошибки, ошибка показывается
+     */
     validRes?: true | string;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
+    /**
+     * Если true, то можно выбрань несколько вариантов из списка, в modelValue запишется массив значений
+     */
     multiple?: boolean;
   }>(),
   {}
@@ -44,11 +56,11 @@ const itemsIsObject = computed(() => typeof props.items[0] === 'object');
 
 const options = computed(() => {
   if (itemsIsObject.value) {
-    return props.items as Array<ISelectOption>;
+    return props.items as Array<IItemValue>;
   }
 
   return props.items.map(
-    (item) => ({ value: item, title: item } as ISelectOption)
+    (item) => ({ value: item, title: item } as IItemValue)
   );
 });
 
@@ -69,7 +81,7 @@ const value = computed({
     }
     return (
       options.value.find((item) => props.modelValue === item.value) ||
-      ({} as ISelectOption)
+      ({} as IItemValue)
     );
   },
   set(newValue) {
@@ -83,8 +95,6 @@ const value = computed({
     emit('update:modelValue', newValue.value);
   },
 });
-const slots = useSlots();
-const hasRightIcon = computed(() => Boolean(slots['icons-right']));
 </script>
 
 <template>
@@ -107,7 +117,6 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
             'cdek-select__control_user-event': isUserEvent,
             'cdek-select__control_disabled': disabled,
             'cdek-select__control_readonly': readonly,
-            'cdek-select__control_right-icon': hasRightIcon,
             'cdek-select__control_small': small,
             'cdek-select__control_open': open,
           }"
@@ -238,7 +247,7 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
         background: $Primary_10;
       }
 
-      &#{$this}_error {
+      &#{$this}_error:not(&#{$this}_open) {
         @include media-hover {
           background: $Error_10;
         }
@@ -254,16 +263,14 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
     }
 
     &_disabled {
+      cursor: default;
       background: $Input_Disable;
     }
 
     &_readonly {
+      cursor: default;
       background: transparent;
       box-shadow: unset;
-    }
-
-    &_right-icon {
-      padding-right: 8px;
     }
 
     &_small {
@@ -333,7 +340,8 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
       transform: translateY(0);
     }
 
-    .cdek-select__control:not(:focus-within) &_error#{$this}_filled {
+    .cdek-select__control:not(:focus-within)
+      &_error#{$this}_filled:not(&#{$this}_open) {
       color: $Error;
     }
 
@@ -391,16 +399,6 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
     }
   }
 
-  @mixin right-icon {
-    width: 36px;
-    height: 36px;
-    background: transparent;
-    border: none;
-    padding: 6px;
-    outline: none;
-    cursor: pointer;
-  }
-
   &__arrow {
     stroke: $Primary;
     margin-right: 6px;
@@ -412,32 +410,12 @@ const hasRightIcon = computed(() => Boolean(slots['icons-right']));
       transform: rotate(0deg);
     }
 
-    &_red {
+    &_red:not(&_open) {
       stroke: $Error;
     }
 
     &_grey {
       stroke: $Button_Disable;
-    }
-  }
-
-  &__right-icon {
-    :slotted(button) {
-      @include right-icon;
-    }
-
-    @include slotted-svg-color($Primary);
-
-    &_red {
-      @include slotted-svg-color($Error);
-    }
-
-    &_grey {
-      @include slotted-svg-color($Button_Disable);
-    }
-
-    &_white {
-      @include slotted-svg-color($Peak);
     }
   }
 }
