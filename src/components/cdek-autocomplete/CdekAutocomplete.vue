@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, useSlots, ref } from 'vue';
+import { computed, useSlots, ref, reactive } from 'vue';
 import type { Component } from 'vue';
 import {
   Combobox,
@@ -9,6 +9,12 @@ import {
   ComboboxOption,
 } from '@headlessui/vue';
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
+
+import AlertTriangleIcon from './svg/alert-triangle.svg?component';
+import BanIcon from './svg/ban.svg?component';
+import CircleCheckIcon from './svg/circle-check.svg?component';
+import InfoCircleIcon from './svg/info-circle.svg?component';
+import CircleXIcon from './svg/circle-x.svg?component';
 
 export type Primitive = string | number | boolean | symbol;
 
@@ -23,84 +29,94 @@ export interface ISelectOption {
 
 const props = withDefaults(
   defineProps<{
-    modelValue: Primitive | Array<string>;
+    modelValue: Primitive;
     items: Array<ISelectOption> | Array<string>;
-    fetchItems?: (query: string) =>  Promise<Array<ISelectOption> | Array<string>>;
+    fetchItems?: (
+      query: string
+    ) => Promise<Array<ISelectOption> | Array<string>>;
     debounce?: number;
     minLength?: number;
     label?: string;
+    placeholder?: string;
     validRes?: true | string;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
-    multiple?: boolean;
+    clearable?: boolean;
   }>(),
   {
     debounce: 300,
-    minLength: 3
+    minLength: 3,
   }
 );
 
-const transformItems = (items: Array<ISelectOption> | Array<string>) => {
+const transformItems = (items: Array<ISelectOption> | Array<string> = []) => {
   if (typeof items[0] === 'object') {
     return items as Array<ISelectOption>;
   }
 
-  return items.map(
-      (item) => ({ value: item, title: item } as ISelectOption)
-  );
-}
+  return items.map((item) => ({ value: item, title: item } as ISelectOption));
+};
 
-const items = ref(props.items)
-const options = computed( () => transformItems(items.value));
+const state = reactive({ items: props.items });
+const options = computed(() => transformItems(state.items));
 
 const isError = computed(() => typeof props.validRes === 'string');
 const isUserEvent = computed(() => !props.disabled && !props.readonly);
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: Primitive | Array<Primitive>): void;
+  (e: 'update:modelValue', value: Primitive): void;
 }>();
 
 const value = computed({
   get() {
-    if (props.multiple) {
-      return options.value.filter((item) =>
-        (props.modelValue || []).includes(item.value)
-      );
-    }
     return (
       options.value.find((item) => props.modelValue === item.value) ||
       ({} as ISelectOption)
     );
   },
   set(newValue) {
-    if (props.multiple && Array.isArray(props.modelValue)) {
-      emit(
-        'update:modelValue',
-        newValue.map((item) => item.value)
-      );
-      return;
-    }
     emit('update:modelValue', newValue.value);
   },
 });
+
 const slots = useSlots();
 const hasRightIcon = computed(() => Boolean(slots['icons-right']));
+const hasLeftIcon = computed(() => Boolean(slots['icons-left']));
+
+const onClear = () => {
+  emit('update:modelValue', '');
+};
 
 let timeout: NodeJS.Timeout;
+const inputValue = ref('');
 const onChangeInput = (event: Event) => {
   const value = (event.target as HTMLInputElement).value;
-  if(timeout) {
-    clearTimeout(timeout)
+
+  if (timeout) {
+    clearTimeout(timeout);
   }
   timeout = setTimeout(() => {
-    if(props.fetchItems) {
-      props.fetchItems(value).then((fetchedItems) => {
-        items.value = fetchedItems
-      })
+    inputValue.value = value;
+    if (value.length >= props.minLength) {
+      if (props.fetchItems) {
+        props.fetchItems(value).then((fetchedItems) => {
+          state.items = fetchedItems;
+        });
+      } else {
+        state.items = props.items.filter((item) => {
+          if (typeof item === 'string') {
+            return item.toLowerCase().includes(value.toLowerCase());
+          }
+          return item.title.toLowerCase().includes(value.toLowerCase());
+        });
+      }
     }
-  }, props.debounce)
-}
+    if (value.length === 0) {
+      onClear();
+    }
+  }, props.debounce);
+};
 </script>
 
 <template>
@@ -113,7 +129,6 @@ const onChangeInput = (event: Event) => {
     <Combobox
       v-model="value"
       :disabled="disabled || readonly"
-      :multiple="multiple"
     >
       <div
         class="cdek-autocomplete__control"
@@ -124,20 +139,16 @@ const onChangeInput = (event: Event) => {
           'cdek-autocomplete__control_readonly': readonly,
           'cdek-autocomplete__control_right-icon': hasRightIcon,
           'cdek-autocomplete__control_small': small,
-          'cdek-autocomplete__control_open': open,
         }"
       >
         <ComboboxLabel
           v-if="label"
           class="cdek-autocomplete__label"
           :class="{
-            'cdek-autocomplete__label_filled': multiple
-              ? value.length > 0
-              : Boolean(value.value),
+            'cdek-autocomplete__label_filled': Boolean(value.value),
             'cdek-autocomplete__label_error': isError,
             'cdek-autocomplete__label_readonly': readonly,
             'cdek-autocomplete__label_small': small,
-            'cdek-autocomplete__label_open': open,
           }"
         >
           {{ label }}
@@ -147,17 +158,40 @@ const onChangeInput = (event: Event) => {
         </div>
         <ComboboxInput
           class="cdek-autocomplete__input"
+          :placeholder="placeholder"
           :class="{
             'cdek-autocomplete__input_error': isError,
             'cdek-autocomplete__input_readonly': readonly,
             'cdek-autocomplete__input_no-label': !label,
             'cdek-autocomplete__input_small': small,
-            'cdek-autocomplete__input_open': open,
           }"
+          :displayValue="(item) => item.title"
           @change="onChangeInput"
         />
+        <button
+          v-if="clearable && value"
+          class="cdek-autocomplete__clear"
+          @click="clear"
+        >
+          <CircleXIcon />
+        </button>
+
+        <div
+          class="cdek-autocomplete__right-icon"
+          :class="{
+            'cdek-autocomplete__right-icon_red': isError,
+            'cdek-autocomplete__right-icon_grey': disabled || readonly,
+          }"
+          v-if="hasRightIcon"
+        >
+          <!-- @slot Прописаны стандартные стили для `button > svg`, у них будет выставлен размер и будут меняться цвета -->
+          <slot name="icons-right"> </slot>
+        </div>
       </div>
-      <ComboboxOptions :as="CdekDropdownBox">
+      <ComboboxOptions
+        :as="CdekDropdownBox"
+        v-if="inputValue.length >= minLength"
+      >
         <ComboboxOption
           v-for="item in options"
           v-slot="{ selected, active }"
@@ -220,7 +254,7 @@ const onChangeInput = (event: Event) => {
     position: relative;
     display: flex;
     align-items: center;
-    height: 56px;
+    min-height: 56px;
 
     outline: solid $outline-width transparent;
     padding-inline: calc(#{$padding-left} - #{$outline-width});
@@ -338,7 +372,10 @@ const onChangeInput = (event: Event) => {
     transition: all 0.3s ease;
 
     &_filled,
-    .cdek-autocomplete__control:focus-within:not(.cdek-autocomplete__control_disabled) & {
+    .cdek-autocomplete__control:focus-within:not(
+        .cdek-autocomplete__control_disabled
+      )
+      & {
       @include caption-1;
 
       top: 8px;
@@ -353,7 +390,10 @@ const onChangeInput = (event: Event) => {
       @include body-1;
 
       &.cdek-autocomplete__label_filled,
-      .cdek-autocomplete__control:focus-within:not(.cdek-autocomplete__control_disabled) & {
+      .cdek-autocomplete__control:focus-within:not(
+          .cdek-autocomplete__control_disabled
+        )
+        & {
         @include caption-1;
 
         top: -22px;
@@ -412,26 +452,6 @@ const onChangeInput = (event: Event) => {
     padding: 6px;
     outline: none;
     cursor: pointer;
-  }
-
-  &__arrow {
-    stroke: $Primary;
-    margin-right: 6px;
-    transform: rotate(180deg);
-    transition: transform 0.2s ease;
-
-    &_open {
-      stroke: $Peak;
-      transform: rotate(0deg);
-    }
-
-    &_red {
-      stroke: $Error;
-    }
-
-    &_grey {
-      stroke: $Button_Disable;
-    }
   }
 
   &__right-icon {
