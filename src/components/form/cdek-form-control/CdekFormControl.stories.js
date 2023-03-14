@@ -1,4 +1,5 @@
 import CdekFormControl from './CdekFormControl.vue';
+import { CdekForm } from '../cdek-form';
 
 export default {
   title: 'Form/CdekFormControl',
@@ -6,11 +7,14 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekFormControl },
+  components: { CdekForm, CdekFormControl },
   setup() {
     return { args };
   },
-  template: `<CdekFormControl v-bind="args">`,
+  template: `
+    <CdekForm>
+      <CdekFormControl v-bind="args">
+    </CdekForm>`,
 });
 
 export const Primary = Template.bind({});
