@@ -4,7 +4,7 @@ import CdekBadge from './CdekBadge.vue';
 import type { BadgeProps } from '@/components/cdek-badge/CdekBadge.vue';
 
 const createCdekBadge = (props: BadgeProps) => {
-  return mount(CdekBadge, { props, });
+  return mount(CdekBadge, { props });
 };
 
 describe('Unit: CdekBadge', () => {
