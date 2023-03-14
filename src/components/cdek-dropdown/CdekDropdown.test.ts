@@ -2,12 +2,12 @@ import type { Component } from 'vue';
 import { shallowMount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekDropdownItem from './CdekDropdownItem.vue';
-import type { IOption } from './CdekDropdownItem.vue';
+import type { IItemValue } from './CdekDropdownItem.vue';
 import FileDescriptionIcon from './svg/file-description.svg?component';
 
 class CdekDropdownItemBuilder {
   selected?: boolean;
-  value: IOption = {
+  value: IItemValue = {
     value: 'value',
     title: 'Пункт списка',
   };

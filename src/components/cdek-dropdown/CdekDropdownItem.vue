@@ -3,7 +3,7 @@ import { computed } from 'vue';
 import type { Component } from 'vue';
 import CheckIcon from './svg/check.svg?component';
 
-export interface IOption {
+export interface IItemValue {
   value: string | number;
   title: string | number;
   icon?: Component;
@@ -14,7 +14,21 @@ export interface IOption {
 
 const props = withDefaults(
   defineProps<{
-    value: IOption;
+    /**
+     * Элементы выпадающего списка.
+     *
+     *   `value: string | number;` - значение, которое засетится в modelValue
+     *
+     *   `title: string | number;` - текст, который отображается в списке
+     *
+     *   `icon?: Component;` - компонент иконки, выводится слева от текста
+     *
+     *   `disabled?: boolean;` - признак неактивности. неактивный элемент нельзя выбрать, так же в списке он будет выделен серым цветом
+     *
+     *   `color?: string;` - цвет в HEX. Если указан, то в этот цвет перекрасится текст и иконка
+     *
+     */
+    value: IItemValue;
     selected?: boolean;
     active?: boolean;
   }>(),
