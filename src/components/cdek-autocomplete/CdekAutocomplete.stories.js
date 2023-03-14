@@ -35,6 +35,7 @@ const Template = (args) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   placeholder: 'Начните вводить',
+  value: 1,
   items,
 };
 Primary.parameters = {

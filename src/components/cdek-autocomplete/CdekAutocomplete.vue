@@ -9,6 +9,7 @@ import {
   ComboboxOption,
 } from '@headlessui/vue';
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
+import { CdekInput } from '../cdek-input/';
 
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';
@@ -117,6 +118,9 @@ const onChangeInput = (event: Event) => {
     }
   }, props.debounce);
 };
+
+const inputRef = ref();
+console.log('', '', inputRef);
 </script>
 
 <template>
@@ -130,35 +134,11 @@ const onChangeInput = (event: Event) => {
       v-model="value"
       :disabled="disabled || readonly"
     >
-      <div
-        class="cdek-autocomplete__control"
-        :class="{
-          'cdek-autocomplete__control_error': isError,
-          'cdek-autocomplete__control_user-event': isUserEvent,
-          'cdek-autocomplete__control_disabled': disabled,
-          'cdek-autocomplete__control_readonly': readonly,
-          'cdek-autocomplete__control_right-icon': hasRightIcon,
-          'cdek-autocomplete__control_small': small,
-        }"
-      >
-        <ComboboxLabel
-          v-if="label"
-          class="cdek-autocomplete__label"
-          :class="{
-            'cdek-autocomplete__label_filled': Boolean(value.value),
-            'cdek-autocomplete__label_error': isError,
-            'cdek-autocomplete__label_readonly': readonly,
-            'cdek-autocomplete__label_small': small,
-          }"
-        >
-          {{ label }}
-        </ComboboxLabel>
-        <div v-if="hasLeftIcon" class="cdek-autocomplete__left-icon">
-          <slot name="icons-left" />
-        </div>
+
         <ComboboxInput
           class="cdek-autocomplete__input"
-          :placeholder="placeholder"
+          ref="inputRef"
+          :as="CdekInput"
           :class="{
             'cdek-autocomplete__input_error': isError,
             'cdek-autocomplete__input_readonly': readonly,
@@ -166,28 +146,9 @@ const onChangeInput = (event: Event) => {
             'cdek-autocomplete__input_small': small,
           }"
           :displayValue="(item) => item.title"
+          refName="testRef"
           @change="onChangeInput"
         />
-        <button
-          v-if="clearable && value"
-          class="cdek-autocomplete__clear"
-          @click="clear"
-        >
-          <CircleXIcon />
-        </button>
-
-        <div
-          class="cdek-autocomplete__right-icon"
-          :class="{
-            'cdek-autocomplete__right-icon_red': isError,
-            'cdek-autocomplete__right-icon_grey': disabled || readonly,
-          }"
-          v-if="hasRightIcon"
-        >
-          <!-- @slot Прописаны стандартные стили для `button > svg`, у них будет выставлен размер и будут меняться цвета -->
-          <slot name="icons-right"> </slot>
-        </div>
-      </div>
       <ComboboxOptions
         :as="CdekDropdownBox"
         v-if="inputValue.length >= minLength"
@@ -211,22 +172,6 @@ const onChangeInput = (event: Event) => {
         </ComboboxOption>
       </ComboboxOptions>
     </Combobox>
-    <div class="cdek-autocomplete__tip">
-      <template v-if="isError">
-        <BanIcon />
-        <span class="error">{{ validRes }}</span>
-      </template>
-
-      <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
-      <slot
-        v-else
-        name="tip"
-        :alert="AlertTriangleIcon"
-        :ban="BanIcon"
-        :circle="CircleCheckIcon"
-        :info="InfoCircleIcon"
-      />
-    </div>
   </div>
 </template>
 
