@@ -1,10 +1,8 @@
 <script lang="ts" setup>
 import { provide, reactive } from 'vue';
 
-import FormService, {
-  FormServiceKey,
-} from '@/components/form/services/FormService';
-import type { FieldsT, ErrorsT } from '@/components/form/services/types';
+import FormService, { FormServiceKey } from '../services/FormService';
+import type { FieldsT, ErrorsT } from '../services/types';
 
 const formService = reactive(new FormService());
 provide(FormServiceKey, formService);

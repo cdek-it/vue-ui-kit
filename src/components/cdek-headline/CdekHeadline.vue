@@ -13,10 +13,6 @@ const props = withDefaults(
 </template>
 
 <style lang="scss" scoped>
-h1 {
-  margin-top: unset;
-  margin-bottom: unset;
-}
 .headline-1 {
   @include headline-1;
 }
