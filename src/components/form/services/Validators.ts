@@ -1,4 +1,4 @@
-import Multitone, { getInstanceFactory } from '@/services/Multitone';
+import Multitone, { getInstanceFactory } from '../../../services/Multitone';
 import type { RulesT } from './types';
 
 import { alpha } from '@vee-validate/rules';

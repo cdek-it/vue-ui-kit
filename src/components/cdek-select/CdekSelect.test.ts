@@ -1,11 +1,12 @@
 import { mount, VueWrapper } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekSelect from './CdekSelect.vue';
-import type { ISelectOption, Primitive } from './CdekSelect.vue';
+import type { Primitive } from './CdekSelect.vue';
+import type { IItemValue } from '../cdek-dropdown/CdekDropdownItem.vue';
 import { Listbox } from '@headlessui/vue';
 
 class CdekSelectBuilder {
-  wrapper?: VueWrapper;
+  wrapper?: VueWrapper<any>;
   modelValue: Primitive | Array<Primitive> = '';
   label?: string;
   validRes?: true | string;
@@ -13,7 +14,7 @@ class CdekSelectBuilder {
   readonly?: boolean;
   small?: boolean;
   multiple?: boolean;
-  items: Array<ISelectOption> = [
+  items: Array<IItemValue> = [
     { value: 1, title: 'Option 1', disabled: true },
     { value: 2, title: 'Option 2' },
     { value: 3, title: 'Option 3' },
@@ -88,7 +89,7 @@ class CdekSelectBuilder {
       props: {
         modelValue: this.modelValue,
         items: this.items,
-        'onUpdate:modelValue': (e: string) =>
+        'onUpdate:modelValue': (e: Primitive | Array<Primitive>) =>
           wrapper.setProps({ modelValue: e }),
         label: this.label,
         validRes: this.validRes,

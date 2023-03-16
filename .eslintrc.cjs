@@ -19,5 +19,9 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': ['error', prettierConfig],
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      { varsIgnorePattern: 'props' },
+    ],
   },
 };
