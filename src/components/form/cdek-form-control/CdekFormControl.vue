@@ -1,3 +1,9 @@
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+};
+</script>
+
 <script lang="ts" setup>
 import { inject, computed, reactive } from 'vue';
 
@@ -34,6 +40,10 @@ const value = computed({
 
 <template>
   <div>
-    <CdekInput v-model="value" :label="name" :valid-res="fieldService.error" />
+    <CdekInput
+      v-model="value"
+      :valid-res="fieldService.error"
+      v-bind="$attrs"
+    />
   </div>
 </template>

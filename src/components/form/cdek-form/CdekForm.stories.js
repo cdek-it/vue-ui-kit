@@ -48,8 +48,8 @@ const Template = (args) => ({
   },
   template: `
     <CdekForm v-bind="args" @submit="submit" @submitError="submitErrors">
-      <CdekFormControl name="firstName" :rules="rules" />
-      <CdekFormControl name="surname" />
+      <CdekFormControl name="firstName" label="firstName" :rules="rules" />
+      <CdekFormControl name="surname" label="surname" />
       <button>Продолжить</button>
     </CdekForm>
 
@@ -76,8 +76,8 @@ const submit = (values) => {
 
 <template>
   <CdekForm @submit="submit">
-    <CdekFormControl name="firstName" />
-    <CdekFormControl name="surname" />
+    <CdekFormControl name="firstName" label="firstName" />
+    <CdekFormControl name="surname" label="surname" />
 
     <button>Продолжить<button>
   </CdekForm>
@@ -147,8 +147,8 @@ const submitError = (errors) => {
 
 <template>
   <CdekForm @submit="submit" @submitError="submitError">
-    <CdekFormControl name="firstName" :rules="rules" />
-    <CdekFormControl name="surname" />
+    <CdekFormControl name="firstName" label="firstName" :rules="rules" />
+    <CdekFormControl name="surname" label="surname" />
 
     <button>Продолжить<button>
   </CdekForm>
@@ -167,8 +167,8 @@ GlobalValidator.parameters = {
     source: {
       code: `
 <CdekForm @submit="submit">
-  <CdekFormControl name="firstName" rules="alpha" />
-  <CdekFormControl name="surname" />
+  <CdekFormControl name="firstName" label="firstName" rules="alpha" />
+  <CdekFormControl name="surname" label="surname" />
 
   <button>Продолжить<button>
 </CdekForm>

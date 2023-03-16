@@ -18,3 +18,34 @@ const Template = (args) => ({
 });
 
 export const Primary = Template.bind({});
+Primary.args = {
+  name: 'firstName',
+};
+Primary.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl name="firstName">
+</CdekForm>
+`,
+    },
+  },
+};
+
+export const WithLabel = Template.bind({});
+WithLabel.args = {
+  label: 'Имя',
+  name: 'firstName',
+};
+WithLabel.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl name="firstName" label="Имя">
+</CdekForm>
+`,
+    },
+  },
+};
