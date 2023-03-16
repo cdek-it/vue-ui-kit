@@ -13,7 +13,14 @@ export default {
   },
   argTypes: {
     type: {
-      options: ['positive', 'negative', 'process', 'info', 'deactive', 'neutral'],
+      options: [
+        'positive',
+        'negative',
+        'process',
+        'info',
+        'deactive',
+        'neutral',
+      ],
     },
     variant: {
       options: ['light', 'dark'],
