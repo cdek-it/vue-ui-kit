@@ -1,6 +1,7 @@
 import CdekFormControl from './CdekFormControl.vue';
 import { CdekForm } from '../cdek-form';
 import './CdekFormControl.stories.css';
+import { formSettings } from '../index';
 
 export default {
   title: 'Form/CdekFormControl',
@@ -10,6 +11,11 @@ export default {
 const Template = (args) => ({
   components: { CdekForm, CdekFormControl },
   setup() {
+    if (args.story === 'WithExtraLocale') {
+      formSettings.addMessages('required', { en: 'Required field' });
+      formSettings.changeLocale('en');
+    }
+
     return { args };
   },
   template: `
@@ -82,6 +88,38 @@ Required.parameters = {
 <CdekForm>
   <CdekFormControl name="firstName" label="Имя" rules="required">
 </CdekForm>
+`,
+    },
+  },
+};
+
+export const WithExtraLocale = Template.bind({});
+WithExtraLocale.args = {
+  label: 'Имя',
+  name: 'firstName',
+  rules: 'required',
+  story: 'WithExtraLocale',
+};
+WithExtraLocale.parameters = {
+  docs: {
+    source: {
+      code: `
+<script lang="ts" setup>
+import { formSettings } from 'vue-ui-kit';
+
+// Добавляем переводы на конкретное правило, действует глобально, лучше сделать при инициализации
+formSettings.addMessages('required', { en: 'Required field' });
+// Меняем локаль, это действует глобально на все формы, так что можно завязать на i18n
+formSettings.changeLocale('en');
+
+// Если нужно кастомное сообщение только в одном месте, то лучше сделать кастомный валидатор
+</script>
+
+<template>
+  <CdekForm>
+    <CdekFormControl name="firstName" label="Имя" rules="required">
+  </CdekForm>
+</template>
 `,
     },
   },

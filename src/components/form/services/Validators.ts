@@ -3,8 +3,9 @@ import type { RulesT } from './types';
 
 import { alpha, required } from '@vee-validate/rules';
 
+type MessagesT = { default: string; [locale: string]: string };
 const messages: {
-  [validator: string]: { default: string; [locale: string]: string };
+  [validator: string]: MessagesT;
 } = {
   alpha: {
     default: 'Доступны только буквы',
@@ -59,3 +60,24 @@ class Validators extends Multitone {
 }
 
 export const getValidators = getInstanceFactory<Validators>(Validators);
+
+export const addMessages = (key: string, extraMessages: MessagesT) => {
+  if (messages[key]) {
+    messages[key] = { ...messages[key], ...extraMessages };
+  } else {
+    messages[key] = extraMessages;
+  }
+};
+
+export const changeLocale = (locale: string) => {
+  const validatorsService = getValidators();
+  validatorsService.locale = locale;
+};
+
+export const changeDefaultLocale = (locale: string) => {
+  for (const key in messages) {
+    if (messages[key][locale]) {
+      messages[key].default = messages[key][locale];
+    }
+  }
+};
