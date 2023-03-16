@@ -21,7 +21,6 @@ export default class FormServiceControl {
   register(initialValue: string) {
     this.formService.registerField(this.fieldName, initialValue);
     this.saveValidation(this.errorKey);
-    console.log(this.error, 'register');
   }
 
   change(newValue: string) {
