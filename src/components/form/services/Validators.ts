@@ -1,7 +1,7 @@
 import Multitone, { getInstanceFactory } from '../../../services/Multitone';
 import type { RulesT } from './types';
 
-import { alpha } from '@vee-validate/rules';
+import { alpha, required } from '@vee-validate/rules';
 
 const messages: {
   [validator: string]: { default: string; [locale: string]: string };
@@ -9,6 +9,10 @@ const messages: {
   alpha: {
     default: 'Доступны только буквы',
     ru: 'Доступны только буквы',
+  },
+  required: {
+    default: 'Обязательное поле',
+    ru: 'Обязательное поле',
   },
 };
 
@@ -19,6 +23,7 @@ class Validators extends Multitone {
 
   vd: ValidatorsObj = {
     alpha: this.withMessage.bind(this, alpha, 'alpha'),
+    required: this.withMessage.bind(this, required, 'required'),
   };
 
   withMessage(

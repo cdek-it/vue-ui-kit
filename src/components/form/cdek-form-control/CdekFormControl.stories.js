@@ -14,7 +14,7 @@ const Template = (args) => ({
   },
   template: `
     <CdekForm>
-      <CdekFormControl v-bind="args">
+      <CdekFormControl v-bind="args" />
     </CdekForm>`,
 });
 
@@ -63,6 +63,24 @@ CustomClass.parameters = {
       code: `
 <CdekForm>
   <CdekFormControl name="firstName" label="Имя" class="some-class">
+</CdekForm>
+`,
+    },
+  },
+};
+
+export const Required = Template.bind({});
+Required.args = {
+  label: 'Имя',
+  name: 'firstName',
+  rules: 'required',
+};
+Required.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl name="firstName" label="Имя" rules="required">
 </CdekForm>
 `,
     },
