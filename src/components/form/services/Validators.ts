@@ -61,11 +61,21 @@ class Validators extends Multitone {
 
 export const getValidators = getInstanceFactory<Validators>(Validators);
 
-export const addMessages = (key: string, extraMessages: MessagesT) => {
+type ExtraMessagesT = { [locale: string]: string };
+/**
+ * Добавление переводов для глобальных валидаторов
+ *
+ * @param key - название валидатора
+ * @param extraMessages - сообщения (для нового валидатора обязательно добавить default значение)
+ */
+export const addMessages = (
+  key: string,
+  extraMessages: ExtraMessagesT | MessagesT
+) => {
   if (messages[key]) {
     messages[key] = { ...messages[key], ...extraMessages };
   } else {
-    messages[key] = extraMessages;
+    messages[key] = extraMessages as MessagesT;
   }
 };
 
