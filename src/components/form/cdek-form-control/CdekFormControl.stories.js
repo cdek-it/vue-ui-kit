@@ -1,5 +1,6 @@
 import CdekFormControl from './CdekFormControl.vue';
 import { CdekForm } from '../cdek-form';
+import './CdekFormControl.stories.css';
 
 export default {
   title: 'Form/CdekFormControl',
@@ -44,6 +45,24 @@ WithLabel.parameters = {
       code: `
 <CdekForm>
   <CdekFormControl name="firstName" label="Имя">
+</CdekForm>
+`,
+    },
+  },
+};
+
+export const CustomClass = Template.bind({});
+CustomClass.args = {
+  label: 'Имя',
+  name: 'firstName',
+  class: 'some-class',
+};
+CustomClass.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl name="firstName" label="Имя" class="some-class">
 </CdekForm>
 `,
     },

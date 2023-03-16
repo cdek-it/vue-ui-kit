@@ -30,8 +30,9 @@ const props = withDefaults(
     readonly?: boolean;
     small?: boolean;
     clearable?: boolean;
+    class?: string;
   }>(),
-  {}
+  { class: '' }
 );
 
 const isError = computed(() => typeof props.validRes === 'string');
@@ -68,6 +69,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
     class="cdek-input"
     :class="{
       'cdek-input_small': small && label,
+      [props.class]: true,
     }"
   >
     <label

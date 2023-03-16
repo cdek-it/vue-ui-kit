@@ -18,8 +18,9 @@ const props = withDefaults(
     name: string;
     rules?: RulesT;
     type?: 'text';
+    class?: string;
   }>(),
-  { type: 'text' }
+  { type: 'text', class: '' }
 );
 
 const formService = inject(FormServiceKey) as FormService;
@@ -39,7 +40,7 @@ const value = computed({
 </script>
 
 <template>
-  <div>
+  <div :class="props.class">
     <CdekInput
       v-model="value"
       :valid-res="fieldService.error"
