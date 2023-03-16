@@ -39,7 +39,25 @@ lint:
 
   script:
     - yarn run lint:cli
+
+  cache:
+    policy: pull
+
+test:
+  stage: lint
+  extends: .common
+
+  script:
     - yarn run test:cli
+
+  cache:
+    policy: pull
+
+type-check:
+  stage: lint
+  extends: .common
+
+  script:
     - yarn run type-check
 
   cache:
