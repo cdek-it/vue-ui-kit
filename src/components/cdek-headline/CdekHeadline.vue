@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+// TODO: Добавить возможность менять tag
 const props = withDefaults(
   defineProps<{
     size?: '1' | '2' | '3' | '4' | '5' | '6' | '7';

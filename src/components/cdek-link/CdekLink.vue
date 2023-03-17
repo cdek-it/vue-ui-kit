@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO: Проверить, как просто текст выглядит -->
   <span class="cdek-link"><slot /></span>
 </template>
 

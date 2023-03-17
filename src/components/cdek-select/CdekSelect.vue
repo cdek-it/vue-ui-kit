@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+// TODO: сделать scoped-slot для селекта
 import { computed } from 'vue';
 import {
   Listbox,
