@@ -38,11 +38,22 @@ const props = withDefaults(
   }
 );
 const colorStyle = computed(() => ({ '--list-item-color': props.value.color }));
+
+const emit = defineEmits<{
+  (e: 'select', value: IItemValue): void;
+}>();
+
+const onClick = () => {
+  if (!props.value.disabled) {
+    emit('select', props.value);
+  }
+};
 </script>
 
 <template>
   <div
     class="cdek-dropdown-item"
+    @click="onClick"
     :style="colorStyle"
     :class="{
       'cdek-dropdown-item_active': active,

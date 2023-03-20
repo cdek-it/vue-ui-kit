@@ -28,7 +28,11 @@ const Template = (args) => ({
     return { args, items: args.items, selectValue };
   },
   template: `
-    <CdekAutocomplete v-bind="args" :items="items" v-model="selectValue"/>
+    <CdekAutocomplete v-bind="args" :items="items" v-model="selectValue">
+      <template #not-found>
+        Ничего не нашлось
+      </template>
+    </CdekAutocomplete>
   `,
 });
 
@@ -55,11 +59,15 @@ Primary.parameters = {
   },
 };
 
-
 export const FetchItems = Template.bind({});
 FetchItems.args = {
   placeholder: 'Начните вводить',
-  fetchItems: (query) => Promise.resolve(items.filter(item => item.title.toLowerCase().includes(query.toLowerCase())))
+  fetchItems: (query) =>
+    Promise.resolve(
+      items.filter((item) =>
+        item.title.toLowerCase().includes(query.toLowerCase())
+      )
+    ),
 };
 FetchItems.parameters = {
   docs: {
@@ -77,7 +85,7 @@ FetchItems.parameters = {
 export const MinLength = Template.bind({});
 MinLength.args = {
   placeholder: 'Начните вводить',
-  minLength:1,
+  minLength: 1,
   items,
 };
 MinLength.parameters = {

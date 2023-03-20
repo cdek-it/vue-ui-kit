@@ -1,11 +1,5 @@
-<script lang="ts">
-export default {
-  inheritAttrs: false,
-};
-</script>
-
 <script lang="ts" setup>
-import { computed, useSlots } from 'vue';
+import { computed, useSlots, ref } from 'vue';
 
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';
@@ -13,26 +7,25 @@ import CircleCheckIcon from './svg/circle-check.svg?component';
 import InfoCircleIcon from './svg/info-circle.svg?component';
 import CircleXIcon from './svg/circle-x.svg?component';
 
-const props = withDefaults(
-  defineProps<{
-    /**
-     * v-model
-     */
-    modelValue: string;
-    label?: string;
-    /**
-     * `true` - валидация пройдена, ошибку показывать не надо
-     *
-     * `string` - текст ошибки, ошибка показывается
-     */
-    validRes?: true | string;
-    disabled?: boolean;
-    readonly?: boolean;
-    small?: boolean;
-    clearable?: boolean;
-  }>(),
-  {}
-);
+export interface ICdekInputProps {
+  /**
+   * v-model
+   */
+  modelValue: string;
+  label?: string;
+  /**
+   * `true` - валидация пройдена, ошибку показывать не надо
+   *
+   * `string` - текст ошибки, ошибка показывается
+   */
+  validRes?: true | string;
+  disabled?: boolean;
+  readonly?: boolean;
+  small?: boolean;
+  clearable?: boolean;
+}
+
+const props = withDefaults(defineProps<ICdekInputProps>(), {});
 
 const isError = computed(() => typeof props.validRes === 'string');
 
@@ -61,6 +54,10 @@ const slots = useSlots();
 
 const hasRightIcon = computed(() => !!slots['icons-right']);
 const hasLeftIcon = computed(() => !!slots['icons-left']);
+
+const inputRef = ref<HTMLInputElement>();
+const getControl = () => inputRef.value;
+defineExpose({ getControl });
 </script>
 
 <template>
@@ -110,6 +107,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         v-model="value"
         v-bind="$attrs"
         :disabled="disabled || readonly"
+        ref="inputRef"
       />
 
       <button
