@@ -16,6 +16,7 @@ export default class FormServiceControl {
   init() {
     this.register('');
     this.formService.subscribeOnSubmit(this.showError.bind(this));
+    getValidators().subscribeOnLanguageChange(this.showError.bind(this));
   }
 
   register(initialValue: string) {

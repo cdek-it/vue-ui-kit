@@ -21,6 +21,7 @@ type ValidatorsObj = { [validator: string]: (val: string) => true | string };
 
 class Validators extends Multitone {
   locale = 'ru';
+  changeLocaleCallbacks: Array<() => void> = [];
 
   vd: ValidatorsObj = {
     alpha: this.withMessage.bind(this, alpha, 'alpha'),
@@ -57,6 +58,16 @@ class Validators extends Multitone {
 
     return resultRules;
   }
+
+  subscribeOnLanguageChange(clb: () => void) {
+    this.changeLocaleCallbacks.push(clb);
+  }
+
+  triggerLanguageChange() {
+    for (const clb of this.changeLocaleCallbacks) {
+      clb();
+    }
+  }
 }
 
 export const getValidators = getInstanceFactory<Validators>(Validators);
@@ -82,6 +93,7 @@ export const addMessages = (
 export const changeLocale = (locale: string) => {
   const validatorsService = getValidators();
   validatorsService.locale = locale;
+  validatorsService.triggerLanguageChange();
 };
 
 export const changeDefaultLocale = (locale: string) => {

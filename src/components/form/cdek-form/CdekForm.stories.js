@@ -2,6 +2,7 @@ import { ref } from 'vue';
 
 import CdekForm from './CdekForm.vue';
 import { CdekFormControl } from '@/components/form/cdek-form-control';
+import { formSettings } from '../index';
 
 export default {
   title: 'Form/CdekForm',
@@ -19,6 +20,8 @@ const Template = (args) => ({
       switch (args.story) {
         case 'GlobalValidator':
           return 'alpha';
+        case 'ChangeLanguage':
+          return 'required';
         case 'WithValidation':
           return {
             required: (value) => {
@@ -36,6 +39,18 @@ const Template = (args) => ({
 
     const rules = ruleFactory();
 
+    if (args.story === 'ChangeLanguage') {
+      formSettings.addMessages('required', { en: 'Required field' });
+    }
+
+    const changeLocaleEn = () => {
+      formSettings.changeLocale('en');
+    };
+
+    const changeLocaleRu = () => {
+      formSettings.changeLocale('ru');
+    };
+
     const submit = (values) => {
       form.value = values;
     };
@@ -44,7 +59,16 @@ const Template = (args) => ({
       errors.value = err;
     };
 
-    return { args, submit, submitErrors, form, errors, rules };
+    return {
+      args,
+      submit,
+      submitErrors,
+      form,
+      errors,
+      rules,
+      changeLocaleEn,
+      changeLocaleRu,
+    };
   },
   template: `
     <CdekForm v-bind="args" @submit="submit" @submitError="submitErrors">
@@ -55,6 +79,10 @@ const Template = (args) => ({
 
     <p>submit result: {{ form }}</p>
     <p v-if="args.story === 'WithValidation'">submitError result: {{ errors }}</p>
+    <p v-if="args.story === 'ChangeLanguage'">
+      <button @click="changeLocaleEn">Сменить язык на английский</button>
+      <button @click="changeLocaleRu">Сменить язык на русский</button>
+    </p>
   `,
 });
 
@@ -172,6 +200,39 @@ GlobalValidator.parameters = {
 
   <button>Продолжить<button>
 </CdekForm>
+`,
+    },
+  },
+};
+
+export const ChangeLanguage = Template.bind({});
+ChangeLanguage.args = {
+  story: 'ChangeLanguage',
+};
+ChangeLanguage.parameters = {
+  docs: {
+    source: {
+      code: `
+<script lang="ts" setup>
+import { formSettings } from 'vue-ui-kit';
+
+const changeLocale = () => {
+  // Смена языка действует глобально
+  // При смене языка текст ошибок автоматически меняется
+  formSettings.changeLocale('en');
+}
+</script>
+
+<template>
+  <CdekForm @submit="submit">
+    <CdekFormControl name="firstName" label="firstName" rules="required" />
+    <CdekFormControl name="surname" label="surname" />
+
+    <button>Продолжить<button>
+  </CdekForm>
+
+  <button @click="changeLocale">Изменить язык</button>
+</template>
 `,
     },
   },
