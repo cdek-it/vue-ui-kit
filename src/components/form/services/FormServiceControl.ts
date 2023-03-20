@@ -16,7 +16,9 @@ export default class FormServiceControl {
   init() {
     this.register('');
     this.formService.subscribeOnSubmit(this.showError.bind(this));
-    getValidators().subscribeOnLanguageChange(this.showError.bind(this));
+    getValidators().subscribeOnLanguageChange(
+      this.onLanguageChanged.bind(this)
+    );
   }
 
   register(initialValue: string) {
@@ -36,6 +38,12 @@ export default class FormServiceControl {
 
   showError() {
     this.error = this.errorMessage;
+  }
+
+  onLanguageChanged() {
+    if (this.error) {
+      this.showError();
+    }
   }
 
   get value() {
