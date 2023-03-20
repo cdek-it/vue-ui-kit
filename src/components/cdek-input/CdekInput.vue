@@ -7,25 +7,27 @@ import CircleCheckIcon from './svg/circle-check.svg?component';
 import InfoCircleIcon from './svg/info-circle.svg?component';
 import CircleXIcon from './svg/circle-x.svg?component';
 
-export interface ICdekInputProps {
-  /**
-   * v-model
-   */
-  modelValue: string;
-  label?: string;
-  /**
-   * `true` - валидация пройдена, ошибку показывать не надо
-   *
-   * `string` - текст ошибки, ошибка показывается
-   */
-  validRes?: true | string;
-  disabled?: boolean;
-  readonly?: boolean;
-  small?: boolean;
-  clearable?: boolean;
-}
-
-const props = withDefaults(defineProps<ICdekInputProps>(), {});
+const props = withDefaults(
+  defineProps<{
+    /**
+     * v-model
+     */
+    modelValue: string;
+    label?: string;
+    /**
+     * `true` - валидация пройдена, ошибку показывать не надо
+     *
+     * `string` - текст ошибки, ошибка показывается
+     */
+    validRes?: true | string;
+    disabled?: boolean;
+    readonly?: boolean;
+    small?: boolean;
+    clearable?: boolean;
+    class?: string;
+  }>(),
+  { class: '' }
+);
 
 const isError = computed(() => typeof props.validRes === 'string');
 
@@ -65,6 +67,7 @@ defineExpose({ getControl });
     class="cdek-input"
     :class="{
       'cdek-input_small': small && label,
+      [props.class]: true,
     }"
   >
     <label

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+// TODO: Добавить возможность менять tag
 const props = withDefaults(
   defineProps<{
     size?: '1' | '2' | '3' | '4' | '5' | '6' | '7';
@@ -13,10 +14,6 @@ const props = withDefaults(
 </template>
 
 <style lang="scss" scoped>
-h1 {
-  margin-top: unset;
-  margin-bottom: unset;
-}
 .headline-1 {
   @include headline-1;
 }

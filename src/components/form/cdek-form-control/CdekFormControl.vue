@@ -1,14 +1,27 @@
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+};
+</script>
+
 <script lang="ts" setup>
 import { inject, computed, reactive } from 'vue';
 
-import { FormServiceKey } from '@/components/form/services/FormService';
-import type FormService from '@/components/form/services/FormService';
-import type { RulesT } from '@/components/form/services/types';
+import { FormServiceKey } from '../services/FormService';
+import type FormService from '../services/FormService';
+import type { RulesT } from '../services/types';
 
-const props = defineProps<{
-  name: string;
-  rules?: RulesT;
-}>();
+import { CdekInput } from '../../cdek-input';
+
+const props = withDefaults(
+  defineProps<{
+    name: string;
+    rules?: RulesT;
+    type?: 'text';
+    class?: string;
+  }>(),
+  { type: 'text', class: '' }
+);
 
 const formService = inject(FormServiceKey) as FormService;
 const fieldService = reactive(
@@ -24,14 +37,14 @@ const value = computed({
     fieldService.change(newValue);
   },
 });
-
-const showError = computed(() => typeof fieldService.error === 'string');
 </script>
 
 <template>
-  <div>
-    <label :for="name">{{ name }}</label>
-    <input v-model="value" :id="name" />
-    <div v-if="showError">{{ fieldService.error }}</div>
+  <div :class="props.class">
+    <CdekInput
+      v-model="value"
+      :valid-res="fieldService.error"
+      v-bind="$attrs"
+    />
   </div>
 </template>

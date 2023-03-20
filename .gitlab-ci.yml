@@ -1,0 +1,64 @@
+variables:
+  DOCKER_IMAGE: 'docker.cdek.ru/nodenx-dev-rocky9:latest'
+
+stages:
+  - lint
+
+.common:
+  image: ${DOCKER_IMAGE}
+
+  only:
+    - main
+    - /^release\/.*/
+    - /^feature\/.*/
+    - /^SITE-.*/
+    - /^LKFL-.*/
+    - /^INTER-.*/
+
+  cache:
+    key: vue-ui-kit-vendor
+    paths:
+      - node_modules/
+
+  tags:
+    - docker
+
+yarn:
+  stage: .pre
+  extends: .common
+
+  script:
+    - yarn install
+
+  cache:
+    policy: push
+
+lint:
+  stage: lint
+  extends: .common
+
+  script:
+    - yarn run lint:cli
+
+  cache:
+    policy: pull
+
+test:
+  stage: lint
+  extends: .common
+
+  script:
+    - yarn run test:cli
+
+  cache:
+    policy: pull
+
+type-check:
+  stage: lint
+  extends: .common
+
+  script:
+    - yarn run type-check
+
+  cache:
+    policy: pull

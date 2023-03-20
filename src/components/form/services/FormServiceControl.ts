@@ -16,12 +16,14 @@ export default class FormServiceControl {
   init() {
     this.register('');
     this.formService.subscribeOnSubmit(this.showError.bind(this));
+    getValidators().subscribeOnLanguageChange(
+      this.onLanguageChanged.bind(this)
+    );
   }
 
   register(initialValue: string) {
     this.formService.registerField(this.fieldName, initialValue);
     this.saveValidation(this.errorKey);
-    console.log(this.error, 'register');
   }
 
   change(newValue: string) {
@@ -36,6 +38,12 @@ export default class FormServiceControl {
 
   showError() {
     this.error = this.errorMessage;
+  }
+
+  onLanguageChanged() {
+    if (this.error) {
+      this.showError();
+    }
   }
 
   get value() {
