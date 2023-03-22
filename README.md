@@ -29,3 +29,22 @@ VsCode settings for auto-formatting:
 - Проверка типов `yarn type-check`
 - Storybook `yarn storybook`
 - Генерация типовых файлов для компонента `yarn gen:component ComponentName`
+
+## Manual Publishing
+
+```bash
+yarn build
+GITLAB_AUTH_TOKEN=<your_deploy_token> npm publish
+```
+
+Deploy token можно создать в настройках репозитория, версия пакета возьмется с `package.json`.
+
+## Установка в сторонний репозиторий
+
+```bash
+npm config set -- '//gitlab.cdek.ru/api/v4/projects/2094/packages/npm/:_authToken' "M__vw1BxxuyPg5htzoZw"
+npm config set @cdek-ui-kit:registry https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/
+yarn add @cdek-ui-kit/vue
+```
+
+Auth token вставленный в примере подходит только для чтения

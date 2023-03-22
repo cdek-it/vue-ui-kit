@@ -1,5 +1,5 @@
 {
-  "name": "@FrontDev/cdek-vue-ui-kit",
+  "name": "@cdek-ui-kit/vue",
   "version": "0.0.1",
   "type": "module",
   "files": [
@@ -18,7 +18,7 @@
     }
   },
   "publishConfig": {
-    "registry": "https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/"
+    "@cdek-ui-kit:registry": "https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/"
   },
   "scripts": {
     "build": "run-p type-check build-only",
