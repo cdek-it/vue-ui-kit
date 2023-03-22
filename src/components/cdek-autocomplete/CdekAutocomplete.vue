@@ -1,21 +1,55 @@
 <script lang="ts" setup>
-import { computed, ref, reactive, onMounted, onBeforeUnmount } from 'vue';
-import type { Component } from 'vue';
+import {
+  computed,
+  ref,
+  reactive,
+  onMounted,
+  onBeforeUnmount,
+  useSlots,
+} from 'vue';
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
 import type { IItemValue } from '../cdek-dropdown/CdekDropdownItem.vue';
 import { CdekInput } from '../cdek-input/';
 
-export type Primitive = string | number | boolean | symbol;
+export type Primitive = string | number | boolean;
 
 const props = withDefaults(
   defineProps<{
+    /**
+     * Обновляется при выборе из поля value выбранного из массива items элемента
+     *
+     * `string | number | boolean`
+     */
     modelValue: Primitive;
-    items: Array<IItemValue> | Array<string>;
+    /**
+     * Элементы выпадающего списка.
+     * `Array<string | number> | Array<IItemValue>`
+     * [Описание модели IItemValue](/?path=/story/ui-kit-cdekdropdown--primary)
+     */
+    items?: Array<IItemValue> | Array<string>;
+    /**
+     * Асинхронная Функция для поиска элементов.
+     * Принимает параметр `query: string`, возвращает
+     * `Array<string | number> | Array<IItemValue>`
+     */
     fetchItems?: (query: string) => Promise<Array<IItemValue> | Array<string>>;
+    /**
+     * Задержка(мс) от ввода значения в инпут, при истечении которой будет отправлен
+     * запрос(вызов функции fetchItems) или осуществлен поиск по списку элеметов items
+     */
     debounce?: number;
+    /**
+     * Минимальная длина введеного значения, после которого будет отправлен
+     * запрос(вызов функции fetchItems) или осуществлен поиск по списку элеметов items
+     */
     minLength?: number;
     label?: string;
     placeholder?: string;
+    /**
+     * `true` - валидация пройдена, ошибку показывать не надо
+     *
+     * `string` - текст ошибки, ошибка показывается
+     */
     validRes?: true | string;
     disabled?: boolean;
     readonly?: boolean;
@@ -77,9 +111,10 @@ const onChangeInput = (value: string) => {
       if (props.fetchItems) {
         props.fetchItems(value).then((fetchedItems) => {
           state.items = fetchedItems;
+          openDropdown();
         });
       } else {
-        if (typeof props.items[0] === 'string') {
+        if (typeof (props.items || [])[0] === 'string') {
           state.items = (props.items as Array<string>).filter((item) =>
             item.toLowerCase().includes(value.toLowerCase())
           );
@@ -88,9 +123,11 @@ const onChangeInput = (value: string) => {
             String(item.title).toLowerCase().includes(value.toLowerCase())
           );
         }
+        openDropdown();
       }
     } else {
       state.items = props.items;
+      state.isOpen = false;
     }
     if (value.length === 0) {
       onClear();
@@ -99,7 +136,9 @@ const onChangeInput = (value: string) => {
 };
 
 const openDropdown = () => {
-  state.isOpen = true;
+  if (options.value.length || hasNotFoundMessage.value) {
+    state.isOpen = true;
+  }
 };
 
 const closeDropdown = () => {
@@ -125,15 +164,6 @@ const onSelect = (value: IItemValue) => {
   inputValue.value = String(value.title);
 
   emit('update:modelValue', value.value);
-};
-
-const onFocus = () => {
-  if (
-    options.value.length ||
-    String(inputValue.value).length >= props.minLength
-  ) {
-    openDropdown();
-  }
 };
 
 const onOutsideClick = (event: MouseEvent) => {
@@ -180,16 +210,17 @@ const onKeydown = (event: KeyboardEvent) => {
 let input: HTMLInputElement;
 onMounted(() => {
   input = inputControl.value.getControl();
-  input.addEventListener('focus', onFocus);
   input.addEventListener('keydown', onKeydown);
   document.addEventListener('click', onOutsideClick);
 });
 
 onBeforeUnmount(() => {
-  input.removeEventListener('focus', onFocus);
   input.removeEventListener('keydown', onKeydown);
   document.removeEventListener('click', onOutsideClick);
 });
+
+const slots = useSlots();
+const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
 </script>
 
 <template>
@@ -207,17 +238,28 @@ onBeforeUnmount(() => {
       :validRes="validRes"
       :readonly="readonly"
       :clearable="clearable"
+      :placeholder="placeholder"
       v-model="inputValue"
       ref="inputControl"
       @update:modelValue="onChangeInput"
-    />
+    >
+      <template #icons-right>
+        <slot name="icons-right" />
+      </template>
+      <template #icons-left>
+        <slot name="icons-left" />
+      </template>
+      <template #tip>
+        <slot name="tip" />
+      </template>
+    </CdekInput>
     <Transition>
       <CdekDropdownBox v-if="state.isOpen">
-        <!-- @slot сообщение, в случае, если ничего не нашлось -->
         <div
           class="cdek-autocomplete__not-found"
           v-if="options.length === 0 && inputValue?.length >= minLength"
         >
+          <!-- @slot сообщение, в случае, если ничего не нашлось -->
           <slot name="not-found" />
         </div>
         <CdekDropdownItem

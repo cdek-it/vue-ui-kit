@@ -127,21 +127,21 @@ describe('Unit: CdekSelect', () => {
   });
 
   describe('Выбор варианта из списка', () => {
-    test('Выбранное значение сеттится в modelValue', async () => {
+    test('Выбранное значение сетится в modelValue', async () => {
       const Select = new CdekSelectBuilder();
       const wrapper = Select.build();
       await Select.selectOption(2);
       const value = wrapper.find('.cdek-select__value');
       expect(value.text()).toBe('Option 2');
     });
-    test('Значение с полем disabled = true не сеттится в modelValue', async () => {
+    test('Значение с полем disabled = true не сетится в modelValue', async () => {
       const Select = new CdekSelectBuilder();
       const wrapper = Select.build();
       await Select.selectOption(1);
       const value = wrapper.find('.cdek-select__value');
       expect(value.text()).toBe('');
     });
-    test('Если multiple = true в modelValue сеттися несколько выбранных значений', async () => {
+    test('Если multiple = true в modelValue сетится несколько выбранных значений', async () => {
       const Select = new CdekSelectBuilder();
       const wrapper = Select.toggleMultiple().setModelValue([]).build();
       await Select.selectOption(2);

@@ -15,7 +15,7 @@ export default {
 };
 
 const items = [
-  { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
+  { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg' },
   { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
   { value: 3, title: 'Box S, 23×19×10cm, up to 2kg' },
   { value: 4, title: 'Box m, 35×25×15cm, up to 5kg' },
@@ -32,6 +32,10 @@ const Template = (args) => ({
       <template #not-found>
         Ничего не нашлось
       </template>
+      <template #tip="{ alert, info, ban, circle }">
+        <component v-if="args.story === 'TipIcon'" :is="alert" />
+        <span :class="args.tipColor">{{ args.tip }}</span>
+      </template>
     </CdekAutocomplete>
   `,
 });
@@ -39,7 +43,6 @@ const Template = (args) => ({
 export const Primary = Template.bind({});
 Primary.args = {
   placeholder: 'Начните вводить',
-  value: 1,
   items,
 };
 Primary.parameters = {
@@ -48,6 +51,81 @@ Primary.parameters = {
       code: `
 <CdekAutocomplete 
   placeholder="Начните вводить" 
+  :items="[
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+    ...
+  ]" 
+/>
+`,
+    },
+  },
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  label: 'Размер коробки',
+  value: 1,
+  disabled: true,
+  items,
+};
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  label="Размер коробки" 
+  disabled
+  :items="[
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+    ...
+  ]" 
+/>
+`,
+    },
+  },
+};
+
+export const Small = Template.bind({});
+Small.args = {
+  label: 'Размер коробки',
+  value: 1,
+  small: true,
+  items,
+};
+Small.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  label="Размер коробки" 
+  small
+  :items="[
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+    ...
+  ]" 
+/>
+`,
+    },
+  },
+};
+
+export const ReadOnly = Template.bind({});
+ReadOnly.args = {
+  label: 'Размер коробки',
+  value: 1,
+  readonly: true,
+  items,
+};
+ReadOnly.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  label="Размер коробки" 
+  readonly
   :items="[
     { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
     { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
@@ -74,7 +152,7 @@ FetchItems.parameters = {
     source: {
       code: `
 <CdekAutocomplete 
-  placeholder="Начните вводить" 
+  label="Размер коробки" 
   fetchItems="(query) => fetch('/search-items?query=\${query}').then(response => response.data.items)" 
 />
 `,
@@ -94,7 +172,7 @@ MinLength.parameters = {
       code: `
 <CdekAutocomplete 
   placeholder="Начните вводить" 
-  minLength: 1
+  :minLength="1"
   :items="[
     { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
     { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
@@ -106,27 +184,61 @@ MinLength.parameters = {
   },
 };
 
-export const Multiple = Template.bind({});
-Multiple.args = {
-  placeholder: 'Начните вводить',
-  label: 'Размер конверта',
-  multiple: true,
-  value: [],
+export const WithError = Template.bind({});
+WithError.args = {
+  label: 'Размер коробки',
+  validRes: 'Ошибка',
   items,
 };
-Multiple.parameters = {
+WithError.parameters = {
   docs: {
     source: {
       code: `
 <CdekAutocomplete 
-  placeholder="Начните вводить" 
-  multiple
+  label="Размер коробки" 
+  valid-res="Ошибка"
   :items="[
     { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
     { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
     ...
   ]" 
 />
+`,
+    },
+  },
+};
+
+export const WithTip = Template.bind({});
+WithTip.argTypes = {
+  tipIcon: {
+    options: ['info', 'alert', 'ban', 'circle'],
+    type: 'select',
+  },
+};
+WithTip.args = {
+  label: 'Размер коробки',
+  story: 'TipIcon',
+  tipIcon: 'info',
+  tip: 'Пояснение или помощь',
+  items,
+};
+WithError.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  label="Размер коробки"
+  :items="[
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+    ...
+  ]" 
+>
+  <template #tip="{ info }">
+    <component :is="info" />
+    <span>Пояснение или помощь</span>
+  </template>  
+</CdekAutocomplete>>
 `,
     },
   },

@@ -1,3 +1,9 @@
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+};
+</script>
+
 <script lang="ts" setup>
 import { computed, useSlots, ref } from 'vue';
 
