@@ -88,6 +88,5 @@ pages:
   when: manual
 
   cache:
-    path:
+    paths:
       - public/
-    policy: pull
