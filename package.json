@@ -1,7 +1,6 @@
 {
-  "name": "vue-ui-kit",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@FrontDev/cdek-vue-ui-kit",
+  "version": "0.0.1",
   "type": "module",
   "files": [
     "dist"
@@ -17,6 +16,9 @@
     "./scss": {
       "import": "./dist/scss/index.scss"
     }
+  },
+  "publishConfig": {
+    "registry": "https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/"
   },
   "scripts": {
     "build": "run-p type-check build-only",
