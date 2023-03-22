@@ -32,12 +32,31 @@ VsCode settings for auto-formatting:
 
 ## Manual Publishing
 
-```bash
-yarn build
-GITLAB_AUTH_TOKEN=<your_deploy_token> npm publish
+Добавить файл в корне `.npmrc` с контентом
+
+```
+@cdek-ui-kit:registry=https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/
+
+# Add token for uploading to the registry.
+'//gitlab.cdek.ru/api/v4/projects/2094/packages/npm/:_authToken'="<deploy_token>"
 ```
 
-Deploy token можно создать в настройках репозитория, версия пакета возьмется с `package.json`.
+Deploy token можно создать в настройках репозитория (доступно только для мейнтейнеров).
+
+Settings > Repository > Deploy tokens
+
+Далее запустить команды:
+
+```bash
+yarn build
+npm publish
+```
+
+Версия пакета возьмется с `package.json`.
+
+## CI publishing
+
+Есть мануальный пайплайн на ветке `main`, версия также возьмется с `package.json`.
 
 ## Установка в сторонний репозиторий
 
