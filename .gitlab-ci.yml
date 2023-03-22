@@ -29,7 +29,8 @@ yarn:
 lint:
   stage: lint
   extends: .common
-
+  except:
+    - main
   script:
     - yarn run lint:cli
 
@@ -39,7 +40,8 @@ lint:
 test:
   stage: lint
   extends: .common
-
+  except:
+    - main
   script:
     - yarn run test:cli
 
@@ -49,7 +51,8 @@ test:
 type-check:
   stage: lint
   extends: .common
-
+  except:
+    - main
   script:
     - yarn run type-check
 
