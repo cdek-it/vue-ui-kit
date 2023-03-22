@@ -70,4 +70,5 @@ publish:
     - yarn build
     - echo "@cdek-ui-kit:registry=https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/\n">.npmrc
     - echo "//$gitlab.cdek.ru/api/v4/projects/2094/packages/npm/:_authToken=${GITLAB_AUTH_TOKEN}">.npmrc
+    - cat .npmrc
     - npm publish
