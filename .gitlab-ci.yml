@@ -4,6 +4,7 @@ variables:
 stages:
   - lint
   - publish
+  - storybook
 
 .common:
   image: ${DOCKER_IMAGE}
@@ -70,3 +71,23 @@ publish:
     - yarn build
     - echo -e "@cdek-ui-kit:registry=https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/\n//gitlab.cdek.ru/api/v4/projects/2094/packages/npm/:_authToken=${GITLAB_AUTH_TOKEN}">.npmrc
     - npm publish
+
+  cache:
+    policy: pull
+
+pages:
+  stage: storybook
+  extends: .common
+  script:
+    - yarn build-storybook -o public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+  when: manual
+
+  cache:
+    path:
+      - public/
+    policy: pull
