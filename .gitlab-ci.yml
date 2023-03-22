@@ -64,4 +64,5 @@ publish:
   when: manual
 
   script:
-    - GITLAB_AUTH_TOKEN="$CI_JOB_TOKEN" npm publish
+    - yarn build
+    - npm publish
