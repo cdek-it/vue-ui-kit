@@ -3,17 +3,10 @@ variables:
 
 stages:
   - lint
+  - publish
 
 .common:
   image: ${DOCKER_IMAGE}
-
-  only:
-    - main
-    - /^release\/.*/
-    - /^feature\/.*/
-    - /^SITE-.*/
-    - /^LKFL-.*/
-    - /^INTER-.*/
 
   cache:
     key: vue-ui-kit-vendor
@@ -62,3 +55,13 @@ type-check:
 
   cache:
     policy: pull
+
+publish:
+  stage: publish
+  extends: .common
+  only:
+    - main
+  when: manual
+
+  script:
+    - GITLAB_AUTH_TOKEN="$CI_JOB_TOKEN" npm publish
