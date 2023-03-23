@@ -3,6 +3,13 @@ import CdekLink from './CdekLink.vue';
 export default {
   title: 'Ui kit/CdekLink',
   component: CdekLink,
+  parameters: {
+    version: {
+      major: '0',
+      minor: '0',
+      patch: '1',
+    },
+  },
 };
 
 const Template = (args) => ({

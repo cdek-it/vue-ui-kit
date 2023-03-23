@@ -6,6 +6,18 @@ import { formSettings } from '../index';
 export default {
   title: 'Form/CdekFormControl',
   component: CdekFormControl,
+  parameters: {
+    version: {
+      major: '0',
+      minor: '0',
+      patch: '1',
+      postfix: 'alpha',
+      style: {
+        background: 'rgba(228, 0, 41, 0.05)',
+        color: '#e40029',
+      },
+    },
+  },
 };
 
 const Template = (args) => ({
@@ -105,7 +117,7 @@ WithExtraLocale.parameters = {
     source: {
       code: `
 <script lang="ts" setup>
-import { formSettings } from 'vue-ui-kit';
+import { formSettings } from '@cdek-ui-kit/vue';
 
 // Добавляем переводы на конкретное правило, действует глобально, лучше сделать при инициализации
 formSettings.addMessages('required', { en: 'Required field' });
