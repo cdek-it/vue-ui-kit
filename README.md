@@ -2,6 +2,8 @@
 
 Библиотека компонентов на Vue 3 для витрин
 
+Актуальный storybook http://frontdev.pages.cdek.ru/cdek-vue-ui-kit
+
 ## Prerequisits
 
 - Node v16.x
