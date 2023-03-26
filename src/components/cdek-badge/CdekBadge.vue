@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-export interface BadgeProps {
+export interface IBadgeProps {
   type?: 'positive' | 'negative' | 'process' | 'info' | 'deactive' | 'neutral';
 
   /**
@@ -12,20 +12,20 @@ export interface BadgeProps {
   text: string;
 }
 
-const props = withDefaults(defineProps<BadgeProps>(), {
+const props = withDefaults(defineProps<IBadgeProps>(), {
   type: 'info',
   variant: 'light',
 });
 </script>
 
 <template>
-  <div class="badge" :class="[type, variant]">
+  <div class="cdek-badge" :class="[type, variant]">
     {{ text }}
   </div>
 </template>
 
 <style lang="scss" scoped>
-.badge {
+.cdek-badge {
   @include badge-1;
 
   padding: 4px 8px;

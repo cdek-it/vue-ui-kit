@@ -87,7 +87,7 @@ const inputValue = ref<string>(
 );
 
 const inputControl = ref();
-const autocompleteRef = ref();
+const autocompleteRef = ref<HTMLDivElement>();
 
 const options = computed(() => transformItems(state.items));
 
@@ -167,7 +167,7 @@ const onSelect = (value: IItemValue) => {
 };
 
 const onOutsideClick = (event: MouseEvent) => {
-  if (!autocompleteRef.value.contains(event.target)) {
+  if (!autocompleteRef.value?.contains(event.target as HTMLElement)) {
     closeDropdown();
   }
 };
