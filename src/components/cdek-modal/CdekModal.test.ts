@@ -1,48 +1,45 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
-import type { Component } from 'vue';
 import CdekModal from './CdekModal.vue';
+import type { IModalProps } from './CdekModal.vue';
 import CdekConfirm from './CdekConfirm.vue';
 import { markRaw } from 'vue';
 import { useModalService } from '@/components/cdek-modal/services/ModalService';
 
 class CdekModalBuilder {
-  content?: string | Record<string, any>;
-  contentProps?: Record<string, any>;
-  width?: string;
+  component?: IModalProps['component'];
+  props?: IModalProps['props'] = { content: 'Модальное окно' };
+  settings?: IModalProps['settings'];
 
-  setContent(content: string | Component) {
-    this.content = content;
+  setComponent(component: IModalProps['component']) {
+    this.component = component;
     return this;
   }
 
-  setContentProps(contentProps: Record<string, any>) {
-    this.contentProps = contentProps;
+  setProps(props: IModalProps['props']) {
+    this.props = props;
     return this;
   }
 
-  setWidth(width: string) {
-    this.width = width;
+  setSettings(settings: IModalProps['settings']) {
+    this.settings = settings;
     return this;
   }
 
   openModal() {
     const useModal = useModalService();
-    useModal.openModal({
-      content: this.content,
-      contentProps: this.contentProps,
-      width: this.width,
-    });
+    if (this.component) {
+      useModal.openModal(this.component, {
+        props: this.props,
+        settings: this.settings,
+      });
+    }
+
     return this;
   }
 
   build() {
     return mount(CdekModal, {
-      props: {
-        content: this.content,
-        contentProps: this.contentProps,
-        width: this.width,
-      },
       global: {
         stubs: {
           teleport: true,
@@ -58,35 +55,26 @@ describe('Unit: CdekModal', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
   describe('Контент', () => {
-    test('Строка в пропс content', async () => {
+    test('Открытие модального окна', async () => {
       const wrapper = new CdekModalBuilder()
-        .setContent('Модальное окно')
-        .openModal()
-        .build();
-
-      const box = wrapper.find('.cdek-modal__box p');
-      expect(box.text()).toBe('Модальное окно');
-    });
-    test('Компонент в пропс content', async () => {
-      const wrapper = new CdekModalBuilder()
-        .setContentProps({
+        .setProps({
           title: 'Заголовок',
           content: 'Модальное окно',
         })
-        .setContent(markRaw(CdekConfirm))
+        .setComponent(markRaw(CdekConfirm))
         .openModal()
         .build();
 
       const confirm = wrapper.find('.cdek-confirm');
       expect(confirm.exists()).toBeTruthy();
     });
-    test('ContentProps прокидываются в компонент', async () => {
+    test('Пропсы прокидываются в компонент', async () => {
       const wrapper = new CdekModalBuilder()
-        .setContentProps({
+        .setProps({
           title: 'Заголовок',
           content: 'Модальное окно',
         })
-        .setContent(markRaw(CdekConfirm))
+        .setComponent(markRaw(CdekConfirm))
         .openModal()
         .build();
 
@@ -100,7 +88,7 @@ describe('Unit: CdekModal', () => {
   describe('Закрытие модального окна', () => {
     test('Клик мимо модального окна', async () => {
       const wrapper = new CdekModalBuilder()
-        .setContent('Модальное окно')
+        .setComponent(markRaw(CdekConfirm))
         .openModal()
         .build();
       const outer = wrapper.find('.cdek-modal__wrapper');
@@ -112,7 +100,7 @@ describe('Unit: CdekModal', () => {
     });
     test('Клик по крестику', async () => {
       const wrapper = new CdekModalBuilder()
-        .setContent('Модальное окно')
+        .setComponent(markRaw(CdekConfirm))
         .openModal()
         .build();
       const closeTrigger = wrapper.find('.cdek-modal__box__close-trigger');
@@ -125,8 +113,8 @@ describe('Unit: CdekModal', () => {
   });
   test('Ширина модального окна', async () => {
     const wrapper = new CdekModalBuilder()
-      .setContent('Модальное окно')
-      .setWidth('300px')
+      .setComponent(markRaw(CdekConfirm))
+      .setSettings({ width: '300px' })
       .openModal()
       .build();
 

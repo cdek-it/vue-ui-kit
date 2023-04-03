@@ -6,8 +6,15 @@ class ModalService extends Multitone {
   isOpen = false;
   modalData: IModalProps = {} as IModalProps;
 
-  openModal<T>(modal: IModalProps<T>) {
-    this.modalData = modal;
+  openModal<T>(
+    component: IModalProps['component'],
+    propsAndSettings?: Omit<IModalProps<T>, 'component'>
+  ) {
+    this.modalData = {
+      component,
+      props: propsAndSettings?.props,
+      settings: propsAndSettings?.settings,
+    };
     this.isOpen = true;
   }
 

@@ -6,19 +6,24 @@ import CrossIcon from './svg/cross.svg?component';
 
 export interface IModalProps<T = Record<string, any>> {
   /**
-   * Контент, который отобразиться в модальном окне
+   * Компонент, который отобразиться в модальном окне
    */
-  content?: string | (Component & {});
+  component: Component & {};
   /**
    * Пропсы компонента
    */
-  contentProps?: T;
+  props?: T;
   /**
-   * ширина модального окна. Если передали ширину, большую, чем viewPort, то ширина будет равна `viewport - падинги`
-   *
-   * по умолчанию приравнивается к ширине контент
+   * Настройки модального окна
    */
-  width?: string;
+  settings?: {
+    /**
+     * ширина модального окна. Если передали ширину, большую, чем viewPort, то ширина будет равна `viewport - падинги`
+     *
+     * по умолчанию приравнивается к ширине контент
+     */
+    width?: string;
+  };
 }
 
 const modalService = useModalService();
@@ -41,11 +46,11 @@ const onKeyPress = (event: KeyboardEvent) => {
 };
 
 const modalWidth = computed(() => ({
-  '--modal-width': modalService.modalData?.width,
+  '--modal-width': modalService.modalData?.settings?.width,
 }));
 
 watchEffect(() => {
-  document.body.style.overflow = modalService.modalData?.content
+  document.body.style.overflow = modalService.modalData?.component
     ? 'hidden'
     : '';
   if (modalService.isOpen) {
@@ -61,16 +66,10 @@ watchEffect(() => {
     <div class="cdek-modal" v-if="modalService.isOpen">
       <div class="cdek-modal__wrapper" @click="onOutsideClick">
         <div class="cdek-modal__box" ref="boxElement" :style="modalWidth">
-          <div v-if="typeof modalService.modalData?.content === 'object'">
-            <component
-              :is="modalService.modalData?.content"
-              v-bind="modalService.modalData?.contentProps || {}"
-            />
-          </div>
-
-          <p v-else-if="typeof modalService.modalData?.content === 'string'">
-            {{ modalService.modalData?.content }}
-          </p>
+          <component
+            :is="modalService.modalData?.component"
+            v-bind="modalService.modalData?.props || {}"
+          />
           <CrossIcon class="cdek-modal__box__close-trigger" @click="close" />
         </div>
       </div>
