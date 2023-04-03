@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    'storybook-version',
   ],
   framework: '@storybook/vue3',
   core: {
@@ -16,7 +17,11 @@ module.exports = {
   features: {
     storyStoreV7: true,
   },
-  async viteFinal(config) {
+  async viteFinal(config, { configType }) {
+    if (configType === 'PRODUCTION') {
+      config.base = '/cdek-vue-ui-kit/';
+    }
+
     return mergeConfig(config, {
       plugins: [svgLoader()],
       resolve: {

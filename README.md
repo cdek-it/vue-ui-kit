@@ -2,6 +2,8 @@
 
 Библиотека компонентов на Vue 3 для витрин
 
+Актуальный storybook http://frontdev.pages.cdek.ru/cdek-vue-ui-kit
+
 ## Prerequisits
 
 - Node v16.x
@@ -29,3 +31,41 @@ VsCode settings for auto-formatting:
 - Проверка типов `yarn type-check`
 - Storybook `yarn storybook`
 - Генерация типовых файлов для компонента `yarn gen:component ComponentName`
+
+## Manual Publishing
+
+Добавить файл в корне `.npmrc` с контентом
+
+```
+@cdek-ui-kit:registry=https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/
+
+# Add token for uploading to the registry.
+'//gitlab.cdek.ru/api/v4/projects/2094/packages/npm/:_authToken'="<deploy_token>"
+```
+
+Deploy token можно создать в настройках репозитория (доступно только для мейнтейнеров).
+
+Settings > Repository > Deploy tokens
+
+Далее запустить команды:
+
+```bash
+yarn build
+npm publish
+```
+
+Версия пакета возьмется с `package.json`.
+
+## CI publishing
+
+Есть мануальный пайплайн на ветке `main`, версия также возьмется с `package.json`.
+
+## Установка в сторонний репозиторий
+
+```bash
+npm config set -- '//gitlab.cdek.ru/api/v4/projects/2094/packages/npm/:_authToken' "M__vw1BxxuyPg5htzoZw"
+npm config set @cdek-ui-kit:registry https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/
+yarn add @cdek-ui-kit/vue
+```
+
+Auth token вставленный в примере подходит только для чтения
