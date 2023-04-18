@@ -249,8 +249,14 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
       <template #icons-left>
         <slot name="icons-left" />
       </template>
-      <template #tip>
-        <slot name="tip" />
+      <template #tip="{ alert, info, ban, circle }">
+        <slot
+          name="tip"
+          :alert="alert"
+          :info="info"
+          :ban="ban"
+          :circle="circle"
+        />
       </template>
     </CdekInput>
     <Transition>

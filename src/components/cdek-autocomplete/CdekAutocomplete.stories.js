@@ -38,7 +38,7 @@ const Template = (args) => ({
         Ничего не нашлось
       </template>
       <template #tip="{ alert, info, ban, circle }">
-        <component v-if="args.story === 'TipIcon'" :is="alert" />
+        <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
         <span :class="args.tipColor">{{ args.tip }}</span>
       </template>
     </CdekAutocomplete>
@@ -227,7 +227,7 @@ WithTip.args = {
   tip: 'Пояснение или помощь',
   items,
 };
-WithError.parameters = {
+WithTip.parameters = {
   docs: {
     source: {
       code: `
