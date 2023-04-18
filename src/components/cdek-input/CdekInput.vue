@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, useSlots } from 'vue';
+import { computed, useSlots, ref } from 'vue';
 
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';
@@ -62,6 +62,10 @@ const slots = useSlots();
 
 const hasRightIcon = computed(() => !!slots['icons-right']);
 const hasLeftIcon = computed(() => !!slots['icons-left']);
+
+const inputRef = ref<HTMLInputElement>();
+const getControl = () => inputRef.value;
+defineExpose({ getControl });
 </script>
 
 <template>
@@ -112,6 +116,7 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
         v-model="value"
         v-bind="$attrs"
         :disabled="disabled || readonly"
+        ref="inputRef"
       />
 
       <button

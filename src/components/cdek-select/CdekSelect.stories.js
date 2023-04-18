@@ -1,7 +1,6 @@
 import CdekSelect from './CdekSelect.vue';
 import TrashIcon from '../cdek-dropdown/svg/trash.svg?component';
 import { ref } from 'vue';
-import { TipIcon } from '../cdek-input/stories/CdekInputSlots.stories.js';
 
 export default {
   title: 'Ui kit/CdekSelect',
@@ -207,12 +206,6 @@ WithTip.argTypes = {
     options: ['info', 'alert', 'ban', 'circle'],
     type: 'select',
   },
-};
-TipIcon.args = {
-  label: 'Серия и номер паспорта',
-  tip: 'Пояснение или помощь',
-  tipIcon: 'info',
-  story: 'TipIcon',
 };
 WithTip.args = {
   label: 'Вариант действия',
