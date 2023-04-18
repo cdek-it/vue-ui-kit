@@ -11,6 +11,11 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1983%3A4081&t=z1QNDvjqjFqqVZE2-0)',
       },
     },
+    version: {
+      major: '0',
+      minor: '0',
+      patch: '1',
+    },
   },
 };
 

@@ -28,6 +28,19 @@ export const parameters = {
       },
     ],
   },
+  version: {
+    style: {
+      'font-family': "'Roboto', sans-serif",
+      'font-weight': '600',
+      'font-size': '12px',
+      'line-height': '14px',
+      'letter-spacing': '0.05em',
+      padding: '4px 8px',
+      'border-radius': '4px',
+      background: 'rgba(0, 187, 228, 0.05)',
+      color: '#627790',
+    },
+  },
 };
 
 export const argTypes = {

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-// TODO: сделать scoped-slot для селекта
 import { computed } from 'vue';
 import {
   Listbox,
@@ -31,7 +30,7 @@ const props = withDefaults(
     /**
      * Элементы выпадающего списка.
      * `Array<string | number> | Array<IItemValue>`
-     * [Описание модели](/?path=/story/ui-kit-cdekdropdown--primary)
+     * [Описание модели](/cdek-vue-ui-kit?path=/story/ui-kit-cdekdropdown--primary)
      */
     items: Array<IItemValue> | Array<Primitive>;
     label?: string;

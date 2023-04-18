@@ -4,6 +4,13 @@ import { CdekToaster } from '@/components/cdek-toaster';
 export default {
   title: 'Plugins/Toastification',
   subcomponents: { CdekToaster },
+  parameters: {
+    version: {
+      major: '0',
+      minor: '0',
+      patch: '1',
+    },
+  },
   argTypes: {
     type: {
       table: {
