@@ -63,14 +63,15 @@ onMounted(() => {
 
 ```ts
 type TriggerSubmitResult = {
-  // Если `true` - значит в форме были ошибки
-  isError: boolean;
-  // Если `true` - значит все валидации прошли успешно
+  /**
+   * `true` - все валидации прошли успешно
+   * `false` - есть ошибки
+   */
   isValid: boolean;
   /**
    * Объект с ошибками, такой же, как приходит в событии `submitError`
    *
-   * Придет только если `isError === true`
+   * Придет только если `isValid === false`
    */
   errors?: ErrorsT;
   /**

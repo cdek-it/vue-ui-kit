@@ -13,7 +13,6 @@ const emit = defineEmits<{
 }>();
 
 type SubmitResponse = {
-  isError: boolean;
   isValid: boolean;
   errors?: ErrorsT;
   values?: FieldsT;
@@ -26,13 +25,13 @@ const submit: () => SubmitResponse = () => {
       emit('submitError', errorsObj);
 
       formService.triggerSubmit();
-      return { isValid: false, isError: true, errors: errorsObj };
+      return { isValid: false, errors: errorsObj };
     }
   }
 
   const valuesObj = { ...formService.fields };
   emit('submit', valuesObj);
-  return { isValid: true, isError: false, values: valuesObj };
+  return { isValid: true, values: valuesObj };
 };
 
 const triggerSubmit = () => {
