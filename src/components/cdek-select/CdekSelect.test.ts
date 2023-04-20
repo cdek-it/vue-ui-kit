@@ -1,4 +1,4 @@
-import { mount, VueWrapper } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekSelect from './CdekSelect.vue';
 import type { Primitive } from './CdekSelect.vue';
@@ -6,7 +6,6 @@ import type { IItemValue } from '../cdek-dropdown/CdekDropdownItem.vue';
 import { Listbox } from '@headlessui/vue';
 
 class CdekSelectBuilder {
-  wrapper?: VueWrapper<any>;
   modelValue: Primitive | Array<Primitive> = '';
   label?: string;
   validRes?: true | string;
@@ -64,26 +63,6 @@ class CdekSelectBuilder {
     return this;
   }
 
-  async toggleListbox() {
-    if (this.wrapper) {
-      const control = this.wrapper.find('.cdek-select__control');
-      await control.trigger('click');
-    }
-  }
-
-  async selectOption(optionNumber: number) {
-    if (this.wrapper) {
-      const control = this.wrapper.find('.cdek-select__control');
-      if (!control.classes('cdek-select__control_open')) {
-        await this.toggleListbox();
-      }
-      const option = this.wrapper.find(
-        `.cdek-dropdown-item:nth-of-type(${optionNumber})`
-      );
-      await option.trigger('click');
-    }
-  }
-
   build() {
     const wrapper = mount(CdekSelect, {
       props: {
@@ -104,7 +83,6 @@ class CdekSelectBuilder {
       attrs: this.attrs,
     });
 
-    this.wrapper = wrapper;
     return wrapper;
   }
 }
@@ -128,24 +106,33 @@ describe('Unit: CdekSelect', () => {
 
   describe('Выбор варианта из списка', () => {
     test('Выбранное значение сетится в modelValue', async () => {
-      const Select = new CdekSelectBuilder();
-      const wrapper = Select.build();
-      await Select.selectOption(2);
+      const wrapper = new CdekSelectBuilder().build();
+      const control = wrapper.find('.cdek-select__control');
+      await control.trigger('click');
+      const option = wrapper.find(`.cdek-dropdown-item:nth-of-type(2)`);
+      await option.trigger('click');
       const value = wrapper.find('.cdek-select__value');
       expect(value.text()).toBe('Option 2');
     });
     test('Значение с полем disabled = true не сетится в modelValue', async () => {
       const Select = new CdekSelectBuilder();
       const wrapper = Select.build();
-      await Select.selectOption(1);
+      const control = wrapper.find('.cdek-select__control');
+      await control.trigger('click');
+      const option = wrapper.find(`.cdek-dropdown-item:nth-of-type(1)`);
+      await option.trigger('click');
       const value = wrapper.find('.cdek-select__value');
       expect(value.text()).toBe('');
     });
     test('Если multiple = true в modelValue сетится несколько выбранных значений', async () => {
       const Select = new CdekSelectBuilder();
       const wrapper = Select.toggleMultiple().setModelValue([]).build();
-      await Select.selectOption(2);
-      await Select.selectOption(3);
+      const control = wrapper.find('.cdek-select__control');
+      await control.trigger('click');
+      let option = wrapper.find(`.cdek-dropdown-item:nth-of-type(2)`);
+      await option.trigger('click');
+      option = wrapper.find(`.cdek-dropdown-item:nth-of-type(3)`);
+      await option.trigger('click');
       const value = wrapper.find('.cdek-select__value');
       expect(value.text()).toBe('Option 2, Option 3');
     });
@@ -243,7 +230,7 @@ describe('Unit: CdekSelect', () => {
     const Select = new CdekSelectBuilder();
     const wrapper = Select.setLabel('Вариант действия').build();
     const control = wrapper.find('.cdek-select__control');
-    await Select.toggleListbox();
+    await control.trigger('click');
     expect(control.classes('cdek-select__control_open')).toBeTruthy();
   });
 
