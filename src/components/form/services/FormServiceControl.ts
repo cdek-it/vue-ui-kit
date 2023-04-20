@@ -13,8 +13,8 @@ export default class FormServiceControl {
     this.rules = getValidators().parseRules(this.rules);
   }
 
-  init() {
-    this.register('');
+  init(initialValue: string) {
+    this.register(initialValue || '');
     this.formService.subscribeOnSubmit(this.showError.bind(this));
     getValidators().subscribeOnLanguageChange(
       this.onLanguageChanged.bind(this)

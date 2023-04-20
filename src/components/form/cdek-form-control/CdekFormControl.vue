@@ -19,15 +19,16 @@ const props = withDefaults(
     rules?: RulesT;
     type?: 'text';
     class?: string;
+    initialValue?: string;
   }>(),
-  { type: 'text', class: '' }
+  { type: 'text', class: '', initialValue: '' }
 );
 
 const formService = inject(FormServiceKey) as FormService;
 const fieldService = reactive(
   formService.getFieldService(props.name, props.rules)
 );
-fieldService.init();
+fieldService.init(props.initialValue);
 
 const value = computed({
   get() {
