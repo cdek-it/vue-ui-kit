@@ -12,17 +12,36 @@ const emit = defineEmits<{
   (e: 'submitError', errors: ErrorsT): void;
 }>();
 
-const submit = () => {
+type SubmitResponse = {
+  isError: boolean;
+  isValid: boolean;
+  errors?: ErrorsT;
+  values?: FieldsT;
+};
+
+const submit: () => SubmitResponse = () => {
   for (const key of Object.getOwnPropertyNames(formService.errors)) {
     if (typeof formService.errors[key] === 'string') {
-      emit('submitError', { ...formService.errors });
+      const errorsObj = { ...formService.errors };
+      emit('submitError', errorsObj);
+
       formService.triggerSubmit();
-      return;
+      return { isValid: false, isError: true, errors: errorsObj };
     }
   }
 
-  emit('submit', { ...formService.fields });
+  const valuesObj = { ...formService.fields };
+  emit('submit', valuesObj);
+  return { isValid: true, isError: false, values: valuesObj };
 };
+
+const triggerSubmit = () => {
+  return submit();
+};
+
+defineExpose({
+  triggerSubmit,
+});
 </script>
 
 <template>

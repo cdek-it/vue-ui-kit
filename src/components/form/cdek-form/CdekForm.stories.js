@@ -33,6 +33,7 @@ const Template = (args) => ({
         case 'GlobalValidator':
           return 'alpha';
         case 'ChangeLanguage':
+        case 'ManualSubmit':
           return 'required';
         case 'WithValidation':
           return {
@@ -71,6 +72,13 @@ const Template = (args) => ({
       errors.value = err;
     };
 
+    const cdekFormRef = ref(null);
+    const triggerSubmitResult = ref();
+
+    const triggerSubmit = () => {
+      triggerSubmitResult.value = cdekFormRef.value?.triggerSubmit();
+    };
+
     return {
       args,
       submit,
@@ -80,10 +88,13 @@ const Template = (args) => ({
       rules,
       changeLocaleEn,
       changeLocaleRu,
+      cdekFormRef,
+      triggerSubmit,
+      triggerSubmitResult,
     };
   },
   template: `
-    <CdekForm v-bind="args" @submit="submit" @submitError="submitErrors">
+    <CdekForm v-bind="args" @submit="submit" @submitError="submitErrors" ref="cdekFormRef">
       <CdekFormControl
         name="firstName"
         label="firstName"
@@ -95,14 +106,18 @@ const Template = (args) => ({
         label="surname"
         initialValue="${args.story === 'WithInitialValues' ? 'Фамилия' : ''}"
       />
-      <button>Продолжить</button>
+      <button v-if="args.story !== 'ManualSubmit'">Продолжить</button>
     </CdekForm>
 
-    <p>submit result: {{ form }}</p>
+    <p v-if="args.story !== 'ManualSubmit'">submit result: {{ form }}</p>
     <p v-if="args.story === 'WithValidation'">submitError result: {{ errors }}</p>
     <p v-if="args.story === 'ChangeLanguage'">
       <button @click="changeLocaleEn">Сменить язык на английский</button>
       <button @click="changeLocaleRu">Сменить язык на русский</button>
+    </p>
+    <p v-if="args.story === 'ManualSubmit'">
+      <button @click="triggerSubmit">Вызвать submit</button>
+      <p>Ответ <code>triggerSubmit</code>: {{ triggerSubmitResult }}</p>
     </p>
   `,
 });
@@ -273,6 +288,42 @@ WithInitialValues.parameters = {
 
   <button>Продолжить<button>
 </CdekForm>
+`,
+    },
+  },
+};
+
+export const ManualSubmit = Template.bind({});
+ManualSubmit.args = {
+  story: 'ManualSubmit',
+};
+ManualSubmit.parameters = {
+  docs: {
+    source: {
+      code: `
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const cdekFormRef = ref(null);
+
+type TriggerSubmitResult = {
+  isError: boolean;
+  isValid: boolean;
+  errors?: ErrorsT;
+  values?: FieldsT;
+};
+
+const triggerSubmit = () => {
+  const result: TriggerSubmitResult = cdekFormRef.value?.triggerSubmit();
+}
+</script>
+
+<template>
+  <CdekForm ref="cdekFormRef">
+    <CdekFormControl name="firstName" label="firstName" rules="required" />
+    <CdekFormControl name="surname" label="surname" />
+  </CdekForm>
+</template>
 `,
     },
   },
