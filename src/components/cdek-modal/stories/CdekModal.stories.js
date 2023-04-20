@@ -17,6 +17,11 @@ export default {
       major: '0',
       minor: '0',
       patch: '1',
+      postfix: 'beta',
+      style: {
+        background: 'rgba(244, 117, 0, 0.05)',
+        color: '#f47500',
+      },
     },
   },
 };
