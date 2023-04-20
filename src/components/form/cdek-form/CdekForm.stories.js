@@ -84,8 +84,17 @@ const Template = (args) => ({
   },
   template: `
     <CdekForm v-bind="args" @submit="submit" @submitError="submitErrors">
-      <CdekFormControl name="firstName" label="firstName" :rules="rules" />
-      <CdekFormControl name="surname" label="surname" />
+      <CdekFormControl
+        name="firstName"
+        label="firstName"
+        :rules="rules"
+        initialValue="${args.story === 'WithInitialValues' ? 'Имя' : ''}"
+      />
+      <CdekFormControl
+        name="surname"
+        label="surname"
+        initialValue="${args.story === 'WithInitialValues' ? 'Фамилия' : ''}"
+      />
       <button>Продолжить</button>
     </CdekForm>
 
@@ -245,6 +254,25 @@ const changeLocale = () => {
 
   <button @click="changeLocale">Изменить язык</button>
 </template>
+`,
+    },
+  },
+};
+
+export const WithInitialValues = Template.bind({});
+WithInitialValues.args = {
+  story: 'WithInitialValues',
+};
+WithInitialValues.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm @submit="submit">
+  <CdekFormControl name="firstName" label="firstName" initialValue="Имя" />
+  <CdekFormControl name="surname" label="surname" initialValue="Фамилия" />
+
+  <button>Продолжить<button>
+</CdekForm>
 `,
     },
   },

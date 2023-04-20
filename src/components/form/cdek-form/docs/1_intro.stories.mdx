@@ -60,3 +60,17 @@ import { Meta, Story } from '@storybook/addon-docs';
 > Введите данные в оба поля и нажмите "Продолжить"
 
 <Story id="form-cdekform--primary" />
+
+---
+
+### Начальные значения
+
+Для передачи начального значения, нужно в `CdekFormControl` передать параметр `initialValue`.
+
+```js
+<CdekFormControl name="firstName" initialValue="Имя" />
+```
+
+> Нажмите "Продолжить"
+
+<Story id="form-cdekform--with-initial-values" />
