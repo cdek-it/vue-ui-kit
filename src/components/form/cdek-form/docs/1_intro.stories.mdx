@@ -74,3 +74,90 @@ import { Meta, Story } from '@storybook/addon-docs';
 > Нажмите "Продолжить"
 
 <Story id="form-cdekform--with-initial-values" />
+
+---
+
+### Зачем нужен новый механизм формы?
+
+Сейчас механизм работы с формой выглядит так:
+
+```js
+<form class="form" @submit.prevent="onSubmit">
+  <base-input
+    <!-- Сами заводим переменную -->
+    v-model="calcEmailForSendScan"
+    <!-- Сами обрабатываем состояние ошибки -->
+    :has-error="$v.calcEmailForSendScan.$error"
+  >
+    <template v-if="$v.calcEmailForSendScan.$error" #message>
+      <!-- Сами выбираем сообщение об ошибке -->
+      <span v-if="!$v.calcEmailForSendScan.required">
+        {{ $t('requiredField') }}
+      </span>
+      <span v-if="$v.calcEmailForSendScan.required && !$v.calcEmailForSendScan.email">
+        {{ $t('enterEmail') }}
+      </span>
+    </template>
+  </base-input>
+</form>
+
+...
+
+import { required, email } from 'vuelidate/lib/validators';
+
+export default {
+  data: () => ({
+    calcEmailForSendScan: '',
+  }),
+  // Приходится искать блок `validations`, чтобы понять, как поле валидируется
+  validations() {
+    return {
+      calcEmailForSendScan: {
+        required,
+        email,
+      }
+    };
+  },
+  onSubmit() {
+    // Мануально триггерим проверку
+    this.$v.$touch();
+    // Проверяем
+    if (!this.$v.$invalid) {
+      this.$emit('submit', { calcEmailForSendScan: this.calcEmailForSendScan });
+    }
+  },
+}
+```
+
+Обработка форм - это базовая операция, с которой мы достаточно часто сталкиваемся. В данном
+примере хорошо чувствуются повторяющиеся действия:
+
+1. Регистрация переменных
+2. Обработка ошибки (поддержка состояния, вывод сообщений)
+3. Поддержка дополнительного блока validations
+4. На сабмите нужно "тронуть" форму и проверить ошибку
+
+Также у этой технологии есть ограничения, такие как поддержка нескольких форм в одном компоненте.
+
+Если перевести этот пример на новые компоненты, он станет выглядеть так:
+
+```ts
+// здесь должны быть валидации, показываю просто поддержку сообщения
+const required = () => $t('requiredField');
+const email = () => $t('enterEmail');
+
+// эта функция вызовется, только если все валидации прошли успешно
+const onSubmit = (values) => {
+  // values = { calcEmailForSendScan: '<значение>' }
+  // не нужно делать `touch` или какие-то проверки, форма делает это автоматически
+  emit('submit', values);
+}
+
+...
+
+<CdekForm @submit="onSubmit">
+  <!-- Явно видно на каком поле какая валидация -->
+  <!-- Сообщение об ошибке показывается само, не нужно никакой обработки в базовом варианте -->
+  <CdekFormControl name="calcEmailForSendScan" :rules="{ required, email }" />
+</CdekForm>
+```
