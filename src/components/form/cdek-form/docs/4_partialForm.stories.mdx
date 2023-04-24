@@ -44,13 +44,15 @@ import { Meta, Story } from '@storybook/addon-docs';
 
 Чтобы его вызвать нужно получить `ref` от `CdekForm`.
 
-```js
-const cdekFormRef = ref(null);
+```ts
+import { ref } from 'vue';
+import { CdekForm } from '@cdek-ui-kit/vue';
+
+const cdekFormRef = ref<InstanceType<typeof CdekForm> | null>(null);
 
 onMounted(() => {
   cdekFormRef.value?.triggerSubmit();
 })
-
 ...
 
 <CdekForm ref="cdekFormRef">
@@ -62,7 +64,7 @@ onMounted(() => {
 Также можно просто обработать результат функции `triggerSubmit`.
 
 ```ts
-type TriggerSubmitResult = {
+type FormSubmitResult = {
   /**
    * `true` - все валидации прошли успешно
    * `false` - есть ошибки
@@ -88,3 +90,13 @@ type TriggerSubmitResult = {
 > Введите что-нибудь в `firstName` и нажмите на "Вызвать submit"
 
 <Story id="form-cdekform--manual-submit" />
+
+### Типы
+
+```ts
+export type FormSubmitResult = {
+  isValid: boolean;
+  errors?: ErrorsT;
+  values?: FieldsT;
+};
+```
