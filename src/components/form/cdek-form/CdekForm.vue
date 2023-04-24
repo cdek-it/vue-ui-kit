@@ -3,6 +3,7 @@ import { provide, reactive } from 'vue';
 
 import FormService, { FormServiceKey } from '../services/FormService';
 import type { FieldsT, ErrorsT } from '../services/types';
+import type { FormSubmitResult } from './CdekForm.types';
 
 const formService = reactive(new FormService());
 provide(FormServiceKey, formService);
@@ -12,13 +13,7 @@ const emit = defineEmits<{
   (e: 'submitError', errors: ErrorsT): void;
 }>();
 
-type SubmitResponse = {
-  isValid: boolean;
-  errors?: ErrorsT;
-  values?: FieldsT;
-};
-
-const submit: () => SubmitResponse = () => {
+const submit: () => FormSubmitResult = () => {
   for (const key of Object.getOwnPropertyNames(formService.errors)) {
     if (typeof formService.errors[key] === 'string') {
       const errorsObj = { ...formService.errors };
