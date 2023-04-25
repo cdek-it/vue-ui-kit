@@ -29,8 +29,8 @@ const submit: () => FormSubmitResult = () => {
   return { isValid: true, values: valuesObj };
 };
 
-const triggerSubmit = () => {
-  return submit();
+const triggerSubmit = <T = FieldsT>() => {
+  return submit() as unknown as FormSubmitResult<T>;
 };
 
 defineExpose({

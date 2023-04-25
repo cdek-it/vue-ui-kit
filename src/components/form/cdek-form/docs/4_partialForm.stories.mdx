@@ -93,12 +93,49 @@ type FormSubmitResult = {
 
 ---
 
-### Типы
+### Typescript
+
+Наружу предоставляется тип `FormSubmitResult`, если вам нужно будет типизировать вашу функцию.
+
+Generic использовать необязательно, но он необходим, если вам нужно удобно работать с values,
+туда нужно передать конечную структуру значений.
 
 ```ts
-export type FormSubmitResult = {
+export type FormSubmitResult<T = FieldsT> = {
   isValid: boolean;
   errors?: ErrorsT;
-  values?: FieldsT;
+  values?: T;
+};
+```
+
+Также функция `triggerSubmit` тоже принимает generic, для более точной типизации результата.
+Туда также нужно передавать именно интерфейс ваших values.
+
+Пример типизирования `submit`:
+
+```ts
+import { ref } from 'vue';
+import { CdekForm } from '@cdek-ui-kit/vue';
+import type { FormSubmitResult } from '@cdek-ui-kit/vue';
+
+// Это все поля в форме
+interface PreorderClientDto {
+  firstName: string;
+  lastName: string;
+  middleName?: string;
+  address: AddressDto;
+  phoneNumberString: string;
+  email?: string;
+  tin?: string;
+}
+
+const senderFormRef = ref<InstanceType<typeof CdekForm> | null>(null);
+
+const getSenderValues: () => FormSubmitResult<PreorderClientDto> = () => {
+  return (
+    senderFormRef.value?.triggerSubmit<PreorderClientDto>() || {
+      isValid: false,
+    }
+  );
 };
 ```
