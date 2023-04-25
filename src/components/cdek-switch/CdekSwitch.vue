@@ -46,9 +46,12 @@ const enabled = computed({
           class="cdek-switch__circle"
         />
       </Switch>
-      <SwitchLabel v-if="label" class="cdek-switch__label">{{
-        label
-      }}</SwitchLabel>
+      <SwitchLabel
+        v-if="label"
+        class="cdek-switch__label"
+        :class="{ 'cdek-switch__label_small': small }"
+        >{{ label }}</SwitchLabel
+      >
     </div>
   </SwitchGroup>
 </template>
@@ -130,6 +133,10 @@ const enabled = computed({
     padding-left: 16px;
     cursor: pointer;
     user-select: none;
+  }
+
+  &:deep(#{$this}__label_small) {
+    @include body-2;
   }
 }
 </style>

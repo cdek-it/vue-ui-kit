@@ -101,13 +101,19 @@ describe('Unit: CdekSwitch', () => {
   });
 
   test('Switch должен быть меньше, если small = true', () => {
-    const wrapper = new CdekSwitchBuilder().setSmall(true).build();
+    const wrapper = new CdekSwitchBuilder()
+      .setSmall(true)
+      .setLabel('test')
+      .build();
 
     const swtch = wrapper.find('.cdek-switch__bg');
     expect(swtch.classes('cdek-switch__bg_small')).toBe(true);
 
     const circle = wrapper.find('.cdek-switch__circle');
     expect(circle.classes('cdek-switch__circle_small')).toBe(true);
+
+    const label = wrapper.find('.cdek-switch__label');
+    expect(label.classes('cdek-switch__label_small')).toBe(true);
   });
 
   test('Показывает label, если он передан', () => {
