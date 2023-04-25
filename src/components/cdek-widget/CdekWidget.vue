@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { computed, useSlots } from 'vue';
 import CdekHeadline from '../cdek-headline/CdekHeadline.vue';
 
 const props = withDefaults(
@@ -8,6 +9,12 @@ const props = withDefaults(
   }>(),
   { headline: '' }
 );
+
+const slots = useSlots();
+
+const showHeader = computed(() => {
+  return Boolean(props.headline || slots['header']);
+});
 </script>
 
 <template>
@@ -15,9 +22,10 @@ const props = withDefaults(
     class="cdek-widget"
     :class="{ 'cdek-widget_without-paddings': withoutPaddings }"
   >
-    <CdekHeadline v-if="headline" size="4" class="cdek-widget__title">{{
-      headline
-    }}</CdekHeadline>
+    <CdekHeadline v-if="showHeader" size="4" class="cdek-widget__title">
+      <slot name="header">{{ headline }}</slot>
+    </CdekHeadline>
+
     <slot />
   </div>
 </template>

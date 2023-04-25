@@ -24,7 +24,15 @@ const Template = (args) => ({
   setup() {
     return { args };
   },
-  template: `<CdekWidget v-bind="args">${args.default}</CdekWidget>`,
+  template: `
+    <CdekWidget v-bind="args">
+      <template #header v-if="args.story === 'WithCustomHeader'">
+        <i>Я</i> кастомный
+      </template>
+
+      ${args.default}
+    </CdekWidget>
+  `,
 });
 
 export const Primary = Template.bind({});
@@ -78,6 +86,27 @@ WithoutPaddings.parameters = {
   docs: {
     source: {
       code: '<CdekWidget headline="Название" without-paddings>Контент</CdekWidget>',
+    },
+  },
+};
+
+export const WithCustomHeader = Template.bind({});
+WithCustomHeader.args = {
+  default: 'Контент',
+  story: 'WithCustomHeader',
+};
+WithCustomHeader.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekWidget>
+  <template #header>
+    <i>Я</i> кастомный
+  </template>
+
+  Контент
+</CdekWidget>
+`,
     },
   },
 };
