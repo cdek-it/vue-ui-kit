@@ -55,8 +55,21 @@ cat > $NAME.stories.js <<- EOM
 import $NAME from './$NAME.vue';
 
 export default {
-  title: '$NAME',
+  title: 'Ui kit/$NAME',
   component: $NAME,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          '[Figma]()',
+      },
+    },
+    version: {
+      major: '0',
+      minor: '0',
+      patch: '1',
+    },
+  },
 };
 
 const Template = (args) => ({
