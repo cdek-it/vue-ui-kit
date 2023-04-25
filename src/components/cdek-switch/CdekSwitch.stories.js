@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 import CdekSwitch from './CdekSwitch.vue';
 
 export default {
@@ -21,10 +22,12 @@ export default {
 const Template = (args) => ({
   components: { CdekSwitch },
   setup() {
-    return { args };
+    const val = ref(args.modelValue || false);
+
+    return { args, val };
   },
   template: `
-    <CdekSwitch v-bind="args" />
+    <CdekSwitch v-bind="args" v-model="val" />
   `,
 });
 
@@ -33,6 +36,24 @@ Primary.parameters = {
   docs: {
     source: {
       code: '<CdekSwitch />',
+    },
+  },
+};
+
+export const Model = Template.bind({});
+Model.args = {
+  modelValue: true,
+};
+Model.parameters = {
+  docs: {
+    source: {
+      code: `
+const swtch = ref(true);
+
+...
+
+<CdekSwitch v-model="swtch" />
+`,
     },
   },
 };

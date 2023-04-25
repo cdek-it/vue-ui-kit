@@ -1,8 +1,23 @@
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { Switch } from '@headlessui/vue';
 
-const enabled = ref(false);
+const props = defineProps<{
+  modelValue: boolean;
+}>();
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', val: boolean): void;
+}>();
+
+const enabled = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    emit('update:modelValue', value);
+  },
+});
 </script>
 
 <template>
