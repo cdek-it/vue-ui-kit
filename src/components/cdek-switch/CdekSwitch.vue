@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
-import { Switch } from '@headlessui/vue';
+import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue';
 
 const props = defineProps<{
   modelValue: boolean;
   disabled?: boolean;
   small?: boolean;
+  label?: string;
 }>();
 
 const emit = defineEmits<{
@@ -25,26 +26,31 @@ const enabled = computed({
 </script>
 
 <template>
-  <div class="cdek-switch">
-    <Switch
-      v-model="enabled"
-      :disabled="disabled"
-      :class="{
-        'cdek-switch__bg_enabled': enabled,
-        'cdek-switch__bg_small': small,
-      }"
-      class="cdek-switch__bg"
-    >
-      <span
+  <SwitchGroup>
+    <div class="cdek-switch">
+      <Switch
+        v-model="enabled"
+        :disabled="disabled"
         :class="{
-          'cdek-switch__circle_enabled': enabled,
-          'cdek-switch__circle_disabled': disabled,
-          'cdek-switch__circle_small': small,
+          'cdek-switch__bg_enabled': enabled,
+          'cdek-switch__bg_small': small,
         }"
-        class="cdek-switch__circle"
-      />
-    </Switch>
-  </div>
+        class="cdek-switch__bg"
+      >
+        <span
+          :class="{
+            'cdek-switch__circle_enabled': enabled,
+            'cdek-switch__circle_disabled': disabled,
+            'cdek-switch__circle_small': small,
+          }"
+          class="cdek-switch__circle"
+        />
+      </Switch>
+      <SwitchLabel v-if="label" class="cdek-switch__label">{{
+        label
+      }}</SwitchLabel>
+    </div>
+  </SwitchGroup>
 </template>
 
 <style lang="scss" scoped>
@@ -52,7 +58,8 @@ const enabled = computed({
   $this: &;
   $transition-speed: 0.1s;
 
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 
   &:deep(#{$this}__bg) {
     width: 51px;
@@ -116,6 +123,13 @@ const enabled = computed({
     &_small {
       --size: 20px;
     }
+  }
+
+  &:deep(#{$this}__label) {
+    @include body-1;
+    padding-left: 16px;
+    cursor: pointer;
+    user-select: none;
   }
 }
 </style>

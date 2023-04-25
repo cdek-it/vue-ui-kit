@@ -94,3 +94,15 @@ Small.parameters = {
     },
   },
 };
+
+export const Label = Template.bind({});
+Label.args = {
+  label: 'Enable notifications',
+};
+Label.parameters = {
+  docs: {
+    source: {
+      code: `<CdekSwitch label="Enable notifications" />`,
+    },
+  },
+};

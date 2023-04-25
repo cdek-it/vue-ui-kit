@@ -7,6 +7,7 @@ interface ExtraMethods {
   setModelValue: (val: boolean) => CdekSwitchBuilder;
   setDisabled: (val: boolean) => CdekSwitchBuilder;
   setSmall: (val: boolean) => CdekSwitchBuilder;
+  setLabel: (val: string) => CdekSwitchBuilder;
 }
 
 interface CdekSwitchBuilder extends ExtraMethods {}
@@ -21,6 +22,9 @@ class CdekSwitchBuilder {
   @builderProp
   small = false;
 
+  @builderProp
+  label = '';
+
   build() {
     const wrapper = mount(CdekSwitch, {
       props: {
@@ -29,6 +33,7 @@ class CdekSwitchBuilder {
           wrapper.setProps({ modelValue: e }),
         disabled: this.disabled,
         small: this.small,
+        label: this.label,
       },
     });
 
@@ -103,5 +108,26 @@ describe('Unit: CdekSwitch', () => {
 
     const circle = wrapper.find('.cdek-switch__circle');
     expect(circle.classes('cdek-switch__circle_small')).toBe(true);
+  });
+
+  test('Показывает label, если он передан', () => {
+    const wrapper = new CdekSwitchBuilder().setLabel('Test').build();
+    const label = wrapper.find('.cdek-switch__label');
+    expect(label.text()).toBe('Test');
+  });
+
+  test('Переключает switch, если нажать по лейблу', async () => {
+    const wrapper = new CdekSwitchBuilder().setLabel('Test').build();
+    const label = wrapper.find('.cdek-switch__label');
+    const swtch = wrapper.find('.cdek-switch__bg');
+    const circle = wrapper.find('.cdek-switch__circle');
+
+    await label.trigger('click');
+
+    expect(swtch.classes('cdek-switch__bg_enabled')).toBe(true);
+    expect(circle.classes('cdek-switch__circle_enabled')).toBe(true);
+
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy();
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([true]);
   });
 });
