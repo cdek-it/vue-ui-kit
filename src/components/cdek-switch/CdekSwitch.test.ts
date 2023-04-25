@@ -8,6 +8,7 @@ interface ExtraMethods {
   setDisabled: (val: boolean) => CdekSwitchBuilder;
   setSmall: (val: boolean) => CdekSwitchBuilder;
   setLabel: (val: string) => CdekSwitchBuilder;
+  setTip: (val: string) => CdekSwitchBuilder;
 }
 
 interface CdekSwitchBuilder extends ExtraMethods {}
@@ -25,6 +26,9 @@ class CdekSwitchBuilder {
   @builderProp
   label = '';
 
+  @builderProp
+  tip = '';
+
   build() {
     const wrapper = mount(CdekSwitch, {
       props: {
@@ -34,6 +38,7 @@ class CdekSwitchBuilder {
         disabled: this.disabled,
         small: this.small,
         label: this.label,
+        tip: this.tip,
       },
     });
 
@@ -135,5 +140,15 @@ describe('Unit: CdekSwitch', () => {
 
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([true]);
+  });
+
+  test('Показывает подсказку в label, если передать tip', () => {
+    const wrapper = new CdekSwitchBuilder()
+      .setLabel('Test')
+      .setTip('test')
+      .build();
+
+    const tip = wrapper.find('.cdek-switch__tip');
+    expect(tip.text()).toBe('test');
   });
 });

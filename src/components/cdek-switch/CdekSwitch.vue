@@ -7,6 +7,7 @@ const props = defineProps<{
   disabled?: boolean;
   small?: boolean;
   label?: string;
+  tip?: string;
 }>();
 
 const emit = defineEmits<{
@@ -50,8 +51,10 @@ const enabled = computed({
         v-if="label"
         class="cdek-switch__label"
         :class="{ 'cdek-switch__label_small': small }"
-        >{{ label }}</SwitchLabel
       >
+        {{ label }}
+        <span v-if="tip" class="cdek-switch__tip">{{ tip }}</span>
+      </SwitchLabel>
     </div>
   </SwitchGroup>
 </template>
@@ -137,6 +140,13 @@ const enabled = computed({
 
   &:deep(#{$this}__label_small) {
     @include body-2;
+  }
+
+  &__tip {
+    @include caption-1;
+
+    display: block;
+    color: $Bottom_66;
   }
 }
 </style>

@@ -119,3 +119,16 @@ LabelSmall.parameters = {
     },
   },
 };
+
+export const LabelWithTip = Template.bind({});
+LabelWithTip.args = {
+  label: 'Enable notifications',
+  tip: 'Пояснение',
+};
+LabelWithTip.parameters = {
+  docs: {
+    source: {
+      code: `<CdekSwitch label="Enable notifications" tip="Пояснение" />`,
+    },
+  },
+};
