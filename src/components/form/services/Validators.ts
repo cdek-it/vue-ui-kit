@@ -1,7 +1,7 @@
 import Multitone, { getInstanceFactory } from '../../../services/Multitone';
 import type { RulesT } from './types';
 
-import { alpha, required } from '@vee-validate/rules';
+import { alpha, required, email } from '@vee-validate/rules';
 
 type MessagesT = { default: string; [locale: string]: string };
 const messages: {
@@ -15,6 +15,10 @@ const messages: {
     default: 'Обязательное поле',
     ru: 'Обязательное поле',
   },
+  email: {
+    default: 'Введите корректный email',
+    ru: 'Введите корректный email',
+  },
 };
 
 type ValidatorsObj = { [validator: string]: (val: string) => true | string };
@@ -26,6 +30,7 @@ class Validators extends Multitone {
   vd: ValidatorsObj = {
     alpha: this.withMessage.bind(this, alpha, 'alpha'),
     required: this.withMessage.bind(this, required, 'required'),
+    email: this.withMessage.bind(this, email, 'email'),
   };
 
   withMessage(

@@ -105,6 +105,42 @@ Required.parameters = {
   },
 };
 
+export const Email = Template.bind({});
+Email.args = {
+  label: 'Email',
+  name: 'email',
+  rules: 'email',
+};
+Email.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl name="email" label="Email" rules="email">
+</CdekForm>
+`,
+    },
+  },
+};
+
+export const RequiredWithEmail = Template.bind({});
+RequiredWithEmail.args = {
+  label: 'Email',
+  name: 'email',
+  rules: 'required|email',
+};
+RequiredWithEmail.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl name="email" label="Email" rules="required|email">
+</CdekForm>
+`,
+    },
+  },
+};
+
 export const WithExtraLocale = Template.bind({});
 WithExtraLocale.args = {
   label: 'Имя',
