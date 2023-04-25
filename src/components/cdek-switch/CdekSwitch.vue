@@ -4,6 +4,7 @@ import { Switch } from '@headlessui/vue';
 
 const props = defineProps<{
   modelValue: boolean;
+  disabled?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -15,7 +16,9 @@ const enabled = computed({
     return props.modelValue;
   },
   set(value) {
-    emit('update:modelValue', value);
+    if (!props.disabled) {
+      emit('update:modelValue', value);
+    }
   },
 });
 </script>
@@ -24,11 +27,15 @@ const enabled = computed({
   <div class="cdek-switch">
     <Switch
       v-model="enabled"
+      :disabled="disabled"
       :class="{ 'cdek-switch__bg_enabled': enabled }"
       class="cdek-switch__bg"
     >
       <span
-        :class="{ 'cdek-switch__circle_enabled': enabled }"
+        :class="{
+          'cdek-switch__circle_enabled': enabled,
+          'cdek-switch__circle_disabled': disabled,
+        }"
         class="cdek-switch__circle"
       />
     </Switch>
@@ -52,10 +59,23 @@ const enabled = computed({
     position: relative;
     cursor: pointer;
     transition: background-color ease $transition-speed;
+
+    &[disabled] {
+      background: $Bottom_20;
+      pointer-events: none;
+    }
   }
 
   &:deep(#{$this}__bg_enabled) {
     background: $Primary;
+
+    @include media-hover {
+      background: $Primary_Button_Hover;
+    }
+
+    &[disabled] {
+      background: $Button_Disable;
+    }
   }
 
   &__circle {
@@ -76,6 +96,11 @@ const enabled = computed({
 
     &_enabled {
       left: calc(100% - #{$width} - #{$offset});
+    }
+
+    &_disabled {
+      background: $Peak_80;
+      box-shadow: none;
     }
   }
 }

@@ -10,12 +10,20 @@ class CdekSwitchBuilder {
     return this;
   }
 
+  disabled = false;
+
+  setDisabled(val: boolean) {
+    this.disabled = val;
+    return this;
+  }
+
   build() {
     const wrapper = mount(CdekSwitch, {
       props: {
         modelValue: this.modelValue,
         'onUpdate:modelValue': (e: boolean) =>
           wrapper.setProps({ modelValue: e }),
+        disabled: this.disabled,
       },
     });
 
@@ -50,5 +58,35 @@ describe('Unit: CdekSwitch', () => {
 
     expect(swtch.classes('cdek-switch__bg_enabled')).toBe(true);
     expect(circle.classes('cdek-switch__circle_enabled')).toBe(true);
+  });
+
+  test('Меняет внешний вид для состояния disabled', () => {
+    const wrapper = new CdekSwitchBuilder().setDisabled(true).build();
+
+    const swtch = wrapper.find('.cdek-switch__bg');
+    expect(swtch.attributes('disabled')).toBe('');
+
+    const circle = wrapper.find('.cdek-switch__circle');
+    expect(circle.classes('cdek-switch__circle_disabled')).toBe(true);
+  });
+
+  test('Эмиттит update:modelValue когда кликаешь на switch', async () => {
+    const wrapper = new CdekSwitchBuilder().setModelValue(true).build();
+
+    await wrapper.find('.cdek-switch__bg').trigger('click');
+
+    expect(wrapper.emitted('update:modelValue')).toBeTruthy();
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([false]);
+  });
+
+  test('Не эмиттит update:modelValue когда кликаешь на disabled switch', async () => {
+    const wrapper = new CdekSwitchBuilder()
+      .setModelValue(true)
+      .setDisabled(true)
+      .build();
+
+    await wrapper.find('.cdek-switch__bg').trigger('click');
+
+    expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
 });

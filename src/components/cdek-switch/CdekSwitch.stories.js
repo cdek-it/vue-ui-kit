@@ -57,3 +57,28 @@ const swtch = ref(true);
     },
   },
 };
+
+export const DisabledOff = Template.bind({});
+DisabledOff.args = {
+  disabled: true,
+};
+DisabledOff.parameters = {
+  docs: {
+    source: {
+      code: `<CdekSwitch disabled />`,
+    },
+  },
+};
+
+export const DisabledOn = Template.bind({});
+DisabledOn.args = {
+  modelValue: true,
+  disabled: true,
+};
+DisabledOn.parameters = {
+  docs: {
+    source: {
+      code: `<CdekSwitch :modelValue="true" disabled />`,
+    },
+  },
+};
