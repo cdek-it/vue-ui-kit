@@ -6,3 +6,4 @@ export * from './components/form';
 export * from './components/cdek-modal';
 export * from './components/cdek-autocomplete';
 export * from './components/cdek-spinner';
+export * from './components/cdek-switch';
