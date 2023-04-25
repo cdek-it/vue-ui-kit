@@ -82,3 +82,15 @@ DisabledOn.parameters = {
     },
   },
 };
+
+export const Small = Template.bind({});
+Small.args = {
+  small: true,
+};
+Small.parameters = {
+  docs: {
+    source: {
+      code: `<CdekSwitch small />`,
+    },
+  },
+};

@@ -5,6 +5,7 @@ import { Switch } from '@headlessui/vue';
 const props = defineProps<{
   modelValue: boolean;
   disabled?: boolean;
+  small?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -28,13 +29,17 @@ const enabled = computed({
     <Switch
       v-model="enabled"
       :disabled="disabled"
-      :class="{ 'cdek-switch__bg_enabled': enabled }"
+      :class="{
+        'cdek-switch__bg_enabled': enabled,
+        'cdek-switch__bg_small': small,
+      }"
       class="cdek-switch__bg"
     >
       <span
         :class="{
           'cdek-switch__circle_enabled': enabled,
           'cdek-switch__circle_disabled': disabled,
+          'cdek-switch__circle_small': small,
         }"
         class="cdek-switch__circle"
       />
@@ -78,13 +83,18 @@ const enabled = computed({
     }
   }
 
+  &:deep(#{$this}__bg_small) {
+    width: 40px;
+    height: 24px;
+  }
+
   &__circle {
-    $width: 26px;
+    --size: 26px;
     $offset: 2px;
 
     display: inline-block;
-    width: $width;
-    height: 26px;
+    width: var(--size);
+    height: var(--size);
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.01),
       0px 3px 1px rgba(0, 0, 0, 0.03);
     border-radius: 100px;
@@ -95,12 +105,16 @@ const enabled = computed({
     transition: left ease $transition-speed;
 
     &_enabled {
-      left: calc(100% - #{$width} - #{$offset});
+      left: calc(100% - var(--size) - #{$offset});
     }
 
     &_disabled {
       background: $Peak_80;
       box-shadow: none;
+    }
+
+    &_small {
+      --size: 20px;
     }
   }
 }

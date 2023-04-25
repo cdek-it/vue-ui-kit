@@ -17,6 +17,13 @@ class CdekSwitchBuilder {
     return this;
   }
 
+  small = false;
+
+  setSmall(val: boolean) {
+    this.small = val;
+    return this;
+  }
+
   build() {
     const wrapper = mount(CdekSwitch, {
       props: {
@@ -24,6 +31,7 @@ class CdekSwitchBuilder {
         'onUpdate:modelValue': (e: boolean) =>
           wrapper.setProps({ modelValue: e }),
         disabled: this.disabled,
+        small: this.small,
       },
     });
 
@@ -88,5 +96,15 @@ describe('Unit: CdekSwitch', () => {
     await wrapper.find('.cdek-switch__bg').trigger('click');
 
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
+  });
+
+  test('Switch должен быть меньше, если small = true', () => {
+    const wrapper = new CdekSwitchBuilder().setSmall(true).build();
+
+    const swtch = wrapper.find('.cdek-switch__bg');
+    expect(swtch.classes('cdek-switch__bg_small')).toBe(true);
+
+    const circle = wrapper.find('.cdek-switch__circle');
+    expect(circle.classes('cdek-switch__circle_small')).toBe(true);
   });
 });
