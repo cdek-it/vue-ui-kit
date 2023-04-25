@@ -1,28 +1,25 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekSwitch from './CdekSwitch.vue';
+import builderProp from '@/test/decorators';
+
+interface ExtraMethods {
+  setModelValue: (val: boolean) => CdekSwitchBuilder;
+  setDisabled: (val: boolean) => CdekSwitchBuilder;
+  setSmall: (val: boolean) => CdekSwitchBuilder;
+}
+
+interface CdekSwitchBuilder extends ExtraMethods {}
 
 class CdekSwitchBuilder {
+  @builderProp
   modelValue = false;
 
-  setModelValue(val: boolean) {
-    this.modelValue = val;
-    return this;
-  }
-
+  @builderProp
   disabled = false;
 
-  setDisabled(val: boolean) {
-    this.disabled = val;
-    return this;
-  }
-
+  @builderProp
   small = false;
-
-  setSmall(val: boolean) {
-    this.small = val;
-    return this;
-  }
 
   build() {
     const wrapper = mount(CdekSwitch, {
