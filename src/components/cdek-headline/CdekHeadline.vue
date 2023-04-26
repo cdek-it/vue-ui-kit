@@ -16,6 +16,11 @@ const props = withDefaults(
 <style lang="scss" scoped>
 .headline-1 {
   @include headline-1;
+
+  @include media-xs {
+    font-size: 24px;
+    line-height: 32px;
+  }
 }
 .headline-2 {
   @include headline-2;
