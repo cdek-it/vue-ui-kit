@@ -10,46 +10,96 @@ export default class FormServiceControl {
     public fieldName: string,
     public rules?: RulesT
   ) {
-    this.rules = getValidators().parseRules(this.rules);
+    this.parseRules(this.rules);
   }
 
+  /**
+   * Переводит RulesT в RulesObjectT, чтобы валидаторы всегда были объектом
+   */
+  parseRules(rules: RulesT) {
+    this.rules = getValidators().parseRules(rules);
+  }
+
+  /**
+   * Запускается после монтирования в компонент, чтобы
+   * реактивность нормально реагировала
+   */
   init(initialValue: string) {
     this.register(initialValue || '');
     this.formService.subscribeOnSubmit(this.showError.bind(this));
     getValidators().subscribeOnLanguageChange(
-      this.onLanguageChanged.bind(this)
+      this.changeErrorMessageIfShowed.bind(this)
     );
   }
 
+  /**
+   * Регистрация поля в форме
+   */
   register(initialValue: string) {
     this.formService.registerField(this.fieldName, initialValue);
-    this.saveValidation(this.errorKey);
+    this.saveValidation();
   }
 
+  /**
+   * Обновление валидаторов при изменении
+   */
+  updateValidators(rules: RulesT) {
+    this.parseRules(rules);
+    this.saveValidation();
+    this.changeErrorMessageIfShowed();
+  }
+
+  /**
+   * Изменение значения в поле
+   */
   change(newValue: string) {
     this.formService.changeField(this.fieldName, newValue);
-    this.saveValidation(this.errorKey);
+    this.saveValidation();
     this.showError();
   }
 
-  saveValidation(validOrError: true | string) {
-    this.formService.validateField(this.fieldName, validOrError);
+  /**
+   * Сохранение результата валидации форме
+   *
+   * Сохранение и показывание ошибки - это разные операции
+   * В форме всегда хранится актуальная информация по валидации, но
+   * она не всегда показывается в форме
+   *
+   * На данный момент механизм показа ошибки - после первого изменения
+   */
+  saveValidation() {
+    this.formService.validateField(this.fieldName, this.errorKey);
   }
 
+  /**
+   * Показать ошибку в форме
+   */
   showError() {
     this.error = this.errorMessage;
   }
 
-  onLanguageChanged() {
+  /**
+   * Изменить сообщение об ошибке, если оно показывается сейчас
+   *
+   * Необходимо после смены языка (чтобы показать сообщение на другом языке)
+   * и после смены валидаторов (другие валидаторы = другие ошибки)
+   */
+  changeErrorMessageIfShowed() {
     if (this.error) {
       this.showError();
     }
   }
 
+  /**
+   * Текущее значение поля, хранится в форме
+   */
   get value() {
     return this.formService.fields[this.fieldName];
   }
 
+  /**
+   * Валидно ли значение с учетом текущих валидаторов
+   */
   get isValid(): ValidateResultT {
     if (!this.rules) {
       return true;
@@ -70,6 +120,9 @@ export default class FormServiceControl {
     return true;
   }
 
+  /**
+   * Сообщение об ошибке
+   */
   get errorMessage(): true | string {
     if (typeof this.isValid === 'boolean') {
       return this.isValid;
@@ -78,6 +131,9 @@ export default class FormServiceControl {
     return this.isValid?.message || this.isValid.key;
   }
 
+  /**
+   * Название валидатора, который не прошел успешно
+   */
   get errorKey(): true | string {
     if (typeof this.isValid === 'boolean') {
       return this.isValid;
