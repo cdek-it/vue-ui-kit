@@ -8,6 +8,13 @@
   @include body-1;
 
   color: $Primary;
+  display: inline-block;
+  text-decoration: underline;
+  cursor: pointer;
+
+  @include media-xs {
+    @include body-2;
+  }
 
   :slotted(a) {
     color: inherit;
@@ -21,9 +28,10 @@
     line-height: inherit;
     background: transparent;
     border: unset;
-    cursor: pointer;
-    text-decoration: underline;
+    cursor: inherit;
+    text-decoration: inherit;
     padding: unset;
+    text-align: left;
   }
 }
 </style>

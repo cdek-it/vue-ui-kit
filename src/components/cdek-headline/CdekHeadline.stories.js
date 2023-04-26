@@ -40,6 +40,18 @@ Primary.parameters = {
   },
 };
 
+export const PrimaryMobile = Template.bind({});
+PrimaryMobile.parameters = {
+  viewport: {
+    defaultViewport: 'mobile1',
+  },
+  docs: {
+    source: {
+      code: '<CdekHeadline>Заголовок</CdekHeadline>',
+    },
+  },
+};
+
 export const Headline2 = Template.bind({});
 Headline2.args = {
   size: '2',

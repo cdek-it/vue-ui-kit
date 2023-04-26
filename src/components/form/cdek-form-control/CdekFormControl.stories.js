@@ -1,3 +1,4 @@
+import { ref } from 'vue';
 import CdekFormControl from './CdekFormControl.vue';
 import { CdekForm } from '../cdek-form';
 import './CdekFormControl.stories.css';
@@ -28,12 +29,30 @@ const Template = (args) => ({
       formSettings.changeLocale('en');
     }
 
-    return { args };
+    const ifEmail = ref(true);
+    const rules = ref(
+      args.story === 'ChangeValidatorRuntime' ? 'email' : args.rules || ''
+    );
+
+    const toggleEmail = () => {
+      ifEmail.value = !ifEmail.value;
+      rules.value = ifEmail.value ? 'email' : '';
+    };
+
+    return { args, ifEmail, toggleEmail, rules };
   },
   template: `
-    <CdekForm>
-      <CdekFormControl v-bind="args" />
-    </CdekForm>`,
+    <div>
+      <CdekForm>
+        <CdekFormControl v-bind="args" :rules="rules" />
+        <p>Current validator: <code>'{{ rules }}'</code></p>
+      </CdekForm>
+
+      <button @click="toggleEmail" v-if="args.story === 'ChangeValidatorRuntime'">
+        Переключить email
+      </button>
+    </div>
+  `,
 });
 
 export const Primary = Template.bind({});
@@ -100,6 +119,34 @@ Required.parameters = {
 <CdekForm>
   <CdekFormControl name="firstName" label="Имя" rules="required">
 </CdekForm>
+`,
+    },
+  },
+};
+
+export const ChangeValidatorRuntime = Template.bind({});
+ChangeValidatorRuntime.args = {
+  label: 'Имя',
+  name: 'firstName',
+  story: 'ChangeValidatorRuntime',
+};
+ChangeValidatorRuntime.parameters = {
+  docs: {
+    source: {
+      code: `
+const ifEmail = ref(true);
+
+const toggleEmail = () => {
+  ifEmail.value = !ifEmail.value;
+}
+
+...
+
+<CdekForm>
+  <CdekFormControl name="firstName" label="Имя" :rules="ifEmail ? 'email' : ''">
+</CdekForm>
+
+<button @click="toggleEmail">Переключить email</button>
 `,
     },
   },

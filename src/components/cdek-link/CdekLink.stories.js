@@ -21,6 +21,7 @@ const Template = (args) => ({
     <CdekLink v-bind="args">
       <a href="#" v-if="args.story === 'Primary'" @click.prevent>Ссылка</a>
       <button v-else-if="args.story === 'Button'">Кнопка, как ссылка</button>
+      <template v-else-if="args.story === 'Text'">Просто текст</template>
     </CdekLink>
   `,
 });
@@ -44,7 +45,34 @@ Button.args = {
 Button.parameters = {
   docs: {
     source: {
-      code: '<CdekLink><button>Ссылка</button></CdekLink>',
+      code: '<CdekLink><button>Кнопка, как ссылка</button></CdekLink>',
+    },
+  },
+};
+
+export const Text = Template.bind({});
+Text.args = {
+  story: 'Text',
+};
+Text.parameters = {
+  docs: {
+    source: {
+      code: '<CdekLink>Просто текст</CdekLink>',
+    },
+  },
+};
+
+export const Mobile = Template.bind({});
+Mobile.args = {
+  story: 'Primary',
+};
+Mobile.parameters = {
+  viewport: {
+    defaultViewport: 'mobile1',
+  },
+  docs: {
+    source: {
+      code: `<CdekLink><a href="#">Ссылка</a></CdekLink>`,
     },
   },
 };

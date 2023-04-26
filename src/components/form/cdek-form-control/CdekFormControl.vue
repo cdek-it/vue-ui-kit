@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { inject, computed, reactive } from 'vue';
+import { inject, computed, reactive, watch } from 'vue';
 
 import { FormServiceKey } from '../services/FormService';
 import type FormService from '../services/FormService';
@@ -30,6 +30,14 @@ const fieldService = reactive(
   formService.getFieldService(props.name, props.rules)
 );
 fieldService.init(props.initialValue);
+
+watch(
+  () => props.rules,
+  (newValue) => {
+    fieldService.updateValidators(newValue);
+  },
+  { deep: true }
+);
 
 const value = computed({
   get() {
