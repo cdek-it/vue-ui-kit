@@ -55,6 +55,7 @@ const props = withDefaults(
     readonly?: boolean;
     small?: boolean;
     clearable?: boolean;
+    onSelect?: (value: IItemValue) => void;
   }>(),
   {
     debounce: 300,
@@ -93,6 +94,7 @@ const options = computed(() => transformItems(state.items));
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Primitive): void;
+  (e: 'select', value: IItemValue): void;
 }>();
 
 const onClear = () => {
@@ -164,6 +166,7 @@ const onSelect = (value: IItemValue) => {
   inputValue.value = String(value.title);
 
   emit('update:modelValue', value.value);
+  emit('select', value);
 };
 
 const onOutsideClick = (event: MouseEvent) => {

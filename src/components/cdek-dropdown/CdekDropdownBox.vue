@@ -14,5 +14,6 @@
   outline: none;
   position: absolute;
   margin-top: 4px;
+  z-index: 1000;
 }
 </style>

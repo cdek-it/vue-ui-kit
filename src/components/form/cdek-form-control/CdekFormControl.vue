@@ -12,12 +12,13 @@ import type FormService from '../services/FormService';
 import type { RulesT } from '../services/types';
 
 import { CdekInput } from '../../cdek-input';
+import { CdekAutocomplete } from '../../cdek-autocomplete/';
 
 const props = withDefaults(
   defineProps<{
     name: string;
     rules?: RulesT;
-    type?: 'text';
+    type?: 'text' | 'autocomplete';
     class?: string;
     initialValue?: string;
   }>(),
@@ -43,6 +44,13 @@ const value = computed({
 <template>
   <div :class="props.class">
     <CdekInput
+      v-if="type === 'text'"
+      v-model="value"
+      :valid-res="fieldService.error"
+      v-bind="$attrs"
+    />
+    <CdekAutocomplete
+      v-if="type === 'autocomplete'"
       v-model="value"
       :valid-res="fieldService.error"
       v-bind="$attrs"
