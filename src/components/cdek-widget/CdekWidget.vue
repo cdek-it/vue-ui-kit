@@ -41,6 +41,8 @@ const showHeader = computed(() => {
   box-sizing: border-box;
 
   @include media-xs {
+    @include body-2;
+
     padding: 16px;
   }
 
