@@ -69,6 +69,8 @@ const props = withDefaults(defineProps<IConfirmProps>(), {});
 
 <style lang="scss" scoped>
 .cdek-confirm {
+  padding: 20px 24px;
+
   &__header {
     display: flex;
     flex-flow: row;
