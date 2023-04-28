@@ -201,10 +201,12 @@ const onKeydown = (event: KeyboardEvent) => {
       break;
 
     case 'Enter':
+      event.stopImmediatePropagation();
       onSelect(options.value[state.activeIndex]);
       break;
 
     case 'Escape':
+      event.stopImmediatePropagation();
       closeDropdown();
       break;
   }
