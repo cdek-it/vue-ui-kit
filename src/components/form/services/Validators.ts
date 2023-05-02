@@ -36,8 +36,15 @@ type ValidatorsResult = {
 type ErrorMessageFunction = () => string;
 
 type ExtraParams = {
+  regex?: RegExp;
   message?: string | ErrorMessageFunction;
 };
+
+type RegexParams =
+  | RegExp
+  | ({
+      pattern: RegExp;
+    } & ExtraParams);
 
 class Validators extends Multitone {
   locale = 'ru';
@@ -96,8 +103,11 @@ class Validators extends Multitone {
     if (typeof rules === 'object') {
       for (const key in rules) {
         // Обработка правила regex
-        if (key === 'regex' && rules[key] instanceof RegExp) {
-          this.parseRegexRule(rules[key] as unknown as RegExp, resultRules);
+        if (key === 'regex') {
+          this.parseRegexRule(
+            rules[key] as unknown as RegexParams,
+            resultRules
+          );
           continue;
         }
 
@@ -159,8 +169,17 @@ class Validators extends Multitone {
     result[key] = validatorOrMessage as RuleValidator;
   }
 
-  parseRegexRule(regex: RegExp, result: ValidatorsResult) {
-    result.regex = this.vd.regex.bind(this, { regex: regex });
+  parseRegexRule(regex: RegexParams, result: ValidatorsResult) {
+    const params: ExtraParams = {};
+
+    if (regex instanceof RegExp) {
+      params.regex = regex;
+    } else {
+      params.regex = regex.pattern;
+      params.message = regex.message;
+    }
+
+    result.regex = this.vd.regex.bind(this, params);
   }
 
   subscribeOnLanguageChange(clb: () => void) {

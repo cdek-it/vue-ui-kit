@@ -301,3 +301,27 @@ RequiredCustomMessageFunction.parameters = {
     },
   },
 };
+
+export const RegexWithCustomError = Template.bind({});
+RegexWithCustomError.args = {
+  label: 'Number',
+  name: 'number',
+  rules: {
+    regex: { pattern: /^([0-9]+)$/, message: 'Только цифры' },
+  },
+};
+RegexWithCustomError.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl
+    name="number"
+    label="Number"
+    :rules="{ regex: { pattern: /../, message: '' } }"
+  >
+</CdekForm>
+`,
+    },
+  },
+};
