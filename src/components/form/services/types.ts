@@ -3,7 +3,7 @@ export type ErrorsT = { [key: string]: true | string };
 
 export type ValidateResultT = true | { key: string; message?: string };
 
-type RuleValidator = (val: string) => true | string;
+export type RuleValidator = (val: string) => true | string;
 type RulesObjectT = {
   [key: string]: true | string | RuleValidator;
 };

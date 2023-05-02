@@ -106,6 +106,38 @@ CustomClass.parameters = {
   },
 };
 
+export const WithExtraLocale = Template.bind({});
+WithExtraLocale.args = {
+  label: 'Имя',
+  name: 'firstName',
+  rules: 'required',
+  story: 'WithExtraLocale',
+};
+WithExtraLocale.parameters = {
+  docs: {
+    source: {
+      code: `
+<script lang="ts" setup>
+import { formSettings } from '@cdek-ui-kit/vue';
+
+// Добавляем переводы на конкретное правило, действует глобально, лучше сделать при инициализации
+formSettings.addMessages('required', { en: 'Required field' });
+// Меняем локаль, это действует глобально на все формы, так что можно завязать на i18n
+formSettings.changeLocale('en');
+
+// Если нужно кастомное сообщение только в одном месте, то лучше сделать кастомный валидатор
+</script>
+
+<template>
+  <CdekForm>
+    <CdekFormControl name="firstName" label="Имя" rules="required">
+  </CdekForm>
+</template>
+`,
+    },
+  },
+};
+
 export const Required = Template.bind({});
 Required.args = {
   label: 'Имя',
@@ -188,33 +220,21 @@ RequiredWithEmail.parameters = {
   },
 };
 
-export const WithExtraLocale = Template.bind({});
-WithExtraLocale.args = {
-  label: 'Имя',
-  name: 'firstName',
-  rules: 'required',
-  story: 'WithExtraLocale',
+export const Regex = Template.bind({});
+Regex.args = {
+  label: 'Number',
+  name: 'number',
+  rules: {
+    regex: /^([0-9]+)$/,
+  },
 };
-WithExtraLocale.parameters = {
+Regex.parameters = {
   docs: {
     source: {
       code: `
-<script lang="ts" setup>
-import { formSettings } from '@cdek-ui-kit/vue';
-
-// Добавляем переводы на конкретное правило, действует глобально, лучше сделать при инициализации
-formSettings.addMessages('required', { en: 'Required field' });
-// Меняем локаль, это действует глобально на все формы, так что можно завязать на i18n
-formSettings.changeLocale('en');
-
-// Если нужно кастомное сообщение только в одном месте, то лучше сделать кастомный валидатор
-</script>
-
-<template>
-  <CdekForm>
-    <CdekFormControl name="firstName" label="Имя" rules="required">
-  </CdekForm>
-</template>
+<CdekForm>
+  <CdekFormControl name="number" label="Number" :rules="{ regex: /^([0-9]+)$/ }">
+</CdekForm>
 `,
     },
   },
