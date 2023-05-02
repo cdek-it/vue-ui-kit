@@ -33,8 +33,10 @@ type ValidatorsResult = {
   [validator: string]: (val: string) => true | string;
 };
 
+type ErrorMessageFunction = () => string;
+
 type ExtraParams = {
-  message?: string;
+  message?: string | ErrorMessageFunction;
 };
 
 class Validators extends Multitone {
@@ -56,7 +58,16 @@ class Validators extends Multitone {
   ): true | string {
     const extraParamsCopy = { ...extraParams };
 
-    const customMessage = extraParamsCopy.message || '';
+    const message = extraParamsCopy.message;
+    let customMessage: ErrorMessageFunction;
+    if (!message) {
+      customMessage = () => '';
+    } else if (typeof message === 'string') {
+      customMessage = () => message;
+    } else {
+      customMessage = message;
+    }
+
     delete extraParamsCopy.message;
 
     let params = { locale: this.locale };
@@ -65,7 +76,7 @@ class Validators extends Multitone {
     const isValid = validator(value, params);
 
     const errorMessage =
-      customMessage ||
+      customMessage?.() ||
       messages[messageKey][this.locale] ||
       messages[messageKey].default;
 
@@ -120,7 +131,7 @@ class Validators extends Multitone {
   parseStringRule(
     ruleName: string,
     result: ValidatorsResult,
-    message?: string
+    message?: string | ErrorMessageFunction
   ) {
     const params = message ? { message } : {};
     if (this.vd[ruleName]) {
@@ -130,10 +141,22 @@ class Validators extends Multitone {
 
   parseFunctionRule(
     key: string,
-    validator: RuleValidator,
+    validatorOrMessage: RuleValidator | ErrorMessageFunction,
     result: ValidatorsResult
   ) {
-    result[key] = validator;
+    if (this.vd[key]) {
+      // Тогда validatorOrMessage - это функция для возврата ошибки
+      this.parseStringRule(
+        key,
+        result,
+        validatorOrMessage as ErrorMessageFunction
+      );
+
+      return;
+    }
+
+    // Иначе просто кастомный валидатор
+    result[key] = validatorOrMessage as RuleValidator;
   }
 
   parseRegexRule(regex: RegExp, result: ValidatorsResult) {

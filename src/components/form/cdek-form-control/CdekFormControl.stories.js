@@ -280,3 +280,24 @@ RequiredCustomMessage.parameters = {
     },
   },
 };
+
+let t = 0;
+export const RequiredCustomMessageFunction = Template.bind({});
+RequiredCustomMessageFunction.args = {
+  label: 'Имя',
+  name: 'firstname',
+  rules: {
+    required: () => `${t++} ошибка`,
+  },
+};
+RequiredCustomMessageFunction.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl name="firstname" label="Имя" :rules="{ required: () => '' }">
+</CdekForm>
+`,
+    },
+  },
+};
