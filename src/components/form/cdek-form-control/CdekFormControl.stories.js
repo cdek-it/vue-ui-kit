@@ -239,3 +239,24 @@ Regex.parameters = {
     },
   },
 };
+
+export const RegexWithRequired = Template.bind({});
+RegexWithRequired.args = {
+  label: 'Number',
+  name: 'number',
+  rules: {
+    required: true,
+    regex: /^([0-9]+)$/,
+  },
+};
+RegexWithRequired.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl name="number" label="Number" :rules="{ required: true, regex: /^([0-9]+)$/ }">
+</CdekForm>
+`,
+    },
+  },
+};

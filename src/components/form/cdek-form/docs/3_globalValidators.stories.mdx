@@ -72,6 +72,20 @@ const rules = {
 
 <Story id="form-cdekformcontrol--regex" />
 
+Если хочется использовать `regex` с другими глобальными валидаторами, нужно
+добавить в объект `rules` ключ с названием валидатора со значением `true`.
+
+```js
+const rules = {
+  required: true,
+  regex: /^([0-9]+)$/,
+};
+```
+
+> Попробуйте ввести значение и стереть
+
+<Story id="form-cdekformcontrol--regex-with-required" />
+
 ---
 
 ### Переводы
