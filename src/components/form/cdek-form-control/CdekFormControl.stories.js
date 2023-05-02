@@ -260,3 +260,23 @@ RegexWithRequired.parameters = {
     },
   },
 };
+
+export const RequiredCustomMessage = Template.bind({});
+RequiredCustomMessage.args = {
+  label: 'Имя',
+  name: 'firstname',
+  rules: {
+    required: 'Введи имя, мм',
+  },
+};
+RequiredCustomMessage.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl name="firstname" label="Имя" :rules="{ required: 'Введи имя, мм' }">
+</CdekForm>
+`,
+    },
+  },
+};

@@ -33,6 +33,10 @@ type ValidatorsResult = {
   [validator: string]: (val: string) => true | string;
 };
 
+type ExtraParams = {
+  message?: string;
+};
+
 class Validators extends Multitone {
   locale = 'ru';
   changeLocaleCallbacks: Array<() => void> = [];
@@ -47,17 +51,25 @@ class Validators extends Multitone {
   withMessage(
     validator: any,
     messageKey: string,
-    extraParams: object,
+    extraParams: ExtraParams,
     value: unknown
   ): true | string {
+    const extraParamsCopy = { ...extraParams };
+
+    const customMessage = extraParamsCopy.message || '';
+    delete extraParamsCopy.message;
+
     let params = { locale: this.locale };
-    extraParams && (params = { ...params, ...extraParams });
+    extraParamsCopy && (params = { ...params, ...extraParamsCopy });
 
     const isValid = validator(value, params);
 
-    return isValid
-      ? true
-      : messages[messageKey][this.locale] || messages[messageKey].default;
+    const errorMessage =
+      customMessage ||
+      messages[messageKey][this.locale] ||
+      messages[messageKey].default;
+
+    return isValid ? true : errorMessage;
   }
 
   parseRules(rules: RulesT) {
@@ -78,10 +90,21 @@ class Validators extends Multitone {
           continue;
         }
 
-        // Обработка <название_глобального_валидатора>: true
+        /**
+         * Обработка <название_глобального_валидатора>: true
+         *
+         * Включаем валидатор в список с дефолтными настройками
+         */
         if (typeof rules[key] === 'boolean' && rules[key]) {
           this.parseStringRule(key, resultRules);
           continue;
+        }
+
+        /**
+         * Обработка <название_глобального_валидатора>: 'новое_сообщение_об_ошибке'
+         */
+        if (typeof rules[key] === 'string') {
+          this.parseStringRule(key, resultRules, rules[key] as string);
         }
 
         // Обработка кастомной функции
@@ -94,9 +117,14 @@ class Validators extends Multitone {
     return resultRules;
   }
 
-  parseStringRule(ruleName: string, result: ValidatorsResult) {
+  parseStringRule(
+    ruleName: string,
+    result: ValidatorsResult,
+    message?: string
+  ) {
+    const params = message ? { message } : {};
     if (this.vd[ruleName]) {
-      result[ruleName] = this.vd[ruleName].bind(this, {});
+      result[ruleName] = this.vd[ruleName].bind(this, params);
     }
   }
 
