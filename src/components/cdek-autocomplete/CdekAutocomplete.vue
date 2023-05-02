@@ -8,10 +8,11 @@ import {
   useSlots,
 } from 'vue';
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
-import type { IItemValue } from '../cdek-dropdown/CdekDropdownItem.vue';
+import type {
+  IItemValue,
+  Primitive,
+} from '../cdek-dropdown/CdekDropdown.types';
 import { CdekInput } from '../cdek-input/';
-
-export type Primitive = string | number | boolean;
 
 const props = withDefaults(
   defineProps<{
