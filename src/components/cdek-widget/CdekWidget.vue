@@ -8,6 +8,7 @@ const props = withDefaults(
     headline?: string;
     withoutPaddings?: boolean;
     loading?: boolean;
+    disabled?: boolean;
   }>(),
   { headline: '' }
 );
@@ -25,6 +26,7 @@ const showHeader = computed(() => {
     :class="{
       'cdek-widget_without-paddings': withoutPaddings,
       'cdek-widget_loading': loading,
+      'cdek-widget_disabled': disabled,
     }"
   >
     <CdekHeadline v-if="showHeader" size="4" class="cdek-widget__title">
@@ -77,6 +79,12 @@ const showHeader = computed(() => {
       background: $Peak_80;
       border-radius: $radius;
     }
+  }
+
+  &_disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    user-select: none;
   }
 
   &__title {

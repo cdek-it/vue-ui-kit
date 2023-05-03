@@ -30,7 +30,9 @@ const Template = (args) => ({
         <i>Я</i> кастомный
       </template>
 
-      ${args.default}
+      ${args.default || ''}
+
+      <input v-if="args.story === 'Disabled'" />
     </CdekWidget>
   `,
 });
@@ -123,6 +125,24 @@ WithSpinner.parameters = {
       code: `
 <CdekWidget headline="Название" loading>
   Контент
+</CdekWidget>
+`,
+    },
+  },
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  headline: 'Название',
+  disabled: true,
+  story: 'Disabled',
+};
+Disabled.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekWidget headline="Название" disabled>
+  <input />
 </CdekWidget>
 `,
     },
