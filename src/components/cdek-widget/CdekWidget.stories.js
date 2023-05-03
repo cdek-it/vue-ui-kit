@@ -110,3 +110,21 @@ WithCustomHeader.parameters = {
     },
   },
 };
+
+export const WithSpinner = Template.bind({});
+WithSpinner.args = {
+  headline: 'Название',
+  default: 'Контент',
+  loading: true,
+};
+WithSpinner.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekWidget headline="Название" loading>
+  Контент
+</CdekWidget>
+`,
+    },
+  },
+};
