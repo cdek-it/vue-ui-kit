@@ -104,7 +104,6 @@ watchEffect(() => {
 
     background: $Peak;
     border-radius: 12px;
-    padding: 20px 24px;
     margin: auto;
 
     max-width: 100%;
