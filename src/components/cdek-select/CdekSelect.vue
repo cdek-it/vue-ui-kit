@@ -70,6 +70,7 @@ const isUserEvent = computed(() => !props.disabled && !props.readonly);
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Primitive | Array<Primitive>): void;
+  (e: 'select', item: IItemValue | Array<IItemValue>): void;
 }>();
 
 const value = computed({
@@ -85,6 +86,8 @@ const value = computed({
     );
   },
   set(newValue) {
+    emit('select', newValue);
+
     if (Array.isArray(newValue)) {
       emit(
         'update:modelValue',
