@@ -7,4 +7,5 @@ export * from './components/cdek-modal';
 export * from './components/cdek-autocomplete';
 export * from './components/cdek-spinner';
 export * from './components/cdek-switch';
+export * from './components/cdek-dropdown';
 export * from './services';

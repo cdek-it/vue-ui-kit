@@ -1,16 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
-import type { Component } from 'vue';
 import CheckIcon from './svg/check.svg?component';
-
-export interface IItemValue {
-  value: string | number;
-  title: string | number;
-  icon?: Component;
-  disabled?: boolean;
-  color?: string;
-  [props: string]: any;
-}
+import type { IItemValue } from './CdekDropdown.types';
 
 const props = withDefaults(
   defineProps<{

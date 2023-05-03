@@ -8,7 +8,7 @@ import {
   ListboxOption,
 } from '@headlessui/vue';
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
-import type { IItemValue } from '../cdek-dropdown/CdekDropdownItem.vue';
+import type { IItemValue } from '../cdek-dropdown/CdekDropdown.types';
 import ChevronUpIcon from './svg/chevron-up.svg?component';
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';

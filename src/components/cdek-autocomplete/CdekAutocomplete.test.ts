@@ -1,8 +1,10 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekAutocomplete from './CdekAutocomplete.vue';
-import type { Primitive } from './CdekAutocomplete.vue';
-import type { IItemValue } from '../cdek-dropdown/CdekDropdownItem.vue';
+import type {
+  IItemValue,
+  Primitive,
+} from '../cdek-dropdown/CdekDropdown.types';
 import { sleep } from '@/test/helpers';
 
 class CdekAutocompleteBuilder {

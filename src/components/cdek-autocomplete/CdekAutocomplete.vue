@@ -8,10 +8,11 @@ import {
   useSlots,
 } from 'vue';
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
-import type { IItemValue } from '../cdek-dropdown/CdekDropdownItem.vue';
+import type {
+  IItemValue,
+  Primitive,
+} from '../cdek-dropdown/CdekDropdown.types';
 import { CdekInput } from '../cdek-input/';
-
-export type Primitive = string | number | boolean;
 
 const props = withDefaults(
   defineProps<{
@@ -55,6 +56,7 @@ const props = withDefaults(
     readonly?: boolean;
     small?: boolean;
     clearable?: boolean;
+    onSelect?: (value: IItemValue) => void;
   }>(),
   {
     debounce: 300,
@@ -93,6 +95,7 @@ const options = computed(() => transformItems(state.items));
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Primitive): void;
+  (e: 'select', value: IItemValue): void;
 }>();
 
 const onClear = () => {
@@ -164,6 +167,7 @@ const onSelect = (value: IItemValue) => {
   inputValue.value = String(value.title);
 
   emit('update:modelValue', value.value);
+  emit('select', value);
 };
 
 const onOutsideClick = (event: MouseEvent) => {
@@ -198,10 +202,12 @@ const onKeydown = (event: KeyboardEvent) => {
       break;
 
     case 'Enter':
+      event.stopImmediatePropagation();
       onSelect(options.value[state.activeIndex]);
       break;
 
     case 'Escape':
+      event.stopImmediatePropagation();
       closeDropdown();
       break;
   }

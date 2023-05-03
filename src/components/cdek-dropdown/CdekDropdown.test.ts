@@ -2,7 +2,7 @@ import type { Component } from 'vue';
 import { shallowMount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekDropdownItem from './CdekDropdownItem.vue';
-import type { IItemValue } from './CdekDropdownItem.vue';
+import type { IItemValue } from './CdekDropdown.types';
 import FileDescriptionIcon from './svg/file-description.svg?component';
 
 class CdekDropdownItemBuilder {
