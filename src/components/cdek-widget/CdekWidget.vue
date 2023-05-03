@@ -69,6 +69,9 @@ const showHeader = computed(() => {
   }
 
   &_loading {
+    user-select: none;
+    pointer-events: none;
+
     &::before {
       content: '';
       position: absolute;
@@ -78,6 +81,7 @@ const showHeader = computed(() => {
       bottom: 0;
       background: $Peak_80;
       border-radius: $radius;
+      z-index: 1;
     }
   }
 
@@ -101,6 +105,7 @@ const showHeader = computed(() => {
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
   }
 }
 </style>
