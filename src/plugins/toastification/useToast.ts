@@ -1,6 +1,6 @@
 import { useToast, POSITION, TYPE } from 'vue-toastification';
-import { CdekToaster } from '@/components/cdek-toaster';
-import type { ToasterProps } from '@/components/cdek-toaster';
+import { CdekToaster } from '../../components/cdek-toaster';
+import type { ToasterProps } from '../../components/cdek-toaster';
 
 export default function useCustomToast() {
   const toast = useToast();
