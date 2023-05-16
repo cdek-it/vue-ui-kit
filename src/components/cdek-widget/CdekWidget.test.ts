@@ -8,6 +8,8 @@ interface ExtraMethods {
   setWithoutPaddings: (val: boolean) => CdekWidgetBuilder;
   setDefault: (val: string) => CdekWidgetBuilder;
   setHeader: (val: string) => CdekWidgetBuilder;
+  setLoading: (val: boolean) => CdekWidgetBuilder;
+  setDisabled: (val: boolean) => CdekWidgetBuilder;
 }
 
 interface CdekWidgetBuilder extends ExtraMethods {}
@@ -25,11 +27,19 @@ class CdekWidgetBuilder {
   @builderProp
   header = '';
 
+  @builderProp
+  loading = false;
+
+  @builderProp
+  disabled = false;
+
   build() {
     return mount(CdekWidget, {
       props: {
         headline: this.headline,
         withoutPaddings: this.withoutPaddings,
+        loading: this.loading,
+        disabled: this.disabled,
       },
       slots: {
         default: this.default,
@@ -61,5 +71,14 @@ describe('Unit: CdekWidget', () => {
     const header = wrapper.find('.cdek-widget__title');
     expect(header.exists()).toBe(true);
     expect(header.find('b').html()).toBe('<b>test</b>');
+  });
+  test('Должен добавлять спиннер и затенять контент, если loading = true', () => {
+    const wrapper = new CdekWidgetBuilder().setLoading(true).build();
+    expect(wrapper.classes('cdek-widget_loading')).toBeTruthy();
+    expect(wrapper.find('.cdek-widget__spinner').exists()).toBeTruthy();
+  });
+  test('Если disabled = true, должен сделать блок полупрозрачным', () => {
+    const wrapper = new CdekWidgetBuilder().setDisabled(true).build();
+    expect(wrapper.classes('cdek-widget_disabled')).toBeTruthy();
   });
 });

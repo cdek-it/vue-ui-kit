@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-import { CdekButton } from '@/components/cdek-button';
+import { CdekButton } from '../cdek-button';
 
 import CrossIcon from './svg/cross.svg?component';
 import InfoIcon from './svg/info.svg?component';
