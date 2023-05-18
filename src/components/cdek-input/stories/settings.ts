@@ -9,15 +9,18 @@ export const Template = (args: any) => ({
   components: { CdekInput, SearchIcon, EyeIcon },
   setup() {
     const inputVal = ref(
-      ['LabelFilled', 'RightIconDisabled'].includes(args.story)
-        ? '34 45 – 987 123'
-        : ''
+      ['LabelFilled', 'RightIconDisabled'].includes(args.story) ? '345' : ''
     );
 
-    return { args, inputVal };
+    const cn =
+      args.small && !['RightIcon', 'LeftIcon'].includes(args.story)
+        ? 'input-small-story'
+        : 'input-story';
+
+    return { args, inputVal, cn };
   },
   template: `
-    <div class="input-story">
+    <div :class="cn">
       <CdekInput v-bind="args" v-model="inputVal">
         <template #tip="{ alert, info, ban, circle }">
           <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />

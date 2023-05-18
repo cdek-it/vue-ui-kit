@@ -33,63 +33,63 @@ Small.parameters = {
 
 export const SmallWithLabel = Template.bind({});
 SmallWithLabel.args = {
-  label: 'Серия и номер паспорта',
+  label: 'Кол-во',
   small: true,
 };
 SmallWithLabel.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." small />',
+      code: '<CdekInput v-model="inputVal" label="Кол-во" small />',
     },
   },
 };
 
 export const SmallError = Template.bind({});
 SmallError.args = {
-  label: 'Серия и номер паспорта',
+  label: 'Кол-во',
   small: true,
   validRes: 'Ошибка',
 };
 SmallError.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." small valid-res="Ошибка" />',
+      code: '<CdekInput v-model="inputVal" label="Кол-во" small valid-res="Ошибка" />',
     },
   },
 };
 
 export const SmallDisabled = Template.bind({});
 SmallDisabled.args = {
-  label: 'Серия и номер паспорта',
+  label: 'Кол-во',
   small: true,
   disabled: true,
 };
 SmallDisabled.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." small disabled />',
+      code: '<CdekInput v-model="inputVal" label="Кол-во" small disabled />',
     },
   },
 };
 
 export const SmallDisabledFilled = Template.bind({});
-SmallDisabled.args = {
-  label: 'Серия и номер паспорта',
+SmallDisabledFilled.args = {
+  label: 'Кол-во',
   small: true,
   disabled: true,
   story: 'LabelFilled',
 };
-SmallDisabled.parameters = {
+SmallDisabledFilled.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." small disabled />',
+      code: '<CdekInput v-model="inputVal" label="Кол-во" small disabled />',
     },
   },
 };
 
 export const SmallReadonly = Template.bind({});
 SmallReadonly.args = {
-  label: 'Серия и номер паспорта',
+  label: 'Кол-во',
   small: true,
   readonly: true,
   story: 'LabelFilled',
@@ -97,23 +97,23 @@ SmallReadonly.args = {
 SmallReadonly.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." small readonly />',
+      code: '<CdekInput v-model="inputVal" label="Кол-во" small readonly />',
     },
   },
 };
 
 export const SmallTip = Template.bind({});
 SmallTip.args = {
-  label: 'Серия и номер паспорта',
-  tip: 'Пояснение или помощь',
+  label: 'Кол-во',
+  tip: 'Подсказка',
   small: true,
 };
 SmallTip.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" small label="Серия и ..">
-  <template #tip>Пояснение или помощь</template>
+<CdekInput v-model="inputVal" small label="Кол-во">
+  <template #tip>Подсказка</template>
 </CdekInput>
 `,
     },
@@ -143,7 +143,7 @@ SmallLeftIcon.parameters = {
 
 export const SmallRightIcon = Template.bind({});
 SmallRightIcon.args = {
-  label: 'Серия и номер паспорта',
+  label: 'Кол-во',
   story: 'RightIcon',
   small: true,
 };
@@ -151,7 +151,7 @@ SmallRightIcon.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" small label="Серия..">
+<CdekInput v-model="inputVal" small label="Кол-во">
   <template #right-icon>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
@@ -164,7 +164,7 @@ SmallRightIcon.parameters = {
 
 export const SmallRightIconClearable = Template.bind({});
 SmallRightIconClearable.args = {
-  label: 'Серия и номер паспорта',
+  label: 'Кол-во',
   clearable: true,
   story: 'RightIcon',
   small: true,
@@ -173,7 +173,7 @@ SmallRightIconClearable.parameters = {
   docs: {
     source: {
       code: `
-<CdekInput v-model="inputVal" label="Серия.." small clearable>
+<CdekInput v-model="inputVal" label="Кол-во" small clearable>
   <template #right-icon>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
