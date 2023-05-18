@@ -235,7 +235,6 @@ defineExpose({ getControl });
 
     &_small {
       height: 36px;
-      padding-right: 0;
       padding-block: 0;
     }
   }
@@ -284,6 +283,7 @@ defineExpose({ getControl });
     &_small {
       align-self: center;
       padding-block: 6px;
+      width: 100%;
     }
   }
 
