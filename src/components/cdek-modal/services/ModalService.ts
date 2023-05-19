@@ -1,3 +1,4 @@
+import { shallowRef } from 'vue';
 import Multitone, { getInstanceFactory } from '../../../services/Multitone';
 import useServiceFactory from '../../../services/useServiceFactory';
 import type { IModalProps } from '../CdekModal.vue';
@@ -11,7 +12,7 @@ class ModalService extends Multitone {
     propsAndSettings?: Omit<IModalProps<T>, 'component'>
   ) {
     this.modalData = {
-      component,
+      component: shallowRef(component),
       props: propsAndSettings?.props,
       settings: propsAndSettings?.settings,
     };
