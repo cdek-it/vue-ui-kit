@@ -141,7 +141,6 @@ defineExpose({ getControl });
     </label>
     <div class="cdek-input__tip">
       <template v-if="isError">
-        <BanIcon />
         <span class="error">{{ validRes }}</span>
       </template>
 

@@ -189,7 +189,6 @@ const value = computed({
     </Listbox>
     <div class="cdek-select__tip">
       <template v-if="isError">
-        <BanIcon />
         <span class="error">{{ validRes }}</span>
       </template>
 
