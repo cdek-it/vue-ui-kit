@@ -92,14 +92,24 @@ export const CustomClass = Template.bind({});
 CustomClass.args = {
   label: 'Имя',
   name: 'firstName',
-  class: 'some-class',
+  className: 'some-class',
 };
 CustomClass.parameters = {
+  version: {
+    major: '0',
+    minor: '1',
+    patch: '0',
+    postfix: 'alpha',
+    style: {
+      background: 'rgba(228, 0, 41, 0.05)',
+      color: '#e40029',
+    },
+  },
   docs: {
     source: {
       code: `
 <CdekForm>
-  <CdekFormControl name="firstName" label="Имя" class="some-class">
+  <CdekFormControl name="firstName" label="Имя" class-name="some-class">
 </CdekForm>
 `,
     },
