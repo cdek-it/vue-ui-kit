@@ -37,8 +37,8 @@ const Template = (args) => ({
           return 'required';
         case 'WithValidation':
           return {
-            required: (value) => {
-              if (!value.trim()) {
+            newRequired: (value) => {
+              if (!value || !value.trim()) {
                 return 'Поле обязательное';
               }
 
