@@ -54,13 +54,13 @@ const value = computed({
     <CdekInput
       v-if="type === 'text'"
       v-model="value"
-      :valid-res="fieldService?.error"
+      :valid-res="fieldService.error"
       v-bind="$attrs"
     />
     <CdekAutocomplete
       v-if="type === 'autocomplete'"
       v-model="value"
-      :valid-res="fieldService?.error"
+      :valid-res="fieldService.error"
       v-bind="$attrs"
     />
   </div>

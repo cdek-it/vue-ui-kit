@@ -335,3 +335,27 @@ RegexWithCustomError.parameters = {
     },
   },
 };
+
+export const WithoutError = Template.bind({});
+WithoutError.args = {
+  label: 'Name',
+  name: 'name',
+  rules: 'required',
+  hideErrorMessage: true,
+};
+WithoutError.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl
+    name="name"
+    label="Name"
+    rules="required"
+    hide-error-message
+  >
+</CdekForm>
+`,
+    },
+  },
+};

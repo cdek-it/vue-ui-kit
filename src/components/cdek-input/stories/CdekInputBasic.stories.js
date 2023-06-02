@@ -91,6 +91,27 @@ Error.parameters = {
   },
 };
 
+export const ErrorWithoutMessage = Template.bind({});
+ErrorWithoutMessage.args = {
+  label: 'Серия и номер паспорта',
+  validRes: 'Ошибка',
+  hideErrorMessage: true,
+};
+ErrorWithoutMessage.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput
+  v-model="inputVal"
+  label="Серия и .."
+  valid-res="Ошибка"
+  hide-error-message
+/>
+`,
+    },
+  },
+};
+
 export const ErrorFilled = Template.bind({});
 ErrorFilled.args = {
   label: 'Серия и номер паспорта',
