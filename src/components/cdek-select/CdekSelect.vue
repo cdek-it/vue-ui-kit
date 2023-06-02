@@ -41,6 +41,7 @@ const props = withDefaults(
      * `string` - текст ошибки, ошибка показывается
      */
     validRes?: true | string;
+    hideErrorMessage?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
@@ -189,7 +190,7 @@ const value = computed({
     </Listbox>
     <div class="cdek-select__tip">
       <template v-if="isError">
-        <span class="error">{{ validRes }}</span>
+        <span class="error" v-show="!hideErrorMessage">{{ validRes }}</span>
       </template>
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->

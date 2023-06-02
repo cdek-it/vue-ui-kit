@@ -229,23 +229,8 @@ WithTip.parameters = {
 };
 
 export const WithError = Template.bind({});
-WithError.argTypes = {
-  tipIcon: {
-    options: ['info', 'alert', 'ban', 'circle'],
-    type: 'select',
-  },
-};
-WithError.args = {
-  label: 'Серия и номер паспорта',
-  tip: 'Пояснение или помощь',
-  tipIcon: 'info',
-  story: 'TipIcon',
-};
 WithError.args = {
   label: 'Вариант действия',
-  story: 'TipIcon',
-  tipIcon: 'info',
-  tip: 'Пояснение или помощь',
   validRes: 'Ошибка',
   items,
 };
@@ -253,12 +238,31 @@ WithError.parameters = {
   docs: {
     source: {
       code: `
-<CdekSelect label="Вариант действия" :items="items" v-model="selectVal" valid-res="Ошибка">
-  <template #tip="{ info }">
-    <component :is="info" />
-    <span>Пояснение или помощь</span>
-  </template>        
-</CdekSelect>`,
+<CdekSelect label="Вариант действия" :items="items" v-model="selectVal" valid-res="Ошибка" />
+`,
+    },
+  },
+};
+
+export const WithErrorHiddenMessage = Template.bind({});
+WithErrorHiddenMessage.args = {
+  label: 'Вариант действия',
+  validRes: 'Ошибка',
+  hideErrorMessage: true,
+  items,
+};
+WithErrorHiddenMessage.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect
+  label="Вариант действия"
+  :items="items"
+  v-model="selectVal"
+  valid-res="Ошибка"
+  hide-error-message
+/>
+`,
     },
   },
 };
