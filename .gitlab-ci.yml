@@ -65,6 +65,7 @@ publish:
   extends: .common
   only:
     - main
+    - /^release\/.*/
   when: manual
 
   script:
