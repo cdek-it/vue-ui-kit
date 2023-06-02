@@ -1,15 +1,12 @@
 import useToast from './useToast';
 import { CdekToaster } from '@/components/cdek-toaster';
+import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Plugins/Toastification',
   subcomponents: { CdekToaster },
   parameters: {
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-    },
+    version: getVersion('0.0.1'),
   },
   argTypes: {
     type: {

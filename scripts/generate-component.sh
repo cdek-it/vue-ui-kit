@@ -53,6 +53,7 @@ EOM
 touch $NAME.stories.js
 cat > $NAME.stories.js <<- EOM
 import $NAME from './$NAME.vue';
+import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/$NAME',
@@ -64,11 +65,7 @@ export default {
           '[Figma]()',
       },
     },
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-    },
+    version: getVersion('0.1.0'),
   },
 };
 

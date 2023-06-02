@@ -1,18 +1,10 @@
 import { Meta, Story } from '@storybook/addon-docs';
+import getVersion from '@/test/getVersion';
 
 <Meta
   title="Form/CdekForm/GlobalValidators"
   parameters={{
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-      postfix: 'alpha',
-      style: {
-        background: 'rgba(228, 0, 41, 0.05)',
-        color: '#e40029',
-      },
-    },
+    version: getVersion('0.1.0', 'alpha'),
   }}
 />
 
