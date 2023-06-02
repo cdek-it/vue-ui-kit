@@ -63,7 +63,7 @@ class CdekAutocompleteBuilder {
     return this;
   }
 
-  get settings() {
+  get settings(): any {
     return {
       props: {
         modelValue: this.modelValue,
