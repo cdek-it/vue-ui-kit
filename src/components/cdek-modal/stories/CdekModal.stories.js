@@ -2,6 +2,7 @@ import CdekModal from '../CdekModal.vue';
 import { useModalService } from '../services/ModalService';
 import CdekButton from '../../cdek-button/CdekButton.vue';
 import CdekConfirm from '../CdekConfirm.vue';
+import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekModal/Modal',
@@ -13,16 +14,7 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=3039-18607&t=Ljb6anDLwIifZ0zN-4)',
       },
     },
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-      postfix: 'beta',
-      style: {
-        background: 'rgba(244, 117, 0, 0.05)',
-        color: '#f47500',
-      },
-    },
+    version: getVersion('0.0.1', 'beta'),
   },
 };
 

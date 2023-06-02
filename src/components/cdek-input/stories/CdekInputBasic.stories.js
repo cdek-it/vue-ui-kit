@@ -1,5 +1,6 @@
 import { Template } from './settings';
 import CdekInput from '../CdekInput.vue';
+import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekInput/Basic',
@@ -11,11 +12,7 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1998%3A4714&t=G78h9IqBm7eEp4F9-4)',
       },
     },
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-    },
+    version: getVersion('0.0.1'),
   },
 };
 
@@ -84,6 +81,7 @@ Error.args = {
   validRes: 'Ошибка',
 };
 Error.parameters = {
+  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка"/>',
@@ -98,6 +96,7 @@ ErrorWithoutMessage.args = {
   hideErrorMessage: true,
 };
 ErrorWithoutMessage.parameters = {
+  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: `
@@ -119,6 +118,7 @@ ErrorFilled.args = {
   story: 'LabelFilled',
 };
 ErrorFilled.parameters = {
+  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка"/>',
@@ -146,6 +146,7 @@ DisabledWithError.args = {
   validRes: 'Ошибка',
 };
 DisabledWithError.parameters = {
+  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" label="Серия и .." disabled valid-res="Ошибка"/>',

@@ -1,5 +1,6 @@
 import CdekWidget from './CdekWidget.vue';
 import './CdekWidget.stories.css';
+import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekWidget',
@@ -11,11 +12,7 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1983%3A4081&t=z1QNDvjqjFqqVZE2-0)',
       },
     },
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-    },
+    version: getVersion('0.0.1'),
   },
 };
 

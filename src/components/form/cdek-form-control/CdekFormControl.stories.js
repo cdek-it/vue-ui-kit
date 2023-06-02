@@ -3,21 +3,13 @@ import CdekFormControl from './CdekFormControl.vue';
 import { CdekForm } from '../cdek-form';
 import './CdekFormControl.stories.css';
 import { formSettings } from '../index';
+import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Form/CdekFormControl',
   component: CdekFormControl,
   parameters: {
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-      postfix: 'alpha',
-      style: {
-        background: 'rgba(228, 0, 41, 0.05)',
-        color: '#e40029',
-      },
-    },
+    version: getVersion('0.1.0', 'alpha'),
   },
 };
 
@@ -60,6 +52,7 @@ Primary.args = {
   name: 'firstName',
 };
 Primary.parameters = {
+  version: getVersion('0.0.1', 'alpha'),
   docs: {
     source: {
       code: `
@@ -77,6 +70,7 @@ WithLabel.args = {
   name: 'firstName',
 };
 WithLabel.parameters = {
+  version: getVersion('0.0.1', 'alpha'),
   docs: {
     source: {
       code: `
@@ -95,16 +89,6 @@ CustomClass.args = {
   className: 'some-class',
 };
 CustomClass.parameters = {
-  version: {
-    major: '0',
-    minor: '1',
-    patch: '0',
-    postfix: 'alpha',
-    style: {
-      background: 'rgba(228, 0, 41, 0.05)',
-      color: '#e40029',
-    },
-  },
   docs: {
     source: {
       code: `
