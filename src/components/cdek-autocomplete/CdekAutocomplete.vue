@@ -52,6 +52,7 @@ const props = withDefaults(
      * `string` - текст ошибки, ошибка показывается
      */
     validRes?: true | string;
+    hideErrorMessage?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
@@ -242,6 +243,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
       :disabled="disabled"
       :small="small"
       :validRes="validRes"
+      :hide-error-message="hideErrorMessage"
       :readonly="readonly"
       :clearable="clearable"
       :placeholder="placeholder"

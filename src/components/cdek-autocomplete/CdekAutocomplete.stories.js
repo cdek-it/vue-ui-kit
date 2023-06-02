@@ -213,6 +213,32 @@ WithError.parameters = {
   },
 };
 
+export const WithErrorHiddenMessage = Template.bind({});
+WithErrorHiddenMessage.args = {
+  label: 'Размер коробки',
+  validRes: 'Ошибка',
+  hideErrorMessage: true,
+  items,
+};
+WithErrorHiddenMessage.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  label="Размер коробки" 
+  valid-res="Ошибка"
+  hide-error-message
+  :items="[
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+    ...
+  ]" 
+/>
+`,
+    },
+  },
+};
+
 export const WithTip = Template.bind({});
 WithTip.argTypes = {
   tipIcon: {

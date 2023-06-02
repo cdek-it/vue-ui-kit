@@ -1,16 +1,38 @@
-import { mount } from '@vue/test-utils';
-import { describe, test, expect } from 'vitest';
+import { shallowMount, mount } from '@vue/test-utils';
+import { describe, test, expect, vi } from 'vitest';
 import CdekAutocomplete from './CdekAutocomplete.vue';
 import type {
   IItemValue,
   Primitive,
 } from '../cdek-dropdown/CdekDropdown.types';
-import { sleep } from '@/test/helpers';
+import { sleep, dti } from '@/test/helpers';
+import builderProp from '@/test/decorators';
+
+interface ExtraMethods {
+  setModelValue: (value: Primitive) => CdekAutocompleteBuilder;
+  setNotFound: (value: string) => CdekAutocompleteBuilder;
+  setMinLength: (value: number) => CdekAutocompleteBuilder;
+  setFetchItems: (
+    value: (query: string) => Promise<Array<IItemValue>>
+  ) => CdekAutocompleteBuilder;
+  setValidRes: (value: true | string) => CdekAutocompleteBuilder;
+  setHideErrorMessage: (value: boolean) => CdekAutocompleteBuilder;
+}
+
+interface CdekAutocompleteBuilder extends ExtraMethods {}
 
 class CdekAutocompleteBuilder {
+  @builderProp
   modelValue: Primitive = '';
+
   label?: string;
+
+  @builderProp
   validRes?: true | string;
+
+  @builderProp
+  hideErrorMessage?: string;
+
   disabled?: boolean;
   readonly?: boolean;
   small?: boolean;
@@ -22,51 +44,36 @@ class CdekAutocompleteBuilder {
     { value: 4, title: 'Option 4' },
     { value: 5, title: 'Item 5' },
   ];
+
+  @builderProp
   fetchItems?: (query: string) => Promise<Array<IItemValue> | Array<string>>;
+
+  @builderProp
   minLength?: number = 3;
+
   debounce?: number = 0;
 
+  @builderProp
   notFound?: string;
 
   attrs: Record<string, string> = {};
-
-  setModelValue(modelValue: Primitive) {
-    this.modelValue = modelValue;
-    return this;
-  }
-
-  setNotFound(message: string) {
-    this.notFound = message;
-    return this;
-  }
-
-  setMinLength(minLength: number) {
-    this.minLength = minLength;
-    return this;
-  }
-
-  setFetchItems(fetchFunction: (query: string) => Promise<Array<IItemValue>>) {
-    this.fetchItems = fetchFunction;
-    return this;
-  }
 
   setAttr(key: string, value: string) {
     this.attrs[key] = value;
     return this;
   }
 
-  build() {
-    const wrapper = mount(CdekAutocomplete, {
+  get settings(): any {
+    return {
       props: {
         modelValue: this.modelValue,
         items: this.items,
-        'onUpdate:modelValue': (e: Primitive) =>
-          wrapper.setProps({ modelValue: e }),
         label: this.label,
         fetchItems: this.fetchItems,
         debounce: this.debounce,
         minLength: this.minLength,
         validRes: this.validRes,
+        hideErrorMessage: this.hideErrorMessage,
         disabled: this.disabled,
         readonly: this.readonly,
         small: this.small,
@@ -76,6 +83,45 @@ class CdekAutocompleteBuilder {
         'not-found': this.notFound || '',
       },
       attrs: this.attrs,
+    };
+  }
+
+  build() {
+    const wrapper = mount(CdekAutocomplete, {
+      ...this.settings,
+      props: {
+        ...this.settings.props,
+        'onUpdate:modelValue': (e: Primitive) =>
+          wrapper.setProps({ modelValue: e }),
+      },
+    });
+
+    return wrapper;
+  }
+
+  shallowBuild() {
+    const wrapper = shallowMount(CdekAutocomplete, {
+      ...this.settings,
+      props: {
+        ...this.settings.props,
+        'onUpdate:modelValue': (e: Primitive) =>
+          wrapper.setProps({ modelValue: e }),
+      },
+      global: {
+        stubs: {
+          CdekInput: {
+            name: 'CdekInput',
+            template: '<div data-test-id="cdek-input" />',
+            methods: {
+              getControl() {
+                return {
+                  addEventListener: vi.fn(),
+                };
+              },
+            },
+          },
+        },
+      },
     });
 
     return wrapper;
@@ -182,5 +228,15 @@ describe('Unit: CdekAutocomplete', () => {
       dropdownBox = wrapper.find('.cdek-dropdown-box');
       expect(dropdownBox.isVisible()).toBeTruthy();
     });
+  });
+
+  test('Должен передавать validRes и hideErrorMessage в input', () => {
+    const wrapper = new CdekAutocompleteBuilder()
+      .setValidRes('ошибка')
+      .setHideErrorMessage(true)
+      .shallowBuild();
+    const input = wrapper.find(dti('cdek-input'));
+    expect(input.attributes('validres')).toBe('ошибка');
+    expect(input.attributes('hide-error-message')).toBe('true');
   });
 });

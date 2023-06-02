@@ -1,66 +1,62 @@
 import { flushPromises, shallowMount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekInput from './CdekInput.vue';
+import builderProp from '@/test/decorators';
+
+interface ExtraMethods {
+  setModelValue: (val: string) => CdekInputBuilder;
+  setLabel: (val: string) => CdekInputBuilder;
+  setValidRes: (val: true | string) => CdekInputBuilder;
+  setHideErrorMessage: (val: boolean) => CdekInputBuilder;
+  setDisabled: (val: boolean) => CdekInputBuilder;
+  setReadonly: (val: boolean) => CdekInputBuilder;
+  setSmall: (val: boolean) => CdekInputBuilder;
+  setClearable: (val: boolean) => CdekInputBuilder;
+  setTip: (val: string) => CdekInputBuilder;
+  setIconRight: (val: string) => CdekInputBuilder;
+  setIconLeft: (val: string) => CdekInputBuilder;
+}
+
+interface CdekInputBuilder extends ExtraMethods {}
 
 class CdekInputBuilder {
+  @builderProp
   modelValue: string = '';
+
+  @builderProp
   label?: string;
+
+  @builderProp
   validRes?: true | string;
+
+  @builderProp
+  hideErrorMessage?: boolean;
+
+  @builderProp
   disabled?: boolean;
+
+  @builderProp
   readonly?: boolean;
+
+  @builderProp
   small?: boolean;
+
+  @builderProp
   clearable?: boolean;
 
+  @builderProp
   tip?: string;
+
+  @builderProp
   iconRight?: string;
+
+  @builderProp
   iconLeft?: string;
 
   attrs: Record<string, string> = {};
 
-  setModelValue(modelValue: string) {
-    this.modelValue = modelValue;
-    return this;
-  }
-  setLabel(label: string) {
-    this.label = label;
-    return this;
-  }
-  setError(validRes: true | string) {
-    this.validRes = validRes;
-    return this;
-  }
-  toggleDisabled() {
-    this.disabled = !this.disabled;
-    return this;
-  }
-  toggleReadonly() {
-    this.readonly = !this.readonly;
-    return this;
-  }
-  toggleSmall() {
-    this.small = !this.small;
-    return this;
-  }
-  toggleClearable() {
-    this.clearable = !this.clearable;
-    return this;
-  }
-
   setPlaceholder(placeholder: string) {
     this.attrs.placeholder = placeholder;
-    return this;
-  }
-
-  setTip(tip: string) {
-    this.tip = tip;
-    return this;
-  }
-  setIconRight(icon: string) {
-    this.iconRight = icon;
-    return this;
-  }
-  setIconLeft(icon: string) {
-    this.iconLeft = icon;
     return this;
   }
 
@@ -77,14 +73,15 @@ class CdekInputBuilder {
           wrapper.setProps({ modelValue: e }),
         label: this.label,
         validRes: this.validRes,
+        hideErrorMessage: this.hideErrorMessage,
         disabled: this.disabled,
         readonly: this.readonly,
         small: this.small,
         clearable: this.clearable,
       },
       slots: {
-        'icons-left': '',
-        'icons-right': '',
+        'icons-left': this.iconLeft || '',
+        'icons-right': this.iconRight || '',
         tip: this.tip || '',
       },
       attrs: this.attrs,
@@ -142,7 +139,7 @@ describe('Unit: CdekInput', () => {
     test('Если validRes - строка, то должны добавляться стили для состояния ошибки', () => {
       const wrapper = new CdekInputBuilder()
         .setLabel('Лейбл')
-        .setError('Ошибка')
+        .setValidRes('Ошибка')
         .build();
       const control = wrapper.find('.cdek-input__control');
       expect(control.classes('cdek-input__control_error')).toBeTruthy();
@@ -155,9 +152,19 @@ describe('Unit: CdekInput', () => {
     });
 
     test('Если validRes = "Ошибка", то должен показываться текст "Ошибка"', () => {
-      const wrapper = new CdekInputBuilder().setError('Ошибка').build();
+      const wrapper = new CdekInputBuilder().setValidRes('Ошибка').build();
       const error = wrapper.find('.error');
       expect(error.text()).toBe('Ошибка');
+    });
+
+    test('Если validRes = "Ошибка" и hideErrorMessage = true то текст "Ошибка" не должен показываться', () => {
+      const wrapper = new CdekInputBuilder()
+        .setValidRes('Ошибка')
+        .setHideErrorMessage(true)
+        .build();
+      const error = wrapper.find('.error');
+      expect(error.text()).toBe('Ошибка');
+      expect(error.attributes('style')).toBe('display: none;');
     });
   });
 
@@ -191,7 +198,7 @@ describe('Unit: CdekInput', () => {
     expect(tip.text()).toBe('Пояснение или помощь');
   });
 
-  test('Если в слот #icons-left передана строка " ", то должен показываться контейнер под иконки слева', () => {
+  test('Если в слот #icons-left что-то передано, то должен показываться контейнер под иконки слева', () => {
     const wrapper = new CdekInputBuilder()
       .setIconLeft('Пояснение или помощь')
       .build();
@@ -199,7 +206,7 @@ describe('Unit: CdekInput', () => {
     expect(iconLeft.exists()).toBeTruthy();
   });
 
-  test('Если в слот #icons-right передана строка " ", то должен показываться контейнер под иконки справа', () => {
+  test('Если в слот #icons-right что-то передано, то должен показываться контейнер под иконки справа', () => {
     const wrapper = new CdekInputBuilder()
       .setIconRight('Пояснение или помощь')
       .build();
@@ -209,19 +216,19 @@ describe('Unit: CdekInput', () => {
 
   describe('disabled', () => {
     test('Если передан disabled, то компонент должен стилизоваться под состояние disabled', () => {
-      const wrapper = new CdekInputBuilder().toggleDisabled().build();
+      const wrapper = new CdekInputBuilder().setDisabled(true).build();
       const inputContainer = wrapper.find('.cdek-input__control');
       expect(
         inputContainer.classes('cdek-input__control_disabled')
       ).toBeTruthy();
     });
     test('Если передан disabled, то на input должен добавиться атрибут "disabled"', () => {
-      const wrapper = new CdekInputBuilder().toggleDisabled().build();
+      const wrapper = new CdekInputBuilder().setDisabled(true).build();
       const input = wrapper.find('.cdek-input__input');
       expect(input.attributes('disabled')).toBe('');
     });
     test('Если передан disabled, то иконка справа должна стать серой', () => {
-      const wrapper = new CdekInputBuilder().toggleDisabled().build();
+      const wrapper = new CdekInputBuilder().setDisabled(true).build();
       const rightIcon = wrapper.find('.cdek-input__right-icon');
       expect(rightIcon.classes('cdek-input__right-icon_grey')).toBeTruthy();
     });
@@ -229,24 +236,24 @@ describe('Unit: CdekInput', () => {
 
   describe('readonly', () => {
     test('Если передан readonly, то компонент должен стилизоваться под состояние readonly', () => {
-      const wrapper = new CdekInputBuilder().toggleReadonly().build();
+      const wrapper = new CdekInputBuilder().setReadonly(true).build();
       const inputContainer = wrapper.find('.cdek-input__control');
       expect(
         inputContainer.classes('cdek-input__control_readonly')
       ).toBeTruthy();
     });
     test('Если передан readonly, то цвет текста в input должен стать черным', () => {
-      const wrapper = new CdekInputBuilder().toggleReadonly().build();
+      const wrapper = new CdekInputBuilder().setReadonly(true).build();
       const input = wrapper.find('.cdek-input__input');
       expect(input.classes('cdek-input__input_readonly')).toBeTruthy();
     });
     test('Если передан readonly, то на input должен быть аргумент disabled', () => {
-      const wrapper = new CdekInputBuilder().toggleReadonly().build();
+      const wrapper = new CdekInputBuilder().setReadonly(true).build();
       const input = wrapper.find('.cdek-input__input');
       expect(input.attributes('disabled')).toBe('');
     });
     test('Если передан readonly, то иконки справа должны стать серыми', () => {
-      const wrapper = new CdekInputBuilder().toggleReadonly().build();
+      const wrapper = new CdekInputBuilder().setReadonly(true).build();
       const rightIcon = wrapper.find('.cdek-input__right-icon');
       expect(rightIcon.classes('cdek-input__right-icon_grey')).toBeTruthy();
     });
@@ -263,7 +270,7 @@ describe('Unit: CdekInput', () => {
   test('Если small = true, то должны добавляться классы-модификаторы на элементы', () => {
     const wrapper = new CdekInputBuilder()
       .setLabel('Лейбл')
-      .toggleSmall()
+      .setSmall(true)
       .build();
     const control = wrapper.find('.cdek-input__control');
     expect(control.classes('cdek-input__control_small')).toBeTruthy();
@@ -276,7 +283,7 @@ describe('Unit: CdekInput', () => {
   describe('clearable', () => {
     test('Если clearable = true и есть modelValue, то должна появиться кнопка с крестиком', () => {
       const wrapper = new CdekInputBuilder()
-        .toggleClearable()
+        .setClearable(true)
         .setModelValue('тест')
         .build();
       const button = wrapper.find('.cdek-input__clear');
@@ -284,7 +291,7 @@ describe('Unit: CdekInput', () => {
     });
     test('При нажатии на кнопку, поле должно очиститься', async () => {
       const wrapper = new CdekInputBuilder()
-        .toggleClearable()
+        .setClearable(true)
         .setModelValue('тест')
         .build();
       const button = wrapper.find('.cdek-input__clear');
