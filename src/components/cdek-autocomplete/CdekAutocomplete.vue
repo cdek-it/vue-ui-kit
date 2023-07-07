@@ -9,29 +9,42 @@ import {
 } from 'vue';
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
 import type { IItemValue } from '../cdek-dropdown/CdekDropdown.types';
-import type { Value } from './types';
+import type { Value, Item, ItemsUnion } from './types';
 import { CdekInput } from '../cdek-input/';
 
 const props = withDefaults(
   defineProps<{
     /**
-     * Обновляется при выборе из поля value выбранного из массива items элемента
+     * v-model
+     *
+     * Выбранное значение из доступных вариантов, НЕ строка, которую вводит пользователь
      *
      * `string | number`
      */
     modelValue: Value;
     /**
-     * Элементы выпадающего списка.
-     * `Array<string | number> | Array<IItemValue>`
-     * [Описание модели IItemValue](/?path=/story/ui-kit-cdekdropdown--primary)
+     * Готовый выпадающий список элементов
+     *
+     * Можно передать `string[]`, массив объектов по типу `{ value: string | number; title: string }`,
+     * либо массив объектов вашего типа
+     *
+     * Если `string[]` - то и значением v-model и отображаемым названием будет строка
+     *
+     * Если объект заготовленного типа - то значением будет `value`, а названием `title`
+     *
+     * Если массив вашего типа - то необходимо передать `getValue` и `getTitle`, подробнее смотрите в истории
      */
-    items?: Array<IItemValue> | Array<string>;
+    items?: ItemsUnion;
     /**
-     * Асинхронная Функция для поиска элементов.
-     * Принимает параметр `query: string`, возвращает
-     * `Array<string | number> | Array<IItemValue>`
+     * Асинхронная функция для поиска элементов.
+     *
+     * Должна принимать строку для поиска, введенную пользователем
+     *
+     * Должна отдавать `Promise` с результатом такого же типа, как и `items`
+     *
+     * Обработка результата происходит также, как в `items`
      */
-    fetchItems?: (query: string) => Promise<Array<IItemValue> | Array<string>>;
+    fetchItems?: (query: string) => Promise<ItemsUnion>;
     /**
      * Задержка(мс) от ввода значения в инпут, при истечении которой будет отправлен
      * запрос(вызов функции fetchItems) или осуществлен поиск по списку элеметов items
@@ -55,7 +68,6 @@ const props = withDefaults(
     readonly?: boolean;
     small?: boolean;
     clearable?: boolean;
-    onSelect?: (value: IItemValue) => void;
   }>(),
   {
     debounce: 300,
@@ -63,12 +75,12 @@ const props = withDefaults(
   }
 );
 
-const transformItems = (items: Array<IItemValue> | Array<string> = []) => {
+const transformItems = (items: ItemsUnion = []) => {
   if (typeof items[0] === 'object') {
-    return items as Array<IItemValue>;
+    return items as Item[];
   }
 
-  return items.map((item) => ({ value: item, title: item } as IItemValue));
+  return items.map((item) => ({ value: item, title: item } as Item));
 };
 
 const transformedItems = transformItems(props.items);
@@ -94,7 +106,7 @@ const options = computed(() => transformItems(state.items));
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Value): void;
-  (e: 'select', value: IItemValue): void;
+  (e: 'select', value: Item): void;
 }>();
 
 const onClear = () => {
@@ -117,11 +129,11 @@ const onChangeInput = (value: string) => {
         });
       } else {
         if (typeof (props.items || [])[0] === 'string') {
-          state.items = (props.items as Array<string>).filter((item) =>
+          state.items = (props.items as string[]).filter((item) =>
             item.toLowerCase().includes(value.toLowerCase())
           );
         } else {
-          state.items = (props.items as Array<IItemValue>).filter((item) =>
+          state.items = (props.items as Item[]).filter((item) =>
             String(item.title).toLowerCase().includes(value.toLowerCase())
           );
         }
@@ -162,11 +174,11 @@ const closeDropdown = () => {
 const onSelect = (value: IItemValue) => {
   closeDropdown();
   setActive(options.value.findIndex((option) => option.value === value.value));
-  state.selectedValue = value;
+  state.selectedValue = value as Item;
   inputValue.value = String(value.title);
 
   emit('update:modelValue', value.value);
-  emit('select', value);
+  emit('select', value as Item);
 };
 
 const onOutsideClick = (event: MouseEvent) => {
