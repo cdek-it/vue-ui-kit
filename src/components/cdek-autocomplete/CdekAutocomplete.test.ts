@@ -63,7 +63,7 @@ class CdekAutocompleteBuilder {
     return this;
   }
 
-  get settings(): any {
+  get settings() {
     return {
       props: {
         modelValue: this.modelValue,
@@ -87,7 +87,7 @@ class CdekAutocompleteBuilder {
   }
 
   build() {
-    const wrapper = mount(CdekAutocomplete, {
+    const wrapper = mount(CdekAutocomplete as any, {
       ...this.settings,
       props: {
         ...this.settings.props,
@@ -100,7 +100,7 @@ class CdekAutocompleteBuilder {
   }
 
   shallowBuild() {
-    const wrapper = shallowMount(CdekAutocomplete, {
+    const wrapper = shallowMount(CdekAutocomplete as any, {
       ...this.settings,
       props: {
         ...this.settings.props,
