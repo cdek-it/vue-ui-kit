@@ -8,10 +8,8 @@ import {
   useSlots,
 } from 'vue';
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
-import type {
-  IItemValue,
-  Primitive,
-} from '../cdek-dropdown/CdekDropdown.types';
+import type { IItemValue } from '../cdek-dropdown/CdekDropdown.types';
+import type { Value } from './types';
 import { CdekInput } from '../cdek-input/';
 
 const props = withDefaults(
@@ -19,9 +17,9 @@ const props = withDefaults(
     /**
      * Обновляется при выборе из поля value выбранного из массива items элемента
      *
-     * `string | number | boolean`
+     * `string | number`
      */
-    modelValue: Primitive;
+    modelValue: Value;
     /**
      * Элементы выпадающего списка.
      * `Array<string | number> | Array<IItemValue>`
@@ -95,7 +93,7 @@ const autocompleteRef = ref<HTMLDivElement>();
 const options = computed(() => transformItems(state.items));
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: Primitive): void;
+  (e: 'update:modelValue', value: Value): void;
   (e: 'select', value: IItemValue): void;
 }>();
 
