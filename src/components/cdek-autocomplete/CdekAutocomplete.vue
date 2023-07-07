@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref, onMounted, onBeforeUnmount, useSlots } from 'vue';
+import { debounce } from 'lodash';
 
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
 import { CdekInput } from '../cdek-input/';
@@ -44,11 +45,6 @@ const props = withDefaults(
      * Обработка результата происходит также, как в `items`
      */
     fetchItems?: (query: string) => Promise<ItemsUnion>;
-    /**
-     * Задержка(мс) от ввода значения в инпут, при истечении которой будет отправлен
-     * запрос(вызов функции fetchItems) или осуществлен поиск по списку элеметов items
-     */
-    debounce?: number;
     /**
      * Минимальная длина введеного значения, после которого будет отправлен
      * запрос(вызов функции fetchItems) или осуществлен поиск по списку элеметов items
@@ -107,43 +103,39 @@ const emit = defineEmits<{
   (e: 'select', value: Item): void;
 }>();
 
-const onClear = () => {
-  currentTitle.value = '';
-  emit('update:modelValue', '');
-};
+const checkInputValue = debounce((val: string) => {
+  // обнуляем подсвеченный элемент
+  highlightedEl.value = -1;
 
-let timeout: ReturnType<typeof setTimeout>;
-const onChangeInput = (value: string) => {
-  if (timeout) {
-    clearTimeout(timeout);
-  }
-  timeout = setTimeout(() => {
-    if (value.length >= props.minLength) {
-      // обнуляем подсвеченный элемент
-      highlightedEl.value = -1;
-
-      if (props.fetchItems) {
-        props.fetchItems(value).then((fetchedItems) => {
-          showedItems.value = fetchedItems;
-        });
-      } else {
-        if (typeof (props.items || [])[0] === 'string') {
-          showedItems.value = (props.items as string[]).filter((item) =>
-            item.toLowerCase().includes(value.toLowerCase())
-          );
-        } else {
-          showedItems.value = (props.items as Item[]).filter((item) =>
-            String(item.title).toLowerCase().includes(value.toLowerCase())
-          );
-        }
-      }
+  if (props.fetchItems) {
+    props.fetchItems(val).then((fetchedItems) => {
+      showedItems.value = fetchedItems;
+    });
+  } else {
+    if (typeof (props.items || [])[0] === 'string') {
+      showedItems.value = (props.items as string[]).filter((item) =>
+        item.toLowerCase().includes(val.toLowerCase())
+      );
     } else {
-      showedItems.value = null;
+      showedItems.value = (props.items as Item[]).filter((item) =>
+        String(item.title).toLowerCase().includes(val.toLowerCase())
+      );
     }
-    if (value.length === 0) {
-      onClear();
-    }
-  }, props.debounce);
+  }
+}, 300);
+
+const onChangeInput = (value: string) => {
+  if (value.length >= props.minLength) {
+    checkInputValue(value);
+    return;
+  }
+
+  if (value.length === 0) {
+    currentTitle.value = '';
+    emit('update:modelValue', '');
+  }
+
+  showedItems.value = null;
 };
 
 const closeDropdown = () => {
