@@ -1,16 +1,12 @@
 <script lang="ts" setup>
-import {
-  computed,
-  ref,
-  reactive,
-  onMounted,
-  onBeforeUnmount,
-  useSlots,
-} from 'vue';
+import { computed, ref, onMounted, onBeforeUnmount, useSlots } from 'vue';
+
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
+import { CdekInput } from '../cdek-input/';
+
 import type { IItemValue } from '../cdek-dropdown/CdekDropdown.types';
 import type { Value, Item, ItemsUnion } from './types';
-import { CdekInput } from '../cdek-input/';
+import { KeyboardKeys, transformItems, getTitleByValue } from './helpers';
 
 const props = withDefaults(
   defineProps<{
@@ -33,6 +29,9 @@ const props = withDefaults(
      * Если объект заготовленного типа - то значением будет `value`, а названием `title`
      *
      * Если массив вашего типа - то необходимо передать `getValue` и `getTitle`, подробнее смотрите в истории
+     *
+     * Для передачи начального значения передайте корректное значение в `v-model` и `items` из одного объекта,
+     * впоследствии значения будут браться из `fetchItems`
      */
     items?: ItemsUnion;
     /**
@@ -75,34 +74,33 @@ const props = withDefaults(
   }
 );
 
-const transformItems = (items: ItemsUnion = []) => {
-  if (typeof items[0] === 'object') {
-    return items as Item[];
+// null - не показываем dropdown
+const showedItems = ref<ItemsUnion | null>(null);
+const options = computed(() => transformItems(showedItems.value));
+
+// Сохраняем название выбранного элемента, чтобы подставлять в инпут при закрытии дропдауна
+const currentTitle = ref<string>(
+  getTitleByValue(props.items, props.modelValue)
+);
+
+const isOpen = computed(() => {
+  if (!showedItems.value) {
+    return false;
   }
 
-  return items.map((item) => ({ value: item, title: item } as Item));
-};
+  if (hasNotFoundMessage.value && !showedItems.value.length) {
+    return true;
+  }
 
-const transformedItems = transformItems(props.items);
-const state = reactive({
-  items: props.items,
-  isOpen: false,
-  activeIndex: transformedItems.findIndex(
-    (option) => option.value === props.modelValue
-  ),
-  selectedValue: transformedItems.find(
-    (item) => item.value === props.modelValue
-  ),
+  return showedItems.value.length > 0;
 });
 
-const inputValue = ref<string>(
-  state.selectedValue ? String(state.selectedValue?.title) : ''
-);
+const highlightedEl = ref<number>(-1);
+
+const inputValue = ref<string>(currentTitle.value || '');
 
 const inputControl = ref();
 const autocompleteRef = ref<HTMLDivElement>();
-
-const options = computed(() => transformItems(state.items));
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Value): void;
@@ -110,8 +108,8 @@ const emit = defineEmits<{
 }>();
 
 const onClear = () => {
+  currentTitle.value = '';
   emit('update:modelValue', '');
-  state.selectedValue = undefined;
 };
 
 let timeout: ReturnType<typeof setTimeout>;
@@ -121,27 +119,26 @@ const onChangeInput = (value: string) => {
   }
   timeout = setTimeout(() => {
     if (value.length >= props.minLength) {
-      state.activeIndex = -1;
+      // обнуляем подсвеченный элемент
+      highlightedEl.value = -1;
+
       if (props.fetchItems) {
         props.fetchItems(value).then((fetchedItems) => {
-          state.items = fetchedItems;
-          openDropdown();
+          showedItems.value = fetchedItems;
         });
       } else {
         if (typeof (props.items || [])[0] === 'string') {
-          state.items = (props.items as string[]).filter((item) =>
+          showedItems.value = (props.items as string[]).filter((item) =>
             item.toLowerCase().includes(value.toLowerCase())
           );
         } else {
-          state.items = (props.items as Item[]).filter((item) =>
+          showedItems.value = (props.items as Item[]).filter((item) =>
             String(item.title).toLowerCase().includes(value.toLowerCase())
           );
         }
-        openDropdown();
       }
     } else {
-      state.items = props.items;
-      state.isOpen = false;
+      showedItems.value = null;
     }
     if (value.length === 0) {
       onClear();
@@ -149,32 +146,21 @@ const onChangeInput = (value: string) => {
   }, props.debounce);
 };
 
-const openDropdown = () => {
-  if (options.value.length || hasNotFoundMessage.value) {
-    state.isOpen = true;
-  }
-};
-
 const closeDropdown = () => {
-  state.isOpen = false;
+  showedItems.value = null;
 
-  if (!state.selectedValue) {
+  if (!currentTitle.value) {
     inputValue.value = '';
+    return;
   }
 
-  setActive(
-    options.value.findIndex((item) => item.value === state.selectedValue?.value)
-  );
-
-  if (state.selectedValue) {
-    inputValue.value = String(state.selectedValue.title);
-  }
+  inputValue.value = currentTitle.value;
 };
 
 const onSelect = (value: IItemValue) => {
   closeDropdown();
-  setActive(options.value.findIndex((option) => option.value === value.value));
-  state.selectedValue = value as Item;
+
+  currentTitle.value = String(value.title);
   inputValue.value = String(value.title);
 
   emit('update:modelValue', value.value);
@@ -187,7 +173,7 @@ const onOutsideClick = (event: MouseEvent) => {
   }
 };
 
-const setActive = (index: number) => {
+const highlight = (index: number) => {
   if (index < 0) {
     index = options.value.length - 1;
   }
@@ -195,32 +181,32 @@ const setActive = (index: number) => {
     index = 0;
   }
 
-  state.activeIndex = index;
+  highlightedEl.value = index;
 };
 
 const onKeydown = (event: KeyboardEvent) => {
-  if (!state.isOpen) {
+  if (!isOpen.value) {
     return;
   }
 
-  switch (event.key) {
-    case 'ArrowDown':
-      setActive(state.activeIndex + 1);
-      break;
+  if (event.key === KeyboardKeys.ArrowDown) {
+    highlight(highlightedEl.value + 1);
+    return;
+  }
 
-    case 'ArrowUp':
-      setActive(state.activeIndex - 1);
-      break;
+  if (event.key === KeyboardKeys.ArrowUp) {
+    highlight(highlightedEl.value - 1);
+    return;
+  }
 
-    case 'Enter':
-      event.stopImmediatePropagation();
-      onSelect(options.value[state.activeIndex]);
-      break;
+  if (event.key === KeyboardKeys.Enter) {
+    event.stopImmediatePropagation();
+    onSelect(options.value[highlightedEl.value]);
+  }
 
-    case 'Escape':
-      event.stopImmediatePropagation();
-      closeDropdown();
-      break;
+  if (event.key === KeyboardKeys.Escape) {
+    event.stopImmediatePropagation();
+    closeDropdown();
   }
 };
 
@@ -278,7 +264,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
       </template>
     </CdekInput>
     <Transition>
-      <CdekDropdownBox v-if="state.isOpen">
+      <CdekDropdownBox v-if="isOpen">
         <div
           class="cdek-autocomplete__not-found"
           v-if="options.length === 0 && inputValue?.length >= minLength"
@@ -289,8 +275,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
         <CdekDropdownItem
           v-for="(item, index) in options"
           :value="item"
-          :active="index === state.activeIndex"
-          :selected="state.selectedValue?.value === item.value"
+          :active="index === highlightedEl"
           :key="item.value"
           @select="onSelect"
         >
