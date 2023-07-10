@@ -6,8 +6,14 @@ import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
 import { CdekInput } from '../cdek-input/';
 
 import type { IItemValue } from '../cdek-dropdown/CdekDropdown.types';
-import type { Value, Item, ItemsUnion } from './types';
-import { KeyboardKeys, transformItems, getTitleByValue } from './helpers';
+import type { Value, Item, ItemsUnion, FetchFunction } from './types';
+import {
+  KeyboardKeys,
+  transformItems,
+  getTitleByValue,
+  getSearchType,
+  getSearchFn,
+} from './helpers';
 
 const props = withDefaults(
   defineProps<{
@@ -44,10 +50,10 @@ const props = withDefaults(
      *
      * Обработка результата происходит также, как в `items`
      */
-    fetchItems?: (query: string) => Promise<ItemsUnion>;
+    fetchItems?: FetchFunction;
     /**
      * Минимальная длина введеного значения, после которого будет отправлен
-     * запрос(вызов функции fetchItems) или осуществлен поиск по списку элеметов items
+     * запрос (вызов функции fetchItems) или осуществлен поиск по списку элеметов items
      */
     minLength?: number;
     label?: string;
@@ -65,10 +71,11 @@ const props = withDefaults(
     clearable?: boolean;
   }>(),
   {
-    debounce: 300,
     minLength: 3,
   }
 );
+
+const searchType = computed(() => getSearchType(props.fetchItems, props.items));
 
 // null - не показываем dropdown
 const showedItems = ref<ItemsUnion | null>(null);
@@ -78,6 +85,7 @@ const options = computed(() => transformItems(showedItems.value));
 const currentTitle = ref<string>(
   getTitleByValue(props.items, props.modelValue)
 );
+const inputValue = ref<string>(currentTitle.value || '');
 
 const isOpen = computed(() => {
   if (!showedItems.value) {
@@ -91,11 +99,10 @@ const isOpen = computed(() => {
   return showedItems.value.length > 0;
 });
 
+// Подсвеченный элемент при управлении с клавиатуры
 const highlightedEl = ref<number>(-1);
 
-const inputValue = ref<string>(currentTitle.value || '');
-
-const inputControl = ref();
+const cdekInputRef = ref<typeof CdekInput>();
 const autocompleteRef = ref<HTMLDivElement>();
 
 const emit = defineEmits<{
@@ -103,31 +110,22 @@ const emit = defineEmits<{
   (e: 'select', value: Item): void;
 }>();
 
-const checkInputValue = debounce((val: string) => {
+const checkInputValue = debounce(async (val: string) => {
   // обнуляем подсвеченный элемент
   highlightedEl.value = -1;
 
-  if (props.fetchItems) {
-    props.fetchItems(val).then((fetchedItems) => {
-      showedItems.value = fetchedItems;
-    });
-  } else {
-    if (typeof (props.items || [])[0] === 'string') {
-      showedItems.value = (props.items as string[]).filter((item) =>
-        item.toLowerCase().includes(val.toLowerCase())
-      );
-    } else {
-      showedItems.value = (props.items as Item[]).filter((item) =>
-        String(item.title).toLowerCase().includes(val.toLowerCase())
-      );
-    }
+  const searchFn = getSearchFn(searchType.value, props.fetchItems);
+
+  try {
+    showedItems.value = await searchFn(val, props.items);
+  } catch {
+    showedItems.value = null;
   }
 }, 300);
 
 const onChangeInput = (value: string) => {
   if (value.length >= props.minLength) {
-    checkInputValue(value);
-    return;
+    return void checkInputValue(value);
   }
 
   if (value.length === 0) {
@@ -202,7 +200,7 @@ const onKeydown = (event: KeyboardEvent) => {
 
 let input: HTMLInputElement;
 onMounted(() => {
-  input = inputControl.value.getControl();
+  input = cdekInputRef.value?.getControl();
   input.addEventListener('keydown', onKeydown);
   document.addEventListener('click', onOutsideClick);
 });
@@ -234,7 +232,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
       :clearable="clearable"
       :placeholder="placeholder"
       v-model="inputValue"
-      ref="inputControl"
+      ref="cdekInputRef"
       @update:modelValue="onChangeInput"
     >
       <template #icons-right>
