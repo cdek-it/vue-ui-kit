@@ -1,4 +1,12 @@
-import type { ItemsUnion, Item, Value, FetchFunction, SearchFn } from './types';
+import type {
+  ItemsUnion,
+  Item,
+  Value,
+  FetchFunction,
+  SearchFn,
+  GetValueFn,
+  GetTitleFn,
+} from './types';
 
 export enum KeyboardKeys {
   ArrowDown = 'ArrowDown',
@@ -26,9 +34,20 @@ export enum SearchType {
   Error,
 }
 
-export const transformItems = (items: ItemsUnion | null = null) => {
+export const transformItems = (
+  items: ItemsUnion | null,
+  getValue?: GetValueFn,
+  getTitle?: GetTitleFn
+) => {
   if (!items) {
     return [];
+  }
+
+  if (getValue && getTitle) {
+    return items.map((item) => ({
+      value: getValue(item),
+      title: getTitle(item),
+    }));
   }
 
   if (typeof items[0] === 'object') {
@@ -57,7 +76,8 @@ export const getTitleByValue = (items?: ItemsUnion, value?: Value) => {
 
 export const getSearchType = (
   fetchItems?: FetchFunction,
-  items?: ItemsUnion
+  items?: ItemsUnion,
+  getTitle?: GetTitleFn
 ) => {
   if (fetchItems) {
     return SearchType.ByFetch;
@@ -69,6 +89,10 @@ export const getSearchType = (
 
   if (typeof items[0] === 'string') {
     return SearchType.ByItemText;
+  }
+
+  if (typeof items[0] === 'object' && getTitle) {
+    return SearchType.ByItemGetTitle;
   }
 
   if (typeof items[0] === 'object' && 'title' in items[0]) {
@@ -92,13 +116,33 @@ export const searchByItemTitle = (query: string, items: Item[]) => {
   );
 };
 
-export const getSearchFn = (type: SearchType, fetchItems?: FetchFunction) => {
+export const searchByGetTitleFn = (
+  getTitle: GetTitleFn,
+  query: string,
+  items: any[]
+) => {
+  return Promise.resolve(
+    items.filter((item) =>
+      getTitle(item).toLowerCase().includes(query.toLowerCase())
+    )
+  );
+};
+
+export const getSearchFn = (
+  type: SearchType,
+  fetchItems?: FetchFunction,
+  getTitle?: GetTitleFn
+) => {
   if (type === SearchType.ByFetch && fetchItems) {
     return fetchItems as SearchFn;
   }
 
   if (type === SearchType.ByItemText) {
     return searchByItemText as SearchFn;
+  }
+
+  if (type === SearchType.ByItemGetTitle && getTitle) {
+    return searchByGetTitleFn.bind(null, getTitle) as SearchFn;
   }
 
   if (type === SearchType.ByItemTitle) {

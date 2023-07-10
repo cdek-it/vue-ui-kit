@@ -6,7 +6,14 @@ import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
 import { CdekInput } from '../cdek-input/';
 
 import type { IItemValue } from '../cdek-dropdown/CdekDropdown.types';
-import type { Value, Item, ItemsUnion, FetchFunction } from './types';
+import type {
+  Value,
+  Item,
+  ItemsUnion,
+  FetchFunction,
+  GetValueFn,
+  GetTitleFn,
+} from './types';
 import {
   KeyboardKeys,
   transformItems,
@@ -52,6 +59,14 @@ const props = withDefaults(
      */
     fetchItems?: FetchFunction;
     /**
+     * Кастомная функция для получения `value` из объектов, попадет в `v-model`
+     */
+    getValue?: GetValueFn;
+    /**
+     * Кастомная функция для получения `title` из объектов, используется для отображения в списке
+     */
+    getTitle?: GetTitleFn;
+    /**
      * Минимальная длина введеного значения, после которого будет отправлен
      * запрос (вызов функции fetchItems) или осуществлен поиск по списку элеметов items
      */
@@ -75,11 +90,15 @@ const props = withDefaults(
   }
 );
 
-const searchType = computed(() => getSearchType(props.fetchItems, props.items));
+const searchType = computed(() =>
+  getSearchType(props.fetchItems, props.items, props.getTitle)
+);
 
 // null - не показываем dropdown
 const showedItems = ref<ItemsUnion | null>(null);
-const options = computed(() => transformItems(showedItems.value));
+const options = computed(() =>
+  transformItems(showedItems.value, props.getValue, props.getTitle)
+);
 
 // Сохраняем название выбранного элемента, чтобы подставлять в инпут при закрытии дропдауна
 const currentTitle = ref<string>(
@@ -107,14 +126,18 @@ const autocompleteRef = ref<HTMLDivElement>();
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Value): void;
-  (e: 'select', value: Item): void;
+  (e: 'select', value: string | Item | any): void;
 }>();
 
 const checkInputValue = debounce(async (val: string) => {
   // обнуляем подсвеченный элемент
   highlightedEl.value = -1;
 
-  const searchFn = getSearchFn(searchType.value, props.fetchItems);
+  const searchFn = getSearchFn(
+    searchType.value,
+    props.fetchItems,
+    props.getTitle
+  );
 
   try {
     showedItems.value = await searchFn(val, props.items);
@@ -147,14 +170,15 @@ const closeDropdown = () => {
   inputValue.value = currentTitle.value;
 };
 
-const onSelect = (value: IItemValue) => {
+const onSelect = (value: IItemValue, index: number) => {
+  emit('select', showedItems.value?.[index]);
+
   closeDropdown();
 
   currentTitle.value = String(value.title);
   inputValue.value = String(value.title);
 
   emit('update:modelValue', value.value);
-  emit('select', value as Item);
 };
 
 const onOutsideClick = (event: MouseEvent) => {
@@ -189,7 +213,10 @@ const onKeydown = (event: KeyboardEvent) => {
 
   if (event.key === KeyboardKeys.Enter) {
     event.stopImmediatePropagation();
-    return void onSelect(options.value[highlightedEl.value]);
+    return void onSelect(
+      options.value[highlightedEl.value],
+      highlightedEl.value
+    );
   }
 
   if (event.key === KeyboardKeys.Escape) {
@@ -265,7 +292,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
           :value="item"
           :active="index === highlightedEl"
           :key="item.value"
-          @select="onSelect"
+          @select="(item) => onSelect(item, index)"
         >
           {{ item.title }}
         </CdekDropdownItem>
