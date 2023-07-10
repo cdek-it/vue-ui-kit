@@ -182,23 +182,21 @@ const onKeydown = (event: KeyboardEvent) => {
   }
 
   if (event.key === KeyboardKeys.ArrowDown) {
-    highlight(highlightedEl.value + 1);
-    return;
+    return void highlight(highlightedEl.value + 1);
   }
 
   if (event.key === KeyboardKeys.ArrowUp) {
-    highlight(highlightedEl.value - 1);
-    return;
+    return void highlight(highlightedEl.value - 1);
   }
 
   if (event.key === KeyboardKeys.Enter) {
     event.stopImmediatePropagation();
-    onSelect(options.value[highlightedEl.value]);
+    return void onSelect(options.value[highlightedEl.value]);
   }
 
   if (event.key === KeyboardKeys.Escape) {
     event.stopImmediatePropagation();
-    closeDropdown();
+    return void closeDropdown();
   }
 };
 
