@@ -24,5 +24,6 @@ module.exports = {
       { varsIgnorePattern: 'props' },
     ],
     curly: 'error',
+    'arrow-body-style': ['error', 'as-needed'],
   },
 };
