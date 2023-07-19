@@ -33,7 +33,7 @@ export interface CdekChipProps {
   label: string;
   modelValue?: boolean;
   /**
-   *  Кол-во опций, показывается рядом с названием
+   *  Кол-во опций, показывается рядом с названием слева
    */
   amount?: number;
   disabled?: boolean;
