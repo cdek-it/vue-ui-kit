@@ -12,6 +12,7 @@ export * from './components/cdek-switch';
 export * from './components/cdek-toaster';
 export * from './components/cdek-widget';
 export * from './components/form';
+export * from './components/cdek-chip';
 
 export * from './plugins/toastification';
 

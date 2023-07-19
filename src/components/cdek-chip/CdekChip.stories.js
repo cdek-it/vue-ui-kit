@@ -90,7 +90,7 @@ Amount.args = {
 Amount.parameters = {
   docs: {
     source: {
-      code: '<CdekChip label="Chip" amount="99"/>',
+      code: '<CdekChip label="Chip" :amount="99"/>',
     },
   },
 };
@@ -122,12 +122,35 @@ IconAndAmount.args = {
 };
 IconAndAmount.parameters = {
   docs: {
-    code: `
-<CdekChip label="Chip" amount="99">
+    source: {
+      code: `
+<CdekChip label="Chip" :amount="99">
     <template v-slot:icon>
       <Clock/>
     </template>
 </CdekChip>
 `,
+    },
+  },
+};
+
+export const SmallWithIconAndAmount = Template.bind({});
+SmallWithIconAndAmount.args = {
+  label: 'Chip',
+  story: 'IconAndAmount',
+  amount: 99,
+  small: true,
+};
+SmallWithIconAndAmount.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekChip label="Chip" :amount="99" small>
+    <template v-slot:icon>
+      <Clock/>
+    </template>
+</CdekChip>
+`,
+    },
   },
 };

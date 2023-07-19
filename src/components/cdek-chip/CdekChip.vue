@@ -2,13 +2,15 @@
   <button
     class="cdek-chip"
     :class="{
-      selected,
-      disabled,
-      small,
+      'cdek-chip_selected': selected,
+      'cdek-chip_disabled': disabled,
+      'cdek-chip_small': small,
     }"
     @click="onClickChipHandler"
+    :disabled="disabled"
   >
     <span v-if="iconEnabled" class="cdek-chip__icon__wrapper">
+      <!-- @slot слот для иконки, показывается справа -->
       <slot name="icon" />
     </span>
 
@@ -25,8 +27,14 @@
 import { computed, ref, useSlots, watch } from 'vue';
 
 export interface CdekChipProps {
+  /**
+   * Название чипа
+   */
   label: string;
   modelValue?: boolean;
+  /**
+   *  Кол-во опций, показывается рядом с названием
+   */
   amount?: number;
   disabled?: boolean;
   small?: boolean;
@@ -37,9 +45,8 @@ const slots = useSlots();
 const props = withDefaults(defineProps<CdekChipProps>(), {
   small: false,
   modelValue: false,
+  disabled: false,
 });
-
-const selected = ref(props.disabled ? false : props.modelValue);
 
 const emit = defineEmits<{
   /**
@@ -48,21 +55,34 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void;
 }>();
 
+const selected = ref(props.disabled ? false : props.modelValue);
+
+const onClickChipHandler = () => {
+  if (props.disabled) {
+    return;
+  }
+  selected.value = !selected.value;
+};
+
+watch(selected, () => {
+  emit('update:modelValue', selected.value);
+});
+
+watch(
+  () => props.disabled,
+  () => {
+    if (!props.disabled) {
+      selected.value = false;
+    }
+  }
+);
+
 const amountEnabled = computed(
   () => typeof props.amount === 'number' && !Number.isNaN(props.amount)
 );
 
 const iconEnabled = computed(() => {
   return Boolean(slots.icon);
-});
-
-const onClickChipHandler = () => {
-  if (props.disabled) return;
-  selected.value = !selected.value;
-};
-
-watch(selected, () => {
-  emit('update:modelValue', selected.value);
 });
 </script>
 
@@ -75,16 +95,18 @@ watch(selected, () => {
   border: none;
   padding: 12px;
   outline-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  transition: all 0.3s ease;
 
   @include body-1;
 
-  &:not(.disabled) {
+  &:not(&_disabled) {
     &:focus-visible {
       outline: 2px solid $Success_40;
     }
   }
 
-  &:not(.disabled, .selected) {
+  &:not(&_disabled, &_selected) {
     @include media-hover {
       background: $Primary_10;
 
@@ -101,12 +123,21 @@ watch(selected, () => {
   &__icon__wrapper {
     display: flex;
     align-items: center;
+    width: 24px;
+    height: 24px;
+
+    :deep(svg) {
+      width: 100%;
+      height: 100%;
+
+      path {
+        stroke: $Primary_Calm;
+      }
+    }
   }
 
   &__text {
-    display: flex;
     padding: 0 4px;
-    align-items: center;
   }
 
   &__amount {
@@ -116,12 +147,14 @@ watch(selected, () => {
     @include caption-1;
   }
 
-  &.selected {
+  &_selected {
     background: $Primary;
     color: $Peak;
 
-    :deep(path) {
-      stroke: $Peak;
+    .cdek-chip__icon__wrapper {
+      :deep(path) {
+        stroke: $Peak;
+      }
     }
 
     .cdek-chip__amount {
@@ -129,18 +162,31 @@ watch(selected, () => {
     }
   }
 
-  &.disabled {
+  &_disabled {
     background: $Input_Disable;
     color: $Button_Disable;
+
+    :deep(path) {
+      stroke: $Button_Disable;
+    }
   }
 
-  &.small {
+  &_small {
     padding: 8px 12px;
 
     @include body-2;
 
     .cdek-chip__amount {
-      padding: 0 8px;
+      padding: 0 4px;
+    }
+
+    .cdek-chip__icon__wrapper {
+      width: 20px;
+      height: 20px;
+
+      :deep(path) {
+        transform: scale(0.88);
+      }
     }
   }
 }
