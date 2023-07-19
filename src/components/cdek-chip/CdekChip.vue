@@ -147,10 +147,9 @@ const iconEnabled = computed(() => {
   &__amount {
     padding: 0 8px;
     color: $Tertiary_70;
+    transition: color 0.4s ease;
 
     @include caption-1;
-
-    transition: color 0.4s ease;
   }
 
   &_selected {
