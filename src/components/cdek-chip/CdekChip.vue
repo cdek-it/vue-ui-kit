@@ -33,7 +33,7 @@ export interface CdekChipProps {
   label: string;
   modelValue?: boolean;
   /**
-   *  Кол-во опций, показывается рядом с названием слева
+   *  Кол-во опций, показывается рядом с названием справа
    */
   amount?: number;
   disabled?: boolean;
@@ -95,9 +95,11 @@ const iconEnabled = computed(() => {
   border: none;
   padding: 12px;
   outline-color: rgba(0, 0, 0, 0);
-  cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 
+  &:not([disabled]) {
+    cursor: pointer;
+  }
   @include body-1;
 
   &:not(&_disabled) {
@@ -129,6 +131,7 @@ const iconEnabled = computed(() => {
     :deep(svg) {
       width: 100%;
       height: 100%;
+      transition: all 0.1s ease;
 
       path {
         stroke: $Primary_Calm;
@@ -138,6 +141,7 @@ const iconEnabled = computed(() => {
 
   &__text {
     padding: 0 4px;
+    transition: color 0.3s ease;
   }
 
   &__amount {
@@ -145,16 +149,21 @@ const iconEnabled = computed(() => {
     color: $Tertiary_70;
 
     @include caption-1;
+
+    transition: color 0.4s ease;
   }
 
   &_selected {
     background: $Primary;
-    color: $Peak;
 
     .cdek-chip__icon__wrapper {
       :deep(path) {
         stroke: $Peak;
       }
+    }
+
+    .cdek-chip__text {
+      color: $Peak;
     }
 
     .cdek-chip__amount {
