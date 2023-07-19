@@ -10,7 +10,7 @@
     :disabled="disabled"
   >
     <span v-if="iconEnabled" class="cdek-chip__icon__wrapper">
-      <!-- @slot слот для иконки, показывается справа -->
+      <!-- @slot слот для иконки, показывается слева -->
       <slot name="icon" />
     </span>
 
@@ -95,7 +95,7 @@ const iconEnabled = computed(() => {
   border: none;
   padding: 12px;
   outline-color: rgba(0, 0, 0, 0);
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
 
   &:not([disabled]) {
     cursor: pointer;
@@ -131,9 +131,9 @@ const iconEnabled = computed(() => {
     :deep(svg) {
       width: 100%;
       height: 100%;
-      transition: all 0.1s ease;
 
       path {
+        transition: all 0.3s ease;
         stroke: $Primary_Calm;
       }
     }
@@ -141,13 +141,13 @@ const iconEnabled = computed(() => {
 
   &__text {
     padding: 0 4px;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
   }
 
   &__amount {
     padding: 0 8px;
     color: $Tertiary_70;
-    transition: color 0.4s ease;
+    transition: all 0.3s ease;
 
     @include caption-1;
   }
