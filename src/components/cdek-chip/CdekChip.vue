@@ -6,8 +6,8 @@
       'cdek-chip_disabled': disabled,
       'cdek-chip_small': small,
     }"
-    @click="onClickChipHandler"
     :disabled="disabled"
+    @click="onClickChipHandler"
   >
     <span v-if="iconEnabled" class="cdek-chip__icon__wrapper">
       <!-- @slot слот для иконки, показывается слева -->
@@ -57,22 +57,34 @@ const emit = defineEmits<{
 
 const selected = ref(props.disabled ? false : props.modelValue);
 
+const updateModelValue = (value: boolean) => {
+  emit('update:modelValue', value);
+  selected.value = value;
+};
+
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    if (props.disabled) {
+      updateModelValue(false);
+      return;
+    }
+    selected.value = newValue;
+  }
+);
+
 const onClickChipHandler = () => {
   if (props.disabled) {
     return;
   }
-  selected.value = !selected.value;
+  updateModelValue(!selected.value);
 };
-
-watch(selected, () => {
-  emit('update:modelValue', selected.value);
-});
 
 watch(
   () => props.disabled,
   () => {
-    if (!props.disabled) {
-      selected.value = false;
+    if (props.disabled) {
+      updateModelValue(false);
     }
   }
 );
