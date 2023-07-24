@@ -158,5 +158,15 @@ describe('Unit: CdekChip', () => {
 
       expect(wrapper.classes('cdek-chip_selected')).toBeFalsy();
     });
+
+    test('Если кликнуть по компоненту c v-model true, то он должен перестать быть активным', async () => {
+      const wrapper = new CdekChipBuilder().setModelValue(true).build();
+
+      expect(wrapper.classes('cdek-chip_selected')).toBeTruthy();
+
+      await wrapper.trigger('click');
+
+      expect(wrapper.classes('cdek-chip_selected')).toBeFalsy();
+    });
   });
 });
