@@ -66,7 +66,7 @@ class CdekInputBuilder {
   }
 
   build() {
-    const wrapper = shallowMount(CdekInput, {
+    const wrapper = shallowMount(CdekInput as any, {
       props: {
         modelValue: this.modelValue,
         'onUpdate:modelValue': (e: string) =>

@@ -65,7 +65,7 @@ class CdekSelectBuilder {
   }
 
   build() {
-    const wrapper = mount(CdekSelect, {
+    const wrapper = mount(CdekSelect as any, {
       props: {
         modelValue: this.modelValue,
         items: this.items,

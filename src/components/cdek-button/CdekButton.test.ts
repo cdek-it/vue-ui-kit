@@ -44,7 +44,7 @@ class CdekButtonBuilder {
   }
 
   build() {
-    return shallowMount(CdekButton, {
+    return shallowMount(CdekButton as any, {
       props: {
         theme: this.theme,
         width: this.width,
