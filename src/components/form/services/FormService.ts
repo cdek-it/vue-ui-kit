@@ -8,7 +8,7 @@ export default class FormService {
   readonly fields: FieldsT = {};
   readonly errors: ErrorsT = {};
 
-  private submitSubscribers: Function[] = [];
+  submitSubscribers: Function[] = [];
 
   /**
    * @param name - название поля

@@ -23,5 +23,6 @@ module.exports = {
       'warn',
       { varsIgnorePattern: 'props' },
     ],
+    curly: 'error',
   },
 };

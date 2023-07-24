@@ -34,7 +34,7 @@ class CdekWidgetBuilder {
   disabled = false;
 
   build() {
-    return mount(CdekWidget, {
+    return mount(CdekWidget as any, {
       props: {
         headline: this.headline,
         withoutPaddings: this.withoutPaddings,

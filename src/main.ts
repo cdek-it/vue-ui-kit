@@ -1,6 +1,7 @@
 export * from './components/cdek-autocomplete';
 export * from './components/cdek-badge';
 export * from './components/cdek-button';
+export * from './components/cdek-chip';
 export * from './components/cdek-dropdown';
 export * from './components/cdek-headline';
 export * from './components/cdek-input';
