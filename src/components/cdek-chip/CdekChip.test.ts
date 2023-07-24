@@ -12,8 +12,6 @@ interface CdekChipBuilder {
   setIcon: (icon: string) => CdekChipBuilder;
 }
 
-// Поправить v-model, он сейчас однонаправленный
-
 class CdekChipBuilder {
   @builderProp
   modelValue = false;
