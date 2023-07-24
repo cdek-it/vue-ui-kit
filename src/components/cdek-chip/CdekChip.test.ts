@@ -34,15 +34,15 @@ class CdekChipBuilder {
   build() {
     const slots = this.icon ? { icon: this.icon } : {};
 
-    return shallowMount(CdekChip, {
+    return shallowMount(CdekChip as any, {
       props: {
         modelValue: this.modelValue,
         label: this.label,
         amount: this.amount,
         disabled: this.disabled,
         small: this.small,
-      },
-      slots,
+      } as any,
+      slots: slots as any,
     });
   }
 }
