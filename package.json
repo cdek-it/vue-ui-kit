@@ -1,6 +1,6 @@
 {
   "name": "@cdek-ui-kit/vue",
-  "version": "0.1.0-rc-200623",
+  "version": "0.1.0-alpha.inter1628",
   "type": "module",
   "files": [
     "dist"
