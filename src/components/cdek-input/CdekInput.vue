@@ -47,14 +47,12 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
 }>();
 
-const value = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(newValue) {
-    emit('update:modelValue', newValue);
-  },
-});
+const value = computed(() => props.modelValue);
+
+const setValue = (event: any) => {
+  emit('update:modelValue', event.target.value);
+};
+
 const clear = () => {
   emit('update:modelValue', '');
 };
@@ -114,7 +112,8 @@ defineExpose({ getControl });
           'cdek-input__input_no-label': !label,
           'cdek-input__input_small': small,
         }"
-        v-model="value"
+        :value="value"
+        @input="setValue"
         v-bind="$attrs"
         :disabled="disabled || readonly"
         ref="inputRef"
