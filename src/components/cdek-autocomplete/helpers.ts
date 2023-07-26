@@ -87,12 +87,12 @@ export const getSearchType = (
     return SearchType.Error;
   }
 
-  if (typeof items[0] === 'string') {
-    return SearchType.ByItemText;
+  if (getTitle) {
+    return SearchType.ByItemGetTitle;
   }
 
-  if (typeof items[0] === 'object' && getTitle) {
-    return SearchType.ByItemGetTitle;
+  if (typeof items[0] === 'string') {
+    return SearchType.ByItemText;
   }
 
   if (typeof items[0] === 'object' && 'title' in items[0]) {
