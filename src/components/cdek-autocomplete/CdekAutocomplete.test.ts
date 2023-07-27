@@ -163,4 +163,50 @@ describe('Unit: CdekAutocomplete', () => {
       expect(wrapper.emitted('select')?.[0]).toEqual([items[0]]);
     }
   );
+
+  // Набор тестов для проверки задания значения сверху с разными типами items
+  test.each([
+    {
+      itemsDesc: 'массив строк',
+      items: ['a', 'b'],
+      modelValue: 'a',
+      inputValue: 'a',
+    },
+    {
+      itemsDesc: 'массив объектов с value, title',
+      items: [
+        { value: 'a', title: 'А' },
+        { value: 'b', title: 'Б' },
+      ],
+      modelValue: 'a',
+      inputValue: 'А',
+    },
+    {
+      itemsDesc: 'массив кастомных объектов',
+      items: [
+        { a: 'a', b: 'А' },
+        { a: 'b', b: 'Б' },
+      ],
+      modelValue: 'a',
+      inputValue: 'А',
+      getValue: (item: any) => item.a,
+      getTitle: (item: any) => item.b,
+    },
+  ])(
+    'При смене modelValue сверху должен выбрать этот элемент, items - $itemsDesc',
+    async ({ items, modelValue, inputValue, getValue, getTitle }) => {
+      const wrapper = new CdekAutocompleteBuilder()
+        .setItems(items)
+        .setGetValue(getValue)
+        .setGetTitle(getTitle)
+        .build();
+
+      // Имитируем передачу нового значения сверху
+      wrapper.setProps({ modelValue });
+      await flushPromises();
+
+      const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+      expect(input.attributes('modelvalue')).toBe(inputValue);
+    }
+  );
 });

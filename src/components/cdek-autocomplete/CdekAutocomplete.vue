@@ -1,5 +1,12 @@
 <script lang="ts" setup>
-import { computed, ref, onMounted, onBeforeUnmount, useSlots } from 'vue';
+import {
+  computed,
+  ref,
+  onMounted,
+  onBeforeUnmount,
+  useSlots,
+  watch,
+} from 'vue';
 import { debounce } from 'lodash';
 
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
@@ -105,6 +112,30 @@ const currentTitle = ref<string>(
   getTitleByValue(props.items, props.modelValue, props.getValue, props.getTitle)
 );
 const inputValue = ref<string>(currentTitle.value || '');
+
+watch(
+  () => props.modelValue,
+  (value) => {
+    const newTitle = getTitleByValue(
+      props.items,
+      value,
+      props.getValue,
+      props.getTitle
+    );
+
+    if (!newTitle) {
+      // сбрасываем некорректное значение
+      emit('update:modelValue', '');
+      currentTitle.value = '';
+      inputValue.value = '';
+
+      return;
+    }
+
+    currentTitle.value = newTitle;
+    inputValue.value = newTitle;
+  }
+);
 
 const isOpen = computed(() => {
   if (!showedItems.value) {
