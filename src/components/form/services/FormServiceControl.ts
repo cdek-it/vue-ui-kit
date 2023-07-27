@@ -28,7 +28,7 @@ export default class FormServiceControl {
     this.register(initialValue || '');
     this.formService.subscribeOnSubmit(this.showError.bind(this));
     getValidators().subscribeOnLanguageChange(
-      this.changeErrorMessageIfShowed.bind(this)
+      this.changeErrorMessage.bind(this)
     );
   }
 
@@ -46,7 +46,7 @@ export default class FormServiceControl {
   updateValidators(rules: RulesT) {
     this.parseRules(rules);
     this.validateField();
-    this.changeErrorMessageIfShowed();
+    this.changeErrorMessage();
   }
 
   /**
@@ -71,9 +71,10 @@ export default class FormServiceControl {
    * Необходимо после смены языка (чтобы показать сообщение на другом языке)
    * и после смены валидаторов (другие валидаторы = другие ошибки)
    */
-  changeErrorMessageIfShowed() {
+  changeErrorMessage() {
+    this.validateField();
+
     if (this.error) {
-      this.validateField();
       this.showError();
     }
   }
