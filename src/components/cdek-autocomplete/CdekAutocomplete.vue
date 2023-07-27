@@ -102,7 +102,7 @@ const options = computed(() =>
 
 // Сохраняем название выбранного элемента, чтобы подставлять в инпут при закрытии дропдауна
 const currentTitle = ref<string>(
-  getTitleByValue(props.items, props.modelValue)
+  getTitleByValue(props.items, props.modelValue, props.getValue, props.getTitle)
 );
 const inputValue = ref<string>(currentTitle.value || '');
 
