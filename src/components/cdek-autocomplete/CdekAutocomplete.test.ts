@@ -10,6 +10,8 @@ import type {
   GetValueFn,
   GetTitleFn,
   FetchFunction,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  Item, // Используется как тип в комментарии
 } from './types';
 
 interface CdekAutocompleteBuilder {
@@ -19,6 +21,9 @@ interface CdekAutocompleteBuilder {
   setGetTitle: (getTitle?: GetTitleFn) => CdekAutocompleteBuilder;
   setFetchItems: (fetchItems?: FetchFunction) => CdekAutocompleteBuilder;
   setMinLength: (minLength: number) => CdekAutocompleteBuilder;
+  setLabel: (label: string) => CdekAutocompleteBuilder;
+  setPlaceholder: (placeholder: string) => CdekAutocompleteBuilder;
+  setValidRes: (validRes: true | string) => CdekAutocompleteBuilder;
 }
 
 class CdekAutocompleteBuilder {
@@ -40,6 +45,15 @@ class CdekAutocompleteBuilder {
   @builderProp
   minLength?: number;
 
+  @builderProp
+  label?: string;
+
+  @builderProp
+  placeholder?: string;
+
+  @builderProp
+  validRes?: true | string;
+
   build() {
     const wrapper = shallowMount(CdekAutocomplete as any, {
       props: {
@@ -51,6 +65,9 @@ class CdekAutocompleteBuilder {
         getTitle: this.getTitle,
         fetchItems: this.fetchItems,
         minLength: this.minLength,
+        label: this.label,
+        placeholder: this.placeholder,
+        validRes: this.validRes,
       },
       global: {
         renderStubDefaultSlot: true,
@@ -82,7 +99,15 @@ describe('Unit: CdekAutocomplete', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
 
-  // Набор тестов для проверки инициализации с конкретным значением с разными типами items
+  /**
+   * Набор тестов для проверки инициализации с конкретным значением с разными типами items
+   *
+   * @param {string} itemsDesc - вставляется в название тесте
+   * @param {ItemsUnion} items - используется в setItems
+   * @param {string} inputValue - значение, которое должно отобразиться в input
+   * @param {GetValueFn} [getValue] - передается в setGetValue
+   * @param {GetTitleFn} [getTitle] - передается в setGetTitle
+   */
   test.each([
     { itemsDesc: 'массив строк', items: ['test'], inputValue: 'test' },
     {
@@ -111,7 +136,19 @@ describe('Unit: CdekAutocomplete', () => {
     }
   );
 
-  // Набор тестов для проверки v-model и select с разными типами items и fetchItems
+  /**
+   * Набор тестов для проверки v-model и select с разными типами items и fetchItems
+   *
+   * @param {string} itemsDesc - вставляется в название теста
+   * @param {ItemsUnion} [items] - используется в setItems
+   * @param {string} userSearch - строка для поиска, которую пользователь вводит в input
+   * @param {Item} dropdownOption - первая отображаемая опция в dropdown (трансформированная)
+   * @param {string} newUserSearch - строка, отображаемая в input после выбора первой опции
+   * @param {GetValueFn} [getValue] - передается в setGetValue
+   * @param {GetTitleFn} [getTitle] - передается в setGetTitle
+   * @param {FetchFunction} [fetchItems] - передается в setFetchItems
+   * @param {Item | string | object} [selectResult] - то, что должно быть передано в событии select (если не передано, то берется items[0])
+   */
   test.each([
     {
       itemsDesc: 'items - массив строк',
@@ -186,7 +223,7 @@ describe('Unit: CdekAutocomplete', () => {
       // Имитируем пользовательский ввод "tes"
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
       input.vm.$emit('update:modelValue', userSearch);
-      await sleep(300); // Ждем из-за debounce
+      await sleep(400); // Ждем из-за debounce
       expect(input.attributes('modelvalue')).toBe(userSearch);
 
       // Имитируем выбор показанной опции "test"
@@ -213,7 +250,16 @@ describe('Unit: CdekAutocomplete', () => {
     }
   );
 
-  // Набор тестов для проверки задания значения сверху с разными типами items
+  /**
+   * Набор тестов для проверки задания значения сверху с разными типами items
+   *
+   * @param {string} itemsDesc - вставляется в название теста
+   * @param {ItemsUnion} [items] - используется в setItems
+   * @param {string} modelValue - начальное значение v-model
+   * @param {string} inputValue - значение, которое должно отобразиться в input
+   * @param {GetValueFn} [getValue] - передается в setGetValue
+   * @param {GetTitleFn} [getTitle] - передается в setGetTitle
+   */
   test.each([
     {
       itemsDesc: 'массив строк',
@@ -259,7 +305,16 @@ describe('Unit: CdekAutocomplete', () => {
     }
   );
 
-  // Набор тестов для проверки задания некорректного значения сверху с разными типами items
+  /**
+   * Набор тестов для проверки задания некорректного значения сверху с разными типами items
+   *
+   * @param {string} itemsDesc - вставляется в название теста
+   * @param {string} modelValue - передается в setModelValue (не должно быть 'c')
+   * @param {ItemsUnion} items - передается в setItems
+   * @param {string} inputValue - значение, которое должно быть в инпуте при инициализации и после некорректного задания v-model
+   * @param {GetValueFn} [getValue] - передается в setGetValue
+   * @param {GetTitleFn} [setTitle] - передается в setGetTitle
+   */
   test.each([
     {
       itemsDesc: 'массив строк',
@@ -312,7 +367,12 @@ describe('Unit: CdekAutocomplete', () => {
     }
   );
 
-  // Набор тестов для проверки minLength
+  /**
+   * Набор тестов для проверки minLength
+   *
+   * @param {number} minLength - передается в setMinLength
+   * @param {number} optionsLength - кол-во опций, которые должно быть в списке
+   */
   test.each([
     { minLength: 3, optionsLength: 0 },
     { minLength: 1, optionsLength: 2 },
@@ -333,6 +393,31 @@ describe('Unit: CdekAutocomplete', () => {
       const options = wrapper.findAll(dti('cdek-dropdown-item'));
 
       expect(options.length).toBe(optionsLength);
+    }
+  );
+
+  /**
+   * Набор тестов для проверки передачи параметров для CdekInput
+   *
+   * @param {string} propName - название свойства
+   * @param {string} methodName - название метода для установки этого свойства
+   * @param {string} [attrName] - название атрибута для поиска на инпуте, если отличается от propName
+   */
+  test.each([
+    { propName: 'label', methodName: 'setLabel' },
+    { propName: 'placeholder', methodName: 'setPlaceholder' },
+    { propName: 'validRes', attrName: 'validres', methodName: 'setValidRes' },
+  ])(
+    '$propName должен передаться в CdekInput',
+    ({ propName, methodName, attrName }) => {
+      // Задаем нужно свойство с названия метода methodName
+      const wrapper = (new CdekAutocompleteBuilder() as any)
+        [methodName]('Тест')
+        .build();
+
+      const input = wrapper.find(dti('cdek-input'));
+      console.log(input.html());
+      expect(input.attributes(attrName || propName)).toBe('Тест');
     }
   );
 });
