@@ -282,13 +282,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
 </script>
 
 <template>
-  <div
-    class="cdek-autocomplete"
-    :class="{
-      'cdek-autocomplete_small': small && label,
-    }"
-    ref="autocompleteRef"
-  >
+  <div class="cdek-autocomplete" ref="autocompleteRef">
     <CdekInput
       :label="label"
       :disabled="disabled"
