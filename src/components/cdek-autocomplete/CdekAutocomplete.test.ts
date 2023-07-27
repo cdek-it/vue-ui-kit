@@ -4,13 +4,20 @@ import { describe, test, expect, vi } from 'vitest';
 import CdekAutocomplete from './CdekAutocomplete.vue';
 import builderProp from '@/test/decorators';
 import { dti, sleep } from '@/test/helpers';
-import type { Value, ItemsUnion, GetValueFn, GetTitleFn } from './types';
+import type {
+  Value,
+  ItemsUnion,
+  GetValueFn,
+  GetTitleFn,
+  FetchFunction,
+} from './types';
 
 interface CdekAutocompleteBuilder {
   setModelValue: (value: Value) => CdekAutocompleteBuilder;
   setItems: (items: ItemsUnion) => CdekAutocompleteBuilder;
   setGetValue: (getValue?: GetValueFn) => CdekAutocompleteBuilder;
   setGetTitle: (getTitle?: GetTitleFn) => CdekAutocompleteBuilder;
+  setFetchItems: (fetchItems?: FetchFunction) => CdekAutocompleteBuilder;
 }
 
 class CdekAutocompleteBuilder {
@@ -26,6 +33,9 @@ class CdekAutocompleteBuilder {
   @builderProp
   getTitle?: GetTitleFn;
 
+  @builderProp
+  fetchItems?: FetchFunction;
+
   build() {
     const wrapper = shallowMount(CdekAutocomplete as any, {
       props: {
@@ -35,6 +45,7 @@ class CdekAutocompleteBuilder {
         items: this.items,
         getValue: this.getValue,
         getTitle: this.getTitle,
+        fetchItems: this.fetchItems,
       },
       global: {
         renderStubDefaultSlot: true,
@@ -208,5 +219,64 @@ describe('Unit: CdekAutocomplete', () => {
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
       expect(input.attributes('modelvalue')).toBe(inputValue);
     }
+  );
+
+  // Набор тестов для проверки задания некорректного значения сверху с разными типами items
+  test.each([
+    {
+      itemsDesc: 'массив строк',
+      modelValue: 'a',
+      items: ['a', 'b'],
+      inputValue: 'a',
+    },
+    {
+      itemsDesc: 'массив объектов с value, title',
+      modelValue: 'a',
+      items: [
+        { value: 'a', title: 'А' },
+        { value: 'b', title: 'Б' },
+      ],
+      inputValue: 'А',
+    },
+    {
+      itemsDesc: 'массив кастомных объектов',
+      modelValue: 'a',
+      items: [
+        { a: 'a', b: 'А' },
+        { a: 'b', b: 'Б' },
+      ],
+      inputValue: 'А',
+      getValue: (item: any) => item.a,
+      getTitle: (item: any) => item.b,
+    },
+  ])(
+    'При смене modelValue на некорректное значение, оно должно сменяться на пустое, items - $itemsDesc',
+    async ({ items, modelValue, inputValue, getValue, getTitle }) => {
+      const wrapper = new CdekAutocompleteBuilder()
+        // Инициализируем с корректным значением modelValue
+        .setModelValue(modelValue)
+        .setItems(items)
+        .setGetValue(getValue)
+        .setGetTitle(getTitle)
+        .build();
+
+      // Проверяем, что текущее значение инпута не пустое и корректное
+      const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+      expect(input.attributes('modelvalue')).toBe(inputValue);
+
+      // Заменяем на несуществующую опцию
+      wrapper.setProps({ modelValue: 'c' });
+      await flushPromises();
+
+      // Проверяем, что значение инпута сменилось на пустое и произошел emit для смены значения
+      expect(input.attributes('modelvalue')).toBe('');
+      expect(wrapper.emitted('update:modelValue')?.length).toBe(1);
+      expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['']);
+    }
+  );
+
+  // Могут быть разные типы ответа у fetchItems
+  test.todo(
+    'Если передана fetchItems, то она должна использоваться для поиска элементов'
   );
 });

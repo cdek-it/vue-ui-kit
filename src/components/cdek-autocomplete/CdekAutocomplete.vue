@@ -116,6 +116,17 @@ const inputValue = ref<string>(currentTitle.value || '');
 watch(
   () => props.modelValue,
   (value) => {
+    // Пришло пустое значение
+    if (!value) {
+      // Отображаем пустое значение если сейчас заполнено
+      if (currentTitle.value || inputValue.value) {
+        currentTitle.value = '';
+        inputValue.value = '';
+      }
+
+      return; // Не делаем emit, чтобы избежать зацикливания
+    }
+
     const newTitle = getTitleByValue(
       props.items,
       value,
