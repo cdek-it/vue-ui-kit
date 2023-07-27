@@ -18,6 +18,7 @@ interface CdekAutocompleteBuilder {
   setGetValue: (getValue?: GetValueFn) => CdekAutocompleteBuilder;
   setGetTitle: (getTitle?: GetTitleFn) => CdekAutocompleteBuilder;
   setFetchItems: (fetchItems?: FetchFunction) => CdekAutocompleteBuilder;
+  setMinLength: (minLength: number) => CdekAutocompleteBuilder;
 }
 
 class CdekAutocompleteBuilder {
@@ -36,6 +37,9 @@ class CdekAutocompleteBuilder {
   @builderProp
   fetchItems?: FetchFunction;
 
+  @builderProp
+  minLength?: number;
+
   build() {
     const wrapper = shallowMount(CdekAutocomplete as any, {
       props: {
@@ -46,6 +50,7 @@ class CdekAutocompleteBuilder {
         getValue: this.getValue,
         getTitle: this.getTitle,
         fetchItems: this.fetchItems,
+        minLength: this.minLength,
       },
       global: {
         renderStubDefaultSlot: true,
@@ -304,6 +309,30 @@ describe('Unit: CdekAutocomplete', () => {
       // Проверяем, что значение инпута не сменилось и эмита не происходит
       expect(input.attributes('modelvalue')).toBe(inputValue);
       expect(wrapper.emitted('update:modelValue')).toBeUndefined();
+    }
+  );
+
+  // Набор тестов для проверки minLength
+  test.each([
+    { minLength: 3, optionsLength: 0 },
+    { minLength: 1, optionsLength: 2 },
+  ])(
+    'Должно показаться $optionsLength опций, когда minLength = $minLength',
+    async ({ minLength, optionsLength }) => {
+      const wrapper = new CdekAutocompleteBuilder()
+        .setItems(['abcd', 'abcde'])
+        .setMinLength(minLength)
+        .build();
+
+      // Вводим значение в инпут
+      const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+      input.vm.$emit('update:modelValue', 'ab');
+      await sleep(300); // Ждем из-за debounce
+
+      // Пытаемся найти опции
+      const options = wrapper.findAll(dti('cdek-dropdown-item'));
+
+      expect(options.length).toBe(optionsLength);
     }
   );
 });
