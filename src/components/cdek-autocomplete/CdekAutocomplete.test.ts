@@ -21,6 +21,7 @@ interface CdekAutocompleteBuilder {
   setGetTitle: (getTitle?: GetTitleFn) => CdekAutocompleteBuilder;
   setFetchItems: (fetchItems?: FetchFunction) => CdekAutocompleteBuilder;
   setMinLength: (minLength: number) => CdekAutocompleteBuilder;
+  setAttrs: (attrs?: any) => CdekAutocompleteBuilder;
 }
 
 class CdekAutocompleteBuilder {
@@ -42,6 +43,9 @@ class CdekAutocompleteBuilder {
   @builderProp
   minLength?: number;
 
+  @builderProp
+  attrs?: any;
+
   build() {
     const wrapper = shallowMount(CdekAutocomplete as any, {
       props: {
@@ -54,6 +58,7 @@ class CdekAutocompleteBuilder {
         fetchItems: this.fetchItems,
         minLength: this.minLength,
       },
+      attrs: this.attrs,
       global: {
         renderStubDefaultSlot: true,
         stubs: {
@@ -381,9 +386,25 @@ describe('Unit: CdekAutocomplete', () => {
     }
   );
 
-  test.todo('Все неизвестные атрибуты передаются на CdekInput');
+  test('Все неизвестные атрибуты должны передаваться на CdekInput', () => {
+    const wrapper = new CdekAutocompleteBuilder()
+      .setAttrs({ label: 'Название', clearable: true })
+      .build();
+    const input = wrapper.find(dti('cdek-input'));
 
-  test.todo(
-    'Атрибут class передается на корневой элемент CdekAutocomplete, а не на CdekInput'
-  );
+    expect(input.attributes('label')).toBe('Название');
+    expect(input.attributes('clearable')).toBe('true');
+  });
+
+  test('Атрибут class должен быть на корневом элементе CdekAutocomplete, а не на CdekInput', () => {
+    const wrapper = new CdekAutocompleteBuilder()
+      .setAttrs({ class: 'test' })
+      .build();
+    expect(wrapper.classes()).toContain('test');
+    const input = wrapper.find(dti('cdek-input'));
+    expect(input.classes()).not.toContain('test');
+  });
+
+  // TODO: Написать тесты на логику с клавиатурой
+  // TODO: Написать тесты на открытие / закрытие дропдауна
 });
