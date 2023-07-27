@@ -63,7 +63,9 @@ const hasRightIcon = computed(() => !!slots['icons-right']);
 const hasLeftIcon = computed(() => !!slots['icons-left']);
 
 const inputRef = ref<HTMLInputElement>();
+
 const getControl = () => inputRef.value;
+
 defineExpose({ getControl });
 </script>
 

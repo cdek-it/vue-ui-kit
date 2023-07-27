@@ -153,7 +153,7 @@ const isOpen = computed(() => {
 // Подсвеченный элемент при управлении с клавиатуры
 const highlightedEl = ref<number>(-1);
 
-const cdekInputRef = ref<typeof CdekInput>();
+const cdekInputRef = ref<InstanceType<typeof CdekInput> | undefined>();
 const autocompleteRef = ref<HTMLDivElement>();
 
 const emit = defineEmits<{
@@ -259,15 +259,15 @@ const onKeydown = (event: KeyboardEvent) => {
   }
 };
 
-let input: HTMLInputElement;
 onMounted(() => {
-  input = cdekInputRef.value?.getControl();
-  input.addEventListener('keydown', onKeydown);
+  const input = cdekInputRef.value?.getControl();
+  input?.addEventListener('keydown', onKeydown);
   document.addEventListener('click', onOutsideClick);
 });
 
 onBeforeUnmount(() => {
-  input.removeEventListener('keydown', onKeydown);
+  const input = cdekInputRef.value?.getControl();
+  input?.removeEventListener('keydown', onKeydown);
   document.removeEventListener('click', onOutsideClick);
 });
 
