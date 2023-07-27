@@ -22,6 +22,10 @@ VsCode settings for auto-formatting:
 - Editor: Format On Save - true
 - Editor: Default Formatter - Prettier Eslint
 
+## Versions
+
+- [vue@3.3.4](https://blog.vuejs.org/posts/vue-3-3)
+
 ## Commands
 
 - Установка пакетов `yarn`

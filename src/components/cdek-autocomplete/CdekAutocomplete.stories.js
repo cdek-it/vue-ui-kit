@@ -12,7 +12,7 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2004%3A6818&t=IdwqUA5XOx2JLChP-4)',
       },
     },
-    version: getVersion('0.0.1'),
+    version: getVersion('0.1.0'),
   },
 };
 
@@ -26,11 +26,16 @@ const items = [
 const Template = (args) => ({
   components: { CdekAutocomplete },
   setup() {
-    const selectValue = ref(args.value);
-    return { args, items: args.items, selectValue };
+    const selectValue = ref(args.initValue || '');
+
+    const selectArg = ref();
+
+    const onSelect = (val) => (selectArg.value = val);
+
+    return { args, selectValue, onSelect, selectArg };
   },
   template: `
-    <CdekAutocomplete v-bind="args" :items="items" v-model="selectValue">
+    <CdekAutocomplete v-bind="args" v-model="selectValue" @select="onSelect">
       <template #not-found>
         Ничего не нашлось
       </template>
@@ -39,6 +44,10 @@ const Template = (args) => ({
         <span :class="args.tipColor">{{ args.tip }}</span>
       </template>
     </CdekAutocomplete>
+
+    <p>items => {{ args.items }}</p>
+    <p>v-model => <code>{{ selectValue }}</code></p>
+    <p>@select => <code>{{ selectArg }}</code></p>
   `,
 });
 
@@ -92,7 +101,7 @@ Disabled.parameters = {
 export const Small = Template.bind({});
 Small.args = {
   label: 'Размер коробки',
-  value: 1,
+  initValue: 1,
   small: true,
   items,
 };
@@ -269,6 +278,36 @@ WithTip.parameters = {
     <span>Пояснение или помощь</span>
   </template>  
 </CdekAutocomplete>>
+`,
+    },
+  },
+};
+
+export const CustomItems = Template.bind({});
+CustomItems.args = {
+  placeholder: 'Начните вводить "наз"',
+  items: [
+    {
+      customValue: 1,
+      customTitle: 'Название 1',
+    },
+    {
+      customValue: 2,
+      customTitle: 'Название 2',
+    },
+  ],
+  getValue: (item) => item.customValue,
+  getTitle: (item) => item.customTitle,
+};
+CustomItems.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete
+  :items="[{..}, {..}]"
+  :get-value="(item) => item.customValue"
+  :get-title="(item) => item.customTitle"
+/>
 `,
     },
   },

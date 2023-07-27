@@ -25,4 +25,7 @@ module.exports = {
     ],
     curly: 'error',
   },
+  globals: {
+    defineOptions: 'readonly',
+  },
 };
