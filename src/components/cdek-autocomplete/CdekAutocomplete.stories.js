@@ -26,7 +26,7 @@ const items = [
 const Template = (args) => ({
   components: { CdekAutocomplete },
   setup() {
-    const selectValue = ref(args.value || '');
+    const selectValue = ref(args.initValue || '');
 
     const selectArg = ref();
 
@@ -101,7 +101,7 @@ Disabled.parameters = {
 export const Small = Template.bind({});
 Small.args = {
   label: 'Размер коробки',
-  value: 1,
+  initValue: 1,
   small: true,
   items,
 };
