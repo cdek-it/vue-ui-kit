@@ -14,7 +14,7 @@ import type {
 
 interface CdekAutocompleteBuilder {
   setModelValue: (value: Value) => CdekAutocompleteBuilder;
-  setItems: (items: ItemsUnion) => CdekAutocompleteBuilder;
+  setItems: (items?: ItemsUnion) => CdekAutocompleteBuilder;
   setGetValue: (getValue?: GetValueFn) => CdekAutocompleteBuilder;
   setGetTitle: (getTitle?: GetTitleFn) => CdekAutocompleteBuilder;
   setFetchItems: (fetchItems?: FetchFunction) => CdekAutocompleteBuilder;
@@ -106,24 +106,24 @@ describe('Unit: CdekAutocomplete', () => {
     }
   );
 
-  // Набор тестов для проверки v-model и select с разными типами items
+  // Набор тестов для проверки v-model и select с разными типами items и fetchItems
   test.each([
     {
-      itemsDesc: 'массив строк',
+      itemsDesc: 'items - массив строк',
       items: ['test'],
       userSearch: 'tes',
       dropdownOption: { title: 'test', value: 'test' },
       newUserSearch: 'test',
     },
     {
-      itemsDesc: 'массив объектов с value, title',
+      itemsDesc: 'items - массив объектов с value, title',
       items: [{ title: 'Тест', value: 'test' }],
       userSearch: 'тес',
       dropdownOption: { title: 'Тест', value: 'test' },
       newUserSearch: 'Тест',
     },
     {
-      itemsDesc: 'массив кастомных объектов',
+      itemsDesc: 'items - массив кастомных объектов',
       items: [{ a: 'Тест', b: 'test' }],
       userSearch: 'тес',
       dropdownOption: { title: 'Тест', value: 'test' },
@@ -131,18 +131,49 @@ describe('Unit: CdekAutocomplete', () => {
       getValue: (item: any) => item.b,
       getTitle: (item: any) => item.a,
     },
+    {
+      itemsDesc: 'fetchItems с массивом строк',
+      fetchItems: vi.fn(() => Promise.resolve(['test'])),
+      userSearch: 'tes',
+      dropdownOption: { title: 'test', value: 'test' },
+      newUserSearch: 'test',
+      selectResult: 'test',
+    },
+    {
+      itemsDesc: 'fetchItems с массивом объектов с value, title',
+      fetchItems: vi.fn(() =>
+        Promise.resolve([{ title: 'Тест', value: 'test' }])
+      ),
+      userSearch: 'тес',
+      dropdownOption: { title: 'Тест', value: 'test' },
+      newUserSearch: 'Тест',
+      selectResult: { title: 'Тест', value: 'test' },
+    },
+    {
+      itemsDesc: 'fetchItems с массивом кастомных объектов',
+      fetchItems: vi.fn(() => Promise.resolve([{ a: 'Тест', b: 'test' }])),
+      userSearch: 'тес',
+      dropdownOption: { title: 'Тест', value: 'test' },
+      newUserSearch: 'Тест',
+      selectResult: { a: 'Тест', b: 'test' },
+      getValue: (item: any) => item.b,
+      getTitle: (item: any) => item.a,
+    },
   ])(
-    'При выборе опции должен передать новое значение наверх, items - $itemsDesc',
+    'При выборе опции должен передать новое значение наверх, $itemsDesc',
     async ({
+      fetchItems,
       items,
       userSearch,
       dropdownOption,
       newUserSearch,
+      selectResult,
       getValue,
       getTitle,
     }) => {
       const wrapper = new CdekAutocompleteBuilder()
         .setItems(items)
+        .setFetchItems(fetchItems)
         .setGetTitle(getTitle)
         .setGetValue(getValue)
         .build();
@@ -171,7 +202,9 @@ describe('Unit: CdekAutocomplete', () => {
 
       // Проверяем select
       expect(wrapper.emitted('select')?.length).toBe(1);
-      expect(wrapper.emitted('select')?.[0]).toEqual([items[0]]);
+      expect(wrapper.emitted('select')?.[0]).toEqual([
+        selectResult || items?.[0],
+      ]);
     }
   );
 
@@ -250,7 +283,7 @@ describe('Unit: CdekAutocomplete', () => {
       getTitle: (item: any) => item.b,
     },
   ])(
-    'При смене modelValue на некорректное значение, оно должно сменяться на пустое, items - $itemsDesc',
+    'При смене modelValue на значение, которого нет в items, input value должно остаться таким же, items - $itemsDesc',
     async ({ items, modelValue, inputValue, getValue, getTitle }) => {
       const wrapper = new CdekAutocompleteBuilder()
         // Инициализируем с корректным значением modelValue
@@ -268,15 +301,9 @@ describe('Unit: CdekAutocomplete', () => {
       wrapper.setProps({ modelValue: 'c' });
       await flushPromises();
 
-      // Проверяем, что значение инпута сменилось на пустое и произошел emit для смены значения
-      expect(input.attributes('modelvalue')).toBe('');
-      expect(wrapper.emitted('update:modelValue')?.length).toBe(1);
-      expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['']);
+      // Проверяем, что значение инпута не сменилось и эмита не происходит
+      expect(input.attributes('modelvalue')).toBe(inputValue);
+      expect(wrapper.emitted('update:modelValue')).toBeUndefined();
     }
-  );
-
-  // Могут быть разные типы ответа у fetchItems
-  test.todo(
-    'Если передана fetchItems, то она должна использоваться для поиска элементов'
   );
 });

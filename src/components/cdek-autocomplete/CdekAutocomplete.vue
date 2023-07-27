@@ -135,10 +135,8 @@ watch(
     );
 
     if (!newTitle) {
-      // сбрасываем некорректное значение
-      emit('update:modelValue', '');
-      currentTitle.value = '';
-      inputValue.value = '';
+      // Если название не нашлось, значит мы его выбрали с результата fetchItems
+      // либо значение было передано некорректно
 
       return;
     }
