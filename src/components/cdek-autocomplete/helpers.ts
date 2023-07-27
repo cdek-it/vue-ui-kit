@@ -57,20 +57,30 @@ export const transformItems = (
   return items.map((item) => ({ value: item, title: item } as Item));
 };
 
-export const findElementByValue = (items?: ItemsUnion, value?: Value) => {
+export const findElementByValue = (
+  items?: ItemsUnion,
+  value?: Value,
+  getValue?: GetValueFn,
+  getTitle?: GetTitleFn
+) => {
   if (!items || !value) {
     return null;
   }
 
-  const transformedItems = transformItems(items);
+  const transformedItems = transformItems(items, getValue, getTitle);
 
   const el = transformedItems.find((item) => item.value === value);
 
   return el || null;
 };
 
-export const getTitleByValue = (items?: ItemsUnion, value?: Value) => {
-  const el = findElementByValue(items, value);
+export const getTitleByValue = (
+  items?: ItemsUnion,
+  value?: Value,
+  getValue?: GetValueFn,
+  getTitle?: GetTitleFn
+) => {
+  const el = findElementByValue(items, value, getValue, getTitle);
   return el ? el.title : '';
 };
 

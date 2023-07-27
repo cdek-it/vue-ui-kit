@@ -13,9 +13,12 @@ describe('CdekAutocomplete: getTitleByValue', () => {
     const items = ['a', 'b', 'c'];
     expect(getTitleByValue(items, 'b')).toEqual('b');
   });
-  test.todo(
-    'Если items - массив объектов и передан getValue и getTitle, то должен вернуть результат getTitle'
-  );
+  test('Если items - массив объектов и передан getValue и getTitle, то должен вернуть результат getTitle', () => {
+    const items = [{ a: 'a', b: 'A' }];
+    const getValue = (item: any) => item.a;
+    const getTitle = (item: any) => item.b;
+    expect(getTitleByValue(items, 'a', getValue, getTitle)).toEqual('A');
+  });
   test('Если не получается найти соответствующий объект, то должен вернуть пустую строку', () => {
     expect(getTitleByValue(['a'], 'b')).toBe('');
   });
