@@ -24,6 +24,10 @@ interface CdekAutocompleteBuilder {
   setLabel: (label: string) => CdekAutocompleteBuilder;
   setPlaceholder: (placeholder: string) => CdekAutocompleteBuilder;
   setValidRes: (validRes: true | string) => CdekAutocompleteBuilder;
+  setHideErrorMessage: (hideErrorMessage: boolean) => CdekAutocompleteBuilder;
+  setDisabled: (disabled: boolean) => CdekAutocompleteBuilder;
+  setReadonly: (readonly: boolean) => CdekAutocompleteBuilder;
+  setSmall: (small: boolean) => CdekAutocompleteBuilder;
 }
 
 class CdekAutocompleteBuilder {
@@ -54,6 +58,18 @@ class CdekAutocompleteBuilder {
   @builderProp
   validRes?: true | string;
 
+  @builderProp
+  hideErrorMessage?: boolean;
+
+  @builderProp
+  disabled?: boolean;
+
+  @builderProp
+  readonly?: boolean;
+
+  @builderProp
+  small?: boolean;
+
   build() {
     const wrapper = shallowMount(CdekAutocomplete as any, {
       props: {
@@ -68,6 +84,10 @@ class CdekAutocompleteBuilder {
         label: this.label,
         placeholder: this.placeholder,
         validRes: this.validRes,
+        hideErrorMessage: this.hideErrorMessage,
+        disabled: this.disabled,
+        readonly: this.readonly,
+        small: this.small,
       },
       global: {
         renderStubDefaultSlot: true,
@@ -402,22 +422,49 @@ describe('Unit: CdekAutocomplete', () => {
    * @param {string} propName - название свойства
    * @param {string} methodName - название метода для установки этого свойства
    * @param {string} [attrName] - название атрибута для поиска на инпуте, если отличается от propName
+   * @param {any} [propValue] - значение свойств, если строка НЕ подходит
+   * @param {string} [attrValue] - значение атрибута, если задается propValue
    */
   test.each([
     { propName: 'label', methodName: 'setLabel' },
     { propName: 'placeholder', methodName: 'setPlaceholder' },
     { propName: 'validRes', attrName: 'validres', methodName: 'setValidRes' },
+    {
+      propName: 'hideErrorMessage',
+      attrName: 'hide-error-message',
+      methodName: 'setHideErrorMessage',
+      propValue: true,
+      attrValue: 'true',
+    },
+    {
+      propName: 'disabled',
+      methodName: 'setDisabled',
+      propValue: true,
+      attrValue: 'true',
+    },
+    {
+      propName: 'readonly',
+      methodName: 'setReadonly',
+      propValue: true,
+      attrValue: '',
+    },
+    {
+      propName: 'small',
+      methodName: 'setSmall',
+      propValue: true,
+      attrValue: 'true',
+    },
   ])(
     '$propName должен передаться в CdekInput',
-    ({ propName, methodName, attrName }) => {
+    ({ propName, methodName, attrName, propValue, attrValue }) => {
       // Задаем нужно свойство с названия метода methodName
       const wrapper = (new CdekAutocompleteBuilder() as any)
-        [methodName]('Тест')
+        [methodName](propValue ?? 'Тест')
         .build();
 
       const input = wrapper.find(dti('cdek-input'));
       console.log(input.html());
-      expect(input.attributes(attrName || propName)).toBe('Тест');
+      expect(input.attributes(attrName || propName)).toBe(attrValue ?? 'Тест');
     }
   );
 });
