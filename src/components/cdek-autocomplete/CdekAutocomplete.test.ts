@@ -4,18 +4,27 @@ import { describe, test, expect, vi } from 'vitest';
 import CdekAutocomplete from './CdekAutocomplete.vue';
 import builderProp from '@/test/decorators';
 import { dti, sleep } from '@/test/helpers';
-import type { Value, ItemsUnion } from './types';
+import type { Value, ItemsUnion, GetValueFn, GetTitleFn } from './types';
 
 interface CdekAutocompleteBuilder {
   setModelValue: (value: Value) => CdekAutocompleteBuilder;
   setItems: (items: ItemsUnion) => CdekAutocompleteBuilder;
+  setGetValue: (getValue?: GetValueFn) => CdekAutocompleteBuilder;
+  setGetTitle: (getTitle?: GetTitleFn) => CdekAutocompleteBuilder;
 }
 
 class CdekAutocompleteBuilder {
   @builderProp
   modelValue: Value = '';
+
   @builderProp
-  items: ItemsUnion = [];
+  items?: ItemsUnion;
+
+  @builderProp
+  getValue?: GetValueFn;
+
+  @builderProp
+  getTitle?: GetTitleFn;
 
   build() {
     const wrapper = shallowMount(CdekAutocomplete as any, {
@@ -24,6 +33,8 @@ class CdekAutocompleteBuilder {
         'onUpdate:modelValue': (e: Value) =>
           wrapper.setProps({ modelValue: e }),
         items: this.items,
+        getValue: this.getValue,
+        getTitle: this.getTitle,
       },
       global: {
         renderStubDefaultSlot: true,
@@ -54,15 +65,37 @@ describe('Unit: CdekAutocomplete', () => {
     const wrapper = new CdekAutocompleteBuilder().build();
     expect(wrapper.exists()).toBeTruthy();
   });
-  test('Должен передать название выбранной опции при инициализации в CdekInput', () => {
-    const wrapper = new CdekAutocompleteBuilder()
-      .setModelValue('test')
-      .setItems(['test'])
-      .build();
-    const input = wrapper.find(dti('cdek-input'));
-    expect(input.attributes('modelvalue')).toBe('test');
-  });
 
+  // Набор тестов для проверки инициализации с конкретным значением с разными типами items
+  test.each([
+    { itemsDesc: 'массив строк', items: ['test'], inputValue: 'test' },
+    {
+      itemsDesc: 'массив объектов с value, title',
+      items: [{ value: 'test', title: 'Тест' }],
+      inputValue: 'Тест',
+    },
+    {
+      itemsDesc: 'массив кастомных объектов',
+      items: [{ a: 'Тест', b: 'test' }],
+      inputValue: 'Тест',
+      getValue: (item: any) => item.b,
+      getTitle: (item: any) => item.a,
+    },
+  ])(
+    'Должен передать название выбранной опции при инициализации в CdekInput, items - $itemsDesc',
+    ({ items, inputValue, getValue, getTitle }) => {
+      const wrapper = new CdekAutocompleteBuilder()
+        .setModelValue('test')
+        .setItems(items)
+        .setGetTitle(getTitle)
+        .setGetValue(getValue)
+        .build();
+      const input = wrapper.find(dti('cdek-input'));
+      expect(input.attributes('modelvalue')).toBe(inputValue);
+    }
+  );
+
+  // Набор тестов для проверки v-model и select с разными типами items
   test.each([
     {
       itemsDesc: 'массив строк',
@@ -78,10 +111,30 @@ describe('Unit: CdekAutocomplete', () => {
       dropdownOption: { title: 'Тест', value: 'test' },
       newUserSearch: 'Тест',
     },
+    {
+      itemsDesc: 'массив кастомных объектов',
+      items: [{ a: 'Тест', b: 'test' }],
+      userSearch: 'тес',
+      dropdownOption: { title: 'Тест', value: 'test' },
+      newUserSearch: 'Тест',
+      getValue: (item: any) => item.b,
+      getTitle: (item: any) => item.a,
+    },
   ])(
     'При выборе опции должен передать новое значение наверх, items - $itemsDesc',
-    async ({ items, userSearch, dropdownOption, newUserSearch }) => {
-      const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
+    async ({
+      items,
+      userSearch,
+      dropdownOption,
+      newUserSearch,
+      getValue,
+      getTitle,
+    }) => {
+      const wrapper = new CdekAutocompleteBuilder()
+        .setItems(items)
+        .setGetTitle(getTitle)
+        .setGetValue(getValue)
+        .build();
 
       // Имитируем пользовательский ввод "tes"
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
