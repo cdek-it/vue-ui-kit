@@ -24,4 +24,7 @@ module.exports = {
       { varsIgnorePattern: 'props' },
     ],
   },
+  globals: {
+    defineOptions: 'readonly',
+  },
 };

@@ -29,6 +29,10 @@ import {
   getSearchFn,
 } from './helpers';
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 const props = withDefaults(
   defineProps<{
     /**
@@ -78,19 +82,7 @@ const props = withDefaults(
      * запрос (вызов функции fetchItems) или осуществлен поиск по списку элеметов items
      */
     minLength?: number;
-    label?: string;
-    placeholder?: string;
-    /**
-     * `true` - валидация пройдена, ошибку показывать не надо
-     *
-     * `string` - текст ошибки, ошибка показывается
-     */
-    validRes?: true | string;
-    hideErrorMessage?: boolean;
-    disabled?: boolean;
-    readonly?: boolean;
-    small?: boolean;
-    clearable?: boolean;
+    class?: string;
   }>(),
   {
     minLength: 3,
@@ -187,6 +179,8 @@ const checkInputValue = debounce(async (val: string) => {
 }, 300);
 
 const onChangeInput = (value: string) => {
+  inputValue.value = value;
+
   if (value.length >= props.minLength) {
     return void checkInputValue(value);
   }
@@ -282,34 +276,15 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
 </script>
 
 <template>
-  <div class="cdek-autocomplete" ref="autocompleteRef">
+  <div class="cdek-autocomplete" :class="props.class" ref="autocompleteRef">
     <CdekInput
-      :label="label"
-      :disabled="disabled"
-      :small="small"
-      :validRes="validRes"
-      :hide-error-message="hideErrorMessage"
-      :readonly="readonly"
-      :clearable="clearable"
-      :placeholder="placeholder"
-      v-model="inputValue"
-      ref="cdekInputRef"
+      v-bind="$attrs"
+      :model-value="inputValue"
       @update:modelValue="onChangeInput"
+      ref="cdekInputRef"
     >
-      <template #icons-right>
-        <slot name="icons-right" />
-      </template>
-      <template #icons-left>
-        <slot name="icons-left" />
-      </template>
-      <template #tip="{ alert, info, ban, circle }">
-        <slot
-          name="tip"
-          :alert="alert"
-          :info="info"
-          :ban="ban"
-          :circle="circle"
-        />
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
+        <slot :name="slot" v-bind="scope" />
       </template>
     </CdekInput>
     <Transition>

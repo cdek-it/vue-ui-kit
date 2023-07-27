@@ -21,13 +21,6 @@ interface CdekAutocompleteBuilder {
   setGetTitle: (getTitle?: GetTitleFn) => CdekAutocompleteBuilder;
   setFetchItems: (fetchItems?: FetchFunction) => CdekAutocompleteBuilder;
   setMinLength: (minLength: number) => CdekAutocompleteBuilder;
-  setLabel: (label: string) => CdekAutocompleteBuilder;
-  setPlaceholder: (placeholder: string) => CdekAutocompleteBuilder;
-  setValidRes: (validRes: true | string) => CdekAutocompleteBuilder;
-  setHideErrorMessage: (hideErrorMessage: boolean) => CdekAutocompleteBuilder;
-  setDisabled: (disabled: boolean) => CdekAutocompleteBuilder;
-  setReadonly: (readonly: boolean) => CdekAutocompleteBuilder;
-  setSmall: (small: boolean) => CdekAutocompleteBuilder;
 }
 
 class CdekAutocompleteBuilder {
@@ -49,27 +42,6 @@ class CdekAutocompleteBuilder {
   @builderProp
   minLength?: number;
 
-  @builderProp
-  label?: string;
-
-  @builderProp
-  placeholder?: string;
-
-  @builderProp
-  validRes?: true | string;
-
-  @builderProp
-  hideErrorMessage?: boolean;
-
-  @builderProp
-  disabled?: boolean;
-
-  @builderProp
-  readonly?: boolean;
-
-  @builderProp
-  small?: boolean;
-
   build() {
     const wrapper = shallowMount(CdekAutocomplete as any, {
       props: {
@@ -81,13 +53,6 @@ class CdekAutocompleteBuilder {
         getTitle: this.getTitle,
         fetchItems: this.fetchItems,
         minLength: this.minLength,
-        label: this.label,
-        placeholder: this.placeholder,
-        validRes: this.validRes,
-        hideErrorMessage: this.hideErrorMessage,
-        disabled: this.disabled,
-        readonly: this.readonly,
-        small: this.small,
       },
       global: {
         renderStubDefaultSlot: true,
@@ -152,7 +117,7 @@ describe('Unit: CdekAutocomplete', () => {
         .setGetValue(getValue)
         .build();
       const input = wrapper.find(dti('cdek-input'));
-      expect(input.attributes('modelvalue')).toBe(inputValue);
+      expect(input.attributes('model-value')).toBe(inputValue);
     }
   );
 
@@ -244,7 +209,7 @@ describe('Unit: CdekAutocomplete', () => {
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
       input.vm.$emit('update:modelValue', userSearch);
       await sleep(400); // Ждем из-за debounce
-      expect(input.attributes('modelvalue')).toBe(userSearch);
+      expect(input.attributes('model-value')).toBe(userSearch);
 
       // Имитируем выбор показанной опции "test"
       const item = wrapper.getComponent(
@@ -254,7 +219,7 @@ describe('Unit: CdekAutocomplete', () => {
       await flushPromises(); // Ждем пока listeners выполнятся
 
       // Проверяем, что значение инпута сменилось на новое значение
-      expect(input.attributes('modelvalue')).toBe(newUserSearch);
+      expect(input.attributes('model-value')).toBe(newUserSearch);
 
       // Проверяем v-model
       expect(wrapper.emitted('update:modelValue')?.length).toBe(1);
@@ -321,7 +286,7 @@ describe('Unit: CdekAutocomplete', () => {
       await flushPromises();
 
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
-      expect(input.attributes('modelvalue')).toBe(inputValue);
+      expect(input.attributes('model-value')).toBe(inputValue);
     }
   );
 
@@ -375,14 +340,14 @@ describe('Unit: CdekAutocomplete', () => {
 
       // Проверяем, что текущее значение инпута не пустое и корректное
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
-      expect(input.attributes('modelvalue')).toBe(inputValue);
+      expect(input.attributes('model-value')).toBe(inputValue);
 
       // Заменяем на несуществующую опцию
       wrapper.setProps({ modelValue: 'c' });
       await flushPromises();
 
       // Проверяем, что значение инпута не сменилось и эмита не происходит
-      expect(input.attributes('modelvalue')).toBe(inputValue);
+      expect(input.attributes('model-value')).toBe(inputValue);
       expect(wrapper.emitted('update:modelValue')).toBeUndefined();
     }
   );
@@ -416,55 +381,9 @@ describe('Unit: CdekAutocomplete', () => {
     }
   );
 
-  /**
-   * Набор тестов для проверки передачи параметров для CdekInput
-   *
-   * @param {string} propName - название свойства
-   * @param {string} methodName - название метода для установки этого свойства
-   * @param {string} [attrName] - название атрибута для поиска на инпуте, если отличается от propName
-   * @param {any} [propValue] - значение свойств, если строка НЕ подходит
-   * @param {string} [attrValue] - значение атрибута, если задается propValue
-   */
-  test.each([
-    { propName: 'label', methodName: 'setLabel' },
-    { propName: 'placeholder', methodName: 'setPlaceholder' },
-    { propName: 'validRes', attrName: 'validres', methodName: 'setValidRes' },
-    {
-      propName: 'hideErrorMessage',
-      attrName: 'hide-error-message',
-      methodName: 'setHideErrorMessage',
-      propValue: true,
-      attrValue: 'true',
-    },
-    {
-      propName: 'disabled',
-      methodName: 'setDisabled',
-      propValue: true,
-      attrValue: 'true',
-    },
-    {
-      propName: 'readonly',
-      methodName: 'setReadonly',
-      propValue: true,
-      attrValue: '',
-    },
-    {
-      propName: 'small',
-      methodName: 'setSmall',
-      propValue: true,
-      attrValue: 'true',
-    },
-  ])(
-    '$propName должен передаться в CdekInput',
-    ({ propName, methodName, attrName, propValue, attrValue }) => {
-      // Задаем нужно свойство с названия метода methodName
-      const wrapper = (new CdekAutocompleteBuilder() as any)
-        [methodName](propValue ?? 'Тест')
-        .build();
+  test.todo('Все неизвестные атрибуты передаются на CdekInput');
 
-      const input = wrapper.find(dti('cdek-input'));
-      console.log(input.html());
-      expect(input.attributes(attrName || propName)).toBe(attrValue ?? 'Тест');
-    }
+  test.todo(
+    'Атрибут class передается на корневой элемент CdekAutocomplete, а не на CdekInput'
   );
 });
