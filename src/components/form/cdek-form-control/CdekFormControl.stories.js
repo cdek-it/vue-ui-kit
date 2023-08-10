@@ -343,3 +343,31 @@ WithoutError.parameters = {
     },
   },
 };
+
+export const DisabledAutocomplete = Template.bind({});
+DisabledAutocomplete.args = {
+  label: 'Город',
+  name: 'city',
+  initialValue: 1,
+  items: [{ value: 1, title: 'Москва' }],
+  type: 'autocomplete',
+  disabled: true,
+};
+WithoutError.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl
+    type="autocomplete"
+    name="city"
+    label="Город"
+    :initial-value="1"
+    :items="[{ value: 1, title: 'Москва' }]"
+    disabled
+  >
+</CdekForm>
+`,
+    },
+  },
+};

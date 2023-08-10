@@ -76,7 +76,7 @@ Primary.parameters = {
 export const Disabled = Template.bind({});
 Disabled.args = {
   label: 'Размер коробки',
-  value: 1,
+  initValue: 1,
   disabled: true,
   items,
 };
@@ -126,7 +126,7 @@ Small.parameters = {
 export const ReadOnly = Template.bind({});
 ReadOnly.args = {
   label: 'Размер коробки',
-  value: 1,
+  initValue: 1,
   readonly: true,
   items,
 };
