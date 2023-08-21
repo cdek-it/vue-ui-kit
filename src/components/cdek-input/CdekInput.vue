@@ -248,6 +248,7 @@ defineExpose({ getControl });
     background: unset;
     border: unset;
     outline: unset;
+    width: 100%;
     flex-grow: 1;
     color: $Bottom;
     caret-color: $Primary;
