@@ -192,6 +192,28 @@ RightIconClearable.parameters = {
   },
 };
 
+export const SmallRightIconClearable = Template.bind({});
+SmallRightIconClearable.args = {
+  label: 'Серия и номер паспорта',
+  clearable: true,
+  story: 'RightIcon',
+  class: 'input-small-with-icon',
+};
+SmallRightIconClearable.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" label="Серия.." clearable class="input-small-with-icon">
+  <template #right-icon>
+    <!-- иконка должна быть размером 24x24 -->
+    <button><EyeIcon /></button>
+  </template>
+</CdekInput>
+`,
+    },
+  },
+};
+
 export const LeftIcon = Template.bind({});
 LeftIcon.args = {
   story: 'LeftIcon',

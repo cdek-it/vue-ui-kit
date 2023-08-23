@@ -210,3 +210,17 @@ Clearable.parameters = {
     },
   },
 };
+
+export const SmallWidth = Template.bind({});
+SmallWidth.args = {
+  class: 'input-small-width-story',
+};
+SmallWidth.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" class="input-small-width-story" />
+`,
+    },
+  },
+};
