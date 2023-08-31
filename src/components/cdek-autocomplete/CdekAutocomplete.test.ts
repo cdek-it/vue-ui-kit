@@ -412,43 +412,35 @@ describe('Unit: CdekAutocomplete', () => {
   });
 
   test('Опции не должны выводиться, если нет фокуса на инпуте', async () => {
-    const resolvePromise = () => {
+    const resolvePromise = vi.fn(() => {
       return Promise.resolve(['test', 'test2', 'test3', 'test4']);
-    };
+    });
 
-    const resolvePromiseWithDelay = async () => {
+    const resolvePromiseWithDelay = vi.fn(async () => {
       await sleep(1000);
-
       return resolvePromise();
-    };
+    });
 
-    const firstWrapper = new CdekAutocompleteBuilder()
+    const userSearch = 'tes';
+
+    const wrapper = new CdekAutocompleteBuilder()
       .setFetchItems(resolvePromiseWithDelay)
       .build();
 
-    const secondWrapper = new CdekAutocompleteBuilder()
-      .setFetchItems(resolvePromise)
-      .build();
-
     // Вводим значение в инпут
-    const inputOfFirstWrapper = firstWrapper.getComponent(
-      dti('cdek-input')
-    ) as VueWrapper;
+    const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
 
-    await inputOfFirstWrapper.trigger('focus');
+    await input.trigger('focus');
 
-    inputOfFirstWrapper.vm.$emit('update:modelValue', 'te');
+    input.vm.$emit('update:modelValue', userSearch);
 
-    await sleep(300); // Ждем из-за debounce
+    await sleep(400); // Ждем из-за debounce
+    expect(input.attributes('model-value')).toBe(userSearch);
 
-    const inputOfSecondWrapper = secondWrapper.getComponent(
-      dti('cdek-input')
-    ) as VueWrapper;
-
-    await inputOfSecondWrapper.trigger('focus');
+    await input.trigger('blur');
 
     // Пытаемся найти опции
-    const options = inputOfFirstWrapper.findAll(dti('cdek-dropdown-item'));
+    const options = wrapper.findAll(dti('cdek-dropdown-item'));
 
     expect(options.length).toBe(0);
   });
