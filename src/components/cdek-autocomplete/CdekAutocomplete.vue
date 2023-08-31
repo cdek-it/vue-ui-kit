@@ -161,6 +161,8 @@ const emit = defineEmits<{
   (e: 'select', value: string | Item | any): void;
 }>();
 
+const hasFocus = ref(false);
+
 const checkInputValue = debounce(async (val: string) => {
   // обнуляем подсвеченный элемент
   highlightedEl.value = -1;
@@ -172,7 +174,14 @@ const checkInputValue = debounce(async (val: string) => {
   );
 
   try {
-    showedItems.value = await searchFn(val, props.items);
+    const newItems = await searchFn(val, props.items);
+
+    if (hasFocus.value) {
+      showedItems.value = newItems;
+      return;
+    }
+
+    showedItems.value = null;
   } catch {
     showedItems.value = null;
   }
@@ -259,6 +268,14 @@ const onKeydown = (event: KeyboardEvent) => {
   }
 };
 
+const onFocus = () => {
+  hasFocus.value = true;
+};
+
+const onBlur = () => {
+  hasFocus.value = false;
+};
+
 onMounted(() => {
   const input = cdekInputRef.value?.getControl();
   input?.addEventListener('keydown', onKeydown);
@@ -282,6 +299,8 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
       :model-value="inputValue"
       @update:modelValue="onChangeInput"
       ref="cdekInputRef"
+      @focus="onFocus"
+      @blur="onBlur"
     >
       <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
         <slot :name="slot" v-bind="scope" />

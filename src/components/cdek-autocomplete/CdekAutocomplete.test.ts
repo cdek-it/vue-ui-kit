@@ -212,6 +212,9 @@ describe('Unit: CdekAutocomplete', () => {
 
       // Имитируем пользовательский ввод "tes"
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+
+      await input.trigger('focus');
+
       input.vm.$emit('update:modelValue', userSearch);
       await sleep(400); // Ждем из-за debounce
       expect(input.attributes('model-value')).toBe(userSearch);
@@ -376,6 +379,9 @@ describe('Unit: CdekAutocomplete', () => {
 
       // Вводим значение в инпут
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+
+      await input.trigger('focus');
+
       input.vm.$emit('update:modelValue', 'ab');
       await sleep(300); // Ждем из-за debounce
 
@@ -403,6 +409,42 @@ describe('Unit: CdekAutocomplete', () => {
     expect(wrapper.classes()).toContain('test');
     const input = wrapper.find(dti('cdek-input'));
     expect(input.classes()).not.toContain('test');
+  });
+
+  test('Опции не должны выводиться, если нет фокуса на инпуте', async () => {
+    const resolvePromise = vi.fn(() => {
+      return Promise.resolve(['test', 'test2', 'test3', 'test4']);
+    });
+
+    const resolvePromiseWithDelay = vi.fn(async () => {
+      await sleep(1000);
+      return resolvePromise();
+    });
+
+    const userSearch = 'tes';
+
+    const wrapper = new CdekAutocompleteBuilder()
+      .setFetchItems(resolvePromiseWithDelay)
+      .build();
+
+    // Вводим значение в инпут
+    const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+
+    await input.trigger('focus');
+
+    input.vm.$emit('update:modelValue', userSearch);
+
+    await sleep(400); // Ждем из-за debounce
+    expect(input.attributes('model-value')).toBe(userSearch);
+
+    await input.trigger('blur');
+
+    await sleep(1300); // Ждем когда фетч зарелозвится
+
+    // Пытаемся найти опции
+    const options = wrapper.findAll(dti('cdek-dropdown-item'));
+
+    expect(options.length).toBe(0);
   });
 
   // TODO: Написать тесты на логику с клавиатурой

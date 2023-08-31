@@ -23,6 +23,13 @@ const items = [
   { value: 4, title: 'Box m, 35×25×15cm, up to 5kg' },
 ];
 
+const promiseResolve = (query) =>
+  Promise.resolve(
+    items.filter((item) =>
+      item.title.toLowerCase().includes(query.toLowerCase())
+    )
+  );
+
 const Template = (args) => ({
   components: { CdekAutocomplete },
   setup() {
@@ -48,6 +55,54 @@ const Template = (args) => ({
     <p>items => {{ args.items }}</p>
     <p>v-model => <code>{{ selectValue }}</code></p>
     <p>@select => <code>{{ selectArg }}</code></p>
+  `,
+});
+
+const twoCdekAutocompletesTemplate = (args) => ({
+  components: { CdekAutocomplete },
+  setup() {
+    const selectFirstValue = ref(args.firstAutocomplete.initValue || '');
+
+    const selectSecondValue = ref(args.secondAutocomplete.initValue || '');
+
+    const selectFirstArg = ref();
+
+    const selectSecondArg = ref();
+
+    const onSelectFirstAutocomplete = (val) => (selectFirstArg.value = val);
+
+    const onSelectSecondAutocomplete = (val) => (selectSecondArg.value = val);
+
+    return {
+      args,
+      selectFirstValue,
+      selectSecondValue,
+      onSelectFirstAutocomplete,
+      onSelectSecondAutocomplete,
+      selectFirstArg,
+      selectSecondArg,
+    };
+  },
+  template: `
+    <CdekAutocomplete
+        v-bind="args.firstAutocomplete"
+        v-model="selectFirstValue"
+        @select="onSelectFirstAutocomplete"
+    >
+      <template #not-found>
+        Ничего не нашлось
+      </template>
+    </CdekAutocomplete>
+    
+    <CdekAutocomplete
+        v-bind="args.secondAutocomplete"
+        v-model="selectSecondValue"
+        @select="onSelectSecondAutocomplete"
+    >
+      <template #not-found>
+        Ничего не нашлось
+      </template>
+    </CdekAutocomplete>
   `,
 });
 
@@ -307,6 +362,42 @@ CustomItems.parameters = {
   :items="[{..}, {..}]"
   :get-value="(item) => item.customValue"
   :get-title="(item) => item.customTitle"
+/>
+`,
+    },
+  },
+};
+
+export const TwoAutocompletes = twoCdekAutocompletesTemplate.bind({});
+
+const delay = async (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+TwoAutocompletes.args = {
+  firstAutocomplete: {
+    placeholder: 'Размер коробки (fetch с задержкой)',
+    fetchItems: async (query) => {
+      await delay(1000);
+      return promiseResolve(query);
+    },
+  },
+  secondAutocomplete: {
+    placeholder: 'Размер коробки',
+    fetchItems: (query) => promiseResolve(query),
+  },
+};
+TwoAutocompletes.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  label="Размер коробки (fetch с задержкой)" 
+  fetchItems="(query) => fetch('/search-items?query=\${query}').then(response => response.data.items)" 
+/>
+<CdekAutocomplete 
+  label="Размер коробки" 
+  fetchItems="(query) => fetch('/search-items?query=\${query}').then(response => response.data.items)" 
 />
 `,
     },
