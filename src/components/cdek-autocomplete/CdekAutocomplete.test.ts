@@ -439,6 +439,8 @@ describe('Unit: CdekAutocomplete', () => {
 
     await input.trigger('blur');
 
+    await sleep(1300); // Ждем когда фетч зарелозвится
+
     // Пытаемся найти опции
     const options = wrapper.findAll(dti('cdek-dropdown-item'));
 
