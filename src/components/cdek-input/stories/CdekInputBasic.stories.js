@@ -224,3 +224,19 @@ SmallWidth.parameters = {
     },
   },
 };
+
+export const ClearableFocus = Template.bind({});
+ClearableFocus.args = {
+  label: 'Серия и номер паспорта',
+  clearable: true,
+  story: 'ClearableFocus',
+};
+ClearableFocus.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" label="Серия.." clearable />
+`,
+    },
+  },
+};

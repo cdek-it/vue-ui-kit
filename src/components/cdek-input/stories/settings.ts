@@ -9,7 +9,11 @@ export const Template = (args: any) => ({
   components: { CdekInput, SearchIcon, EyeIcon },
   setup() {
     const inputVal = ref(
-      ['LabelFilled', 'RightIconDisabled'].includes(args.story) ? '345' : ''
+      ['LabelFilled', 'RightIconDisabled', 'ClearableFocus'].includes(
+        args.story
+      )
+        ? '345'
+        : ''
     );
 
     const cn =

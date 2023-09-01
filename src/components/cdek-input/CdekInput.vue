@@ -383,15 +383,11 @@ defineExpose({ getControl });
     @include right-icon;
 
     opacity: 0;
+    z-index: -1;
     transition: all 0.2s ease;
 
-    @media (hover: hover) {
-      .cdek-input__control:hover & {
-        opacity: 1;
-      }
-    }
-
     .cdek-input__control:focus-within & {
+      z-index: 1;
       opacity: 1;
     }
   }
