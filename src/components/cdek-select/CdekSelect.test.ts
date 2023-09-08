@@ -6,15 +6,47 @@ import type {
   Primitive,
 } from '../cdek-dropdown/CdekDropdown.types';
 import { Listbox } from '@headlessui/vue';
+import builderProp from '@/test/decorators';
+
+interface ExtraMethods {
+  setModelValue: (value: Primitive | Array<Primitive>) => CdekSelectBuilder;
+  setLabel: (value: string) => CdekSelectBuilder;
+  setValidRes: (value: true | string) => CdekSelectBuilder;
+  setHideErrorMessage: (value: boolean) => CdekSelectBuilder;
+  setDisabled: (value: boolean) => CdekSelectBuilder;
+  setReadonly: (value: boolean) => CdekSelectBuilder;
+  setSmall: (value: boolean) => CdekSelectBuilder;
+  setMultiple: (value: boolean) => CdekSelectBuilder;
+  setTip: (value: string) => CdekSelectBuilder;
+}
+
+interface CdekSelectBuilder extends ExtraMethods {}
 
 class CdekSelectBuilder {
+  @builderProp
   modelValue: Primitive | Array<Primitive> = '';
+
+  @builderProp
   label?: string;
+
+  @builderProp
   validRes?: true | string;
+
+  @builderProp
+  hideErrorMessage?: boolean;
+
+  @builderProp
   disabled?: boolean;
+
+  @builderProp
   readonly?: boolean;
+
+  @builderProp
   small?: boolean;
+
+  @builderProp
   multiple?: boolean;
+
   items: Array<IItemValue> = [
     { value: 1, title: 'Option 1', disabled: true },
     { value: 2, title: 'Option 2' },
@@ -22,43 +54,10 @@ class CdekSelectBuilder {
     { value: 4, title: 'Option 4' },
   ];
 
+  @builderProp
   tip?: string;
 
   attrs: Record<string, string> = {};
-
-  setModelValue(modelValue: Primitive | Array<Primitive>) {
-    this.modelValue = modelValue;
-    return this;
-  }
-  setLabel(label: string) {
-    this.label = label;
-    return this;
-  }
-  setError(validRes: true | string) {
-    this.validRes = validRes;
-    return this;
-  }
-  toggleDisabled() {
-    this.disabled = !this.disabled;
-    return this;
-  }
-  toggleReadonly() {
-    this.readonly = !this.readonly;
-    return this;
-  }
-  toggleSmall() {
-    this.small = !this.small;
-    return this;
-  }
-  toggleMultiple() {
-    this.multiple = !this.multiple;
-    return this;
-  }
-
-  setTip(tip: string) {
-    this.tip = tip;
-    return this;
-  }
 
   setAttr(key: string, value: string) {
     this.attrs[key] = value;
@@ -66,7 +65,7 @@ class CdekSelectBuilder {
   }
 
   build() {
-    const wrapper = mount(CdekSelect, {
+    const wrapper = mount(CdekSelect as any, {
       props: {
         modelValue: this.modelValue,
         items: this.items,
@@ -74,6 +73,7 @@ class CdekSelectBuilder {
           wrapper.setProps({ modelValue: e }),
         label: this.label,
         validRes: this.validRes,
+        hideErrorMessage: this.hideErrorMessage,
         disabled: this.disabled,
         readonly: this.readonly,
         small: this.small,
@@ -98,7 +98,7 @@ describe('Unit: CdekSelect', () => {
     });
     test('Если multiple = true и modelValue содержит значения, которые есть в items, то выводятся все выбранные варианты', async () => {
       const wrapper = new CdekSelectBuilder()
-        .toggleMultiple()
+        .setMultiple(true)
         .setModelValue([1, 2])
         .build();
       const value = wrapper.find('.cdek-select__value');
@@ -128,7 +128,7 @@ describe('Unit: CdekSelect', () => {
     });
     test('Если multiple = true в modelValue сетится несколько выбранных значений', async () => {
       const Select = new CdekSelectBuilder();
-      const wrapper = Select.toggleMultiple().setModelValue([]).build();
+      const wrapper = Select.setMultiple(true).setModelValue([]).build();
       const control = wrapper.find('.cdek-select__control');
       await control.trigger('click');
       let option = wrapper.find(`.cdek-dropdown-item:nth-of-type(2)`);
@@ -174,7 +174,7 @@ describe('Unit: CdekSelect', () => {
     test('Если validRes - строка, то должны добавляться стили для состояния ошибки', () => {
       const wrapper = new CdekSelectBuilder()
         .setLabel('Вариант действия')
-        .setError('Ошибка')
+        .setValidRes('Ошибка')
         .build();
       const control = wrapper.find('.cdek-select__control');
       expect(control.classes('cdek-select__control_error')).toBeTruthy();
@@ -183,9 +183,19 @@ describe('Unit: CdekSelect', () => {
     });
 
     test('Если validRes = "Ошибка", то должен показываться текст "Ошибка"', () => {
-      const wrapper = new CdekSelectBuilder().setError('Ошибка').build();
+      const wrapper = new CdekSelectBuilder().setValidRes('Ошибка').build();
       const error = wrapper.find('.error');
       expect(error.text()).toBe('Ошибка');
+    });
+
+    test('Если validRes = "Ошибка" и hideErrorMessage = true, то текст "Ошибка" не должен показываться', () => {
+      const wrapper = new CdekSelectBuilder()
+        .setValidRes('Ошибка')
+        .setHideErrorMessage(true)
+        .build();
+      const error = wrapper.find('.error');
+      expect(error.text()).toBe('Ошибка');
+      expect(error.attributes('style')).toBe('display: none;');
     });
   });
 
@@ -199,12 +209,12 @@ describe('Unit: CdekSelect', () => {
 
   describe('disabled', () => {
     test('Если передан disabled, то компонент должен стилизоваться под состояние disabled', () => {
-      const wrapper = new CdekSelectBuilder().toggleDisabled().build();
+      const wrapper = new CdekSelectBuilder().setDisabled(true).build();
       const control = wrapper.find('.cdek-select__control');
       expect(control.classes('cdek-select__control_disabled')).toBeTruthy();
     });
     test('Если передан disabled, то в Listbox должен прокидываться пропс "disabled"', () => {
-      const wrapper = new CdekSelectBuilder().toggleDisabled().build();
+      const wrapper = new CdekSelectBuilder().setDisabled(true).build();
       const listbox = wrapper.findComponent(Listbox);
       expect(listbox.props('disabled')).toBe(true);
     });
@@ -212,17 +222,17 @@ describe('Unit: CdekSelect', () => {
 
   describe('readonly', () => {
     test('Если передан readonly, то компонент должен стилизоваться под состояние readonly', () => {
-      const wrapper = new CdekSelectBuilder().toggleReadonly().build();
+      const wrapper = new CdekSelectBuilder().setReadonly(true).build();
       const control = wrapper.find('.cdek-select__control');
       expect(control.classes('cdek-select__control_readonly')).toBeTruthy();
     });
     test('Если передан readonly, то цвет текста селекта должен стать черным', () => {
-      const wrapper = new CdekSelectBuilder().toggleReadonly().build();
+      const wrapper = new CdekSelectBuilder().setReadonly(true).build();
       const value = wrapper.find('.cdek-select__value');
       expect(value.classes('cdek-select__value_readonly')).toBeTruthy();
     });
     test('Если передан readonly, то в Listbox должен прокидываться пропс "disabled"', () => {
-      const wrapper = new CdekSelectBuilder().toggleReadonly().build();
+      const wrapper = new CdekSelectBuilder().setReadonly(true).build();
       const listbox = wrapper.findComponent(Listbox);
       expect(listbox.props('disabled')).toBe(true);
     });
@@ -239,7 +249,7 @@ describe('Unit: CdekSelect', () => {
   test('Если small = true, то должны добавляться классы-модификаторы на элементы', () => {
     const wrapper = new CdekSelectBuilder()
       .setLabel('Вариант действия')
-      .toggleSmall()
+      .setSmall(true)
       .build();
     const control = wrapper.find('.cdek-select__control');
     expect(control.classes('cdek-select__control_small')).toBeTruthy();

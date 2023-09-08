@@ -19,10 +19,10 @@ const props = withDefaults(
     name: string;
     rules?: RulesT;
     type?: 'text' | 'autocomplete';
-    class?: string;
+    className?: string;
     initialValue?: string;
   }>(),
-  { type: 'text', class: '', initialValue: '' }
+  { type: 'text', className: '', initialValue: '' }
 );
 
 const formService = inject(FormServiceKey) as FormService;
@@ -50,7 +50,7 @@ const value = computed({
 </script>
 
 <template>
-  <div :class="props.class">
+  <div :class="className">
     <CdekInput
       v-if="type === 'text'"
       v-model="value"

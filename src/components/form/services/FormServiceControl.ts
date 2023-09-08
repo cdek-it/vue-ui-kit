@@ -28,7 +28,7 @@ export default class FormServiceControl {
     this.register(initialValue || '');
     this.formService.subscribeOnSubmit(this.showError.bind(this));
     getValidators().subscribeOnLanguageChange(
-      this.changeErrorMessageIfShowed.bind(this)
+      this.changeErrorMessage.bind(this)
     );
   }
 
@@ -37,7 +37,7 @@ export default class FormServiceControl {
    */
   register(initialValue: string) {
     this.formService.registerField(this.fieldName, initialValue);
-    this.saveValidation();
+    this.validateField();
   }
 
   /**
@@ -45,8 +45,8 @@ export default class FormServiceControl {
    */
   updateValidators(rules: RulesT) {
     this.parseRules(rules);
-    this.saveValidation();
-    this.changeErrorMessageIfShowed();
+    this.validateField();
+    this.changeErrorMessage();
   }
 
   /**
@@ -54,21 +54,8 @@ export default class FormServiceControl {
    */
   change(newValue: string) {
     this.formService.changeField(this.fieldName, newValue);
-    this.saveValidation();
+    this.validateField();
     this.showError();
-  }
-
-  /**
-   * Сохранение результата валидации форме
-   *
-   * Сохранение и показывание ошибки - это разные операции
-   * В форме всегда хранится актуальная информация по валидации, но
-   * она не всегда показывается в форме
-   *
-   * На данный момент механизм показа ошибки - после первого изменения
-   */
-  saveValidation() {
-    this.formService.validateField(this.fieldName, this.errorKey);
   }
 
   /**
@@ -84,7 +71,9 @@ export default class FormServiceControl {
    * Необходимо после смены языка (чтобы показать сообщение на другом языке)
    * и после смены валидаторов (другие валидаторы = другие ошибки)
    */
-  changeErrorMessageIfShowed() {
+  changeErrorMessage() {
+    this.validateField();
+
     if (this.error) {
       this.showError();
     }
@@ -97,27 +86,40 @@ export default class FormServiceControl {
     return this.formService.fields[this.fieldName];
   }
 
+  isValid: ValidateResultT = true;
+
   /**
    * Валидно ли значение с учетом текущих валидаторов
    */
-  get isValid(): ValidateResultT {
+  validateField() {
     if (!this.rules) {
-      return true;
+      this.saveValidation(true);
+
+      return;
     }
 
     for (const key of Object.getOwnPropertyNames(this.rules)) {
       const validOrError = (this.rules as any)[key](this.value);
 
       if (typeof validOrError === 'string') {
-        return { key, message: validOrError };
+        this.saveValidation({ key, message: validOrError });
+
+        return;
       }
 
       if (!validOrError) {
-        return { key };
+        this.saveValidation({ key });
+
+        return;
       }
     }
 
-    return true;
+    this.saveValidation(true);
+  }
+
+  saveValidation(result: ValidateResultT) {
+    this.isValid = result;
+    this.formService.validateField(this.fieldName, this.errorKey);
   }
 
   /**

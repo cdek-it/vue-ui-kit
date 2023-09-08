@@ -1,5 +1,6 @@
 import { Template } from './settings';
 import CdekInput from '../CdekInput.vue';
+import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekInput/Basic',
@@ -11,11 +12,7 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1998%3A4714&t=G78h9IqBm7eEp4F9-4)',
       },
     },
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-    },
+    version: getVersion('0.0.1'),
   },
 };
 
@@ -84,9 +81,32 @@ Error.args = {
   validRes: 'Ошибка',
 };
 Error.parameters = {
+  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка"/>',
+    },
+  },
+};
+
+export const ErrorWithoutMessage = Template.bind({});
+ErrorWithoutMessage.args = {
+  label: 'Серия и номер паспорта',
+  validRes: 'Ошибка',
+  hideErrorMessage: true,
+};
+ErrorWithoutMessage.parameters = {
+  version: getVersion('0.1.0'),
+  docs: {
+    source: {
+      code: `
+<CdekInput
+  v-model="inputVal"
+  label="Серия и .."
+  valid-res="Ошибка"
+  hide-error-message
+/>
+`,
     },
   },
 };
@@ -98,6 +118,7 @@ ErrorFilled.args = {
   story: 'LabelFilled',
 };
 ErrorFilled.parameters = {
+  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка"/>',
@@ -125,6 +146,7 @@ DisabledWithError.args = {
   validRes: 'Ошибка',
 };
 DisabledWithError.parameters = {
+  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" label="Серия и .." disabled valid-res="Ошибка"/>',
@@ -180,6 +202,36 @@ Clearable.args = {
   clearable: true,
 };
 Clearable.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" label="Серия.." clearable />
+`,
+    },
+  },
+};
+
+export const SmallWidth = Template.bind({});
+SmallWidth.args = {
+  class: 'input-small-width-story',
+};
+SmallWidth.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput v-model="inputVal" class="input-small-width-story" />
+`,
+    },
+  },
+};
+
+export const ClearableFocus = Template.bind({});
+ClearableFocus.args = {
+  label: 'Серия и номер паспорта',
+  clearable: true,
+  story: 'ClearableFocus',
+};
+ClearableFocus.parameters = {
   docs: {
     source: {
       code: `

@@ -6,6 +6,10 @@ export default function useServiceFactory<T extends { init?: () => void }>(
   Service: any
 ) {
   return () => {
+    if (!Service.instance) {
+      Service.isReactive = false;
+    }
+
     let instance: T | UnwrapNestedRefs<T> = getInstance();
 
     if (!Service.isReactive) {

@@ -26,6 +26,7 @@ const props = withDefaults(
      * `string` - текст ошибки, ошибка показывается
      */
     validRes?: true | string;
+    hideErrorMessage?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
@@ -46,14 +47,12 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
 }>();
 
-const value = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(newValue) {
-    emit('update:modelValue', newValue);
-  },
-});
+const value = computed(() => props.modelValue);
+
+const setValue = (event: any) => {
+  emit('update:modelValue', event.target.value);
+};
+
 const clear = () => {
   emit('update:modelValue', '');
 };
@@ -64,7 +63,9 @@ const hasRightIcon = computed(() => !!slots['icons-right']);
 const hasLeftIcon = computed(() => !!slots['icons-left']);
 
 const inputRef = ref<HTMLInputElement>();
+
 const getControl = () => inputRef.value;
+
 defineExpose({ getControl });
 </script>
 
@@ -113,7 +114,8 @@ defineExpose({ getControl });
           'cdek-input__input_no-label': !label,
           'cdek-input__input_small': small,
         }"
-        v-model="value"
+        :value="value"
+        @input="setValue"
         v-bind="$attrs"
         :disabled="disabled || readonly"
         ref="inputRef"
@@ -141,8 +143,9 @@ defineExpose({ getControl });
     </label>
     <div class="cdek-input__tip">
       <template v-if="isError">
-        <BanIcon />
-        <span class="error">{{ validRes }}</span>
+        <span class="error" v-show="!hideErrorMessage">
+          {{ validRes }}
+        </span>
       </template>
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
@@ -245,6 +248,7 @@ defineExpose({ getControl });
     background: unset;
     border: unset;
     outline: unset;
+    width: 100%;
     flex-grow: 1;
     color: $Bottom;
     caret-color: $Primary;
@@ -379,15 +383,11 @@ defineExpose({ getControl });
     @include right-icon;
 
     opacity: 0;
+    z-index: -1;
     transition: all 0.2s ease;
 
-    @media (hover: hover) {
-      .cdek-input__control:hover & {
-        opacity: 1;
-      }
-    }
-
     .cdek-input__control:focus-within & {
+      z-index: 1;
       opacity: 1;
     }
   }

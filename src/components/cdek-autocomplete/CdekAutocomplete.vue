@@ -2,172 +2,226 @@
 import {
   computed,
   ref,
-  reactive,
   onMounted,
   onBeforeUnmount,
   useSlots,
+  watch,
 } from 'vue';
+import { debounce } from 'lodash';
+
 import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
-import type {
-  IItemValue,
-  Primitive,
-} from '../cdek-dropdown/CdekDropdown.types';
 import { CdekInput } from '../cdek-input/';
+
+import type { IItemValue } from '../cdek-dropdown/CdekDropdown.types';
+import type {
+  Value,
+  Item,
+  ItemsUnion,
+  FetchFunction,
+  GetValueFn,
+  GetTitleFn,
+} from './types';
+import {
+  KeyboardKeys,
+  transformItems,
+  getTitleByValue,
+  getSearchType,
+  getSearchFn,
+} from './helpers';
+
+defineOptions({
+  inheritAttrs: false,
+});
 
 const props = withDefaults(
   defineProps<{
     /**
-     * Обновляется при выборе из поля value выбранного из массива items элемента
+     * v-model
      *
-     * `string | number | boolean`
+     * Выбранное значение из доступных вариантов, НЕ строка, которую вводит пользователь
+     *
+     * `string | number`
      */
-    modelValue: Primitive;
+    modelValue: Value;
     /**
-     * Элементы выпадающего списка.
-     * `Array<string | number> | Array<IItemValue>`
-     * [Описание модели IItemValue](/?path=/story/ui-kit-cdekdropdown--primary)
+     * Готовый выпадающий список элементов
+     *
+     * Можно передать `string[]`, массив объектов по типу `{ value: string | number; title: string }`,
+     * либо массив объектов вашего типа
+     *
+     * Если `string[]` - то и значением v-model и отображаемым названием будет строка
+     *
+     * Если объект заготовленного типа - то значением будет `value`, а названием `title`
+     *
+     * Если массив вашего типа - то необходимо передать `getValue` и `getTitle`, подробнее смотрите в истории
+     *
+     * Для передачи начального значения передайте корректное значение в `v-model` и `items` из одного объекта,
+     * впоследствии значения будут браться из `fetchItems`
      */
-    items?: Array<IItemValue> | Array<string>;
+    items?: ItemsUnion;
     /**
-     * Асинхронная Функция для поиска элементов.
-     * Принимает параметр `query: string`, возвращает
-     * `Array<string | number> | Array<IItemValue>`
+     * Асинхронная функция для поиска элементов.
+     *
+     * Должна принимать строку для поиска, введенную пользователем
+     *
+     * Должна отдавать `Promise` с результатом такого же типа, как и `items`
+     *
+     * Обработка результата происходит также, как в `items`
      */
-    fetchItems?: (query: string) => Promise<Array<IItemValue> | Array<string>>;
+    fetchItems?: FetchFunction;
     /**
-     * Задержка(мс) от ввода значения в инпут, при истечении которой будет отправлен
-     * запрос(вызов функции fetchItems) или осуществлен поиск по списку элеметов items
+     * Кастомная функция для получения `value` из объектов, попадет в `v-model`
      */
-    debounce?: number;
+    getValue?: GetValueFn;
+    /**
+     * Кастомная функция для получения `title` из объектов, используется для отображения в списке
+     */
+    getTitle?: GetTitleFn;
     /**
      * Минимальная длина введеного значения, после которого будет отправлен
-     * запрос(вызов функции fetchItems) или осуществлен поиск по списку элеметов items
+     * запрос (вызов функции fetchItems) или осуществлен поиск по списку элеметов items
      */
     minLength?: number;
-    label?: string;
-    placeholder?: string;
-    /**
-     * `true` - валидация пройдена, ошибку показывать не надо
-     *
-     * `string` - текст ошибки, ошибка показывается
-     */
-    validRes?: true | string;
-    disabled?: boolean;
-    readonly?: boolean;
-    small?: boolean;
-    clearable?: boolean;
-    onSelect?: (value: IItemValue) => void;
+    class?: string;
   }>(),
   {
-    debounce: 300,
     minLength: 3,
   }
 );
 
-const transformItems = (items: Array<IItemValue> | Array<string> = []) => {
-  if (typeof items[0] === 'object') {
-    return items as Array<IItemValue>;
-  }
-
-  return items.map((item) => ({ value: item, title: item } as IItemValue));
-};
-
-const transformedItems = transformItems(props.items);
-const state = reactive({
-  items: props.items,
-  isOpen: false,
-  activeIndex: transformedItems.findIndex(
-    (option) => option.value === props.modelValue
-  ),
-  selectedValue: transformedItems.find(
-    (item) => item.value === props.modelValue
-  ),
-});
-
-const inputValue = ref<string>(
-  state.selectedValue ? String(state.selectedValue?.title) : ''
+const searchType = computed(() =>
+  getSearchType(props.fetchItems, props.items, props.getTitle)
 );
 
-const inputControl = ref();
+// null - не показываем dropdown
+const showedItems = ref<ItemsUnion | null>(null);
+const options = computed(() =>
+  transformItems(showedItems.value, props.getValue, props.getTitle)
+);
+
+// Сохраняем название выбранного элемента, чтобы подставлять в инпут при закрытии дропдауна
+const currentTitle = ref<string>(
+  getTitleByValue(props.items, props.modelValue, props.getValue, props.getTitle)
+);
+const inputValue = ref<string>(currentTitle.value || '');
+
+watch(
+  () => props.modelValue,
+  (value) => {
+    // Пришло пустое значение
+    if (!value) {
+      // Отображаем пустое значение если сейчас заполнено
+      if (currentTitle.value || inputValue.value) {
+        currentTitle.value = '';
+        inputValue.value = '';
+      }
+
+      return; // Не делаем emit, чтобы избежать зацикливания
+    }
+
+    const newTitle = getTitleByValue(
+      props.items,
+      value,
+      props.getValue,
+      props.getTitle
+    );
+
+    if (!newTitle) {
+      // Если название не нашлось, значит мы его выбрали с результата fetchItems
+      // либо значение было передано некорректно
+
+      return;
+    }
+
+    currentTitle.value = newTitle;
+    inputValue.value = newTitle;
+  }
+);
+
+const isOpen = computed(() => {
+  if (!showedItems.value) {
+    return false;
+  }
+
+  if (hasNotFoundMessage.value && !showedItems.value.length) {
+    return true;
+  }
+
+  return showedItems.value.length > 0;
+});
+
+// Подсвеченный элемент при управлении с клавиатуры
+const highlightedEl = ref<number>(-1);
+
+const cdekInputRef = ref<InstanceType<typeof CdekInput> | undefined>();
 const autocompleteRef = ref<HTMLDivElement>();
 
-const options = computed(() => transformItems(state.items));
-
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: Primitive): void;
-  (e: 'select', value: IItemValue): void;
+  (e: 'update:modelValue', value: Value): void;
+  (e: 'select', value: string | Item | any): void;
 }>();
 
-const onClear = () => {
-  emit('update:modelValue', '');
-  state.selectedValue = undefined;
-};
+const hasFocus = ref(false);
 
-let timeout: ReturnType<typeof setTimeout>;
+const checkInputValue = debounce(async (val: string) => {
+  // обнуляем подсвеченный элемент
+  highlightedEl.value = -1;
+
+  const searchFn = getSearchFn(
+    searchType.value,
+    props.fetchItems,
+    props.getTitle
+  );
+
+  try {
+    const newItems = await searchFn(val, props.items);
+
+    if (hasFocus.value) {
+      showedItems.value = newItems;
+      return;
+    }
+
+    showedItems.value = null;
+  } catch {
+    showedItems.value = null;
+  }
+}, 300);
+
 const onChangeInput = (value: string) => {
-  if (timeout) {
-    clearTimeout(timeout);
-  }
-  timeout = setTimeout(() => {
-    if (value.length >= props.minLength) {
-      state.activeIndex = -1;
-      if (props.fetchItems) {
-        props.fetchItems(value).then((fetchedItems) => {
-          state.items = fetchedItems;
-          openDropdown();
-        });
-      } else {
-        if (typeof (props.items || [])[0] === 'string') {
-          state.items = (props.items as Array<string>).filter((item) =>
-            item.toLowerCase().includes(value.toLowerCase())
-          );
-        } else {
-          state.items = (props.items as Array<IItemValue>).filter((item) =>
-            String(item.title).toLowerCase().includes(value.toLowerCase())
-          );
-        }
-        openDropdown();
-      }
-    } else {
-      state.items = props.items;
-      state.isOpen = false;
-    }
-    if (value.length === 0) {
-      onClear();
-    }
-  }, props.debounce);
-};
+  inputValue.value = value;
 
-const openDropdown = () => {
-  if (options.value.length || hasNotFoundMessage.value) {
-    state.isOpen = true;
+  if (value.length >= props.minLength) {
+    return void checkInputValue(value);
   }
+
+  if (value.length === 0) {
+    currentTitle.value = '';
+    emit('update:modelValue', '');
+  }
+
+  showedItems.value = null;
 };
 
 const closeDropdown = () => {
-  state.isOpen = false;
+  showedItems.value = null;
 
-  if (!state.selectedValue) {
+  if (!currentTitle.value) {
     inputValue.value = '';
+    return;
   }
 
-  setActive(
-    options.value.findIndex((item) => item.value === state.selectedValue?.value)
-  );
-
-  if (state.selectedValue) {
-    inputValue.value = String(state.selectedValue.title);
-  }
+  inputValue.value = currentTitle.value;
 };
 
-const onSelect = (value: IItemValue) => {
+const onSelect = (value: IItemValue, index: number) => {
+  emit('select', showedItems.value?.[index]);
+
   closeDropdown();
-  setActive(options.value.findIndex((option) => option.value === value.value));
-  state.selectedValue = value;
+
+  currentTitle.value = String(value.title);
   inputValue.value = String(value.title);
 
   emit('update:modelValue', value.value);
-  emit('select', value);
 };
 
 const onOutsideClick = (event: MouseEvent) => {
@@ -176,7 +230,7 @@ const onOutsideClick = (event: MouseEvent) => {
   }
 };
 
-const setActive = (index: number) => {
+const highlight = (index: number) => {
   if (index < 0) {
     index = options.value.length - 1;
   }
@@ -184,44 +238,53 @@ const setActive = (index: number) => {
     index = 0;
   }
 
-  state.activeIndex = index;
+  highlightedEl.value = index;
 };
 
 const onKeydown = (event: KeyboardEvent) => {
-  if (!state.isOpen) {
+  if (!isOpen.value) {
     return;
   }
 
-  switch (event.key) {
-    case 'ArrowDown':
-      setActive(state.activeIndex + 1);
-      break;
+  if (event.key === KeyboardKeys.ArrowDown) {
+    return void highlight(highlightedEl.value + 1);
+  }
 
-    case 'ArrowUp':
-      setActive(state.activeIndex - 1);
-      break;
+  if (event.key === KeyboardKeys.ArrowUp) {
+    return void highlight(highlightedEl.value - 1);
+  }
 
-    case 'Enter':
-      event.stopImmediatePropagation();
-      onSelect(options.value[state.activeIndex]);
-      break;
+  if (event.key === KeyboardKeys.Enter) {
+    event.stopImmediatePropagation();
+    return void onSelect(
+      options.value[highlightedEl.value],
+      highlightedEl.value
+    );
+  }
 
-    case 'Escape':
-      event.stopImmediatePropagation();
-      closeDropdown();
-      break;
+  if (event.key === KeyboardKeys.Escape) {
+    event.stopImmediatePropagation();
+    return void closeDropdown();
   }
 };
 
-let input: HTMLInputElement;
+const onFocus = () => {
+  hasFocus.value = true;
+};
+
+const onBlur = () => {
+  hasFocus.value = false;
+};
+
 onMounted(() => {
-  input = inputControl.value.getControl();
-  input.addEventListener('keydown', onKeydown);
+  const input = cdekInputRef.value?.getControl();
+  input?.addEventListener('keydown', onKeydown);
   document.addEventListener('click', onOutsideClick);
 });
 
 onBeforeUnmount(() => {
-  input.removeEventListener('keydown', onKeydown);
+  const input = cdekInputRef.value?.getControl();
+  input?.removeEventListener('keydown', onKeydown);
   document.removeEventListener('click', onOutsideClick);
 });
 
@@ -230,43 +293,21 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
 </script>
 
 <template>
-  <div
-    class="cdek-autocomplete"
-    :class="{
-      'cdek-autocomplete_small': small && label,
-    }"
-    ref="autocompleteRef"
-  >
+  <div class="cdek-autocomplete" :class="props.class" ref="autocompleteRef">
     <CdekInput
-      :label="label"
-      :disabled="disabled"
-      :small="small"
-      :validRes="validRes"
-      :readonly="readonly"
-      :clearable="clearable"
-      :placeholder="placeholder"
-      v-model="inputValue"
-      ref="inputControl"
+      v-bind="$attrs"
+      :model-value="inputValue"
       @update:modelValue="onChangeInput"
+      ref="cdekInputRef"
+      @focus="onFocus"
+      @blur="onBlur"
     >
-      <template #icons-right>
-        <slot name="icons-right" />
-      </template>
-      <template #icons-left>
-        <slot name="icons-left" />
-      </template>
-      <template #tip="{ alert, info, ban, circle }">
-        <slot
-          name="tip"
-          :alert="alert"
-          :info="info"
-          :ban="ban"
-          :circle="circle"
-        />
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
+        <slot :name="slot" v-bind="scope" />
       </template>
     </CdekInput>
     <Transition>
-      <CdekDropdownBox v-if="state.isOpen">
+      <CdekDropdownBox v-if="isOpen">
         <div
           class="cdek-autocomplete__not-found"
           v-if="options.length === 0 && inputValue?.length >= minLength"
@@ -277,10 +318,9 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
         <CdekDropdownItem
           v-for="(item, index) in options"
           :value="item"
-          :active="index === state.activeIndex"
-          :selected="state.selectedValue?.value === item.value"
+          :active="index === highlightedEl"
           :key="item.value"
-          @select="onSelect"
+          @select="(item) => onSelect(item, index)"
         >
           {{ item.title }}
         </CdekDropdownItem>

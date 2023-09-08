@@ -1,4 +1,5 @@
 import CdekSpinner from './CdekSpinner.vue';
+import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekSpinner',
@@ -10,11 +11,7 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2182%3A8032&t=z1QNDvjqjFqqVZE2-0)',
       },
     },
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-    },
+    version: getVersion('0.0.1'),
   },
   argTypes: {
     color: {

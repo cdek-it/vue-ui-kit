@@ -3,22 +3,14 @@ import { ref } from 'vue';
 import CdekForm from './CdekForm.vue';
 import { CdekFormControl } from '@/components/form/cdek-form-control';
 import { formSettings } from '../index';
+import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Form/CdekForm',
   component: CdekForm,
   subcomponents: { CdekFormControl },
   parameters: {
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-      postfix: 'alpha',
-      style: {
-        background: 'rgba(228, 0, 41, 0.05)',
-        color: '#e40029',
-      },
-    },
+    version: getVersion('0.0.1', 'alpha'),
   },
 };
 
@@ -37,8 +29,8 @@ const Template = (args) => ({
           return 'required';
         case 'WithValidation':
           return {
-            required: (value) => {
-              if (!value.trim()) {
+            newRequired: (value) => {
+              if (!value || !value.trim()) {
                 return 'Поле обязательное';
               }
 
@@ -156,6 +148,7 @@ WithValidation.args = {
   story: 'WithValidation',
 };
 WithValidation.parameters = {
+  version: getVersion('0.1.0', 'alpha'),
   docs: {
     source: {
       code: `
@@ -168,7 +161,7 @@ WithValidation.parameters = {
  * и строку с текстом ошибки, если валидация не прошла
  */
 const rules = {
-  required: (value) => {
+  newRequired: (value) => {
     if (!value.trim()) {
       return 'Поле обязательное';
     }
@@ -227,6 +220,7 @@ GlobalValidator.args = {
   story: 'GlobalValidator',
 };
 GlobalValidator.parameters = {
+  version: getVersion('0.1.0', 'alpha'),
   docs: {
     source: {
       code: `
@@ -246,6 +240,7 @@ ChangeLanguage.args = {
   story: 'ChangeLanguage',
 };
 ChangeLanguage.parameters = {
+  version: getVersion('0.1.0', 'alpha'),
   docs: {
     source: {
       code: `

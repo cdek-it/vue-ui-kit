@@ -5,7 +5,7 @@ import CdekHeadline from './CdekHeadline.vue';
 type SizeT = '1' | '2' | '3' | '4' | '5' | '6' | '7';
 
 const createCdekHeadline = (size?: SizeT) => {
-  return mount(CdekHeadline, {
+  return mount(CdekHeadline as any, {
     props: {
       size,
     },

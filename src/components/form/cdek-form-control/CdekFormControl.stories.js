@@ -3,21 +3,13 @@ import CdekFormControl from './CdekFormControl.vue';
 import { CdekForm } from '../cdek-form';
 import './CdekFormControl.stories.css';
 import { formSettings } from '../index';
+import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Form/CdekFormControl',
   component: CdekFormControl,
   parameters: {
-    version: {
-      major: '0',
-      minor: '0',
-      patch: '1',
-      postfix: 'alpha',
-      style: {
-        background: 'rgba(228, 0, 41, 0.05)',
-        color: '#e40029',
-      },
-    },
+    version: getVersion('0.1.0', 'alpha'),
   },
 };
 
@@ -60,6 +52,7 @@ Primary.args = {
   name: 'firstName',
 };
 Primary.parameters = {
+  version: getVersion('0.0.1', 'alpha'),
   docs: {
     source: {
       code: `
@@ -77,6 +70,7 @@ WithLabel.args = {
   name: 'firstName',
 };
 WithLabel.parameters = {
+  version: getVersion('0.0.1', 'alpha'),
   docs: {
     source: {
       code: `
@@ -92,14 +86,14 @@ export const CustomClass = Template.bind({});
 CustomClass.args = {
   label: 'Имя',
   name: 'firstName',
-  class: 'some-class',
+  className: 'some-class',
 };
 CustomClass.parameters = {
   docs: {
     source: {
       code: `
 <CdekForm>
-  <CdekFormControl name="firstName" label="Имя" class="some-class">
+  <CdekFormControl name="firstName" label="Имя" class-name="some-class">
 </CdekForm>
 `,
     },
@@ -319,6 +313,58 @@ RegexWithCustomError.parameters = {
     name="number"
     label="Number"
     :rules="{ regex: { pattern: /../, message: '' } }"
+  >
+</CdekForm>
+`,
+    },
+  },
+};
+
+export const WithoutError = Template.bind({});
+WithoutError.args = {
+  label: 'Name',
+  name: 'name',
+  rules: 'required',
+  hideErrorMessage: true,
+};
+WithoutError.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl
+    name="name"
+    label="Name"
+    rules="required"
+    hide-error-message
+  >
+</CdekForm>
+`,
+    },
+  },
+};
+
+export const DisabledAutocomplete = Template.bind({});
+DisabledAutocomplete.args = {
+  label: 'Город',
+  name: 'city',
+  initialValue: 1,
+  items: [{ value: 1, title: 'Москва' }],
+  type: 'autocomplete',
+  disabled: true,
+};
+WithoutError.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl
+    type="autocomplete"
+    name="city"
+    label="Город"
+    :initial-value="1"
+    :items="[{ value: 1, title: 'Москва' }]"
+    disabled
   >
 </CdekForm>
 `,

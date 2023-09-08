@@ -23,5 +23,9 @@ module.exports = {
       'warn',
       { varsIgnorePattern: 'props' },
     ],
+    curly: 'error',
+  },
+  globals: {
+    defineOptions: 'readonly',
   },
 };

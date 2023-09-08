@@ -1,5 +1,5 @@
 variables:
-  DOCKER_IMAGE: 'docker.cdek.ru/nodenx-dev-rocky9:latest'
+  DOCKER_IMAGE: 'node:16'
 
 stages:
   - lint
@@ -65,6 +65,7 @@ publish:
   extends: .common
   only:
     - main
+    - /^release\/.*/
   when: manual
 
   script:
