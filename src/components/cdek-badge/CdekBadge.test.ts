@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekBadge from './CdekBadge.vue';
-import type { IBadgeProps } from '@/components/cdek-badge/CdekBadge.vue';
+import type IBadgeProps from '@/components/cdek-badge/CdekBadge.vue';
 
 const createCdekBadge = (props: IBadgeProps, slots: any = '') => {
   return mount(CdekBadge as any, { props, slots });
@@ -42,7 +42,7 @@ describe('Unit: CdekBadge', () => {
     );
   });
 
-  test('Если передан слот, то его нужно отобразить', async () => {
+  test('Если передан слот, то его нужно отобразить', () => {
     const wrapper = createCdekBadge(
       {},
       {
@@ -53,7 +53,7 @@ describe('Unit: CdekBadge', () => {
     expect(wrapper.html()).toMatch('<b>test</b>');
   });
 
-  test('Если передан текст, то его нужно отобразить', async () => {
+  test('Если передан текст, то его нужно отобразить', () => {
     const wrapper = createCdekBadge({ text: 'Status' });
     expect(wrapper.text()).toBe('Status');
   });
