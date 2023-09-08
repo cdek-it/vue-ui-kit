@@ -155,7 +155,10 @@ Slot.args = {
 Slot.parameters = {
   docs: {
     source: {
-      code: '<CdekBadge>' + '\n   <span>Status</span>' + '\n</CdekBadge>',
+      code: `
+<CdekBadge>
+    <span>Status</span>
+</CdekBadge>`,
     },
   },
 };
@@ -167,7 +170,10 @@ IconSlot.args = {
 IconSlot.parameters = {
   docs: {
     source: {
-      code: '<CdekBadge>' + '\n  <EyeIcon/>' + '\n</CdekBadge>',
+      code: `
+<CdekBadge>
+    <EyeIcon/> 
+</CdekBadge>`,
     },
   },
 };
