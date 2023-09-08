@@ -3,8 +3,8 @@ import { describe, test, expect } from 'vitest';
 import CdekBadge from './CdekBadge.vue';
 import type { IBadgeProps } from '@/components/cdek-badge/CdekBadge.vue';
 
-const createCdekBadge = (props: IBadgeProps) => {
-  return mount(CdekBadge, { props });
+const createCdekBadge = (props: IBadgeProps, slots: any = '') => {
+  return mount(CdekBadge, { props, slots });
 };
 
 describe('Unit: CdekBadge', () => {
@@ -40,5 +40,21 @@ describe('Unit: CdekBadge', () => {
         expect(wrapper.classes(variantClass)).toBeTruthy();
       }
     );
+  });
+
+  test('Если передан слот, то его нужно отобразить', async () => {
+    const wrapper = createCdekBadge(
+      {},
+      {
+        default: '<b>test</b>',
+      }
+    );
+
+    expect(wrapper.html()).toMatch('<b>test</b>');
+  });
+
+  test('Если передан текст, то его нужно отобразить', async () => {
+    const wrapper = createCdekBadge({ text: 'Status' });
+    expect(wrapper.text()).toBe('Status');
   });
 });

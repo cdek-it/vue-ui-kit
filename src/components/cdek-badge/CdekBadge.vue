@@ -9,18 +9,21 @@ export interface IBadgeProps {
   /**
    * Текст
    */
-  text: string;
+  text?: string;
 }
 
 const props = withDefaults(defineProps<IBadgeProps>(), {
   type: 'info',
   variant: 'light',
+  text: '',
 });
 </script>
 
 <template>
   <div class="cdek-badge" :class="[type, variant]">
-    {{ text }}
+    <slot>
+      {{ text }}
+    </slot>
   </div>
 </template>
 

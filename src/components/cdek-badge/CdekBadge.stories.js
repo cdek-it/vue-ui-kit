@@ -1,5 +1,6 @@
 import CdekBadge from './CdekBadge.vue';
 import getVersion from '@/test/getVersion';
+import EyeIcon from './svg/eye.svg?component';
 
 export default {
   title: 'Ui kit/CdekBadge',
@@ -31,12 +32,15 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekBadge },
+  components: { CdekBadge, EyeIcon },
   setup() {
     return { args };
   },
   template: `
-    <CdekBadge v-bind="args" />
+    <CdekBadge v-bind="args">
+      <span v-if="args.story === 'Slot'">Status</span>
+      <EyeIcon v-if="args.story === 'IconSlot'"/>
+    </CdekBadge>
   `,
 });
 
@@ -140,6 +144,30 @@ NegativeDark.parameters = {
   docs: {
     source: {
       code: '<CdekBadge variant="dark" type="negative" />',
+    },
+  },
+};
+
+export const Slot = Template.bind({});
+Slot.args = {
+  story: 'Slot',
+};
+Slot.parameters = {
+  docs: {
+    source: {
+      code: '<CdekBadge>' + '\n   <span>Status</span>' + '\n</CdekBadge>',
+    },
+  },
+};
+
+export const IconSlot = Template.bind({});
+IconSlot.args = {
+  story: 'IconSlot',
+};
+IconSlot.parameters = {
+  docs: {
+    source: {
+      code: '<CdekBadge>' + '\n  <EyeIcon/>' + '\n</CdekBadge>',
     },
   },
 };
