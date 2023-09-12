@@ -28,10 +28,15 @@ const Template = (args) => ({
   components: { CdekSelect },
   setup() {
     const selectValue = ref(args.value);
-    return { args, items: args.items, selectValue };
+
+    const selectArg = ref();
+
+    const onSelect = (val) => (selectArg.value = val);
+
+    return { args, items: args.items, selectValue, selectArg, onSelect };
   },
   template: `
-<CdekSelect v-bind="args" :items="items" v-model="selectValue">
+<CdekSelect v-bind="args" :items="items" v-model="selectValue" @select="onSelect">
   <template #tip="{ alert, info, ban, circle }">
     <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
     <span :class="args.tipColor">{{ args.tip }}</span>
@@ -42,6 +47,7 @@ const Template = (args) => ({
 <div v-if="args.story === 'GetValue' || args.story === 'GetTitle'">
   <p>items => {{ args.items }}</p>
   <p>v-model => <code>{{ selectValue }}</code></p>
+  <p>@select => <code>{{ selectArg }}</code></p>
 </div>
 
   `,
