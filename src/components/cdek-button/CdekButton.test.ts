@@ -13,6 +13,7 @@ class CdekButtonBuilder {
   loading?: boolean;
   spinnerBefore?: boolean;
   icon?: boolean;
+  as = 'button';
 
   setTheme(theme: ThemeT) {
     this.theme = theme;
@@ -20,6 +21,10 @@ class CdekButtonBuilder {
   }
   setWidth(width: WidthT) {
     this.width = width;
+    return this;
+  }
+  setAs(as: string) {
+    this.as = as;
     return this;
   }
   toggleSmall() {
@@ -53,6 +58,7 @@ class CdekButtonBuilder {
         loading: this.loading,
         spinnerBefore: this.spinnerBefore,
         icon: this.icon,
+        as: this.as,
       },
       slots: {
         default: 'Подтвердить',
@@ -97,6 +103,17 @@ describe('Unit: CdekButton', () => {
   test('Если icon = true, то должен быть класс .icon', () => {
     const wrapper = new CdekButtonBuilder().toggleIcon().build();
     expect(wrapper.classes('icon')).toBe(true);
+  });
+
+  describe('as', () => {
+    test('Если as не передан, то тег должен быть button', () => {
+      const wrapper = new CdekButtonBuilder().build();
+      expect(wrapper.vm.$el.tagName).toBe('BUTTON');
+    });
+    test('Если as = div, то тег должен быть div', () => {
+      const wrapper = new CdekButtonBuilder().setAs('div').build();
+      expect(wrapper.vm.$el.tagName).toBe('DIV');
+    });
   });
 
   describe('Loading', () => {
