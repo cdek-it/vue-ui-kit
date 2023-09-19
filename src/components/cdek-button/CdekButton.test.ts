@@ -84,9 +84,9 @@ describe('Unit: CdekButton', () => {
     expect(wrapper.classes('inline')).toBeTruthy();
   });
 
-  test('Если disabled = true, то должен быть атрибут disabled', () => {
+  test('Если disabled = true, то должен быть класс .disabled', () => {
     const wrapper = new CdekButtonBuilder().toggleDisabled().build();
-    expect(wrapper.attributes('disabled')).toBeDefined();
+    expect(wrapper.classes('disabled')).toBeTruthy();
   });
 
   test('Если small = true, то должен быть класс .small', () => {
