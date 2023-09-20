@@ -228,7 +228,7 @@ const value = computed({
           :disabled="item.disabled"
           as="template"
         >
-          <slot :item="item">
+          <slot name="option" :option="item">
             <CdekDropdownItem
               :value="item"
               :disabled="item.disabled"

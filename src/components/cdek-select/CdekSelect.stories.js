@@ -38,7 +38,9 @@ const Template = (args) => ({
   },
   template: `
 <CdekSelect v-bind="args" :items="items" v-model="selectValue" @select="onSelect">
-  <template v-if="args.story === 'ScopedSlotSelectedOption' || args.story === 'ScopedSlotsSelectedOptionAndCustomOption'" #selectedOption="{ value }">
+  <template 
+      v-if="args.story === 'ScopedSlotSelectedOption' 
+      || args.story === 'ScopedSlotsSelectedOptionAndCustomOption'" #selectedOption="{ value }">
     <div v-if="value?.title"> Вы выбрали: {{ value?.title }}</div>
   </template>
 
@@ -46,8 +48,10 @@ const Template = (args) => ({
     <div v-if="value?.value"> Вы выбрали: {{ value?.value }}</div>
   </template>
 
-  <template v-if="args.story === 'ScopedSlotOption' || args.story === 'ScopedSlotsSelectedOptionAndCustomOption'" v-slot="{ item }">
-    <div class="some-class">{{ item.value }}</div>
+  <template 
+      v-if="args.story === 'ScopedSlotOption' 
+      || args.story === 'ScopedSlotsSelectedOptionAndCustomOption'" #option="{ option }">
+    <div class="some-class">{{ option?.value }}</div>
   </template>
   
   <template #tip="{ alert, info, ban, circle }">
@@ -311,8 +315,8 @@ ScopedSlotOption.parameters = {
     .. 
   ]" 
   >
-  <template v-slot="{ item }">
-    <div class="some-class">{{ item.value }}</div>
+  <template #option="{ option }">
+    <div class="some-class">{{ option.value }}</div>
   </template>
 </CdekSelect>
 `,
@@ -374,8 +378,8 @@ ScopedSlotsSelectedOptionAndCustomOption.parameters = {
     <div v-if="value?.value"> Вы выбрали: {{ value?.value}}</div>
   </template>
   
-  <template v-slot="{ item }">
-    <div class="some-class">{{ item.value }}</div>
+  <template #option="{ option }">
+    <div class="some-class">{{ option.value }}</div>
   </template>
 </CdekSelect>
 `,

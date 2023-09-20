@@ -19,7 +19,7 @@ interface ExtraMethods {
   setSmall: (value: boolean) => CdekSelectBuilder;
   setMultiple: (value: boolean) => CdekSelectBuilder;
   setTip: (value: string) => CdekSelectBuilder;
-  setDefault: (value: string) => CdekSelectBuilder;
+  setOption: (value: string) => CdekSelectBuilder;
   setSelectedOption: (value: string) => CdekSelectBuilder;
   setItems: (
     items: Array<IItemValue> | Array<Primitive> | Array<any>
@@ -72,7 +72,7 @@ class CdekSelectBuilder {
   getTitle?: GetTitleFn;
 
   @builderProp
-  default?: string;
+  option?: string;
 
   @builderProp
   selectedOption?: string;
@@ -105,8 +105,8 @@ class CdekSelectBuilder {
         getTitle: this.getTitle,
       },
       slots: {
-        default: this.default || '',
         tip: this.tip || '',
+        option: this.option || '',
         selectedOption: this.selectedOption || '',
       },
       attrs: this.attrs,
@@ -287,9 +287,9 @@ describe('Unit: CdekSelect', () => {
   });
 
   describe('scopedSlots', () => {
-    test('Если scoped-slot передан, то вид опции изменяется ', async () => {
+    test('Если слот option передан, то вид опции изменяется ', async () => {
       const wrapper = new CdekSelectBuilder()
-        .setDefault('<div class="some-class">{{ params.item.value}}</div>')
+        .setOption('<div class="some-class">{{ params.option.value}}</div>')
         .build();
 
       const control = wrapper.find('.cdek-select__control');
