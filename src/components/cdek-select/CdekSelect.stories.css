@@ -1,0 +1,7 @@
+.some-class {
+  padding-left: 10px;
+}
+
+.some-class:hover {
+  background: #1ab248;
+}
