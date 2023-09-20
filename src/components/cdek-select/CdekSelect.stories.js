@@ -28,15 +28,28 @@ const Template = (args) => ({
   components: { CdekSelect },
   setup() {
     const selectValue = ref(args.value);
-    return { args, items: args.items, selectValue };
+
+    const selectArg = ref();
+
+    const onSelect = (val) => (selectArg.value = val);
+
+    return { args, items: args.items, selectValue, selectArg, onSelect };
   },
   template: `
-<CdekSelect v-bind="args" :items="items" v-model="selectValue">
+<CdekSelect v-bind="args" :items="items" v-model="selectValue" @select="onSelect">
   <template #tip="{ alert, info, ban, circle }">
     <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
     <span :class="args.tipColor">{{ args.tip }}</span>
   </template>
 </CdekSelect>
+
+
+<div v-if="args.story === 'GetValue' || args.story === 'GetTitle'">
+  <p>items => {{ args.items }}</p>
+  <p>v-model => <code>{{ selectValue }}</code></p>
+  <p>@select => <code>{{ selectArg }}</code></p>
+</div>
+
   `,
 });
 
@@ -260,6 +273,113 @@ WithErrorHiddenMessage.parameters = {
   v-model="selectVal"
   valid-res="Ошибка"
   hide-error-message
+/>
+`,
+    },
+  },
+};
+
+const customValuesItems = [
+  {
+    valueData: {
+      value: 1,
+    },
+    title: 'Envelope, 42×5×5сm, up to 2kg',
+  },
+  {
+    valueData: {
+      value: 2,
+    },
+    title: 'Box XS, 17×12×9cm, up to 0,5kg',
+  },
+  {
+    valueData: {
+      value: 3,
+    },
+    title: 'Box S, 23×19×10cm, up to 2kg',
+  },
+  {
+    valueData: {
+      value: 4,
+    },
+    title: 'Box m, 35×25×15cm, up to 5kg',
+  },
+];
+
+const getValueHandler = (item) => {
+  return item.valueData.value;
+};
+
+export const GetValue = Template.bind({});
+GetValue.args = {
+  label: 'Вариант действия',
+  story: 'GetValue',
+  items: customValuesItems,
+  getValue: getValueHandler,
+};
+GetValue.parameters = {
+  version: getVersion('0.1.0'),
+  docs: {
+    source: {
+      code: `
+<CdekSelect
+  label="Вариант действия"
+  :items="items"
+  v-model="selectVal"
+  get-value="(item) => item..."
+/>
+`,
+    },
+  },
+};
+
+const customTitlesItems = [
+  {
+    value: 1,
+    titleData: {
+      title: 'Envelope, 42×5×5сm, up to 2kg',
+    },
+  },
+  {
+    value: 2,
+    titleData: {
+      title: 'Box XS, 17×12×9cm, up to 0,5kg',
+    },
+  },
+  {
+    value: 3,
+    titleData: {
+      title: 'Box S, 23×19×10cm, up to 2kg',
+    },
+  },
+  {
+    value: 4,
+    titleData: {
+      title: 'Box m, 35×25×15cm, up to 5kg',
+    },
+  },
+];
+
+const getTitleHandler = (item) => {
+  return item.titleData.title;
+};
+export const GetTitle = Template.bind({});
+GetTitle.args = {
+  label: 'Вариант действия',
+  story: 'GetTitle',
+  items: customTitlesItems,
+  getTitle: getTitleHandler,
+};
+GetTitle.parameters = {
+  version: getVersion('0.1.0'),
+  docs: {
+    source: {
+      code: `
+<CdekSelect
+  label="Вариант действия"
+  :items="items"
+  v-model="selectVal"
+  get-title="(item) => item..."
 />
 `,
     },

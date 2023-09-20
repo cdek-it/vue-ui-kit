@@ -1,12 +1,13 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekSelect from './CdekSelect.vue';
-import type {
-  IItemValue,
-  Primitive,
-} from '../cdek-dropdown/CdekDropdown.types';
+import type { IItemValue, Primitive } from '@/components/cdek-dropdown';
 import { Listbox } from '@headlessui/vue';
 import builderProp from '@/test/decorators';
+import type {
+  GetTitleFn,
+  GetValueFn,
+} from '@/components/cdek-select/CdekSelect.vue';
 
 interface ExtraMethods {
   setModelValue: (value: Primitive | Array<Primitive>) => CdekSelectBuilder;
@@ -18,13 +19,28 @@ interface ExtraMethods {
   setSmall: (value: boolean) => CdekSelectBuilder;
   setMultiple: (value: boolean) => CdekSelectBuilder;
   setTip: (value: string) => CdekSelectBuilder;
+  setItems: (
+    items: Array<IItemValue> | Array<Primitive> | Array<any>
+  ) => CdekSelectBuilder;
+  setGetValue: (getValue?: GetValueFn) => CdekSelectBuilder;
+  setGetTitle: (getTitle?: GetTitleFn) => CdekSelectBuilder;
 }
+
+const defaultItems: Array<IItemValue> = [
+  { value: 1, title: 'Option 1', disabled: true },
+  { value: 2, title: 'Option 2' },
+  { value: 3, title: 'Option 3' },
+  { value: 4, title: 'Option 4' },
+];
 
 interface CdekSelectBuilder extends ExtraMethods {}
 
 class CdekSelectBuilder {
   @builderProp
   modelValue: Primitive | Array<Primitive> = '';
+
+  @builderProp
+  items: Array<IItemValue> | Array<Primitive> | Array<any> = defaultItems;
 
   @builderProp
   label?: string;
@@ -47,12 +63,11 @@ class CdekSelectBuilder {
   @builderProp
   multiple?: boolean;
 
-  items: Array<IItemValue> = [
-    { value: 1, title: 'Option 1', disabled: true },
-    { value: 2, title: 'Option 2' },
-    { value: 3, title: 'Option 3' },
-    { value: 4, title: 'Option 4' },
-  ];
+  @builderProp
+  getValue?: GetValueFn;
+
+  @builderProp
+  getTitle?: GetTitleFn;
 
   @builderProp
   tip?: string;
@@ -78,6 +93,8 @@ class CdekSelectBuilder {
         readonly: this.readonly,
         small: this.small,
         multiple: this.multiple,
+        getValue: this.getValue,
+        getTitle: this.getTitle,
       },
       slots: {
         tip: this.tip || '',
@@ -257,5 +274,70 @@ describe('Unit: CdekSelect', () => {
     expect(label.classes('cdek-select__label_small')).toBeTruthy();
     const input = wrapper.find('.cdek-select__value');
     expect(input.classes('cdek-select__value_small')).toBeTruthy();
+  });
+
+  test('Если GetTitle установлен, то переданный массив опций преобразуется в соотв. с функцией', async () => {
+    const customItems = [
+      {
+        value: 1,
+        titleData: {
+          title: 'Option 1',
+        },
+      },
+      {
+        value: 2,
+        titleData: {
+          title: 'Option 2',
+        },
+      },
+    ];
+
+    const getTitle = (item: any) => item.titleData.title;
+
+    const wrapper = new CdekSelectBuilder()
+      .setItems(customItems)
+      .setGetTitle(getTitle)
+      .build();
+
+    const control = wrapper.find('.cdek-select__control');
+    await control.trigger('click');
+    const options = wrapper.findAll(`.cdek-dropdown-item`);
+
+    expect(options[0].text()).toBe('Option 1');
+    expect(options[1].text()).toBe('Option 2');
+  });
+
+  test('Если GetValue установлен, то при выборе опции - v-model должен получить значение в соотв с функцией', async () => {
+    const customItems = [
+      {
+        valueData: {
+          value: 1,
+        },
+        title: 'Option 1',
+      },
+      {
+        valueData: {
+          value: 2,
+        },
+        title: 'Option 2',
+      },
+    ];
+
+    const getValue = (item: any) => {
+      return item.valueData.value;
+    };
+
+    const wrapper = new CdekSelectBuilder()
+      .setItems(customItems)
+      .setGetValue(getValue)
+      .build();
+
+    const control = wrapper.find('.cdek-select__control');
+    await control.trigger('click');
+    const options = wrapper.findAll(`.cdek-dropdown-item`);
+
+    await options[1].trigger('click');
+
+    expect(wrapper.props('modelValue')).toBe(2);
   });
 });
