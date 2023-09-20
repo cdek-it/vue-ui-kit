@@ -224,3 +224,18 @@ IconAfter.parameters = {
     },
   },
 };
+
+export const AsDiv = Template.bind({});
+AsDiv.args = {
+  default: 'Подтвердить',
+  as: 'div',
+};
+AsDiv.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekButton as="div">Подтвердить</CdekButton>
+`,
+    },
+  },
+};
