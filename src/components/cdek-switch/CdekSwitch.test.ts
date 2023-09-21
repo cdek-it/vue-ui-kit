@@ -9,6 +9,7 @@ interface ExtraMethods {
   setSmall: (val: boolean) => CdekSwitchBuilder;
   setLabel: (val: string) => CdekSwitchBuilder;
   setTip: (val: string) => CdekSwitchBuilder;
+  setDefault: (val: string) => CdekSwitchBuilder;
 }
 
 interface CdekSwitchBuilder extends ExtraMethods {}
@@ -29,8 +30,11 @@ class CdekSwitchBuilder {
   @builderProp
   tip = '';
 
+  @builderProp
+  default = '';
+
   build() {
-    const wrapper = mount(CdekSwitch, {
+    const wrapper = mount(CdekSwitch as any, {
       props: {
         modelValue: this.modelValue,
         'onUpdate:modelValue': (e: boolean) =>
@@ -39,6 +43,9 @@ class CdekSwitchBuilder {
         small: this.small,
         label: this.label,
         tip: this.tip,
+      },
+      slots: {
+        default: this.default,
       },
     });
 
@@ -125,6 +132,14 @@ describe('Unit: CdekSwitch', () => {
     const wrapper = new CdekSwitchBuilder().setLabel('Test').build();
     const label = wrapper.find('.cdek-switch__label');
     expect(label.text()).toBe('Test');
+  });
+
+  test('Показывает label, если он передан в слот', () => {
+    const slotValue = '<a>test offer</a>';
+
+    const wrapper = new CdekSwitchBuilder().setDefault(slotValue).build();
+
+    expect(wrapper.html()).toContain(slotValue);
   });
 
   test('Переключает switch, если нажать по лейблу', async () => {
