@@ -5,3 +5,8 @@
 .some-class:hover {
   background: #1ab248;
 }
+
+.some-class.disabled {
+  background: #9da9b6;
+  color: #5b6976;
+}

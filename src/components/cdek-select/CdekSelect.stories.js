@@ -51,7 +51,7 @@ const Template = (args) => ({
   <template 
       v-if="args.story === 'ScopedSlotOption' 
       || args.story === 'ScopedSlotsSelectedOptionAndCustomOption'" #option="{ option }">
-    <div class="some-class">{{ option?.value }}</div>
+    <div class="some-class" :class="{disabled: option.disabled}">{{ option?.value }}</div>
   </template>
   
   <template #tip="{ alert, info, ban, circle }">
@@ -316,7 +316,7 @@ ScopedSlotOption.parameters = {
   ]" 
   >
   <template #option="{ option }">
-    <div class="some-class">{{ option.value }}</div>
+    <div class="some-class" :class="{disabled: option.disabled"}>{{ option.value }}</div>
   </template>
 </CdekSelect>
 `,
@@ -379,7 +379,7 @@ ScopedSlotsSelectedOptionAndCustomOption.parameters = {
   </template>
   
   <template #option="{ option }">
-    <div class="some-class">{{ option.value }}</div>
+    <div class="some-class" :class="{disabled: option.disabled"}>{{ option.value }}</div>
   </template>
 </CdekSelect>
 `,
