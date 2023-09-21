@@ -2,6 +2,7 @@ import CdekSelect from './CdekSelect.vue';
 import TrashIcon from '../cdek-dropdown/svg/trash.svg?component';
 import { ref } from 'vue';
 import getVersion from '@/test/getVersion';
+import './CdekSelect.stories.css';
 
 export default {
   title: 'Ui kit/CdekSelect',
@@ -37,6 +38,22 @@ const Template = (args) => ({
   },
   template: `
 <CdekSelect v-bind="args" :items="items" v-model="selectValue" @select="onSelect">
+  <template 
+      v-if="args.story === 'ScopedSlotSelectedOption' 
+      || args.story === 'ScopedSlotsSelectedOptionAndCustomOption'" #selectedOption="{ value }">
+    <div v-if="value?.title"> Вы выбрали: {{ value?.title }}</div>
+  </template>
+
+  <template v-if="args.story === 'ScopedSlotsSelectedOptionAndCustomOption'" #selectedOption="{ value }">
+    <div v-if="value?.value"> Вы выбрали: {{ value?.value }}</div>
+  </template>
+
+  <template 
+      v-if="args.story === 'ScopedSlotOption' 
+      || args.story === 'ScopedSlotsSelectedOptionAndCustomOption'" #option="{ option }">
+    <div class="some-class" :class="{disabled: option.disabled}">{{ option?.value }}</div>
+  </template>
+  
   <template #tip="{ alert, info, ban, circle }">
     <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
     <span :class="args.tipColor">{{ args.tip }}</span>
@@ -274,6 +291,97 @@ WithErrorHiddenMessage.parameters = {
   valid-res="Ошибка"
   hide-error-message
 />
+`,
+    },
+  },
+};
+
+export const ScopedSlotOption = Template.bind({});
+ScopedSlotOption.args = {
+  label: 'Вариант действия',
+  items,
+  story: 'ScopedSlotOption',
+};
+ScopedSlotOption.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect 
+  v-model="selectVal"
+  label="Вариант действия" 
+  :items="[ 
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true }, 
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' }, 
+    .. 
+  ]" 
+  >
+  <template #option="{ option }">
+    <div class="some-class" :class="{disabled: option.disabled"}>{{ option.value }}</div>
+  </template>
+</CdekSelect>
+`,
+    },
+  },
+};
+
+export const ScopedSlotSelectedOption = Template.bind({});
+ScopedSlotSelectedOption.args = {
+  label: 'Вариант действия',
+  items,
+  story: 'ScopedSlotSelectedOption',
+  value: 1,
+};
+ScopedSlotSelectedOption.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect 
+  v-model="selectVal"
+  label="Вариант действия" 
+  :items="[ 
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true }, 
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' }, 
+    .. 
+  ]" 
+  >
+  <template #selectedOption="{ value }">
+    <div v-if="value?.title"> Вы выбрали: {{ value?.title }}</div>
+  </template>
+
+</CdekSelect>
+`,
+    },
+  },
+};
+
+export const ScopedSlotsSelectedOptionAndCustomOption = Template.bind({});
+ScopedSlotsSelectedOptionAndCustomOption.args = {
+  label: 'Вариант действия',
+  items,
+  story: 'ScopedSlotsSelectedOptionAndCustomOption',
+  value: 1,
+};
+ScopedSlotsSelectedOptionAndCustomOption.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect 
+  v-model="selectVal"
+  label="Вариант действия" 
+  :items="[ 
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true }, 
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' }, 
+    .. 
+  ]" 
+  >
+  <template #selectedOption="{ value }">
+    <div v-if="value?.value"> Вы выбрали: {{ value?.value}}</div>
+  </template>
+  
+  <template #option="{ option }">
+    <div class="some-class" :class="{disabled: option.disabled"}>{{ option.value }}</div>
+  </template>
+</CdekSelect>
 `,
     },
   },

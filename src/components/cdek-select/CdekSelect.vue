@@ -189,22 +189,24 @@ const value = computed({
           >
             {{ label }}
           </ListboxLabel>
-          <div
-            class="cdek-select__value"
-            :class="{
-              'cdek-select__value_error': isError,
-              'cdek-select__value_readonly': readonly,
-              'cdek-select__value_no-label': !label,
-              'cdek-select__value_small': small,
-              'cdek-select__value_open': open,
-            }"
-          >
-            {{
-              Array.isArray(value)
-                ? value.map((item) => item.title).join(', ')
-                : value.title
-            }}
-          </div>
+          <slot name="selectedOption" :value="value">
+            <div
+              class="cdek-select__value"
+              :class="{
+                'cdek-select__value_error': isError,
+                'cdek-select__value_readonly': readonly,
+                'cdek-select__value_no-label': !label,
+                'cdek-select__value_small': small,
+                'cdek-select__value_open': open,
+              }"
+            >
+              {{
+                Array.isArray(value)
+                  ? value.map((item) => item.title).join(', ')
+                  : value.title
+              }}
+            </div>
+          </slot>
 
           <ChevronUpIcon
             class="cdek-select__arrow"
@@ -226,14 +228,16 @@ const value = computed({
           :disabled="item.disabled"
           as="template"
         >
-          <CdekDropdownItem
-            :value="item"
-            :disabled="item.disabled"
-            :selected="selected"
-            :active="active"
-          >
-            {{ item.title }}
-          </CdekDropdownItem>
+          <slot name="option" :option="item">
+            <CdekDropdownItem
+              :value="item"
+              :disabled="item.disabled"
+              :selected="selected"
+              :active="active"
+            >
+              {{ item.title }}
+            </CdekDropdownItem>
+          </slot>
         </ListboxOption>
       </ListboxOptions>
     </Listbox>
