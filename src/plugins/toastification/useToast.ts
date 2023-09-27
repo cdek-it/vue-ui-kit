@@ -1,4 +1,4 @@
-import { useToast, POSITION, TYPE } from 'vue-toastification';
+import { useToast, POSITION, TYPE } from '../toastification/lib';
 import { CdekToaster } from '../../components/cdek-toaster';
 import type { ToasterProps } from '../../components/cdek-toaster';
 
@@ -9,7 +9,7 @@ export default function useCustomToast() {
     settings: ToasterProps,
     type: 'info' | 'success' | 'error' = 'info'
   ) {
-    const isMobile = window.matchMedia('(max-width: 768px)');
+    const isMobile = window?.matchMedia('(max-width: 768px)');
     const position = isMobile.matches
       ? POSITION.BOTTOM_CENTER
       : POSITION.TOP_RIGHT;
