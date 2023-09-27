@@ -24,12 +24,7 @@ import { defineComponent } from 'vue';
 
 import { EVENTS, VT_NAMESPACE } from '../ts/constants';
 import PROPS from '../ts/propValidators';
-import {
-  getVueComponentFromObj,
-  hasProp,
-  isDOMRect,
-  isString,
-} from '../ts/utils';
+import { getVueComponentFromObj, hasProp, isString } from '../ts/utils';
 
 export default defineComponent({
   name: 'VtToast',
