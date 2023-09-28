@@ -1,0 +1,19 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import getVersion from '@/test/getVersion';
+
+<Meta
+  title="plugins/toastification/info"
+  parameters={{
+    version: getVersion('0.0.1', 'alpha'),
+  }}
+/>
+
+# SSR
+
+Тосты должны вызываться только на клиентской части конечного приложения, так как они маунтятся как второе приложение возле исходного.
+
+Хук `useToast` можно использовать на серверной части, таким образом будет происходить инициализация тостов.
+
+Вызов тостов описан в историях.
+
+Также доступны методы для обновления - `update( id: any, settings: ToasterProps)`, выключения конкретного тоста - `dismiss (id: ToastID)`
