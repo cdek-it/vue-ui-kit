@@ -4,6 +4,7 @@ import { CdekForm } from '../cdek-form';
 import './CdekFormControl.stories.css';
 import { formSettings } from '../index';
 import getVersion from '@/test/getVersion';
+import { CdekSpinner } from '../../cdek-spinner';
 
 export default {
   title: 'Form/CdekFormControl',
@@ -36,7 +37,11 @@ const Template = (args) => ({
   template: `
     <div>
       <CdekForm>
-        <CdekFormControl v-bind="args" :rules="rules" />
+        <CdekFormControl v-bind="args" :rules="rules">
+        <template #icons-right>
+          zalupa
+        </template>
+        </CdekFormControl>
         <p>Current validator: <code>'{{ rules }}'</code></p>
       </CdekForm>
 
@@ -365,6 +370,46 @@ WithoutError.parameters = {
     :initial-value="1"
     :items="[{ value: 1, title: 'Москва' }]"
     disabled
+  >
+</CdekForm>
+`,
+    },
+  },
+};
+
+const SlottedTemplate = (args) => ({
+  components: { CdekForm, CdekFormControl, CdekSpinner },
+  setup() {
+    return { args };
+  },
+  template: `
+    <div>
+      <CdekForm>
+        <CdekFormControl v-bind="args">
+          <template #icons-right>
+            <CdekSpinner />
+          </template>
+        </CdekFormControl>
+      </CdekForm>
+    </div>
+  `,
+});
+
+export const CustomSlot = SlottedTemplate.bind({});
+
+CustomSlot.args = {
+  label: 'Город',
+  name: 'city',
+};
+
+CustomSlot.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl
+    name="city"
+    label="Город"
   >
 </CdekForm>
 `,
