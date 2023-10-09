@@ -22,6 +22,7 @@ const items = [
   { value: 3, title: 'Box S, 23×19×10cm, up to 2kg' },
   { value: 4, title: 'Box m, 35×25×15cm, up to 5kg' },
   { value: 5, title: 'Envelope, 420×5×5сm, up to 20kg', disabled: true },
+  { value: 6, title: 'Envelope, 410×5×5сm, up to 18kg' },
 ];
 
 const promiseResolve = (query) =>
