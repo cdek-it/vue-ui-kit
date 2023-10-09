@@ -239,17 +239,23 @@ const checkIsDisabled = (index: number) => {
 };
 
 // Поиск первой не выключенной опции, если таих нет, то вернется -1
-const getFirstNotDisabledOption = () => {
-  return options.value.findIndex((el) => !el.disabled);
+const getFirstNotDisabledOption = (index: number) => {
+  return options.value.findIndex(
+    (el, filteredIndex) => filteredIndex > index && !el.disabled
+  );
 };
 
-const highlight = (index: number) => {
+const highlight = (index: number, direction = 'down') => {
   if (index < 0) {
     index = options.value.length - 1;
   }
 
-  if (index > options.value.length - 1 || checkIsDisabled(index)) {
-    index = getFirstNotDisabledOption();
+  if (index > options.value.length - 1) {
+    index = 0;
+  }
+
+  if (checkIsDisabled(index)) {
+    index = getFirstNotDisabledOption(direction === 'up' ? -1 : index);
   }
 
   highlightedEl.value = index;
@@ -269,7 +275,7 @@ const onKeydown = (event: KeyboardEvent) => {
   if (event.key === KeyboardKeys.ArrowUp) {
     // Отменяем перемещение курсора в инпуте
     event.preventDefault();
-    return void highlight(highlightedEl.value - 1);
+    return void highlight(highlightedEl.value - 1, 'up');
   }
 
   if (event.key === KeyboardKeys.Enter) {
