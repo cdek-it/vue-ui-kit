@@ -481,7 +481,7 @@ describe('Unit: CdekAutocomplete', () => {
     const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
 
     // Вводим значение в инпут
-    const input = wrapper.getComponent(CdekInput) as VueWrapper;
+    const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
     const domInput = input.find('.cdek-input__input');
 
@@ -513,7 +513,7 @@ describe('Unit: CdekAutocomplete', () => {
     const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
 
     // Вводим значение в инпут
-    const input = wrapper.getComponent(CdekInput) as VueWrapper;
+    const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
     const domInput = input.find('.cdek-input__input');
 
