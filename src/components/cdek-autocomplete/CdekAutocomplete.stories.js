@@ -21,6 +21,7 @@ const items = [
   { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
   { value: 3, title: 'Box S, 23×19×10cm, up to 2kg' },
   { value: 4, title: 'Box m, 35×25×15cm, up to 5kg' },
+  { value: 5, title: 'Envelope, 420×5×5сm, up to 20kg', disabled: true },
 ];
 
 const promiseResolve = (query) =>
@@ -398,6 +399,28 @@ TwoAutocompletes.parameters = {
 <CdekAutocomplete 
   label="Размер коробки" 
   fetchItems="(query) => fetch('/search-items?query=\${query}').then(response => response.data.items)" 
+/>
+`,
+    },
+  },
+};
+
+export const SelectFirstOnEnter = Template.bind({});
+SelectFirstOnEnter.args = {
+  placeholder: 'Начните вводить env и нажмите Enter',
+  items,
+};
+SelectFirstOnEnter.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  placeholder="Начните вводить" 
+  :items="[
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg' },
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+    ...
+  ]" 
 />
 `,
     },
