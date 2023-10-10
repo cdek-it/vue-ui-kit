@@ -1,4 +1,4 @@
-import { shallowMount, flushPromises } from '@vue/test-utils';
+import { shallowMount, flushPromises, mount } from '@vue/test-utils';
 import type { VueWrapper } from '@vue/test-utils';
 import { describe, test, expect, vi } from 'vitest';
 import CdekAutocomplete from './CdekAutocomplete.vue';
@@ -13,6 +13,8 @@ import type {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Item, // Используется как тип в комментарии
 } from './types';
+import { KeyboardKeys } from '@/components/cdek-autocomplete/helpers';
+import CdekInput from '../cdek-input/CdekInput.vue';
 
 interface CdekAutocompleteBuilder {
   setModelValue: (value: Value) => CdekAutocompleteBuilder;
@@ -46,7 +48,7 @@ class CdekAutocompleteBuilder {
   @builderProp
   attrs?: any;
 
-  build() {
+  shallowBuild() {
     const wrapper = shallowMount(CdekAutocomplete as any, {
       props: {
         modelValue: this.modelValue,
@@ -81,11 +83,32 @@ class CdekAutocompleteBuilder {
 
     return wrapper;
   }
+
+  build() {
+    const wrapper = mount(CdekAutocomplete as any, {
+      props: {
+        modelValue: this.modelValue,
+        'onUpdate:modelValue': (e: Value) =>
+          wrapper.setProps({ modelValue: e }),
+        items: this.items,
+        getValue: this.getValue,
+        getTitle: this.getTitle,
+        fetchItems: this.fetchItems,
+        minLength: this.minLength,
+      },
+      attrs: this.attrs,
+      global: {
+        renderStubDefaultSlot: true,
+      },
+    });
+
+    return wrapper;
+  }
 }
 
 describe('Unit: CdekAutocomplete', () => {
   test('Should mount', () => {
-    const wrapper = new CdekAutocompleteBuilder().build();
+    const wrapper = new CdekAutocompleteBuilder().shallowBuild();
     expect(wrapper.exists()).toBeTruthy();
   });
 
@@ -120,7 +143,7 @@ describe('Unit: CdekAutocomplete', () => {
         .setItems(items)
         .setGetTitle(getTitle)
         .setGetValue(getValue)
-        .build();
+        .shallowBuild();
       const input = wrapper.find(dti('cdek-input'));
       expect(input.attributes('model-value')).toBe(inputValue);
     }
@@ -208,7 +231,7 @@ describe('Unit: CdekAutocomplete', () => {
         .setFetchItems(fetchItems)
         .setGetTitle(getTitle)
         .setGetValue(getValue)
-        .build();
+        .shallowBuild();
 
       // Имитируем пользовательский ввод "tes"
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
@@ -287,7 +310,7 @@ describe('Unit: CdekAutocomplete', () => {
         .setItems(items)
         .setGetValue(getValue)
         .setGetTitle(getTitle)
-        .build();
+        .shallowBuild();
 
       // Имитируем передачу нового значения сверху
       wrapper.setProps({ modelValue });
@@ -344,7 +367,7 @@ describe('Unit: CdekAutocomplete', () => {
         .setItems(items)
         .setGetValue(getValue)
         .setGetTitle(getTitle)
-        .build();
+        .shallowBuild();
 
       // Проверяем, что текущее значение инпута не пустое и корректное
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
@@ -375,7 +398,7 @@ describe('Unit: CdekAutocomplete', () => {
       const wrapper = new CdekAutocompleteBuilder()
         .setItems(['abcd', 'abcde'])
         .setMinLength(minLength)
-        .build();
+        .shallowBuild();
 
       // Вводим значение в инпут
       const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
@@ -395,7 +418,7 @@ describe('Unit: CdekAutocomplete', () => {
   test('Все неизвестные атрибуты должны передаваться на CdekInput', () => {
     const wrapper = new CdekAutocompleteBuilder()
       .setAttrs({ label: 'Название', clearable: true })
-      .build();
+      .shallowBuild();
     const input = wrapper.find(dti('cdek-input'));
 
     expect(input.attributes('label')).toBe('Название');
@@ -405,7 +428,7 @@ describe('Unit: CdekAutocomplete', () => {
   test('Атрибут class должен быть на корневом элементе CdekAutocomplete, а не на CdekInput', () => {
     const wrapper = new CdekAutocompleteBuilder()
       .setAttrs({ class: 'test' })
-      .build();
+      .shallowBuild();
     expect(wrapper.classes()).toContain('test');
     const input = wrapper.find(dti('cdek-input'));
     expect(input.classes()).not.toContain('test');
@@ -425,7 +448,7 @@ describe('Unit: CdekAutocomplete', () => {
 
     const wrapper = new CdekAutocompleteBuilder()
       .setFetchItems(resolvePromiseWithDelay)
-      .build();
+      .shallowBuild();
 
     // Вводим значение в инпут
     const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
@@ -447,6 +470,90 @@ describe('Unit: CdekAutocomplete', () => {
     expect(options.length).toBe(0);
   });
 
-  // TODO: Написать тесты на логику с клавиатурой
+  test('При нажатии на Enter, если опция не была выбрана - выбираем первую', async () => {
+    const items = [
+      { title: 'Тест', value: 1 },
+      { title: 'Тест2', value: 2 },
+      { title: 'Тест3', value: 3 },
+    ];
+    const userSearch = 'Тес';
+
+    const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
+
+    // Вводим значение в инпут
+    const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
+
+    const domInput = input.find('.cdek-input__input');
+
+    await domInput.trigger('focus');
+
+    input.vm.$emit('update:modelValue', userSearch);
+
+    await sleep(400); // Ждем из-за debounce
+
+    await flushPromises();
+
+    await domInput.trigger('keydown', { key: KeyboardKeys.Enter });
+
+    expect(wrapper.emitted('select')?.length).toBe(1);
+
+    expect(wrapper.emitted('select')?.[0]).toEqual([
+      { title: 'Тест', value: 1 },
+    ]);
+  });
+
+  test('При навигации стрелочкой вниз должна подсвечиваться опция, также при навигации вверх', async () => {
+    const items = [
+      { title: 'Тест', value: 1 },
+      { title: 'Тест2', value: 2 },
+      { title: 'Тест3', value: 3 },
+    ];
+    const userSearch = 'Тес';
+
+    const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
+
+    // Вводим значение в инпут
+    const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
+
+    const domInput = input.find('.cdek-input__input');
+
+    await domInput.trigger('focus');
+
+    input.vm.$emit('update:modelValue', userSearch);
+
+    await sleep(400); // Ждем из-за debounce
+
+    await flushPromises();
+
+    const dropDown = wrapper.find('.cdek-dropdown-box');
+
+    expect(dropDown.exists()).toBeTruthy();
+
+    const checkActive = dropDown.find('.cdek-dropdown-item_active');
+
+    expect(checkActive.exists()).toBeFalsy();
+
+    await domInput.trigger('keydown', { key: KeyboardKeys.ArrowDown });
+
+    const active = dropDown.find('.cdek-dropdown-item_active');
+
+    expect(active.exists()).toBeTruthy();
+
+    expect(active.text()).toBe('Тест');
+
+    await domInput.trigger('keydown', { key: KeyboardKeys.ArrowDown });
+
+    const activeSecondCheck = dropDown.find('.cdek-dropdown-item_active');
+
+    expect(activeSecondCheck.text()).toBe('Тест2');
+
+    await domInput.trigger('keydown', { key: KeyboardKeys.ArrowUp });
+
+    const activeThirdCheck = dropDown.find('.cdek-dropdown-item_active');
+
+    expect(activeThirdCheck.text()).toBe('Тест');
+  });
+
+  // TODO: Дописать тесты на логику с клавиатурой
   // TODO: Написать тесты на открытие / закрытие дропдауна
 });

@@ -214,6 +214,10 @@ const closeDropdown = () => {
 };
 
 const onSelect = (value: IItemValue, index: number) => {
+  if (!value || value.disabled) {
+    return;
+  }
+
   emit('select', showedItems.value?.[index]);
 
   closeDropdown();
@@ -229,11 +233,11 @@ const onOutsideClick = (event: MouseEvent) => {
     closeDropdown();
   }
 };
-
 const highlight = (index: number) => {
   if (index < 0) {
     index = options.value.length - 1;
   }
+
   if (index > options.value.length - 1) {
     index = 0;
   }
@@ -247,15 +251,24 @@ const onKeydown = (event: KeyboardEvent) => {
   }
 
   if (event.key === KeyboardKeys.ArrowDown) {
+    // Отменяем перемещение курсора в инпуте
+    event.preventDefault();
     return void highlight(highlightedEl.value + 1);
   }
 
   if (event.key === KeyboardKeys.ArrowUp) {
+    // Отменяем перемещение курсора в инпуте
+    event.preventDefault();
     return void highlight(highlightedEl.value - 1);
   }
 
   if (event.key === KeyboardKeys.Enter) {
     event.stopImmediatePropagation();
+
+    if (highlightedEl.value === -1 && options.value.length > 0) {
+      highlight(0);
+    }
+
     return void onSelect(
       options.value[highlightedEl.value],
       highlightedEl.value
