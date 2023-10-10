@@ -214,7 +214,7 @@ const closeDropdown = () => {
 };
 
 const onSelect = (value: IItemValue, index: number) => {
-  if (value.disabled || !value) {
+  if (!value || value.disabled) {
     return;
   }
 
