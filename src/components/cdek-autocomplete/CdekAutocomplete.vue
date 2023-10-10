@@ -233,29 +233,13 @@ const onOutsideClick = (event: MouseEvent) => {
     closeDropdown();
   }
 };
-
-const checkIsDisabled = (index: number) => {
-  return Boolean(options.value[index]?.disabled);
-};
-
-// Поиск первой не выключенной опции, если таих нет, то вернется -1
-const getFirstNotDisabledOption = (index: number) => {
-  return options.value.findIndex(
-    (el, filteredIndex) => filteredIndex > index && !el.disabled
-  );
-};
-
-const highlight = (index: number, direction = 'down') => {
+const highlight = (index: number) => {
   if (index < 0) {
     index = options.value.length - 1;
   }
 
   if (index > options.value.length - 1) {
     index = 0;
-  }
-
-  if (checkIsDisabled(index)) {
-    index = getFirstNotDisabledOption(direction === 'up' ? -1 : index);
   }
 
   highlightedEl.value = index;
@@ -275,7 +259,7 @@ const onKeydown = (event: KeyboardEvent) => {
   if (event.key === KeyboardKeys.ArrowUp) {
     // Отменяем перемещение курсора в инпуте
     event.preventDefault();
-    return void highlight(highlightedEl.value - 1, 'up');
+    return void highlight(highlightedEl.value - 1);
   }
 
   if (event.key === KeyboardKeys.Enter) {
