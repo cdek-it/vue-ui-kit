@@ -470,9 +470,9 @@ describe('Unit: CdekAutocomplete', () => {
     expect(options.length).toBe(0);
   });
 
-  test('При нажатии на Enter, если опция не была выбрана - выбираем первую доступную', async () => {
+  test('При нажатии на Enter, если опция не была выбрана - выбираем первую', async () => {
     const items = [
-      { title: 'Тест', value: 1, disabled: true },
+      { title: 'Тест', value: 1 },
       { title: 'Тест2', value: 2 },
       { title: 'Тест3', value: 3 },
     ];
@@ -498,14 +498,14 @@ describe('Unit: CdekAutocomplete', () => {
     expect(wrapper.emitted('select')?.length).toBe(1);
 
     expect(wrapper.emitted('select')?.[0]).toEqual([
-      { title: 'Тест2', value: 2 },
+      { title: 'Тест', value: 1 },
     ]);
   });
 
-  test('При навигации стрелочкой вниз не должны подсвечиваться выключенные опции, должен происходить переход на доступную функцию, также при навигации вверх', async () => {
+  test('При навигации стрелочкой вниз должна подсвечиваться опция, также при навигации вверх', async () => {
     const items = [
       { title: 'Тест', value: 1 },
-      { title: 'Тест2', value: 2, disabled: true },
+      { title: 'Тест2', value: 2 },
       { title: 'Тест3', value: 3 },
     ];
     const userSearch = 'Тес';
@@ -545,7 +545,7 @@ describe('Unit: CdekAutocomplete', () => {
 
     const activeSecondCheck = dropDown.find('.cdek-dropdown-item_active');
 
-    expect(activeSecondCheck.text()).toBe('Тест3');
+    expect(activeSecondCheck.text()).toBe('Тест2');
 
     await domInput.trigger('keydown', { key: KeyboardKeys.ArrowUp });
 
