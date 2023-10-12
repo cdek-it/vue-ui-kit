@@ -64,6 +64,10 @@ const hasLeftIcon = computed(() => !!slots['icons-left']);
 
 const inputRef = ref<HTMLInputElement>();
 
+const showClearableButton = computed(() => {
+  return props.clearable && value.value;
+});
+
 const getControl = () => inputRef.value;
 
 defineExpose({ getControl });
@@ -86,6 +90,7 @@ defineExpose({ getControl });
         'cdek-input__control_readonly': readonly,
         'cdek-input__control_right-icon': hasRightIcon,
         'cdek-input__control_small': small,
+        'cdek-input__control_clearable': showClearableButton,
       }"
     >
       <div
@@ -122,7 +127,7 @@ defineExpose({ getControl });
       />
 
       <button
-        v-if="clearable && value"
+        v-if="showClearableButton"
         class="cdek-input__clear"
         @click="clear"
       >
@@ -134,6 +139,7 @@ defineExpose({ getControl });
         :class="{
           'cdek-input__right-icon_red': isError,
           'cdek-input__right-icon_grey': disabled || readonly,
+          'cdek-input__right-icon_clearable': showClearableButton,
         }"
         v-if="hasRightIcon"
       >
@@ -171,6 +177,7 @@ defineExpose({ getControl });
 }
 
 .cdek-input {
+  $right-icon-padding: 6px;
   $padding-left: 16px;
 
   &_small {
@@ -239,6 +246,16 @@ defineExpose({ getControl });
     &_small {
       height: 36px;
       padding-block: 0;
+    }
+
+    &_clearable {
+      padding-inline-end: calc(
+        #{$padding-left} - #{$outline-width} - #{$right-icon-padding}
+      );
+
+      &.cdek-input__control_small {
+        padding-inline-end: 0;
+      }
     }
   }
 
@@ -374,7 +391,7 @@ defineExpose({ getControl });
     height: 36px;
     background: transparent;
     border: none;
-    padding: 6px;
+    padding: $right-icon-padding;
     outline: none;
     cursor: pointer;
   }
@@ -405,6 +422,10 @@ defineExpose({ getControl });
 
     &_grey {
       @include slotted-svg-color($Button_Disable);
+    }
+
+    &_clearable {
+      margin-left: 4px;
     }
   }
 
