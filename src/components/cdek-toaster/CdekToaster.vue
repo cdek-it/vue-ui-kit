@@ -12,7 +12,7 @@ import type { POSITION } from '@/plugins/toastification/lib';
 export type ToasterProps = {
   type?: 'info' | 'success' | 'error';
   position?: POSITION;
-  timeout?: number;
+  timeout?: number | false;
   /**
    * Заголовок
    */
