@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, test } from 'vitest';
 import useToast from './useToast';
 import Toastification from '@/plugins/toastification/lib/plugin/install';
 import { sleep } from '@/test/helpers';
+import { POSITION } from './lib';
 
 Object.defineProperty(window, 'matchMedia', {
   value: () => {
@@ -113,6 +114,40 @@ describe('Unit: Toastification', () => {
     const renderedToast = document.querySelector('.toast');
 
     expect(renderedToast?.classList.contains('error')).toBeTruthy();
+  });
+
+  test('Если передали position, то тост должен отображаться в соотвествующем контейнере', async () => {
+    const wrapper = new ToastificationBuilder().build();
+    const toast = useToast();
+
+    // Ждем маунта тостеров
+    await wrapper.vm.$nextTick();
+
+    toast.info({ title: 'text', position: POSITION.TOP_CENTER });
+    await flushPromises();
+    const renderedToast = document.querySelector('.top-center');
+    expect(renderedToast).not.to.equal(null);
+  });
+
+  test('Если передали timeout, то тост пропадает по истечении таймаута', async () => {
+    const wrapper = new ToastificationBuilder().build();
+    const toast = useToast();
+
+    // Ждем маунта тостеров
+    await wrapper.vm.$nextTick();
+
+    toast.info({ title: 'text', timeout: 1000 });
+
+    await flushPromises();
+
+    const renderedToast = document.querySelector('.toast');
+
+    expect(renderedToast).toBeDefined();
+    // Ждем реакцию на клик
+    await sleep(1500);
+
+    const toastAfterClick = document.querySelector('.toast');
+    expect(toastAfterClick).toBeNull();
   });
 
   test('При закрытии тоста через кнопку - он пропадает', async () => {

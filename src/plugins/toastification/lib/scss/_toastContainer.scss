@@ -59,7 +59,8 @@
     &.top-center,
     &.bottom-center {
       left: 50%;
-      margin-left: calc($vt-toast-max-width / 2);
+      margin-left: calc($vt-toast-max-width / 2 * -1);
+
       .#{$vt-namespace}__toast {
         margin-left: auto;
         margin-right: auto;

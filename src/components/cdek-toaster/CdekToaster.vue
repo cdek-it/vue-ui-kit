@@ -7,9 +7,12 @@ import CrossIcon from './svg/cross.svg?component';
 import InfoIcon from './svg/info.svg?component';
 import CheckInCircleIcon from './svg/check-in-circle.svg?component';
 import WarningIcon from './svg/warning.svg?component';
+import type { POSITION } from '@/plugins/toastification/lib';
 
 export type ToasterProps = {
   type?: 'info' | 'success' | 'error';
+  position?: POSITION;
+  timeout?: number;
   /**
    * Заголовок
    */

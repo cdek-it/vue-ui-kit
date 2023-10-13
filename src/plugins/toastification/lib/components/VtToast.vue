@@ -78,6 +78,12 @@ export default defineComponent({
   },
 
   mounted() {
+    if (this.timeout) {
+      setTimeout(() => {
+        this.timeoutHandler();
+      }, this.timeout);
+    }
+
     if (this.pauseOnFocusLoss) {
       this.focusSetup();
     }

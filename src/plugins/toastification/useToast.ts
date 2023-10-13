@@ -10,13 +10,21 @@ export default function useCustomToast() {
     type: 'info' | 'success' | 'error' = 'info'
   ) {
     const isMobile = window?.matchMedia('(max-width: 768px)');
-    const position = isMobile.matches
+
+    let position = isMobile.matches
       ? POSITION.BOTTOM_CENTER
       : POSITION.TOP_RIGHT;
 
+    if (settings.position) {
+      position = settings.position;
+    }
+
     settings.type || (settings.type = type);
 
-    return toast({ component: CdekToaster, props: settings }, { position });
+    return toast(
+      { component: CdekToaster, props: settings },
+      { position, timeout: settings.timeout || 5000 }
+    );
   }
 
   type ArgsT = [ToasterProps];
