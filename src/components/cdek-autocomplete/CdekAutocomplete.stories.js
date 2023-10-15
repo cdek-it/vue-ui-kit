@@ -427,3 +427,28 @@ SelectFirstOnEnter.parameters = {
     },
   },
 };
+
+export const EnabledHighlightQuery = Template.bind({});
+EnabledHighlightQuery.args = {
+  placeholder: 'Начните вводить',
+  enabledHighlightQuery: true,
+  items,
+};
+EnabledHighlightQuery.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  placeholder="Начните вводить" 
+  enabled-highlight-query
+  :items="[
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg' },
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+    { value: 3, title: 'Envelope, 10×10×10сm, up to 1kg' },
+    ...
+  ]" 
+/>
+`,
+    },
+  },
+};

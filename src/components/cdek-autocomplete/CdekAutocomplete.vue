@@ -83,6 +83,10 @@ const props = withDefaults(
      */
     minLength?: number;
     class?: string;
+    /**
+     * Включить подсветку введенного значения у найденных элементов
+     */
+    enabledHighlightQuery?: boolean;
   }>(),
   {
     minLength: 3,
@@ -155,6 +159,7 @@ const highlightedEl = ref<number>(-1);
 
 const cdekInputRef = ref<InstanceType<typeof CdekInput> | undefined>();
 const autocompleteRef = ref<HTMLDivElement>();
+const lastQuery = ref<string>('');
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Value): void;
@@ -172,6 +177,8 @@ const checkInputValue = debounce(async (val: string) => {
     props.fetchItems,
     props.getTitle
   );
+
+  lastQuery.value = val;
 
   try {
     const newItems = await searchFn(val, props.items);
@@ -243,6 +250,17 @@ const highlight = (index: number) => {
   }
 
   highlightedEl.value = index;
+};
+
+const regexHighlightQuery = computed<RegExp>(
+  () => new RegExp(`(${lastQuery.value})`, 'iug')
+);
+
+const highlightQuery = (val: string) => {
+  return val.replace(
+    regexHighlightQuery.value,
+    '<span class="highlight-query">$1</span>'
+  );
 };
 
 const onKeydown = (event: KeyboardEvent) => {
@@ -335,7 +353,11 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
           :key="item.value"
           @select="(item) => onSelect(item, index)"
         >
-          {{ item.title }}
+          <span
+            v-if="enabledHighlightQuery"
+            v-html="highlightQuery(item.title)"
+          />
+          <template v-else>{{ item.title }}</template>
         </CdekDropdownItem>
       </CdekDropdownBox>
     </Transition>
@@ -372,6 +394,11 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
   .v-enter-from,
   .v-leave-to {
     opacity: 0;
+  }
+
+  :deep(.highlight-query) {
+    background: $Textmatch;
+    padding: 2px 0;
   }
 }
 </style>
