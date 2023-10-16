@@ -1,1 +1,1 @@
-export { default as CdekButton } from './CdekButton.vue';
+export { default as CdekButton } from './BaseButton.vue';

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import CdekBadge from '../cdek-badge/CdekBadge.vue';
 import type { IBadgeProps } from '../cdek-badge/CdekBadge.vue';
-import CdekButton from '../cdek-button/CdekButton.vue';
+import CdekButton from '../cdek-button/BaseButton.vue';
 
 export interface IConfirmProps {
   /**

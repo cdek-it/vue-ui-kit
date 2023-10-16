@@ -55,13 +55,13 @@ const spinnerColor = computed(() => {
 <template>
   <component
     :is="as || 'button'"
-    class="cdek-button"
     :class="{
-      [theme]: true,
-      small: small,
-      inline: width === 'content',
-      icon: icon,
-      disabled: disabled,
+      [$style['cdek-button']]: true,
+      [$style[theme]]: true,
+      [$style.small]: small,
+      [$style.inline]: width === 'content',
+      [$style.icon]: icon,
+      [$style.disabled]: disabled,
     }"
   >
     <CdekSpinner :color="spinnerColor" v-if="loading" />
@@ -69,7 +69,7 @@ const spinnerColor = computed(() => {
   </component>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module scoped>
 .cdek-button {
   @include button-1;
 

@@ -22,6 +22,7 @@
   },
   "scripts": {
     "build": "run-p type-check build-only",
+    "build-with-prefix": "VITE_STYLE_PREFIX=green run-p build",
     "test": "vitest --environment jsdom --root src/",
     "test:cli": "vitest run --environment jsdom --root src/",
     "test:ui": "vitest --environment jsdom --root src/ --ui",

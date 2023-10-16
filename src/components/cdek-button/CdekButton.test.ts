@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import builderProp from '@/test/decorators';
-import CdekButton from './CdekButton.vue';
+import CdekButton from './BaseButton.vue';
 
 type ThemeT = 'primary' | 'secondary' | 'outline' | 'ghost' | 'toaster';
 type WidthT = 'auto' | 'content';

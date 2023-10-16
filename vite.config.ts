@@ -9,6 +9,8 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 import path from 'path';
 
+const prefix = process.env.VITE_STYLE_PREFIX || 'cdek';
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -37,6 +39,9 @@ export default defineConfig({
       scss: {
         additionalData: `@import "./src/assets/style/vars";`,
       },
+    },
+    modules: {
+      generateScopedName: (name: string) => name.replace(/^cdek/, prefix),
     },
   },
   build: {
