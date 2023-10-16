@@ -197,3 +197,8 @@ export type ToastOptionsAndContent = ToastOptions & { content?: ToastContent };
 export type ToastOptionsAndRequiredContent = ToastOptions & {
   content: ToastContent;
 };
+
+export type ToasterSettings = {
+  position?: POSITION;
+  timeout?: number | false;
+};

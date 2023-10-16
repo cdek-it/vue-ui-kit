@@ -40,6 +40,10 @@ const CORE_TOAST = {
     type: String as PropType<POSITION>,
     default: POSITION.TOP_RIGHT,
   },
+  timeout: {
+    type: [Number, Boolean] as PropType<number | false>,
+    default: 5000,
+  },
   pauseOnFocusLoss: COMMON.trueBoolean,
   pauseOnHover: COMMON.trueBoolean,
   closeOnClick: COMMON.trueBoolean,
