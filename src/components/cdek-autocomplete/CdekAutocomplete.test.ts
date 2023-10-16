@@ -24,7 +24,7 @@ interface CdekAutocompleteBuilder {
   setFetchItems: (fetchItems?: FetchFunction) => CdekAutocompleteBuilder;
   setMinLength: (minLength: number) => CdekAutocompleteBuilder;
   setAttrs: (attrs?: any) => CdekAutocompleteBuilder;
-  setEnabledHighlightQuery: (v: boolean) => CdekAutocompleteBuilder;
+  setEnabledAccentQuery: (v: boolean) => CdekAutocompleteBuilder;
 }
 
 class CdekAutocompleteBuilder {
@@ -50,7 +50,7 @@ class CdekAutocompleteBuilder {
   attrs?: any;
 
   @builderProp
-  enabledHighlightQuery?: boolean;
+  enabledAccentQuery?: boolean;
 
   shallowBuild() {
     const wrapper = shallowMount(CdekAutocomplete as any, {
@@ -63,7 +63,7 @@ class CdekAutocompleteBuilder {
         getTitle: this.getTitle,
         fetchItems: this.fetchItems,
         minLength: this.minLength,
-        enabledHighlightQuery: this.enabledHighlightQuery,
+        enabledAccentQuery: this.enabledAccentQuery,
       },
       attrs: this.attrs,
       global: {
@@ -100,7 +100,7 @@ class CdekAutocompleteBuilder {
         getTitle: this.getTitle,
         fetchItems: this.fetchItems,
         minLength: this.minLength,
-        enabledHighlightQuery: this.enabledHighlightQuery,
+        enabledAccentQuery: this.enabledAccentQuery,
       },
       attrs: this.attrs,
       global: {
@@ -421,7 +421,7 @@ describe('Unit: CdekAutocomplete', () => {
     }
   );
 
-  test('При включенном enabled-highlight-query подсвечивать введенную строку в найденных значениях', async () => {
+  test('При включенном enabled-accent-query подсвечивать введенную строку в найденных значениях', async () => {
     const items = [
       { title: 'Тест', value: 1 },
       { title: 'Тест2', value: 2 },
@@ -431,7 +431,7 @@ describe('Unit: CdekAutocomplete', () => {
 
     const wrapper = new CdekAutocompleteBuilder()
       .setItems(items)
-      .setEnabledHighlightQuery(true)
+      .setEnabledAccentQuery(true)
       .build();
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
@@ -444,13 +444,13 @@ describe('Unit: CdekAutocomplete', () => {
 
     const dropdownItems = wrapper.findAll('.cdek-dropdown-item');
     dropdownItems.forEach((item) => {
-      const el = item.find('.highlight-query');
+      const el = item.find('.accent-query');
       expect(el.exists()).toBeTruthy();
       expect(el.text()).toBe(userSearch);
     });
   });
 
-  test('При выключенном enabled-highlight-query не подсвечиывать введенную строку в найденных значениях', async () => {
+  test('При выключенном enabled-accent-query не подсвечиывать введенную строку в найденных значениях', async () => {
     const items = [
       { title: 'Тест', value: 1 },
       { title: 'Тест2', value: 2 },
@@ -470,7 +470,7 @@ describe('Unit: CdekAutocomplete', () => {
 
     const dropdownItems = wrapper.findAll('.cdek-dropdown-item');
     dropdownItems.forEach((item) => {
-      expect(item.find('.highlight-query').exists()).toBeFalsy();
+      expect(item.find('.accent-query').exists()).toBeFalsy();
     });
   });
 

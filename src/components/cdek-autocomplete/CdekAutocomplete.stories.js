@@ -428,19 +428,19 @@ SelectFirstOnEnter.parameters = {
   },
 };
 
-export const EnabledHighlightQuery = Template.bind({});
-EnabledHighlightQuery.args = {
+export const EnabledAccentQuery = Template.bind({});
+EnabledAccentQuery.args = {
   placeholder: 'Начните вводить',
-  enabledHighlightQuery: true,
+  enabledAccentQuery: true,
   items,
 };
-EnabledHighlightQuery.parameters = {
+EnabledAccentQuery.parameters = {
   docs: {
     source: {
       code: `
 <CdekAutocomplete 
   placeholder="Начните вводить" 
-  enabled-highlight-query
+  enabled-accent-query
   :items="[
     { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg' },
     { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },

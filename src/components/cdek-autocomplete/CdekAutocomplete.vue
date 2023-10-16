@@ -86,7 +86,7 @@ const props = withDefaults(
     /**
      * Включить подсветку введенного значения у найденных элементов
      */
-    enabledHighlightQuery?: boolean;
+    enabledAccentQuery?: boolean;
   }>(),
   {
     minLength: 3,
@@ -159,7 +159,6 @@ const highlightedEl = ref<number>(-1);
 
 const cdekInputRef = ref<InstanceType<typeof CdekInput> | undefined>();
 const autocompleteRef = ref<HTMLDivElement>();
-const lastQuery = ref<string>('');
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Value): void;
@@ -177,8 +176,6 @@ const checkInputValue = debounce(async (val: string) => {
     props.fetchItems,
     props.getTitle
   );
-
-  lastQuery.value = val;
 
   try {
     const newItems = await searchFn(val, props.items);
@@ -252,14 +249,14 @@ const highlight = (index: number) => {
   highlightedEl.value = index;
 };
 
-const regexHighlightQuery = computed<RegExp>(
-  () => new RegExp(`(${lastQuery.value})`, 'iug')
+const regexAccentQuery = computed<RegExp>(
+  () => new RegExp(`(${inputValue.value})`, 'iug')
 );
 
-const highlightQuery = (val: string) => {
+const accentQuery = (val: string) => {
   return val.replace(
-    regexHighlightQuery.value,
-    '<span class="highlight-query">$1</span>'
+    regexAccentQuery.value,
+    '<span class="accent-query">$1</span>'
   );
 };
 
@@ -353,10 +350,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
           :key="item.value"
           @select="(item) => onSelect(item, index)"
         >
-          <span
-            v-if="enabledHighlightQuery"
-            v-html="highlightQuery(item.title)"
-          />
+          <span v-if="enabledAccentQuery" v-html="accentQuery(item.title)" />
           <template v-else>{{ item.title }}</template>
         </CdekDropdownItem>
       </CdekDropdownBox>
@@ -396,7 +390,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
     opacity: 0;
   }
 
-  :deep(.highlight-query) {
+  :deep(.accent-query) {
     background: $Textmatch;
     padding: 2px 0;
   }
