@@ -24,6 +24,7 @@ interface CdekAutocompleteBuilder {
   setFetchItems: (fetchItems?: FetchFunction) => CdekAutocompleteBuilder;
   setMinLength: (minLength: number) => CdekAutocompleteBuilder;
   setAttrs: (attrs?: any) => CdekAutocompleteBuilder;
+  setEnabledAccentQuery: (v: boolean) => CdekAutocompleteBuilder;
 }
 
 class CdekAutocompleteBuilder {
@@ -48,6 +49,9 @@ class CdekAutocompleteBuilder {
   @builderProp
   attrs?: any;
 
+  @builderProp
+  enabledAccentQuery?: boolean;
+
   shallowBuild() {
     const wrapper = shallowMount(CdekAutocomplete as any, {
       props: {
@@ -59,6 +63,7 @@ class CdekAutocompleteBuilder {
         getTitle: this.getTitle,
         fetchItems: this.fetchItems,
         minLength: this.minLength,
+        enabledAccentQuery: this.enabledAccentQuery,
       },
       attrs: this.attrs,
       global: {
@@ -95,6 +100,7 @@ class CdekAutocompleteBuilder {
         getTitle: this.getTitle,
         fetchItems: this.fetchItems,
         minLength: this.minLength,
+        enabledAccentQuery: this.enabledAccentQuery,
       },
       attrs: this.attrs,
       global: {
@@ -414,6 +420,59 @@ describe('Unit: CdekAutocomplete', () => {
       expect(options.length).toBe(optionsLength);
     }
   );
+
+  test('При включенном enabled-accent-query подсвечивать введенную строку в найденных значениях', async () => {
+    const items = [
+      { title: 'Тест', value: 1 },
+      { title: 'Тест2', value: 2 },
+      { title: 'Тест3', value: 3 },
+    ];
+    const userSearch = 'Тес';
+
+    const wrapper = new CdekAutocompleteBuilder()
+      .setItems(items)
+      .setEnabledAccentQuery(true)
+      .build();
+    const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
+
+    const domInput = input.find('.cdek-input__input');
+    await domInput.trigger('focus');
+    input.vm.$emit('update:modelValue', userSearch);
+
+    await sleep(400); // Ждем из-за debounce
+    await flushPromises();
+
+    const dropdownItems = wrapper.findAll('.cdek-dropdown-item');
+    dropdownItems.forEach((item) => {
+      const el = item.find('.accent-query');
+      expect(el.exists()).toBeTruthy();
+      expect(el.text()).toBe(userSearch);
+    });
+  });
+
+  test('При выключенном enabled-accent-query не подсвечиывать введенную строку в найденных значениях', async () => {
+    const items = [
+      { title: 'Тест', value: 1 },
+      { title: 'Тест2', value: 2 },
+      { title: 'Тест3', value: 3 },
+    ];
+    const userSearch = 'Тес';
+
+    const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
+    const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
+
+    const domInput = input.find('.cdek-input__input');
+    await domInput.trigger('focus');
+    input.vm.$emit('update:modelValue', userSearch);
+
+    await sleep(400); // Ждем из-за debounce
+    await flushPromises();
+
+    const dropdownItems = wrapper.findAll('.cdek-dropdown-item');
+    dropdownItems.forEach((item) => {
+      expect(item.find('.accent-query').exists()).toBeFalsy();
+    });
+  });
 
   test('Все неизвестные атрибуты должны передаваться на CdekInput', () => {
     const wrapper = new CdekAutocompleteBuilder()

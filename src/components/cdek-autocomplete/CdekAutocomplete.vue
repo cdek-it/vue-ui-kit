@@ -83,6 +83,10 @@ const props = withDefaults(
      */
     minLength?: number;
     class?: string;
+    /**
+     * Включить подсветку введенного значения у найденных элементов
+     */
+    enabledAccentQuery?: boolean;
   }>(),
   {
     minLength: 3,
@@ -245,6 +249,17 @@ const highlight = (index: number) => {
   highlightedEl.value = index;
 };
 
+const regexAccentQuery = computed<RegExp>(
+  () => new RegExp(`(${inputValue.value})`, 'iug')
+);
+
+const accentQuery = (val: string) => {
+  return val.replace(
+    regexAccentQuery.value,
+    '<span class="accent-query">$1</span>'
+  );
+};
+
 const onKeydown = (event: KeyboardEvent) => {
   if (!isOpen.value) {
     return;
@@ -335,7 +350,8 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
           :key="item.value"
           @select="(item) => onSelect(item, index)"
         >
-          {{ item.title }}
+          <span v-if="enabledAccentQuery" v-html="accentQuery(item.title)" />
+          <template v-else>{{ item.title }}</template>
         </CdekDropdownItem>
       </CdekDropdownBox>
     </Transition>
@@ -372,6 +388,11 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
   .v-enter-from,
   .v-leave-to {
     opacity: 0;
+  }
+
+  :deep(.accent-query) {
+    background: $Textmatch;
+    padding: 2px 0;
   }
 }
 </style>
