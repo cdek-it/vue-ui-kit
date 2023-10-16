@@ -28,18 +28,18 @@ const Template = (args) => ({
     let toastId;
 
     const toast = useToast();
-    const selectPositionSelect = !!args.settings.position;
-    const showTimeoutInput = !!args.settings.timeout;
-    const position = ref(args.settings.position);
-    const timeout = ref(args.settings.timeout);
-    const settings = ref(args.settings);
+    const selectPositionSelect = !!args.showToastSettings?.position;
+    const showTimeoutInput = !!args.showToastSettings?.timeout;
+    const position = ref(args.showToastSettings?.position);
+    const timeout = ref(args.showToastSettings?.timeout);
+    const showToastSettings = ref(args.showToastSettings);
 
     watch(position, () => {
-      settings.value.position = position.value;
+      showToastSettings.value.position = position.value;
     });
 
     watch(timeout, () => {
-      settings.value.timeout = timeout.value;
+      showToastSettings.value.timeout = timeout.value;
     });
 
     if (args.story === 'dismiss') {
@@ -59,13 +59,13 @@ const Template = (args) => ({
 
     const showToast = () => {
       if (args.type === 'info') {
-        toastId = toast.info(settings.value);
+        toastId = toast.info(args.settings, showToastSettings.value);
       } else if (args.type === 'success') {
-        toastId = toast.success(settings.value);
+        toastId = toast.success(args.settings, showToastSettings.value);
       } else if (args.type === 'error') {
-        toastId = toast.error(settings.value);
+        toastId = toast.error(args.settings, showToastSettings.value);
       } else {
-        toastId = toast(settings.value);
+        toastId = toast(args.settings, showToastSettings.value);
       }
     };
 
@@ -323,6 +323,8 @@ export const SelectPosition = Template.bind({});
 SelectPosition.args = {
   settings: {
     title: 'Какой-то текст',
+  },
+  showToastSettings: {
     position: POSITION.TOP_CENTER,
   },
 };
@@ -333,13 +335,17 @@ SelectPosition.parameters = {
         const toast = useToast();
 
         let toastId;
+
         const toastSettings = {
           title: 'Какой-то текст',
+        }
+        
+        const settings = {
           position: 'top-center'
         }
-
+      
         const showToast = () => {
-          toastId = toast(toastSettings);
+          toastId = toast(toastSettings, settings);
         };
       `,
     },
@@ -347,26 +353,31 @@ SelectPosition.parameters = {
 };
 
 export const SetTimeout = Template.bind({});
-SelectPosition.args = {
+SetTimeout.args = {
   settings: {
     title: 'Какой-то текст',
+  },
+  showToastSettings: {
     timeout: 10000,
   },
 };
-SelectPosition.parameters = {
+SetTimeout.parameters = {
   docs: {
     source: {
       code: `
         const toast = useToast();
 
         let toastId;
-        const toastSettings = {
+        const props = {
           title: 'Какой-то текст',
+        }
+        
+        const settings = {
           timeout: 10000,
         }
 
         const showToast = () => {
-          toastId = toast(toastSettings);
+          toastId = toast(props, settings);
         };
       `,
     },

@@ -123,7 +123,7 @@ describe('Unit: Toastification', () => {
     // Ждем маунта тостеров
     await wrapper.vm.$nextTick();
 
-    toast.info({ title: 'text', position: POSITION.TOP_CENTER });
+    toast.info({ title: 'text' }, { position: POSITION.TOP_CENTER });
     await flushPromises();
     const renderedToast = document.querySelector('.top-center');
     expect(renderedToast).not.to.equal(null);
@@ -136,7 +136,7 @@ describe('Unit: Toastification', () => {
     // Ждем маунта тостеров
     await wrapper.vm.$nextTick();
 
-    toast.info({ title: 'text', timeout: 1000 });
+    toast.info({ title: 'text' }, { timeout: 1000 });
 
     await flushPromises();
 

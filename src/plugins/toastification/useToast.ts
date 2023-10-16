@@ -1,12 +1,14 @@
 import { useToast, POSITION, TYPE } from '../toastification/lib';
 import { CdekToaster } from '../../components/cdek-toaster';
 import type { ToasterProps } from '../../components/cdek-toaster';
+import type { ToasterSettings } from './lib/types';
 
 export default function useCustomToast() {
   const toast = useToast();
 
   function toastAlias(
-    settings: ToasterProps,
+    props: ToasterProps,
+    settings: ToasterSettings = {},
     type: 'info' | 'success' | 'error' = 'info'
   ) {
     const isMobile = window?.matchMedia('(max-width: 768px)');
@@ -19,30 +21,30 @@ export default function useCustomToast() {
       position = settings.position;
     }
 
-    settings.type || (settings.type = type);
+    props.type || (props.type = type);
 
     return toast(
-      { component: CdekToaster, props: settings },
+      { component: CdekToaster, props },
       { position, timeout: settings.timeout || 5000 }
     );
   }
 
-  type ArgsT = [ToasterProps];
+  type ArgsT = [ToasterProps, ToasterSettings?];
 
   function customToast(...args: ArgsT) {
     return toastAlias(...args);
   }
 
   customToast.info = function customToastInfo(...args: ArgsT) {
-    return toastAlias(...args, TYPE.INFO);
+    return toastAlias(args[0], args[1], TYPE.INFO);
   };
 
   customToast.success = function customToastSuccess(...args: ArgsT) {
-    return toastAlias(...args, TYPE.SUCCESS);
+    return toastAlias(args[0], args[1], TYPE.SUCCESS);
   };
 
-  customToast.error = function customToastSuccess(...args: ArgsT) {
-    return toastAlias(...args, TYPE.ERROR);
+  customToast.error = function customToastError(...args: ArgsT) {
+    return toastAlias(args[0], args[1], TYPE.ERROR);
   };
 
   customToast.dismiss = toast.dismiss;
