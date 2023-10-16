@@ -2,6 +2,8 @@ const { mergeConfig } = require('vite');
 const svgLoader = require('vite-svg-loader');
 const path = require('path');
 
+const prefix = process.env.VITE_STYLE_PREFIX || 'cdek';
+
 module.exports = {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -34,6 +36,9 @@ module.exports = {
           scss: {
             additionalData: `@import "./src/assets/style/vars";`,
           },
+        },
+        modules: {
+          generateScopedName: (name) => name.replace(/^cdek/, prefix),
         },
       },
     });

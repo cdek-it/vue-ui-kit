@@ -1,4 +1,4 @@
-import CdekButton from './CdekButton.vue';
+import CdekButton from './BaseButton.vue';
 import ArrowRightIcon from './svg/arrow-right.svg?component';
 import CheckIcon from './svg/check.svg?component';
 import getVersion from '@/test/getVersion';
