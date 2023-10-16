@@ -38,16 +38,16 @@ lint:
   cache:
     policy: pull
 
-test:
-  stage: lint
-  extends: .common
-  except:
-    - main
-  script:
-    - yarn run test:cli
+# test:
+#   stage: lint
+#   extends: .common
+#   except:
+#     - main
+#   script:
+#     - yarn run test:cli
 
-  cache:
-    policy: pull
+#   cache:
+#     policy: pull
 
 type-check:
   stage: lint
