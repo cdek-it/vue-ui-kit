@@ -2,12 +2,12 @@
 import { computed } from 'vue';
 import {
   Listbox,
-  ListboxLabel,
   ListboxButton,
-  ListboxOptions,
+  ListboxLabel,
   ListboxOption,
+  ListboxOptions,
 } from '@headlessui/vue';
-import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
+import { CdekDropdownBox, CdekDropdownItem } from '../cdek-dropdown/';
 import type { IItemValue } from '../cdek-dropdown/CdekDropdown.types';
 import ChevronUpIcon from './svg/chevron-up.svg?component';
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
@@ -16,6 +16,11 @@ import CircleCheckIcon from './svg/circle-check.svg?component';
 import InfoCircleIcon from './svg/info-circle.svg?component';
 
 export type Primitive = string | number | boolean;
+
+type Value = string | number;
+
+export type GetValueFn = (item: any) => Value;
+export type GetTitleFn = (item: any) => string;
 
 const props = withDefaults(
   defineProps<{
@@ -32,7 +37,7 @@ const props = withDefaults(
      * `Array<string | number> | Array<IItemValue>`
      * [Описание модели](/cdek-vue-ui-kit?path=/story/ui-kit-cdekdropdown--primary)
      */
-    items: Array<IItemValue> | Array<Primitive>;
+    items: Array<IItemValue> | Array<Primitive> | Array<any>;
     label?: string;
 
     /**
@@ -49,19 +54,63 @@ const props = withDefaults(
      * Если true, то можно выбрань несколько вариантов из списка, в modelValue запишется массив значений
      */
     multiple?: boolean;
+    /**
+     * Кастомная функция для получения `value` из объектов
+     */
+    getValue?: GetValueFn;
+    /**
+     * Кастомная функция для получения `title` из объектов, используется для отображения в списке
+     */
+    getTitle?: GetTitleFn;
   }>(),
   {}
 );
 
-const itemsIsObject = computed(() => typeof props.items[0] === 'object');
+const getNewValue = (item: IItemValue | Primitive) => {
+  if (props.getValue) {
+    return props.getValue(item);
+  }
 
+  if (typeof item === 'object' && item.value) {
+    return item.value;
+  }
+
+  return item;
+};
+
+const getNewTitle = (item: IItemValue | Primitive) => {
+  if (props.getTitle) {
+    return props.getTitle(item);
+  }
+
+  if (typeof item === 'object' && item.title) {
+    return item.title;
+  }
+
+  return item;
+};
+
+const itemsIsObject = computed(() => typeof props.items[0] === 'object');
 const options = computed(() => {
   if (itemsIsObject.value) {
+    if (props.getValue || props.getTitle) {
+      return props.items.map((item: IItemValue | Primitive) => {
+        return Object.assign(item, {
+          value: getNewValue(item),
+          title: getNewTitle(item),
+        });
+      }) as Array<IItemValue>;
+    }
+
     return props.items as Array<IItemValue>;
   }
 
   return props.items.map(
-    (item) => ({ value: item, title: item } as IItemValue)
+    (item) =>
+      ({
+        value: getNewValue(item),
+        title: getNewTitle(item),
+      } as IItemValue)
   );
 });
 
@@ -140,22 +189,24 @@ const value = computed({
           >
             {{ label }}
           </ListboxLabel>
-          <div
-            class="cdek-select__value"
-            :class="{
-              'cdek-select__value_error': isError,
-              'cdek-select__value_readonly': readonly,
-              'cdek-select__value_no-label': !label,
-              'cdek-select__value_small': small,
-              'cdek-select__value_open': open,
-            }"
-          >
-            {{
-              Array.isArray(value)
-                ? value.map((item) => item.title).join(', ')
-                : value.title
-            }}
-          </div>
+          <slot name="selectedOption" :value="value">
+            <div
+              class="cdek-select__value"
+              :class="{
+                'cdek-select__value_error': isError,
+                'cdek-select__value_readonly': readonly,
+                'cdek-select__value_no-label': !label,
+                'cdek-select__value_small': small,
+                'cdek-select__value_open': open,
+              }"
+            >
+              {{
+                Array.isArray(value)
+                  ? value.map((item) => item.title).join(', ')
+                  : value.title
+              }}
+            </div>
+          </slot>
 
           <ChevronUpIcon
             class="cdek-select__arrow"
@@ -177,14 +228,16 @@ const value = computed({
           :disabled="item.disabled"
           as="template"
         >
-          <CdekDropdownItem
-            :value="item"
-            :disabled="item.disabled"
-            :selected="selected"
-            :active="active"
-          >
-            {{ item.title }}
-          </CdekDropdownItem>
+          <slot name="option" :option="item">
+            <CdekDropdownItem
+              :value="item"
+              :disabled="item.disabled"
+              :selected="selected"
+              :active="active"
+            >
+              {{ item.title }}
+            </CdekDropdownItem>
+          </slot>
         </ListboxOption>
       </ListboxOptions>
     </Listbox>
@@ -241,7 +294,7 @@ const value = computed({
 
     box-sizing: border-box;
     background: $Surface_Neutral;
-    box-shadow: inset 0px 1px 2px rgba(0, 33, 52, 0.05);
+    box-shadow: inset 0 1px 2px rgba(0, 33, 52, 0.05);
     border-radius: 8px;
     transition: background-color 0.3s ease, outline-color 0.3s ease;
 

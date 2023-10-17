@@ -1,11 +1,43 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekBadge from './CdekBadge.vue';
-import type { IBadgeProps } from '@/components/cdek-badge/CdekBadge.vue';
+import builderProp from '@/test/decorators';
 
-const createCdekBadge = (props: IBadgeProps) => {
-  return mount(CdekBadge, { props });
-};
+interface ExtraMethods {
+  setType: (val: string) => CdekBadgeBuilder;
+  setVariant: (val: string) => CdekBadgeBuilder;
+  setText: (val: string) => CdekBadgeBuilder;
+  setDefault: (val: string) => CdekBadgeBuilder;
+}
+
+interface CdekBadgeBuilder extends ExtraMethods {}
+
+class CdekBadgeBuilder {
+  @builderProp
+  type = '';
+
+  @builderProp
+  variant = '';
+
+  @builderProp
+  text = '';
+
+  @builderProp
+  default = '';
+
+  build() {
+    return mount(CdekBadge as any, {
+      props: {
+        type: this.type,
+        variant: this.variant,
+        text: this.text,
+      },
+      slots: {
+        default: this.default,
+      },
+    });
+  }
+}
 
 describe('Unit: CdekBadge', () => {
   describe('type', () => {
@@ -20,7 +52,10 @@ describe('Unit: CdekBadge', () => {
     ])(
       'Если type = $type, то должен быть класс $typeClass',
       ({ type, typeClass }: any) => {
-        const wrapper = createCdekBadge({ text: 'Status', type });
+        const wrapper = new CdekBadgeBuilder()
+          .setText('Status')
+          .setType(type)
+          .build();
         expect(wrapper.classes(typeClass)).toBeTruthy();
       }
     );
@@ -33,12 +68,24 @@ describe('Unit: CdekBadge', () => {
     ])(
       'Если variant = $variant, то должен быть класс $variantClass',
       ({ variant, variantClass }: any) => {
-        const wrapper = createCdekBadge({
-          text: 'Status',
-          variant,
-        });
+        const wrapper = new CdekBadgeBuilder()
+          .setText('Status')
+          .setVariant(variant)
+          .build();
         expect(wrapper.classes(variantClass)).toBeTruthy();
       }
     );
+  });
+
+  test('Если передан слот, то его нужно отобразить', () => {
+    const wrapper = new CdekBadgeBuilder().setDefault('<b>test</b>').build();
+
+    expect(wrapper.html()).toMatch('<b>test</b>');
+  });
+
+  test('Если передан текст, то его нужно отобразить', () => {
+    const wrapper = new CdekBadgeBuilder().setText('Status').build();
+
+    expect(wrapper.text()).toBe('Status');
   });
 });

@@ -1,14 +1,10 @@
-import Toast from 'vue-toastification';
-import type { PluginOptions } from 'vue-toastification';
-import 'vue-toastification/dist/index.css';
+import Toast from './lib';
+import type { PluginOptions } from './lib';
+import './lib/scss/index.scss';
 import './toastification.scss';
 
 const options: PluginOptions = {
-  icon: false,
-  closeButton: false,
   maxToasts: 5,
-  draggable: false,
-  hideProgressBar: true,
 };
 
 export default function register(app: any) {
