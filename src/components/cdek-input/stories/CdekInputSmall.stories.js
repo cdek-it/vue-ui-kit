@@ -129,7 +129,7 @@ SmallLeftIcon.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" small placeholder="Поиск">
-  <template #left-icon>
+  <template #icons-left>
     <!-- иконка должна быть размером 24x24 -->
     <button><SearchIcon /></button>
   </template>
@@ -150,7 +150,7 @@ SmallRightIcon.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" small label="Кол-во">
-  <template #right-icon>
+  <template #icons-right>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
   </template>
@@ -172,7 +172,7 @@ SmallRightIconClearable.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" label="Кол-во" small clearable>
-  <template #right-icon>
+  <template #icons-right>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
   </template>
