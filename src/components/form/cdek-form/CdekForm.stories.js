@@ -360,7 +360,7 @@ const clearForm = () => {
 </script>
 
 <template>
-  <CdekForm @submit="submit">
+  <CdekForm @submit="submit" ref="cdekFormRef">
     <CdekFormControl name="firstName" label="firstName" initialValue="Имя" />
     <CdekFormControl name="surname" label="surname" initialValue="Фамилия" />
   
