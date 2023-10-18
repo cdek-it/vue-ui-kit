@@ -97,7 +97,7 @@ RightIcon.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" label="Серия..">
-  <template #right-icon>
+  <template #icons-right>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
   </template>
@@ -119,7 +119,7 @@ RightIconError.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" label="Серия.." valid-res="Ошибка">
-  <template #right-icon>
+  <template #icons-right>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
   </template>
@@ -140,7 +140,7 @@ RightIconDisabled.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" label="Серия.." disabled>
-  <template #right-icon>
+  <template #icons-right>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
   </template>
@@ -161,7 +161,7 @@ RightIconReadonly.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" label="Серия.." readonly>
-  <template #right-icon>
+  <template #icons-right>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
   </template>
@@ -182,7 +182,7 @@ RightIconClearable.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" label="Серия.." clearable>
-  <template #right-icon>
+  <template #icons-right>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
   </template>
@@ -204,7 +204,7 @@ SmallRightIconClearable.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" label="Серия.." clearable class="input-small-with-icon">
-  <template #right-icon>
+  <template #icons-right>
     <!-- иконка должна быть размером 24x24 -->
     <button><EyeIcon /></button>
   </template>
@@ -224,7 +224,7 @@ LeftIcon.parameters = {
     source: {
       code: `
 <CdekInput v-model="inputVal" placeholder="Поиск">
-  <template #left-icon>
+  <template #icons-left>
     <!-- иконка должна быть размером 24x24 -->
     <button><SearchIcon /></button>
   </template>
