@@ -47,4 +47,10 @@ export default class FormService {
   getFieldService(...args: [string, RulesT]) {
     return new FormServiceControl(this, ...args);
   }
+
+  clearForm() {
+    Object.keys(this.fields).forEach((key: string) => {
+      this.changeField(key, '');
+    });
+  }
 }

@@ -33,8 +33,13 @@ const triggerSubmit = <T = FieldsT>() => {
   return submit() as unknown as FormSubmitResult<T>;
 };
 
+const clearForm = () => {
+  formService.clearForm();
+};
+
 defineExpose({
   triggerSubmit,
+  clearForm,
 });
 </script>
 
