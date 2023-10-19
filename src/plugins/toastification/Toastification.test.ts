@@ -267,4 +267,86 @@ describe('Unit: Toastification', () => {
 
     expect(text).toBe('Новый текст');
   });
+
+  describe('Строковый параметр', () => {
+    test('При передаче строкового параметра, он передается как title', async () => {
+      const wrapper = new ToastificationBuilder().build();
+      const toast = useToast();
+
+      // Ждем маунта тостеров
+      await wrapper.vm.$nextTick();
+
+      toast('Строковый параметр');
+
+      await flushPromises();
+
+      const renderedToast = document.querySelector('.toast');
+
+      expect(renderedToast?.classList.contains('info')).toBeTruthy();
+
+      const text = renderedToast?.querySelector('.toast__title')?.textContent;
+
+      expect(text).toBe('Строковый параметр');
+    });
+
+    test('При передаче строкового параметра в info, он передается как title', async () => {
+      const wrapper = new ToastificationBuilder().build();
+      const toast = useToast();
+
+      // Ждем маунта тостеров
+      await wrapper.vm.$nextTick();
+
+      toast.info('Строковый параметр');
+
+      await flushPromises();
+
+      const renderedToast = document.querySelector('.toast');
+
+      expect(renderedToast?.classList.contains('info')).toBeTruthy();
+
+      const text = renderedToast?.querySelector('.toast__title')?.textContent;
+
+      expect(text).toBe('Строковый параметр');
+    });
+
+    test('При передаче строкового параметра в error, он передается как title', async () => {
+      const wrapper = new ToastificationBuilder().build();
+      const toast = useToast();
+
+      // Ждем маунта тостеров
+      await wrapper.vm.$nextTick();
+
+      toast.error('Строковый параметр');
+
+      await flushPromises();
+
+      const renderedToast = document.querySelector('.toast');
+
+      expect(renderedToast?.classList.contains('error')).toBeTruthy();
+
+      const text = renderedToast?.querySelector('.toast__title')?.textContent;
+
+      expect(text).toBe('Строковый параметр');
+    });
+
+    test('При передаче строкового параметра в error, он передается как title', async () => {
+      const wrapper = new ToastificationBuilder().build();
+      const toast = useToast();
+
+      // Ждем маунта тостеров
+      await wrapper.vm.$nextTick();
+
+      toast.success('Строковый параметр');
+
+      await flushPromises();
+
+      const renderedToast = document.querySelector('.toast');
+
+      expect(renderedToast?.classList.contains('success')).toBeTruthy();
+
+      const text = renderedToast?.querySelector('.toast__title')?.textContent;
+
+      expect(text).toBe('Строковый параметр');
+    });
+  });
 });
