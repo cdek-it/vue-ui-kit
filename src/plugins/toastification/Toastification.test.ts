@@ -267,4 +267,24 @@ describe('Unit: Toastification', () => {
 
     expect(text).toBe('Новый текст');
   });
+
+  test('При передаче строкового параметра, он передается как title', async () => {
+    const wrapper = new ToastificationBuilder().build();
+    const toast = useToast();
+
+    // Ждем маунта тостеров
+    await wrapper.vm.$nextTick();
+
+    toast('Строковый параметр');
+
+    await flushPromises();
+
+    const renderedToast = document.querySelector('.toast');
+
+    expect(renderedToast?.classList.contains('info')).toBeTruthy();
+
+    const text = renderedToast?.querySelector('.toast__title')?.textContent;
+
+    expect(text).toBe('Строковый параметр');
+  });
 });

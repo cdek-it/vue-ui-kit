@@ -3,11 +3,12 @@ import { CdekToaster } from '../../components/cdek-toaster';
 import type { ToasterProps } from '../../components/cdek-toaster';
 import type { ToasterSettings } from './lib/types';
 
+type ToastAliasProps = ToasterProps | string;
 export default function useCustomToast() {
   const toast = useToast();
 
   function toastAlias(
-    props: ToasterProps,
+    props: ToastAliasProps,
     settings: ToasterSettings = {},
     type: 'info' | 'success' | 'error' = 'info'
   ) {
@@ -21,6 +22,13 @@ export default function useCustomToast() {
       position = settings.position;
     }
 
+    if (typeof props === 'string') {
+      const title = props;
+      props = {
+        title,
+      } as ToasterProps;
+    }
+
     props.type || (props.type = type);
 
     return toast(
@@ -29,7 +37,7 @@ export default function useCustomToast() {
     );
   }
 
-  type ArgsT = [ToasterProps, ToasterSettings?];
+  type ArgsT = [ToastAliasProps, ToasterSettings?];
 
   function customToast(...args: ArgsT) {
     return toastAlias(...args);

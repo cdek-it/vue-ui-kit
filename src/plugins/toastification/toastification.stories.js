@@ -73,6 +73,11 @@ const Template = (args) => ({
       toast.clear();
     };
 
+    const showWithoutPropsToast = () => {
+      const title = 'Поддержка строкового параметра';
+      toastId = toast(title);
+    };
+
     return {
       args,
       toast,
@@ -82,12 +87,15 @@ const Template = (args) => ({
       position,
       showTimeoutInput,
       timeout,
+      showWithoutPropsToast,
     };
   },
   template: `
   <div style="display: flex; flex-direction: column;">
-    <button @click="showToast">Показать toast</button>
+    <button v-if="args.story !== 'StringParamSupport'" @click="showToast">Показать toast</button>
     <button v-if="args.story === 'clear-all'" @click="clearAll">Закрыть все</button>
+    
+    <button v-if="args.story === 'StringParamSupport'" @click="showWithoutPropsToast">Поддержка строкового параметра</button>
 
     <template v-if="selectPositionSelect">
       <p>
@@ -378,6 +386,24 @@ SetTimeout.parameters = {
 
         const showToast = () => {
           toastId = toast(props, settings);
+        };
+      `,
+    },
+  },
+};
+
+export const StringParamSupport = Template.bind({});
+StringParamSupport.args = {
+  story: 'StringParamSupport',
+};
+SetTimeout.parameters = {
+  docs: {
+    source: {
+      code: `
+       const toast = useToast();
+
+        const showToast = () => {
+          toast('Какой-то текст');
         };
       `,
     },
