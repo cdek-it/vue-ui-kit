@@ -1,9 +1,11 @@
 <template>
   <!-- TODO: Проверить, как просто текст выглядит -->
-  <span class="cdek-link"><slot /></span>
+  <span :class="{
+    [$style['cdek-link']]: true
+  }"><slot /></span>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" module scoped>
 .cdek-link {
   @include body-1;
 
