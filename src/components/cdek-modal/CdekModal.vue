@@ -77,7 +77,7 @@ watchEffect(() => {
       <div
         class="cdek-modal__wrapper"
         @click="onOutsideClick"
-        :class="{ 'cdek-modal__wrapper__disable-padding': disablePadding }"
+        :class="{ 'cdek-modal__wrapper_disable-padding': disablePadding }"
       >
         <div class="cdek-modal__box" ref="boxElement" :style="modalWidth">
           <component
