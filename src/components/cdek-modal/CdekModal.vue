@@ -119,7 +119,7 @@ watchEffect(() => {
       padding: 20px;
     }
 
-    &__disable-padding {
+    &_disable-padding {
       padding: 0;
 
       @include media-sm {
