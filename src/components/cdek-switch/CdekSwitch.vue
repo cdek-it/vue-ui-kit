@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, useSlots } from 'vue';
 import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue';
 
 const props = defineProps<{
@@ -13,6 +13,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   (e: 'update:modelValue', val: boolean): void;
 }>();
+const slots = useSlots();
 
 const enabled = computed({
   get() {
@@ -48,11 +49,13 @@ const enabled = computed({
         />
       </Switch>
       <SwitchLabel
-        v-if="label"
+        v-if="label || slots.default"
         class="cdek-switch__label"
         :class="{ 'cdek-switch__label_small': small }"
       >
-        {{ label }}
+        <slot>
+          {{ label }}
+        </slot>
         <span v-if="tip" class="cdek-switch__tip">{{ tip }}</span>
       </SwitchLabel>
     </div>

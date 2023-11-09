@@ -31,6 +31,10 @@ const props = withDefaults(
      * `true` - Размеры кнопки - 48х48px (36х36px если `small=true`)
      */
     icon?: boolean;
+    /**
+     * Кастомный тег для рендера
+     */
+    as?: string;
   }>(),
   { width: 'auto', theme: 'primary' }
 );
@@ -49,19 +53,20 @@ const spinnerColor = computed(() => {
 </script>
 
 <template>
-  <button
+  <component
+    :is="as || 'button'"
     class="cdek-button"
     :class="{
       [theme]: true,
       small: small,
       inline: width === 'content',
       icon: icon,
+      disabled: disabled,
     }"
-    :disabled="disabled"
   >
     <CdekSpinner :color="spinnerColor" v-if="loading" />
     <slot v-if="!loading || spinnerBefore" />
-  </button>
+  </component>
 </template>
 
 <style lang="scss" scoped>
@@ -81,7 +86,7 @@ const spinnerColor = computed(() => {
   border: unset;
   transition: all 0.2s ease-in-out;
 
-  &:hover:not([disabled]) {
+  &:hover:not(.disabled) {
     background: $Primary_Button_Hover;
     border-color: $Primary_Button_Hover;
     color: $Peak;
@@ -90,7 +95,7 @@ const spinnerColor = computed(() => {
       --spinner-color: #{$Peak};
     }
   }
-  &:active:not([disabled]) {
+  &:active:not(.disabled) {
     background: $Primary_Active;
     border-color: $Primary_Active;
     color: $Peak;
@@ -133,10 +138,10 @@ const spinnerColor = computed(() => {
     background: $Peak_20;
     color: $Peak;
 
-    &:hover:not([disabled]) {
+    &:hover:not(.disabled) {
       background: $Peak_40;
     }
-    &:active:not([disabled]) {
+    &:active:not(.disabled) {
       background: $Peak_60;
     }
   }
@@ -152,7 +157,7 @@ const spinnerColor = computed(() => {
     }
   }
 
-  &[disabled] {
+  &.disabled {
     background: $Button_Disable;
     color: $Peak;
     border: none;

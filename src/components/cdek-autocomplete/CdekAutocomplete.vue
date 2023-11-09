@@ -83,6 +83,10 @@ const props = withDefaults(
      */
     minLength?: number;
     class?: string;
+    /**
+     * Включить подсветку введенного значения у найденных элементов
+     */
+    enabledAccentQuery?: boolean;
   }>(),
   {
     minLength: 3,
@@ -214,6 +218,10 @@ const closeDropdown = () => {
 };
 
 const onSelect = (value: IItemValue, index: number) => {
+  if (!value || value.disabled) {
+    return;
+  }
+
   emit('select', showedItems.value?.[index]);
 
   closeDropdown();
@@ -229,16 +237,27 @@ const onOutsideClick = (event: MouseEvent) => {
     closeDropdown();
   }
 };
-
 const highlight = (index: number) => {
   if (index < 0) {
     index = options.value.length - 1;
   }
+
   if (index > options.value.length - 1) {
     index = 0;
   }
 
   highlightedEl.value = index;
+};
+
+const regexAccentQuery = computed<RegExp>(
+  () => new RegExp(`(${inputValue.value})`, 'iug')
+);
+
+const accentQuery = (val: string) => {
+  return val.replace(
+    regexAccentQuery.value,
+    '<span class="accent-query">$1</span>'
+  );
 };
 
 const onKeydown = (event: KeyboardEvent) => {
@@ -247,15 +266,24 @@ const onKeydown = (event: KeyboardEvent) => {
   }
 
   if (event.key === KeyboardKeys.ArrowDown) {
+    // Отменяем перемещение курсора в инпуте
+    event.preventDefault();
     return void highlight(highlightedEl.value + 1);
   }
 
   if (event.key === KeyboardKeys.ArrowUp) {
+    // Отменяем перемещение курсора в инпуте
+    event.preventDefault();
     return void highlight(highlightedEl.value - 1);
   }
 
   if (event.key === KeyboardKeys.Enter) {
     event.stopImmediatePropagation();
+
+    if (highlightedEl.value === -1 && options.value.length > 0) {
+      highlight(0);
+    }
+
     return void onSelect(
       options.value[highlightedEl.value],
       highlightedEl.value
@@ -322,7 +350,8 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
           :key="item.value"
           @select="(item) => onSelect(item, index)"
         >
-          {{ item.title }}
+          <span v-if="enabledAccentQuery" v-html="accentQuery(item.title)" />
+          <template v-else>{{ item.title }}</template>
         </CdekDropdownItem>
       </CdekDropdownBox>
     </Transition>
@@ -359,6 +388,11 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
   .v-enter-from,
   .v-leave-to {
     opacity: 0;
+  }
+
+  :deep(.accent-query) {
+    background: $Textmatch;
+    padding: 2px 0;
   }
 }
 </style>

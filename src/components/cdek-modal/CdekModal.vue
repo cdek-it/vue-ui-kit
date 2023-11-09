@@ -23,6 +23,8 @@ export interface IModalProps<T = Record<string, any>> {
      * по умолчанию приравнивается к ширине контент
      */
     width?: string;
+    withoutCloseButton?: boolean;
+    wrapperWithoutPaddings?: boolean;
   };
 }
 
@@ -49,6 +51,14 @@ const modalWidth = computed(() => ({
   '--modal-width': modalService.modalData?.settings?.width,
 }));
 
+const disableCloseButton = computed(() => {
+  return modalService.modalData?.settings?.withoutCloseButton || false;
+});
+
+const disablePadding = computed(() => {
+  return modalService.modalData?.settings?.wrapperWithoutPaddings || false;
+});
+
 watchEffect(() => {
   document.body.style.overflow = modalService.modalData?.component
     ? 'hidden'
@@ -64,13 +74,21 @@ watchEffect(() => {
 <template>
   <Transition>
     <div class="cdek-modal" v-if="modalService.isOpen">
-      <div class="cdek-modal__wrapper" @click="onOutsideClick">
+      <div
+        class="cdek-modal__wrapper"
+        @click="onOutsideClick"
+        :class="{ 'cdek-modal__wrapper_disable-padding': disablePadding }"
+      >
         <div class="cdek-modal__box" ref="boxElement" :style="modalWidth">
           <component
             :is="modalService.modalData?.component"
             v-bind="modalService.modalData?.props || {}"
           />
-          <CrossIcon class="cdek-modal__box__close-trigger" @click="close" />
+          <CrossIcon
+            v-if="!disableCloseButton"
+            class="cdek-modal__box__close-trigger"
+            @click="close"
+          />
         </div>
       </div>
     </div>
@@ -79,23 +97,34 @@ watchEffect(() => {
 
 <style lang="scss" scoped>
 .cdek-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+
   &__wrapper {
     display: flex;
     justify-content: center;
     padding: 40px 40px 56px;
     background: $Bottom_50;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow-y: auto;
-    position: fixed;
     box-sizing: border-box;
     align-items: center;
-    top: 0;
-    left: 0;
-    z-index: 1000;
 
     @include media-sm {
       padding: 20px;
+    }
+
+    &_disable-padding {
+      padding: 0;
+
+      @include media-sm {
+        padding: 0;
+      }
     }
   }
 

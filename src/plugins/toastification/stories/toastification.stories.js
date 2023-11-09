@@ -1,6 +1,7 @@
-import useToast from './useToast';
 import { CdekToaster } from '@/components/cdek-toaster';
 import getVersion from '@/test/getVersion';
+import { POSITION } from '../lib/index';
+import { Template } from './settings';
 
 export default {
   title: 'Plugins/Toastification',
@@ -21,54 +22,12 @@ export default {
   },
 };
 
-const Template = (args) => ({
-  setup() {
-    let toastId;
-    const toast = useToast();
-
-    if (args.story === 'dismiss') {
-      args.settings.button.action = () => {
-        toast.dismiss(toastId);
-      };
-    }
-
-    if (args.story === 'show-loading') {
-      args.settings.button.action = () => {
-        toast.update(toastId, {
-          title: 'Какой-то текст',
-          button: { text: 'Начать загрузку', loading: true },
-        });
-      };
-    }
-
-    const showToast = () => {
-      if (args.type === 'info') {
-        toastId = toast.info(args.settings);
-      } else if (args.type === 'success') {
-        toastId = toast.success(args.settings);
-      } else if (args.type === 'error') {
-        toastId = toast.error(args.settings);
-      } else {
-        toastId = toast(args.settings);
-      }
-    };
-
-    const clearAll = () => {
-      toast.clear();
-    };
-
-    return { args, toast, showToast, clearAll };
-  },
-  template: `
-    <button @click="showToast">Показать toast</button>
-    <button v-if="args.story === 'clear-all'" @click="clearAll">Закрыть все</button>
-  `,
-});
-
 export const Primary = Template.bind({});
 Primary.args = {
   settings: {
     title: 'Какой-то текст',
+    position: POSITION.BOTTOM_CENTER,
+    timeout: 1000,
   },
 };
 Primary.parameters = {
@@ -78,7 +37,7 @@ Primary.parameters = {
 const toast = useToast();
 
 const showToast = () => {
-  toast({ title: 'Какой-то текст' });
+  toast({ title: 'Какой-то текст'});
 };
 `,
     },
@@ -267,6 +226,71 @@ const showToast = () => {
   toastId = toast(toastSettings);
 };
 `,
+    },
+  },
+};
+
+export const SelectPosition = Template.bind({});
+SelectPosition.args = {
+  settings: {
+    title: 'Какой-то текст',
+  },
+  showToastSettings: {
+    position: POSITION.TOP_CENTER,
+  },
+};
+SelectPosition.parameters = {
+  docs: {
+    source: {
+      code: `
+        const toast = useToast();
+
+        let toastId;
+
+        const toastSettings = {
+          title: 'Какой-то текст',
+        }
+        
+        const settings = {
+          position: 'top-center'
+        }
+      
+        const showToast = () => {
+          toastId = toast(toastSettings, settings);
+        };
+      `,
+    },
+  },
+};
+
+export const SetTimeout = Template.bind({});
+SetTimeout.args = {
+  settings: {
+    title: 'Какой-то текст',
+  },
+  showToastSettings: {
+    timeout: 10000,
+  },
+};
+SetTimeout.parameters = {
+  docs: {
+    source: {
+      code: `
+        const toast = useToast();
+
+        let toastId;
+        const props = {
+          title: 'Какой-то текст',
+        }
+        
+        const settings = {
+          timeout: 10000,
+        }
+
+        const showToast = () => {
+          toastId = toast(props, settings);
+        };
+      `,
     },
   },
 };

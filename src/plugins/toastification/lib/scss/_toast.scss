@@ -1,0 +1,38 @@
+.#{$vt-namespace}__toast {
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  justify-content: space-between;
+  pointer-events: auto;
+  overflow: hidden;
+  // overflow: hidden + border-radius does not work properly on Safari
+  // The following magic line fixes it
+  // https://stackoverflow.com/a/58283449
+  transform: translateZ(0);
+  direction: ltr;
+  &--rtl {
+    direction: rtl;
+  }
+
+  @media #{$vt-mobile} {
+    border-radius: 0px;
+    margin-bottom: 0.5rem;
+  }
+
+  &-body {
+    flex: 1;
+    line-height: 24px;
+    font-size: 16px;
+    word-break: break-word;
+    white-space: pre-wrap;
+  }
+
+  &-component-body {
+    flex: 1;
+  }
+
+  &.disable-transition {
+    animation: none !important;
+  }
+}

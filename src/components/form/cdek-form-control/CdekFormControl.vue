@@ -56,12 +56,20 @@ const value = computed({
       v-model="value"
       :valid-res="fieldService.error"
       v-bind="$attrs"
-    />
+    >
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
+        <slot :name="slot" v-bind="scope" />
+      </template>
+    </CdekInput>
     <CdekAutocomplete
       v-if="type === 'autocomplete'"
       v-model="value"
       :valid-res="fieldService.error"
       v-bind="$attrs"
-    />
+    >
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
+        <slot :name="slot" v-bind="scope" />
+      </template>
+    </CdekAutocomplete>
   </div>
 </template>

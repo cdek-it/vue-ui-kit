@@ -71,6 +71,10 @@ const Template = (args) => ({
       triggerSubmitResult.value = cdekFormRef.value?.triggerSubmit();
     };
 
+    const clearForm = () => {
+      cdekFormRef.value?.clearForm();
+    };
+
     return {
       args,
       submit,
@@ -83,6 +87,7 @@ const Template = (args) => ({
       cdekFormRef,
       triggerSubmit,
       triggerSubmitResult,
+      clearForm,
     };
   },
   template: `
@@ -91,15 +96,27 @@ const Template = (args) => ({
         name="firstName"
         label="firstName"
         :rules="rules"
-        initialValue="${args.story === 'WithInitialValues' ? 'Имя' : ''}"
+        initialValue="${
+          args.story === 'WithInitialValues' || args.story === 'ClearForm'
+            ? 'Имя'
+            : ''
+        }"
       />
       <CdekFormControl
         name="surname"
         label="surname"
-        initialValue="${args.story === 'WithInitialValues' ? 'Фамилия' : ''}"
+        initialValue="${
+          args.story === 'WithInitialValues' || args.story === 'ClearForm'
+            ? 'Фамилия'
+            : ''
+        }"
       />
       <button v-if="args.story !== 'ManualSubmit'">Продолжить</button>
     </CdekForm>
+    
+    <p v-if="args.story === 'ClearForm'">
+      <button @click="clearForm">Очистить форму</button>
+    </p>
 
     <p v-if="args.story !== 'ManualSubmit'">submit result: {{ form }}</p>
     <p v-if="args.story === 'WithValidation'">submitError result: {{ errors }}</p>
@@ -318,6 +335,39 @@ const triggerSubmit = () => {
     <CdekFormControl name="firstName" label="firstName" rules="required" />
     <CdekFormControl name="surname" label="surname" />
   </CdekForm>
+</template>
+`,
+    },
+  },
+};
+
+export const ClearForm = Template.bind({});
+ClearForm.args = {
+  story: 'ClearForm',
+};
+ClearForm.parameters = {
+  docs: {
+    source: {
+      code: `
+<script setup lang="ts">
+import { ref } from 'vue';
+
+const cdekFormRef = ref(null);
+
+const clearForm = () => {
+    cdekFormRef.value?.clearForm();
+};
+</script>
+
+<template>
+  <CdekForm @submit="submit" ref="cdekFormRef">
+    <CdekFormControl name="firstName" label="firstName" initialValue="Имя" />
+    <CdekFormControl name="surname" label="surname" initialValue="Фамилия" />
+  
+    <button>Продолжить<button>
+  </CdekForm>
+  
+  <button @click="clearForm">Очистить форму<button>
 </template>
 `,
     },

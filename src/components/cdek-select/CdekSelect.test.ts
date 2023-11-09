@@ -1,12 +1,13 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekSelect from './CdekSelect.vue';
-import type {
-  IItemValue,
-  Primitive,
-} from '../cdek-dropdown/CdekDropdown.types';
+import type { IItemValue, Primitive } from '@/components/cdek-dropdown';
 import { Listbox } from '@headlessui/vue';
 import builderProp from '@/test/decorators';
+import type {
+  GetTitleFn,
+  GetValueFn,
+} from '@/components/cdek-select/CdekSelect.vue';
 
 interface ExtraMethods {
   setModelValue: (value: Primitive | Array<Primitive>) => CdekSelectBuilder;
@@ -18,13 +19,30 @@ interface ExtraMethods {
   setSmall: (value: boolean) => CdekSelectBuilder;
   setMultiple: (value: boolean) => CdekSelectBuilder;
   setTip: (value: string) => CdekSelectBuilder;
+  setOption: (value: string) => CdekSelectBuilder;
+  setSelectedOption: (value: string) => CdekSelectBuilder;
+  setItems: (
+    items: Array<IItemValue> | Array<Primitive> | Array<any>
+  ) => CdekSelectBuilder;
+  setGetValue: (getValue?: GetValueFn) => CdekSelectBuilder;
+  setGetTitle: (getTitle?: GetTitleFn) => CdekSelectBuilder;
 }
+
+const defaultItems: Array<IItemValue> = [
+  { value: 1, title: 'Option 1', disabled: true },
+  { value: 2, title: 'Option 2' },
+  { value: 3, title: 'Option 3' },
+  { value: 4, title: 'Option 4' },
+];
 
 interface CdekSelectBuilder extends ExtraMethods {}
 
 class CdekSelectBuilder {
   @builderProp
   modelValue: Primitive | Array<Primitive> = '';
+
+  @builderProp
+  items: Array<IItemValue> | Array<Primitive> | Array<any> = defaultItems;
 
   @builderProp
   label?: string;
@@ -47,12 +65,17 @@ class CdekSelectBuilder {
   @builderProp
   multiple?: boolean;
 
-  items: Array<IItemValue> = [
-    { value: 1, title: 'Option 1', disabled: true },
-    { value: 2, title: 'Option 2' },
-    { value: 3, title: 'Option 3' },
-    { value: 4, title: 'Option 4' },
-  ];
+  @builderProp
+  getValue?: GetValueFn;
+
+  @builderProp
+  getTitle?: GetTitleFn;
+
+  @builderProp
+  option?: string;
+
+  @builderProp
+  selectedOption?: string;
 
   @builderProp
   tip?: string;
@@ -78,9 +101,13 @@ class CdekSelectBuilder {
         readonly: this.readonly,
         small: this.small,
         multiple: this.multiple,
+        getValue: this.getValue,
+        getTitle: this.getTitle,
       },
       slots: {
         tip: this.tip || '',
+        option: this.option || '',
+        selectedOption: this.selectedOption || '',
       },
       attrs: this.attrs,
     });
@@ -153,7 +180,7 @@ describe('Unit: CdekSelect', () => {
       const label = wrapper.find('.cdek-select__label');
       expect(label.exists()).toBeFalsy();
     });
-    test('Если modelValue содержит значение и передан label, то лейбл должен сохранить верхнее положение', async () => {
+    test('Если modelValue содержит значение и передан label, то лейбл должен сохранить верхнее положение', () => {
       const wrapper = new CdekSelectBuilder()
         .setLabel('Вариант действия')
         .setModelValue(1)
@@ -161,7 +188,7 @@ describe('Unit: CdekSelect', () => {
       const label = wrapper.find('.cdek-select__label');
       expect(label.classes('cdek-select__label_filled')).toBeTruthy();
     });
-    test('Если modelValue не содержит значение и передан label, то лейбл должен быть посередине', async () => {
+    test('Если modelValue не содержит значение и передан label, то лейбл должен быть посередине', () => {
       const wrapper = new CdekSelectBuilder()
         .setLabel('Вариант действия')
         .build();
@@ -257,5 +284,101 @@ describe('Unit: CdekSelect', () => {
     expect(label.classes('cdek-select__label_small')).toBeTruthy();
     const input = wrapper.find('.cdek-select__value');
     expect(input.classes('cdek-select__value_small')).toBeTruthy();
+  });
+
+  describe('scopedSlots', () => {
+    test('Если слот option передан, то вид опции изменяется ', async () => {
+      const wrapper = new CdekSelectBuilder()
+        .setOption('<div class="some-class">{{ params.option.value}}</div>')
+        .build();
+
+      const control = wrapper.find('.cdek-select__control');
+      await control.trigger('click');
+
+      const options = wrapper.findAll('.cdek-dropdown-box > div');
+
+      expect(options.length).toBe(4);
+
+      expect(options[0].text()).toBe('1');
+    });
+
+    test('Если слот selectedOption передан, то на название применяется пераданный шаблон', async () => {
+      const wrapper = new CdekSelectBuilder()
+        .setLabel('Вариант действия')
+        .setModelValue(1)
+        .setSelectedOption(
+          '<div v-if="params?.value?.title">Вы выбрали: {{ params.value.title }}</div>'
+        )
+        .build();
+
+      const control = wrapper.find('.cdek-select__control');
+
+      expect(control.html()).toMatch('Вы выбрали: Option 1');
+    });
+  });
+
+  test('Если GetTitle установлен, то переданный массив опций преобразуется в соотв. с функцией', async () => {
+    const customItems = [
+      {
+        value: 1,
+        titleData: {
+          title: 'Option 1',
+        },
+      },
+      {
+        value: 2,
+        titleData: {
+          title: 'Option 2',
+        },
+      },
+    ];
+
+    const getTitle = (item: any) => item.titleData.title;
+
+    const wrapper = new CdekSelectBuilder()
+      .setItems(customItems)
+      .setGetTitle(getTitle)
+      .build();
+
+    const control = wrapper.find('.cdek-select__control');
+    await control.trigger('click');
+    const options = wrapper.findAll(`.cdek-dropdown-item`);
+
+    expect(options[0].text()).toBe('Option 1');
+    expect(options[1].text()).toBe('Option 2');
+  });
+
+  test('Если GetValue установлен, то при выборе опции - v-model должен получить значение в соотв с функцией', async () => {
+    const customItems = [
+      {
+        valueData: {
+          value: 1,
+        },
+        title: 'Option 1',
+      },
+      {
+        valueData: {
+          value: 2,
+        },
+        title: 'Option 2',
+      },
+    ];
+
+    const getValue = (item: any) => {
+      return item.valueData.value;
+    };
+
+    const wrapper = new CdekSelectBuilder()
+      .setItems(customItems)
+      .setGetValue(getValue)
+      .build();
+
+    const control = wrapper.find('.cdek-select__control');
+    await control.trigger('click');
+    const options = wrapper.findAll(`.cdek-dropdown-item`);
+
+    await options[1].trigger('click');
+
+    expect(wrapper.props('modelValue')).toBe(2);
   });
 });

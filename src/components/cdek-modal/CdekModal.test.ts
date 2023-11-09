@@ -123,4 +123,15 @@ describe('Unit: CdekModal', () => {
 
     expect(styleAttribute).toMatch('--modal-width: 300px;');
   });
+
+  test('Если передано withoutCloseButton, то кнопка закрытия не отображается', async () => {
+    const wrapper = new CdekModalBuilder()
+      .setComponent(markRaw(CdekConfirm))
+      .setSettings({ withoutCloseButton: true })
+      .openModal()
+      .build();
+
+    const closeTrigger = wrapper.find('.cdek-modal__box__close-trigger');
+    expect(closeTrigger.exists()).toBeFalsy();
+  });
 });

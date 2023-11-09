@@ -39,4 +39,11 @@ describe('FormService:', () => {
     expect(control.rules).toBeTypeOf('object');
     expect((control.rules as any).required).toBeTypeOf('function');
   });
+  test('Очищает поля, когда вызван clearForm', () => {
+    const service = new FormService();
+    service.registerField('name', 'Jane');
+    service.registerField('surname', 'Doe');
+    service.clearForm();
+    expect(service.fields).toEqual({ name: '', surname: '' });
+  });
 });

@@ -24,7 +24,11 @@ const Template = (args) => ({
     return { args, val };
   },
   template: `
-    <CdekSwitch v-bind="args" v-model="val" />
+    <CdekSwitch v-bind="args" v-model="val">
+      <template v-if=args.slot>
+        <a href="/offer">test</a> 
+      </template>
+    </CdekSwitch>
   `,
 });
 
@@ -100,6 +104,22 @@ Label.parameters = {
   docs: {
     source: {
       code: `<CdekSwitch label="Enable notifications" />`,
+    },
+  },
+};
+
+export const SlotLabel = Template.bind({});
+SlotLabel.args = {
+  slot: '<a href="/offer">test</a>',
+};
+SlotLabel.parameters = {
+  docs: {
+    source: {
+      code: `
+        <CdekSwitch>
+          <a href="/offer">test</a> 
+        </CdekSwitch>
+        `,
     },
   },
 };

@@ -25,7 +25,7 @@ export type ToasterProps = {
    */
   button?: {
     text: string;
-    action: () => void;
+    action?: () => void;
     loading?: boolean;
   };
   /**

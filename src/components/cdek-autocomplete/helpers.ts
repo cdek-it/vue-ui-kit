@@ -38,7 +38,7 @@ export const transformItems = (
   items: ItemsUnion | null,
   getValue?: GetValueFn,
   getTitle?: GetTitleFn
-) => {
+): ItemsUnion => {
   if (!items) {
     return [];
   }
