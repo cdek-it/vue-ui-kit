@@ -79,20 +79,23 @@ watchEffect(() => {
 
 <style lang="scss" scoped>
 .cdek-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1000;
+
   &__wrapper {
     display: flex;
     justify-content: center;
     padding: 40px 40px 56px;
     background: $Bottom_50;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow-y: auto;
-    position: fixed;
     box-sizing: border-box;
     align-items: center;
-    top: 0;
-    left: 0;
-    z-index: 1000;
 
     @include media-sm {
       padding: 20px;
