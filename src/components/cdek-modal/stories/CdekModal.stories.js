@@ -48,6 +48,8 @@ const Template = (args) => ({
         props: confirm,
         settings: {
           width: args.width,
+          withoutCloseButton: args.withoutCloseButton,
+          wrapperWithoutPaddings: args.wrapperWithoutPaddings,
         },
       });
     };
@@ -108,6 +110,48 @@ modalService.openModal(CdekConfirm, {
   props: componentProps,
   settings: {
     width: '400px'
+  }
+});
+`,
+    },
+  },
+};
+
+export const WithoutCloseButton = Template.bind({});
+WithoutCloseButton.args = {
+  withoutCloseButton: true,
+  component: CdekConfirm,
+};
+WithoutCloseButton.parameters = {
+  docs: {
+    source: {
+      code: `
+const modalService = useModalService();
+modalService.openModal(CdekConfirm, {
+  props: componentProps,
+  settings: {
+    withoutCloseButton: true
+  }
+});
+`,
+    },
+  },
+};
+
+export const WrapperWithoutPaddings = Template.bind({});
+WrapperWithoutPaddings.args = {
+  wrapperWithoutPaddings: true,
+  component: CdekConfirm,
+};
+WrapperWithoutPaddings.parameters = {
+  docs: {
+    source: {
+      code: `
+const modalService = useModalService();
+modalService.openModal(CdekConfirm, {
+  props: componentProps,
+  settings: {
+    wrapperWithoutPaddings: true
   }
 });
 `,
