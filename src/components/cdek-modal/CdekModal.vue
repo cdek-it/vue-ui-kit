@@ -23,6 +23,8 @@ export interface IModalProps<T = Record<string, any>> {
      * по умолчанию приравнивается к ширине контент
      */
     width?: string;
+    withoutCloseButton?: boolean;
+    wrapperWithoutPaddings?: boolean;
   };
 }
 
@@ -49,6 +51,14 @@ const modalWidth = computed(() => ({
   '--modal-width': modalService.modalData?.settings?.width,
 }));
 
+const disableCloseButton = computed(() => {
+  return modalService.modalData?.settings?.withoutCloseButton || false;
+});
+
+const disablePadding = computed(() => {
+  return modalService.modalData?.settings?.wrapperWithoutPaddings || false;
+});
+
 watchEffect(() => {
   document.body.style.overflow = modalService.modalData?.component
     ? 'hidden'
@@ -64,13 +74,21 @@ watchEffect(() => {
 <template>
   <Transition>
     <div class="cdek-modal" v-if="modalService.isOpen">
-      <div class="cdek-modal__wrapper" @click="onOutsideClick">
+      <div
+        class="cdek-modal__wrapper"
+        @click="onOutsideClick"
+        :class="{ 'cdek-modal__wrapper__disable-padding': disablePadding }"
+      >
         <div class="cdek-modal__box" ref="boxElement" :style="modalWidth">
           <component
             :is="modalService.modalData?.component"
             v-bind="modalService.modalData?.props || {}"
           />
-          <CrossIcon class="cdek-modal__box__close-trigger" @click="close" />
+          <CrossIcon
+            v-if="!disableCloseButton"
+            class="cdek-modal__box__close-trigger"
+            @click="close"
+          />
         </div>
       </div>
     </div>
@@ -99,6 +117,14 @@ watchEffect(() => {
 
     @include media-sm {
       padding: 20px;
+    }
+
+    &__disable-padding {
+      padding: 0;
+
+      @include media-sm {
+        padding: 0;
+      }
     }
   }
 
