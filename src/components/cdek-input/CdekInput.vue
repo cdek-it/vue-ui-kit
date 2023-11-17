@@ -149,9 +149,7 @@ defineExpose({ getControl });
     </label>
     <div class="cdek-input__tip">
       <template v-if="isError">
-        <span class="error" v-show="!hideErrorMessage">
-          {{ validRes }}
-        </span>
+        <div class="error" v-show="!hideErrorMessage" v-html="validRes" />
       </template>
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
@@ -372,6 +370,7 @@ defineExpose({ getControl });
 
     .error,
     :slotted(.error) {
+      min-width: min-content;
       color: $Error;
     }
 

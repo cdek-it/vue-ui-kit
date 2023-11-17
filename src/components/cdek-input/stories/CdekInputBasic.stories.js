@@ -240,3 +240,19 @@ ClearableFocus.parameters = {
     },
   },
 };
+
+export const HtmlError = Template.bind({});
+HtmlError.args = {
+  class: 'input-html-error',
+  label: 'Серия и номер паспорта',
+  validRes:
+    '<p>Накладные компании СДЭК длиной от 6 до 10 цифр.</p><p>Если Ваш номер не соответствует данному формату, обратитесь, пожалуйста, в магазин за уточнением верного номера.</p>',
+};
+HtmlError.parameters = {
+  version: getVersion('0.1.0'),
+  docs: {
+    source: {
+      code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="p>Накладные компании СДЭК д..."/>',
+    },
+  },
+};

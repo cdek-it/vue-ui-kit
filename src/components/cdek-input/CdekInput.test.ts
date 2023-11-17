@@ -166,6 +166,19 @@ describe('Unit: CdekInput', () => {
       expect(error.text()).toBe('Ошибка');
       expect(error.attributes('style')).toBe('display: none;');
     });
+
+    test('Если validRes - html, то блоки вставляются как html', () => {
+      const wrapper = new CdekInputBuilder()
+        .setLabel('Лейбл')
+        .setValidRes('<p> Тестовый html </p>')
+        .build();
+
+      const error = wrapper.find('.error');
+
+      expect(error.html()).toMatch('<p> Тестовый html </p>');
+
+      expect(error.text()).toBe('Тестовый html');
+    });
   });
 
   describe('placeholder', () => {
