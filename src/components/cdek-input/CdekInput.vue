@@ -370,7 +370,6 @@ defineExpose({ getControl });
 
     .error,
     :slotted(.error) {
-      min-width: min-content;
       color: $Error;
     }
 
