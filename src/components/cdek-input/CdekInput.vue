@@ -288,6 +288,13 @@ defineExpose({ getControl });
       align-self: center;
     }
 
+    &:focus {
+      &::placeholder {
+        transition: color 0.2s ease;
+        color: $Button_Disable;
+      }
+    }
+
     &:not(&_no-label) {
       &::placeholder {
         transition: color 0.2s ease;
