@@ -192,6 +192,7 @@ defineExpose({ getControl });
     height: 56px;
 
     outline: solid $outline-width transparent;
+    outline-offset: -#{$outline-width};
     padding-inline: calc(#{$padding-left} - #{$outline-width});
     padding-block: 6px;
 
