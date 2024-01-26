@@ -3,7 +3,6 @@ import { fileURLToPath, URL } from 'node:url';
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader';
-import libCss from 'vite-plugin-libcss';
 import dts from 'vite-plugin-dts';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
@@ -14,7 +13,6 @@ export default defineConfig({
   plugins: [
     vue(),
     svgLoader(),
-    libCss(),
     dts({
       insertTypesEntry: true,
     }),
