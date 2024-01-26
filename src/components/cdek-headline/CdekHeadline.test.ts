@@ -92,13 +92,48 @@ describe('Unit: CdekHeadline', () => {
 
   describe('size sm', () => {
     test.each([
-      { size: '1', smSize: '7', sizeClass: 'headline-1', smClass: 'headline-sm-7' },
-      { size: '2', smSize: '6', sizeClass: 'headline-2', smClass: 'headline-sm-6' },
-      { size: '3', smSize: '5', sizeClass: 'headline-3', smClass: 'headline-sm-5' },
-      { size: '4', smSize: '4', sizeClass: 'headline-4', smClass: 'headline-sm-4' },
-      { size: '5', smSize: '3', sizeClass: 'headline-5', smClass: 'headline-sm-3' },
-      { size: '6', smSize: '2', sizeClass: 'headline-6', smClass: 'headline-sm-2' },
-      { size: '7', smSize: '1', sizeClass: 'headline-7', smClass: 'headline-sm-1' },
+      {
+        size: '1',
+        smSize: '7',
+        sizeClass: 'headline-1',
+        smClass: 'headline-sm-7',
+      },
+      {
+        size: '2',
+        smSize: '6',
+        sizeClass: 'headline-2',
+        smClass: 'headline-sm-6',
+      },
+      {
+        size: '3',
+        smSize: '5',
+        sizeClass: 'headline-3',
+        smClass: 'headline-sm-5',
+      },
+      {
+        size: '4',
+        smSize: '4',
+        sizeClass: 'headline-4',
+        smClass: 'headline-sm-4',
+      },
+      {
+        size: '5',
+        smSize: '3',
+        sizeClass: 'headline-5',
+        smClass: 'headline-sm-3',
+      },
+      {
+        size: '6',
+        smSize: '2',
+        sizeClass: 'headline-6',
+        smClass: 'headline-sm-2',
+      },
+      {
+        size: '7',
+        smSize: '1',
+        sizeClass: 'headline-7',
+        smClass: 'headline-sm-1',
+      },
     ])(
       'Если size = $size и smSize = $smSize, то должен быть класс $sizeClass и $smClass',
       ({ size, smSize, sizeClass, smClass }: any) => {
@@ -112,13 +147,48 @@ describe('Unit: CdekHeadline', () => {
 
   describe('size md', () => {
     test.each([
-      { size: '1', mdSize: '7', sizeClass: 'headline-1', mdClass: 'headline-md-7' },
-      { size: '2', mdSize: '6', sizeClass: 'headline-2', mdClass: 'headline-md-6' },
-      { size: '3', mdSize: '5', sizeClass: 'headline-3', mdClass: 'headline-md-5' },
-      { size: '4', mdSize: '4', sizeClass: 'headline-4', mdClass: 'headline-md-4' },
-      { size: '5', mdSize: '3', sizeClass: 'headline-5', mdClass: 'headline-md-3' },
-      { size: '6', mdSize: '2', sizeClass: 'headline-6', mdClass: 'headline-md-2' },
-      { size: '7', mdSize: '1', sizeClass: 'headline-7', mdClass: 'headline-md-1' },
+      {
+        size: '1',
+        mdSize: '7',
+        sizeClass: 'headline-1',
+        mdClass: 'headline-md-7',
+      },
+      {
+        size: '2',
+        mdSize: '6',
+        sizeClass: 'headline-2',
+        mdClass: 'headline-md-6',
+      },
+      {
+        size: '3',
+        mdSize: '5',
+        sizeClass: 'headline-3',
+        mdClass: 'headline-md-5',
+      },
+      {
+        size: '4',
+        mdSize: '4',
+        sizeClass: 'headline-4',
+        mdClass: 'headline-md-4',
+      },
+      {
+        size: '5',
+        mdSize: '3',
+        sizeClass: 'headline-5',
+        mdClass: 'headline-md-3',
+      },
+      {
+        size: '6',
+        mdSize: '2',
+        sizeClass: 'headline-6',
+        mdClass: 'headline-md-2',
+      },
+      {
+        size: '7',
+        mdSize: '1',
+        sizeClass: 'headline-7',
+        mdClass: 'headline-md-1',
+      },
     ])(
       'Если size = $size и mdSize = $mdSize, то должен быть класс $sizeClass и $mdClass',
       ({ size, mdSize, sizeClass, mdClass }: any) => {
@@ -132,13 +202,48 @@ describe('Unit: CdekHeadline', () => {
 
   describe('size lg', () => {
     test.each([
-      { size: '1', lgSize: '7', sizeClass: 'headline-1', lgClass: 'headline-lg-7' },
-      { size: '2', lgSize: '6', sizeClass: 'headline-2', lgClass: 'headline-lg-6' },
-      { size: '3', lgSize: '5', sizeClass: 'headline-3', lgClass: 'headline-lg-5' },
-      { size: '4', lgSize: '4', sizeClass: 'headline-4', lgClass: 'headline-lg-4' },
-      { size: '5', lgSize: '3', sizeClass: 'headline-5', lgClass: 'headline-lg-3' },
-      { size: '6', lgSize: '2', sizeClass: 'headline-6', lgClass: 'headline-lg-2' },
-      { size: '7', lgSize: '1', sizeClass: 'headline-7', lgClass: 'headline-lg-1' },
+      {
+        size: '1',
+        lgSize: '7',
+        sizeClass: 'headline-1',
+        lgClass: 'headline-lg-7',
+      },
+      {
+        size: '2',
+        lgSize: '6',
+        sizeClass: 'headline-2',
+        lgClass: 'headline-lg-6',
+      },
+      {
+        size: '3',
+        lgSize: '5',
+        sizeClass: 'headline-3',
+        lgClass: 'headline-lg-5',
+      },
+      {
+        size: '4',
+        lgSize: '4',
+        sizeClass: 'headline-4',
+        lgClass: 'headline-lg-4',
+      },
+      {
+        size: '5',
+        lgSize: '3',
+        sizeClass: 'headline-5',
+        lgClass: 'headline-lg-3',
+      },
+      {
+        size: '6',
+        lgSize: '2',
+        sizeClass: 'headline-6',
+        lgClass: 'headline-lg-2',
+      },
+      {
+        size: '7',
+        lgSize: '1',
+        sizeClass: 'headline-7',
+        lgClass: 'headline-lg-1',
+      },
     ])(
       'Если size = $size и lgSize = $lgSize, то должен быть класс $sizeClass и $lgClass',
       ({ size, lgSize, sizeClass, lgClass }: any) => {
@@ -152,13 +257,48 @@ describe('Unit: CdekHeadline', () => {
 
   describe('size xl', () => {
     test.each([
-      { size: '1', xlSize: '7', sizeClass: 'headline-1', xlClass: 'headline-xl-7' },
-      { size: '2', xlSize: '6', sizeClass: 'headline-2', xlClass: 'headline-xl-6' },
-      { size: '3', xlSize: '5', sizeClass: 'headline-3', xlClass: 'headline-xl-5' },
-      { size: '4', xlSize: '4', sizeClass: 'headline-4', xlClass: 'headline-xl-4' },
-      { size: '5', xlSize: '3', sizeClass: 'headline-5', xlClass: 'headline-xl-3' },
-      { size: '6', xlSize: '2', sizeClass: 'headline-6', xlClass: 'headline-xl-2' },
-      { size: '7', xlSize: '1', sizeClass: 'headline-7', xlClass: 'headline-xl-1' },
+      {
+        size: '1',
+        xlSize: '7',
+        sizeClass: 'headline-1',
+        xlClass: 'headline-xl-7',
+      },
+      {
+        size: '2',
+        xlSize: '6',
+        sizeClass: 'headline-2',
+        xlClass: 'headline-xl-6',
+      },
+      {
+        size: '3',
+        xlSize: '5',
+        sizeClass: 'headline-3',
+        xlClass: 'headline-xl-5',
+      },
+      {
+        size: '4',
+        xlSize: '4',
+        sizeClass: 'headline-4',
+        xlClass: 'headline-xl-4',
+      },
+      {
+        size: '5',
+        xlSize: '3',
+        sizeClass: 'headline-5',
+        xlClass: 'headline-xl-3',
+      },
+      {
+        size: '6',
+        xlSize: '2',
+        sizeClass: 'headline-6',
+        xlClass: 'headline-xl-2',
+      },
+      {
+        size: '7',
+        xlSize: '1',
+        sizeClass: 'headline-7',
+        xlClass: 'headline-xl-1',
+      },
     ])(
       'Если size = $size и xlSize = $xlSize, то должен быть класс $sizeClass и $xlClass',
       ({ size, xlSize, sizeClass, xlClass }: any) => {
@@ -172,13 +312,48 @@ describe('Unit: CdekHeadline', () => {
 
   describe('size xxl', () => {
     test.each([
-      { size: '1', xxlSize: '7', sizeClass: 'headline-1', xxlClass: 'headline-xxl-7' },
-      { size: '2', xxlSize: '6', sizeClass: 'headline-2', xxlClass: 'headline-xxl-6' },
-      { size: '3', xxlSize: '5', sizeClass: 'headline-3', xxlClass: 'headline-xxl-5' },
-      { size: '4', xxlSize: '4', sizeClass: 'headline-4', xxlClass: 'headline-xxl-4' },
-      { size: '5', xxlSize: '3', sizeClass: 'headline-5', xxlClass: 'headline-xxl-3' },
-      { size: '6', xxlSize: '2', sizeClass: 'headline-6', xxlClass: 'headline-xxl-2' },
-      { size: '7', xxlSize: '1', sizeClass: 'headline-7', xxlClass: 'headline-xxl-1' },
+      {
+        size: '1',
+        xxlSize: '7',
+        sizeClass: 'headline-1',
+        xxlClass: 'headline-xxl-7',
+      },
+      {
+        size: '2',
+        xxlSize: '6',
+        sizeClass: 'headline-2',
+        xxlClass: 'headline-xxl-6',
+      },
+      {
+        size: '3',
+        xxlSize: '5',
+        sizeClass: 'headline-3',
+        xxlClass: 'headline-xxl-5',
+      },
+      {
+        size: '4',
+        xxlSize: '4',
+        sizeClass: 'headline-4',
+        xxlClass: 'headline-xxl-4',
+      },
+      {
+        size: '5',
+        xxlSize: '3',
+        sizeClass: 'headline-5',
+        xxlClass: 'headline-xxl-3',
+      },
+      {
+        size: '6',
+        xxlSize: '2',
+        sizeClass: 'headline-6',
+        xxlClass: 'headline-xxl-2',
+      },
+      {
+        size: '7',
+        xxlSize: '1',
+        sizeClass: 'headline-7',
+        xxlClass: 'headline-xxl-1',
+      },
     ])(
       'Если size = $size и smSize = $xxlSize, то должен быть класс $sizeClass и $xxlClass',
       ({ size, xxlSize, sizeClass, xxlClass }: any) => {
