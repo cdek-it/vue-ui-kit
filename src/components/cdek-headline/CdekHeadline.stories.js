@@ -1,6 +1,8 @@
 import CdekHeadline from './CdekHeadline.vue';
 import getVersion from '@/test/getVersion';
 
+const options = ['1', '2', '3', '4', '5', '6', '7'];
+
 export default {
   title: 'Ui kit/CdekHeadline',
   component: CdekHeadline,
@@ -15,7 +17,22 @@ export default {
   },
   argTypes: {
     size: {
-      options: ['1', '2', '3', '4', '5', '6', '7'],
+      options,
+    },
+    smSize: {
+      options,
+    },
+    mdSize: {
+      options,
+    },
+    lgSize: {
+      options,
+    },
+    xlSize: {
+      options,
+    },
+    xxlSize: {
+      options,
     },
   },
 };
@@ -30,18 +47,6 @@ const Template = (args) => ({
 
 export const Primary = Template.bind({});
 Primary.parameters = {
-  docs: {
-    source: {
-      code: '<CdekHeadline>Заголовок</CdekHeadline>',
-    },
-  },
-};
-
-export const PrimaryMobile = Template.bind({});
-PrimaryMobile.parameters = {
-  viewport: {
-    defaultViewport: 'mobile1',
-  },
   docs: {
     source: {
       code: '<CdekHeadline>Заголовок</CdekHeadline>',
@@ -117,6 +122,19 @@ Headline7.parameters = {
   docs: {
     source: {
       code: '<CdekHeadline size="7">Заголовок</CdekHeadline>',
+    },
+  },
+};
+
+export const HeadlineWithMediaQuery = Template.bind({});
+HeadlineWithMediaQuery.args = {
+  size: '4',
+  mdSize: '1',
+};
+HeadlineWithMediaQuery.parameters = {
+  docs: {
+    source: {
+      code: '<CdekHeadline size="4" md-size="1">Заголовок от размера экрана</CdekHeadline>',
     },
   },
 };
