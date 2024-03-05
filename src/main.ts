@@ -1,3 +1,4 @@
+export * from './components/cdek-alert';
 export * from './components/cdek-autocomplete';
 export * from './components/cdek-badge';
 export * from './components/cdek-button';

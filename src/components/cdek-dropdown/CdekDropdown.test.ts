@@ -34,7 +34,7 @@ class CdekDropdownItemBuilder {
   }
 
   build() {
-    return shallowMount(CdekDropdownItem, {
+    return shallowMount(CdekDropdownItem as any, {
       props: {
         value: this.value,
         selected: this.selected,
