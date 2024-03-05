@@ -63,6 +63,7 @@ const spinnerColor = computed(() => {
       icon: icon,
       disabled: disabled,
     }"
+    type="button"
   >
     <CdekSpinner :color="spinnerColor" v-if="loading" />
     <slot v-if="!loading || spinnerBefore" />
