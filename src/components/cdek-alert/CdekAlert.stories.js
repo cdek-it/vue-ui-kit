@@ -19,6 +19,9 @@ export default {
     type: {
       options: ['positive', 'negative', 'attention', 'info'],
     },
+    style: {
+      options: ['surface', 'line'],
+    },
   },
 };
 
@@ -46,6 +49,25 @@ Primary.parameters = {
     source: {
       code: `
 <CdekAlert title="Заголовок">
+  Описание. Рекомендовано не более двух строк полезного текста
+</CdekAlert>
+`,
+    },
+  },
+};
+
+export const CustomHeader = Template.bind({});
+CustomHeader.args = {
+  header: 'Кастомный заголовок',
+  default: 'Описание. Рекомендовано не более двух строк полезного текста',
+};
+CustomHeader.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAlert>
+  <template #header>Кастомный заголовок</template>
+
   Описание. Рекомендовано не более двух строк полезного текста
 </CdekAlert>
 `,
@@ -100,6 +122,24 @@ Info.parameters = {
     source: {
       code: `
 <CdekAlert title="Заголовок" type="info">
+  Описание. Рекомендовано не более двух строк полезного текста
+</CdekAlert>
+`,
+    },
+  },
+};
+
+export const Line = Template.bind({});
+Line.args = {
+  title: 'Заголовок',
+  default: 'Описание. Рекомендовано не более двух строк полезного текста',
+  style: 'line',
+};
+Line.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAlert title="Заголовок" style="line">
   Описание. Рекомендовано не более двух строк полезного текста
 </CdekAlert>
 `,

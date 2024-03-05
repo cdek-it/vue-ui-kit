@@ -13,6 +13,7 @@ interface ExtraMethods {
   setType: (val: string) => CdekAlertBuilder;
   setDefaultSlot: (val: string) => CdekAlertBuilder;
   setHeaderSlot: (val: string) => CdekAlertBuilder;
+  setStyle: (val: string) => CdekAlertBuilder;
 }
 
 interface CdekAlertBuilder extends ExtraMethods {}
@@ -30,11 +31,15 @@ class CdekAlertBuilder {
   @builderProp
   headerSlot?: string;
 
+  @builderProp
+  style?: string;
+
   build() {
     return mount(CdekAlert as any, {
       props: {
         title: this.title,
         type: this.type,
+        style: this.style,
       },
       slots: {
         default: this.defaultSlot || '',
@@ -49,6 +54,7 @@ describe('Unit: CdekAlert', () => {
     const wrapper = new CdekAlertBuilder().build();
     expect(wrapper.exists()).toBeTruthy();
     expect(wrapper.classes()).toContain('cdek-alert--attention');
+    expect(wrapper.classes()).toContain('cdek-alert_surface');
   });
 
   test('component renders title', () => {
@@ -96,5 +102,12 @@ describe('Unit: CdekAlert', () => {
 
     expect(wrapper.find('.cdek-alert__title').text()).toBe('Test Title');
     expect(wrapper.findComponent(AlertTriangleIcon).exists()).toBe(false);
+  });
+
+  test('renders with style set to line', () => {
+    const wrapper = new CdekAlertBuilder().setStyle('line').build();
+
+    expect(wrapper.exists()).toBeTruthy();
+    expect(wrapper.classes()).toContain('cdek-alert_line');
   });
 });
