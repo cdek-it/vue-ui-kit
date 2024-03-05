@@ -129,6 +129,7 @@ defineExpose({ getControl });
       <button
         v-if="showClearableButton"
         class="cdek-input__clear"
+        type="button"
         @click="clear"
       >
         <CircleXIcon />

@@ -7,6 +7,7 @@
       'cdek-chip_small': small,
     }"
     :disabled="disabled"
+    type="button"
     @click="onClickChipHandler"
   >
     <span v-if="iconEnabled" class="cdek-chip__icon__wrapper">
