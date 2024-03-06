@@ -252,7 +252,9 @@ HtmlError.parameters = {
   version: getVersion('0.1.0'),
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="p>Накладные компании СДЭК д..."/>',
+      code: `
+<CdekInput v-model="inputVal" label="Серия и .." valid-res="<p>Накладные компании СДЭК д..." />
+`,
     },
   },
 };
