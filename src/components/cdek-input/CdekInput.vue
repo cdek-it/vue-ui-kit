@@ -129,6 +129,7 @@ defineExpose({ getControl });
       <button
         v-if="showClearableButton"
         class="cdek-input__clear"
+        type="button"
         @click="clear"
       >
         <CircleXIcon />
@@ -149,9 +150,7 @@ defineExpose({ getControl });
     </label>
     <div class="cdek-input__tip">
       <template v-if="isError">
-        <span class="error" v-show="!hideErrorMessage">
-          {{ validRes }}
-        </span>
+        <div class="error" v-show="!hideErrorMessage" v-html="validRes" />
       </template>
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
@@ -194,6 +193,7 @@ defineExpose({ getControl });
     height: 56px;
 
     outline: solid $outline-width transparent;
+    outline-offset: -#{$outline-width};
     padding-inline: calc(#{$padding-left} - #{$outline-width});
     padding-block: 6px;
 
@@ -286,6 +286,13 @@ defineExpose({ getControl });
 
     &_no-label {
       align-self: center;
+    }
+
+    &:focus {
+      &::placeholder {
+        transition: color 0.2s ease;
+        color: $Button_Disable;
+      }
     }
 
     &:not(&_no-label) {

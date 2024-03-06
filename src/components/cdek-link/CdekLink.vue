@@ -7,7 +7,7 @@
 .cdek-link {
   @include body-1;
 
-  color: $Primary;
+  color: $Primary_Active;
   display: inline-block;
   text-decoration: underline;
   cursor: pointer;

@@ -1,6 +1,6 @@
 {
   "name": "@cdek-ui-kit/vue",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
   "files": [
     "dist"
@@ -15,6 +15,9 @@
     },
     "./scss": {
       "import": "./dist/scss/index.scss"
+    },
+    "./style.css": {
+      "import": "./dist/style.css"
     }
   },
   "publishConfig": {
@@ -69,7 +72,6 @@
     "typescript": "~4.7.4",
     "vite": "^4.3.5",
     "vite-plugin-dts": "^1.7.1",
-    "vite-plugin-libcss": "^1.0.5",
     "vite-plugin-static-copy": "^0.13.0",
     "vite-svg-loader": "^4.0.0",
     "vitest": "^0.25.6",
