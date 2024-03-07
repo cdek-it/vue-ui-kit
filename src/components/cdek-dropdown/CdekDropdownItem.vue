@@ -43,28 +43,36 @@ const onClick = () => {
 
 <template>
   <div
-    class="cdek-dropdown-item"
+    :class="[
+      $style['prefix-dropdown-item'],
+      {
+        [$style['prefix-dropdown-item_active']]: active,
+        [$style['prefix-dropdown-item_selected']]: selected,
+        [$style['prefix-dropdown-item_disabled']]: value.disabled,
+        [$style['prefix-dropdown-item_colored']]: Boolean(value.color),
+      },
+    ]"
     @click="onClick"
     :style="colorStyle"
-    :class="{
-      'cdek-dropdown-item_active': active,
-      'cdek-dropdown-item_selected': selected,
-      'cdek-dropdown-item_disabled': value.disabled,
-      'cdek-dropdown-item_colored': Boolean(value.color),
-    }"
   >
-    <div class="cdek-dropdown-item__left-icon" v-if="Boolean(value.icon)">
+    <div
+      :class="$style['prefix-dropdown-item__left-icon']"
+      v-if="Boolean(value.icon)"
+    >
       <component :is="value.icon" />
     </div>
-    <div class="cdek-dropdown-item__content">
+    <div :class="$style['prefix-dropdown-item__content']">
       <slot />
     </div>
-    <CheckIcon class="cdek-dropdown-item__checkmark" v-if="selected" />
+    <CheckIcon
+      :class="$style['prefix-dropdown-item__checkmark']"
+      v-if="selected"
+    />
   </div>
 </template>
 
-<style lang="scss" scoped>
-.cdek-dropdown-item {
+<style lang="scss" scoped module>
+.prefix-dropdown-item {
   $this: &;
 
   color: $Bottom;

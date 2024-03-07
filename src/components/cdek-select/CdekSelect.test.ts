@@ -138,7 +138,7 @@ describe('Unit: CdekSelect', () => {
       const wrapper = new CdekSelectBuilder().build();
       const control = wrapper.find('.cdek-select__control');
       await control.trigger('click');
-      const option = wrapper.find(`.cdek-dropdown-item:nth-of-type(2)`);
+      const option = wrapper.find(`.prefix-dropdown-item:nth-of-type(2)`);
       await option.trigger('click');
       const value = wrapper.find('.cdek-select__value');
       expect(value.text()).toBe('Option 2');
@@ -148,7 +148,7 @@ describe('Unit: CdekSelect', () => {
       const wrapper = Select.build();
       const control = wrapper.find('.cdek-select__control');
       await control.trigger('click');
-      const option = wrapper.find(`.cdek-dropdown-item:nth-of-type(1)`);
+      const option = wrapper.find(`.prefix-dropdown-item:nth-of-type(1)`);
       await option.trigger('click');
       const value = wrapper.find('.cdek-select__value');
       expect(value.text()).toBe('');
@@ -158,9 +158,9 @@ describe('Unit: CdekSelect', () => {
       const wrapper = Select.setMultiple(true).setModelValue([]).build();
       const control = wrapper.find('.cdek-select__control');
       await control.trigger('click');
-      let option = wrapper.find(`.cdek-dropdown-item:nth-of-type(2)`);
+      let option = wrapper.find(`.prefix-dropdown-item:nth-of-type(2)`);
       await option.trigger('click');
-      option = wrapper.find(`.cdek-dropdown-item:nth-of-type(3)`);
+      option = wrapper.find(`.prefix-dropdown-item:nth-of-type(3)`);
       await option.trigger('click');
       const value = wrapper.find('.cdek-select__value');
       expect(value.text()).toBe('Option 2, Option 3');
@@ -295,7 +295,7 @@ describe('Unit: CdekSelect', () => {
       const control = wrapper.find('.cdek-select__control');
       await control.trigger('click');
 
-      const options = wrapper.findAll('.cdek-dropdown-box > div');
+      const options = wrapper.findAll('.prefix-dropdown-box > div');
 
       expect(options.length).toBe(4);
 
@@ -342,7 +342,7 @@ describe('Unit: CdekSelect', () => {
 
     const control = wrapper.find('.cdek-select__control');
     await control.trigger('click');
-    const options = wrapper.findAll(`.cdek-dropdown-item`);
+    const options = wrapper.findAll(`.prefix-dropdown-item`);
 
     expect(options[0].text()).toBe('Option 1');
     expect(options[1].text()).toBe('Option 2');
@@ -375,7 +375,7 @@ describe('Unit: CdekSelect', () => {
 
     const control = wrapper.find('.cdek-select__control');
     await control.trigger('click');
-    const options = wrapper.findAll(`.cdek-dropdown-item`);
+    const options = wrapper.findAll(`.prefix-dropdown-item`);
 
     await options[1].trigger('click');
 

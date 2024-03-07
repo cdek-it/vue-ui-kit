@@ -55,31 +55,31 @@ describe('Unit: CdekDropdownItem', () => {
     const wrapper = new CdekDropdownItemBuilder()
       .setIconLeft(FileDescriptionIcon)
       .build();
-    const iconLeft = wrapper.find('.cdek-dropdown-item__left-icon');
+    const iconLeft = wrapper.find('.prefix-dropdown-item__left-icon');
     expect(iconLeft.exists()).toBeTruthy();
   });
   test('Если передан disabled, то компонент должен стилизоваться под состояние disabled', () => {
     const wrapper = new CdekDropdownItemBuilder().toggleDisabled().build();
-    expect(wrapper.classes('cdek-dropdown-item_disabled')).toBeTruthy();
+    expect(wrapper.classes('prefix-dropdown-item_disabled')).toBeTruthy();
   });
 
   describe('selected', () => {
     test('Если передан selected, то компонент должен стилизоваться под состояние selected', () => {
       const wrapper = new CdekDropdownItemBuilder().toggleSelected().build();
-      expect(wrapper.classes('cdek-dropdown-item_selected')).toBeTruthy();
+      expect(wrapper.classes('prefix-dropdown-item_selected')).toBeTruthy();
     });
     test('Если передан selected, то должна отрендерится галочка', () => {
       const wrapper = new CdekDropdownItemBuilder().toggleSelected().build();
-      const checkmark = wrapper.find('.cdek-dropdown-item__checkmark');
+      const checkmark = wrapper.find('.prefix-dropdown-item__checkmark');
 
       expect(checkmark.exists()).toBeTruthy();
     });
   });
 
   describe('color', () => {
-    test('Если передан color, то компоненту должен добавиться класс cdek-dropdown-item_colored', () => {
+    test('Если передан color, то компоненту должен добавиться класс prefix-dropdown-item_colored', () => {
       const wrapper = new CdekDropdownItemBuilder().setColor('red').build();
-      expect(wrapper.classes('cdek-dropdown-item_colored')).toBeTruthy();
+      expect(wrapper.classes('prefix-dropdown-item_colored')).toBeTruthy();
     });
     test('Если передан color, то компоненту должен добавиться атрибут style="--list-item-color: red;"', () => {
       const wrapper = new CdekDropdownItemBuilder().setColor('red').build();
