@@ -59,28 +59,28 @@ describe('Unit: CdekChip', () => {
       const text = 'Chip';
 
       const wrapper = new CdekChipBuilder().setLabel(text).build();
-      const label = wrapper.find('.cdek-chip__text');
+      const label = wrapper.find('.prefix-chip__text');
 
       expect(label.text()).toBe(text);
     });
 
     test('Если amount = 99, то должно выводиться "99"', () => {
       const wrapper = new CdekChipBuilder().setAmount(99).build();
-      const label = wrapper.find('.cdek-chip__amount');
+      const label = wrapper.find('.prefix-chip__amount');
 
       expect(label.text()).toBe('99');
     });
 
-    test('Если small = true, то должен быть класс cdek-chip_small', () => {
+    test('Если small = true, то должен быть класс prefix-chip_small', () => {
       const wrapper = new CdekChipBuilder().setSmall(true).build();
-      const chip = wrapper.find('.cdek-chip');
+      const chip = wrapper.find('.prefix-chip');
 
-      expect(chip.classes('cdek-chip_small')).toBeTruthy();
+      expect(chip.classes('prefix-chip_small')).toBeTruthy();
     });
 
     test('Установка картинки', () => {
       const wrapper = new CdekChipBuilder().setIcon('test').build();
-      const iconWrapper = wrapper.find('.cdek-chip__icon__wrapper');
+      const iconWrapper = wrapper.find('.prefix-chip__icon__wrapper');
 
       expect(iconWrapper.exists()).toBeTruthy();
     });
@@ -89,20 +89,20 @@ describe('Unit: CdekChip', () => {
   describe('v-model', () => {
     test('Если v-model = true, то кнопка должна быть активной', () => {
       const wrapper = new CdekChipBuilder().setModelValue(true).build();
-      const chip = wrapper.find('.cdek-chip');
+      const chip = wrapper.find('.prefix-chip');
 
-      expect(chip.classes('cdek-chip_selected')).toBeTruthy();
+      expect(chip.classes('prefix-chip_selected')).toBeTruthy();
     });
 
     test('Если v-model был установлен в true после маунта компонента, то кнопка должна быть активной', async () => {
       const wrapper = new CdekChipBuilder().build();
-      const chip = wrapper.find('.cdek-chip');
+      const chip = wrapper.find('.prefix-chip');
 
-      expect(chip.classes('cdek-chip_selected')).toBeFalsy();
+      expect(chip.classes('prefix-chip_selected')).toBeFalsy();
 
       await wrapper.setProps({ modelValue: true });
 
-      expect(chip.classes('cdek-chip_selected')).toBeTruthy();
+      expect(chip.classes('prefix-chip_selected')).toBeTruthy();
     });
   });
 
@@ -113,22 +113,22 @@ describe('Unit: CdekChip', () => {
       expect(wrapper.attributes('disabled')).toBeDefined();
     });
 
-    test('Если disabled = true, то должен быть класс .cdek-chip_disabled', () => {
+    test('Если disabled = true, то должен быть класс .prefix-chip_disabled', () => {
       const wrapper = new CdekChipBuilder().setDisabled(true).build();
-      const chip = wrapper.find('.cdek-chip');
+      const chip = wrapper.find('.prefix-chip');
 
-      expect(chip.classes('cdek-chip_disabled')).toBeTruthy();
+      expect(chip.classes('prefix-chip_disabled')).toBeTruthy();
     });
 
-    test('Класс .cdek-chip_selected должен сниматься, когда disabled становится true', async () => {
+    test('Класс .prefix-chip_selected должен сниматься, когда disabled становится true', async () => {
       const wrapper = new CdekChipBuilder().setModelValue(true).build();
-      const chip = wrapper.find('.cdek-chip');
+      const chip = wrapper.find('.prefix-chip');
 
-      expect(chip.classes('cdek-chip_selected')).toBeTruthy();
+      expect(chip.classes('prefix-chip_selected')).toBeTruthy();
 
       await wrapper.setProps({ disabled: true });
 
-      expect(chip.classes('cdek-chip_selected')).toBeFalsy();
+      expect(chip.classes('prefix-chip_selected')).toBeFalsy();
     });
   });
 
@@ -138,7 +138,7 @@ describe('Unit: CdekChip', () => {
 
       await wrapper.trigger('click');
 
-      expect(wrapper.classes('cdek-chip_selected')).toBeTruthy();
+      expect(wrapper.classes('prefix-chip_selected')).toBeTruthy();
     });
 
     test('Если кликнуть по компоненту, то должен сгенерироваться эмит update:modelValue', async () => {
@@ -156,17 +156,17 @@ describe('Unit: CdekChip', () => {
 
       expect(wrapper.emitted()['update:modelValue']).toBeUndefined();
 
-      expect(wrapper.classes('cdek-chip_selected')).toBeFalsy();
+      expect(wrapper.classes('prefix-chip_selected')).toBeFalsy();
     });
 
     test('Если кликнуть по компоненту c v-model true, то он должен перестать быть активным', async () => {
       const wrapper = new CdekChipBuilder().setModelValue(true).build();
 
-      expect(wrapper.classes('cdek-chip_selected')).toBeTruthy();
+      expect(wrapper.classes('prefix-chip_selected')).toBeTruthy();
 
       await wrapper.trigger('click');
 
-      expect(wrapper.classes('cdek-chip_selected')).toBeFalsy();
+      expect(wrapper.classes('prefix-chip_selected')).toBeFalsy();
     });
   });
 });
