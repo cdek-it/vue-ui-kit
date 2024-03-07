@@ -152,10 +152,10 @@ const value = computed({
 
 <template>
   <div
-    class="cdek-select"
-    :class="{
-      'cdek-select_small': small && label,
-    }"
+    :class="[
+      $style['prefix-select'],
+      small && label ? $style['prefix-select_small'] : '',
+    ]"
   >
     <Listbox
       v-model="value"
@@ -164,41 +164,41 @@ const value = computed({
     >
       <ListboxButton as="div" v-slot="{ open }">
         <div
-          class="cdek-select__control"
-          :class="{
-            'cdek-select__control_error': isError,
-            'cdek-select__control_user-event': isUserEvent,
-            'cdek-select__control_disabled': disabled,
-            'cdek-select__control_readonly': readonly,
-            'cdek-select__control_small': small,
-            'cdek-select__control_open': open,
-          }"
+          :class="[
+            $style['prefix-select__control'],
+            isError ? $style['prefix-select__control_error'] : '',
+            isUserEvent ? $style['prefix-select__control_user-event'] : '',
+            disabled ? $style['prefix-select__control_disabled'] : '',
+            readonly ? $style['prefix-select__control_readonly'] : '',
+            small ? $style['prefix-select__control_small'] : '',
+            open ? $style['prefix-select__control_open'] : '',
+          ]"
         >
           <ListboxLabel
             v-if="label"
-            class="cdek-select__label"
-            :class="{
-              'cdek-select__label_filled': Array.isArray(value)
-                ? value.length > 0
-                : Boolean(value.value),
-              'cdek-select__label_error': isError,
-              'cdek-select__label_readonly': readonly,
-              'cdek-select__label_small': small,
-              'cdek-select__label_open': open,
-            }"
+            :class="[
+              $style['prefix-select__label'],
+              (Array.isArray(value) && value.length > 0) || Boolean((value as any).value)
+                ? $style['prefix-select__label_filled']
+                : '',
+              isError ? $style['prefix-select__label_error'] : '',
+              readonly ? $style['prefix-select__label_readonly'] : '',
+              small ? $style['prefix-select__label_small'] : '',
+              open ? $style['prefix-select__label_open'] : '',
+            ]"
           >
             {{ label }}
           </ListboxLabel>
           <slot name="selectedOption" :value="value">
             <div
-              class="cdek-select__value"
-              :class="{
-                'cdek-select__value_error': isError,
-                'cdek-select__value_readonly': readonly,
-                'cdek-select__value_no-label': !label,
-                'cdek-select__value_small': small,
-                'cdek-select__value_open': open,
-              }"
+              :class="[
+                $style['prefix-select__value'],
+                isError ? $style['prefix-select__value_error'] : '',
+                readonly ? $style['prefix-select__value_readonly'] : '',
+                !label ? $style['prefix-select__value_no-label'] : '',
+                small ? $style['prefix-select__value_small'] : '',
+                open ? $style['prefix-select__value_open'] : '',
+              ]"
             >
               {{
                 Array.isArray(value)
@@ -209,13 +209,13 @@ const value = computed({
           </slot>
 
           <ChevronUpIcon
-            class="cdek-select__arrow"
             v-if="!readonly"
-            :class="{
-              'cdek-select__arrow_red': isError,
-              'cdek-select__arrow_grey': disabled,
-              'cdek-select__arrow_open': open,
-            }"
+            :class="[
+              $style['prefix-select__arrow'],
+              isError ? $style['prefix-select__arrow_red'] : '',
+              disabled ? $style['prefix-select__arrow_grey'] : '',
+              open ? $style['prefix-select__arrow_open'] : '',
+            ]"
           />
         </div>
       </ListboxButton>
@@ -241,7 +241,7 @@ const value = computed({
         </ListboxOption>
       </ListboxOptions>
     </Listbox>
-    <div class="cdek-select__tip">
+    <div :class="$style['prefix-select__tip']">
       <template v-if="isError">
         <span class="error" v-show="!hideErrorMessage">{{ validRes }}</span>
       </template>
@@ -259,7 +259,7 @@ const value = computed({
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped module>
 @mixin slotted-svg-color($color) {
   :slotted(svg) {
     path {
@@ -268,7 +268,7 @@ const value = computed({
   }
 }
 
-.cdek-select {
+.prefix-select {
   $padding-left: 16px;
   position: relative;
 
@@ -396,7 +396,7 @@ const value = computed({
       transform: translateY(0);
     }
 
-    .cdek-select__control:not(:focus-within)
+    .prefix-select__control:not(:focus-within)
       &_error#{$this}_filled:not(&#{$this}_open) {
       color: $Error;
     }
