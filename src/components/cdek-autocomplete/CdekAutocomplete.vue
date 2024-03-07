@@ -321,7 +321,10 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
 </script>
 
 <template>
-  <div class="cdek-autocomplete" :class="props.class" ref="autocompleteRef">
+  <div
+    :class="[$style['prefix-autocomplete'], props.class]"
+    ref="autocompleteRef"
+  >
     <CdekInput
       v-bind="$attrs"
       :model-value="inputValue"
@@ -337,7 +340,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
     <Transition>
       <CdekDropdownBox v-if="isOpen">
         <div
-          class="cdek-autocomplete__not-found"
+          :class="$style['prefix-autocomplete__not-found']"
           v-if="options.length === 0 && inputValue?.length >= minLength"
         >
           <!-- @slot сообщение, в случае, если ничего не нашлось -->
@@ -358,7 +361,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped module>
 @mixin slotted-svg-color($color) {
   :slotted(svg) {
     path {
@@ -367,7 +370,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
   }
 }
 
-.cdek-autocomplete {
+.prefix-autocomplete {
   $padding-left: 16px;
   position: relative;
 
@@ -376,7 +379,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
     padding: 12px 16px;
   }
 
-  .cdek-dropdown-box {
+  .prefix-dropdown-box {
     margin-top: -14px;
   }
 
