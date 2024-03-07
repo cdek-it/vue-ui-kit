@@ -73,20 +73,26 @@ watchEffect(() => {
 
 <template>
   <Transition>
-    <div class="cdek-modal" v-if="modalService.isOpen">
+    <div :class="$style['prefix-modal']" v-if="modalService.isOpen">
       <div
-        class="cdek-modal__wrapper"
+        :class="[
+          $style['prefix-modal__wrapper'],
+          disablePadding ? $style['prefix-modal__wrapper_disable-padding'] : '',
+        ]"
         @click="onOutsideClick"
-        :class="{ 'cdek-modal__wrapper_disable-padding': disablePadding }"
       >
-        <div class="cdek-modal__box" ref="boxElement" :style="modalWidth">
+        <div
+          :class="$style['prefix-modal__box']"
+          ref="boxElement"
+          :style="modalWidth"
+        >
           <component
             :is="modalService.modalData?.component"
             v-bind="modalService.modalData?.props || {}"
           />
           <CrossIcon
             v-if="!disableCloseButton"
-            class="cdek-modal__box__close-trigger"
+            :class="$style['prefix-modal__box__close-trigger']"
             @click="close"
           />
         </div>
@@ -95,8 +101,8 @@ watchEffect(() => {
   </Transition>
 </template>
 
-<style lang="scss" scoped>
-.cdek-modal {
+<style lang="scss" scoped module>
+.prefix-modal {
   position: fixed;
   top: 0;
   left: 0;

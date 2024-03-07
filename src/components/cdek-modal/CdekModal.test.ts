@@ -65,7 +65,7 @@ describe('Unit: CdekModal', () => {
         .openModal()
         .build();
 
-      const confirm = wrapper.find('.cdek-confirm');
+      const confirm = wrapper.find('.prefix-confirm');
       expect(confirm.exists()).toBeTruthy();
     });
     test('Пропсы прокидываются в компонент', async () => {
@@ -78,10 +78,10 @@ describe('Unit: CdekModal', () => {
         .openModal()
         .build();
 
-      const title = wrapper.find('.cdek-confirm__header__title');
+      const title = wrapper.find('.prefix-confirm__header__title');
       expect(title.text()).toBe('Заголовок');
 
-      const content = wrapper.find('.cdek-confirm__content');
+      const content = wrapper.find('.prefix-confirm__content');
       expect(content.text()).toBe('Модальное окно');
     });
   });
@@ -91,11 +91,11 @@ describe('Unit: CdekModal', () => {
         .setComponent(markRaw(CdekConfirm))
         .openModal()
         .build();
-      const outer = wrapper.find('.cdek-modal__wrapper');
+      const outer = wrapper.find('.prefix-modal__wrapper');
       expect(outer.exists()).toBeTruthy();
       await outer.trigger('click');
 
-      const modal = wrapper.find('.cdek-modal');
+      const modal = wrapper.find('.prefix-modal');
       expect(modal.exists()).toBeFalsy();
     });
     test('Клик по крестику', async () => {
@@ -103,11 +103,11 @@ describe('Unit: CdekModal', () => {
         .setComponent(markRaw(CdekConfirm))
         .openModal()
         .build();
-      const closeTrigger = wrapper.find('.cdek-modal__box__close-trigger');
+      const closeTrigger = wrapper.find('.prefix-modal__box__close-trigger');
       expect(closeTrigger.exists()).toBeTruthy();
       await closeTrigger.trigger('click');
 
-      const modal = wrapper.find('.cdek-modal');
+      const modal = wrapper.find('.prefix-modal');
       expect(modal.exists()).toBeFalsy();
     });
   });
@@ -118,7 +118,7 @@ describe('Unit: CdekModal', () => {
       .openModal()
       .build();
 
-    const content = wrapper.find('.cdek-modal__box');
+    const content = wrapper.find('.prefix-modal__box');
     const styleAttribute = content.attributes('style');
 
     expect(styleAttribute).toMatch('--modal-width: 300px;');
@@ -131,7 +131,7 @@ describe('Unit: CdekModal', () => {
       .openModal()
       .build();
 
-    const closeTrigger = wrapper.find('.cdek-modal__box__close-trigger');
+    const closeTrigger = wrapper.find('.prefix-modal__box__close-trigger');
     expect(closeTrigger.exists()).toBeFalsy();
   });
 });

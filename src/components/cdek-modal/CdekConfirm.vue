@@ -33,20 +33,20 @@ const props = withDefaults(defineProps<IConfirmProps>(), {});
 </script>
 
 <template>
-  <div class="cdek-confirm">
-    <div class="cdek-confirm__header" v-if="title">
-      <div class="cdek-confirm__header__title">
+  <div :class="$style['prefix-confirm']">
+    <div :class="$style['prefix-confirm__header']" v-if="title">
+      <div :class="$style['prefix-confirm__header__title']">
         {{ title }}
         <CdekBadge v-if="badge" v-bind="badge" />
       </div>
-      <div class="cdek-confirm__header__hint" v-if="hint">
+      <div :class="$style['prefix-confirm__header__hint']" v-if="hint">
         {{ hint }}
       </div>
     </div>
-    <div class="cdek-confirm__content">
+    <div :class="$style['prefix-confirm__content']">
       {{ content }}
     </div>
-    <div class="cdek-confirm__footer" v-if="footer">
+    <div :class="$style['prefix-confirm__footer']" v-if="footer">
       <CdekButton
         v-if="footer.accept"
         theme="primary"
@@ -67,8 +67,8 @@ const props = withDefaults(defineProps<IConfirmProps>(), {});
   </div>
 </template>
 
-<style lang="scss" scoped>
-.cdek-confirm {
+<style lang="scss" scoped module>
+.prefix-confirm {
   padding: 20px 24px;
 
   &__header {
@@ -90,7 +90,7 @@ const props = withDefaults(defineProps<IConfirmProps>(), {});
       align-items: center;
     }
 
-    .cdek-badge {
+    .prefix-badge {
       margin-left: 20px;
     }
 
@@ -120,7 +120,7 @@ const props = withDefaults(defineProps<IConfirmProps>(), {});
       gap: 16px;
     }
 
-    .cdek-button {
+    .prefix-button {
       margin-right: 16px;
     }
   }
