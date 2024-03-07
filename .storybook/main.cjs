@@ -35,6 +35,9 @@ module.exports = {
             additionalData: `@import "./src/assets/style/vars";`,
           },
         },
+        modules: {
+          generateScopedName: (name) => name.replace(/^prefix/, 'cdek'),
+        },
       },
     });
   },
