@@ -7,8 +7,9 @@ export default {
   parameters: {
     docs: {
       description: {
-        component:
-          '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2270%3A8959&t=gXcwZvHont2zfWC4-0)',
+        component: `
+<span style="color:red; font-weight: bold;">Deprecated</span>
+[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2270%3A8959&t=gXcwZvHont2zfWC4-0)`,
       },
     },
     version: getVersion('0.0.1'),
@@ -25,7 +26,10 @@ const Template = (args) => ({
   setup() {
     return { args };
   },
-  template: `<CdekHeadline v-bind="args">Заголовок</CdekHeadline>`,
+  template: `
+    <span style="color:red; font-weight: bold;">Deprecated</span>
+    <CdekHeadline v-bind="args">Заголовок</CdekHeadline>
+  `,
 });
 
 export const Primary = Template.bind({});
