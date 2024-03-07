@@ -435,7 +435,7 @@ describe('Unit: CdekAutocomplete', () => {
       .build();
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
-    const domInput = input.find('.cdek-input__input');
+    const domInput = input.find('.prefix-input__input');
     await domInput.trigger('focus');
     input.vm.$emit('update:modelValue', userSearch);
 
@@ -461,7 +461,7 @@ describe('Unit: CdekAutocomplete', () => {
     const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
-    const domInput = input.find('.cdek-input__input');
+    const domInput = input.find('.prefix-input__input');
     await domInput.trigger('focus');
     input.vm.$emit('update:modelValue', userSearch);
 
@@ -542,7 +542,7 @@ describe('Unit: CdekAutocomplete', () => {
     // Вводим значение в инпут
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
-    const domInput = input.find('.cdek-input__input');
+    const domInput = input.find('.prefix-input__input');
 
     await domInput.trigger('focus');
 
@@ -574,7 +574,7 @@ describe('Unit: CdekAutocomplete', () => {
     // Вводим значение в инпут
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
-    const domInput = input.find('.cdek-input__input');
+    const domInput = input.find('.prefix-input__input');
 
     await domInput.trigger('focus');
 
