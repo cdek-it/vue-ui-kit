@@ -56,7 +56,7 @@ describe('Unit: CdekWidget', () => {
   });
   test('Если headline передан, то содержимое должно передаваться в заголовок', () => {
     const wrapper = new CdekWidgetBuilder().setHeadline('Заголовок').build();
-    const cdekHeadline = wrapper.find('.cdek-widget__title');
+    const cdekHeadline = wrapper.find('.prefix-widget__title');
     expect(cdekHeadline.text()).toBe('Заголовок');
   });
   test('Если withoutPaddings = true, то у виджета должны отсутствовать внутренние отступы', () => {
@@ -64,21 +64,21 @@ describe('Unit: CdekWidget', () => {
       .setHeadline('Заголовок')
       .setWithoutPaddings(true)
       .build();
-    expect(wrapper.classes('cdek-widget_without-paddings')).toBeTruthy();
+    expect(wrapper.classes('prefix-widget_without-paddings')).toBeTruthy();
   });
   test('Должен показывать заголовок переданный в слоте', () => {
     const wrapper = new CdekWidgetBuilder().setHeader('<b>test</b>').build();
-    const header = wrapper.find('.cdek-widget__title');
+    const header = wrapper.find('.prefix-widget__title');
     expect(header.exists()).toBe(true);
     expect(header.find('b').html()).toBe('<b>test</b>');
   });
   test('Должен добавлять спиннер и затенять контент, если loading = true', () => {
     const wrapper = new CdekWidgetBuilder().setLoading(true).build();
-    expect(wrapper.classes('cdek-widget_loading')).toBeTruthy();
-    expect(wrapper.find('.cdek-widget__spinner').exists()).toBeTruthy();
+    expect(wrapper.classes('prefix-widget_loading')).toBeTruthy();
+    expect(wrapper.find('.prefix-widget__spinner').exists()).toBeTruthy();
   });
   test('Если disabled = true, должен сделать блок полупрозрачным', () => {
     const wrapper = new CdekWidgetBuilder().setDisabled(true).build();
-    expect(wrapper.classes('cdek-widget_disabled')).toBeTruthy();
+    expect(wrapper.classes('prefix-widget_disabled')).toBeTruthy();
   });
 });

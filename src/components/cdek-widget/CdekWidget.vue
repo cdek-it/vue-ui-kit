@@ -22,27 +22,31 @@ const showHeader = computed(() => {
 
 <template>
   <div
-    class="cdek-widget"
-    :class="{
-      'cdek-widget_without-paddings': withoutPaddings,
-      'cdek-widget_loading': loading,
-      'cdek-widget_disabled': disabled,
-    }"
+    :class="[
+      $style['prefix-widget'],
+      withoutPaddings ? $style['prefix-widget_without-paddings'] : '',
+      loading ? $style['prefix-widget_loading'] : '',
+      disabled ? $style['prefix-widget_disabled'] : '',
+    ]"
   >
-    <CdekHeadline v-if="showHeader" size="4" class="cdek-widget__title">
+    <CdekHeadline
+      v-if="showHeader"
+      size="4"
+      :class="$style['prefix-widget__title']"
+    >
       <slot name="header">{{ headline }}</slot>
     </CdekHeadline>
 
     <slot />
 
-    <div v-if="loading" class="cdek-widget__spinner">
+    <div v-if="loading" :class="$style['prefix-widget__spinner']">
       <CdekSpinner size="medium" />
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.cdek-widget {
+<style lang="scss" scoped module>
+.prefix-widget {
   $radius: 12px;
 
   @include body-1;
