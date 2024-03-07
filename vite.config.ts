@@ -1,10 +1,16 @@
 import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite';
+import { defineConfig, type UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader';
 import dts from 'vite-plugin-dts';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
+
+import type { InlineConfig } from 'vitest';
+
+interface VitestConfigExport extends UserConfig {
+  test: InlineConfig;
+}
 
 import path from 'path';
 
@@ -59,4 +65,11 @@ export default defineConfig({
       },
     },
   },
-});
+  test: {
+    css: {
+      modules: {
+        classNameStrategy: 'non-scoped',
+      },
+    },
+  },
+} as VitestConfigExport);
