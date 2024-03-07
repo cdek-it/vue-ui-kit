@@ -20,15 +20,15 @@ const props = withDefaults(defineProps<IBadgeProps>(), {
 </script>
 
 <template>
-  <div class="cdek-badge" :class="[type, variant]">
+  <div :class="[$style['prefix-badge'], type, variant]">
     <slot>
       {{ text }}
     </slot>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.cdek-badge {
+<style lang="scss" scoped module>
+.prefix-badge {
   @include badge-1;
 
   padding: 4px 8px;
