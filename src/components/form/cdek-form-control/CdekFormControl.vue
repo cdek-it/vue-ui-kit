@@ -12,7 +12,7 @@ import type FormService from '../services/FormService';
 import type { RulesT } from '../services/types';
 
 import { CdekInput } from '../../cdek-input';
-import { CdekAutocomplete } from '../../cdek-autocomplete/';
+import BaseAutocomplete from '../../base-autocomplete/BaseAutocomplete.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -61,7 +61,7 @@ const value = computed({
         <slot :name="slot" v-bind="scope" />
       </template>
     </CdekInput>
-    <CdekAutocomplete
+    <BaseAutocomplete
       v-if="type === 'autocomplete'"
       v-model="value"
       :valid-res="fieldService.error"
@@ -70,6 +70,6 @@ const value = computed({
       <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
         <slot :name="slot" v-bind="scope" />
       </template>
-    </CdekAutocomplete>
+    </BaseAutocomplete>
   </div>
 </template>

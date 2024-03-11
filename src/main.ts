@@ -1,5 +1,5 @@
 export * from './components/base-alert';
-export * from './components/cdek-autocomplete';
+export * from './components/base-autocomplete';
 export * from './components/cdek-badge';
 export * from './components/cdek-button';
 export * from './components/cdek-chip';

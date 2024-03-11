@@ -1,10 +1,10 @@
-import CdekAutocomplete from './CdekAutocomplete.vue';
+import BaseAutocomplete from './BaseAutocomplete.vue';
 import { ref } from 'vue';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekAutocomplete',
-  component: CdekAutocomplete,
+  component: BaseAutocomplete,
   parameters: {
     docs: {
       description: {
@@ -33,7 +33,7 @@ const promiseResolve = (query) =>
   );
 
 const Template = (args) => ({
-  components: { CdekAutocomplete },
+  components: { BaseAutocomplete },
   setup() {
     const selectValue = ref(args.initValue || '');
 
@@ -44,7 +44,7 @@ const Template = (args) => ({
     return { args, selectValue, onSelect, selectArg };
   },
   template: `
-    <CdekAutocomplete v-bind="args" v-model="selectValue" @select="onSelect">
+    <BaseAutocomplete v-bind="args" v-model="selectValue" @select="onSelect">
       <template #not-found>
         Ничего не нашлось
       </template>
@@ -52,7 +52,7 @@ const Template = (args) => ({
         <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
         <span :class="args.tipColor">{{ args.tip }}</span>
       </template>
-    </CdekAutocomplete>
+    </BaseAutocomplete>
 
     <p>items => {{ args.items }}</p>
     <p>v-model => <code>{{ selectValue }}</code></p>
@@ -60,8 +60,8 @@ const Template = (args) => ({
   `,
 });
 
-const twoCdekAutocompletesTemplate = (args) => ({
-  components: { CdekAutocomplete },
+const twoBaseAutocompletesTemplate = (args) => ({
+  components: { BaseAutocomplete },
   setup() {
     const selectFirstValue = ref(args.firstAutocomplete.initValue || '');
 
@@ -86,7 +86,7 @@ const twoCdekAutocompletesTemplate = (args) => ({
     };
   },
   template: `
-    <CdekAutocomplete
+    <BaseAutocomplete
         v-bind="args.firstAutocomplete"
         v-model="selectFirstValue"
         @select="onSelectFirstAutocomplete"
@@ -94,9 +94,9 @@ const twoCdekAutocompletesTemplate = (args) => ({
       <template #not-found>
         Ничего не нашлось
       </template>
-    </CdekAutocomplete>
+    </BaseAutocomplete>
     
-    <CdekAutocomplete
+    <BaseAutocomplete
         v-bind="args.secondAutocomplete"
         v-model="selectSecondValue"
         @select="onSelectSecondAutocomplete"
@@ -104,7 +104,7 @@ const twoCdekAutocompletesTemplate = (args) => ({
       <template #not-found>
         Ничего не нашлось
       </template>
-    </CdekAutocomplete>
+    </BaseAutocomplete>
   `,
 });
 
@@ -370,7 +370,7 @@ CustomItems.parameters = {
   },
 };
 
-export const TwoAutocompletes = twoCdekAutocompletesTemplate.bind({});
+export const TwoAutocompletes = twoBaseAutocompletesTemplate.bind({});
 
 const delay = async (ms) => {
   return new Promise((resolve) => setTimeout(resolve, ms));

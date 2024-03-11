@@ -1,7 +1,7 @@
 import { shallowMount, flushPromises, mount } from '@vue/test-utils';
 import type { VueWrapper } from '@vue/test-utils';
 import { describe, test, expect, vi } from 'vitest';
-import CdekAutocomplete from './CdekAutocomplete.vue';
+import BaseAutocomplete from './BaseAutocomplete.vue';
 import builderProp from '@/test/decorators';
 import { dti, sleep } from '@/test/helpers';
 import type {
@@ -13,21 +13,21 @@ import type {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   Item, // Используется как тип в комментарии
 } from './types';
-import { KeyboardKeys } from '@/components/cdek-autocomplete/helpers';
+import { KeyboardKeys } from '@/components/base-autocomplete/helpers';
 import CdekInput from '../cdek-input/CdekInput.vue';
 
-interface CdekAutocompleteBuilder {
-  setModelValue: (value: Value) => CdekAutocompleteBuilder;
-  setItems: (items?: ItemsUnion) => CdekAutocompleteBuilder;
-  setGetValue: (getValue?: GetValueFn) => CdekAutocompleteBuilder;
-  setGetTitle: (getTitle?: GetTitleFn) => CdekAutocompleteBuilder;
-  setFetchItems: (fetchItems?: FetchFunction) => CdekAutocompleteBuilder;
-  setMinLength: (minLength: number) => CdekAutocompleteBuilder;
-  setAttrs: (attrs?: any) => CdekAutocompleteBuilder;
-  setEnabledAccentQuery: (v: boolean) => CdekAutocompleteBuilder;
+interface BaseAutocompleteBuilder {
+  setModelValue: (value: Value) => BaseAutocompleteBuilder;
+  setItems: (items?: ItemsUnion) => BaseAutocompleteBuilder;
+  setGetValue: (getValue?: GetValueFn) => BaseAutocompleteBuilder;
+  setGetTitle: (getTitle?: GetTitleFn) => BaseAutocompleteBuilder;
+  setFetchItems: (fetchItems?: FetchFunction) => BaseAutocompleteBuilder;
+  setMinLength: (minLength: number) => BaseAutocompleteBuilder;
+  setAttrs: (attrs?: any) => BaseAutocompleteBuilder;
+  setEnabledAccentQuery: (v: boolean) => BaseAutocompleteBuilder;
 }
 
-class CdekAutocompleteBuilder {
+class BaseAutocompleteBuilder {
   @builderProp
   modelValue: Value = '';
 
@@ -53,7 +53,7 @@ class CdekAutocompleteBuilder {
   enabledAccentQuery?: boolean;
 
   shallowBuild() {
-    const wrapper = shallowMount(CdekAutocomplete as any, {
+    const wrapper = shallowMount(BaseAutocomplete as any, {
       props: {
         modelValue: this.modelValue,
         'onUpdate:modelValue': (e: Value) =>
@@ -90,7 +90,7 @@ class CdekAutocompleteBuilder {
   }
 
   build() {
-    const wrapper = mount(CdekAutocomplete as any, {
+    const wrapper = mount(BaseAutocomplete as any, {
       props: {
         modelValue: this.modelValue,
         'onUpdate:modelValue': (e: Value) =>
@@ -114,7 +114,7 @@ class CdekAutocompleteBuilder {
 
 describe('Unit: CdekAutocomplete', () => {
   test('Should mount', () => {
-    const wrapper = new CdekAutocompleteBuilder().shallowBuild();
+    const wrapper = new BaseAutocompleteBuilder().shallowBuild();
     expect(wrapper.exists()).toBeTruthy();
   });
 
@@ -144,7 +144,7 @@ describe('Unit: CdekAutocomplete', () => {
   ])(
     'Должен передать название выбранной опции при инициализации в CdekInput, items - $itemsDesc',
     ({ items, inputValue, getValue, getTitle }) => {
-      const wrapper = new CdekAutocompleteBuilder()
+      const wrapper = new BaseAutocompleteBuilder()
         .setModelValue('test')
         .setItems(items)
         .setGetTitle(getTitle)
@@ -232,7 +232,7 @@ describe('Unit: CdekAutocomplete', () => {
       getValue,
       getTitle,
     }) => {
-      const wrapper = new CdekAutocompleteBuilder()
+      const wrapper = new BaseAutocompleteBuilder()
         .setItems(items)
         .setFetchItems(fetchItems)
         .setGetTitle(getTitle)
@@ -312,7 +312,7 @@ describe('Unit: CdekAutocomplete', () => {
   ])(
     'При смене modelValue сверху должен выбрать этот элемент, items - $itemsDesc',
     async ({ items, modelValue, inputValue, getValue, getTitle }) => {
-      const wrapper = new CdekAutocompleteBuilder()
+      const wrapper = new BaseAutocompleteBuilder()
         .setItems(items)
         .setGetValue(getValue)
         .setGetTitle(getTitle)
@@ -367,7 +367,7 @@ describe('Unit: CdekAutocomplete', () => {
   ])(
     'При смене modelValue на значение, которого нет в items, input value должно остаться таким же, items - $itemsDesc',
     async ({ items, modelValue, inputValue, getValue, getTitle }) => {
-      const wrapper = new CdekAutocompleteBuilder()
+      const wrapper = new BaseAutocompleteBuilder()
         // Инициализируем с корректным значением modelValue
         .setModelValue(modelValue)
         .setItems(items)
@@ -401,7 +401,7 @@ describe('Unit: CdekAutocomplete', () => {
   ])(
     'Должно показаться $optionsLength опций, когда minLength = $minLength',
     async ({ minLength, optionsLength }) => {
-      const wrapper = new CdekAutocompleteBuilder()
+      const wrapper = new BaseAutocompleteBuilder()
         .setItems(['abcd', 'abcde'])
         .setMinLength(minLength)
         .shallowBuild();
@@ -429,7 +429,7 @@ describe('Unit: CdekAutocomplete', () => {
     ];
     const userSearch = 'Тес';
 
-    const wrapper = new CdekAutocompleteBuilder()
+    const wrapper = new BaseAutocompleteBuilder()
       .setItems(items)
       .setEnabledAccentQuery(true)
       .build();
@@ -458,7 +458,7 @@ describe('Unit: CdekAutocomplete', () => {
     ];
     const userSearch = 'Тес';
 
-    const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
+    const wrapper = new BaseAutocompleteBuilder().setItems(items).build();
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
     const domInput = input.find('.prefix-input__input');
@@ -475,7 +475,7 @@ describe('Unit: CdekAutocomplete', () => {
   });
 
   test('Все неизвестные атрибуты должны передаваться на CdekInput', () => {
-    const wrapper = new CdekAutocompleteBuilder()
+    const wrapper = new BaseAutocompleteBuilder()
       .setAttrs({ label: 'Название', clearable: true })
       .shallowBuild();
     const input = wrapper.find(dti('cdek-input'));
@@ -485,7 +485,7 @@ describe('Unit: CdekAutocomplete', () => {
   });
 
   test('Атрибут class должен быть на корневом элементе CdekAutocomplete, а не на CdekInput', () => {
-    const wrapper = new CdekAutocompleteBuilder()
+    const wrapper = new BaseAutocompleteBuilder()
       .setAttrs({ class: 'test' })
       .shallowBuild();
     expect(wrapper.classes()).toContain('test');
@@ -505,7 +505,7 @@ describe('Unit: CdekAutocomplete', () => {
 
     const userSearch = 'tes';
 
-    const wrapper = new CdekAutocompleteBuilder()
+    const wrapper = new BaseAutocompleteBuilder()
       .setFetchItems(resolvePromiseWithDelay)
       .shallowBuild();
 
@@ -537,7 +537,7 @@ describe('Unit: CdekAutocomplete', () => {
     ];
     const userSearch = 'Тес';
 
-    const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
+    const wrapper = new BaseAutocompleteBuilder().setItems(items).build();
 
     // Вводим значение в инпут
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
@@ -569,7 +569,7 @@ describe('Unit: CdekAutocomplete', () => {
     ];
     const userSearch = 'Тес';
 
-    const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
+    const wrapper = new BaseAutocompleteBuilder().setItems(items).build();
 
     // Вводим значение в инпут
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
