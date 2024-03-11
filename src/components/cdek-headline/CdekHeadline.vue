@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+/**
+ * @deprecated
+ */
+
 // TODO: Добавить возможность менять tag
 const props = withDefaults(
   defineProps<{

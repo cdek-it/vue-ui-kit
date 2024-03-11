@@ -69,9 +69,7 @@ publish:
   when: manual
 
   script:
-    - yarn build
-    - echo -e "@cdek-ui-kit:registry=https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/\n//gitlab.cdek.ru/api/v4/projects/2094/packages/npm/:_authToken=${GITLAB_AUTH_TOKEN}">.npmrc
-    - npm publish
+    - sh scripts/release.sh
 
   cache:
     policy: pull

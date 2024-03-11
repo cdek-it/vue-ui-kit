@@ -1,11 +1,11 @@
 <template>
-  <div class="cdek-dropdown-box">
+  <div :class="$style['prefix-dropdown-box']">
     <slot />
   </div>
 </template>
 
-<style lang="scss" scoped>
-.cdek-dropdown-box {
+<style lang="scss" scoped module>
+.prefix-dropdown-box {
   background: $Peak;
   border-radius: 8px;
   padding: 12px 0;

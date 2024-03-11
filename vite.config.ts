@@ -1,12 +1,20 @@
 import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite';
+import { defineConfig, type UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import svgLoader from 'vite-svg-loader';
 import dts from 'vite-plugin-dts';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
+import type { InlineConfig } from 'vitest';
+
+interface VitestConfigExport extends UserConfig {
+  test: InlineConfig;
+}
+
 import path from 'path';
+
+const prefix = process.env.VITE_STYLE_PREFIX || 'cdek';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -36,6 +44,9 @@ export default defineConfig({
         additionalData: `@import "./src/assets/style/vars";`,
       },
     },
+    modules: {
+      generateScopedName: (name: string) => name.replace(/^prefix/, prefix),
+    },
   },
   build: {
     lib: {
@@ -54,4 +65,11 @@ export default defineConfig({
       },
     },
   },
-});
+  test: {
+    css: {
+      modules: {
+        classNameStrategy: 'non-scoped',
+      },
+    },
+  },
+} as VitestConfigExport);

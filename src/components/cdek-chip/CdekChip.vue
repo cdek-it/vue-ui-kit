@@ -1,24 +1,26 @@
 <template>
   <button
-    class="cdek-chip"
-    :class="{
-      'cdek-chip_selected': selected,
-      'cdek-chip_disabled': disabled,
-      'cdek-chip_small': small,
-    }"
+    :class="[
+      $style['prefix-chip'],
+      {
+        [$style['prefix-chip_selected']]: selected,
+        [$style['prefix-chip_disabled']]: disabled,
+        [$style['prefix-chip_small']]: small,
+      },
+    ]"
     :disabled="disabled"
     type="button"
     @click="onClickChipHandler"
   >
-    <span v-if="iconEnabled" class="cdek-chip__icon__wrapper">
+    <span v-if="iconEnabled" :class="$style['prefix-chip__icon__wrapper']">
       <!-- @slot слот для иконки, показывается слева -->
       <slot name="icon" />
     </span>
 
-    <span class="cdek-chip__text">
+    <span :class="$style['prefix-chip__text']">
       {{ label }}
     </span>
-    <span v-if="amountEnabled" class="cdek-chip__amount">
+    <span v-if="amountEnabled" :class="$style['prefix-chip__amount']">
       {{ amount }}
     </span>
   </button>
@@ -99,8 +101,8 @@ const iconEnabled = computed(() => {
 });
 </script>
 
-<style lang="scss" scoped>
-.cdek-chip {
+<style lang="scss" scoped module>
+.prefix-chip {
   display: inline-flex;
   align-items: center;
   border-radius: 100px;
@@ -168,17 +170,17 @@ const iconEnabled = computed(() => {
   &_selected {
     background: $Primary;
 
-    .cdek-chip__icon__wrapper {
+    .prefix-chip__icon__wrapper {
       :deep(path) {
         stroke: $Peak;
       }
     }
 
-    .cdek-chip__text {
+    .prefix-chip__text {
       color: $Peak;
     }
 
-    .cdek-chip__amount {
+    .prefix-chip__amount {
       color: $Peak-70;
     }
   }
@@ -197,11 +199,11 @@ const iconEnabled = computed(() => {
 
     @include body-2;
 
-    .cdek-chip__amount {
+    .prefix-chip__amount {
       padding: 0 4px;
     }
 
-    .cdek-chip__icon__wrapper {
+    .prefix-chip__icon__wrapper {
       width: 20px;
       height: 20px;
 

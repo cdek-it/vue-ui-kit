@@ -435,14 +435,14 @@ describe('Unit: CdekAutocomplete', () => {
       .build();
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
-    const domInput = input.find('.cdek-input__input');
+    const domInput = input.find('.prefix-input__input');
     await domInput.trigger('focus');
     input.vm.$emit('update:modelValue', userSearch);
 
     await sleep(400); // Ждем из-за debounce
     await flushPromises();
 
-    const dropdownItems = wrapper.findAll('.cdek-dropdown-item');
+    const dropdownItems = wrapper.findAll('.prefix-dropdown-item');
     dropdownItems.forEach((item) => {
       const el = item.find('.accent-query');
       expect(el.exists()).toBeTruthy();
@@ -461,14 +461,14 @@ describe('Unit: CdekAutocomplete', () => {
     const wrapper = new CdekAutocompleteBuilder().setItems(items).build();
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
-    const domInput = input.find('.cdek-input__input');
+    const domInput = input.find('.prefix-input__input');
     await domInput.trigger('focus');
     input.vm.$emit('update:modelValue', userSearch);
 
     await sleep(400); // Ждем из-за debounce
     await flushPromises();
 
-    const dropdownItems = wrapper.findAll('.cdek-dropdown-item');
+    const dropdownItems = wrapper.findAll('.prefix-dropdown-item');
     dropdownItems.forEach((item) => {
       expect(item.find('.accent-query').exists()).toBeFalsy();
     });
@@ -542,7 +542,7 @@ describe('Unit: CdekAutocomplete', () => {
     // Вводим значение в инпут
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
-    const domInput = input.find('.cdek-input__input');
+    const domInput = input.find('.prefix-input__input');
 
     await domInput.trigger('focus');
 
@@ -574,7 +574,7 @@ describe('Unit: CdekAutocomplete', () => {
     // Вводим значение в инпут
     const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
 
-    const domInput = input.find('.cdek-input__input');
+    const domInput = input.find('.prefix-input__input');
 
     await domInput.trigger('focus');
 
@@ -584,17 +584,17 @@ describe('Unit: CdekAutocomplete', () => {
 
     await flushPromises();
 
-    const dropDown = wrapper.find('.cdek-dropdown-box');
+    const dropDown = wrapper.find('.prefix-dropdown-box');
 
     expect(dropDown.exists()).toBeTruthy();
 
-    const checkActive = dropDown.find('.cdek-dropdown-item_active');
+    const checkActive = dropDown.find('.prefix-dropdown-item_active');
 
     expect(checkActive.exists()).toBeFalsy();
 
     await domInput.trigger('keydown', { key: KeyboardKeys.ArrowDown });
 
-    const active = dropDown.find('.cdek-dropdown-item_active');
+    const active = dropDown.find('.prefix-dropdown-item_active');
 
     expect(active.exists()).toBeTruthy();
 
@@ -602,13 +602,13 @@ describe('Unit: CdekAutocomplete', () => {
 
     await domInput.trigger('keydown', { key: KeyboardKeys.ArrowDown });
 
-    const activeSecondCheck = dropDown.find('.cdek-dropdown-item_active');
+    const activeSecondCheck = dropDown.find('.prefix-dropdown-item_active');
 
     expect(activeSecondCheck.text()).toBe('Тест2');
 
     await domInput.trigger('keydown', { key: KeyboardKeys.ArrowUp });
 
-    const activeThirdCheck = dropDown.find('.cdek-dropdown-item_active');
+    const activeThirdCheck = dropDown.find('.prefix-dropdown-item_active');
 
     expect(activeThirdCheck.text()).toBe('Тест');
   });

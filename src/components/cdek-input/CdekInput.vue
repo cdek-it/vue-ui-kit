@@ -75,50 +75,50 @@ defineExpose({ getControl });
 
 <template>
   <div
-    class="cdek-input"
-    :class="{
-      'cdek-input_small': small && label,
-      [props.class]: true,
-    }"
+    :class="[
+      $style['prefix-input'],
+      small && label ? $style['prefix-input_small'] : '',
+      props.class,
+    ]"
   >
     <label
-      class="cdek-input__control"
-      :class="{
-        'cdek-input__control_error': isError,
-        'cdek-input__control_user-event': isUserEvent,
-        'cdek-input__control_disabled': disabled,
-        'cdek-input__control_readonly': readonly,
-        'cdek-input__control_right-icon': hasRightIcon,
-        'cdek-input__control_small': small,
-        'cdek-input__control_clearable': showClearableButton,
-      }"
+      :class="[
+        $style['prefix-input__control'],
+        isError ? $style['prefix-input__control_error'] : '',
+        isUserEvent ? $style['prefix-input__control_user-event'] : '',
+        disabled ? $style['prefix-input__control_disabled'] : '',
+        readonly ? $style['prefix-input__control_readonly'] : '',
+        hasRightIcon ? $style['prefix-input__control_right-icon'] : '',
+        small ? $style['prefix-input__control_small'] : '',
+        showClearableButton ? $style['prefix-input__control_clearable'] : '',
+      ]"
     >
       <div
         v-if="label"
-        class="cdek-input__label"
-        :class="{
-          'cdek-input__label_filled': value,
-          'cdek-input__label_error': isError,
-          'cdek-input__label_readonly': readonly,
-          'cdek-input__label_small': small,
-        }"
+        :class="[
+          $style['prefix-input__label'],
+          value ? $style['prefix-input__label_filled'] : '',
+          isError ? $style['prefix-input__label_error'] : '',
+          readonly ? $style['prefix-input__label_readonly'] : '',
+          small ? $style['prefix-input__label_small'] : '',
+        ]"
       >
         {{ label }}
       </div>
 
-      <div v-if="hasLeftIcon" class="cdek-input__left-icon">
+      <div v-if="hasLeftIcon" :class="$style['prefix-input__left-icon']">
         <!-- @slot Прописаны стили для svg -->
         <slot name="icons-left" />
       </div>
 
       <input
-        class="cdek-input__input"
-        :class="{
-          'cdek-input__input_error': isError,
-          'cdek-input__input_readonly': readonly,
-          'cdek-input__input_no-label': !label,
-          'cdek-input__input_small': small,
-        }"
+        :class="[
+          $style['prefix-input__input'],
+          isError ? $style['prefix-input__input_error'] : '',
+          readonly ? $style['prefix-input__input_readonly'] : '',
+          !label ? $style['prefix-input__input_no-label'] : '',
+          small ? $style['prefix-input__input_small'] : '',
+        ]"
         :value="value"
         @input="setValue"
         v-bind="$attrs"
@@ -128,7 +128,7 @@ defineExpose({ getControl });
 
       <button
         v-if="showClearableButton"
-        class="cdek-input__clear"
+        :class="$style['prefix-input__clear']"
         type="button"
         @click="clear"
       >
@@ -136,21 +136,27 @@ defineExpose({ getControl });
       </button>
 
       <div
-        class="cdek-input__right-icon"
-        :class="{
-          'cdek-input__right-icon_red': isError,
-          'cdek-input__right-icon_grey': disabled || readonly,
-          'cdek-input__right-icon_clearable': showClearableButton,
-        }"
         v-if="hasRightIcon"
+        :class="[
+          $style['prefix-input__right-icon'],
+          isError ? $style['prefix-input__right-icon_red'] : '',
+          disabled || readonly ? $style['prefix-input__right-icon_grey'] : '',
+          showClearableButton
+            ? $style['prefix-input__right-icon_clearable']
+            : '',
+        ]"
       >
         <!-- @slot Прописаны стандартные стили для `button > svg`, у них будет выставлен размер и будут меняться цвета -->
         <slot name="icons-right"> </slot>
       </div>
     </label>
-    <div class="cdek-input__tip">
+    <div :class="$style['prefix-input__tip']">
       <template v-if="isError">
-        <div class="error" v-show="!hideErrorMessage" v-html="validRes" />
+        <div
+          :class="$style['error']"
+          v-show="!hideErrorMessage"
+          v-html="validRes"
+        />
       </template>
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
@@ -166,7 +172,7 @@ defineExpose({ getControl });
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped module>
 @mixin slotted-svg-color($color) {
   :slotted(svg) {
     path {
@@ -175,7 +181,7 @@ defineExpose({ getControl });
   }
 }
 
-.cdek-input {
+.prefix-input {
   $right-icon-padding: 6px;
   $padding-left: 16px;
 
@@ -253,7 +259,7 @@ defineExpose({ getControl });
         #{$padding-left} - #{$outline-width} - #{$right-icon-padding}
       );
 
-      &.cdek-input__control_small {
+      &.prefix-input__control_small {
         padding-inline-end: 0;
       }
     }
@@ -327,22 +333,23 @@ defineExpose({ getControl });
     transition: all 0.3s ease;
 
     &_filled,
-    .cdek-input__control:focus-within:not(.cdek-input__control_disabled) & {
+    .prefix-input__control:focus-within:not(.prefix-input__control_disabled) & {
       @include caption-1;
 
       top: 8px;
       transform: translateY(0);
     }
 
-    .cdek-input__control:not(:focus-within) &_error#{$this}_filled {
+    .prefix-input__control:not(:focus-within) &_error#{$this}_filled {
       color: $Error;
     }
 
     &_small {
       @include body-1;
 
-      &.cdek-input__label_filled,
-      .cdek-input__control:focus-within:not(.cdek-input__control_disabled) & {
+      &.prefix-input__label_filled,
+      .prefix-input__control:focus-within:not(.prefix-input__control_disabled)
+        & {
         @include caption-1;
 
         top: -22px;
@@ -410,7 +417,7 @@ defineExpose({ getControl });
     z-index: -1;
     transition: all 0.2s ease;
 
-    .cdek-input__control:focus-within & {
+    .prefix-input__control:focus-within & {
       z-index: 1;
       opacity: 1;
     }

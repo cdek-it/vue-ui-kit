@@ -53,15 +53,15 @@ describe('Unit: CdekAlert', () => {
   test('component renders with default props', () => {
     const wrapper = new CdekAlertBuilder().build();
     expect(wrapper.exists()).toBeTruthy();
-    expect(wrapper.classes()).toContain('cdek-alert--attention');
-    expect(wrapper.classes()).toContain('cdek-alert_surface');
+    expect(wrapper.classes()).toContain('prefix-alert--attention');
+    expect(wrapper.classes()).toContain('prefix-alert_surface');
   });
 
   test('component renders title', () => {
     const wrapper = new CdekAlertBuilder().setTitle('Test Title').build();
 
     expect(wrapper.exists()).toBe(true);
-    expect(wrapper.find('.cdek-alert__title').text()).toBe('Test Title');
+    expect(wrapper.find('.prefix-alert__title').text()).toBe('Test Title');
     expect(wrapper.findComponent(AlertTriangleIcon).exists()).toBe(true);
   });
 
@@ -69,7 +69,7 @@ describe('Unit: CdekAlert', () => {
     const wrapper = new CdekAlertBuilder().setType('positive').build();
 
     expect(wrapper.exists()).toBe(true);
-    expect(wrapper.classes()).toContain('cdek-alert--positive');
+    expect(wrapper.classes()).toContain('prefix-alert--positive');
     expect(wrapper.findComponent(CheckIcon).exists()).toBe(true);
   });
 
@@ -100,7 +100,7 @@ describe('Unit: CdekAlert', () => {
   test('component renders just header slot without icon', () => {
     const wrapper = new CdekAlertBuilder().setHeaderSlot('Test Title').build();
 
-    expect(wrapper.find('.cdek-alert__title').text()).toBe('Test Title');
+    expect(wrapper.find('.prefix-alert__title').text()).toBe('Test Title');
     expect(wrapper.findComponent(AlertTriangleIcon).exists()).toBe(false);
   });
 
@@ -108,6 +108,6 @@ describe('Unit: CdekAlert', () => {
     const wrapper = new CdekAlertBuilder().setStyle('line').build();
 
     expect(wrapper.exists()).toBeTruthy();
-    expect(wrapper.classes()).toContain('cdek-alert_line');
+    expect(wrapper.classes()).toContain('prefix-alert_line');
   });
 });

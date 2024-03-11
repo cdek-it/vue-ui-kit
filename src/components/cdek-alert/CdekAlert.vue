@@ -36,22 +36,25 @@ const currentIcon = computed(() => typesWithIcons[props.type]);
 
 <template>
   <div
-    class="cdek-alert"
-    :class="[`cdek-alert--${type}`, `cdek-alert_${style}`]"
+    :class="[
+      $style['prefix-alert'],
+      $style[`prefix-alert--${type}`],
+      $style[`prefix-alert_${style}`],
+    ]"
   >
-    <div class="cdek-alert__title">
+    <div :class="$style['prefix-alert__title']">
       <!-- @slot для заголовка, если не нужна иконка, либо нужна кастомная иконка -->
       <slot name="header"><component :is="currentIcon" /> {{ title }}</slot>
     </div>
-    <div class="cdek-alert__content">
+    <div :class="$style['prefix-alert__content']">
       <!-- @slot для контента -->
       <slot></slot>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.cdek-alert {
+<style lang="scss" scoped module>
+.prefix-alert {
   --background-color: transparent;
   --line-color: transparent;
 

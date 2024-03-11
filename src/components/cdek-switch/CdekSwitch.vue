@@ -29,41 +29,43 @@ const enabled = computed({
 
 <template>
   <SwitchGroup>
-    <div class="cdek-switch">
+    <div :class="$style['prefix-switch']">
       <Switch
         v-model="enabled"
         :disabled="disabled"
-        :class="{
-          'cdek-switch__bg_enabled': enabled,
-          'cdek-switch__bg_small': small,
-        }"
-        class="cdek-switch__bg"
+        :class="[
+          $style['prefix-switch__bg'],
+          enabled ? $style['prefix-switch__bg_enabled'] : '',
+          small ? $style['prefix-switch__bg_small'] : '',
+        ]"
       >
         <span
-          :class="{
-            'cdek-switch__circle_enabled': enabled,
-            'cdek-switch__circle_disabled': disabled,
-            'cdek-switch__circle_small': small,
-          }"
-          class="cdek-switch__circle"
+          :class="[
+            $style['prefix-switch__circle'],
+            enabled ? $style['prefix-switch__circle_enabled'] : '',
+            disabled ? $style['prefix-switch__circle_disabled'] : '',
+            small ? $style['prefix-switch__circle_small'] : '',
+          ]"
         />
       </Switch>
       <SwitchLabel
         v-if="label || slots.default"
-        class="cdek-switch__label"
-        :class="{ 'cdek-switch__label_small': small }"
+        :class="[
+          $style['prefix-switch__label'],
+          small ? $style['prefix-switch__label_small'] : '',
+        ]"
       >
         <slot>
           {{ label }}
         </slot>
-        <span v-if="tip" class="cdek-switch__tip">{{ tip }}</span>
+        <span v-if="tip" :class="$style['prefix-switch__tip']">{{ tip }}</span>
       </SwitchLabel>
     </div>
   </SwitchGroup>
 </template>
 
-<style lang="scss" scoped>
-.cdek-switch {
+<style lang="scss" scoped module>
+.prefix-switch {
   $this: &;
   $transition-speed: 0.1s;
 

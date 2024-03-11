@@ -1,10 +1,10 @@
 <template>
   <!-- TODO: Проверить, как просто текст выглядит -->
-  <span class="cdek-link"><slot /></span>
+  <span :class="$style['prefix-link']"><slot /></span>
 </template>
 
-<style lang="scss" scoped>
-.cdek-link {
+<style lang="scss" scoped module>
+.prefix-link {
   @include body-1;
 
   color: $Primary_Active;

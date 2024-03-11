@@ -61,41 +61,41 @@ describe('Unit: CdekSwitch', () => {
 
   test('Переключает switch на вкл/выкл состояние, когда кликнешь', async () => {
     const wrapper = new CdekSwitchBuilder().build();
-    const swtch = wrapper.find('.cdek-switch__bg');
-    const circle = wrapper.find('.cdek-switch__circle');
+    const swtch = wrapper.find('.prefix-switch__bg');
+    const circle = wrapper.find('.prefix-switch__circle');
 
     await swtch.trigger('click');
-    expect(swtch.classes('cdek-switch__bg_enabled')).toBe(true);
-    expect(circle.classes('cdek-switch__circle_enabled')).toBe(true);
+    expect(swtch.classes('prefix-switch__bg_enabled')).toBe(true);
+    expect(circle.classes('prefix-switch__circle_enabled')).toBe(true);
 
     await swtch.trigger('click');
-    expect(swtch.classes('cdek-switch__bg_enabled')).toBe(false);
-    expect(circle.classes('cdek-switch__circle_enabled')).toBe(false);
+    expect(swtch.classes('prefix-switch__bg_enabled')).toBe(false);
+    expect(circle.classes('prefix-switch__circle_enabled')).toBe(false);
   });
 
   test('Задает начальное значение switch на основании v-model', () => {
     const wrapper = new CdekSwitchBuilder().setModelValue(true).build();
-    const swtch = wrapper.find('.cdek-switch__bg');
-    const circle = wrapper.find('.cdek-switch__circle');
+    const swtch = wrapper.find('.prefix-switch__bg');
+    const circle = wrapper.find('.prefix-switch__circle');
 
-    expect(swtch.classes('cdek-switch__bg_enabled')).toBe(true);
-    expect(circle.classes('cdek-switch__circle_enabled')).toBe(true);
+    expect(swtch.classes('prefix-switch__bg_enabled')).toBe(true);
+    expect(circle.classes('prefix-switch__circle_enabled')).toBe(true);
   });
 
   test('Меняет внешний вид для состояния disabled', () => {
     const wrapper = new CdekSwitchBuilder().setDisabled(true).build();
 
-    const swtch = wrapper.find('.cdek-switch__bg');
+    const swtch = wrapper.find('.prefix-switch__bg');
     expect(swtch.attributes('disabled')).toBe('');
 
-    const circle = wrapper.find('.cdek-switch__circle');
-    expect(circle.classes('cdek-switch__circle_disabled')).toBe(true);
+    const circle = wrapper.find('.prefix-switch__circle');
+    expect(circle.classes('prefix-switch__circle_disabled')).toBe(true);
   });
 
   test('Эмиттит update:modelValue когда кликаешь на switch', async () => {
     const wrapper = new CdekSwitchBuilder().setModelValue(true).build();
 
-    await wrapper.find('.cdek-switch__bg').trigger('click');
+    await wrapper.find('.prefix-switch__bg').trigger('click');
 
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([false]);
@@ -107,7 +107,7 @@ describe('Unit: CdekSwitch', () => {
       .setDisabled(true)
       .build();
 
-    await wrapper.find('.cdek-switch__bg').trigger('click');
+    await wrapper.find('.prefix-switch__bg').trigger('click');
 
     expect(wrapper.emitted('update:modelValue')).toBeFalsy();
   });
@@ -118,19 +118,19 @@ describe('Unit: CdekSwitch', () => {
       .setLabel('test')
       .build();
 
-    const swtch = wrapper.find('.cdek-switch__bg');
-    expect(swtch.classes('cdek-switch__bg_small')).toBe(true);
+    const swtch = wrapper.find('.prefix-switch__bg');
+    expect(swtch.classes('prefix-switch__bg_small')).toBe(true);
 
-    const circle = wrapper.find('.cdek-switch__circle');
-    expect(circle.classes('cdek-switch__circle_small')).toBe(true);
+    const circle = wrapper.find('.prefix-switch__circle');
+    expect(circle.classes('prefix-switch__circle_small')).toBe(true);
 
-    const label = wrapper.find('.cdek-switch__label');
-    expect(label.classes('cdek-switch__label_small')).toBe(true);
+    const label = wrapper.find('.prefix-switch__label');
+    expect(label.classes('prefix-switch__label_small')).toBe(true);
   });
 
   test('Показывает label, если он передан', () => {
     const wrapper = new CdekSwitchBuilder().setLabel('Test').build();
-    const label = wrapper.find('.cdek-switch__label');
+    const label = wrapper.find('.prefix-switch__label');
     expect(label.text()).toBe('Test');
   });
 
@@ -144,14 +144,14 @@ describe('Unit: CdekSwitch', () => {
 
   test('Переключает switch, если нажать по лейблу', async () => {
     const wrapper = new CdekSwitchBuilder().setLabel('Test').build();
-    const label = wrapper.find('.cdek-switch__label');
-    const swtch = wrapper.find('.cdek-switch__bg');
-    const circle = wrapper.find('.cdek-switch__circle');
+    const label = wrapper.find('.prefix-switch__label');
+    const swtch = wrapper.find('.prefix-switch__bg');
+    const circle = wrapper.find('.prefix-switch__circle');
 
     await label.trigger('click');
 
-    expect(swtch.classes('cdek-switch__bg_enabled')).toBe(true);
-    expect(circle.classes('cdek-switch__circle_enabled')).toBe(true);
+    expect(swtch.classes('prefix-switch__bg_enabled')).toBe(true);
+    expect(circle.classes('prefix-switch__circle_enabled')).toBe(true);
 
     expect(wrapper.emitted('update:modelValue')).toBeTruthy();
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([true]);
@@ -163,7 +163,7 @@ describe('Unit: CdekSwitch', () => {
       .setTip('test')
       .build();
 
-    const tip = wrapper.find('.cdek-switch__tip');
+    const tip = wrapper.find('.prefix-switch__tip');
     expect(tip.text()).toBe('test');
   });
 });
