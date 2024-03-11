@@ -1,12 +1,12 @@
-import CdekModal from '../CdekModal.vue';
+import BaseModal from '../BaseModal.vue';
 import { useModalService } from '../services/ModalService';
 import BaseButton from '../../base-button/BaseButton.vue';
-import CdekConfirm from '../CdekConfirm.vue';
+import BaseConfirm from '../BaseConfirm.vue';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekModal/Modal',
-  component: CdekModal,
+  component: BaseModal,
   parameters: {
     docs: {
       description: {
@@ -19,7 +19,7 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekModal, BaseButton, CdekConfirm },
+  components: { BaseModal, BaseButton, BaseConfirm },
   setup() {
     const modalService = useModalService();
 
@@ -58,13 +58,13 @@ const Template = (args) => ({
   },
   template: `
     <BaseButton @click="onButtonClick">Открыть попап</BaseButton>
-    <CdekModal />
+    <BaseModal />
   `,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  component: CdekConfirm,
+  component: BaseConfirm,
 };
 Primary.parameters = {
   docs: {
@@ -99,7 +99,7 @@ modalService.openModal<IConfirmProps>(CdekConfirm, {
 export const WithWidth = Template.bind({});
 WithWidth.args = {
   width: '400px',
-  component: CdekConfirm,
+  component: BaseConfirm,
 };
 WithWidth.parameters = {
   docs: {
@@ -120,7 +120,7 @@ modalService.openModal(CdekConfirm, {
 export const WithoutCloseButton = Template.bind({});
 WithoutCloseButton.args = {
   withoutCloseButton: true,
-  component: CdekConfirm,
+  component: BaseConfirm,
 };
 WithoutCloseButton.parameters = {
   docs: {
@@ -141,7 +141,7 @@ modalService.openModal(CdekConfirm, {
 export const WrapperWithoutPaddings = Template.bind({});
 WrapperWithoutPaddings.args = {
   wrapperWithoutPaddings: true,
-  component: CdekConfirm,
+  component: BaseConfirm,
 };
 WrapperWithoutPaddings.parameters = {
   docs: {

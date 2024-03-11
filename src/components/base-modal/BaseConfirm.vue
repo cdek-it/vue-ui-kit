@@ -9,7 +9,7 @@ export interface IConfirmProps {
    */
   title?: string;
   /**
-   * CdekBadge
+   * BaseBadge
    */
   badge?: IBadgeProps;
   hint?: string;

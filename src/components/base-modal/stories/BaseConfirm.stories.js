@@ -1,4 +1,4 @@
-import CdekModal from '../CdekModal.vue';
+import BaseModal from '../BaseModal.vue';
 import { useModalService } from '../services/ModalService';
 import BaseButton from '../../base-button/BaseButton.vue';
 import CdekConfirm from '../CdekConfirm.vue';
@@ -6,7 +6,7 @@ import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekModal/Confirm',
-  component: CdekModal,
+  component: BaseModal,
   parameters: {
     docs: {
       description: {
@@ -19,7 +19,7 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekModal, BaseButton, CdekConfirm },
+  components: { BaseModal, BaseButton, CdekConfirm },
   setup() {
     const modalService = useModalService();
 
@@ -44,7 +44,7 @@ const Template = (args) => ({
   },
   template: `
     <BaseButton @click="onButtonClick">Открыть попап</BaseButton>
-    <CdekModal />
+    <BaseModal />
   `,
 });
 

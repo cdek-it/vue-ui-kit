@@ -1,12 +1,12 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
-import CdekModal from './CdekModal.vue';
-import type { IModalProps } from './CdekModal.vue';
-import CdekConfirm from './CdekConfirm.vue';
+import BaseModal from './BaseModal.vue';
+import type { IModalProps } from './BaseModal.vue';
+import BaseConfirm from './BaseConfirm.vue';
 import { markRaw } from 'vue';
-import { useModalService } from '@/components/cdek-modal/services/ModalService';
+import { useModalService } from '@/components/base-modal/services/ModalService';
 
-class CdekModalBuilder {
+class BaseModalBuilder {
   component?: IModalProps['component'];
   props?: IModalProps['props'] = { content: 'Модальное окно' };
   settings?: IModalProps['settings'];
@@ -39,7 +39,7 @@ class CdekModalBuilder {
   }
 
   build() {
-    return mount(CdekModal, {
+    return mount(BaseModal, {
       global: {
         stubs: {
           teleport: true,
@@ -49,19 +49,19 @@ class CdekModalBuilder {
   }
 }
 
-describe('Unit: CdekModal', () => {
+describe('Unit: BaseModal', () => {
   test('Should mount', () => {
-    const wrapper = new CdekModalBuilder().build();
+    const wrapper = new BaseModalBuilder().build();
     expect(wrapper.exists()).toBeTruthy();
   });
   describe('Контент', () => {
     test('Открытие модального окна', async () => {
-      const wrapper = new CdekModalBuilder()
+      const wrapper = new BaseModalBuilder()
         .setProps({
           title: 'Заголовок',
           content: 'Модальное окно',
         })
-        .setComponent(markRaw(CdekConfirm))
+        .setComponent(markRaw(BaseConfirm))
         .openModal()
         .build();
 
@@ -69,12 +69,12 @@ describe('Unit: CdekModal', () => {
       expect(confirm.exists()).toBeTruthy();
     });
     test('Пропсы прокидываются в компонент', async () => {
-      const wrapper = new CdekModalBuilder()
+      const wrapper = new BaseModalBuilder()
         .setProps({
           title: 'Заголовок',
           content: 'Модальное окно',
         })
-        .setComponent(markRaw(CdekConfirm))
+        .setComponent(markRaw(BaseConfirm))
         .openModal()
         .build();
 
@@ -87,8 +87,8 @@ describe('Unit: CdekModal', () => {
   });
   describe('Закрытие модального окна', () => {
     test('Клик мимо модального окна', async () => {
-      const wrapper = new CdekModalBuilder()
-        .setComponent(markRaw(CdekConfirm))
+      const wrapper = new BaseModalBuilder()
+        .setComponent(markRaw(BaseConfirm))
         .openModal()
         .build();
       const outer = wrapper.find('.prefix-modal__wrapper');
@@ -99,8 +99,8 @@ describe('Unit: CdekModal', () => {
       expect(modal.exists()).toBeFalsy();
     });
     test('Клик по крестику', async () => {
-      const wrapper = new CdekModalBuilder()
-        .setComponent(markRaw(CdekConfirm))
+      const wrapper = new BaseModalBuilder()
+        .setComponent(markRaw(BaseConfirm))
         .openModal()
         .build();
       const closeTrigger = wrapper.find('.prefix-modal__box__close-trigger');
@@ -112,8 +112,8 @@ describe('Unit: CdekModal', () => {
     });
   });
   test('Ширина модального окна', async () => {
-    const wrapper = new CdekModalBuilder()
-      .setComponent(markRaw(CdekConfirm))
+    const wrapper = new BaseModalBuilder()
+      .setComponent(markRaw(BaseConfirm))
       .setSettings({ width: '300px' })
       .openModal()
       .build();
@@ -125,8 +125,8 @@ describe('Unit: CdekModal', () => {
   });
 
   test('Если передано withoutCloseButton, то кнопка закрытия не отображается', async () => {
-    const wrapper = new CdekModalBuilder()
-      .setComponent(markRaw(CdekConfirm))
+    const wrapper = new BaseModalBuilder()
+      .setComponent(markRaw(BaseConfirm))
       .setSettings({ withoutCloseButton: true })
       .openModal()
       .build();
