@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 
-import { CdekButton } from '../cdek-button';
+import BaseButton from '../base-button/BaseButton.vue';
 
 import CrossIcon from './svg/cross.svg?component';
 import InfoIcon from './svg/info.svg?component';
@@ -72,13 +72,13 @@ const defaultIcon = computed(() => {
         </p>
       </div>
     </div>
-    <CdekButton
+    <BaseButton
       v-if="button"
       @click.stop="button?.action"
       theme="toaster"
       small
       :loading="button.loading"
-      >{{ button.text }}</CdekButton
+      >{{ button.text }}</BaseButton
     >
   </div>
 </template>

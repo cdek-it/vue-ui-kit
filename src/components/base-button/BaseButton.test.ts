@@ -1,23 +1,23 @@
 import { shallowMount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import builderProp from '@/test/decorators';
-import CdekButton from './CdekButton.vue';
+import BaseButton from './BaseButton.vue';
 
 type ThemeT = 'primary' | 'secondary' | 'outline' | 'ghost' | 'toaster';
 type WidthT = 'auto' | 'content';
 
-interface CdekButtonBuilder {
-  setTheme: (theme: ThemeT) => CdekButtonBuilder;
-  setWidth: (width: WidthT) => CdekButtonBuilder;
-  setSmall: (small: boolean) => CdekButtonBuilder;
-  setDisabled: (disabled: boolean) => CdekButtonBuilder;
-  setLoading: (loading: boolean) => CdekButtonBuilder;
-  setSpinnerBefore: (spinnerBefore: boolean) => CdekButtonBuilder;
-  setIcon: (icon: boolean) => CdekButtonBuilder;
-  setAs: (as: string) => CdekButtonBuilder;
+interface BaseButtonBuilder {
+  setTheme: (theme: ThemeT) => BaseButtonBuilder;
+  setWidth: (width: WidthT) => BaseButtonBuilder;
+  setSmall: (small: boolean) => BaseButtonBuilder;
+  setDisabled: (disabled: boolean) => BaseButtonBuilder;
+  setLoading: (loading: boolean) => BaseButtonBuilder;
+  setSpinnerBefore: (spinnerBefore: boolean) => BaseButtonBuilder;
+  setIcon: (icon: boolean) => BaseButtonBuilder;
+  setAs: (as: string) => BaseButtonBuilder;
 }
 
-class CdekButtonBuilder {
+class BaseButtonBuilder {
   @builderProp
   theme?: ThemeT;
 
@@ -43,7 +43,7 @@ class CdekButtonBuilder {
   as?: string;
 
   build() {
-    return shallowMount(CdekButton as any, {
+    return shallowMount(BaseButton as any, {
       props: {
         theme: this.theme,
         width: this.width,
@@ -61,7 +61,7 @@ class CdekButtonBuilder {
   }
 }
 
-describe('Unit: CdekButton', () => {
+describe('Unit: BaseButton', () => {
   describe('theme', () => {
     test.each([
       { theme: undefined, themeClass: 'primary' },
@@ -73,58 +73,58 @@ describe('Unit: CdekButton', () => {
     ])(
       'Если theme = $theme, то должен быть класс $themeClass',
       ({ theme, themeClass }: any) => {
-        const wrapper = new CdekButtonBuilder().setTheme(theme).build();
+        const wrapper = new BaseButtonBuilder().setTheme(theme).build();
         expect(wrapper.classes(themeClass)).toBeTruthy();
       }
     );
   });
 
   test('Если width = "content", то должен быть класс .inline', () => {
-    const wrapper = new CdekButtonBuilder().setWidth('content').build();
+    const wrapper = new BaseButtonBuilder().setWidth('content').build();
     expect(wrapper.classes('inline')).toBeTruthy();
   });
 
   test('Если disabled = true, то должен быть класс .disabled', () => {
-    const wrapper = new CdekButtonBuilder().setDisabled(true).build();
+    const wrapper = new BaseButtonBuilder().setDisabled(true).build();
     expect(wrapper.classes('disabled')).toBeTruthy();
   });
 
   test('Если small = true, то должен быть класс .small', () => {
-    const wrapper = new CdekButtonBuilder().setSmall(true).build();
+    const wrapper = new BaseButtonBuilder().setSmall(true).build();
     expect(wrapper.classes('small')).toBe(true);
   });
 
   test('Если icon = true, то должен быть класс .icon', () => {
-    const wrapper = new CdekButtonBuilder().setIcon(true).build();
+    const wrapper = new BaseButtonBuilder().setIcon(true).build();
     expect(wrapper.classes('icon')).toBe(true);
   });
 
   describe('as', () => {
     test('Если as не передан, то тег должен быть button', () => {
-      const wrapper = new CdekButtonBuilder().build();
+      const wrapper = new BaseButtonBuilder().build();
       expect(wrapper.vm.$el.tagName).toBe('BUTTON');
     });
     test('Если as = div, то тег должен быть div', () => {
-      const wrapper = new CdekButtonBuilder().setAs('div').build();
+      const wrapper = new BaseButtonBuilder().setAs('div').build();
       expect(wrapper.vm.$el.tagName).toBe('DIV');
     });
   });
 
   describe('Loading', () => {
     test('Если loading = false, то спиннера не должно быть', () => {
-      const wrapper = new CdekButtonBuilder().build();
+      const wrapper = new BaseButtonBuilder().build();
       expect(wrapper.find('cdek-spinner-stub').exists()).toBeFalsy();
     });
     test('Если loading = true, то должен показаться спиннер', () => {
-      const wrapper = new CdekButtonBuilder().setLoading(true).build();
+      const wrapper = new BaseButtonBuilder().setLoading(true).build();
       expect(wrapper.find('cdek-spinner-stub').exists()).toBeTruthy();
     });
     test('Если loading = true и spinnerBefore = false, то контент должен пропасть', () => {
-      const wrapper = new CdekButtonBuilder().setLoading(true).build();
+      const wrapper = new BaseButtonBuilder().setLoading(true).build();
       expect(wrapper.text()).toBe('');
     });
     test('Если loading = true и spinnerBefore = true, то должен показаться и спиннер, и контент', () => {
-      const wrapper = new CdekButtonBuilder()
+      const wrapper = new BaseButtonBuilder()
         .setLoading(true)
         .setSpinnerBefore(true)
         .build();
@@ -135,13 +135,13 @@ describe('Unit: CdekButton', () => {
 
   describe('Цвет спиннера', () => {
     test('Если theme = "primary", то цвет спиннера - белый', () => {
-      const wrapper = new CdekButtonBuilder().setLoading(true).build();
+      const wrapper = new BaseButtonBuilder().setLoading(true).build();
       expect(wrapper.find('cdek-spinner-stub').attributes('color')).toBe(
         'white'
       );
     });
     test('Если theme = "secondary", то цвет спиннера - зеленый', () => {
-      const wrapper = new CdekButtonBuilder()
+      const wrapper = new BaseButtonBuilder()
         .setTheme('secondary')
         .setLoading(true)
         .build();
@@ -150,7 +150,7 @@ describe('Unit: CdekButton', () => {
       );
     });
     test('Если disabled = "true", то цвет спиннера - белый', () => {
-      const wrapper = new CdekButtonBuilder()
+      const wrapper = new BaseButtonBuilder()
         .setLoading(true)
         .setDisabled(true)
         .build();

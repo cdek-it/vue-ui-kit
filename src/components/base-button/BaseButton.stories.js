@@ -1,11 +1,11 @@
-import CdekButton from './CdekButton.vue';
+import BaseButton from './BaseButton.vue';
 import ArrowRightIcon from './svg/arrow-right.svg?component';
 import CheckIcon from './svg/check.svg?component';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekButton',
-  component: CdekButton,
+  component: BaseButton,
   parameters: {
     docs: {
       description: {
@@ -26,16 +26,16 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekButton, ArrowRightIcon, CheckIcon },
+  components: { BaseButton, ArrowRightIcon, CheckIcon },
   setup() {
     return { args };
   },
   template: `
-    <CdekButton v-bind="args">
+    <BaseButton v-bind="args">
       <CheckIcon v-if="args.story === 'IconBefore'" />
       ${args.default}
       <ArrowRightIcon v-if="args.story === 'IconAfter'" />
-    </CdekButton>
+    </BaseButton>
   `,
 });
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import BaseBadge from '../base-badge/BaseBadge.vue';
 import type { IBadgeProps } from '../base-badge/BaseBadge.vue';
-import CdekButton from '../cdek-button/CdekButton.vue';
+import BaseButton from '../base-button/BaseButton.vue';
 
 export interface IConfirmProps {
   /**
@@ -47,22 +47,22 @@ const props = withDefaults(defineProps<IConfirmProps>(), {});
       {{ content }}
     </div>
     <div :class="$style['prefix-confirm__footer']" v-if="footer">
-      <CdekButton
+      <BaseButton
         v-if="footer.accept"
         theme="primary"
         @click="footer?.accept?.onClick"
         width="content"
       >
         {{ footer?.accept?.text }}
-      </CdekButton>
-      <CdekButton
+      </BaseButton>
+      <BaseButton
         v-if="footer?.cancel"
         theme="outline"
         @click="footer?.cancel?.onClick"
         width="content"
       >
         {{ footer?.cancel?.text }}
-      </CdekButton>
+      </BaseButton>
     </div>
   </div>
 </template>

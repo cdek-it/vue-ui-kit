@@ -1,6 +1,6 @@
 import CdekModal from '../CdekModal.vue';
 import { useModalService } from '../services/ModalService';
-import CdekButton from '../../cdek-button/CdekButton.vue';
+import BaseButton from '../../base-button/BaseButton.vue';
 import CdekConfirm from '../CdekConfirm.vue';
 import getVersion from '@/test/getVersion';
 
@@ -19,7 +19,7 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekModal, CdekButton, CdekConfirm },
+  components: { CdekModal, BaseButton, CdekConfirm },
   setup() {
     const modalService = useModalService();
 
@@ -43,7 +43,7 @@ const Template = (args) => ({
     return { onButtonClick, modalService };
   },
   template: `
-    <CdekButton @click="onButtonClick">Открыть попап</CdekButton>
+    <BaseButton @click="onButtonClick">Открыть попап</BaseButton>
     <CdekModal />
   `,
 });
