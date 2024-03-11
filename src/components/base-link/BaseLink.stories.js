@@ -1,25 +1,25 @@
-import CdekLink from './CdekLink.vue';
+import BaseLink from './BaseLink.vue';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekLink',
-  component: CdekLink,
+  component: BaseLink,
   parameters: {
     version: getVersion('0.0.1'),
   },
 };
 
 const Template = (args) => ({
-  components: { CdekLink },
+  components: { BaseLink },
   setup() {
     return { args };
   },
   template: `
-    <CdekLink v-bind="args">
+    <BaseLink v-bind="args">
       <a href="#" v-if="args.story === 'Primary'" @click.prevent>Ссылка</a>
       <button v-else-if="args.story === 'Button'">Кнопка, как ссылка</button>
       <template v-else-if="args.story === 'Text'">Просто текст</template>
-    </CdekLink>
+    </BaseLink>
   `,
 });
 
