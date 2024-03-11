@@ -77,7 +77,7 @@ class BaseToasterBuilder {
       },
       global: {
         stubs: {
-          CdekButton: this.buttonStub,
+          BaseButton: this.buttonStub,
         },
       },
     });
