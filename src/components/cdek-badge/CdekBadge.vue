@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<IBadgeProps>(), {
 </script>
 
 <template>
-  <div :class="[$style['prefix-badge'], type, variant]">
+  <div :class="[$style['prefix-badge'], $style[type], $style[variant]]">
     <slot>
       {{ text }}
     </slot>
