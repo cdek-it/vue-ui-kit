@@ -1,11 +1,11 @@
-import CdekChip from './CdekChip.vue';
+import BaseChip from './BaseChip.vue';
 import getVersion from '@/test/getVersion';
 import Clock from './svg/clock.svg?component';
 import { ref } from 'vue';
 
 export default {
   title: 'Ui kit/CdekChip',
-  component: CdekChip,
+  component: BaseChip,
   parameters: {
     docs: {
       description: {
@@ -18,17 +18,17 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekChip, Clock },
+  components: { BaseChip, Clock },
   setup() {
     const isSelected = ref(args.value);
     return { args, isSelected };
   },
   template: `
-  <CdekChip v-bind="args" v-model="isSelected">
+  <BaseChip v-bind="args" v-model="isSelected">
     <template v-slot:icon v-if="args.story === 'Icon' ||  args.story === 'IconAndAmount'">
       <Clock/>
     </template>  
-  </CdekChip>`,
+  </BaseChip>`,
 });
 
 export const Default = Template.bind({});

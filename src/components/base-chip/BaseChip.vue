@@ -29,7 +29,7 @@
 <script lang="ts" setup>
 import { computed, ref, useSlots, watch } from 'vue';
 
-export interface CdekChipProps {
+export interface BaseChipProps {
   /**
    * Название чипа
    */
@@ -45,7 +45,7 @@ export interface CdekChipProps {
 
 const slots = useSlots();
 
-const props = withDefaults(defineProps<CdekChipProps>(), {
+const props = withDefaults(defineProps<BaseChipProps>(), {
   small: false,
   modelValue: false,
   disabled: false,

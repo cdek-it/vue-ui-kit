@@ -1,18 +1,18 @@
 import { shallowMount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import builderProp from '@/test/decorators';
-import CdekChip from './CdekChip.vue';
+import BaseChip from './BaseChip.vue';
 
-interface CdekChipBuilder {
-  setLabel: (label: string) => CdekChipBuilder;
-  setAmount: (amount: number) => CdekChipBuilder;
-  setDisabled: (disabled: boolean) => CdekChipBuilder;
-  setSmall: (small: boolean) => CdekChipBuilder;
-  setModelValue: (value: boolean) => CdekChipBuilder;
-  setIcon: (icon: string) => CdekChipBuilder;
+interface BaseChipBuilder {
+  setLabel: (label: string) => BaseChipBuilder;
+  setAmount: (amount: number) => BaseChipBuilder;
+  setDisabled: (disabled: boolean) => BaseChipBuilder;
+  setSmall: (small: boolean) => BaseChipBuilder;
+  setModelValue: (value: boolean) => BaseChipBuilder;
+  setIcon: (icon: string) => BaseChipBuilder;
 }
 
-class CdekChipBuilder {
+class BaseChipBuilder {
   @builderProp
   modelValue = false;
 
@@ -34,7 +34,7 @@ class CdekChipBuilder {
   build() {
     const slots = this.icon ? { icon: this.icon } : {};
 
-    return shallowMount(CdekChip as any, {
+    return shallowMount(BaseChip as any, {
       props: {
         modelValue: this.modelValue,
         label: this.label,
@@ -47,9 +47,9 @@ class CdekChipBuilder {
   }
 }
 
-describe('Unit: CdekChip', () => {
+describe('Unit: BaseChip', () => {
   test('Should mount', () => {
-    const wrapper = new CdekChipBuilder().build();
+    const wrapper = new BaseChipBuilder().build();
 
     expect(wrapper.exists()).toBeTruthy();
   });
@@ -58,28 +58,28 @@ describe('Unit: CdekChip', () => {
     test('Если label = "Chip", то лейбл должен содержать "Chip"', () => {
       const text = 'Chip';
 
-      const wrapper = new CdekChipBuilder().setLabel(text).build();
+      const wrapper = new BaseChipBuilder().setLabel(text).build();
       const label = wrapper.find('.prefix-chip__text');
 
       expect(label.text()).toBe(text);
     });
 
     test('Если amount = 99, то должно выводиться "99"', () => {
-      const wrapper = new CdekChipBuilder().setAmount(99).build();
+      const wrapper = new BaseChipBuilder().setAmount(99).build();
       const label = wrapper.find('.prefix-chip__amount');
 
       expect(label.text()).toBe('99');
     });
 
     test('Если small = true, то должен быть класс prefix-chip_small', () => {
-      const wrapper = new CdekChipBuilder().setSmall(true).build();
+      const wrapper = new BaseChipBuilder().setSmall(true).build();
       const chip = wrapper.find('.prefix-chip');
 
       expect(chip.classes('prefix-chip_small')).toBeTruthy();
     });
 
     test('Установка картинки', () => {
-      const wrapper = new CdekChipBuilder().setIcon('test').build();
+      const wrapper = new BaseChipBuilder().setIcon('test').build();
       const iconWrapper = wrapper.find('.prefix-chip__icon__wrapper');
 
       expect(iconWrapper.exists()).toBeTruthy();
@@ -88,14 +88,14 @@ describe('Unit: CdekChip', () => {
 
   describe('v-model', () => {
     test('Если v-model = true, то кнопка должна быть активной', () => {
-      const wrapper = new CdekChipBuilder().setModelValue(true).build();
+      const wrapper = new BaseChipBuilder().setModelValue(true).build();
       const chip = wrapper.find('.prefix-chip');
 
       expect(chip.classes('prefix-chip_selected')).toBeTruthy();
     });
 
     test('Если v-model был установлен в true после маунта компонента, то кнопка должна быть активной', async () => {
-      const wrapper = new CdekChipBuilder().build();
+      const wrapper = new BaseChipBuilder().build();
       const chip = wrapper.find('.prefix-chip');
 
       expect(chip.classes('prefix-chip_selected')).toBeFalsy();
@@ -108,20 +108,20 @@ describe('Unit: CdekChip', () => {
 
   describe('disabled', () => {
     test('Если disabled = true, то должен быть атрибут disabled', () => {
-      const wrapper = new CdekChipBuilder().setDisabled(true).build();
+      const wrapper = new BaseChipBuilder().setDisabled(true).build();
 
       expect(wrapper.attributes('disabled')).toBeDefined();
     });
 
     test('Если disabled = true, то должен быть класс .prefix-chip_disabled', () => {
-      const wrapper = new CdekChipBuilder().setDisabled(true).build();
+      const wrapper = new BaseChipBuilder().setDisabled(true).build();
       const chip = wrapper.find('.prefix-chip');
 
       expect(chip.classes('prefix-chip_disabled')).toBeTruthy();
     });
 
     test('Класс .prefix-chip_selected должен сниматься, когда disabled становится true', async () => {
-      const wrapper = new CdekChipBuilder().setModelValue(true).build();
+      const wrapper = new BaseChipBuilder().setModelValue(true).build();
       const chip = wrapper.find('.prefix-chip');
 
       expect(chip.classes('prefix-chip_selected')).toBeTruthy();
@@ -134,7 +134,7 @@ describe('Unit: CdekChip', () => {
 
   describe('click', () => {
     test('Если кликнуть по компоненту, то он должен быть активен', async () => {
-      const wrapper = new CdekChipBuilder().build();
+      const wrapper = new BaseChipBuilder().build();
 
       await wrapper.trigger('click');
 
@@ -142,7 +142,7 @@ describe('Unit: CdekChip', () => {
     });
 
     test('Если кликнуть по компоненту, то должен сгенерироваться эмит update:modelValue', async () => {
-      const wrapper = new CdekChipBuilder().build();
+      const wrapper = new BaseChipBuilder().build();
 
       await wrapper.trigger('click');
 
@@ -150,7 +150,7 @@ describe('Unit: CdekChip', () => {
     });
 
     test('Если кликнуть по компоненту c disabled true, то кнопка не должна отправлять эмит', async () => {
-      const wrapper = new CdekChipBuilder().setDisabled(true).build();
+      const wrapper = new BaseChipBuilder().setDisabled(true).build();
 
       await wrapper.trigger('click');
 
@@ -160,7 +160,7 @@ describe('Unit: CdekChip', () => {
     });
 
     test('Если кликнуть по компоненту c v-model true, то он должен перестать быть активным', async () => {
-      const wrapper = new CdekChipBuilder().setModelValue(true).build();
+      const wrapper = new BaseChipBuilder().setModelValue(true).build();
 
       expect(wrapper.classes('prefix-chip_selected')).toBeTruthy();
 
