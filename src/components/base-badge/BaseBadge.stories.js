@@ -1,10 +1,10 @@
-import CdekBadge from './CdekBadge.vue';
+import BaseBadge from './BaseBadge.vue';
 import getVersion from '@/test/getVersion';
 import EyeIcon from './svg/eye.svg?component';
 
 export default {
   title: 'Ui kit/CdekBadge',
-  component: CdekBadge,
+  component: BaseBadge,
   parameters: {
     docs: {
       description: {
@@ -32,15 +32,15 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekBadge, EyeIcon },
+  components: { BaseBadge, EyeIcon },
   setup() {
     return { args };
   },
   template: `
-    <CdekBadge v-bind="args">
+    <BaseBadge v-bind="args">
       <span v-if="args.story === 'Slot'">Status</span>
       <EyeIcon v-if="args.story === 'IconSlot'"/>
-    </CdekBadge>
+    </BaseBadge>
   `,
 });
 

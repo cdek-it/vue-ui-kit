@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import CdekBadge from '../cdek-badge/CdekBadge.vue';
-import type { IBadgeProps } from '../cdek-badge/CdekBadge.vue';
+import BaseBadge from '../base-badge/BaseBadge.vue';
+import type { IBadgeProps } from '../base-badge/BaseBadge.vue';
 import CdekButton from '../cdek-button/CdekButton.vue';
 
 export interface IConfirmProps {
@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<IConfirmProps>(), {});
     <div :class="$style['prefix-confirm__header']" v-if="title">
       <div :class="$style['prefix-confirm__header__title']">
         {{ title }}
-        <CdekBadge v-if="badge" v-bind="badge" />
+        <BaseBadge v-if="badge" v-bind="badge" />
       </div>
       <div :class="$style['prefix-confirm__header__hint']" v-if="hint">
         {{ hint }}
