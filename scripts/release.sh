@@ -21,6 +21,3 @@ npm version --no-git-tag-version $NEW_VERSION
 echo "Start building and publishing prefixed version"
 yarn build-with-prefix
 npm publish
-
-# Remove changes in package.json
-git restore package.json
