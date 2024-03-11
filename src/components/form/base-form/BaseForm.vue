@@ -44,7 +44,7 @@ defineExpose({
 </script>
 
 <template>
-  <form @submit.prevent="submit" ref="cdekForm">
+  <form @submit.prevent="submit">
     <slot />
   </form>
 </template>
