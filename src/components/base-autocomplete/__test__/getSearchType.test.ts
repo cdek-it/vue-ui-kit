@@ -1,7 +1,7 @@
 import { describe, test, expect, vi } from 'vitest';
 import { getSearchType, SearchType } from '../helpers';
 
-describe('getSearchType', () => {
+describe('BaseAutocomplete: getSearchType', () => {
   test('Если передан fetchItems, то должен вернуть SearchType.ByFetch', () => {
     expect(getSearchType(vi.fn(), [], vi.fn())).toBe(SearchType.ByFetch);
   });

@@ -112,7 +112,7 @@ class BaseAutocompleteBuilder {
   }
 }
 
-describe('Unit: CdekAutocomplete', () => {
+describe('Unit: BaseAutocomplete', () => {
   test('Should mount', () => {
     const wrapper = new BaseAutocompleteBuilder().shallowBuild();
     expect(wrapper.exists()).toBeTruthy();

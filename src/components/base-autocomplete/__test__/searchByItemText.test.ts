@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { searchByItemText } from '../helpers';
 
-describe('CdekAutocomplete: searchByItemText', () => {
+describe('BaseAutocomplete: searchByItemText', () => {
   test('Должен вернуть promise возвращающий все элементы, которые начинаются с введенного текста', () => {
     const promise = searchByItemText('a', ['ab', 'b', 'ac']);
     expect(promise).resolves.toEqual(['ab', 'ac']);

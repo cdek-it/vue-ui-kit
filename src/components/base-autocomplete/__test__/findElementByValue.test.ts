@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { findElementByValue } from '../helpers';
 
-describe('CdekAutocomplete: findElementByValue', () => {
+describe('BaseAutocomplete: findElementByValue', () => {
   test('Если не переданы items или value, то вернется null', () => {
     expect(findElementByValue()).toBeNull();
   });

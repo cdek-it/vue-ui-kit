@@ -3,7 +3,7 @@ import { searchByGetTitleFn } from '../helpers';
 
 const getTitle = vi.fn((_) => _.a);
 
-describe('CdekAutocomplete: searchByItemTitle', () => {
+describe('BaseAutocomplete: searchByItemTitle', () => {
   test('Должен вернуть promise возвращающий все элементы, в которых getTitle начинаются с введенного текста', () => {
     const promise = searchByGetTitleFn(getTitle, 'a', [
       { a: 'ab', value: 'ab' },

@@ -49,7 +49,7 @@ class BaseAlertBuilder {
   }
 }
 
-describe('Unit: CdekAlert', () => {
+describe('Unit: BaseAlert', () => {
   test('component renders with default props', () => {
     const wrapper = new BaseAlertBuilder().build();
     expect(wrapper.exists()).toBeTruthy();

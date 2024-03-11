@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { searchByItemTitle } from '../helpers';
 
-describe('CdekAutocomplete: searchByItemTitle', () => {
+describe('BaseAutocomplete: searchByItemTitle', () => {
   test('Должен вернуть promise возвращающий все элементы, в которых title начинаются с введенного текста', () => {
     const promise = searchByItemTitle('a', [
       { title: 'ab', value: 'ab' },

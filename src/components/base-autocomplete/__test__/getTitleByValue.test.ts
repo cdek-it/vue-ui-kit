@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { getTitleByValue } from '../helpers';
 
-describe('CdekAutocomplete: getTitleByValue', () => {
+describe('BaseAutocomplete: getTitleByValue', () => {
   test('Если не переданы items или value, то должен вернуть пустую строку', () => {
     expect(getTitleByValue()).toBe('');
   });

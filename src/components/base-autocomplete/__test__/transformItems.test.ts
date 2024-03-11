@@ -1,7 +1,7 @@
 import { describe, test, expect, vi } from 'vitest';
 import { transformItems } from '../helpers';
 
-describe('CdekAutocomplete: transformItems', () => {
+describe('BaseAutocomplete: transformItems', () => {
   test('Если items=null, то должен вернуть пустой массив', () => {
     expect(transformItems(null)).toEqual([]);
   });
