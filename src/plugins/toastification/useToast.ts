@@ -1,6 +1,6 @@
 import { useToast, POSITION, TYPE } from '../toastification/lib';
-import { CdekToaster } from '../../components/cdek-toaster';
-import type { ToasterProps } from '../../components/cdek-toaster';
+import BaseToaster from '../../components/base-toaster/BaseToaster.vue';
+import type { ToasterProps } from '../../components/base-toaster/BaseToaster.vue';
 import type { ToasterSettings } from './lib/types';
 
 type ToastAliasProps = ToasterProps | string;
@@ -32,7 +32,7 @@ export default function useCustomToast() {
     props.type || (props.type = type);
 
     return toast(
-      { component: CdekToaster, props },
+      { component: BaseToaster, props },
       { position, timeout: settings.timeout || 5000 }
     );
   }
@@ -62,7 +62,7 @@ export default function useCustomToast() {
     id: any,
     settings: ToasterProps
   ) {
-    toast.update(id, { content: { component: CdekToaster, props: settings } });
+    toast.update(id, { content: { component: BaseToaster, props: settings } });
   };
 
   return customToast;

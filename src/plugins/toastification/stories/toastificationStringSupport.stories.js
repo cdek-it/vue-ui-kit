@@ -1,10 +1,10 @@
-import { CdekToaster } from '@/components/cdek-toaster';
+import BaseToaster from '@/components/base-toaster/BaseToaster.vue';
 import getVersion from '@/test/getVersion';
 import { Template } from './settings';
 
 export default {
   title: 'Plugins/Toastification/StringSupport',
-  subcomponents: { CdekToaster },
+  subcomponents: { BaseToaster },
   parameters: {
     version: getVersion('0.0.1'),
   },

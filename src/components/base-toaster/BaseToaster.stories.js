@@ -1,10 +1,10 @@
-import CdekToaster from './CdekToaster.vue';
+import BaseToaster from './BaseToaster.vue';
 import WifiOffIcon from './svg/wifi-off.svg?component';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekToaster',
-  component: CdekToaster,
+  component: BaseToaster,
   parameters: {
     docs: {
       description: {
@@ -22,12 +22,12 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekToaster },
+  components: { BaseToaster },
   setup() {
     return { args };
   },
   template: `
-    <CdekToaster v-bind="args" />
+    <BaseToaster v-bind="args" />
   `,
 });
 
@@ -38,7 +38,7 @@ Primary.args = {
 Primary.parameters = {
   docs: {
     source: {
-      code: '<CdekToast title="Сообщение" />',
+      code: '<CdekToaster title="Сообщение" />',
     },
   },
 };
@@ -51,7 +51,7 @@ LongText.args = {
 LongText.parameters = {
   docs: {
     source: {
-      code: '<CdekToast title="Почему-то очень..." text="..." />',
+      code: '<CdekToaster title="Почему-то очень..." text="..." />',
     },
   },
 };
@@ -64,7 +64,7 @@ NoIcon.args = {
 NoIcon.parameters = {
   docs: {
     source: {
-      code: '<CdekToast title="Сообщение" withoutIcon />',
+      code: '<CdekToaster title="Сообщение" withoutIcon />',
     },
   },
 };
@@ -80,7 +80,7 @@ WithButton.args = {
 WithButton.parameters = {
   docs: {
     source: {
-      code: `<CdekToast :button="{ text: 'Продолжить', action: () => {} }" />`,
+      code: `<CdekToaster :button="{ text: 'Продолжить', action: () => {} }" />`,
     },
   },
 };
@@ -97,7 +97,7 @@ WithButtonLoading.args = {
 WithButtonLoading.parameters = {
   docs: {
     source: {
-      code: `<CdekToast :button="{ text: 'Продолжить', action: () => {}, loading: true }" />`,
+      code: `<CdekToaster :button="{ text: 'Продолжить', action: () => {}, loading: true }" />`,
     },
   },
 };
@@ -111,7 +111,7 @@ Success.args = {
 Success.parameters = {
   docs: {
     source: {
-      code: '<CdekToast title="Поступила оплата" text="..." type="success" />',
+      code: '<CdekToaster title="Поступила оплата" text="..." type="success" />',
     },
   },
 };
@@ -125,7 +125,7 @@ Error.args = {
 Error.parameters = {
   docs: {
     source: {
-      code: '<CdekToast title="Сообщение" text="Аннотация" type="error" />',
+      code: '<CdekToaster title="Сообщение" text="Аннотация" type="error" />',
     },
   },
 };
@@ -139,7 +139,7 @@ ErrorCustomIcon.args = {
 ErrorCustomIcon.parameters = {
   docs: {
     source: {
-      code: '<CdekToast title="Нет связи..." :icon="WifiOffIcon" type="error" />',
+      code: '<CdekToaster title="Нет связи..." :icon="WifiOffIcon" type="error" />',
     },
   },
 };
