@@ -1,10 +1,10 @@
 import { Template } from './settings';
-import CdekInput from '../CdekInput.vue';
+import BaseInput from '../BaseInput.vue';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekInput/Slots',
-  component: CdekInput,
+  component: BaseInput,
   parameters: {
     docs: {
       description: {

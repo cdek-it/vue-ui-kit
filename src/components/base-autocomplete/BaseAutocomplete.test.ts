@@ -14,7 +14,7 @@ import type {
   Item, // Используется как тип в комментарии
 } from './types';
 import { KeyboardKeys } from '@/components/base-autocomplete/helpers';
-import CdekInput from '../cdek-input/CdekInput.vue';
+import BaseInput from '../base-input/BaseInput.vue';
 
 interface BaseAutocompleteBuilder {
   setModelValue: (value: Value) => BaseAutocompleteBuilder;
@@ -69,8 +69,8 @@ class BaseAutocompleteBuilder {
       global: {
         renderStubDefaultSlot: true,
         stubs: {
-          CdekInput: {
-            template: '<div data-test-id="cdek-input" />',
+          BaseInput: {
+            template: '<div data-test-id="base-input" />',
             methods: {
               getControl() {
                 return {
@@ -142,7 +142,7 @@ describe('Unit: BaseAutocomplete', () => {
       getTitle: (item: any) => item.a,
     },
   ])(
-    'Должен передать название выбранной опции при инициализации в CdekInput, items - $itemsDesc',
+    'Должен передать название выбранной опции при инициализации в BaseInput, items - $itemsDesc',
     ({ items, inputValue, getValue, getTitle }) => {
       const wrapper = new BaseAutocompleteBuilder()
         .setModelValue('test')
@@ -150,7 +150,7 @@ describe('Unit: BaseAutocomplete', () => {
         .setGetTitle(getTitle)
         .setGetValue(getValue)
         .shallowBuild();
-      const input = wrapper.find(dti('cdek-input'));
+      const input = wrapper.find(dti('base-input'));
       expect(input.attributes('model-value')).toBe(inputValue);
     }
   );
@@ -240,7 +240,7 @@ describe('Unit: BaseAutocomplete', () => {
         .shallowBuild();
 
       // Имитируем пользовательский ввод "tes"
-      const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+      const input = wrapper.getComponent(dti('base-input')) as VueWrapper;
 
       await input.trigger('focus');
 
@@ -322,7 +322,7 @@ describe('Unit: BaseAutocomplete', () => {
       wrapper.setProps({ modelValue });
       await flushPromises();
 
-      const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+      const input = wrapper.getComponent(dti('base-input')) as VueWrapper;
       expect(input.attributes('model-value')).toBe(inputValue);
     }
   );
@@ -376,7 +376,7 @@ describe('Unit: BaseAutocomplete', () => {
         .shallowBuild();
 
       // Проверяем, что текущее значение инпута не пустое и корректное
-      const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+      const input = wrapper.getComponent(dti('base-input')) as VueWrapper;
       expect(input.attributes('model-value')).toBe(inputValue);
 
       // Заменяем на несуществующую опцию
@@ -407,7 +407,7 @@ describe('Unit: BaseAutocomplete', () => {
         .shallowBuild();
 
       // Вводим значение в инпут
-      const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+      const input = wrapper.getComponent(dti('base-input')) as VueWrapper;
 
       await input.trigger('focus');
 
@@ -433,7 +433,7 @@ describe('Unit: BaseAutocomplete', () => {
       .setItems(items)
       .setEnabledAccentQuery(true)
       .build();
-    const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
+    const input = wrapper.getComponent(BaseInput) as unknown as VueWrapper;
 
     const domInput = input.find('.prefix-input__input');
     await domInput.trigger('focus');
@@ -459,7 +459,7 @@ describe('Unit: BaseAutocomplete', () => {
     const userSearch = 'Тес';
 
     const wrapper = new BaseAutocompleteBuilder().setItems(items).build();
-    const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
+    const input = wrapper.getComponent(BaseInput) as unknown as VueWrapper;
 
     const domInput = input.find('.prefix-input__input');
     await domInput.trigger('focus');
@@ -474,22 +474,22 @@ describe('Unit: BaseAutocomplete', () => {
     });
   });
 
-  test('Все неизвестные атрибуты должны передаваться на CdekInput', () => {
+  test('Все неизвестные атрибуты должны передаваться на BaseInput', () => {
     const wrapper = new BaseAutocompleteBuilder()
       .setAttrs({ label: 'Название', clearable: true })
       .shallowBuild();
-    const input = wrapper.find(dti('cdek-input'));
+    const input = wrapper.find(dti('base-input'));
 
     expect(input.attributes('label')).toBe('Название');
     expect(input.attributes('clearable')).toBe('true');
   });
 
-  test('Атрибут class должен быть на корневом элементе CdekAutocomplete, а не на CdekInput', () => {
+  test('Атрибут class должен быть на корневом элементе CdekAutocomplete, а не на BaseInput', () => {
     const wrapper = new BaseAutocompleteBuilder()
       .setAttrs({ class: 'test' })
       .shallowBuild();
     expect(wrapper.classes()).toContain('test');
-    const input = wrapper.find(dti('cdek-input'));
+    const input = wrapper.find(dti('base-input'));
     expect(input.classes()).not.toContain('test');
   });
 
@@ -510,7 +510,7 @@ describe('Unit: BaseAutocomplete', () => {
       .shallowBuild();
 
     // Вводим значение в инпут
-    const input = wrapper.getComponent(dti('cdek-input')) as VueWrapper;
+    const input = wrapper.getComponent(dti('base-input')) as VueWrapper;
 
     await input.trigger('focus');
 
@@ -540,7 +540,7 @@ describe('Unit: BaseAutocomplete', () => {
     const wrapper = new BaseAutocompleteBuilder().setItems(items).build();
 
     // Вводим значение в инпут
-    const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
+    const input = wrapper.getComponent(BaseInput) as unknown as VueWrapper;
 
     const domInput = input.find('.prefix-input__input');
 
@@ -572,7 +572,7 @@ describe('Unit: BaseAutocomplete', () => {
     const wrapper = new BaseAutocompleteBuilder().setItems(items).build();
 
     // Вводим значение в инпут
-    const input = wrapper.getComponent(CdekInput) as unknown as VueWrapper;
+    const input = wrapper.getComponent(BaseInput) as unknown as VueWrapper;
 
     const domInput = input.find('.prefix-input__input');
 

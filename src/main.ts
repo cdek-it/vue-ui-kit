@@ -5,7 +5,7 @@ export * from './components/base-button';
 export * from './components/base-chip';
 export * from './components/base-dropdown';
 export * from './components/base-headline';
-export * from './components/cdek-input';
+export * from './components/base-input';
 export * from './components/cdek-link';
 export * from './components/cdek-modal';
 export * from './components/cdek-select';

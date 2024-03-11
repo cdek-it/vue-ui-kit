@@ -11,7 +11,7 @@ import { debounce } from 'lodash';
 
 import BaseDropdownItem from '../base-dropdown/BaseDropdownItem.vue';
 import BaseDropdownBox from '../base-dropdown/BaseDropdownBox.vue';
-import { CdekInput } from '../cdek-input/';
+import BaseInput from '../base-input/BaseInput.vue';
 
 import type { IItemValue } from '../base-dropdown/BaseDropdown.types';
 import type {
@@ -158,7 +158,7 @@ const isOpen = computed(() => {
 // Подсвеченный элемент при управлении с клавиатуры
 const highlightedEl = ref<number>(-1);
 
-const cdekInputRef = ref<InstanceType<typeof CdekInput> | undefined>();
+const baseInputRef = ref<InstanceType<typeof BaseInput> | undefined>();
 const autocompleteRef = ref<HTMLDivElement>();
 
 const emit = defineEmits<{
@@ -306,13 +306,13 @@ const onBlur = () => {
 };
 
 onMounted(() => {
-  const input = cdekInputRef.value?.getControl();
+  const input = baseInputRef.value?.getControl();
   input?.addEventListener('keydown', onKeydown);
   document.addEventListener('click', onOutsideClick);
 });
 
 onBeforeUnmount(() => {
-  const input = cdekInputRef.value?.getControl();
+  const input = baseInputRef.value?.getControl();
   input?.removeEventListener('keydown', onKeydown);
   document.removeEventListener('click', onOutsideClick);
 });
@@ -326,18 +326,18 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
     :class="[$style['prefix-autocomplete'], props.class]"
     ref="autocompleteRef"
   >
-    <CdekInput
+    <BaseInput
       v-bind="$attrs"
       :model-value="inputValue"
       @update:modelValue="onChangeInput"
-      ref="cdekInputRef"
+      ref="baseInputRef"
       @focus="onFocus"
       @blur="onBlur"
     >
       <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
         <slot :name="slot" v-bind="scope" />
       </template>
-    </CdekInput>
+    </BaseInput>
     <Transition>
       <BaseDropdownBox v-if="isOpen">
         <div

@@ -1,12 +1,12 @@
 import { ref } from 'vue';
-import CdekInput from '../CdekInput.vue';
+import BaseInput from '../BaseInput.vue';
 import SearchIcon from '../svg/search.svg?component';
 import EyeIcon from '../svg/eye.svg?component';
 
-import './CdekInput.stories.scss';
+import './BaseInput.stories.scss';
 
 export const Template = (args: any) => ({
-  components: { CdekInput, SearchIcon, EyeIcon },
+  components: { BaseInput, SearchIcon, EyeIcon },
   setup() {
     const inputVal = ref(
       ['LabelFilled', 'RightIconDisabled', 'ClearableFocus'].includes(
@@ -25,7 +25,7 @@ export const Template = (args: any) => ({
   },
   template: `
     <div :class="cn">
-      <CdekInput v-bind="args" v-model="inputVal">
+      <BaseInput v-bind="args" v-model="inputVal">
         <template #tip="{ alert, info, ban, circle }">
           <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
           <span :class="args.tipColor">{{ args.tip }}</span>
@@ -38,7 +38,7 @@ export const Template = (args: any) => ({
         <template #icons-right v-if="['RightIconDisabled', 'RightIcon'].includes(args.story)">
           <button @click="test"><EyeIcon /></button>
         </template>
-      </CdekInput>
+      </BaseInput>
     </div>
   `,
 });
