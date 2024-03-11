@@ -1,7 +1,7 @@
 import BaseModal from '../BaseModal.vue';
 import { useModalService } from '../services/ModalService';
 import BaseButton from '../../base-button/BaseButton.vue';
-import CdekConfirm from '../CdekConfirm.vue';
+import BaseConfirm from '../BaseConfirm.vue';
 import getVersion from '@/test/getVersion';
 
 export default {
@@ -19,7 +19,7 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { BaseModal, BaseButton, CdekConfirm },
+  components: { BaseModal, BaseButton, BaseConfirm },
   setup() {
     const modalService = useModalService();
 
@@ -35,7 +35,7 @@ const Template = (args) => ({
     }
 
     const onButtonClick = () => {
-      modalService.openModal(CdekConfirm, {
+      modalService.openModal(BaseConfirm, {
         props: args,
       });
     };
