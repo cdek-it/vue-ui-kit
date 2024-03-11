@@ -1,10 +1,10 @@
-import CdekWidget from './CdekWidget.vue';
-import './CdekWidget.stories.css';
+import BaseWidget from './BaseWidget.vue';
+import './BaseWidget.stories.css';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekWidget',
-  component: CdekWidget,
+  component: BaseWidget,
   parameters: {
     docs: {
       description: {
@@ -17,12 +17,12 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekWidget },
+  components: { BaseWidget },
   setup() {
     return { args };
   },
   template: `
-    <CdekWidget v-bind="args">
+    <BaseWidget v-bind="args">
       <template #header v-if="args.story === 'WithCustomHeader'">
         <i>Я</i> кастомный
       </template>
@@ -30,7 +30,7 @@ const Template = (args) => ({
       ${args.default || ''}
 
       <input v-if="args.story === 'Disabled'" />
-    </CdekWidget>
+    </BaseWidget>
   `,
 });
 

@@ -12,7 +12,7 @@ export * from './components/base-select';
 export * from './components/base-spinner';
 export * from './components/base-switch';
 export * from './components/base-toaster';
-export * from './components/cdek-widget';
+export * from './components/base-widget';
 export * from './components/form';
 
 export * from './plugins/toastification';
