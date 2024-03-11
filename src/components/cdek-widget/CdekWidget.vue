@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed, useSlots } from 'vue';
 import BaseHeadline from '../base-headline/BaseHeadline.vue';
-import CdekSpinner from '../cdek-spinner/CdekSpinner.vue';
+import BaseSpinner from '../base-spinner/BaseSpinner.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -40,7 +40,7 @@ const showHeader = computed(() => {
     <slot />
 
     <div v-if="loading" :class="$style['prefix-widget__spinner']">
-      <CdekSpinner size="medium" />
+      <BaseSpinner size="medium" />
     </div>
   </div>
 </template>

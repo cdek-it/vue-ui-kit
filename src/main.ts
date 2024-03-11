@@ -9,7 +9,7 @@ export * from './components/base-input';
 export * from './components/base-link';
 export * from './components/base-modal';
 export * from './components/base-select';
-export * from './components/cdek-spinner';
+export * from './components/base-spinner';
 export * from './components/cdek-switch';
 export * from './components/cdek-toaster';
 export * from './components/cdek-widget';

@@ -113,11 +113,11 @@ describe('Unit: BaseButton', () => {
   describe('Loading', () => {
     test('Если loading = false, то спиннера не должно быть', () => {
       const wrapper = new BaseButtonBuilder().build();
-      expect(wrapper.find('cdek-spinner-stub').exists()).toBeFalsy();
+      expect(wrapper.find('base-spinner-stub').exists()).toBeFalsy();
     });
     test('Если loading = true, то должен показаться спиннер', () => {
       const wrapper = new BaseButtonBuilder().setLoading(true).build();
-      expect(wrapper.find('cdek-spinner-stub').exists()).toBeTruthy();
+      expect(wrapper.find('base-spinner-stub').exists()).toBeTruthy();
     });
     test('Если loading = true и spinnerBefore = false, то контент должен пропасть', () => {
       const wrapper = new BaseButtonBuilder().setLoading(true).build();
@@ -128,7 +128,7 @@ describe('Unit: BaseButton', () => {
         .setLoading(true)
         .setSpinnerBefore(true)
         .build();
-      expect(wrapper.find('cdek-spinner-stub').exists()).toBeTruthy();
+      expect(wrapper.find('base-spinner-stub').exists()).toBeTruthy();
       expect(wrapper.text()).toBe('Подтвердить');
     });
   });
@@ -136,7 +136,7 @@ describe('Unit: BaseButton', () => {
   describe('Цвет спиннера', () => {
     test('Если theme = "primary", то цвет спиннера - белый', () => {
       const wrapper = new BaseButtonBuilder().setLoading(true).build();
-      expect(wrapper.find('cdek-spinner-stub').attributes('color')).toBe(
+      expect(wrapper.find('base-spinner-stub').attributes('color')).toBe(
         'white'
       );
     });
@@ -145,7 +145,7 @@ describe('Unit: BaseButton', () => {
         .setTheme('secondary')
         .setLoading(true)
         .build();
-      expect(wrapper.find('cdek-spinner-stub').attributes('color')).toBe(
+      expect(wrapper.find('base-spinner-stub').attributes('color')).toBe(
         'green'
       );
     });
@@ -154,7 +154,7 @@ describe('Unit: BaseButton', () => {
         .setLoading(true)
         .setDisabled(true)
         .build();
-      expect(wrapper.find('cdek-spinner-stub').attributes('color')).toBe(
+      expect(wrapper.find('base-spinner-stub').attributes('color')).toBe(
         'white'
       );
     });

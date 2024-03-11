@@ -4,7 +4,7 @@ import { CdekForm } from '../cdek-form';
 import './CdekFormControl.stories.css';
 import { formSettings } from '../index';
 import getVersion from '@/test/getVersion';
-import { CdekSpinner } from '../../cdek-spinner';
+import BaseSpinner from '../../base-spinner/BaseSpinner.vue';
 
 export default {
   title: 'Form/CdekFormControl',
@@ -378,7 +378,7 @@ WithoutError.parameters = {
 };
 
 const SlottedTemplate = (args) => ({
-  components: { CdekForm, CdekFormControl, CdekSpinner },
+  components: { CdekForm, CdekFormControl, BaseSpinner },
   setup() {
     return { args };
   },
@@ -387,7 +387,7 @@ const SlottedTemplate = (args) => ({
       <CdekForm>
         <CdekFormControl v-bind="args">
           <template #icons-right>
-            <CdekSpinner />
+            <BaseSpinner />
           </template>
         </CdekFormControl>
       </CdekForm>

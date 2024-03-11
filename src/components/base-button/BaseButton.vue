@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
-import CdekSpinner from '../cdek-spinner/CdekSpinner.vue';
+import BaseSpinner from '../base-spinner/BaseSpinner.vue';
 
 const props = withDefaults(
   defineProps<{
@@ -67,7 +67,7 @@ const spinnerColor = computed(() => {
     ]"
     type="button"
   >
-    <CdekSpinner :color="spinnerColor" v-if="loading" />
+    <BaseSpinner :color="spinnerColor" v-if="loading" />
     <slot v-if="!loading || spinnerBefore" />
   </component>
 </template>

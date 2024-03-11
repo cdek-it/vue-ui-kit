@@ -1,9 +1,9 @@
-import CdekSpinner from './CdekSpinner.vue';
+import BaseSpinner from './BaseSpinner.vue';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekSpinner',
-  component: CdekSpinner,
+  component: BaseSpinner,
   parameters: {
     docs: {
       description: {
@@ -24,11 +24,11 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekSpinner },
+  components: { BaseSpinner },
   setup() {
     return { args };
   },
-  template: `<CdekSpinner v-bind="args"></CdekSpinner>`,
+  template: `<BaseSpinner v-bind="args"></BaseSpinner>`,
 });
 
 export const Primary = Template.bind({});
