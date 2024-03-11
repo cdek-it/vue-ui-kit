@@ -1,9 +1,9 @@
-import CdekAlert from './CdekAlert.vue';
+import BaseAlert from './BaseAlert.vue';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekAlert',
-  component: CdekAlert,
+  component: BaseAlert,
   parameters: {
     docs: {
       description: {
@@ -26,16 +26,16 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekAlert },
+  components: { BaseAlert },
   setup() {
     return { args };
   },
   template: `
-    <CdekAlert v-bind="args">
+    <BaseAlert v-bind="args">
       <template v-if="args.header" #header>{{ args.header }}</template>
       
       <template v-if="args.default">{{ args.default }}</template>
-    </CdekAlert>
+    </BaseAlert>
   `,
 });
 

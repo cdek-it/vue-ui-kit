@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
-import CdekAlert from './CdekAlert.vue';
+import BaseAlert from './BaseAlert.vue';
 import builderProp from '@/test/decorators';
 
 import AlertTriangleIcon from './icons/alert-triangle.svg?component';
@@ -9,16 +9,16 @@ import BanIcon from './icons/ban.svg?component';
 import InfoCircleIcon from './icons/info-circle.svg?component';
 
 interface ExtraMethods {
-  setTitle: (val: string) => CdekAlertBuilder;
-  setType: (val: string) => CdekAlertBuilder;
-  setDefaultSlot: (val: string) => CdekAlertBuilder;
-  setHeaderSlot: (val: string) => CdekAlertBuilder;
-  setStyle: (val: string) => CdekAlertBuilder;
+  setTitle: (val: string) => BaseAlertBuilder;
+  setType: (val: string) => BaseAlertBuilder;
+  setDefaultSlot: (val: string) => BaseAlertBuilder;
+  setHeaderSlot: (val: string) => BaseAlertBuilder;
+  setStyle: (val: string) => BaseAlertBuilder;
 }
 
-interface CdekAlertBuilder extends ExtraMethods {}
+interface BaseAlertBuilder extends ExtraMethods {}
 
-class CdekAlertBuilder {
+class BaseAlertBuilder {
   @builderProp
   title?: string;
 
@@ -35,7 +35,7 @@ class CdekAlertBuilder {
   style?: string;
 
   build() {
-    return mount(CdekAlert as any, {
+    return mount(BaseAlert as any, {
       props: {
         title: this.title,
         type: this.type,
@@ -51,14 +51,14 @@ class CdekAlertBuilder {
 
 describe('Unit: CdekAlert', () => {
   test('component renders with default props', () => {
-    const wrapper = new CdekAlertBuilder().build();
+    const wrapper = new BaseAlertBuilder().build();
     expect(wrapper.exists()).toBeTruthy();
     expect(wrapper.classes()).toContain('prefix-alert--attention');
     expect(wrapper.classes()).toContain('prefix-alert_surface');
   });
 
   test('component renders title', () => {
-    const wrapper = new CdekAlertBuilder().setTitle('Test Title').build();
+    const wrapper = new BaseAlertBuilder().setTitle('Test Title').build();
 
     expect(wrapper.exists()).toBe(true);
     expect(wrapper.find('.prefix-alert__title').text()).toBe('Test Title');
@@ -66,7 +66,7 @@ describe('Unit: CdekAlert', () => {
   });
 
   test('component renders with custom type', () => {
-    const wrapper = new CdekAlertBuilder().setType('positive').build();
+    const wrapper = new BaseAlertBuilder().setType('positive').build();
 
     expect(wrapper.exists()).toBe(true);
     expect(wrapper.classes()).toContain('prefix-alert--positive');
@@ -74,7 +74,7 @@ describe('Unit: CdekAlert', () => {
   });
 
   test('component renders with content', () => {
-    const wrapper = new CdekAlertBuilder()
+    const wrapper = new BaseAlertBuilder()
       .setDefaultSlot('Test content')
       .build();
 
@@ -83,7 +83,7 @@ describe('Unit: CdekAlert', () => {
   });
 
   test('component icon changes when type prop changes', async () => {
-    const wrapper = new CdekAlertBuilder().build();
+    const wrapper = new BaseAlertBuilder().build();
 
     expect(wrapper.findComponent(AlertTriangleIcon).exists()).toBe(true);
 
@@ -98,14 +98,14 @@ describe('Unit: CdekAlert', () => {
   });
 
   test('component renders just header slot without icon', () => {
-    const wrapper = new CdekAlertBuilder().setHeaderSlot('Test Title').build();
+    const wrapper = new BaseAlertBuilder().setHeaderSlot('Test Title').build();
 
     expect(wrapper.find('.prefix-alert__title').text()).toBe('Test Title');
     expect(wrapper.findComponent(AlertTriangleIcon).exists()).toBe(false);
   });
 
   test('renders with style set to line', () => {
-    const wrapper = new CdekAlertBuilder().setStyle('line').build();
+    const wrapper = new BaseAlertBuilder().setStyle('line').build();
 
     expect(wrapper.exists()).toBeTruthy();
     expect(wrapper.classes()).toContain('prefix-alert_line');
