@@ -1,10 +1,10 @@
 import { ref } from 'vue';
-import CdekSwitch from './CdekSwitch.vue';
+import BaseSwitch from './BaseSwitch.vue';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekSwitch',
-  component: CdekSwitch,
+  component: BaseSwitch,
   parameters: {
     docs: {
       description: {
@@ -17,18 +17,18 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekSwitch },
+  components: { BaseSwitch },
   setup() {
     const val = ref(args.modelValue || false);
 
     return { args, val };
   },
   template: `
-    <CdekSwitch v-bind="args" v-model="val">
+    <BaseSwitch v-bind="args" v-model="val">
       <template v-if=args.slot>
         <a href="/offer">test</a> 
       </template>
-    </CdekSwitch>
+    </BaseSwitch>
   `,
 });
 
