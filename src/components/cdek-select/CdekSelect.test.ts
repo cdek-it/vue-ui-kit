@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import CdekSelect from './CdekSelect.vue';
-import type { IItemValue, Primitive } from '@/components/cdek-dropdown';
+import type { IItemValue, Primitive } from '@/components/base-dropdown';
 import { Listbox } from '@headlessui/vue';
 import builderProp from '@/test/decorators';
 import type {

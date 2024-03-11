@@ -3,7 +3,7 @@ export * from './components/base-autocomplete';
 export * from './components/base-badge';
 export * from './components/base-button';
 export * from './components/base-chip';
-export * from './components/cdek-dropdown';
+export * from './components/base-dropdown';
 export * from './components/cdek-headline';
 export * from './components/cdek-input';
 export * from './components/cdek-link';

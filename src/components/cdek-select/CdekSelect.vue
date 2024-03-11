@@ -7,8 +7,9 @@ import {
   ListboxOption,
   ListboxOptions,
 } from '@headlessui/vue';
-import { CdekDropdownBox, CdekDropdownItem } from '../cdek-dropdown/';
-import type { IItemValue } from '../cdek-dropdown/CdekDropdown.types';
+import BaseDropdownBox from '../base-dropdown/BaseDropdownBox.vue';
+import BaseDropdownItem from '../base-dropdown/BaseDropdownItem.vue';
+import type { IItemValue } from '../base-dropdown/BaseDropdown.types';
 import ChevronUpIcon from './svg/chevron-up.svg?component';
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';
@@ -219,7 +220,7 @@ const value = computed({
           />
         </div>
       </ListboxButton>
-      <ListboxOptions :as="CdekDropdownBox">
+      <ListboxOptions :as="BaseDropdownBox">
         <ListboxOption
           v-for="item in options"
           v-slot="{ selected, active }"
@@ -229,14 +230,14 @@ const value = computed({
           as="template"
         >
           <slot name="option" :option="item">
-            <CdekDropdownItem
+            <BaseDropdownItem
               :value="item"
               :disabled="item.disabled"
               :selected="selected"
               :active="active"
             >
               {{ item.title }}
-            </CdekDropdownItem>
+            </BaseDropdownItem>
           </slot>
         </ListboxOption>
       </ListboxOptions>

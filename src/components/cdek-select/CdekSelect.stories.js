@@ -1,5 +1,5 @@
 import CdekSelect from './CdekSelect.vue';
-import TrashIcon from '../cdek-dropdown/svg/trash.svg?component';
+import TrashIcon from '../base-dropdown/svg/trash.svg?component';
 import { ref } from 'vue';
 import getVersion from '@/test/getVersion';
 import './CdekSelect.stories.css';

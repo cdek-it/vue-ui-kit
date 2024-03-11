@@ -79,8 +79,8 @@ class BaseAutocompleteBuilder {
               },
             },
           },
-          CdekDropdownItem: {
-            template: '<div data-test-id="cdek-dropdown-item" />',
+          BaseDropdownItem: {
+            template: '<div data-test-id="base-dropdown-item" />',
           },
         },
       },
@@ -250,7 +250,7 @@ describe('Unit: BaseAutocomplete', () => {
 
       // Имитируем выбор показанной опции "test"
       const item = wrapper.getComponent(
-        dti('cdek-dropdown-item')
+        dti('base-dropdown-item')
       ) as VueWrapper;
       item.vm.$emit('select', dropdownOption);
       await flushPromises(); // Ждем пока listeners выполнятся
@@ -415,7 +415,7 @@ describe('Unit: BaseAutocomplete', () => {
       await sleep(300); // Ждем из-за debounce
 
       // Пытаемся найти опции
-      const options = wrapper.findAll(dti('cdek-dropdown-item'));
+      const options = wrapper.findAll(dti('base-dropdown-item'));
 
       expect(options.length).toBe(optionsLength);
     }
@@ -524,7 +524,7 @@ describe('Unit: BaseAutocomplete', () => {
     await sleep(1300); // Ждем когда фетч зарелозвится
 
     // Пытаемся найти опции
-    const options = wrapper.findAll(dti('cdek-dropdown-item'));
+    const options = wrapper.findAll(dti('base-dropdown-item'));
 
     expect(options.length).toBe(0);
   });

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import CheckIcon from './svg/check.svg?component';
-import type { IItemValue } from './CdekDropdown.types';
+import type { IItemValue } from './BaseDropdown.types';
 
 const props = withDefaults(
   defineProps<{

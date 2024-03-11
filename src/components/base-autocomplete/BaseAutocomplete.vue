@@ -9,10 +9,11 @@ import {
 } from 'vue';
 import { debounce } from 'lodash';
 
-import { CdekDropdownItem, CdekDropdownBox } from '../cdek-dropdown/';
+import BaseDropdownItem from '../base-dropdown/BaseDropdownItem.vue';
+import BaseDropdownBox from '../base-dropdown/BaseDropdownBox.vue';
 import { CdekInput } from '../cdek-input/';
 
-import type { IItemValue } from '../cdek-dropdown/CdekDropdown.types';
+import type { IItemValue } from '../base-dropdown/BaseDropdown.types';
 import type {
   Value,
   Item,
@@ -338,7 +339,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
       </template>
     </CdekInput>
     <Transition>
-      <CdekDropdownBox v-if="isOpen">
+      <BaseDropdownBox v-if="isOpen">
         <div
           :class="$style['prefix-autocomplete__not-found']"
           v-if="options.length === 0 && inputValue?.length >= minLength"
@@ -346,7 +347,7 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
           <!-- @slot сообщение, в случае, если ничего не нашлось -->
           <slot name="not-found" />
         </div>
-        <CdekDropdownItem
+        <BaseDropdownItem
           v-for="(item, index) in options"
           :value="item"
           :active="index === highlightedEl"
@@ -355,8 +356,8 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
         >
           <span v-if="enabledAccentQuery" v-html="accentQuery(item.title)" />
           <template v-else>{{ item.title }}</template>
-        </CdekDropdownItem>
-      </CdekDropdownBox>
+        </BaseDropdownItem>
+      </BaseDropdownBox>
     </Transition>
   </div>
 </template>

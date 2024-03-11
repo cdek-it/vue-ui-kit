@@ -1,11 +1,11 @@
-import CdekDropdownItem from './CdekDropdownItem.vue';
-import CdekDropdownBox from './CdekDropdownBox.vue';
+import BaseDropdownItem from './BaseDropdownItem.vue';
+import BaseDropdownBox from './BaseDropdownBox.vue';
 import FileDescriptionIcon from './svg/file-description.svg?component';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekDropdown',
-  component: CdekDropdownItem,
+  component: BaseDropdownItem,
   parameters: {
     docs: {
       description: {
@@ -18,16 +18,16 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekDropdownItem, CdekDropdownBox, FileDescriptionIcon },
+  components: { BaseDropdownItem, BaseDropdownBox, FileDescriptionIcon },
   setup() {
     return { args };
   },
   template: `
-<CdekDropdownBox>
-  <CdekDropdownItem v-bind="args">
+<BaseDropdownBox>
+  <BaseDropdownItem v-bind="args">
     ${args.default}
-  </CdekDropdownItem>
-</CdekDropdownBox>
+  </BaseDropdownItem>
+</BaseDropdownBox>
   `,
 });
 
