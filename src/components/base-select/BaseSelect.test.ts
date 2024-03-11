@@ -1,31 +1,31 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
-import CdekSelect from './CdekSelect.vue';
+import BaseSelect from './BaseSelect.vue';
 import type { IItemValue, Primitive } from '@/components/base-dropdown';
 import { Listbox } from '@headlessui/vue';
 import builderProp from '@/test/decorators';
 import type {
   GetTitleFn,
   GetValueFn,
-} from '@/components/cdek-select/CdekSelect.vue';
+} from '@/components/base-select/BaseSelect.vue';
 
 interface ExtraMethods {
-  setModelValue: (value: Primitive | Array<Primitive>) => CdekSelectBuilder;
-  setLabel: (value: string) => CdekSelectBuilder;
-  setValidRes: (value: true | string) => CdekSelectBuilder;
-  setHideErrorMessage: (value: boolean) => CdekSelectBuilder;
-  setDisabled: (value: boolean) => CdekSelectBuilder;
-  setReadonly: (value: boolean) => CdekSelectBuilder;
-  setSmall: (value: boolean) => CdekSelectBuilder;
-  setMultiple: (value: boolean) => CdekSelectBuilder;
-  setTip: (value: string) => CdekSelectBuilder;
-  setOption: (value: string) => CdekSelectBuilder;
-  setSelectedOption: (value: string) => CdekSelectBuilder;
+  setModelValue: (value: Primitive | Array<Primitive>) => BaseSelectBuilder;
+  setLabel: (value: string) => BaseSelectBuilder;
+  setValidRes: (value: true | string) => BaseSelectBuilder;
+  setHideErrorMessage: (value: boolean) => BaseSelectBuilder;
+  setDisabled: (value: boolean) => BaseSelectBuilder;
+  setReadonly: (value: boolean) => BaseSelectBuilder;
+  setSmall: (value: boolean) => BaseSelectBuilder;
+  setMultiple: (value: boolean) => BaseSelectBuilder;
+  setTip: (value: string) => BaseSelectBuilder;
+  setOption: (value: string) => BaseSelectBuilder;
+  setSelectedOption: (value: string) => BaseSelectBuilder;
   setItems: (
     items: Array<IItemValue> | Array<Primitive> | Array<any>
-  ) => CdekSelectBuilder;
-  setGetValue: (getValue?: GetValueFn) => CdekSelectBuilder;
-  setGetTitle: (getTitle?: GetTitleFn) => CdekSelectBuilder;
+  ) => BaseSelectBuilder;
+  setGetValue: (getValue?: GetValueFn) => BaseSelectBuilder;
+  setGetTitle: (getTitle?: GetTitleFn) => BaseSelectBuilder;
 }
 
 const defaultItems: Array<IItemValue> = [
@@ -35,9 +35,9 @@ const defaultItems: Array<IItemValue> = [
   { value: 4, title: 'Option 4' },
 ];
 
-interface CdekSelectBuilder extends ExtraMethods {}
+interface BaseSelectBuilder extends ExtraMethods {}
 
-class CdekSelectBuilder {
+class BaseSelectBuilder {
   @builderProp
   modelValue: Primitive | Array<Primitive> = '';
 
@@ -88,7 +88,7 @@ class CdekSelectBuilder {
   }
 
   build() {
-    const wrapper = mount(CdekSelect as any, {
+    const wrapper = mount(BaseSelect as any, {
       props: {
         modelValue: this.modelValue,
         items: this.items,
@@ -116,15 +116,15 @@ class CdekSelectBuilder {
   }
 }
 
-describe('Unit: CdekSelect', () => {
+describe('Unit: BaseSelect', () => {
   describe('Отображение value', () => {
     test('Если modelValue содержит значение, которое есть в items, то выводится value, соответствующего item', async () => {
-      const wrapper = new CdekSelectBuilder().setModelValue(1).build();
+      const wrapper = new BaseSelectBuilder().setModelValue(1).build();
       const value = wrapper.find('.prefix-select__value');
       expect(value.text()).toBe('Option 1');
     });
     test('Если multiple = true и modelValue содержит значения, которые есть в items, то выводятся все выбранные варианты', async () => {
-      const wrapper = new CdekSelectBuilder()
+      const wrapper = new BaseSelectBuilder()
         .setMultiple(true)
         .setModelValue([1, 2])
         .build();
@@ -135,7 +135,7 @@ describe('Unit: CdekSelect', () => {
 
   describe('Выбор варианта из списка', () => {
     test('Выбранное значение сетится в modelValue', async () => {
-      const wrapper = new CdekSelectBuilder().build();
+      const wrapper = new BaseSelectBuilder().build();
       const control = wrapper.find('.prefix-select__control');
       await control.trigger('click');
       const option = wrapper.find(`.prefix-dropdown-item:nth-of-type(2)`);
@@ -144,7 +144,7 @@ describe('Unit: CdekSelect', () => {
       expect(value.text()).toBe('Option 2');
     });
     test('Значение с полем disabled = true не сетится в modelValue', async () => {
-      const Select = new CdekSelectBuilder();
+      const Select = new BaseSelectBuilder();
       const wrapper = Select.build();
       const control = wrapper.find('.prefix-select__control');
       await control.trigger('click');
@@ -154,7 +154,7 @@ describe('Unit: CdekSelect', () => {
       expect(value.text()).toBe('');
     });
     test('Если multiple = true в modelValue сетится несколько выбранных значений', async () => {
-      const Select = new CdekSelectBuilder();
+      const Select = new BaseSelectBuilder();
       const wrapper = Select.setMultiple(true).setModelValue([]).build();
       const control = wrapper.find('.prefix-select__control');
       await control.trigger('click');
@@ -169,19 +169,19 @@ describe('Unit: CdekSelect', () => {
 
   describe('label', () => {
     test('Если label = "Вариант действия", то лейбл должен содержать "Вариант действия"', () => {
-      const wrapper = new CdekSelectBuilder()
+      const wrapper = new BaseSelectBuilder()
         .setLabel('Вариант действия')
         .build();
       const label = wrapper.find('.prefix-select__label');
       expect(label.text()).toBe('Вариант действия');
     });
     test('Если label не передан, то лейбл должен отсутствовать', () => {
-      const wrapper = new CdekSelectBuilder().build();
+      const wrapper = new BaseSelectBuilder().build();
       const label = wrapper.find('.prefix-select__label');
       expect(label.exists()).toBeFalsy();
     });
     test('Если modelValue содержит значение и передан label, то лейбл должен сохранить верхнее положение', () => {
-      const wrapper = new CdekSelectBuilder()
+      const wrapper = new BaseSelectBuilder()
         .setLabel('Вариант действия')
         .setModelValue(1)
         .build();
@@ -189,7 +189,7 @@ describe('Unit: CdekSelect', () => {
       expect(label.classes('prefix-select__label_filled')).toBeTruthy();
     });
     test('Если modelValue не содержит значение и передан label, то лейбл должен быть посередине', () => {
-      const wrapper = new CdekSelectBuilder()
+      const wrapper = new BaseSelectBuilder()
         .setLabel('Вариант действия')
         .build();
       const label = wrapper.find('.prefix-select__label');
@@ -199,7 +199,7 @@ describe('Unit: CdekSelect', () => {
 
   describe('validRes', () => {
     test('Если validRes - строка, то должны добавляться стили для состояния ошибки', () => {
-      const wrapper = new CdekSelectBuilder()
+      const wrapper = new BaseSelectBuilder()
         .setLabel('Вариант действия')
         .setValidRes('Ошибка')
         .build();
@@ -210,13 +210,13 @@ describe('Unit: CdekSelect', () => {
     });
 
     test('Если validRes = "Ошибка", то должен показываться текст "Ошибка"', () => {
-      const wrapper = new CdekSelectBuilder().setValidRes('Ошибка').build();
+      const wrapper = new BaseSelectBuilder().setValidRes('Ошибка').build();
       const error = wrapper.find('.error');
       expect(error.text()).toBe('Ошибка');
     });
 
     test('Если validRes = "Ошибка" и hideErrorMessage = true, то текст "Ошибка" не должен показываться', () => {
-      const wrapper = new CdekSelectBuilder()
+      const wrapper = new BaseSelectBuilder()
         .setValidRes('Ошибка')
         .setHideErrorMessage(true)
         .build();
@@ -227,7 +227,7 @@ describe('Unit: CdekSelect', () => {
   });
 
   test('Если в слот #tip передана строка "Пояснение или помощь", то должна показываться подсказка с текстом "Пояснение или помощь"', () => {
-    const wrapper = new CdekSelectBuilder()
+    const wrapper = new BaseSelectBuilder()
       .setTip('Пояснение или помощь')
       .build();
     const tip = wrapper.find('.prefix-select__tip');
@@ -236,12 +236,12 @@ describe('Unit: CdekSelect', () => {
 
   describe('disabled', () => {
     test('Если передан disabled, то компонент должен стилизоваться под состояние disabled', () => {
-      const wrapper = new CdekSelectBuilder().setDisabled(true).build();
+      const wrapper = new BaseSelectBuilder().setDisabled(true).build();
       const control = wrapper.find('.prefix-select__control');
       expect(control.classes('prefix-select__control_disabled')).toBeTruthy();
     });
     test('Если передан disabled, то в Listbox должен прокидываться пропс "disabled"', () => {
-      const wrapper = new CdekSelectBuilder().setDisabled(true).build();
+      const wrapper = new BaseSelectBuilder().setDisabled(true).build();
       const listbox = wrapper.findComponent(Listbox);
       expect(listbox.props('disabled')).toBe(true);
     });
@@ -249,24 +249,24 @@ describe('Unit: CdekSelect', () => {
 
   describe('readonly', () => {
     test('Если передан readonly, то компонент должен стилизоваться под состояние readonly', () => {
-      const wrapper = new CdekSelectBuilder().setReadonly(true).build();
+      const wrapper = new BaseSelectBuilder().setReadonly(true).build();
       const control = wrapper.find('.prefix-select__control');
       expect(control.classes('prefix-select__control_readonly')).toBeTruthy();
     });
     test('Если передан readonly, то цвет текста селекта должен стать черным', () => {
-      const wrapper = new CdekSelectBuilder().setReadonly(true).build();
+      const wrapper = new BaseSelectBuilder().setReadonly(true).build();
       const value = wrapper.find('.prefix-select__value');
       expect(value.classes('prefix-select__value_readonly')).toBeTruthy();
     });
     test('Если передан readonly, то в Listbox должен прокидываться пропс "disabled"', () => {
-      const wrapper = new CdekSelectBuilder().setReadonly(true).build();
+      const wrapper = new BaseSelectBuilder().setReadonly(true).build();
       const listbox = wrapper.findComponent(Listbox);
       expect(listbox.props('disabled')).toBe(true);
     });
   });
 
   test('Если нет disabled и нет readonly то при клике откроется список опций', async () => {
-    const Select = new CdekSelectBuilder();
+    const Select = new BaseSelectBuilder();
     const wrapper = Select.setLabel('Вариант действия').build();
     const control = wrapper.find('.prefix-select__control');
     await control.trigger('click');
@@ -274,7 +274,7 @@ describe('Unit: CdekSelect', () => {
   });
 
   test('Если small = true, то должны добавляться классы-модификаторы на элементы', () => {
-    const wrapper = new CdekSelectBuilder()
+    const wrapper = new BaseSelectBuilder()
       .setLabel('Вариант действия')
       .setSmall(true)
       .build();
@@ -288,7 +288,7 @@ describe('Unit: CdekSelect', () => {
 
   describe('scopedSlots', () => {
     test('Если слот option передан, то вид опции изменяется ', async () => {
-      const wrapper = new CdekSelectBuilder()
+      const wrapper = new BaseSelectBuilder()
         .setOption('<div class="some-class">{{ params.option.value}}</div>')
         .build();
 
@@ -303,7 +303,7 @@ describe('Unit: CdekSelect', () => {
     });
 
     test('Если слот selectedOption передан, то на название применяется пераданный шаблон', async () => {
-      const wrapper = new CdekSelectBuilder()
+      const wrapper = new BaseSelectBuilder()
         .setLabel('Вариант действия')
         .setModelValue(1)
         .setSelectedOption(
@@ -335,7 +335,7 @@ describe('Unit: CdekSelect', () => {
 
     const getTitle = (item: any) => item.titleData.title;
 
-    const wrapper = new CdekSelectBuilder()
+    const wrapper = new BaseSelectBuilder()
       .setItems(customItems)
       .setGetTitle(getTitle)
       .build();
@@ -368,7 +368,7 @@ describe('Unit: CdekSelect', () => {
       return item.valueData.value;
     };
 
-    const wrapper = new CdekSelectBuilder()
+    const wrapper = new BaseSelectBuilder()
       .setItems(customItems)
       .setGetValue(getValue)
       .build();

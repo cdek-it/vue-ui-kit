@@ -1,12 +1,12 @@
-import CdekSelect from './CdekSelect.vue';
+import BaseSelect from './BaseSelect.vue';
 import TrashIcon from '../base-dropdown/svg/trash.svg?component';
 import { ref } from 'vue';
 import getVersion from '@/test/getVersion';
-import './CdekSelect.stories.css';
+import './BaseSelect.stories.css';
 
 export default {
   title: 'Ui kit/CdekSelect',
-  component: CdekSelect,
+  component: BaseSelect,
   parameters: {
     docs: {
       description: {
@@ -26,7 +26,7 @@ const items = [
 ];
 
 const Template = (args) => ({
-  components: { CdekSelect },
+  components: { BaseSelect },
   setup() {
     const selectValue = ref(args.value);
 
@@ -37,7 +37,7 @@ const Template = (args) => ({
     return { args, items: args.items, selectValue, selectArg, onSelect };
   },
   template: `
-<CdekSelect v-bind="args" :items="items" v-model="selectValue" @select="onSelect">
+<BaseSelect v-bind="args" :items="items" v-model="selectValue" @select="onSelect">
   <template 
       v-if="args.story === 'ScopedSlotSelectedOption' 
       || args.story === 'ScopedSlotsSelectedOptionAndCustomOption'" #selectedOption="{ value }">
@@ -58,7 +58,7 @@ const Template = (args) => ({
     <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
     <span :class="args.tipColor">{{ args.tip }}</span>
   </template>
-</CdekSelect>
+</BaseSelect>
 
 
 <div v-if="args.story === 'GetValue' || args.story === 'GetTitle'">
