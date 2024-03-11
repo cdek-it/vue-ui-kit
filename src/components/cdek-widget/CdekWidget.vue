@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, useSlots } from 'vue';
-import CdekHeadline from '../cdek-headline/CdekHeadline.vue';
+import BaseHeadline from '../base-headline/BaseHeadline.vue';
 import CdekSpinner from '../cdek-spinner/CdekSpinner.vue';
 
 const props = withDefaults(
@@ -29,13 +29,13 @@ const showHeader = computed(() => {
       disabled ? $style['prefix-widget_disabled'] : '',
     ]"
   >
-    <CdekHeadline
+    <BaseHeadline
       v-if="showHeader"
       size="4"
       :class="$style['prefix-widget__title']"
     >
       <slot name="header">{{ headline }}</slot>
-    </CdekHeadline>
+    </BaseHeadline>
 
     <slot />
 

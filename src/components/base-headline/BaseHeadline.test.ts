@@ -1,18 +1,18 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
-import CdekHeadline from './CdekHeadline.vue';
+import BaseHeadline from './BaseHeadline.vue';
 
 type SizeT = '1' | '2' | '3' | '4' | '5' | '6' | '7';
 
-const createCdekHeadline = (size?: SizeT) => {
-  return mount(CdekHeadline as any, {
+const createBaseHeadline = (size?: SizeT) => {
+  return mount(BaseHeadline as any, {
     props: {
       size,
     },
   });
 };
 
-describe('Unit: CdekHeadline', () => {
+describe('Unit: BaseHeadline', () => {
   describe('size', () => {
     test.each([
       { size: '1', sizeClass: 'headline-1' },
@@ -25,7 +25,7 @@ describe('Unit: CdekHeadline', () => {
     ])(
       'Если size = $size, то должен быть класс $sizeClass',
       ({ size, sizeClass }: any) => {
-        const wrapper = createCdekHeadline(size);
+        const wrapper = createBaseHeadline(size);
         expect(wrapper.classes(sizeClass)).toBeTruthy();
       }
     );

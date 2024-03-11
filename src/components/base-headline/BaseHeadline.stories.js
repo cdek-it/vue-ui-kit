@@ -1,9 +1,9 @@
-import CdekHeadline from './CdekHeadline.vue';
+import BaseHeadline from './BaseHeadline.vue';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekHeadline',
-  component: CdekHeadline,
+  component: BaseHeadline,
   parameters: {
     docs: {
       description: {
@@ -22,13 +22,13 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { CdekHeadline },
+  components: { BaseHeadline },
   setup() {
     return { args };
   },
   template: `
     <span style="color:red; font-weight: bold;">Deprecated</span>
-    <CdekHeadline v-bind="args">Заголовок</CdekHeadline>
+    <BaseHeadline v-bind="args">Заголовок</BaseHeadline>
   `,
 });
 
