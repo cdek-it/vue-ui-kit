@@ -4,6 +4,6 @@ import {
   changeDefaultLocale,
 } from './services/Validators';
 
-export * from './cdek-form';
-export { default as CdekFormControl } from './cdek-form-control/CdekFormControl.vue';
+export * from './base-form';
+export * from './base-form-control';
 export const formSettings = { changeLocale, addMessages, changeDefaultLocale };

@@ -1,21 +1,21 @@
 import { ref } from 'vue';
 
-import CdekForm from './CdekForm.vue';
-import { CdekFormControl } from '@/components/form/cdek-form-control';
+import BaseForm from './BaseForm.vue';
+import BaseFormControl from '../base-form-control/BaseFormControl.vue';
 import { formSettings } from '../index';
 import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Form/CdekForm',
-  component: CdekForm,
-  subcomponents: { CdekFormControl },
+  component: BaseForm,
+  subcomponents: { BaseFormControl },
   parameters: {
     version: getVersion('0.0.1', 'alpha'),
   },
 };
 
 const Template = (args) => ({
-  components: { CdekForm, CdekFormControl },
+  components: { BaseForm, BaseFormControl },
   setup() {
     let form = ref({});
     let errors = ref({});
@@ -64,15 +64,15 @@ const Template = (args) => ({
       errors.value = err;
     };
 
-    const cdekFormRef = ref(null);
+    const baseFormRef = ref(null);
     const triggerSubmitResult = ref();
 
     const triggerSubmit = () => {
-      triggerSubmitResult.value = cdekFormRef.value?.triggerSubmit();
+      triggerSubmitResult.value = baseFormRef.value?.triggerSubmit();
     };
 
     const clearForm = () => {
-      cdekFormRef.value?.clearForm();
+      baseFormRef.value?.clearForm();
     };
 
     return {
@@ -84,15 +84,15 @@ const Template = (args) => ({
       rules,
       changeLocaleEn,
       changeLocaleRu,
-      cdekFormRef,
+      baseFormRef,
       triggerSubmit,
       triggerSubmitResult,
       clearForm,
     };
   },
   template: `
-    <CdekForm v-bind="args" @submit="submit" @submitError="submitErrors" ref="cdekFormRef">
-      <CdekFormControl
+    <BaseForm v-bind="args" @submit="submit" @submitError="submitErrors" ref="baseFormRef">
+      <BaseFormControl
         name="firstName"
         label="firstName"
         :rules="rules"
@@ -102,7 +102,7 @@ const Template = (args) => ({
             : ''
         }"
       />
-      <CdekFormControl
+      <BaseFormControl
         name="surname"
         label="surname"
         initialValue="${
@@ -112,7 +112,7 @@ const Template = (args) => ({
         }"
       />
       <button v-if="args.story !== 'ManualSubmit'">Продолжить</button>
-    </CdekForm>
+    </BaseForm>
     
     <p v-if="args.story === 'ClearForm'">
       <button @click="clearForm">Очистить форму</button>

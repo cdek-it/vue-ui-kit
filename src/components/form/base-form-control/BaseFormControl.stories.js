@@ -1,21 +1,21 @@
 import { ref } from 'vue';
-import CdekFormControl from './CdekFormControl.vue';
-import { CdekForm } from '../cdek-form';
-import './CdekFormControl.stories.css';
+import BaseFormControl from './BaseFormControl.vue';
+import BaseForm from '../base-form/BaseForm.vue';
+import './BaseFormControl.stories.css';
 import { formSettings } from '../index';
 import getVersion from '@/test/getVersion';
 import BaseSpinner from '../../base-spinner/BaseSpinner.vue';
 
 export default {
   title: 'Form/CdekFormControl',
-  component: CdekFormControl,
+  component: BaseFormControl,
   parameters: {
     version: getVersion('0.1.0', 'alpha'),
   },
 };
 
 const Template = (args) => ({
-  components: { CdekForm, CdekFormControl },
+  components: { BaseForm, BaseFormControl },
   setup() {
     if (args.story === 'WithExtraLocale') {
       formSettings.addMessages('required', { en: 'Required field' });
@@ -36,14 +36,10 @@ const Template = (args) => ({
   },
   template: `
     <div>
-      <CdekForm>
-        <CdekFormControl v-bind="args" :rules="rules">
-        <template #icons-right>
-          zalupa
-        </template>
-        </CdekFormControl>
+      <BaseForm>
+        <BaseFormControl v-bind="args" :rules="rules" />
         <p>Current validator: <code>'{{ rules }}'</code></p>
-      </CdekForm>
+      </BaseForm>
 
       <button @click="toggleEmail" v-if="args.story === 'ChangeValidatorRuntime'">
         Переключить email
@@ -378,19 +374,19 @@ WithoutError.parameters = {
 };
 
 const SlottedTemplate = (args) => ({
-  components: { CdekForm, CdekFormControl, BaseSpinner },
+  components: { BaseForm, BaseFormControl, BaseSpinner },
   setup() {
     return { args };
   },
   template: `
     <div>
-      <CdekForm>
-        <CdekFormControl v-bind="args">
+      <BaseForm>
+        <BaseFormControl v-bind="args">
           <template #icons-right>
             <BaseSpinner />
           </template>
-        </CdekFormControl>
-      </CdekForm>
+        </BaseFormControl>
+      </BaseForm>
     </div>
   `,
 });

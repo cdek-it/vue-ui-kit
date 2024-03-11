@@ -3,7 +3,7 @@ import { provide, reactive } from 'vue';
 
 import FormService, { FormServiceKey } from '../services/FormService';
 import type { FieldsT, ErrorsT } from '../services/types';
-import type { FormSubmitResult } from './CdekForm.types';
+import type { FormSubmitResult } from './BaseForm.types';
 
 const formService = reactive(new FormService());
 provide(FormServiceKey, formService);
