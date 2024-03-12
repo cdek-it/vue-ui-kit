@@ -9,6 +9,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     'storybook-version',
+    'storybook-addon-themes',
   ],
   framework: '@storybook/vue3',
   core: {
