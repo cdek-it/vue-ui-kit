@@ -1,5 +1,6 @@
 import { app } from '@storybook/vue3';
 import { registerToastification } from '@/plugins/toastification';
+import './themes/violet.css';
 
 registerToastification(app);
 
@@ -40,6 +41,13 @@ export const parameters = {
       background: 'rgba(0, 187, 228, 0.05)',
       color: '#627790',
     },
+  },
+  themes: {
+    default: 'green',
+    list: [
+      { name: 'green', class: 'theme-green', color: '#1ab248' },
+      { name: 'violet', class: 'theme-violet', color: '#4b3c87' },
+    ],
   },
 };
 
