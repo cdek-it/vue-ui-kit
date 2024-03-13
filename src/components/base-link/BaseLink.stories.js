@@ -1,12 +1,8 @@
 import BaseLink from './BaseLink.vue';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekLink',
   component: BaseLink,
-  parameters: {
-    version: getVersion('0.0.1'),
-  },
 };
 
 const Template = (args) => ({

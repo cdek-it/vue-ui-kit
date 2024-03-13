@@ -3,15 +3,11 @@ import BaseFormControl from './BaseFormControl.vue';
 import BaseForm from '../base-form/BaseForm.vue';
 import './BaseFormControl.stories.css';
 import { formSettings } from '../index';
-import getVersion from '@/test/getVersion';
 import BaseSpinner from '../../base-spinner/BaseSpinner.vue';
 
 export default {
   title: 'Form/CdekFormControl',
   component: BaseFormControl,
-  parameters: {
-    version: getVersion('0.1.0', 'alpha'),
-  },
 };
 
 const Template = (args) => ({
@@ -53,7 +49,6 @@ Primary.args = {
   name: 'firstName',
 };
 Primary.parameters = {
-  version: getVersion('0.0.1', 'alpha'),
   docs: {
     source: {
       code: `
@@ -71,7 +66,6 @@ WithLabel.args = {
   name: 'firstName',
 };
 WithLabel.parameters = {
-  version: getVersion('0.0.1', 'alpha'),
   docs: {
     source: {
       code: `

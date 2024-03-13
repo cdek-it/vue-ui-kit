@@ -1,6 +1,5 @@
 import BaseAutocomplete from './BaseAutocomplete.vue';
 import { ref } from 'vue';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekAutocomplete',
@@ -12,7 +11,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2004%3A6818&t=IdwqUA5XOx2JLChP-4)',
       },
     },
-    version: getVersion('0.1.0'),
   },
 };
 
@@ -259,7 +257,6 @@ WithError.args = {
   items,
 };
 WithError.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: `
@@ -285,7 +282,6 @@ WithErrorHiddenMessage.args = {
   items,
 };
 WithErrorHiddenMessage.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: `

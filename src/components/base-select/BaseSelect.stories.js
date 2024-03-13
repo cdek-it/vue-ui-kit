@@ -1,7 +1,6 @@
 import BaseSelect from './BaseSelect.vue';
 import TrashIcon from '../base-dropdown/svg/trash.svg?component';
 import { ref } from 'vue';
-import getVersion from '@/test/getVersion';
 import './BaseSelect.stories.css';
 
 export default {
@@ -14,7 +13,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2002%3A5618&t=1hSFwpuIzTDSax1g-4)',
       },
     },
-    version: getVersion('0.0.1'),
   },
 };
 
@@ -262,7 +260,6 @@ WithError.args = {
   items,
 };
 WithError.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: `
@@ -280,7 +277,6 @@ WithErrorHiddenMessage.args = {
   items,
 };
 WithErrorHiddenMessage.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: `
@@ -426,7 +422,6 @@ GetValue.args = {
   getValue: getValueHandler,
 };
 GetValue.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: `
@@ -479,7 +474,6 @@ GetTitle.args = {
   getTitle: getTitleHandler,
 };
 GetTitle.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: `

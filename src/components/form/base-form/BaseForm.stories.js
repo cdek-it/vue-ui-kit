@@ -3,15 +3,11 @@ import { ref } from 'vue';
 import BaseForm from './BaseForm.vue';
 import BaseFormControl from '../base-form-control/BaseFormControl.vue';
 import { formSettings } from '../index';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Form/CdekForm',
   component: BaseForm,
   subcomponents: { BaseFormControl },
-  parameters: {
-    version: getVersion('0.0.1', 'alpha'),
-  },
 };
 
 const Template = (args) => ({
@@ -165,7 +161,6 @@ WithValidation.args = {
   story: 'WithValidation',
 };
 WithValidation.parameters = {
-  version: getVersion('0.1.0', 'alpha'),
   docs: {
     source: {
       code: `
@@ -237,7 +232,6 @@ GlobalValidator.args = {
   story: 'GlobalValidator',
 };
 GlobalValidator.parameters = {
-  version: getVersion('0.1.0', 'alpha'),
   docs: {
     source: {
       code: `
@@ -257,7 +251,6 @@ ChangeLanguage.args = {
   story: 'ChangeLanguage',
 };
 ChangeLanguage.parameters = {
-  version: getVersion('0.1.0', 'alpha'),
   docs: {
     source: {
       code: `

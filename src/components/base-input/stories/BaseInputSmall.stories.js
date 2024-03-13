@@ -1,6 +1,5 @@
 import { Template } from './settings';
 import BaseInput from '../BaseInput.vue';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekInput/Small',
@@ -12,7 +11,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1998%3A4714&t=G78h9IqBm7eEp4F9-4)',
       },
     },
-    version: getVersion('0.0.1'),
   },
 };
 
@@ -48,7 +46,6 @@ SmallError.args = {
   validRes: 'Ошибка',
 };
 SmallError.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" label="Кол-во" small valid-res="Ошибка" />',

@@ -1,5 +1,4 @@
 import BaseBadge from './BaseBadge.vue';
-import getVersion from '@/test/getVersion';
 import EyeIcon from './svg/eye.svg?component';
 
 export default {
@@ -12,7 +11,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2132%3A6679&t=x0GiAkgTtqGBzfut-0)',
       },
     },
-    version: getVersion('0.0.1'),
   },
   argTypes: {
     type: {

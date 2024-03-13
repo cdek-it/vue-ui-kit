@@ -1,6 +1,5 @@
 import { ref } from 'vue';
 import BaseSwitch from './BaseSwitch.vue';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekSwitch',
@@ -12,7 +11,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2050-6123&t=wfKjh1NP9rExUFRb-0)',
       },
     },
-    version: getVersion('0.0.1'),
   },
 };
 

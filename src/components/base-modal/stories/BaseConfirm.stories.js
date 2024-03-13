@@ -2,7 +2,6 @@ import BaseModal from '../BaseModal.vue';
 import { useModalService } from '../services/ModalService';
 import BaseButton from '../../base-button/BaseButton.vue';
 import BaseConfirm from '../BaseConfirm.vue';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekModal/Confirm',
@@ -14,7 +13,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=3039-18607&t=Ljb6anDLwIifZ0zN-4)',
       },
     },
-    version: getVersion('0.0.1', 'beta'),
   },
 };
 

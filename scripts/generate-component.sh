@@ -69,7 +69,6 @@ EOM
 touch $NAME.stories.js
 cat > $NAME.stories.js <<- EOM
 import $NAME from './$NAME.vue';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/$NAME_CDEK',
@@ -81,7 +80,6 @@ export default {
           '[Figma]()',
       },
     },
-    version: getVersion('0.1.0'),
   },
 };
 
