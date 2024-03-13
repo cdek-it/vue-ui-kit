@@ -16,7 +16,7 @@ import getVersion from '@/test/getVersion';
 Логика состоит в том, чтобы не создавать одну `CdekForm`, а несколько, каждая будет отвечать за свой
 блок данных.
 
-```js
+```html dark
 <CdekForm>
   <CdekFormControl name="firstName">
   <CdekFormControl name="surname">
@@ -36,7 +36,7 @@ import getVersion from '@/test/getVersion';
 
 Чтобы его вызвать нужно получить `ref` от `CdekForm`.
 
-```ts
+```ts dark
 import { ref } from 'vue';
 import { CdekForm } from '@cdek-ui-kit/vue';
 
@@ -44,18 +44,17 @@ const cdekFormRef = ref<InstanceType<typeof CdekForm> | null>(null);
 
 onMounted(() => {
   cdekFormRef.value?.triggerSubmit();
-})
-...
+});
+```
 
-<CdekForm ref="cdekFormRef">
-  ...
-</CdekForm>
+```html dark
+<CdekForm ref="cdekFormRef"> ... </CdekForm>
 ```
 
 Этот метод стриггерит событие `submit`, если на него подписаться, то вы получите данные как обычно.
 Также можно просто обработать результат функции `triggerSubmit`.
 
-```ts
+```ts dark
 type FormSubmitResult = {
   /**
    * `true` - все валидации прошли успешно
@@ -92,7 +91,7 @@ type FormSubmitResult = {
 Generic использовать необязательно, но он необходим, если вам нужно удобно работать с values,
 туда нужно передать конечную структуру значений.
 
-```ts
+```ts dark
 export type FormSubmitResult<T = FieldsT> = {
   isValid: boolean;
   errors?: ErrorsT;
@@ -105,7 +104,7 @@ export type FormSubmitResult<T = FieldsT> = {
 
 Пример типизирования `submit`:
 
-```ts
+```ts dark
 import { ref } from 'vue';
 import { CdekForm } from '@cdek-ui-kit/vue';
 import type { FormSubmitResult } from '@cdek-ui-kit/vue';
