@@ -1,6 +1,6 @@
 {
   "name": "@cdek-ui-kit/vue",
-  "version": "0.4.0-alpha.mrkt-colors",
+  "version": "0.4.0-testci",
   "type": "module",
   "files": [
     "dist"
