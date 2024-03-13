@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs';
 
-<Meta title="Установка" />
+<Meta title="Installation" />
 
 # Установка
 
@@ -27,4 +27,18 @@ npm i # для npm
 ```bash dark
 yarn add @cdek-ui-kit/vue # yarn
 npm add @cdek-ui-kit/vue  # npm
+```
+
+Стили автоматически не подтягиваются, вам нужно импортировать их вручную, через
+
+```js dark
+// From JavaScript
+import '@cdek-ui-kit/vue/style.css';
+```
+
+или
+
+```css dark
+// From SCSS
+@import '@cdek-ui-kit/vue/style.css';
 ```
