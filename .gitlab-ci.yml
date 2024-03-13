@@ -74,6 +74,22 @@ publish:
   cache:
     policy: pull
 
+publish-with-prefix:
+  stage: publish
+  extends: .common
+  only:
+    - main
+    - /^release\/.*/
+  when: manual
+
+  script:
+    - set -euo pipefail
+    - echo "$STYLE_PREFIX" | md5sum
+    - sh scripts/release-prefixed.sh
+
+  cache:
+    policy: pull
+
 pages:
   stage: storybook
   extends: .common
