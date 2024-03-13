@@ -20,7 +20,7 @@ import getVersion from '@/test/getVersion';
 
 Предположим, поле обязательное, тогда валидатор может выглядеть так:
 
-```js
+```js dark
 (value) => {
   if (!value.trim()) {
     return 'Поле обязательное';
@@ -32,7 +32,7 @@ import getVersion from '@/test/getVersion';
 
 В элемент формы валидаторы нужно передавать в виде объекта `rules`:
 
-```js
+```js dark
 const rules = {
   required: (value) => {
     ...
@@ -45,16 +45,14 @@ const rules = {
 
 В `CdekFormControl` валидаторы передаются таким образом:
 
-```js
+```html dark
 <CdekFormControl name="firstName" :rules="rules" />
 ```
 
 Здесь нам будут полезны 2 события на `CdekForm`:
 
-```js
-<CdekForm @submit="submit" @submitError="submitError">
-  ...
-</CdekForm>
+```html dark
+<CdekForm @submit="submit" @submitError="submitError"> ... </CdekForm>
 ```
 
 Где `submit` сработает, только если валидация на всех полях пройдена. А в ином случае при попытке
@@ -62,7 +60,7 @@ const rules = {
 
 `submitError` передаст в callback объект типа:
 
-```js
+```js dark
 {
   <название_поля>: true | <название_валидатора>
 }

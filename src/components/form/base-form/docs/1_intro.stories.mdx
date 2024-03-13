@@ -22,7 +22,7 @@ import getVersion from '@/test/getVersion';
 
 Для базовой формы, которая будет собирать имя и фамилию, минимально нужен такой код:
 
-```js
+```html dark
 <CdekForm @submit="submit">
   <CdekFormControl name="firstName" />
   <CdekFormControl name="surname" />
@@ -39,7 +39,7 @@ import getVersion from '@/test/getVersion';
 
 Когда произойдет событие `submit` в форме из примера, в callback прийдет такой объект:
 
-```js
+```js dark
 {
   firstName: "значение",
   surname: "значение"
@@ -59,7 +59,7 @@ import getVersion from '@/test/getVersion';
 
 Для передачи начального значения, нужно в `CdekFormControl` передать параметр `initialValue`.
 
-```js
+```html dark
 <CdekFormControl name="firstName" initialValue="Имя" />
 ```
 
@@ -73,28 +73,28 @@ import getVersion from '@/test/getVersion';
 
 Сейчас механизм работы с формой выглядит так:
 
-```js
+```html dark
 <form class="form" @submit.prevent="onSubmit">
-  <base-input
-    <!-- Сами заводим переменную -->
+  <base-input <!-- Сами заводим переменную -->
     v-model="calcEmailForSendScan"
     <!-- Сами обрабатываем состояние ошибки -->
-    :has-error="$v.calcEmailForSendScan.$error"
-  >
+    :has-error="$v.calcEmailForSendScan.$error" >
     <template v-if="$v.calcEmailForSendScan.$error" #message>
       <!-- Сами выбираем сообщение об ошибке -->
       <span v-if="!$v.calcEmailForSendScan.required">
         {{ $t('requiredField') }}
       </span>
-      <span v-if="$v.calcEmailForSendScan.required && !$v.calcEmailForSendScan.email">
+      <span
+        v-if="$v.calcEmailForSendScan.required && !$v.calcEmailForSendScan.email"
+      >
         {{ $t('enterEmail') }}
       </span>
     </template>
   </base-input>
 </form>
+```
 
-...
-
+```js dark
 import { required, email } from 'vuelidate/lib/validators';
 
 export default {
@@ -107,7 +107,7 @@ export default {
       calcEmailForSendScan: {
         required,
         email,
-      }
+      },
     };
   },
   onSubmit() {
@@ -118,7 +118,7 @@ export default {
       this.$emit('submit', { calcEmailForSendScan: this.calcEmailForSendScan });
     }
   },
-}
+};
 ```
 
 Обработка форм - это базовая операция, с которой мы достаточно часто сталкиваемся. В данном
@@ -133,7 +133,7 @@ export default {
 
 Если перевести этот пример на новые компоненты, он станет выглядеть так:
 
-```ts
+```js dark
 // здесь должны быть валидации, показываю просто поддержку сообщения
 const required = () => $t('requiredField');
 const email = () => $t('enterEmail');
@@ -143,10 +143,10 @@ const onSubmit = (values) => {
   // values = { calcEmailForSendScan: '<значение>' }
   // не нужно делать `touch` или какие-то проверки, форма делает это автоматически
   emit('submit', values);
-}
+};
+```
 
-...
-
+```html dark
 <CdekForm @submit="onSubmit">
   <!-- Явно видно на каком поле какая валидация -->
   <!-- Сообщение об ошибке показывается само, не нужно никакой обработки в базовом варианте -->
