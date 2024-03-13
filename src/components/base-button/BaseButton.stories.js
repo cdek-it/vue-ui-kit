@@ -1,7 +1,6 @@
 import BaseButton from './BaseButton.vue';
 import ArrowRightIcon from './svg/arrow-right.svg?component';
 import CheckIcon from './svg/check.svg?component';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekButton',
@@ -13,7 +12,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1984%3A4274&t=z1QNDvjqjFqqVZE2-0)',
       },
     },
-    version: getVersion('0.0.1'),
   },
   argTypes: {
     theme: {

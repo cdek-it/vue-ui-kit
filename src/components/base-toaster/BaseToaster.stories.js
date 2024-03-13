@@ -1,6 +1,5 @@
 import BaseToaster from './BaseToaster.vue';
 import WifiOffIcon from './svg/wifi-off.svg?component';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekToaster',
@@ -12,7 +11,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1984%3A4894&t=rF3i0PpE4y6w29LG-4)',
       },
     },
-    version: getVersion('0.0.1'),
   },
   argTypes: {
     type: {

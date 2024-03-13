@@ -1,13 +1,9 @@
 import BaseToaster from '@/components/base-toaster/BaseToaster.vue';
-import getVersion from '@/test/getVersion';
 import { Template } from './settings';
 
 export default {
   title: 'Plugins/Toastification/StringSupport',
   subcomponents: { BaseToaster },
-  parameters: {
-    version: getVersion('0.0.1'),
-  },
   argTypes: {
     type: {
       table: {

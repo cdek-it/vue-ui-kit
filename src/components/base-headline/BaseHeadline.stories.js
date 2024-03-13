@@ -1,5 +1,4 @@
 import BaseHeadline from './BaseHeadline.vue';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekHeadline',
@@ -12,7 +11,6 @@ export default {
 [Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2270%3A8959&t=gXcwZvHont2zfWC4-0)`,
       },
     },
-    version: getVersion('0.0.1'),
   },
   argTypes: {
     size: {

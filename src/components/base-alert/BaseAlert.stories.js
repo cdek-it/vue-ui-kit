@@ -1,5 +1,4 @@
 import BaseAlert from './BaseAlert.vue';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekAlert',
@@ -11,7 +10,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2132%3A6344&mode=dev)',
       },
     },
-    version: getVersion('0.3.0'),
   },
   argTypes: {
     default: { control: 'text' },

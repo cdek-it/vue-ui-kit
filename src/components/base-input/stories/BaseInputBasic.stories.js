@@ -1,6 +1,5 @@
 import { Template } from './settings';
 import BaseInput from '../BaseInput.vue';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekInput/Basic',
@@ -12,7 +11,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=1998%3A4714&t=G78h9IqBm7eEp4F9-4)',
       },
     },
-    version: getVersion('0.0.1'),
   },
 };
 
@@ -81,7 +79,6 @@ Error.args = {
   validRes: 'Ошибка',
 };
 Error.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка"/>',
@@ -96,7 +93,6 @@ ErrorWithoutMessage.args = {
   hideErrorMessage: true,
 };
 ErrorWithoutMessage.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: `
@@ -118,7 +114,6 @@ ErrorFilled.args = {
   story: 'LabelFilled',
 };
 ErrorFilled.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка"/>',
@@ -146,7 +141,6 @@ DisabledWithError.args = {
   validRes: 'Ошибка',
 };
 DisabledWithError.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: '<CdekInput v-model="inputVal" label="Серия и .." disabled valid-res="Ошибка"/>',
@@ -249,7 +243,6 @@ HtmlError.args = {
     '<p>Накладные компании СДЭК длиной от 6 до 10 цифр.</p><p>Если Ваш номер не соответствует данному формату, обратитесь, пожалуйста, в магазин за уточнением верного номера.</p>',
 };
 HtmlError.parameters = {
-  version: getVersion('0.1.0'),
   docs: {
     source: {
       code: `

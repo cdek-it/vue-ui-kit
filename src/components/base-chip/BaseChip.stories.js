@@ -1,5 +1,4 @@
 import BaseChip from './BaseChip.vue';
-import getVersion from '@/test/getVersion';
 import Clock from './svg/clock.svg?component';
 import { ref } from 'vue';
 
@@ -13,7 +12,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?type=design&node-id=2385-14194&mode=dev)',
       },
     },
-    version: getVersion('0.1.0'),
   },
 };
 

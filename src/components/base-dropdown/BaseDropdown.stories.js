@@ -1,7 +1,6 @@
 import BaseDropdownItem from './BaseDropdownItem.vue';
 import BaseDropdownBox from './BaseDropdownBox.vue';
 import FileDescriptionIcon from './svg/file-description.svg?component';
-import getVersion from '@/test/getVersion';
 
 export default {
   title: 'Ui kit/CdekDropdown',
@@ -13,7 +12,6 @@ export default {
           '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2004%3A6818&t=NSOzy8XiKkWZ9xTg-4)',
       },
     },
-    version: getVersion('0.0.1'),
   },
 };
 
