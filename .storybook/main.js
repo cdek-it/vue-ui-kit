@@ -1,26 +1,25 @@
-const { mergeConfig } = require('vite');
-const svgLoader = require('vite-svg-loader');
-const path = require('path');
+import { mergeConfig } from 'vite';
+import svgLoader from 'vite-svg-loader';
+import path from 'path';
 
-module.exports = {
+export default {
   stories: [
-    '../src/docs/1_installation.stories.mdx',
-    '../src/**/*.stories.mdx',
+    '../src/docs/1_installation.mdx',
+    '../src/**/*.mdx',
     '../src/**/*.stories.@(js|jsx|ts|tsx)',
   ],
+
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    'storybook-addon-themes',
   ],
-  framework: '@storybook/vue3',
-  core: {
-    builder: '@storybook/builder-vite',
+
+  framework: {
+    name: '@storybook/vue3-vite',
+    options: {},
   },
-  features: {
-    storyStoreV7: true,
-  },
+
   async viteFinal(config, { configType }) {
     if (configType === 'PRODUCTION') {
       config.base = '/cdek-vue-ui-kit/';
@@ -44,5 +43,9 @@ module.exports = {
         },
       },
     });
+  },
+
+  docs: {
+    autodocs: true,
   },
 };

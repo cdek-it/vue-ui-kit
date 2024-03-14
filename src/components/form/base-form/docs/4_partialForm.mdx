@@ -1,4 +1,5 @@
-import { Meta, Story } from '@storybook/addon-docs';
+import { Meta, Story } from '@storybook/blocks';
+import * as BaseFormStories from '../BaseForm.stories.js';
 
 <Meta title="Form/CdekForm/PartialForm" />
 
@@ -74,7 +75,7 @@ type FormSubmitResult = {
 
 > Введите что-нибудь в `firstName` и нажмите на "Вызвать submit"
 
-<Story id="form-cdekform--manual-submit" />
+<Story of={BaseFormStories.ManualSubmit} />
 
 ---
 

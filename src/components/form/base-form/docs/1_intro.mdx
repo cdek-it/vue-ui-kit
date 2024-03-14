@@ -1,4 +1,5 @@
-import { Meta, Story } from '@storybook/addon-docs';
+import { Meta, Story } from '@storybook/blocks';
+import * as BaseFormStories from '../BaseForm.stories.js';
 
 <Meta title="Form/CdekForm/Intro" />
 
@@ -45,7 +46,7 @@ import { Meta, Story } from '@storybook/addon-docs';
 
 > Введите данные в оба поля и нажмите "Продолжить"
 
-<Story id="form-cdekform--primary" />
+<Story of={BaseFormStories.Primary} />
 
 ---
 
@@ -59,7 +60,7 @@ import { Meta, Story } from '@storybook/addon-docs';
 
 > Нажмите "Продолжить"
 
-<Story id="form-cdekform--with-initial-values" />
+<Story of={BaseFormStories.WithInitialValues} />
 
 ---
 

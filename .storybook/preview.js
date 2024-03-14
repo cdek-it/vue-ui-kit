@@ -1,11 +1,13 @@
-import { app } from '@storybook/vue3';
+import { setup } from '@storybook/vue3';
 import { registerToastification } from '@/plugins/toastification';
-import './themes/violet.css';
+// import './themes/violet.css';
 
-registerToastification(app);
+setup((app) => {
+  registerToastification(app);
+});
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
+  // actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,
@@ -29,13 +31,13 @@ export const parameters = {
       },
     ],
   },
-  themes: {
-    default: 'green',
-    list: [
-      { name: 'green', class: 'theme-green', color: '#1ab248' },
-      { name: 'violet', class: 'theme-violet', color: '#4b3c87' },
-    ],
-  },
+  // themes: {
+  //   default: 'green',
+  //   list: [
+  //     { name: 'green', class: 'theme-green', color: '#1ab248' },
+  //     { name: 'violet', class: 'theme-violet', color: '#4b3c87' },
+  //   ],
+  // },
 };
 
 export const argTypes = {

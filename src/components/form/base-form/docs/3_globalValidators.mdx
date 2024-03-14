@@ -1,4 +1,6 @@
-import { Meta, Story } from '@storybook/addon-docs';
+import { Meta, Story } from '@storybook/blocks';
+import * as BaseFormStories from '../BaseForm.stories.js';
+import * as BaseFormControlStories from '../../base-form-control/BaseFormControl.stories.js';
 
 <Meta title="Form/CdekForm/GlobalValidators" />
 
@@ -21,7 +23,7 @@ import { Meta, Story } from '@storybook/addon-docs';
 
 > Попробуйте ввести цифры в поле `firstName`
 
-<Story id="form-cdekform--global-validator" />
+<Story of={BaseFormStories.GlobalValidator} />
 
 А чтобы поле было обязательным и проверялось на email, надо написать:
 
@@ -33,7 +35,7 @@ import { Meta, Story } from '@storybook/addon-docs';
 
 > Очистите поле
 
-<Story id="form-cdekformcontrol--required-with-email" />
+<Story of={BaseFormControlStories.RequiredWithEmail} />
 
 ---
 
@@ -53,7 +55,7 @@ const rules = {
 
 > Попробуйте ввести НЕ цифры
 
-<Story id="form-cdekformcontrol--regex" />
+<Story of={BaseFormControlStories.Regex} />
 
 Если хочется использовать `regex` с другими глобальными валидаторами, нужно
 добавить в объект `rules` ключ с названием валидатора со значением `true`.
@@ -67,7 +69,7 @@ const rules = {
 
 > Попробуйте ввести значение и стереть
 
-<Story id="form-cdekformcontrol--regex-with-required" />
+<Story of={BaseFormControlStories.RegexWithRequired} />
 
 Если необходимо локально изменить сообщение об ошибке для правила `regex`, то настройку нужно
 передать объектом
@@ -86,7 +88,7 @@ const rules = {
 
 > Попробуйте ввести НЕ цифры
 
-<Story id="form-cdekformcontrol--regex-with-custom-error" />
+<Story of={BaseFormControlStories.RegexWithCustomError} />
 
 ---
 
@@ -152,7 +154,7 @@ export const checkLocaleForForm = () => {
 
 > Попробуйте нажать "Продолжить" с пустым значение `firstName`, а далее переключить язык
 
-<Story id="form-cdekform--change-language" />
+<Story of={BaseFormStories.ChangeLanguage} />
 
 ---
 
@@ -170,7 +172,7 @@ const rules = {
 
 > Введите и уберите текст, чтобы увидеть кастомное сообщение
 
-<Story id="form-cdekformcontrol--required-custom-message" />
+<Story of={BaseFormControlStories.RequiredCustomMessage} />
 
 Если же вам необходимо вычислить сообщение об ошибке или например получить перевод, то
 вы можете передать не строку, а функцию.
@@ -183,7 +185,7 @@ const rules = {
 
 > Введите и уберите текст несколько раз, вы заметите что оно меняется
 
-<Story id="form-cdekformcontrol--required-custom-message-function" />
+<Story of={BaseFormControlStories.RequiredCustomMessageFunction} />
 
 Будьте внимательны с названиями кастомных валидаторов, они не должны совпадать с заданными
 глобальными валидаторами.

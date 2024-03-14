@@ -1,4 +1,5 @@
-import { Meta, Story } from '@storybook/addon-docs';
+import { Meta, Story } from '@storybook/blocks';
+import * as BaseFormStories from '../BaseForm.stories.js';
 
 <Meta title="Form/CdekForm/Validation" />
 
@@ -71,4 +72,4 @@ const rules = {
 
 > Попробуйте ввести значение в поле `firstName` и нажмите "Продолжить"
 
-<Story id="form-cdekform--with-validation" />
+<Story of={BaseFormStories.WithValidation} />
