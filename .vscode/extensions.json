@@ -3,7 +3,6 @@
     "Vue.volar",
     "Vue.vscode-typescript-vue-plugin",
     "dbaeumer.vscode-eslint",
-    "rvest.vs-code-prettier-eslint",
-    "ZixuanChen.vitest-explorer"
+    "rvest.vs-code-prettier-eslint"
   ]
 }

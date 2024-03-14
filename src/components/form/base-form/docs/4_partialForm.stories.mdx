@@ -1,0 +1,126 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Form/CdekForm/PartialForm" />
+
+# Частичная форма
+
+В некоторых случаях формы могут быть довольно сложными, и становится трудно обработать всю форму, как
+единое целое. Тогда подойдет механизм частичных форм.
+
+Логика состоит в том, чтобы не создавать одну `CdekForm`, а несколько, каждая будет отвечать за свой
+блок данных.
+
+```html dark
+<CdekForm>
+  <CdekFormControl name="firstName">
+  <CdekFormControl name="surname">
+</CdekForm>
+
+<CdekForm>
+  <CdekFormControl name="firstName">
+  <CdekFormControl name="surname">
+</CdekForm>
+
+<CdekButton>Отправить</CdekButton>
+```
+
+`CdekForm` отлавливает событие `submit` на форме, но в этом случае в форме нет никакой кнопки. Чтобы
+получить проверенные данные нужно стриггерить событие `submit`. Для этого `CdekForm` предоставляет
+наружу метод `triggerSubmit`.
+
+Чтобы его вызвать нужно получить `ref` от `CdekForm`.
+
+```ts dark
+import { ref } from 'vue';
+import { CdekForm } from '@cdek-ui-kit/vue';
+
+const cdekFormRef = ref<InstanceType<typeof CdekForm> | null>(null);
+
+onMounted(() => {
+  cdekFormRef.value?.triggerSubmit();
+});
+```
+
+```html dark
+<CdekForm ref="cdekFormRef"> ... </CdekForm>
+```
+
+Этот метод стриггерит событие `submit`, если на него подписаться, то вы получите данные как обычно.
+Также можно просто обработать результат функции `triggerSubmit`.
+
+```ts dark
+type FormSubmitResult = {
+  /**
+   * `true` - все валидации прошли успешно
+   * `false` - есть ошибки
+   */
+  isValid: boolean;
+  /**
+   * Объект с ошибками, такой же, как приходит в событии `submitError`
+   *
+   * Придет только если `isValid === false`
+   */
+  errors?: ErrorsT;
+  /**
+   * Объект со значениями формы, такой же, как приходит в событии `submit`
+   *
+   * Придет только если `isValid === true`
+   */
+  values?: FieldsT;
+};
+```
+
+> Поле `firstName` - обязательное, попробуйте нажать на "Вызвать submit"
+
+> Введите что-нибудь в `firstName` и нажмите на "Вызвать submit"
+
+<Story id="form-cdekform--manual-submit" />
+
+---
+
+### Typescript
+
+Наружу предоставляется тип `FormSubmitResult`, если вам нужно будет типизировать вашу функцию.
+
+Generic использовать необязательно, но он необходим, если вам нужно удобно работать с values,
+туда нужно передать конечную структуру значений.
+
+```ts dark
+export type FormSubmitResult<T = FieldsT> = {
+  isValid: boolean;
+  errors?: ErrorsT;
+  values?: T;
+};
+```
+
+Также функция `triggerSubmit` тоже принимает generic, для более точной типизации результата.
+Туда также нужно передавать именно интерфейс ваших values.
+
+Пример типизирования `submit`:
+
+```ts dark
+import { ref } from 'vue';
+import { CdekForm } from '@cdek-ui-kit/vue';
+import type { FormSubmitResult } from '@cdek-ui-kit/vue';
+
+// Это все поля в форме
+interface PreorderClientDto {
+  firstName: string;
+  lastName: string;
+  middleName?: string;
+  address: AddressDto;
+  phoneNumberString: string;
+  email?: string;
+  tin?: string;
+}
+
+const senderFormRef = ref<InstanceType<typeof CdekForm> | null>(null);
+
+const getSenderValues: () => FormSubmitResult<PreorderClientDto> = () => {
+  return (
+    senderFormRef.value?.triggerSubmit<PreorderClientDto>() || {
+      isValid: false,
+    }
+  );
+};
+```

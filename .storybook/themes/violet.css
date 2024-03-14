@@ -1,0 +1,14 @@
+.theme-violet {
+  --Primary_Calm: #847e9d;
+  --Primary_Active: #1a0962;
+  --Primary: #4b3c87;
+  --Primary_70: rgba(75, 60, 135, 70%);
+  --Primary_50: rgba(75, 60, 135, 50%);
+  --Primary_40: rgba(75, 60, 135, 40%);
+  --Primary_30: rgba(75, 60, 135, 30%);
+  --Primary_20: rgba(75, 60, 135, 20%);
+  --Primary_10: rgba(75, 60, 135, 10%);
+  --Primary_5: rgba(75, 60, 135, 5%);
+  --Primary_Button_Hover: #847e9d;
+  --Secondary_Button: #1a0962;
+}

@@ -1,0 +1,157 @@
+<script lang="ts" setup>
+import { computed, useSlots } from 'vue';
+import { Switch, SwitchGroup, SwitchLabel } from '@headlessui/vue';
+
+const props = defineProps<{
+  modelValue: boolean;
+  disabled?: boolean;
+  small?: boolean;
+  label?: string;
+  tip?: string;
+}>();
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', val: boolean): void;
+}>();
+const slots = useSlots();
+
+const enabled = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(value) {
+    if (!props.disabled) {
+      emit('update:modelValue', value);
+    }
+  },
+});
+</script>
+
+<template>
+  <SwitchGroup>
+    <div :class="$style['prefix-switch']">
+      <Switch
+        v-model="enabled"
+        :disabled="disabled"
+        :class="[
+          $style['prefix-switch__bg'],
+          enabled ? $style['prefix-switch__bg_enabled'] : '',
+          small ? $style['prefix-switch__bg_small'] : '',
+        ]"
+      >
+        <span
+          :class="[
+            $style['prefix-switch__circle'],
+            enabled ? $style['prefix-switch__circle_enabled'] : '',
+            disabled ? $style['prefix-switch__circle_disabled'] : '',
+            small ? $style['prefix-switch__circle_small'] : '',
+          ]"
+        />
+      </Switch>
+      <SwitchLabel
+        v-if="label || slots.default"
+        :class="[
+          $style['prefix-switch__label'],
+          small ? $style['prefix-switch__label_small'] : '',
+        ]"
+      >
+        <slot>
+          {{ label }}
+        </slot>
+        <span v-if="tip" :class="$style['prefix-switch__tip']">{{ tip }}</span>
+      </SwitchLabel>
+    </div>
+  </SwitchGroup>
+</template>
+
+<style lang="scss" scoped module>
+.prefix-switch {
+  $this: &;
+  $transition-speed: 0.1s;
+
+  display: inline-flex;
+  align-items: center;
+
+  &:deep(#{$this}__bg) {
+    width: 51px;
+    height: 30px;
+    background: $Tertiary_40;
+    border-radius: 36.5px;
+    outline: none;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    transition: background-color ease $transition-speed;
+
+    &[disabled] {
+      background: $Bottom_20;
+      pointer-events: none;
+    }
+  }
+
+  &:deep(#{$this}__bg_enabled) {
+    background: $Primary;
+
+    @include media-hover {
+      background: $Primary_Button_Hover;
+    }
+
+    &[disabled] {
+      background: $Button_Disable;
+    }
+  }
+
+  &:deep(#{$this}__bg_small) {
+    width: 40px;
+    height: 24px;
+  }
+
+  &__circle {
+    --size: 26px;
+    $offset: 2px;
+
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.01),
+      0px 3px 1px rgba(0, 0, 0, 0.03);
+    border-radius: 100px;
+    background: $Peak;
+    position: absolute;
+    top: $offset;
+    left: $offset;
+    transition: left ease $transition-speed;
+
+    &_enabled {
+      left: calc(100% - var(--size) - #{$offset});
+    }
+
+    &_disabled {
+      background: $Peak_80;
+      box-shadow: none;
+    }
+
+    &_small {
+      --size: 20px;
+    }
+  }
+
+  &:deep(#{$this}__label) {
+    @include body-1;
+    padding-left: 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &:deep(#{$this}__label_small) {
+    @include body-2;
+  }
+
+  &__tip {
+    @include caption-1;
+
+    display: block;
+    color: $Bottom_66;
+  }
+}
+</style>

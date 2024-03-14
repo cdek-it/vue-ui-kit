@@ -7,6 +7,8 @@ NAME_DASH=$(echo $1        \
      | sed 's/\(.\)\([A-Z]\)/\1-\2/g' \
      | tr '[:upper:]' '[:lower:]')
 
+NAME_CDEK="${NAME/Base/"Cdek"}"
+
 cd ./src/components
 mkdir ./$NAME_DASH
 
@@ -31,13 +33,27 @@ EOM
 # Test template
 touch $NAME.test.ts
 cat > $NAME.test.ts <<- EOM
-import { shallowMount } from '@vue/test-utils';
+import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
+import builderProp from '@/test/decorators';
 import $NAME from './$NAME.vue';
 
+interface ExtraMethods {
+  setProp: (val: string) => ${NAME}Builder;
+}
+
+interface ${NAME}Builder extends ExtraMethods {}
+
 class ${NAME}Builder {
+  @builderProp
+  prop?: string;
+
   build() {
-    return shallowMount($NAME, {});
+    return mount($NAME, {
+      props: {
+        prop: this.prop,
+      },
+    });
   }
 }
 
@@ -53,10 +69,9 @@ EOM
 touch $NAME.stories.js
 cat > $NAME.stories.js <<- EOM
 import $NAME from './$NAME.vue';
-import getVersion from '@/test/getVersion';
 
 export default {
-  title: 'Ui kit/$NAME',
+  title: 'Ui kit/$NAME_CDEK',
   component: $NAME,
   parameters: {
     docs: {
@@ -65,7 +80,6 @@ export default {
           '[Figma]()',
       },
     },
-    version: getVersion('0.1.0'),
   },
 };
 
@@ -83,7 +97,7 @@ export const Primary = Template.bind({});
 Primary.parameters = {
   docs: {
     source: {
-      code: '<$NAME />',
+      code: '<$NAME_CDEK />',
     },
   },
 };
@@ -92,5 +106,6 @@ EOM
 # index template
 touch index.ts
 cat > index.ts <<- EOM
-export { default as $NAME } from './$NAME.vue';
+export { default as $NAME_CDEK } from './$NAME.vue';
 EOM
+

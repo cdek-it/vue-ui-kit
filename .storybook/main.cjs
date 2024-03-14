@@ -3,12 +3,16 @@ const svgLoader = require('vite-svg-loader');
 const path = require('path');
 
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [
+    '../src/docs/1_installation.stories.mdx',
+    '../src/**/*.stories.mdx',
+    '../src/**/*.stories.@(js|jsx|ts|tsx)',
+  ],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    'storybook-version',
+    'storybook-addon-themes',
   ],
   framework: '@storybook/vue3',
   core: {
@@ -34,6 +38,9 @@ module.exports = {
           scss: {
             additionalData: `@import "./src/assets/style/vars";`,
           },
+        },
+        modules: {
+          generateScopedName: (name) => name.replace(/^prefix/, 'cdek'),
         },
       },
     });
