@@ -185,6 +185,8 @@ defineExpose({ getControl });
   $right-icon-padding: 6px;
   $padding-left: 16px;
 
+  width: 100%;
+
   &_small {
     padding-top: 20px;
   }
