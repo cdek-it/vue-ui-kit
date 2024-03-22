@@ -18,7 +18,7 @@ const props = withDefaults(
   defineProps<{
     name: string;
     rules?: RulesT;
-    type?: string;
+    type?: 'text' | 'number' | 'autocomplete';
     className?: string;
     initialValue?: string;
   }>(),
@@ -51,6 +51,17 @@ const value = computed({
 
 <template>
   <div :class="className">
+    <BaseInput
+      v-if="['text', 'number'].includes(type)"
+      v-model="value"
+      :type="type"
+      :valid-res="fieldService.error"
+      v-bind="$attrs"
+    >
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
+        <slot :name="slot" v-bind="scope" />
+      </template>
+    </BaseInput>
     <BaseAutocomplete
       v-if="type === 'autocomplete'"
       v-model="value"
@@ -61,15 +72,5 @@ const value = computed({
         <slot :name="slot" v-bind="scope" />
       </template>
     </BaseAutocomplete>
-    <BaseInput
-      v-else
-      v-model="value"
-      :valid-res="fieldService.error"
-      v-bind="$attrs"
-    >
-      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
-        <slot :name="slot" v-bind="scope" />
-      </template>
-    </BaseInput>
   </div>
 </template>
