@@ -8,6 +8,11 @@ import BaseSpinner from '../../base-spinner/BaseSpinner.vue';
 export default {
   title: 'Form/CdekFormControl',
   component: BaseFormControl,
+  argTypes: {
+    type: {
+      options: ['text', 'number', 'autocomplete'],
+    },
+  },
 };
 
 const Template = (args) => ({
@@ -332,6 +337,30 @@ WithoutError.parameters = {
     label="Name"
     rules="required"
     hide-error-message
+  >
+</CdekForm>
+`,
+    },
+  },
+};
+
+export const InputTypeNumber = Template.bind({});
+InputTypeNumber.args = {
+  label: 'Цена',
+  name: 'name',
+  type: 'number',
+  rules: 'required',
+};
+InputTypeNumber.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl
+    name="name"
+    label="Цена"
+    type="number"
+    rules="required"
   >
 </CdekForm>
 `,
