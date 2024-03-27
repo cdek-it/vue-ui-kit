@@ -97,6 +97,8 @@ p {
   box-sizing: border-box;
   width: 100%;
   max-width: 328px;
+  position: relative;
+
   &.info {
     background: $Bottom_66;
     box-shadow: 0px 8px 12px -5px $Tertiary_30;
