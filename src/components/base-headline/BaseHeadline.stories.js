@@ -1,13 +1,12 @@
 import BaseHeadline from './BaseHeadline.vue';
 
 export default {
-  title: 'Ui kit/CdekHeadline',
+  title: 'Deprecated/CdekHeadline',
   component: BaseHeadline,
   parameters: {
     docs: {
       description: {
         component: `
-<span style="color:red; font-weight: bold;">Deprecated</span>
 [Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2270%3A8959&t=gXcwZvHont2zfWC4-0)`,
       },
     },
@@ -25,7 +24,6 @@ const Template = (args) => ({
     return { args };
   },
   template: `
-    <span style="color:red; font-weight: bold;">Deprecated</span>
     <BaseHeadline v-bind="args">Заголовок</BaseHeadline>
   `,
 });
