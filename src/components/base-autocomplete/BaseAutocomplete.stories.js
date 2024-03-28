@@ -44,7 +44,7 @@ const Template = (args) => ({
   template: `
     <BaseAutocomplete v-bind="args" v-model="selectValue" @select="onSelect">
       <template #not-found>
-        Ничего не нашлось
+        {{ args['not-found'] || 'Ничего не нашлось' }}
       </template>
       <template #tip="{ alert, info, ban, circle }">
         <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
@@ -149,6 +149,29 @@ WithLabel.parameters = {
     ...
   ]" 
 />
+`,
+    },
+  },
+};
+
+export const NotFound = Template.bind({});
+NotFound.args = {
+  placeholder: 'Начните вводить',
+  items: [],
+  'not-found': 'А ничего тут нет',
+};
+NotFound.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  placeholder="Начните вводить" 
+  :items="[]" 
+>
+  <template #not-found>
+    А ничего тут нет
+  </template>
+</CdekAutocomplete>
 `,
     },
   },
