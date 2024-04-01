@@ -18,7 +18,7 @@ const props = withDefaults(
   defineProps<{
     name: string;
     rules?: RulesT;
-    type?: 'text' | 'number' | 'autocomplete';
+    type?: 'text' | 'number' | 'autocomplete' | 'slot';
     className?: string;
     initialValue?: string;
   }>(),
@@ -47,30 +47,35 @@ const value = computed({
     fieldService.change(newValue);
   },
 });
+
+const element = computed(() => {
+  if (props.type === 'autocomplete') {
+    return BaseAutocomplete;
+  }
+
+  if (['text', 'number'].includes(props.type)) {
+    return BaseInput;
+  }
+
+  return null;
+});
 </script>
 
 <template>
   <div :class="className">
-    <BaseInput
-      v-if="['text', 'number'].includes(type)"
-      v-model="value"
-      :type="type"
-      :valid-res="fieldService.error"
-      v-bind="$attrs"
-    >
-      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
-        <slot :name="slot" v-bind="scope" />
-      </template>
-    </BaseInput>
-    <BaseAutocomplete
-      v-if="type === 'autocomplete'"
-      v-model="value"
-      :valid-res="fieldService.error"
-      v-bind="$attrs"
-    >
-      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
-        <slot :name="slot" v-bind="scope" />
-      </template>
-    </BaseAutocomplete>
+    <template v-if="element">
+      <!-- type="number" передается только для BaseInput -->
+      <component
+        :is="element"
+        :type="type === 'number' ? 'number' : undefined"
+        v-model="value"
+        :valid-res="fieldService.error"
+        v-bind="$attrs"
+      >
+        <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
+          <slot :name="slot" v-bind="scope" />
+        </template>
+      </component>
+    </template>
   </div>
 </template>
