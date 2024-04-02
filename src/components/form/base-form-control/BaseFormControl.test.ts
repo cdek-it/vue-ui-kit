@@ -3,7 +3,8 @@ import { describe, test, expect, vi } from 'vitest';
 import BaseFormControl from './BaseFormControl.vue';
 import FormService from '../services/FormService';
 import { FormServiceKey } from '../services/FormService';
-import builderProp from '@/test/decorators'; // Ensure correct path
+import builderProp from '@/test/decorators';
+import { dti } from '@/test/helpers';
 
 // Import components that BaseFormControl might render dynamically
 import BaseInput from '../../base-input/BaseInput.vue';
@@ -15,6 +16,7 @@ interface ExtraMethods {
   setType: (val: string) => BaseFormControlBuilder;
   setClassName: (val: string) => BaseFormControlBuilder;
   setInitialValue: (val: string) => BaseFormControlBuilder;
+  setDefaultSlot: (slot: string) => BaseFormControlBuilder;
 }
 
 interface BaseFormControlBuilder extends ExtraMethods {}
@@ -25,13 +27,14 @@ class BaseFormControlBuilder {
   @builderProp type?: string;
   @builderProp className?: string;
   @builderProp initialValue?: string;
+  @builderProp defaultSlot?: string;
 
   build() {
     const formService = new FormService();
     vi.spyOn(formService, 'getFieldService');
     vi.spyOn(formService, 'registerField');
 
-    const wrapper = mount(BaseFormControl as any, {
+    const wrapper = mount<typeof BaseFormControl>(BaseFormControl as any, {
       props: {
         name: this.name,
         rules: this.rules,
@@ -44,6 +47,7 @@ class BaseFormControlBuilder {
           [FormServiceKey as symbol]: formService,
         },
       },
+      slots: this.defaultSlot ? { default: this.defaultSlot } : {},
     });
     return { wrapper, formService };
   }
@@ -127,5 +131,67 @@ describe('Unit: BaseFormControl', () => {
 
     await wrapper.setProps({ rules: newRules });
     expect(formService.errors[name]).toBe('required');
+  });
+
+  test('changeValue method updates the field value', async () => {
+    const { wrapper } = new BaseFormControlBuilder()
+      .setName('testChangeValue')
+      .build();
+    const inputElement = wrapper.findComponent(BaseInput);
+    const newValue = 'Updated Value';
+    await wrapper.vm.changeValue(newValue);
+    expect(inputElement.props('modelValue')).toBe(newValue);
+  });
+
+  test('default slot functionality is used when type is slot', async () => {
+    const slotContent = '<div class="custom-slot-content">Custom Content</div>';
+    const { wrapper } = new BaseFormControlBuilder()
+      .setName('testSlot')
+      .setType('slot')
+      .setDefaultSlot(slotContent)
+      .build();
+
+    expect(wrapper.html()).toContain(slotContent);
+  });
+
+  test('custom component in default slot receives value prop', async () => {
+    const value = 'Initial Value';
+
+    const { wrapper } = new BaseFormControlBuilder()
+      .setName('testSlotValue')
+      .setType('slot')
+      .setInitialValue(value)
+      .setDefaultSlot('value = {{ params.value }}')
+      .build();
+
+    expect(wrapper.html()).toContain(`value = ${value}`);
+  });
+
+  test('custom component in default slot can call changeValue to update value', async () => {
+    const updatedValue = 'Updated Value';
+    const { wrapper } = new BaseFormControlBuilder()
+      .setName('testSlotChangeValue')
+      .setType('slot')
+      .setInitialValue('Initial Value')
+      .setDefaultSlot(
+        `value = {{ params.value }} <button data-test-id="change-value" @click="params.changeValue('${updatedValue}')" />`
+      )
+      .build();
+
+    await wrapper.find(dti('change-value')).trigger('click');
+    expect(wrapper.html()).toContain(`value = ${updatedValue}`);
+  });
+
+  test('custom component in default slot receives validRes prop', async () => {
+    const { wrapper } = new BaseFormControlBuilder()
+      .setName('testSlotValidRes')
+      .setType('slot')
+      .setRules('required')
+      .setInitialValue('a')
+      .setDefaultSlot(`validRes = {{ params.validRes }}`)
+      .build();
+
+    await wrapper.vm.changeValue(''); // нужно чтобы показалось сообщение об ошибке
+    expect(wrapper.html()).toContain(`validRes = Обязательное поле`);
   });
 });
