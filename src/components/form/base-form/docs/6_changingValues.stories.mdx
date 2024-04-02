@@ -1,0 +1,43 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Form/Change values" />
+
+# Изменение значений в форме
+
+Есть 2 метода для изменения значений в форме:
+
+### clearForm
+
+Поставляется через `defineExpose` из `CdekForm`. Позволяет одной функцией почистить все текущие значения в форме, присваивает им пустую строку.
+
+<Story id="form-cdekform--clear-form" />
+
+```js dark
+const cdekFormRef = ref(null);
+
+const clearForm = () => {
+  cdekFormRef.value?.clearForm();
+};
+```
+
+```html dark
+<CdekForm ref="cdekFormRef"> ... </CdekForm>
+```
+
+### changeValue
+
+Поставляется через `defineExpose` из `CdekFormControl`. Позволяет изменить значение одного из полей формы.
+
+<Story id="form-cdekformcontrol--change-value-parent" />
+
+```js dark
+const nameInput = ref(null);
+
+const changeValue = () => {
+  nameInput.value?.changeValue('this value is from parent');
+};
+```
+
+```html dark
+<CdekFormControl ref="nameInput" />
+```
