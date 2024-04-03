@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
-import { vMaska, type MaskaDetail } from 'maska';
+// @ts-ignore
+import { vMaska, type MaskaDetail } from 'maska'; // ругается на импорт vMaska, он нужен для работы директивы
 import BaseInput from '../base-input/BaseInput.vue';
 
 const props = defineProps<{
