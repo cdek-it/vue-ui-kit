@@ -37,7 +37,7 @@ describe('Unit: BaseMaskedInput', () => {
     expect(wrapper.exists()).toBeTruthy();
   });
 
-  test('Should format input with mask "+7 ### ###-##-##" correctly when user types "912"', async () => {
+  test('Should format input with mask "+7 ### ###-##-##" correctly when user types "912" and provides correct values', async () => {
     const wrapper = new BaseMaskedInputBuilder()
       .setMask('+7 ### ###-##-##')
       .build();
