@@ -9,15 +9,16 @@ export default {
 const Template = (args) => ({
   components: { BaseMaskedInput },
   setup() {
-    const value = ref(args.modelValue || '');
-    delete args.modelValue;
-    return { args, value };
+    const value = ref('');
+    const unmaskedValue = ref('');
+    return { args, value, unmaskedValue };
   },
   template: `
     <div>
-      <BaseMaskedInput v-model="value" v-bind="args" />
+      <BaseMaskedInput v-model="value" v-model:unmasked="unmaskedValue" v-bind="args" />
       <hr />
       <p>v-model => <code>{{ value }}</code></p>
+      <p>v-model:unmasked => <code>{{ unmaskedValue }}</code></p>
     </div>
   `,
 });
@@ -30,7 +31,7 @@ Phone.args = {
 Phone.parameters = {
   docs: {
     source: {
-      code: '<CdekMaskedInput v-model="value" mask="+7 ### ###-##-##" />',
+      code: '<CdekMaskedInput v-model="value" v-model:unmasked="unmaskedValue" mask="+7 ### ###-##-##" />',
     },
   },
 };

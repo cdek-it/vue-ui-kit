@@ -12,15 +12,17 @@ interface BaseMaskedInputBuilder extends ExtraMethods {}
 
 class BaseMaskedInputBuilder {
   @builderProp modelValue?: string;
+  @builderProp unmasked?: string;
   @builderProp mask?: string;
 
   build() {
     const wrapper = mount(BaseMaskedInput as any, {
       props: {
-        modelValue: this.modelValue || '',
-        'onUpdate:modelValue': (e: string) => {
-          wrapper.setProps({ modelValue: e });
-        },
+        modelValue: this.modelValue,
+        'onUpdate:modelValue': (e: string) =>
+          wrapper.setProps({ modelValue: e }),
+        unmasked: this.unmasked,
+        'onUpdate:unmasked': (e: string) => wrapper.setProps({ unmasked: e }),
         mask: this.mask || '',
       },
     });
@@ -44,5 +46,6 @@ describe('Unit: BaseMaskedInput', () => {
     await inputElement.setValue('912');
     expect(inputElement.element.value).toBe('+7 912');
     expect(wrapper.props('modelValue')).toBe('+7 912');
+    expect(wrapper.props('unmasked')).toBe('912');
   });
 });
