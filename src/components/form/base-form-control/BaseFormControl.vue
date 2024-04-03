@@ -91,31 +91,29 @@ defineExpose({
 
 <template>
   <div :class="className">
-    <template v-if="element">
-      <!-- type="number" передается только для BaseInput -->
-      <component
-        :is="element"
-        :type="type === 'number' ? 'number' : undefined"
-        v-model="value"
-        :valid-res="fieldService.error"
-        v-bind="$attrs"
-      >
-        <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
-          <!-- @slot если `type !== 'slot'`, то все слоты передаются в дочерний компонент -->
-          <slot :name="slot" v-bind="scope" />
-        </template>
-      </component>
-    </template>
+    <!-- type="number" передается только для BaseInput -->
+    <component
+      v-if="element"
+      :is="element"
+      :type="type === 'number' ? 'number' : undefined"
+      v-model="value"
+      :valid-res="fieldService.error"
+      v-bind="$attrs"
+    >
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
+        <!-- @slot если `type !== 'slot'`, то все слоты передаются в дочерний компонент -->
+        <slot :name="slot" v-bind="scope" />
+      </template>
+    </component>
 
-    <template v-else>
-      <!--
-        @slot Если `type="slot"` или не найден подходящий элемент, то передаем в slot `value`, `changeValue` и `validRes` для кастомной обработки.
-      -->
-      <slot
-        :value="value"
-        :change-value="changeValue"
-        :valid-res="fieldService.error"
-      />
-    </template>
+    <!--
+      @slot Если `type="slot"` или не найден подходящий элемент, то передаем в slot `value`, `changeValue` и `validRes` для кастомной обработки.
+    -->
+    <slot
+      v-else
+      :value="value"
+      :change-value="changeValue"
+      :valid-res="fieldService.error"
+    />
   </div>
 </template>
