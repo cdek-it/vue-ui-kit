@@ -11,14 +11,46 @@ const Template = (args) => ({
   setup() {
     const value = ref('');
     const unmaskedValue = ref('');
-    return { args, value, unmaskedValue };
+    const completed = ref(false);
+    const completeEventCount = ref(0);
+
+    const onComplete = () => {
+      completeEventCount.value++;
+    };
+
+    delete args.story;
+    return {
+      args,
+      value,
+      unmaskedValue,
+      completed,
+      completeEventCount,
+      onComplete,
+    };
   },
   template: `
     <div>
-      <BaseMaskedInput v-model="value" v-model:unmasked="unmaskedValue" v-bind="args" />
+      <BaseMaskedInput
+        v-model="value"
+        v-model:unmasked="unmaskedValue"
+        v-model:completed="completed"
+        @complete="onComplete"
+        v-bind="args"
+      />
+
       <hr />
-      <p>v-model => <code>{{ value }}</code></p>
-      <p>v-model:unmasked => <code>{{ unmaskedValue }}</code></p>
+
+      <details>
+        <summary><code>v-model</code></summary>
+        <p><code>v-model => {{ value }}</code></p>
+        <p><code>v-model:unmasked => {{ unmaskedValue }}</code></p>
+        <p><code>v-model:completed => {{ completed }}</code></p>
+      </details>
+      
+      <details>
+        <summary><code>complete</code> event</summary>
+        <p v-for="n in completeEventCount">{{ n }} <code>complete</code> event fired!</p>
+      </details>
     </div>
   `,
 });
@@ -32,6 +64,47 @@ Phone.parameters = {
   docs: {
     source: {
       code: '<CdekMaskedInput v-model="value" v-model:unmasked="unmaskedValue" mask="+7 ### ###-##-##" />',
+    },
+  },
+};
+
+export const RegPlate = Template.bind({});
+RegPlate.args = {
+  label: 'Гос. номер автомобиля',
+  mask: 'X###XX',
+  tokens: 'X:[АВЕКМНОРСТУХABEKMHOPCTYX]',
+};
+RegPlate.parameters = {
+  docs: {
+    source: {
+      code: '<CdekMaskedInput v-model="value" mask="X###XX" tokens="X:[АВЕКМНОРСТУХABEKMHOPCTYX]" />',
+    },
+  },
+};
+
+export const RegPlateWithTransform = Template.bind({});
+RegPlateWithTransform.args = {
+  label: 'Гос. номер автомобиля',
+  mask: 'X###XX',
+  tokens: {
+    X: {
+      pattern: /[АВЕКМНОРСТУХABEKMHOPCTYX]/,
+      transform: (chr) => chr.toUpperCase(),
+    },
+  },
+};
+RegPlateWithTransform.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekMaskedInput
+  v-model="value"
+  mask="X###XX"
+  :tokens="{
+    X: { pattern: /[АВЕКМНОРСТУХABEKMHOPCTYX]/, transform: (chr) => chr.toUpperCase() }
+  }"
+/>
+`,
     },
   },
 };

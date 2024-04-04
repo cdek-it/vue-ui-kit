@@ -1,36 +1,61 @@
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 // @ts-ignore
-import { vMaska, type MaskaDetail } from 'maska'; // ругается на импорт vMaska, он нужен для работы директивы
+import { vMaska } from 'maska'; // ругается на импорт, он нужен для работы директивы
+import type {
+  MaskType,
+  MaskaDetail,
+  MaskInputOptions,
+  MaskTokens,
+} from 'maska';
 import BaseInput from '../base-input/BaseInput.vue';
 
 const props = defineProps<{
   /**
-   * `v-model` - маскированное значение, можно изменять с родителя
+   * `v-model` маскированное значение
    */
   modelValue?: string;
   /**
-   * `v-model:unmasked` - значение без маски, изменение с родителя не будет работать (вызывает лаги маски)
+   * `data-maska` из библиотеки [maska](https://beholdr.github.io/maska/#/)
    */
-  unmasked?: string;
+  mask: MaskType;
   /**
-   * `data-maska` из библиотеки [`maska`](https://beholdr.github.io/maska/#/)
+   * `data-maska-tokens` из библиотеки [maska](https://beholdr.github.io/maska/#/)
    */
-  mask: string;
+  tokens?: string | MaskTokens;
 }>();
 
 const emit = defineEmits<{
   /**
-   * `v-model`
+   * `v-model` маскированное значение
    */
   (event: 'update:modelValue', value: string): void;
   /**
-   * `v-model:unmasked`
+   * `v-model:unmasked` немаскированное значение
    */
   (event: 'update:unmasked', value: string): void;
+  /**
+   * `v-model:completed` завершен ли паттерн или нет
+   */
+  (event: 'update:completed', value: boolean): void;
+  /**
+   * Вызывается каждый раз, когда маска выполняется
+   */
+  (event: 'complete'): void;
 }>();
 
-const value = ref(props.modelValue || props.unmasked || '');
+const options = computed(() => {
+  const maskOptions: MaskInputOptions = {
+    mask: props.mask,
+  };
+
+  if (typeof props.tokens === 'object') {
+    maskOptions.tokens = props.tokens;
+  }
+  return maskOptions;
+});
+
+const value = ref(props.modelValue || '');
 
 watch(
   () => props.modelValue,
@@ -42,14 +67,27 @@ watch(
 );
 
 const onMaska = (event: CustomEvent<MaskaDetail>) => {
-  value.value = event.detail.masked;
-  emit('update:modelValue', event.detail.masked);
-  emit('update:unmasked', event.detail.unmasked);
+  if (value.value !== event.detail.masked) {
+    value.value = event.detail.masked;
+
+    emit('update:modelValue', event.detail.masked);
+    emit('update:unmasked', event.detail.unmasked);
+    emit('update:completed', event.detail.completed);
+
+    if (event.detail.completed) {
+      emit('complete');
+    }
+  }
 };
 </script>
 
 <template>
-  <BaseInput :model-value="value" v-maska :data-maska="mask" @maska="onMaska">
+  <BaseInput
+    :model-value="value"
+    v-maska:[options]
+    :data-maska-tokens="typeof tokens === 'string' ? tokens : undefined"
+    @maska="onMaska"
+  >
     <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
       <!-- @slot можно передавать любые слоты, поддерживаемые `CdekInput` -->
       <slot :name="slot" v-bind="scope" />
