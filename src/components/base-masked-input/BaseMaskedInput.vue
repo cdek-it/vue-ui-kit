@@ -23,6 +23,14 @@ const props = defineProps<{
    * `data-maska-tokens` из библиотеки [maska](https://beholdr.github.io/maska/#/)
    */
   tokens?: string | MaskTokens;
+  /**
+   * хук `preProcess` из библиотеки [maska](https://beholdr.github.io/maska/#/)
+   */
+  preProcess?: (val: string) => string;
+  /**
+   * хук `postProcess` из библиотеки [maska](https://beholdr.github.io/maska/#/)
+   */
+  postProcess?: (val: string) => string;
 }>();
 
 const emit = defineEmits<{
@@ -52,6 +60,10 @@ const options = computed(() => {
   if (typeof props.tokens === 'object') {
     maskOptions.tokens = props.tokens;
   }
+
+  props.preProcess && (maskOptions.preProcess = props.preProcess);
+  props.postProcess && (maskOptions.postProcess = props.postProcess);
+
   return maskOptions;
 });
 

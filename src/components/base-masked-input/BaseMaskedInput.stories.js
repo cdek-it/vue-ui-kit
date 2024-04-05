@@ -108,3 +108,45 @@ RegPlateWithTransform.parameters = {
     },
   },
 };
+
+export const DateWithMaxValues = Template.bind({});
+DateWithMaxValues.args = {
+  label: 'Дата',
+  mask: '##.##.####',
+  postProcess: (val) => {
+    const [day, month, year] = val.split('.');
+    const maxDay = 30;
+    const maxMonth = 12;
+    const maxYear = new Date().getFullYear();
+
+    let validDay = '';
+    let validMonth = '';
+    let validYear = '';
+
+    if (day) {
+      validDay = Number(day) <= maxDay ? day : maxDay;
+    }
+
+    if (month) {
+      validMonth = Number(month) <= maxMonth ? month : maxMonth;
+    }
+
+    if (year) {
+      validYear = Number(year) <= maxYear ? year : maxYear;
+    }
+
+    if (validYear) {
+      return [validDay, validMonth, validYear].join('.');
+    }
+
+    if (validMonth) {
+      return [validDay, validMonth].join('.');
+    }
+
+    if (validDay) {
+      return validDay;
+    }
+
+    return '';
+  },
+};
