@@ -150,3 +150,20 @@ DateWithMaxValues.args = {
     return '';
   },
 };
+DateWithMaxValues.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekMaskedInput
+  v-model="value"
+  mask="##.##.####"
+  :post-process="(val: string) => {
+    // пример обработки года
+    const max = '' + new Date().getFullYear();
+    return val > max ? max : val;
+  }"
+/>
+`,
+    },
+  },
+};
