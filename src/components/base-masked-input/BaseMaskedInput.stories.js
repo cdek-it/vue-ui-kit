@@ -167,3 +167,17 @@ DateWithMaxValues.parameters = {
     },
   },
 };
+
+export const NumberType = Template.bind({});
+NumberType.args = {
+  label: 'Телефон',
+  mask: '+7 ### ###-##-##',
+  type: 'number',
+};
+NumberType.parameters = {
+  docs: {
+    source: {
+      code: '<CdekMaskedInput v-model="value" v-model:unmasked="unmaskedValue" mask="+7 ### ###-##-##" type="number" />',
+    },
+  },
+};

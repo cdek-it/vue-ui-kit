@@ -7,6 +7,7 @@ interface ExtraMethods {
   setModelValue: (val: string) => BaseMaskedInputBuilder;
   setMask: (val: string | string[]) => BaseMaskedInputBuilder;
   setTokens: (val: string | object) => BaseMaskedInputBuilder;
+  setType: (val: string) => BaseMaskedInputBuilder;
 }
 
 interface BaseMaskedInputBuilder extends ExtraMethods {}
@@ -15,6 +16,7 @@ class BaseMaskedInputBuilder {
   @builderProp modelValue?: string;
   @builderProp mask?: string | string[];
   @builderProp tokens?: string | object;
+  @builderProp type?: string;
 
   build() {
     const wrapper = mount(BaseMaskedInput as any, {
@@ -24,6 +26,7 @@ class BaseMaskedInputBuilder {
           wrapper.setProps({ modelValue: e }),
         mask: this.mask || '',
         tokens: this.tokens,
+        type: this.type,
       },
     });
 
@@ -113,5 +116,13 @@ describe('Unit: BaseMaskedInput', () => {
     expect(wrapper.props('modelValue')).toBe('A');
     expect(wrapper.emitted('update:unmasked')?.[0]).toEqual(['A']);
     expect(wrapper.emitted('update:completed')?.[0]).toEqual([true]);
+  });
+
+  test('Should have type="text" and inputmode="numeric" attributes if type="number"', async () => {
+    const wrapper = new BaseMaskedInputBuilder().setType('number').build();
+
+    const inputElement = wrapper.find('input');
+    expect(inputElement.attributes('type')).toBe('text');
+    expect(inputElement.attributes('inputmode')).toBe('numeric');
   });
 });

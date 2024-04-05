@@ -31,6 +31,10 @@ const props = defineProps<{
    * хук `postProcess` из библиотеки [maska](https://beholdr.github.io/maska/#/)
    */
   postProcess?: (val: string) => string;
+  /**
+   * Тип инпута, отлавливаю `type="number"` дабы по другому его обработать из-за [issue](https://beholdr.github.io/maska/#/?id=known-issues) либы
+   */
+  type?: string;
 }>();
 
 const emit = defineEmits<{
@@ -91,6 +95,23 @@ const onMaska = (event: CustomEvent<MaskaDetail>) => {
     }
   }
 };
+
+const inputType = computed(() => {
+  if (props.type === 'number') {
+    return {
+      type: 'text',
+      inputmode: 'numeric',
+    };
+  }
+
+  if (props.type) {
+    return {
+      type: props.type,
+    };
+  }
+
+  return {};
+});
 </script>
 
 <template>
@@ -99,6 +120,7 @@ const onMaska = (event: CustomEvent<MaskaDetail>) => {
     v-maska:[options]
     :data-maska-tokens="typeof tokens === 'string' ? tokens : undefined"
     @maska="onMaska"
+    v-bind="inputType"
   >
     <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
       <!-- @slot можно передавать любые слоты, поддерживаемые `CdekInput` -->
