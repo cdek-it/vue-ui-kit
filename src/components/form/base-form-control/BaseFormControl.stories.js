@@ -4,10 +4,16 @@ import BaseForm from '../base-form/BaseForm.vue';
 import './BaseFormControl.stories.css';
 import { formSettings } from '../index';
 import BaseSpinner from '../../base-spinner/BaseSpinner.vue';
+import BaseSelect from '@/components/base-select/BaseSelect.vue';
 
 export default {
   title: 'Form/CdekFormControl',
   component: BaseFormControl,
+  argTypes: {
+    type: {
+      options: ['text', 'number', 'autocomplete', 'slot'],
+    },
+  },
 };
 
 const Template = (args) => ({
@@ -339,6 +345,30 @@ WithoutError.parameters = {
   },
 };
 
+export const InputTypeNumber = Template.bind({});
+InputTypeNumber.args = {
+  label: 'Цена',
+  name: 'name',
+  type: 'number',
+  rules: 'required',
+};
+InputTypeNumber.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl
+    name="name"
+    label="Цена"
+    type="number"
+    rules="required"
+  >
+</CdekForm>
+`,
+    },
+  },
+};
+
 export const DisabledAutocomplete = Template.bind({});
 DisabledAutocomplete.args = {
   label: 'Город',
@@ -386,12 +416,10 @@ const SlottedTemplate = (args) => ({
 });
 
 export const CustomSlot = SlottedTemplate.bind({});
-
 CustomSlot.args = {
   label: 'Город',
   name: 'city',
 };
-
 CustomSlot.parameters = {
   docs: {
     source: {
@@ -402,6 +430,130 @@ CustomSlot.parameters = {
     label="Город"
   >
 </CdekForm>
+`,
+    },
+  },
+};
+
+const TemplateCustomComponent = (args) => ({
+  components: { BaseForm, BaseFormControl, BaseSelect },
+  setup() {
+    const submitResult = ref();
+
+    const onSubmit = (res) => {
+      submitResult.value = res;
+    };
+
+    return { args, submitResult, onSubmit };
+  },
+  template: `
+    <div>
+      <BaseForm @submit="onSubmit">
+        <BaseFormControl v-bind="args" v-slot="{ value, changeValue, validRes }">
+          <BaseSelect
+            label="Город"
+            :model-value="value"
+            :items="[{ value: '1', title: 'Москва' }, { value: '2', title: 'Санкт-Петербург' }]"
+            :valid-res="validRes"
+            @update:modelValue="changeValue"
+          />
+        </BaseFormControl>
+
+        <button type="submit">Submit</button>
+      </BaseForm>
+    </div>
+
+    <p>submitResult => <code>{{ submitResult }}</code></p>
+  `,
+});
+
+export const CustomComponent = TemplateCustomComponent.bind({});
+CustomComponent.args = {
+  type: 'slot',
+  name: 'city',
+  rules: 'required',
+};
+CustomComponent.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekForm>
+  <CdekFormControl
+    type="slot"
+    name="city"
+    rules="required"
+    v-slot="{ value, changeValue, validRes }"
+  >
+    <CdekSelect
+      label="Город"
+      :model-value="value"
+      :items="[{ value: '1', title: 'Москва' }, { value: '2', title: 'Санкт-Петербург' }]"
+      :valid-res="validRes"
+      @update:modelValue="changeValue"
+    />
+  <CdekFormControl />
+</CdekForm>
+`,
+    },
+  },
+};
+
+const TemplateValue = (args) => ({
+  components: { BaseForm, BaseFormControl },
+  setup() {
+    const nameInput = ref(null);
+
+    const changeValue = () => {
+      nameInput.value.changeValue('this value is from parent');
+    };
+
+    const submitResult = ref();
+
+    const onSubmit = (res) => {
+      submitResult.value = res;
+    };
+
+    return { args, nameInput, changeValue, submitResult, onSubmit };
+  },
+  template: `
+    <div>
+      <BaseForm @submit="onSubmit">
+        <BaseFormControl ref="nameInput" v-bind="args" />
+        <button type="submit">Submit</button>
+      </BaseForm>
+
+      <hr />
+
+      <button @click="changeValue">
+        Изменить значение с родителя
+      </button>
+
+      <p>submitResult => <code>{{ submitResult }}</code></p>
+    </div>
+  `,
+});
+
+export const ChangeValueParent = TemplateValue.bind({});
+ChangeValueParent.args = {
+  name: 'name',
+};
+ChangeValueParent.parameters = {
+  docs: {
+    source: {
+      code: `
+<script>
+const nameInput = ref(null);
+
+const changeValue = () => {
+  nameInput.value.changeValue('this value is from parent');
+};
+</script>
+
+<template>
+  <CdekForm>
+    <CdekFormControl ref="nameInput" name="name" />
+  </CdekForm>
+</template>
 `,
     },
   },

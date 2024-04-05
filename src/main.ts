@@ -7,6 +7,7 @@ export * from './components/base-dropdown';
 export * from './components/base-headline';
 export * from './components/base-input';
 export * from './components/base-link';
+export * from './components/base-masked-input';
 export * from './components/base-modal';
 export * from './components/base-select';
 export * from './components/base-spinner';

@@ -44,7 +44,7 @@ const Template = (args) => ({
   template: `
     <BaseAutocomplete v-bind="args" v-model="selectValue" @select="onSelect">
       <template #not-found>
-        Ничего не нашлось
+        {{ args['not-found'] || 'Ничего не нашлось' }}
       </template>
       <template #tip="{ alert, info, ban, circle }">
         <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
@@ -52,7 +52,11 @@ const Template = (args) => ({
       </template>
     </BaseAutocomplete>
 
-    <p>items => {{ args.items }}</p>
+    <details>
+      <summary>items</summary>
+      <pre><code>{{ JSON.stringify(args.items, null, 2) }}</code></pre>
+    </details>
+
     <p>v-model => <code>{{ selectValue }}</code></p>
     <p>@select => <code>{{ selectArg }}</code></p>
   `,
@@ -123,6 +127,51 @@ Primary.parameters = {
     ...
   ]" 
 />
+`,
+    },
+  },
+};
+
+export const WithLabel = Template.bind({});
+WithLabel.args = {
+  label: 'Размер',
+  items,
+};
+WithLabel.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  label="Размер" 
+  :items="[
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg', disabled: true },
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+    ...
+  ]" 
+/>
+`,
+    },
+  },
+};
+
+export const NotFound = Template.bind({});
+NotFound.args = {
+  placeholder: 'Начните вводить',
+  items: [],
+  'not-found': 'А ничего тут нет',
+};
+NotFound.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  placeholder="Начните вводить" 
+  :items="[]" 
+>
+  <template #not-found>
+    А ничего тут нет
+  </template>
+</CdekAutocomplete>
 `,
     },
   },
