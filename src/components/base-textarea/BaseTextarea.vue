@@ -34,7 +34,9 @@ const props = withDefaults(
     hideErrorMessage?: boolean;
     disabled?: boolean;
     class?: string;
+    // TODO: описать
     resize?: 'none' | 'auto' | 'user';
+    // TODO: описать
     height?: string;
   }>(),
   { class: '', resize: 'none', height: '88px' }
@@ -57,6 +59,7 @@ const setValue = (event: any) => {
   if (props.resize === RESIZE_MODES.AUTO) {
     event.target.style.height = 'auto';
     event.target.style.height = event.target.scrollHeight + 'px';
+    // TODO: убрать console.log
     console.log(
       '🚀 ~ setValue ~ event.target.scrollHeight:',
       event.target.scrollHeight
@@ -95,6 +98,7 @@ defineExpose({ getControl });
         {{ label }}
       </div>
 
+      <!-- TODO: resize === RESIZE_MODES.USER вынести в computed -->
       <textarea
         :class="[
           $style['prefix-textarea__textarea'],

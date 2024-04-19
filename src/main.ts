@@ -12,6 +12,7 @@ export * from './components/base-modal';
 export * from './components/base-select';
 export * from './components/base-spinner';
 export * from './components/base-switch';
+// TODO: экспортировать с папки
 export * from './components/base-toaster';
 export * from './components/base-widget';
 export * from './components/form';
