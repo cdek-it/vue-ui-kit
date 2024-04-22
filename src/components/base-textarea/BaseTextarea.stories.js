@@ -31,7 +31,12 @@ const Template = (args) => ({
     return { args, inputVal };
   },
   template: `
-    <BaseTextarea v-bind="args" v-model="inputVal" />
+    <BaseTextarea v-bind="args" v-model="inputVal" >
+      <template #tip="{ alert, info, ban, circle }">
+        <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
+        <span :class="args.tipColor">{{ args.tip }}</span>
+      </template>
+    </BaseTextarea>
   `,
 });
 
@@ -228,6 +233,77 @@ DisabledFilled.parameters = {
   docs: {
     source: {
       code: '<CdekTextarea v-model="inputVal" label="Комментарий" disabled />',
+    },
+  },
+};
+
+export const Tip = Template.bind({});
+Tip.args = {
+  label: 'Комментарий',
+  tip: 'Пояснение или помощь',
+};
+Tip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekTextarea v-model="inputVal" label="Комментарий">
+  <template #tip>Пояснение или помощь</template>
+</CdekTextarea>
+`,
+    },
+  },
+};
+
+export const ColoredTip = Template.bind({});
+ColoredTip.argTypes = {
+  tipColor: {
+    options: ['tertiary', 'attention', 'error', 'success'],
+    type: 'select',
+  },
+};
+ColoredTip.args = {
+  label: 'Комментарий',
+  tip: 'Пояснение или помощь',
+  tipColor: 'success',
+};
+ColoredTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekTextarea v-model="inputVal" label="Комментарий">
+  <template #tip>
+    <span class="success">Пояснение или помощь</span>
+  </template>
+</CdekTextarea>
+`,
+    },
+  },
+};
+
+export const TipIcon = Template.bind({});
+TipIcon.argTypes = {
+  tipIcon: {
+    options: ['info', 'alert', 'ban', 'circle'],
+    type: 'select',
+  },
+};
+TipIcon.args = {
+  label: 'Комментарий',
+  tip: 'Пояснение или помощь',
+  tipIcon: 'info',
+  story: 'TipIcon',
+};
+TipIcon.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekTextarea v-model="inputVal" label="Комментарий">
+  <template #tip="{ info }">
+    <component :is="info" />
+    <span>Пояснение или помощь</span>
+  </template>
+</CdekTextarea>
+`,
     },
   },
 };
