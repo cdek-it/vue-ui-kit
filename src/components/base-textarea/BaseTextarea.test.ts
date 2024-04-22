@@ -100,7 +100,7 @@ describe('Unit: BaseTextarea', () => {
       const label = wrapper.find('.prefix-textarea__label');
       expect(label.classes('prefix-textarea__label_filled')).toBeTruthy();
     });
-    test('Если modelValue не содержит значение и передан label, то лейбл должен быть посередине', async () => {
+    test('Если modelValue не содержит значение и передан label, то лейбл должен быть на первой строке', async () => {
       const wrapper = new BaseTextareaBuilder()
         .setLabel('Комментарий')
         .setModelValue('initialText')
