@@ -34,15 +34,27 @@ const props = withDefaults(
     hideErrorMessage?: boolean;
     disabled?: boolean;
     class?: string;
-    // TODO: описать
+    /**
+     * `none` - изменение размера отключено
+     *
+     * `auto` - высота меняется вслед за контентом
+     *
+     * `user` - высоту можно изменить вручную
+     */
     resize?: 'none' | 'auto' | 'user';
-    // TODO: описать
+    /**
+     * высота `textarea` по умолчанию
+     *
+     * значение CSS, например `146px`
+     */
     height?: string;
   }>(),
   { class: '', resize: 'none', height: '88px' }
 );
 
 const isError = computed(() => typeof props.validRes === 'string');
+
+const isResizable = computed(() => props.resize === RESIZE_MODES.USER);
 
 const isUserEvent = computed(() => !props.disabled);
 
@@ -57,13 +69,10 @@ const value = computed(() => props.modelValue);
 
 const setValue = (event: any) => {
   if (props.resize === RESIZE_MODES.AUTO) {
+    const scrollheight = event.target.scrollHeight;
+
     event.target.style.height = 'auto';
-    event.target.style.height = event.target.scrollHeight + 'px';
-    // TODO: убрать console.log
-    console.log(
-      '🚀 ~ setValue ~ event.target.scrollHeight:',
-      event.target.scrollHeight
-    );
+    event.target.style.height = scrollheight + 'px';
   }
 
   emit('update:modelValue', event.target.value);
@@ -98,15 +107,12 @@ defineExpose({ getControl });
         {{ label }}
       </div>
 
-      <!-- TODO: resize === RESIZE_MODES.USER вынести в computed -->
       <textarea
         :class="[
           $style['prefix-textarea__textarea'],
           isError ? $style['prefix-textarea__textarea_error'] : '',
           !label ? $style['prefix-textarea__textarea_no-label'] : '',
-          resize === RESIZE_MODES.USER
-            ? $style['prefix-textarea__textarea_resizable']
-            : '',
+          isResizable ? $style['prefix-textarea__textarea_resizable'] : '',
         ]"
         :value="value"
         @input="setValue"
@@ -220,7 +226,7 @@ defineExpose({ getControl });
     caret-color: $Primary;
     align-self: flex-end;
     resize: none;
-    min-height: 24px;
+    min-height: 28px;
     height: calc(#{$height-without-label} - #{$offset-with-label});
 
     &_error {

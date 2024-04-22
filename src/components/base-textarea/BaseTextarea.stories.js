@@ -12,8 +12,11 @@ export default {
       },
     },
   },
-  // TODO: изменить control для validRes
-  // TODO: для resize сделать селект со значениями (смотри в BaseBadge)
+  argTypes: {
+    resize: {
+      options: ['none', 'auto', 'user'],
+    },
+  },
 };
 
 const Template = (args) => ({
@@ -41,7 +44,18 @@ Primary.parameters = {
   },
 };
 
-// TODO: высота становится меньше когда вводишь 1 символ
+export const PrimaryWithHeight = Template.bind({});
+PrimaryWithHeight.args = {
+  height: '146px',
+};
+PrimaryWithHeight.parameters = {
+  docs: {
+    source: {
+      code: '<CdekTextarea v-model="inputVal" height="146px" />',
+    },
+  },
+};
+
 export const ResizeAuto = Template.bind({});
 ResizeAuto.args = {
   resize: 'auto',
@@ -54,7 +68,6 @@ ResizeAuto.parameters = {
   },
 };
 
-// TODO: появляется скролл когда 1 строка
 export const ResizeUser = Template.bind({});
 ResizeUser.args = {
   resize: 'user',
@@ -67,7 +80,6 @@ ResizeUser.parameters = {
   },
 };
 
-// TODO: появляется скролл когда 1 строка
 export const ResizeUserWithLabel = Template.bind({});
 ResizeUserWithLabel.args = {
   resize: 'user',
@@ -219,5 +231,3 @@ DisabledFilled.parameters = {
     },
   },
 };
-
-// TODO: нет истории на высоту
