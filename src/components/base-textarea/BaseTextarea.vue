@@ -7,16 +7,12 @@ export default {
 <script lang="ts" setup>
 import { computed, ref } from 'vue';
 
+import { RESIZE_MODES } from './types';
+
 import AlertTriangleIcon from './svg/alert-triangle.svg?component';
 import BanIcon from './svg/ban.svg?component';
 import CircleCheckIcon from './svg/circle-check.svg?component';
 import InfoCircleIcon from './svg/info-circle.svg?component';
-
-enum RESIZE_MODES {
-  NONE = 'none',
-  AUTO = 'auto',
-  USER = 'user',
-}
 
 const props = withDefaults(
   defineProps<{

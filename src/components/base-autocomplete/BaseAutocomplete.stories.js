@@ -1,6 +1,8 @@
 import BaseAutocomplete from './BaseAutocomplete.vue';
 import { ref } from 'vue';
 
+import './BaseAutocomplete.stories.css';
+
 export default {
   title: 'Ui kit/CdekAutocomplete',
   component: BaseAutocomplete,
@@ -486,6 +488,31 @@ EnabledAccentQuery.parameters = {
 <CdekAutocomplete 
   placeholder="Начните вводить" 
   enabled-accent-query
+  :items="[
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg' },
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+    { value: 3, title: 'Envelope, 10×10×10сm, up to 1kg' },
+    ...
+  ]" 
+/>
+`,
+    },
+  },
+};
+
+export const HiddenTipBlock = Template.bind({});
+HiddenTipBlock.args = {
+  placeholder: 'Начните вводить',
+  items,
+  class: 'hidden-tip-block',
+};
+HiddenTipBlock.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  class="hidden-tip-block"
+  placeholder="Начните вводить"
   :items="[
     { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg' },
     { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
