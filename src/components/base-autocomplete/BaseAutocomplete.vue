@@ -381,7 +381,8 @@ const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
   }
 
   .prefix-dropdown-box {
-    margin-top: -14px;
+    top: 60px; // высота CdekInput + 4px, визуально подходит и для small CdekInput
+    left: 0;
   }
 
   .v-enter-active,
