@@ -72,7 +72,7 @@ describe('Unit: BaseTextarea', () => {
       .setModelValue('initialText')
       .build();
     await wrapper.find('textarea').setValue('test');
-    expect(wrapper.props('modelValue')).toBe('test');
+    expect((wrapper as any).props('modelValue')).toBe('test');
   });
 
   test('Если resize = "user", то textarea может менять размер', () => {

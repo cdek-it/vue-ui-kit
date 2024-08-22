@@ -379,6 +379,6 @@ describe('Unit: BaseSelect', () => {
 
     await options[1].trigger('click');
 
-    expect(wrapper.props('modelValue')).toBe(2);
+    expect((wrapper as any).props('modelValue')).toBe(2);
   });
 });
