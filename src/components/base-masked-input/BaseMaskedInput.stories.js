@@ -59,6 +59,7 @@ export const Phone = Template.bind({});
 Phone.args = {
   label: 'Телефон',
   mask: '+7 ### ###-##-##',
+  clearable: false,
 };
 Phone.parameters = {
   docs: {

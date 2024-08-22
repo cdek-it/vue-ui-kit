@@ -112,6 +112,14 @@ const inputType = computed(() => {
 
   return {};
 });
+
+const onChange = (v: string) => {
+  if (v === '') {
+    emit('update:modelValue', '');
+    emit('update:unmasked', '');
+    emit('update:completed', false);
+  }
+};
 </script>
 
 <template>
@@ -120,6 +128,7 @@ const inputType = computed(() => {
     v-maska:[options]
     :data-maska-tokens="typeof tokens === 'string' ? tokens : undefined"
     @maska="onMaska"
+    @update:model-value="onChange"
     v-bind="inputType"
   >
     <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
