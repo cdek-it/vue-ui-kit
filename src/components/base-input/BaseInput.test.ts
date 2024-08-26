@@ -95,7 +95,7 @@ describe('Unit: BaseInput', () => {
   test('Компонент поддерживает v-model', async () => {
     const wrapper = new BaseInputBuilder().setModelValue('initialText').build();
     await wrapper.find('input').setValue('test');
-    expect(wrapper.props('modelValue')).toBe('test');
+    expect((wrapper as any).props('modelValue')).toBe('test');
   });
 
   describe('label', () => {

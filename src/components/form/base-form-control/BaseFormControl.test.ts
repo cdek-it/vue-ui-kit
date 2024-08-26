@@ -5,6 +5,7 @@ import FormService from '../services/FormService';
 import { FormServiceKey } from '../services/FormService';
 import builderProp from '@/test/decorators';
 import { dti } from '@/test/helpers';
+import type { RulesT } from '@/components/form/services/types';
 
 // Import components that BaseFormControl might render dynamically
 import BaseInput from '../../base-input/BaseInput.vue';
@@ -24,7 +25,7 @@ interface BaseFormControlBuilder extends ExtraMethods {}
 class BaseFormControlBuilder {
   @builderProp name?: string;
   @builderProp rules?: any;
-  @builderProp type?: string;
+  @builderProp type?: 'text' | 'number' | 'autocomplete' | 'slot';
   @builderProp className?: string;
   @builderProp initialValue?: string;
   @builderProp defaultSlot?: string;
@@ -36,7 +37,7 @@ class BaseFormControlBuilder {
 
     const wrapper = mount<typeof BaseFormControl>(BaseFormControl as any, {
       props: {
-        name: this.name,
+        name: this.name as string,
         rules: this.rules,
         type: this.type,
         className: this.className,
@@ -120,7 +121,7 @@ describe('Unit: BaseFormControl', () => {
   test('updates validation result in FormService errors after changing rules prop', async () => {
     const name = 'testField';
     const initialValue = '';
-    const newRules = { required: true };
+    const newRules = { required: true } as RulesT;
     const { wrapper, formService } = new BaseFormControlBuilder()
       .setName(name)
       .setInitialValue(initialValue)
@@ -129,6 +130,7 @@ describe('Unit: BaseFormControl', () => {
 
     expect(formService.errors[name]).toBe(true);
 
+    await (wrapper as any).setProps({ rules: newRules });
     await wrapper.setProps({ rules: newRules });
     expect(formService.errors[name]).toBe('required');
   });

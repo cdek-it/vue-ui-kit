@@ -48,7 +48,7 @@ describe('Unit: BaseMaskedInput', () => {
     const inputElement = wrapper.find('input');
     await inputElement.setValue('912');
     expect(inputElement.element.value).toBe('+7 912');
-    expect(wrapper.props('modelValue')).toBe('+7 912');
+    expect((wrapper as any).props('modelValue')).toBe('+7 912');
     expect(wrapper.emitted('update:unmasked')?.[0]).toEqual(['912']);
     expect(wrapper.emitted('update:completed')?.[0]).toEqual([false]);
   });
@@ -61,7 +61,7 @@ describe('Unit: BaseMaskedInput', () => {
     const inputElement = wrapper.find('input');
     await inputElement.setValue('9121234567');
     expect(inputElement.element.value).toBe('+7 912 123-45-67');
-    expect(wrapper.props('modelValue')).toBe('+7 912 123-45-67');
+    expect((wrapper as any).props('modelValue')).toBe('+7 912 123-45-67');
     expect(wrapper.emitted('update:unmasked')?.[0]).toEqual(['9121234567']);
     expect(wrapper.emitted('update:completed')?.[0]).toEqual([true]);
   });
@@ -74,13 +74,13 @@ describe('Unit: BaseMaskedInput', () => {
     const inputElement = wrapper.find('input');
     await inputElement.setValue('123');
     expect(inputElement.element.value).toBe('123');
-    expect(wrapper.props('modelValue')).toBe('123');
+    expect((wrapper as any).props('modelValue')).toBe('123');
     expect(wrapper.emitted('update:unmasked')?.[0]).toEqual(['123']);
     expect(wrapper.emitted('update:completed')?.[0]).toEqual([false]);
 
     await inputElement.setValue('1234');
     expect(inputElement.element.value).toBe('12-34');
-    expect(wrapper.props('modelValue')).toBe('12-34');
+    expect((wrapper as any).props('modelValue')).toBe('12-34');
     expect(wrapper.emitted('update:unmasked')?.[1]).toEqual(['1234']);
     expect(wrapper.emitted('update:completed')?.[1]).toEqual([true]);
   });
@@ -97,7 +97,7 @@ describe('Unit: BaseMaskedInput', () => {
 
     await inputElement.setValue('1');
     expect(inputElement.element.value).toBe('1');
-    expect(wrapper.props('modelValue')).toBe('1');
+    expect((wrapper as any).props('modelValue')).toBe('1');
     expect(wrapper.emitted('update:unmasked')?.[0]).toEqual(['1']);
     expect(wrapper.emitted('update:completed')?.[0]).toEqual([true]);
   });
@@ -113,7 +113,7 @@ describe('Unit: BaseMaskedInput', () => {
     const inputElement = wrapper.find('input');
     await inputElement.setValue('a');
     expect(inputElement.element.value).toBe('A');
-    expect(wrapper.props('modelValue')).toBe('A');
+    expect((wrapper as any).props('modelValue')).toBe('A');
     expect(wrapper.emitted('update:unmasked')?.[0]).toEqual(['A']);
     expect(wrapper.emitted('update:completed')?.[0]).toEqual([true]);
   });
