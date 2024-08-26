@@ -94,12 +94,16 @@ describe('Unit: BaseMaskedInput', () => {
     const inputElement = wrapper.find('input');
     await inputElement.setValue('2');
     expect(inputElement.element.value).toBe('');
+    // the onChange event is triggered on an empty value
+    expect((wrapper as any).props('modelValue')).toBe('');
+    expect(wrapper.emitted('update:unmasked')?.[0]).toEqual(['']);
+    expect(wrapper.emitted('update:completed')?.[0]).toEqual([false]);
 
     await inputElement.setValue('1');
     expect(inputElement.element.value).toBe('1');
     expect((wrapper as any).props('modelValue')).toBe('1');
-    expect(wrapper.emitted('update:unmasked')?.[0]).toEqual(['1']);
-    expect(wrapper.emitted('update:completed')?.[0]).toEqual([true]);
+    expect(wrapper.emitted('update:unmasked')?.[1]).toEqual(['1']);
+    expect(wrapper.emitted('update:completed')?.[1]).toEqual([true]);
   });
 
   test('Should format input with mask "A" and tokens `{ A: { pattern: /A/, transform: (c) => c.toUpperCase() } }` correctly when user types "a" it should be "A"', async () => {
