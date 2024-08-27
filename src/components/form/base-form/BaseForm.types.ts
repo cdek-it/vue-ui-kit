@@ -5,3 +5,9 @@ export type FormSubmitResult<ValuesT = FieldsT> = {
   errors?: ErrorsT;
   values?: ValuesT;
 };
+
+export type FormChangeResult<ValuesT = FieldsT> = {
+  isValid: boolean;
+  errors: ErrorsT;
+  values: ValuesT;
+};
