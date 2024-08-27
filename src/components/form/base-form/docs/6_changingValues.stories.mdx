@@ -42,7 +42,7 @@ const changeValue = () => {
 <CdekFormControl ref="nameInput" />
 ```
 
-### Событие change
+### Событие change на CdekForm
 
 Позволяет отслеживать изменения формы.
 
@@ -70,3 +70,32 @@ const change = (result: FormChangeResult<CustomValuesT>) => {
   <CdekFormControl name="surname" label="surname" />
 </CdekForm>
 ```
+
+### Событие change на CdekFormControl
+
+Позволяет отслеживать изменения поля.
+
+<Story id="form-cdekformcontrol--primary" />
+
+```js dark
+import type { FieldChangeResult } from '@cdek-ui-kit/vue';
+
+const change = (result: FieldChangeResult<CustomValueT>) => {
+  /**
+   * В result будет лежать объект такого вида:
+   * type FieldChangeResult<CustomValueT = string> = {
+   *  isValid: boolean;
+   *  error?: true | string;
+   *  value: ValueT;
+   * };
+   */
+  console.log(result);
+}
+```
+
+```html dark
+<CdekForm>
+  <CdekFormControl name="firstName" @change="change">
+</CdekForm>
+```
+

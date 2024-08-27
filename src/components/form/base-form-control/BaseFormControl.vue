@@ -10,6 +10,7 @@ import { inject, computed, reactive, watch } from 'vue';
 import { FormServiceKey } from '../services/FormService';
 import type FormService from '../services/FormService';
 import type { RulesT } from '../services/types';
+import type { FieldChangeResult } from './BaseFormControl.types';
 
 import BaseInput from '../../base-input/BaseInput.vue';
 import BaseAutocomplete from '../../base-autocomplete/BaseAutocomplete.vue';
@@ -45,6 +46,10 @@ const props = withDefaults(
   { type: 'text', className: '', initialValue: '' }
 );
 
+const emit = defineEmits<{
+  (e: 'change', value: FieldChangeResult): void;
+}>();
+
 const formService = inject(FormServiceKey) as FormService;
 const fieldService = reactive(
   formService.getFieldService(props.name, props.rules)
@@ -65,6 +70,11 @@ const value = computed({
   },
   set(newValue) {
     fieldService.change(newValue);
+    emit('change', {
+      value: newValue,
+      isValid: fieldService.isValid === true,
+      error: fieldService.errorMessage,
+    });
   },
 });
 
