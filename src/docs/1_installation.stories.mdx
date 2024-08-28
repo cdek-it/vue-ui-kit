@@ -42,3 +42,22 @@ import '@cdek-ui-kit/vue/style.css';
 // From SCSS
 @import '@cdek-ui-kit/vue/style.css';
 ```
+
+## Переустановка после выпуска на новой версии
+
+Если с `npm` возникает ошибка
+
+```bash
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for @cdek-ui-kit/vue@0.6.0-alpha.il17.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+```
+
+Запустите команду
+
+```bash
+npm cache clean --force
+```
+
+И установите еще раз.
