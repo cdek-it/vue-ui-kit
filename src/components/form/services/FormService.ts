@@ -8,7 +8,7 @@ export default class FormService {
   readonly fields: FieldsT = {};
   readonly errors: ErrorsT = {};
 
-  submitSubscribers: Function[] = [];
+  onShowErrorsSubscribers: Function[] = [];
 
   /**
    * @param name - название поля
@@ -34,14 +34,22 @@ export default class FormService {
     this.errors[name] = validOrError;
   }
 
-  triggerSubmit() {
-    for (const cb of this.submitSubscribers) {
-      cb();
+  getIsFormValid() {
+    for (const key of Object.getOwnPropertyNames(this.errors)) {
+      if (typeof this.errors[key] === 'string') {
+        return false;
+      }
     }
+
+    return true;
   }
 
-  subscribeOnSubmit(callback: Function) {
-    this.submitSubscribers.push(callback);
+  showErrors() {
+    [...this.onShowErrorsSubscribers].forEach((cb) => cb());
+  }
+
+  subscribeOnShowErrors(callback: Function) {
+    this.onShowErrorsSubscribers.push(callback);
   }
 
   getFieldService(...args: [string, RulesT]) {
