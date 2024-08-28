@@ -45,9 +45,7 @@ export default class FormService {
   }
 
   showErrors() {
-    for (const cb of this.onShowErrorsSubscribers) {
-      cb();
-    }
+    [...this.onShowErrorsSubscribers].forEach((cb) => cb());
   }
 
   subscribeOnShowErrors(callback: Function) {
