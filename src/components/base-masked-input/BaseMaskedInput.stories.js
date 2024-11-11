@@ -182,3 +182,28 @@ NumberType.parameters = {
     },
   },
 };
+
+export const HiddenErrorMessage = Template.bind({});
+HiddenErrorMessage.args = {
+  label: 'Телефон',
+  mask: '+7 ### ###-##-##',
+  clearable: false,
+  hideErrorMessage: true,
+  showErrorIfExist: false,
+  validRes: 'Ошибка',
+};
+HiddenErrorMessage.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekMaskedInput
+  v-model="value"
+  v-model:unmasked="unmaskedValue"
+  mask="+7 ### ###-##-##"
+  hide-error-message
+  valid-res="Ошибка"
+/>
+`,
+    },
+  },
+};
