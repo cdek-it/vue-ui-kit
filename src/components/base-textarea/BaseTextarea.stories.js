@@ -28,15 +28,26 @@ const Template = (args) => ({
         : ''
     );
 
-    return { args, inputVal };
+    const validRes = ref(args.validRes);
+
+    const toggleValidRes = () => {
+      validRes.value = validRes.value === 'Ошибка' ? '' : 'Ошибка';
+    };
+
+    return { args, inputVal, validRes, toggleValidRes };
   },
   template: `
-    <BaseTextarea v-bind="args" v-model="inputVal" >
-      <template #tip="{ alert, info, ban, circle }">
+    <BaseTextarea v-bind="args" v-model="inputVal" :valid-res="validRes">
+      <template #tip="{ alert, info, ban, circle }" v-if="args.tip">
         <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
         <span :class="args.tipColor">{{ args.tip }}</span>
       </template>
     </BaseTextarea>
+
+    <p v-if="args.story === 'ShowErrorIfExist'">
+      <button @click="toggleValidRes">Переключить ошибку</button>
+    </p>
+    <p :style="{ margin: '0' }" v-else>Контент после textarea</p>
   `,
 });
 
@@ -177,6 +188,75 @@ ErrorWithoutMessage.parameters = {
   valid-res="Ошибка"
   hide-error-message
 />
+`,
+    },
+  },
+};
+
+export const ErrorWithoutMessageWithTip = Template.bind({});
+ErrorWithoutMessageWithTip.args = {
+  label: 'Комментарий',
+  validRes: 'Ошибка',
+  hideErrorMessage: true,
+  tip: 'Подсказка',
+};
+ErrorWithoutMessageWithTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekTextarea
+  v-model="inputVal"
+  label="Комментарий"
+  valid-res="Ошибка"
+  hide-error-message
+>
+  <template #tip>Подсказка</template>
+</CdekTextarea>
+`,
+    },
+  },
+};
+
+export const ShowErrorIfExist = Template.bind({});
+ShowErrorIfExist.args = {
+  label: 'Комментарий',
+  showErrorIfExist: true,
+  story: 'ShowErrorIfExist',
+};
+ShowErrorIfExist.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekTextarea
+  v-model="inputVal"
+  label="Комментарий"
+  valid-res="Ошибка"
+  show-error-if-exist
+/>
+`,
+    },
+  },
+};
+
+export const ShowErrorIfExistWithTip = Template.bind({});
+ShowErrorIfExistWithTip.args = {
+  label: 'Комментарий',
+  showErrorIfExist: true,
+  story: 'ShowErrorIfExist',
+  tip: 'Подсказка',
+};
+ShowErrorIfExistWithTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekTextarea
+  v-model="inputVal"
+  label="Комментарий"
+  valid-res="Ошибка"
+  show-error-if-exist
+>
+  <template #tip>Подсказка</template>
+</CdekTextarea>
 `,
     },
   },

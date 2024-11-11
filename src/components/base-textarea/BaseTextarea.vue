@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, useSlots } from 'vue';
 
 import { RESIZE_MODES } from './types';
 
@@ -27,7 +27,20 @@ const props = withDefaults(
      * `string` - текст ошибки, ошибка показывается
      */
     validRes?: true | string;
+    /**
+     * `true` - место под ошибку **не** зарезервировано, текст ошибки **не** будет показываться, даже если она есть
+     *
+     * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
+     *
+     * более приоритетный параметр, чем `showErrorIfExist`
+     */
     hideErrorMessage?: boolean;
+    /**
+     * `true` - место под ошибку **не** зарезервировано, текст ошибки будет показываться
+     *
+     * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
+     */
+    showErrorIfExist?: boolean;
     disabled?: boolean;
     class?: string;
     /**
@@ -49,6 +62,24 @@ const props = withDefaults(
 );
 
 const isError = computed(() => typeof props.validRes === 'string');
+
+const slots = useSlots();
+const hasTip = computed(() => !!slots['tip']);
+
+const isReservedTipSpace = computed(() => {
+  if (props.hideErrorMessage) {
+    // показываем блок только если есть подсказка
+    return hasTip.value;
+  }
+
+  if (props.showErrorIfExist) {
+    // показываем блок, если есть подсказка или ошибка
+    return hasTip.value || isError.value;
+  }
+
+  // по умолчанию резервируем место под ошибку
+  return true;
+});
 
 const isResizable = computed(() => props.resize === RESIZE_MODES.USER);
 
@@ -117,13 +148,9 @@ defineExpose({ getControl });
         ref="textareaRef"
       />
     </label>
-    <div :class="$style['prefix-textarea__tip']">
-      <template v-if="isError">
-        <div
-          :class="$style['error']"
-          v-show="!hideErrorMessage"
-          v-html="validRes"
-        />
+    <div :class="$style['prefix-textarea__tip']" v-if="isReservedTipSpace">
+      <template v-if="isError && !hideErrorMessage">
+        <div :class="$style['error']" v-html="validRes" />
       </template>
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
