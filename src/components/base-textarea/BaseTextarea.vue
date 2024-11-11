@@ -65,10 +65,10 @@ const emit = defineEmits<{
 
 const value = computed(() => props.modelValue);
 
-const setValue = (value: string) => {
+const onInput = (event: Event) => {
   resizeTextarea();
 
-  emit('update:modelValue', value);
+  emit('update:modelValue', (event.target as HTMLTextAreaElement).value);
 };
 
 const resizeTextarea = () => {
@@ -94,7 +94,7 @@ defineExpose({ getControl });
 watch(
   () => props.modelValue,
   () => {
-    nextTick(() => resizeTextarea());
+    nextTick(resizeTextarea);
   }
 );
 </script>
@@ -129,7 +129,7 @@ watch(
           isResizable ? $style['prefix-textarea__textarea_resizable'] : '',
         ]"
         :value="value"
-        @input="(e) => setValue((e.target as HTMLTextAreaElement).value)"
+        @input="onInput"
         v-bind="$attrs"
         :disabled="disabled"
         ref="textareaRef"
