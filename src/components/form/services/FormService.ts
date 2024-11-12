@@ -56,6 +56,14 @@ export default class FormService {
     return new FormServiceControl(this, ...args);
   }
 
+  trimForm() {
+    for (const key in this.fields) {
+      if (typeof this.fields[key] === 'string') {
+        this.fields[key] = (this.fields[key] as unknown as string).trim();
+      }
+    }
+  }
+
   clearForm() {
     Object.keys(this.fields).forEach((key: string) => {
       this.changeField(key, '');

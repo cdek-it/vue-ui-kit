@@ -4,13 +4,12 @@ import { provide, reactive, watch } from 'vue';
 import FormService, { FormServiceKey } from '../services/FormService';
 import type { FieldsT, ErrorsT } from '../services/types';
 import type { FormSubmitResult, FormChangeResult } from './BaseForm.types';
-import { trimForm } from './helpers';
 
 const formService = reactive(new FormService());
 provide(FormServiceKey, formService);
 
 const props = defineProps<{
-  trimBeforeSubmit: boolean;
+  trimBeforeSubmit?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -29,11 +28,11 @@ const submit: () => FormSubmitResult = () => {
     return { isValid: false, errors: errorsObj };
   }
 
-  let valuesObj = { ...formService.fields };
-
   if (props.trimBeforeSubmit) {
-    valuesObj = trimForm(valuesObj);
+    formService.trimForm();
   }
+
+  const valuesObj = { ...formService.fields };
 
   emit('submit', valuesObj);
 
