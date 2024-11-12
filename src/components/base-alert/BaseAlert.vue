@@ -23,9 +23,9 @@ const props = withDefaults(
     /**
      * Расположение иконки по вертикали
      */
-    iconPosition?: 'top' | 'center' | 'bottom';
+    contentAlign?: 'top' | 'center' | 'bottom';
   }>(),
-  { type: 'attention', style: 'surface', iconPosition: 'center' }
+  { type: 'attention', style: 'surface', contentAlign: 'center' }
 );
 
 const typesWithIcons = {
@@ -49,7 +49,7 @@ const currentIcon = computed(() => typesWithIcons[props.type]);
     <div
       :class="[
         $style['prefix-alert__title'],
-        $style[`prefix-alert__title--icon-${iconPosition}`],
+        $style[`prefix-alert__title--content-align-${contentAlign}`],
       ]"
     >
       <!-- @slot для заголовка, если не нужна иконка, либо нужна кастомная иконка -->
@@ -120,15 +120,15 @@ const currentIcon = computed(() => typesWithIcons[props.type]);
     gap: 8px;
     margin-bottom: 4px;
 
-    &--icon-top {
+    &--content-align-top {
       align-items: flex-start;
     }
 
-    &--icon-center {
+    &--content-align-center {
       align-items: center;
     }
 
-    &--icon-bottom {
+    &--content-align-bottom {
       align-items: flex-end;
     }
 

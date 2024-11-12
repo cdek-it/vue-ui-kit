@@ -20,7 +20,7 @@ export default {
     style: {
       options: ['surface', 'line'],
     },
-    iconPosition: {
+    contentAlign: {
       options: ['top', 'center', 'bottom'],
     },
   },
@@ -57,8 +57,8 @@ Primary.parameters = {
   },
 };
 
-export const PrimaryIconTop = Template.bind({});
-PrimaryIconTop.args = {
+export const PrimaryContentAlignTop = Template.bind({});
+PrimaryContentAlignTop.args = {
   title: `очень много текста.
 очень много текста.
 очень много текста.
@@ -71,13 +71,13 @@ PrimaryIconTop.args = {
 очень много текста.
 очень много текста.
 очень много текста.`,
-  iconPosition: 'top',
+  contentAlign: 'top',
 };
-PrimaryIconTop.parameters = {
+PrimaryContentAlignTop.parameters = {
   docs: {
     source: {
       code: `
-<CdekAlert title="очень много текста..." iconPosition="top" />
+<CdekAlert title="очень много текста..." contentAlign="top" />
 `,
     },
   },
