@@ -1,0 +1,21 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Form/Behavior" />
+
+# Поведение формы
+
+
+### trimBeforeSubmit
+
+Свойство `trimBeforeSubmit` позволяет автоматически удалять пробелы в начале и в конце значений всех строковых полей формы перед её отправкой.
+
+Это свойство можно добавить к компоненту `<CdekForm>`. Если оно включено, все строковые поля формы будут автоматически очищены от лишних пробелов перед отправкой. Это полезно для предотвращения ошибок валидации и случайных пробелов в данных пользователя.
+
+<Story id="form-cdekform--primary-trimmed" />
+
+```html dark
+<CdekForm trimBeforeSubmit v-model="formValues" @submit="submitForm">
+  <CdekFormControl name="firstName" label="Имя" />
+  <CdekFormControl name="lastName" label="Фамилия" />
+</CdekForm>
+```
