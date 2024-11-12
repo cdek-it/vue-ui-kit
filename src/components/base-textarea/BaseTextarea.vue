@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, ref, useSlots } from 'vue';
+import { computed, nextTick, onMounted, ref, watch, useSlots } from 'vue';
 
 import { RESIZE_MODES } from './types';
 
@@ -61,6 +61,8 @@ const props = withDefaults(
   { class: '', resize: 'none', height: '88px', showErrorIfExists: false }
 );
 
+const textareaRef = ref<HTMLTextAreaElement>();
+
 const isError = computed(() => typeof props.validRes === 'string');
 
 const slots = useSlots();
@@ -94,22 +96,38 @@ const emit = defineEmits<{
 
 const value = computed(() => props.modelValue);
 
-const setValue = (event: any) => {
-  if (props.resize === RESIZE_MODES.AUTO) {
-    const scrollheight = event.target.scrollHeight;
+const onInput = (event: Event) => {
+  resizeTextarea();
 
-    event.target.style.height = 'auto';
-    event.target.style.height = scrollheight + 'px';
-  }
-
-  emit('update:modelValue', event.target.value);
+  emit('update:modelValue', (event.target as HTMLTextAreaElement).value);
 };
 
-const textareaRef = ref<HTMLTextAreaElement>();
+const resizeTextarea = () => {
+  if (!textareaRef.value || props.resize !== RESIZE_MODES.AUTO) {
+    return;
+  }
+
+  textareaRef.value.style.height = '0';
+  const scrollHeight = textareaRef.value.scrollHeight;
+
+  textareaRef.value.style.height = 'auto';
+  textareaRef.value.style.height = scrollHeight + 'px';
+};
+
+onMounted(() => {
+  resizeTextarea();
+});
 
 const getControl = () => textareaRef.value;
 
 defineExpose({ getControl });
+
+watch(
+  () => props.modelValue,
+  () => {
+    nextTick(resizeTextarea);
+  }
+);
 </script>
 
 <template>
@@ -142,7 +160,7 @@ defineExpose({ getControl });
           isResizable ? $style['prefix-textarea__textarea_resizable'] : '',
         ]"
         :value="value"
-        @input="setValue"
+        @input="onInput"
         v-bind="$attrs"
         :disabled="disabled"
         ref="textareaRef"

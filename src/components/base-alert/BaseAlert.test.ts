@@ -11,6 +11,7 @@ import InfoCircleIcon from './icons/info-circle.svg?component';
 interface ExtraMethods {
   setTitle: (val: string) => BaseAlertBuilder;
   setType: (val: string) => BaseAlertBuilder;
+  setContentAlign: (val: string) => BaseAlertBuilder;
   setDefaultSlot: (val: string) => BaseAlertBuilder;
   setHeaderSlot: (val: string) => BaseAlertBuilder;
   setStyle: (val: string) => BaseAlertBuilder;
@@ -26,6 +27,9 @@ class BaseAlertBuilder {
   type?: string;
 
   @builderProp
+  contentAlign?: 'top' | 'center' | 'bottom';
+
+  @builderProp
   defaultSlot?: string;
 
   @builderProp
@@ -39,6 +43,7 @@ class BaseAlertBuilder {
       props: {
         title: this.title,
         type: this.type,
+        contentAlign: this.contentAlign,
         style: this.style,
       },
       slots: {
@@ -71,6 +76,17 @@ describe('Unit: BaseAlert', () => {
     expect(wrapper.exists()).toBe(true);
     expect(wrapper.classes()).toContain('prefix-alert--positive');
     expect(wrapper.findComponent(CheckIcon).exists()).toBe(true);
+  });
+
+  test('title content is positioned according to the contentAlign attribute', () => {
+    const wrapper = new BaseAlertBuilder()
+      .setTitle('Test Title')
+      .setContentAlign('top')
+      .build();
+
+    expect(wrapper.exists()).toBe(true);
+    const title = wrapper.find('.prefix-alert__title');
+    expect(title.classes()).toContain('prefix-alert__title--content-align-top');
   });
 
   test('component renders with content', () => {
