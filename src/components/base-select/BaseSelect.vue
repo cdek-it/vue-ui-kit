@@ -274,9 +274,9 @@ const value = computed({
       </ListboxOptions>
     </Listbox>
     <div :class="$style['prefix-select__tip']" v-if="isReservedTipSpace">
-      <template v-if="isError && !hideErrorMessage">
-        <span class="error">{{ validRes }}</span>
-      </template>
+      <span v-if="isError && !hideErrorMessage" class="error">{{
+        validRes
+      }}</span>
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
       <slot

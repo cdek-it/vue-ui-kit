@@ -180,9 +180,11 @@ defineExpose({ getControl });
       </div>
     </label>
     <div :class="$style['prefix-input__tip']" v-if="isReservedTipSpace">
-      <template v-if="isError && !hideErrorMessage">
-        <div :class="$style['error']" v-html="validRes" />
-      </template>
+      <div
+        v-if="isError && !hideErrorMessage"
+        :class="$style['error']"
+        v-html="validRes"
+      />
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
       <slot
