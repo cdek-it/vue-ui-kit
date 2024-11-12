@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, useSlots } from 'vue';
 import {
   Listbox,
   ListboxButton,
@@ -47,7 +47,20 @@ const props = withDefaults(
      * `string` - текст ошибки, ошибка показывается
      */
     validRes?: true | string;
+    /**
+     * `true` - место под ошибку **не** зарезервировано, текст ошибки **не** будет показываться, даже если она есть
+     *
+     * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
+     *
+     * более приоритетный параметр, чем `showErrorIfExists`
+     */
     hideErrorMessage?: boolean;
+    /**
+     * `true` - место под ошибку **не** зарезервировано, текст ошибки будет показываться
+     *
+     * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
+     */
+    showErrorIfExists?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
@@ -64,7 +77,7 @@ const props = withDefaults(
      */
     getTitle?: GetTitleFn;
   }>(),
-  {}
+  { hideErrorMessage: false, showErrorIfExists: false }
 );
 
 const getNewValue = (item: IItemValue | Primitive) => {
@@ -116,6 +129,24 @@ const options = computed(() => {
 });
 
 const isError = computed(() => typeof props.validRes === 'string');
+
+const slots = useSlots();
+const hasTip = computed(() => !!slots['tip']);
+
+const isReservedTipSpace = computed(() => {
+  if (props.hideErrorMessage) {
+    // показываем блок только если есть подсказка
+    return hasTip.value;
+  }
+
+  if (props.showErrorIfExists) {
+    // показываем блок, если есть подсказка или ошибка
+    return hasTip.value || isError.value;
+  }
+
+  // по умолчанию резервируем место под ошибку
+  return true;
+});
 
 const isUserEvent = computed(() => !props.disabled && !props.readonly);
 
@@ -242,10 +273,10 @@ const value = computed({
         </ListboxOption>
       </ListboxOptions>
     </Listbox>
-    <div :class="$style['prefix-select__tip']">
-      <template v-if="isError">
-        <span class="error" v-show="!hideErrorMessage">{{ validRes }}</span>
-      </template>
+    <div :class="$style['prefix-select__tip']" v-if="isReservedTipSpace">
+      <span v-if="isError && !hideErrorMessage" class="error">{{
+        validRes
+      }}</span>
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
       <slot

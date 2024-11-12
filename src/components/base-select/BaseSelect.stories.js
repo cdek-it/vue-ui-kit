@@ -32,10 +32,23 @@ const Template = (args) => ({
 
     const onSelect = (val) => (selectArg.value = val);
 
-    return { args, items: args.items, selectValue, selectArg, onSelect };
+    const validRes = ref(args.validRes);
+
+    const toggleValidRes = () =>
+      (validRes.value = validRes.value ? '' : 'Ошибка');
+
+    return {
+      args,
+      items: args.items,
+      selectValue,
+      selectArg,
+      onSelect,
+      validRes,
+      toggleValidRes,
+    };
   },
   template: `
-<BaseSelect v-bind="args" :items="items" v-model="selectValue" @select="onSelect">
+<BaseSelect v-bind="args" :items="items" v-model="selectValue" :valid-res="validRes" @select="onSelect">
   <template 
       v-if="args.story === 'ScopedSlotSelectedOption' 
       || args.story === 'ScopedSlotsSelectedOptionAndCustomOption'" #selectedOption="{ value }">
@@ -52,11 +65,16 @@ const Template = (args) => ({
     <div class="some-class" :class="{disabled: option.disabled}">{{ option?.value }}</div>
   </template>
   
-  <template #tip="{ alert, info, ban, circle }">
+  <template #tip="{ alert, info, ban, circle }" v-if="args.tip">
     <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
     <span :class="args.tipColor">{{ args.tip }}</span>
   </template>
 </BaseSelect>
+
+<p v-if="args.story === 'ShowErrorIfExists'">
+  <button @click="toggleValidRes">Переключить ошибку</button>
+</p>
+<p :style="{ margin: '0' }" v-else>Контент после select</p>
 
 
 <div v-if="args.story === 'GetValue' || args.story === 'GetTitle'">
@@ -231,6 +249,10 @@ WithTip.argTypes = {
     options: ['info', 'alert', 'ban', 'circle'],
     type: 'select',
   },
+  tipColor: {
+    options: ['tertiary', 'attention', 'error', 'success'],
+    type: 'select',
+  },
 };
 WithTip.args = {
   label: 'Вариант действия',
@@ -269,14 +291,14 @@ WithError.parameters = {
   },
 };
 
-export const WithErrorHiddenMessage = Template.bind({});
-WithErrorHiddenMessage.args = {
+export const HideErrorMessage = Template.bind({});
+HideErrorMessage.args = {
   label: 'Вариант действия',
   validRes: 'Ошибка',
   hideErrorMessage: true,
   items,
 };
-WithErrorHiddenMessage.parameters = {
+HideErrorMessage.parameters = {
   docs: {
     source: {
       code: `
@@ -287,6 +309,83 @@ WithErrorHiddenMessage.parameters = {
   valid-res="Ошибка"
   hide-error-message
 />
+`,
+    },
+  },
+};
+
+export const HideErrorMessageWithTip = Template.bind({});
+HideErrorMessageWithTip.args = {
+  label: 'Вариант действия',
+  validRes: 'Ошибка',
+  tip: 'Подсказка',
+  hideErrorMessage: true,
+  items,
+};
+HideErrorMessageWithTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect
+  label="Вариант действия"
+  :items="items"
+  v-model="selectVal"
+  valid-res="Ошибка"
+  hide-error-message
+>
+  <template #tip>
+    Подсказка
+  </template>
+</CdekSelect>
+`,
+    },
+  },
+};
+
+export const ShowErrorIfExists = Template.bind({});
+ShowErrorIfExists.args = {
+  label: 'Вариант действия',
+  showErrorIfExists: true,
+  items,
+  story: 'ShowErrorIfExists',
+};
+ShowErrorIfExists.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect
+  label="Вариант действия"
+  :items="items"
+  v-model="selectVal"
+  show-error-if-exist
+/>
+`,
+    },
+  },
+};
+
+export const ShowErrorIfExistsWithTip = Template.bind({});
+ShowErrorIfExistsWithTip.args = {
+  label: 'Вариант действия',
+  showErrorIfExists: true,
+  tip: 'Подсказка',
+  items,
+  story: 'ShowErrorIfExists',
+};
+ShowErrorIfExistsWithTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect
+  label="Вариант действия"
+  :items="items"
+  v-model="selectVal"
+  show-error-if-exist
+>
+  <template #tip>
+    Подсказка
+  </template>
+</CdekSelect>
 `,
     },
   },
