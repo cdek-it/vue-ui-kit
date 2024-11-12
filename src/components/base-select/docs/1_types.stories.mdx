@@ -1,0 +1,36 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Ui kit/CdekSelect/Types" />
+
+# Типы
+
+### `IItemValue`
+
+```typescript dark
+interface IItemValue {
+  /**
+   * Используется как значение для v-model
+   */
+  value: string | number;
+  /**
+   * Отображается в списке как название опции
+   */
+  title: string | number;
+  /**
+   * Иконка опции, отображается слева от названия опции
+   */
+  icon?: Component;
+  /**
+   * Является ли опция отключенной, ее нельзя будет выбрать, и она будет затемнена
+   */
+  disabled?: boolean;
+  /**
+   * Цвет опции
+   */
+  color?: string;
+  /**
+   * Дополнительные свойства, не будут обработаны
+   */
+  [props: string]: any;
+}
+```

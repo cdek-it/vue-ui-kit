@@ -9,8 +9,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component:
-          '[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2002%3A5618&t=1hSFwpuIzTDSax1g-4)',
+        component: `[Figma](https://www.figma.com/file/ZIhkqRfKAFAf3w06aqfWzz/CDEK-Web-Library?node-id=2002%3A5618&t=1hSFwpuIzTDSax1g-4)`,
       },
     },
   },
@@ -76,13 +75,9 @@ const Template = (args) => ({
 </p>
 <p :style="{ margin: '0' }" v-else>Контент после select</p>
 
-
-<div v-if="args.story === 'GetValue' || args.story === 'GetTitle'">
-  <p>items => {{ args.items }}</p>
-  <p>v-model => <code>{{ selectValue }}</code></p>
-  <p>@select => <code>{{ selectArg }}</code></p>
-</div>
-
+<p>items => <code>{{ args.items }}</code></p>
+<p>v-model => <code>'{{ selectValue }}'</code></p>
+<p>@select => <code>{{ selectArg }}</code></p>
   `,
 });
 
@@ -581,6 +576,47 @@ GetTitle.parameters = {
   :items="items"
   v-model="selectVal"
   get-title="(item) => item..."
+/>
+`,
+    },
+  },
+};
+
+export const PrimitiveValues = Template.bind({});
+PrimitiveValues.args = {
+  label: 'Вариант действия',
+  items: ['Первый', 'Второй', 'Третий'],
+};
+PrimitiveValues.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect
+  label="Вариант действия"
+  :items="items"
+  v-model="selectVal"
+/>
+`,
+    },
+  },
+};
+
+export const FalsyValueItem = Template.bind({});
+FalsyValueItem.args = {
+  label: 'Проверка ложных значений',
+  items: [
+    { value: '', title: 'Пустая строка' },
+    { value: 1, title: 'Валидное значение' },
+  ],
+};
+FalsyValueItem.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekSelect
+  label="Проверка ложных значений"
+  :items="[{ value: '', title: 'Пустая строка' }, ...]"
+  v-model="selectVal"
 />
 `,
     },

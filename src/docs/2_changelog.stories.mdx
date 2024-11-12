@@ -15,12 +15,15 @@ import { Meta } from '@storybook/addon-docs';
 - [**CdekAutocomplete**](/story/ui-kit-cdekautocomplete--hidden-tip-block) dropdown теперь не залазит на CdekInput, если блок с подсказкой скрыт [#102](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/102)
 - [**CdekMaskedInput**](/story/ui-kit-cdekmaskedinput--phone) clearable теперь вызывает событие очистки инпута [#101](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/101)
 - [**toastification**](/story/plugins-toastification--select-position) выбор позиции теперь работают корректно на мобильных устройствах [#100](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/100)
-- [**CdekAlert**](/story/ui-kit-cdekalert--primary-icon-top) теперь при длинном заголовке иконка не сжимается [#99](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/99)
-- [**CdekTextarea**](/story/ui-kit-cdektextarea--resize-auto-with-initial-value) теперь CdekTextarea c resize="auto" расчитывает высоту с изначальным modelValue [#104](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/104)
-- [**CdekTextarea**](/story/ui-kit-cdektextarea--resize-auto-with-remove-text-button) теперь CdekTextarea c resize="auto" расчитывает высоту при изменении modelValue мимо события input [#104](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/104)
+- [**CdekSelect**](/story/ui-kit-cdekselect--falsy-value-item) теперь корректно обрабатывает ложные значения в `value` (пустая строка, 0) [#106](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/106)
+- [**CdekSelect**](/story/ui-kit-cdekselect--get-value) теперь не мутирует переданный массив `items` [#105](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/105)
 
 ### Changed
 
+- [**CdekSelect**](/story/ui-kit-cdekselect--get-value) теперь отдает оригинальный объект из `items` в событии `select` [#105](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/105)
+- [**CdekAlert**](/story/ui-kit-cdekalert--primary-icon-top) теперь при длинном заголовке иконка не сжимается [#99](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/99)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--resize-auto-with-initial-value) теперь CdekTextarea c resize="auto" расчитывает высоту с изначальным modelValue [#104](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/104)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--resize-auto-with-remove-text-button) теперь CdekTextarea c resize="auto" расчитывает высоту при изменении modelValue мимо события input [#104](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/104)
 - [**CdekInput**](/story/ui-kit-cdekinput-basic--error-without-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
 - [**CdekTextarea**](/story/ui-kit-cdektextarea--error-without-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
 - [**CdekSelect**](/story/ui-kit-cdekselect--hide-error-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
@@ -45,6 +48,7 @@ import { Meta } from '@storybook/addon-docs';
 
 - [**Installation**](/story/installation--page) Добавлена инструкция для npm, если пакет не устанавливается
 - [**Contributing**](/story/contributing--page) Добавлена ссылка на инструкцию для версии с префиксами, смотри в секцию Тестирование на alpha версии
+- [**CdekSelect**](/story/ui-kit-cdekselect-types--page) Добавлена документация по типам
 
 ## <a name="0.5.0"></a>[0.5.0](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/0.5.0)
 
