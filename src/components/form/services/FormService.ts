@@ -59,7 +59,7 @@ export default class FormService {
   trimForm() {
     for (const key in this.fields) {
       if (typeof this.fields[key] === 'string') {
-        this.fields[key] = (this.fields[key] as unknown as string).trim();
+        this.fields[key] = this.fields[key].trim();
       }
     }
   }
