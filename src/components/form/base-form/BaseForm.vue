@@ -8,6 +8,10 @@ import type { FormSubmitResult, FormChangeResult } from './BaseForm.types';
 const formService = reactive(new FormService());
 provide(FormServiceKey, formService);
 
+const props = defineProps<{
+  trimBeforeSubmit?: boolean;
+}>();
+
 const emit = defineEmits<{
   (e: 'submit', values: FieldsT): void;
   (e: 'submitError', errors: ErrorsT): void;
@@ -24,7 +28,12 @@ const submit: () => FormSubmitResult = () => {
     return { isValid: false, errors: errorsObj };
   }
 
+  if (props.trimBeforeSubmit) {
+    formService.trimForm();
+  }
+
   const valuesObj = { ...formService.fields };
+
   emit('submit', valuesObj);
 
   return { isValid: true, values: valuesObj };

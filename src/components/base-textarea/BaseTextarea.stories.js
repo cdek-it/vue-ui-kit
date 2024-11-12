@@ -1,4 +1,5 @@
 import BaseTextarea from './BaseTextarea.vue';
+import BaseButton from '../base-button/BaseButton.vue';
 import { ref } from 'vue';
 
 export default {
@@ -20,23 +21,65 @@ export default {
 };
 
 const Template = (args) => ({
-  components: { BaseTextarea },
+  components: { BaseTextarea, BaseButton },
   setup() {
+    const addText = () => {
+      inputVal.value = `очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.`;
+    };
+
+    const removeText = () => {
+      inputVal.value = '';
+    };
+
     const inputVal = ref(
       ['LabelFilled', 'ErrorFilled', 'DisabledFilled'].includes(args.story)
         ? '345'
         : ''
     );
 
-    return { args, inputVal };
+    const validRes = ref(args.validRes);
+
+    const toggleValidRes = () => {
+      validRes.value = validRes.value === 'Ошибка' ? '' : 'Ошибка';
+    };
+
+    if (
+      ['ResizeAutoWithInitialValue', 'ResizeAutoWithRemoveTextButton'].includes(
+        args.story
+      )
+    ) {
+      inputVal.value = `очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.`;
+    }
+
+    return { args, inputVal, validRes, toggleValidRes, addText, removeText };
   },
   template: `
-    <BaseTextarea v-bind="args" v-model="inputVal" >
-      <template #tip="{ alert, info, ban, circle }">
+    <BaseTextarea v-bind="args" v-model="inputVal" :valid-res="validRes">
+      <template #tip="{ alert, info, ban, circle }" v-if="args.tip">
         <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
         <span :class="args.tipColor">{{ args.tip }}</span>
       </template>
     </BaseTextarea>
+
+    <p v-if="args.story === 'ShowErrorIfExists'">
+      <button @click="toggleValidRes">Переключить ошибку</button>
+    </p>
+    <p :style="{ margin: '0' }" v-else>Контент после textarea</p>
+
+    <BaseButton v-if="args.story === 'ResizeAutoWithAddTextButton'" @click="addText">Добавить текст</BaseButton>
+    <BaseButton v-if="args.story === 'ResizeAutoWithRemoveTextButton'" @click="removeText">Удалить текст</BaseButton>
   `,
 });
 
@@ -66,6 +109,45 @@ ResizeAuto.args = {
   resize: 'auto',
 };
 ResizeAuto.parameters = {
+  docs: {
+    source: {
+      code: '<CdekTextarea v-model="inputVal" resize="auto" />',
+    },
+  },
+};
+
+export const ResizeAutoWithInitialValue = Template.bind({});
+ResizeAutoWithInitialValue.args = {
+  resize: 'auto',
+  story: 'ResizeAutoWithInitialValue',
+};
+ResizeAutoWithInitialValue.parameters = {
+  docs: {
+    source: {
+      code: '<CdekTextarea v-model="inputVal" resize="auto" />',
+    },
+  },
+};
+
+export const ResizeAutoWithAddTextButton = Template.bind({});
+ResizeAutoWithAddTextButton.args = {
+  resize: 'auto',
+  story: 'ResizeAutoWithAddTextButton',
+};
+ResizeAutoWithAddTextButton.parameters = {
+  docs: {
+    source: {
+      code: '<CdekTextarea v-model="inputVal" resize="auto" />',
+    },
+  },
+};
+
+export const ResizeAutoWithRemoveTextButton = Template.bind({});
+ResizeAutoWithRemoveTextButton.args = {
+  resize: 'auto',
+  story: 'ResizeAutoWithRemoveTextButton',
+};
+ResizeAutoWithRemoveTextButton.parameters = {
   docs: {
     source: {
       code: '<CdekTextarea v-model="inputVal" resize="auto" />',
@@ -177,6 +259,75 @@ ErrorWithoutMessage.parameters = {
   valid-res="Ошибка"
   hide-error-message
 />
+`,
+    },
+  },
+};
+
+export const ErrorWithoutMessageWithTip = Template.bind({});
+ErrorWithoutMessageWithTip.args = {
+  label: 'Комментарий',
+  validRes: 'Ошибка',
+  hideErrorMessage: true,
+  tip: 'Подсказка',
+};
+ErrorWithoutMessageWithTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekTextarea
+  v-model="inputVal"
+  label="Комментарий"
+  valid-res="Ошибка"
+  hide-error-message
+>
+  <template #tip>Подсказка</template>
+</CdekTextarea>
+`,
+    },
+  },
+};
+
+export const ShowErrorIfExists = Template.bind({});
+ShowErrorIfExists.args = {
+  label: 'Комментарий',
+  showErrorIfExists: true,
+  story: 'ShowErrorIfExists',
+};
+ShowErrorIfExists.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekTextarea
+  v-model="inputVal"
+  label="Комментарий"
+  valid-res="Ошибка"
+  show-error-if-exist
+/>
+`,
+    },
+  },
+};
+
+export const ShowErrorIfExistsWithTip = Template.bind({});
+ShowErrorIfExistsWithTip.args = {
+  label: 'Комментарий',
+  showErrorIfExists: true,
+  story: 'ShowErrorIfExists',
+  tip: 'Подсказка',
+};
+ShowErrorIfExistsWithTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekTextarea
+  v-model="inputVal"
+  label="Комментарий"
+  valid-res="Ошибка"
+  show-error-if-exist
+>
+  <template #tip>Подсказка</template>
+</CdekTextarea>
 `,
     },
   },

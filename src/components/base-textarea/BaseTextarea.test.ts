@@ -8,6 +8,7 @@ interface ExtraMethods {
   setLabel: (val: string) => BaseTextareaBuilder;
   setValidRes: (val: true | string) => BaseTextareaBuilder;
   setHideErrorMessage: (val: boolean) => BaseTextareaBuilder;
+  setShowErrorIfExists: (val: boolean) => BaseTextareaBuilder;
   setDisabled: (val: boolean) => BaseTextareaBuilder;
   setTip: (val: string) => BaseTextareaBuilder;
   setResize: (val: string) => BaseTextareaBuilder;
@@ -21,6 +22,7 @@ class BaseTextareaBuilder {
   @builderProp label?: string;
   @builderProp validRes?: true | string;
   @builderProp hideErrorMessage?: boolean;
+  @builderProp showErrorIfExists?: boolean;
   @builderProp disabled?: boolean;
   @builderProp tip?: string;
   @builderProp resize?: string;
@@ -39,6 +41,7 @@ class BaseTextareaBuilder {
   }
 
   build() {
+    const tip = this.tip ? { tip: this.tip } : {};
     const wrapper = mount(BaseTextarea as any, {
       props: {
         modelValue: this.modelValue,
@@ -47,12 +50,13 @@ class BaseTextareaBuilder {
         label: this.label,
         validRes: this.validRes,
         hideErrorMessage: this.hideErrorMessage,
+        showErrorIfExists: this.showErrorIfExists,
         disabled: this.disabled,
         resize: this.resize,
         height: this.height,
       },
       slots: {
-        tip: this.tip || '',
+        ...tip,
       },
       attrs: this.attrs,
     });
@@ -138,16 +142,6 @@ describe('Unit: BaseTextarea', () => {
       expect(error.text()).toBe('Ошибка');
     });
 
-    test('Если validRes = "Ошибка" и hideErrorMessage = true то текст "Ошибка" не должен показываться', () => {
-      const wrapper = new BaseTextareaBuilder()
-        .setValidRes('Ошибка')
-        .setHideErrorMessage(true)
-        .build();
-      const error = wrapper.find('.error');
-      expect(error.text()).toBe('Ошибка');
-      expect(error.attributes('style')).toBe('display: none;');
-    });
-
     test('Если validRes - html, то блоки вставляются как html', () => {
       const wrapper = new BaseTextareaBuilder()
         .setLabel('Лейбл')
@@ -213,5 +207,63 @@ describe('Unit: BaseTextarea', () => {
     expect(
       textareaContainer.classes('prefix-textarea__control_user-event')
     ).toBeTruthy();
+  });
+
+  describe('Скрывание ошибки', () => {
+    test('Если validRes = "Ошибка" и hideErrorMessage = true и нет подсказки, то блок с подсказкой должен быть скрыт', () => {
+      const wrapper = new BaseTextareaBuilder()
+        .setValidRes('Ошибка')
+        .setHideErrorMessage(true)
+        .build();
+      const error = wrapper.find('.prefix-textarea__tip');
+      expect(error.exists()).toBeFalsy();
+    });
+    test('Если validRes = "Ошибка" и hideErrorMessage = true и есть подсказка, то блок с подсказкой должен содержать подсказку', () => {
+      const wrapper = new BaseTextareaBuilder()
+        .setValidRes('Ошибка')
+        .setHideErrorMessage(true)
+        .setTip('Подсказка')
+        .build();
+      const error = wrapper.find('.prefix-textarea__tip');
+      expect(error.text()).toBe('Подсказка');
+    });
+    test('Если validRes = "true" и showErrorIfExists = true и нет подсказки, то блок с подсказкой должен быть скрыт', () => {
+      const wrapper = new BaseTextareaBuilder()
+        .setValidRes(true)
+        .setShowErrorIfExists(true)
+        .build();
+      console.log(
+        '👾 ~ file: BaseTextarea.test.ts:231 ~ test ~ wrapper =>',
+        wrapper.html()
+      );
+      const error = wrapper.find('.prefix-textarea__tip');
+      expect(error.exists()).toBeFalsy();
+    });
+    test('Если validRes = "Ошибка" и showErrorIfExists = true и нет подсказки, то блок с подсказкой должен содержать ошибку', () => {
+      const wrapper = new BaseTextareaBuilder()
+        .setValidRes('Ошибка')
+        .setShowErrorIfExists(true)
+        .build();
+      const error = wrapper.find('.prefix-textarea__tip');
+      expect(error.text()).toBe('Ошибка');
+    });
+    test('Если validRes = "true" и showErrorIfExists = true и есть подсказка, то блок с подсказкой должен содержать подсказку', () => {
+      const wrapper = new BaseTextareaBuilder()
+        .setValidRes(true)
+        .setShowErrorIfExists(true)
+        .setTip('Подсказка')
+        .build();
+      const error = wrapper.find('.prefix-textarea__tip');
+      expect(error.text()).toBe('Подсказка');
+    });
+    test('Если validRes = "Ошибка" и showErrorIfExists = true и есть подсказка, то блок с подсказкой должен содержать ошибку', () => {
+      const wrapper = new BaseTextareaBuilder()
+        .setValidRes('Ошибка')
+        .setShowErrorIfExists(true)
+        .setTip('Подсказка')
+        .build();
+      const error = wrapper.find('.prefix-textarea__tip');
+      expect(error.text()).toBe('Ошибка');
+    });
   });
 });

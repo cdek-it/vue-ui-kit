@@ -48,7 +48,7 @@ const Template = (args) => ({
       <template #not-found>
         {{ args['not-found'] || 'Ничего не нашлось' }}
       </template>
-      <template #tip="{ alert, info, ban, circle }">
+      <template #tip="{ alert, info, ban, circle }" v-if="args.tip">
         <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
         <span :class="args.tipColor">{{ args.tip }}</span>
       </template>
@@ -330,6 +330,7 @@ WithErrorHiddenMessage.args = {
   label: 'Размер коробки',
   validRes: 'Ошибка',
   hideErrorMessage: true,
+  showErrorIfExists: false,
   items,
 };
 WithErrorHiddenMessage.parameters = {

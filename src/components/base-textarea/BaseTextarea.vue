@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, nextTick, onMounted, ref, watch, useSlots } from 'vue';
 
 import { RESIZE_MODES } from './types';
 
@@ -27,7 +27,20 @@ const props = withDefaults(
      * `string` - текст ошибки, ошибка показывается
      */
     validRes?: true | string;
+    /**
+     * `true` - место под ошибку **не** зарезервировано, текст ошибки **не** будет показываться, даже если она есть
+     *
+     * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
+     *
+     * более приоритетный параметр, чем `showErrorIfExists`
+     */
     hideErrorMessage?: boolean;
+    /**
+     * `true` - место под ошибку **не** зарезервировано, текст ошибки будет показываться
+     *
+     * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
+     */
+    showErrorIfExists?: boolean;
     disabled?: boolean;
     class?: string;
     /**
@@ -45,10 +58,30 @@ const props = withDefaults(
      */
     height?: string;
   }>(),
-  { class: '', resize: 'none', height: '88px' }
+  { class: '', resize: 'none', height: '88px', showErrorIfExists: false }
 );
 
+const textareaRef = ref<HTMLTextAreaElement>();
+
 const isError = computed(() => typeof props.validRes === 'string');
+
+const slots = useSlots();
+const hasTip = computed(() => !!slots['tip']);
+
+const isReservedTipSpace = computed(() => {
+  if (props.hideErrorMessage) {
+    // показываем блок только если есть подсказка
+    return hasTip.value;
+  }
+
+  if (props.showErrorIfExists) {
+    // показываем блок, если есть подсказка или ошибка
+    return hasTip.value || isError.value;
+  }
+
+  // по умолчанию резервируем место под ошибку
+  return true;
+});
 
 const isResizable = computed(() => props.resize === RESIZE_MODES.USER);
 
@@ -63,22 +96,38 @@ const emit = defineEmits<{
 
 const value = computed(() => props.modelValue);
 
-const setValue = (event: any) => {
-  if (props.resize === RESIZE_MODES.AUTO) {
-    const scrollheight = event.target.scrollHeight;
+const onInput = (event: Event) => {
+  resizeTextarea();
 
-    event.target.style.height = 'auto';
-    event.target.style.height = scrollheight + 'px';
-  }
-
-  emit('update:modelValue', event.target.value);
+  emit('update:modelValue', (event.target as HTMLTextAreaElement).value);
 };
 
-const textareaRef = ref<HTMLTextAreaElement>();
+const resizeTextarea = () => {
+  if (!textareaRef.value || props.resize !== RESIZE_MODES.AUTO) {
+    return;
+  }
+
+  textareaRef.value.style.height = '0';
+  const scrollHeight = textareaRef.value.scrollHeight;
+
+  textareaRef.value.style.height = 'auto';
+  textareaRef.value.style.height = scrollHeight + 'px';
+};
+
+onMounted(() => {
+  resizeTextarea();
+});
 
 const getControl = () => textareaRef.value;
 
 defineExpose({ getControl });
+
+watch(
+  () => props.modelValue,
+  () => {
+    nextTick(resizeTextarea);
+  }
+);
 </script>
 
 <template>
@@ -111,20 +160,18 @@ defineExpose({ getControl });
           isResizable ? $style['prefix-textarea__textarea_resizable'] : '',
         ]"
         :value="value"
-        @input="setValue"
+        @input="onInput"
         v-bind="$attrs"
         :disabled="disabled"
         ref="textareaRef"
       />
     </label>
-    <div :class="$style['prefix-textarea__tip']">
-      <template v-if="isError">
-        <div
-          :class="$style['error']"
-          v-show="!hideErrorMessage"
-          v-html="validRes"
-        />
-      </template>
+    <div :class="$style['prefix-textarea__tip']" v-if="isReservedTipSpace">
+      <div
+        v-if="isError && !hideErrorMessage"
+        :class="$style['error']"
+        v-html="validRes"
+      />
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
       <slot

@@ -14,6 +14,7 @@ interface ExtraMethods {
   setLabel: (value: string) => BaseSelectBuilder;
   setValidRes: (value: true | string) => BaseSelectBuilder;
   setHideErrorMessage: (value: boolean) => BaseSelectBuilder;
+  setShowErrorIfExists: (value: boolean) => BaseSelectBuilder;
   setDisabled: (value: boolean) => BaseSelectBuilder;
   setReadonly: (value: boolean) => BaseSelectBuilder;
   setSmall: (value: boolean) => BaseSelectBuilder;
@@ -38,47 +39,22 @@ const defaultItems: Array<IItemValue> = [
 interface BaseSelectBuilder extends ExtraMethods {}
 
 class BaseSelectBuilder {
-  @builderProp
-  modelValue: Primitive | Array<Primitive> = '';
-
-  @builderProp
-  items: Array<IItemValue> | Array<Primitive> | Array<any> = defaultItems;
-
-  @builderProp
-  label?: string;
-
-  @builderProp
-  validRes?: true | string;
-
-  @builderProp
-  hideErrorMessage?: boolean;
-
-  @builderProp
-  disabled?: boolean;
-
-  @builderProp
-  readonly?: boolean;
-
-  @builderProp
-  small?: boolean;
-
-  @builderProp
-  multiple?: boolean;
-
-  @builderProp
-  getValue?: GetValueFn;
-
-  @builderProp
-  getTitle?: GetTitleFn;
-
-  @builderProp
-  option?: string;
-
-  @builderProp
-  selectedOption?: string;
-
-  @builderProp
-  tip?: string;
+  @builderProp modelValue: Primitive | Array<Primitive> = '';
+  @builderProp items: Array<IItemValue> | Array<Primitive> | Array<any> =
+    defaultItems;
+  @builderProp label?: string;
+  @builderProp validRes?: true | string;
+  @builderProp hideErrorMessage?: boolean;
+  @builderProp showErrorIfExists?: boolean;
+  @builderProp disabled?: boolean;
+  @builderProp readonly?: boolean;
+  @builderProp small?: boolean;
+  @builderProp multiple?: boolean;
+  @builderProp getValue?: GetValueFn;
+  @builderProp getTitle?: GetTitleFn;
+  @builderProp option?: string;
+  @builderProp selectedOption?: string;
+  @builderProp tip?: string;
 
   attrs: Record<string, string> = {};
 
@@ -88,6 +64,7 @@ class BaseSelectBuilder {
   }
 
   build() {
+    const tip = this.tip ? { tip: this.tip } : {};
     const wrapper = mount(BaseSelect as any, {
       props: {
         modelValue: this.modelValue,
@@ -97,6 +74,7 @@ class BaseSelectBuilder {
         label: this.label,
         validRes: this.validRes,
         hideErrorMessage: this.hideErrorMessage,
+        showErrorIfExists: this.showErrorIfExists,
         disabled: this.disabled,
         readonly: this.readonly,
         small: this.small,
@@ -105,7 +83,7 @@ class BaseSelectBuilder {
         getTitle: this.getTitle,
       },
       slots: {
-        tip: this.tip || '',
+        ...tip,
         option: this.option || '',
         selectedOption: this.selectedOption || '',
       },
@@ -213,16 +191,6 @@ describe('Unit: BaseSelect', () => {
       const wrapper = new BaseSelectBuilder().setValidRes('Ошибка').build();
       const error = wrapper.find('.error');
       expect(error.text()).toBe('Ошибка');
-    });
-
-    test('Если validRes = "Ошибка" и hideErrorMessage = true, то текст "Ошибка" не должен показываться', () => {
-      const wrapper = new BaseSelectBuilder()
-        .setValidRes('Ошибка')
-        .setHideErrorMessage(true)
-        .build();
-      const error = wrapper.find('.error');
-      expect(error.text()).toBe('Ошибка');
-      expect(error.attributes('style')).toBe('display: none;');
     });
   });
 
@@ -461,5 +429,63 @@ describe('Unit: BaseSelect', () => {
 
     // Check if the emitted value is the falsy value
     expect(wrapper.emitted('update:modelValue')?.[0]?.[0]).toBe('');
+  });
+
+  describe('Скрывание ошибки', () => {
+    test('Если validRes = "Ошибка" и hideErrorMessage = true и нет подсказки, то блок с подсказкой должен быть скрыт', () => {
+      const wrapper = new BaseSelectBuilder()
+        .setValidRes('Ошибка')
+        .setHideErrorMessage(true)
+        .build();
+      const error = wrapper.find('.prefix-select__tip');
+      expect(error.exists()).toBeFalsy();
+    });
+    test('Если validRes = "Ошибка" и hideErrorMessage = true и есть подсказка, то блок с подсказкой должен содержать подсказку', () => {
+      const wrapper = new BaseSelectBuilder()
+        .setValidRes('Ошибка')
+        .setHideErrorMessage(true)
+        .setTip('Подсказка')
+        .build();
+      const error = wrapper.find('.prefix-select__tip');
+      expect(error.text()).toBe('Подсказка');
+    });
+    test('Если validRes = "true" и showErrorIfExists = true и нет подсказки, то блок с подсказкой должен быть скрыт', () => {
+      const wrapper = new BaseSelectBuilder()
+        .setValidRes(true)
+        .setShowErrorIfExists(true)
+        .build();
+      console.log(
+        '👾 ~ file: BaseTextarea.test.ts:231 ~ test ~ wrapper =>',
+        wrapper.html()
+      );
+      const error = wrapper.find('.prefix-select__tip');
+      expect(error.exists()).toBeFalsy();
+    });
+    test('Если validRes = "Ошибка" и showErrorIfExists = true и нет подсказки, то блок с подсказкой должен содержать ошибку', () => {
+      const wrapper = new BaseSelectBuilder()
+        .setValidRes('Ошибка')
+        .setShowErrorIfExists(true)
+        .build();
+      const error = wrapper.find('.prefix-select__tip');
+      expect(error.text()).toBe('Ошибка');
+    });
+    test('Если validRes = "true" и showErrorIfExists = true и есть подсказка, то блок с подсказкой должен содержать подсказку', () => {
+      const wrapper = new BaseSelectBuilder()
+        .setValidRes(true)
+        .setShowErrorIfExists(true)
+        .setTip('Подсказка')
+        .build();
+      const error = wrapper.find('.prefix-select__tip');
+      expect(error.text()).toBe('Подсказка');
+    });
+    test('Если validRes = "Ошибка" и showErrorIfExists = true и есть подсказка, то блок с подсказкой должен содержать ошибку', () => {
+      const wrapper = new BaseSelectBuilder()
+        .setValidRes('Ошибка')
+        .setShowErrorIfExists(true)
+        .setTip('Подсказка')
+        .build();
+      const error = wrapper.find('.prefix-select__tip');
+      expect(error.text()).toBe('Ошибка');
+    });
   });
 });

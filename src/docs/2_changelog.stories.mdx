@@ -21,6 +21,12 @@ import { Meta } from '@storybook/addon-docs';
 ### Changed
 
 - [**CdekSelect**](/story/ui-kit-cdekselect--get-value) теперь отдает оригинальный объект из `items` в событии `select` [#105](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/105)
+- [**CdekAlert**](/story/ui-kit-cdekalert--primary-icon-top) теперь при длинном заголовке иконка не сжимается [#99](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/99)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--resize-auto-with-initial-value) теперь CdekTextarea c resize="auto" расчитывает высоту с изначальным modelValue [#104](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/104)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--resize-auto-with-remove-text-button) теперь CdekTextarea c resize="auto" расчитывает высоту при изменении modelValue мимо события input [#104](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/104)
+- [**CdekInput**](/story/ui-kit-cdekinput-basic--error-without-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--error-without-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekSelect**](/story/ui-kit-cdekselect--hide-error-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
 
 ### Added
 
@@ -28,6 +34,11 @@ import { Meta } from '@storybook/addon-docs';
 - [**CdekFormControl**](/story/form-change-values--page) добавлено событие change [#107](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/107)
 - [**CdekBreadcrumbs**](/story/ui-kit-cdekbreadcrumbs--primary) создан компонент CdekBreadcrumbs [#98](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/98)
 - [**CdekTextarea**](/story/ui-kit-cdektextarea--primary) создан компонент CdekTextarea [#97](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/97)
+- [**CdekForm**](/story/form-cdekform--primary-trimmed) добавлен атрибут trim-before-submit [#30](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/30)
+- [**CdekAlert**](/story/ui-kit-cdekalert--primary-icon-top) добавлена возможность определить положение контента в заголовке [#99](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/99)
+- [**CdekInput**](/story/ui-kit-cdekinput-basic--show-error-if-exist) добавлен параметр `showErrorIfExists` [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekSelect**](/story/ui-kit-cdekselect--show-error-if-exist) добавлен параметр `showErrorIfExists` [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--show-error-if-exist) добавлен параметр `showErrorIfExists` [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
 
 ### Build
 
