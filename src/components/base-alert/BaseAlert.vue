@@ -20,8 +20,12 @@ const props = withDefaults(
      * Стиль, либо с фоном, либо с линией сбоку
      */
     style?: 'surface' | 'line';
+    /**
+     * Расположение иконки по вертикали
+     */
+    iconPosition?: 'top' | 'center' | 'bottom';
   }>(),
-  { type: 'attention', style: 'surface' }
+  { type: 'attention', style: 'surface', iconPosition: 'center' }
 );
 
 const typesWithIcons = {
@@ -42,7 +46,12 @@ const currentIcon = computed(() => typesWithIcons[props.type]);
       $style[`prefix-alert_${style}`],
     ]"
   >
-    <div :class="$style['prefix-alert__title']">
+    <div
+      :class="[
+        $style['prefix-alert__title'],
+        $style[`prefix-alert__title--icon-${iconPosition}`],
+      ]"
+    >
       <!-- @slot для заголовка, если не нужна иконка, либо нужна кастомная иконка -->
       <slot name="header"><component :is="currentIcon" /> {{ title }}</slot>
     </div>
@@ -109,10 +118,22 @@ const currentIcon = computed(() => typesWithIcons[props.type]);
     letter-spacing: unset;
     display: flex;
     gap: 8px;
-    align-items: center;
     margin-bottom: 4px;
 
+    &--icon-top {
+      align-items: flex-start;
+    }
+
+    &--icon-center {
+      align-items: center;
+    }
+
+    &--icon-bottom {
+      align-items: flex-end;
+    }
+
     :deep(svg) {
+      flex-shrink: 0;
       width: 20px;
       height: 20px;
     }

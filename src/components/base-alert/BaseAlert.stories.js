@@ -20,6 +20,9 @@ export default {
     style: {
       options: ['surface', 'line'],
     },
+    iconPosition: {
+      options: ['top', 'center', 'bottom'],
+    },
   },
 };
 
@@ -49,6 +52,32 @@ Primary.parameters = {
 <CdekAlert title="Заголовок">
   Описание. Рекомендовано не более двух строк полезного текста
 </CdekAlert>
+`,
+    },
+  },
+};
+
+export const PrimaryIconTop = Template.bind({});
+PrimaryIconTop.args = {
+  title: `очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.
+очень много текста.`,
+  iconPosition: 'top',
+};
+PrimaryIconTop.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAlert title="очень много текста..." iconPosition="top" />
 `,
     },
   },
