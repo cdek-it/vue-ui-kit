@@ -1,6 +1,10 @@
 import type { Component } from 'vue';
 
 export interface IItemValue {
+  /**
+   * Индекс элемента в оригинальном массиве `items`
+   */
+  index?: number;
   value: string | number;
   title: string | number;
   icon?: Component;
