@@ -179,7 +179,7 @@ PrimaryTrimmed.parameters = {
     source: {
       code: `
 <template>
-  <CdekForm trimBeforeSubmit @submit="submit">
+  <CdekForm trim-before-submit @submit="submit">
     <CdekFormControl name="firstName" label="firstName" />
     <CdekFormControl name="surname" label="surname" />
 
