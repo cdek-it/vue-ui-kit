@@ -57,11 +57,11 @@ export default class FormService {
   }
 
   trimForm() {
-    for (const key in this.fields) {
-      if (typeof this.fields[key] === 'string') {
-        this.fields[key] = this.fields[key].trim();
+    Object.entries(this.fields).forEach(([key, value]) => {
+      if (typeof value === 'string') {
+        this.fields[key] = value.trim();
       }
-    }
+    });
   }
 
   clearForm() {
