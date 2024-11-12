@@ -20,8 +20,18 @@ const props = withDefaults(
      * Стиль, либо с фоном, либо с линией сбоку
      */
     style?: 'surface' | 'line';
+    /**
+     * Расположение контента в заголовке по вертикали
+     *
+     * `'top'` - Расположение сверху
+     *
+     * `'center'` - Расположение по центру (по умолчанию)
+     *
+     * `'bottom'` - Расположение снизу
+     */
+    contentAlign?: 'top' | 'center' | 'bottom';
   }>(),
-  { type: 'attention', style: 'surface' }
+  { type: 'attention', style: 'surface', contentAlign: 'center' }
 );
 
 const typesWithIcons = {
@@ -42,7 +52,12 @@ const currentIcon = computed(() => typesWithIcons[props.type]);
       $style[`prefix-alert_${style}`],
     ]"
   >
-    <div :class="$style['prefix-alert__title']">
+    <div
+      :class="[
+        $style['prefix-alert__title'],
+        $style[`prefix-alert__title--content-align-${contentAlign}`],
+      ]"
+    >
       <!-- @slot для заголовка, если не нужна иконка, либо нужна кастомная иконка -->
       <slot name="header"><component :is="currentIcon" /> {{ title }}</slot>
     </div>
@@ -109,10 +124,22 @@ const currentIcon = computed(() => typesWithIcons[props.type]);
     letter-spacing: unset;
     display: flex;
     gap: 8px;
-    align-items: center;
     margin-bottom: 4px;
 
+    &--content-align-top {
+      align-items: flex-start;
+    }
+
+    &--content-align-center {
+      align-items: center;
+    }
+
+    &--content-align-bottom {
+      align-items: flex-end;
+    }
+
     :deep(svg) {
+      flex-shrink: 0;
       width: 20px;
       height: 20px;
     }
