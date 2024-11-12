@@ -8,6 +8,9 @@ export default {
   title: 'Form/CdekForm',
   component: BaseForm,
   subcomponents: { BaseFormControl },
+  argTypes: {
+    trimBeforeSubmit: { control: 'boolean' },
+  },
 };
 
 const Template = (args) => ({
@@ -156,6 +159,27 @@ const submit = (values) => {
 
 <template>
   <CdekForm @submit="submit">
+    <CdekFormControl name="firstName" label="firstName" />
+    <CdekFormControl name="surname" label="surname" />
+
+    <button>Продолжить<button>
+  </CdekForm>
+</template>
+`,
+    },
+  },
+};
+
+export const PrimaryTrimmed = Template.bind({});
+PrimaryTrimmed.args = {
+  trimBeforeSubmit: true,
+};
+PrimaryTrimmed.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <CdekForm trim-before-submit @submit="submit">
     <CdekFormControl name="firstName" label="firstName" />
     <CdekFormControl name="surname" label="surname" />
 
