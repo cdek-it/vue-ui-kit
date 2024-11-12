@@ -45,7 +45,7 @@ export const Template = (args: any) => ({
           <button @click="test"><EyeIcon /></button>
         </template>
       </BaseInput>
-      <p v-if="args.story === 'ShowErrorIfExist'">
+      <p v-if="args.story === 'ShowErrorIfExists'">
         <button @click="toggleValidRes">Переключить ошибку</button>
       </p>
       <p :style="{ margin: '0' }" v-else>Контент после input</p>

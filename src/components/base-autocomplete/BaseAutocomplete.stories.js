@@ -330,7 +330,7 @@ WithErrorHiddenMessage.args = {
   label: 'Размер коробки',
   validRes: 'Ошибка',
   hideErrorMessage: true,
-  showErrorIfExist: false,
+  showErrorIfExists: false,
   items,
 };
 WithErrorHiddenMessage.parameters = {

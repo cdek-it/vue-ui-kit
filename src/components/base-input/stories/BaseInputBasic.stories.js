@@ -133,13 +133,13 @@ ErrorWithoutMessageWithTip.parameters = {
   },
 };
 
-export const ShowErrorIfExist = Template.bind({});
-ShowErrorIfExist.args = {
+export const ShowErrorIfExists = Template.bind({});
+ShowErrorIfExists.args = {
   label: 'Серия и номер паспорта',
-  showErrorIfExist: true,
-  story: 'ShowErrorIfExist',
+  showErrorIfExists: true,
+  story: 'ShowErrorIfExists',
 };
-ShowErrorIfExist.parameters = {
+ShowErrorIfExists.parameters = {
   docs: {
     source: {
       code: `
@@ -153,14 +153,14 @@ ShowErrorIfExist.parameters = {
   },
 };
 
-export const ShowErrorIfExistWithTip = Template.bind({});
-ShowErrorIfExistWithTip.args = {
+export const ShowErrorIfExistsWithTip = Template.bind({});
+ShowErrorIfExistsWithTip.args = {
   label: 'Серия и номер паспорта',
-  showErrorIfExist: true,
-  story: 'ShowErrorIfExist',
+  showErrorIfExists: true,
+  story: 'ShowErrorIfExists',
   tip: 'Подсказка',
 };
-ShowErrorIfExistWithTip.parameters = {
+ShowErrorIfExistsWithTip.parameters = {
   docs: {
     source: {
       code: `

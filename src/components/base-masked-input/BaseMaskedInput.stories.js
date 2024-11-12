@@ -189,7 +189,7 @@ HiddenErrorMessage.args = {
   mask: '+7 ### ###-##-##',
   clearable: false,
   hideErrorMessage: true,
-  showErrorIfExist: false,
+  showErrorIfExists: false,
   validRes: 'Ошибка',
 };
 HiddenErrorMessage.parameters = {

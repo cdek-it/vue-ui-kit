@@ -52,7 +52,7 @@ const props = withDefaults(
      *
      * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
      *
-     * более приоритетный параметр, чем `showErrorIfExist`
+     * более приоритетный параметр, чем `showErrorIfExists`
      */
     hideErrorMessage?: boolean;
     /**
@@ -60,7 +60,7 @@ const props = withDefaults(
      *
      * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
      */
-    showErrorIfExist?: boolean;
+    showErrorIfExists?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
@@ -77,7 +77,7 @@ const props = withDefaults(
      */
     getTitle?: GetTitleFn;
   }>(),
-  { hideErrorMessage: false, showErrorIfExist: false }
+  { hideErrorMessage: false, showErrorIfExists: false }
 );
 
 const getNewValue = (item: IItemValue | Primitive) => {
@@ -139,7 +139,7 @@ const isReservedTipSpace = computed(() => {
     return hasTip.value;
   }
 
-  if (props.showErrorIfExist) {
+  if (props.showErrorIfExists) {
     // показываем блок, если есть подсказка или ошибка
     return hasTip.value || isError.value;
   }

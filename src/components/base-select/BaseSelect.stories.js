@@ -71,7 +71,7 @@ const Template = (args) => ({
   </template>
 </BaseSelect>
 
-<p v-if="args.story === 'ShowErrorIfExist'">
+<p v-if="args.story === 'ShowErrorIfExists'">
   <button @click="toggleValidRes">Переключить ошибку</button>
 </p>
 <p :style="{ margin: '0' }" v-else>Контент после select</p>
@@ -342,14 +342,14 @@ HideErrorMessageWithTip.parameters = {
   },
 };
 
-export const ShowErrorIfExist = Template.bind({});
-ShowErrorIfExist.args = {
+export const ShowErrorIfExists = Template.bind({});
+ShowErrorIfExists.args = {
   label: 'Вариант действия',
-  showErrorIfExist: true,
+  showErrorIfExists: true,
   items,
-  story: 'ShowErrorIfExist',
+  story: 'ShowErrorIfExists',
 };
-ShowErrorIfExist.parameters = {
+ShowErrorIfExists.parameters = {
   docs: {
     source: {
       code: `
@@ -364,15 +364,15 @@ ShowErrorIfExist.parameters = {
   },
 };
 
-export const ShowErrorIfExistWithTip = Template.bind({});
-ShowErrorIfExistWithTip.args = {
+export const ShowErrorIfExistsWithTip = Template.bind({});
+ShowErrorIfExistsWithTip.args = {
   label: 'Вариант действия',
-  showErrorIfExist: true,
+  showErrorIfExists: true,
   tip: 'Подсказка',
   items,
-  story: 'ShowErrorIfExist',
+  story: 'ShowErrorIfExists',
 };
-ShowErrorIfExistWithTip.parameters = {
+ShowErrorIfExistsWithTip.parameters = {
   docs: {
     source: {
       code: `

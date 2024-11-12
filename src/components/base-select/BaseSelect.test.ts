@@ -14,7 +14,7 @@ interface ExtraMethods {
   setLabel: (value: string) => BaseSelectBuilder;
   setValidRes: (value: true | string) => BaseSelectBuilder;
   setHideErrorMessage: (value: boolean) => BaseSelectBuilder;
-  setShowErrorIfExist: (value: boolean) => BaseSelectBuilder;
+  setShowErrorIfExists: (value: boolean) => BaseSelectBuilder;
   setDisabled: (value: boolean) => BaseSelectBuilder;
   setReadonly: (value: boolean) => BaseSelectBuilder;
   setSmall: (value: boolean) => BaseSelectBuilder;
@@ -45,7 +45,7 @@ class BaseSelectBuilder {
   @builderProp label?: string;
   @builderProp validRes?: true | string;
   @builderProp hideErrorMessage?: boolean;
-  @builderProp showErrorIfExist?: boolean;
+  @builderProp showErrorIfExists?: boolean;
   @builderProp disabled?: boolean;
   @builderProp readonly?: boolean;
   @builderProp small?: boolean;
@@ -74,7 +74,7 @@ class BaseSelectBuilder {
         label: this.label,
         validRes: this.validRes,
         hideErrorMessage: this.hideErrorMessage,
-        showErrorIfExist: this.showErrorIfExist,
+        showErrorIfExists: this.showErrorIfExists,
         disabled: this.disabled,
         readonly: this.readonly,
         small: this.small,
@@ -367,10 +367,10 @@ describe('Unit: BaseSelect', () => {
       const error = wrapper.find('.prefix-select__tip');
       expect(error.text()).toBe('Подсказка');
     });
-    test('Если validRes = "true" и showErrorIfExist = true и нет подсказки, то блок с подсказкой должен быть скрыт', () => {
+    test('Если validRes = "true" и showErrorIfExists = true и нет подсказки, то блок с подсказкой должен быть скрыт', () => {
       const wrapper = new BaseSelectBuilder()
         .setValidRes(true)
-        .setShowErrorIfExist(true)
+        .setShowErrorIfExists(true)
         .build();
       console.log(
         '👾 ~ file: BaseTextarea.test.ts:231 ~ test ~ wrapper =>',
@@ -379,27 +379,27 @@ describe('Unit: BaseSelect', () => {
       const error = wrapper.find('.prefix-select__tip');
       expect(error.exists()).toBeFalsy();
     });
-    test('Если validRes = "Ошибка" и showErrorIfExist = true и нет подсказки, то блок с подсказкой должен содержать ошибку', () => {
+    test('Если validRes = "Ошибка" и showErrorIfExists = true и нет подсказки, то блок с подсказкой должен содержать ошибку', () => {
       const wrapper = new BaseSelectBuilder()
         .setValidRes('Ошибка')
-        .setShowErrorIfExist(true)
+        .setShowErrorIfExists(true)
         .build();
       const error = wrapper.find('.prefix-select__tip');
       expect(error.text()).toBe('Ошибка');
     });
-    test('Если validRes = "true" и showErrorIfExist = true и есть подсказка, то блок с подсказкой должен содержать подсказку', () => {
+    test('Если validRes = "true" и showErrorIfExists = true и есть подсказка, то блок с подсказкой должен содержать подсказку', () => {
       const wrapper = new BaseSelectBuilder()
         .setValidRes(true)
-        .setShowErrorIfExist(true)
+        .setShowErrorIfExists(true)
         .setTip('Подсказка')
         .build();
       const error = wrapper.find('.prefix-select__tip');
       expect(error.text()).toBe('Подсказка');
     });
-    test('Если validRes = "Ошибка" и showErrorIfExist = true и есть подсказка, то блок с подсказкой должен содержать ошибку', () => {
+    test('Если validRes = "Ошибка" и showErrorIfExists = true и есть подсказка, то блок с подсказкой должен содержать ошибку', () => {
       const wrapper = new BaseSelectBuilder()
         .setValidRes('Ошибка')
-        .setShowErrorIfExist(true)
+        .setShowErrorIfExists(true)
         .setTip('Подсказка')
         .build();
       const error = wrapper.find('.prefix-select__tip');

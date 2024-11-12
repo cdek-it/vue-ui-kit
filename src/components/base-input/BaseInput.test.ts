@@ -8,7 +8,7 @@ interface ExtraMethods {
   setLabel: (val: string) => BaseInputBuilder;
   setValidRes: (val: true | string) => BaseInputBuilder;
   setHideErrorMessage: (val: boolean) => BaseInputBuilder;
-  setShowErrorIfExist: (val: boolean) => BaseInputBuilder;
+  setShowErrorIfExists: (val: boolean) => BaseInputBuilder;
   setDisabled: (val: boolean) => BaseInputBuilder;
   setReadonly: (val: boolean) => BaseInputBuilder;
   setSmall: (val: boolean) => BaseInputBuilder;
@@ -25,7 +25,7 @@ class BaseInputBuilder {
   @builderProp label?: string;
   @builderProp validRes?: true | string;
   @builderProp hideErrorMessage?: boolean;
-  @builderProp showErrorIfExist?: boolean;
+  @builderProp showErrorIfExists?: boolean;
   @builderProp disabled?: boolean;
   @builderProp readonly?: boolean;
   @builderProp small?: boolean;
@@ -56,7 +56,7 @@ class BaseInputBuilder {
         label: this.label,
         validRes: this.validRes,
         hideErrorMessage: this.hideErrorMessage,
-        showErrorIfExist: this.showErrorIfExist,
+        showErrorIfExists: this.showErrorIfExists,
         disabled: this.disabled,
         readonly: this.readonly,
         small: this.small,
@@ -306,35 +306,35 @@ describe('Unit: BaseInput', () => {
       const error = wrapper.find('.prefix-input__tip');
       expect(error.text()).toBe('Подсказка');
     });
-    test('Если validRes = "true" и showErrorIfExist = true и нет подсказки, то блок с подсказкой должен быть скрыт', () => {
+    test('Если validRes = "true" и showErrorIfExists = true и нет подсказки, то блок с подсказкой должен быть скрыт', () => {
       const wrapper = new BaseInputBuilder()
         .setValidRes(true)
-        .setShowErrorIfExist(true)
+        .setShowErrorIfExists(true)
         .build();
       const error = wrapper.find('.prefix-input__tip');
       expect(error.exists()).toBeFalsy();
     });
-    test('Если validRes = "Ошибка" и showErrorIfExist = true и нет подсказки, то блок с подсказкой должен содержать ошибку', () => {
+    test('Если validRes = "Ошибка" и showErrorIfExists = true и нет подсказки, то блок с подсказкой должен содержать ошибку', () => {
       const wrapper = new BaseInputBuilder()
         .setValidRes('Ошибка')
-        .setShowErrorIfExist(true)
+        .setShowErrorIfExists(true)
         .build();
       const error = wrapper.find('.prefix-input__tip');
       expect(error.text()).toBe('Ошибка');
     });
-    test('Если validRes = "true" и showErrorIfExist = true и есть подсказка, то блок с подсказкой должен содержать подсказку', () => {
+    test('Если validRes = "true" и showErrorIfExists = true и есть подсказка, то блок с подсказкой должен содержать подсказку', () => {
       const wrapper = new BaseInputBuilder()
         .setValidRes(true)
-        .setShowErrorIfExist(true)
+        .setShowErrorIfExists(true)
         .setTip('Подсказка')
         .build();
       const error = wrapper.find('.prefix-input__tip');
       expect(error.text()).toBe('Подсказка');
     });
-    test('Если validRes = "Ошибка" и showErrorIfExist = true и есть подсказка, то блок с подсказкой должен содержать ошибку', () => {
+    test('Если validRes = "Ошибка" и showErrorIfExists = true и есть подсказка, то блок с подсказкой должен содержать ошибку', () => {
       const wrapper = new BaseInputBuilder()
         .setValidRes('Ошибка')
-        .setShowErrorIfExist(true)
+        .setShowErrorIfExists(true)
         .setTip('Подсказка')
         .build();
       const error = wrapper.find('.prefix-input__tip');

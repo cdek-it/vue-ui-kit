@@ -31,7 +31,7 @@ const props = withDefaults(
      *
      * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
      *
-     * более приоритетный параметр, чем `showErrorIfExist`
+     * более приоритетный параметр, чем `showErrorIfExists`
      */
     hideErrorMessage?: boolean;
     /**
@@ -39,14 +39,14 @@ const props = withDefaults(
      *
      * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
      */
-    showErrorIfExist?: boolean;
+    showErrorIfExists?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
     clearable?: boolean;
     class?: string;
   }>(),
-  { class: '', hideErrorMessage: false, showErrorIfExist: false }
+  { class: '', hideErrorMessage: false, showErrorIfExists: false }
 );
 
 const isError = computed(() => typeof props.validRes === 'string');
@@ -82,7 +82,7 @@ const isReservedTipSpace = computed(() => {
     return hasTip.value;
   }
 
-  if (props.showErrorIfExist) {
+  if (props.showErrorIfExists) {
     // показываем блок, если есть подсказка или ошибка
     return hasTip.value || isError.value;
   }
