@@ -102,16 +102,24 @@ const onInput = (event: Event) => {
   emit('update:modelValue', (event.target as HTMLTextAreaElement).value);
 };
 
+const textareaHeight = ref(props.height);
+
 const resizeTextarea = () => {
   if (!textareaRef.value || props.resize !== RESIZE_MODES.AUTO) {
     return;
   }
 
-  textareaRef.value.style.height = `calc(${props.height} - 28px)`;
+  textareaHeight.value = props.height;
+  // textareaRef.value.style.height = `calc(${props.height} - 28px${
+  //   props.label ? '- 7px' : ''
+  // })`;
+
   const scrollHeight = textareaRef.value.scrollHeight;
 
-  textareaRef.value.style.height = 'auto';
-  textareaRef.value.style.height = scrollHeight + 'px';
+  textareaHeight.value = 'auto';
+  textareaHeight.value = scrollHeight + 'px';
+  // textareaRef.value.style.height = 'auto';
+  // textareaRef.value.style.height = scrollHeight + 'px';
 };
 
 onMounted(() => {
@@ -126,6 +134,14 @@ watch(
   () => props.modelValue,
   () => {
     nextTick(resizeTextarea);
+  }
+);
+watch(
+  () => props.resize,
+  () => {
+    if (props.resize === RESIZE_MODES.AUTO) {
+      nextTick(resizeTextarea);
+    }
   }
 );
 </script>
@@ -255,8 +271,8 @@ watch(
   &__textarea {
     @include body-1;
 
-    $height-without-label: calc(
-      v-bind(height) - (#{$padding-top-without-outline} * 2)
+    --height-without-label: calc(
+      v-bind(textareaHeight) - (#{$padding-top-without-outline} * 2)
     );
 
     box-sizing: border-box;
@@ -270,7 +286,7 @@ watch(
     align-self: flex-end;
     resize: none;
     min-height: 28px;
-    height: calc(#{$height-without-label} - #{$offset-with-label});
+    height: calc(var(--height-without-label) - #{$offset-with-label});
 
     &_error {
       caret-color: $Error;
@@ -282,7 +298,7 @@ watch(
 
     &_no-label {
       align-self: center;
-      height: $height-without-label;
+      height: var(--height-without-label);
     }
 
     &_resizable {
