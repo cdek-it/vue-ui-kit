@@ -107,7 +107,7 @@ const resizeTextarea = () => {
     return;
   }
 
-  textareaRef.value.style.height = props.height;
+  textareaRef.value.style.height = `calc(${props.height} - 28px)`;
   const scrollHeight = textareaRef.value.scrollHeight;
 
   textareaRef.value.style.height = 'auto';
