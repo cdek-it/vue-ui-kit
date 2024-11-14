@@ -11,23 +11,27 @@ export default {
       },
     },
   },
+  argTypes: {
+    default: {
+      control: 'text',
+    },
+  },
 };
 
-const PrimaryTemplate = (args) => ({
+const Template = (args) => ({
   components: { BaseBreadcrumbs },
-  setup() {
-    return { args };
-  },
   template: `
-    <BaseBreadcrumbs v-bind="args" >
-      <a href="#" @click.prevent>Служба поддержки</a>
-      <a href="#" @click.prevent>Нарушение сроков доставки</a>
-      <a href="#" @click.prevent>Посылка не движется</a>
+    <BaseBreadcrumbs>
+      ${args.default}
     </BaseBreadcrumbs>
   `,
 });
 
-export const Primary = PrimaryTemplate.bind({});
+export const Primary = Template.bind({});
+Primary.args = {
+  default:
+    '<a>Служба поддержки</a> <a>Нарушение сроков доставки</a> <a>Посылка не движется</a>',
+};
 Primary.parameters = {
   docs: {
     source: {
@@ -41,21 +45,11 @@ Primary.parameters = {
   },
 };
 
-const ElementsTemplate = (args) => ({
-  components: { BaseBreadcrumbs },
-  setup() {
-    return { args };
-  },
-  template: `
-    <BaseBreadcrumbs v-bind="args" >
-      <a href="#" @click.prevent>Ссылка</a>
-      <button>Кнопка, как ссылка</button>
-      <span>Просто текст</span>
-    </BaseBreadcrumbs>
-  `,
-});
-
-export const DifferentElements = ElementsTemplate.bind({});
+export const DifferentElements = Template.bind({});
+DifferentElements.args = {
+  default:
+    '<a>Ссылка</a> <button>Кнопка, как ссылка</button> <span>Просто текст</span>',
+};
 DifferentElements.parameters = {
   docs: {
     source: {
