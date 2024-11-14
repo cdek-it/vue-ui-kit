@@ -53,11 +53,7 @@ const Template = (args) => ({
       validRes.value = validRes.value === 'Ошибка' ? '' : 'Ошибка';
     };
 
-    if (
-      ['ResizeAutoWithInitialValue', 'ResizeAutoWithRemoveTextButton'].includes(
-        args.story
-      )
-    ) {
+    if (['AutoResizeInitialValue', 'SwitchResizeMode'].includes(args.story)) {
       inputVal.value = `очень много текста.
 очень много текста.
 очень много текста.
@@ -92,11 +88,14 @@ const Template = (args) => ({
       <button @click="toggleValidRes">Переключить ошибку</button>
     </p>
     <p :style="{ margin: '0' }" v-else>Контент после textarea</p>
-    <p v-if="args.story === 'PrimaryWithSwitchResizeModeButton'" :style="{ margin: '16px 0 0' }">resizeMode: {{ resizeMode }}</p>
+    <br />
+    <p v-if="args.story === 'SwitchResizeMode'" :style="{ margin: '16px 0 0' }">resizeMode: {{ resizeMode }}</p>
 
-    <BaseButton v-if="args.story === 'ResizeAutoWithAddTextButton'" @click="addText">Добавить текст</BaseButton>
-    <BaseButton v-if="args.story === 'ResizeAutoWithRemoveTextButton'" @click="removeText">Удалить текст</BaseButton>
-    <BaseButton v-if="args.story === 'PrimaryWithSwitchResizeModeButton'" @click="switchResizeMode">Переключить режим resize</BaseButton>
+    <template v-if="args.story === 'AutoResizeChangeValue'">
+      <BaseButton @click="addText" width="content" small style="margin-right: 8px;">Добавить текст</BaseButton>
+      <BaseButton @click="removeText" width="content" small>Удалить текст</BaseButton>
+    </template>
+    <BaseButton v-if="args.story === 'SwitchResizeMode'" @click="switchResizeMode" width="content" small>Переключить режим resize</BaseButton>
   `,
 });
 
@@ -109,11 +108,11 @@ Primary.parameters = {
   },
 };
 
-export const PrimaryWithHeight = Template.bind({});
-PrimaryWithHeight.args = {
+export const WithHeight = Template.bind({});
+WithHeight.args = {
   height: '146px',
 };
-PrimaryWithHeight.parameters = {
+WithHeight.parameters = {
   docs: {
     source: {
       code: '<CdekTextarea v-model="inputVal" height="146px" />',
@@ -121,65 +120,65 @@ PrimaryWithHeight.parameters = {
   },
 };
 
-export const PrimaryWithSwitchResizeModeButton = Template.bind({});
-PrimaryWithSwitchResizeModeButton.args = {
-  story: 'PrimaryWithSwitchResizeModeButton',
+export const AutoResize = Template.bind({});
+AutoResize.args = {
+  resize: 'auto',
 };
-PrimaryWithSwitchResizeModeButton.parameters = {
+AutoResize.parameters = {
+  docs: {
+    source: {
+      code: '<CdekTextarea v-model="inputVal" resize="auto" />',
+    },
+  },
+};
+
+export const AutoResizeWithHeight = Template.bind({});
+AutoResizeWithHeight.args = {
+  resize: 'auto',
+  height: '150px',
+};
+AutoResizeWithHeight.parameters = {
+  docs: {
+    source: {
+      code: '<CdekTextarea v-model="inputVal" resize="auto" height="150px" />',
+    },
+  },
+};
+
+export const AutoResizeInitialValue = Template.bind({});
+AutoResizeInitialValue.args = {
+  resize: 'auto',
+  story: 'AutoResizeInitialValue',
+};
+AutoResizeInitialValue.parameters = {
+  docs: {
+    source: {
+      code: '<CdekTextarea v-model="inputVal" resize="auto" />',
+    },
+  },
+};
+
+export const AutoResizeChangeValue = Template.bind({});
+AutoResizeChangeValue.args = {
+  resize: 'auto',
+  story: 'AutoResizeChangeValue',
+};
+AutoResizeChangeValue.parameters = {
+  docs: {
+    source: {
+      code: '<CdekTextarea v-model="inputVal" resize="auto" />',
+    },
+  },
+};
+
+export const SwitchResizeMode = Template.bind({});
+SwitchResizeMode.args = {
+  story: 'SwitchResizeMode',
+};
+SwitchResizeMode.parameters = {
   docs: {
     source: {
       code: '<CdekTextarea v-model="inputVal" />',
-    },
-  },
-};
-
-export const ResizeAuto = Template.bind({});
-ResizeAuto.args = {
-  resize: 'auto',
-};
-ResizeAuto.parameters = {
-  docs: {
-    source: {
-      code: '<CdekTextarea v-model="inputVal" resize="auto" />',
-    },
-  },
-};
-
-export const ResizeAutoWithInitialValue = Template.bind({});
-ResizeAutoWithInitialValue.args = {
-  resize: 'auto',
-  story: 'ResizeAutoWithInitialValue',
-};
-ResizeAutoWithInitialValue.parameters = {
-  docs: {
-    source: {
-      code: '<CdekTextarea v-model="inputVal" resize="auto" />',
-    },
-  },
-};
-
-export const ResizeAutoWithAddTextButton = Template.bind({});
-ResizeAutoWithAddTextButton.args = {
-  resize: 'auto',
-  story: 'ResizeAutoWithAddTextButton',
-};
-ResizeAutoWithAddTextButton.parameters = {
-  docs: {
-    source: {
-      code: '<CdekTextarea v-model="inputVal" resize="auto" />',
-    },
-  },
-};
-
-export const ResizeAutoWithRemoveTextButton = Template.bind({});
-ResizeAutoWithRemoveTextButton.args = {
-  resize: 'auto',
-  story: 'ResizeAutoWithRemoveTextButton',
-};
-ResizeAutoWithRemoveTextButton.parameters = {
-  docs: {
-    source: {
-      code: '<CdekTextarea v-model="inputVal" resize="auto" />',
     },
   },
 };
