@@ -206,8 +206,6 @@ defineExpose({ getControl });
   $outline-width: 2px;
   $padding: 16px;
   $padding-without-outline: calc(#{$padding} - #{$outline-width});
-  $offset-with-label: 7px;
-  $height-without-label: calc(88px - #{$padding-without-outline} * 2);
 
   width: 100%;
 
@@ -254,7 +252,7 @@ defineExpose({ getControl });
     }
 
     &_label-filled {
-      padding-top: calc(#{$padding-without-outline} + #{$offset-with-label});
+      padding-top: calc(#{$padding-without-outline} + 7px);
     }
 
     &_error {
