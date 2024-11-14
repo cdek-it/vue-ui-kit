@@ -207,3 +207,17 @@ HiddenErrorMessage.parameters = {
     },
   },
 };
+
+export const ClearableInput = Template.bind({});
+ClearableInput.args = {
+  label: 'Телефон',
+  mask: '+7 ### ###-##-##',
+  clearable: true,
+};
+ClearableInput.parameters = {
+  docs: {
+    source: {
+      code: '<CdekMaskedInput v-model="value" v-model:unmasked="unmaskedValue" mask="+7 ### ###-##-##" clearable />',
+    },
+  },
+};
