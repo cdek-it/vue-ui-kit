@@ -168,7 +168,6 @@ defineExpose({ getControl });
         :class="[
           $style['prefix-textarea__textarea'],
           isError ? $style['prefix-textarea__textarea_error'] : '',
-          !label ? $style['prefix-textarea__textarea_no-label'] : '',
           isResizable ? $style['prefix-textarea__textarea_resizable'] : '',
           isAutoResizable
             ? $style['prefix-textarea__textarea_auto-resizable']
@@ -284,10 +283,6 @@ defineExpose({ getControl });
 
     &[disabled] {
       color: $Bottom_66;
-    }
-
-    &_no-label {
-      align-self: center;
     }
 
     &_resizable {
