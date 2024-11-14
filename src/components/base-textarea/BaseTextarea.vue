@@ -84,6 +84,7 @@ const isReservedTipSpace = computed(() => {
 });
 
 const isResizable = computed(() => props.resize === RESIZE_MODES.USER);
+const isAutoResizable = computed(() => props.resize === RESIZE_MODES.AUTO);
 
 const isUserEvent = computed(() => !props.disabled);
 
@@ -102,34 +103,23 @@ const onInput = (event: Event) => {
   emit('update:modelValue', (event.target as HTMLTextAreaElement).value);
 };
 
-const textareaOutlineWidth = '2px';
-const textareaPaddingTop = '16px';
-const textareaOffsetWithLabel = '7px';
+const textareaHeight = ref('100%');
 
-const resizeTextarea = () => {
+const resizeTextarea = async () => {
   if (!textareaRef.value || props.resize !== RESIZE_MODES.AUTO) {
     return;
   }
 
-  textareaRef.value.style.height = `calc(${
-    props.height
-  } - ((${textareaPaddingTop} - ${textareaOutlineWidth}) * 2)${
-    props.label ? ' - ' + textareaOffsetWithLabel : ''
-  })`;
+  textareaHeight.value = '0';
 
+  await nextTick();
   const scrollHeight = textareaRef.value.scrollHeight;
-
-  textareaRef.value.style.height = 'auto';
-  textareaRef.value.style.height = scrollHeight + 'px';
+  textareaHeight.value = scrollHeight + 'px';
 };
 
 onMounted(() => {
   resizeTextarea();
 });
-
-const getControl = () => textareaRef.value;
-
-defineExpose({ getControl });
 
 watch(
   () => props.modelValue,
@@ -137,6 +127,7 @@ watch(
     nextTick(resizeTextarea);
   }
 );
+
 watch(
   () => props.resize,
   () => {
@@ -145,6 +136,10 @@ watch(
     }
   }
 );
+
+const getControl = () => textareaRef.value;
+
+defineExpose({ getControl });
 </script>
 
 <template>
@@ -175,6 +170,9 @@ watch(
           isError ? $style['prefix-textarea__textarea_error'] : '',
           !label ? $style['prefix-textarea__textarea_no-label'] : '',
           isResizable ? $style['prefix-textarea__textarea_resizable'] : '',
+          isAutoResizable
+            ? $style['prefix-textarea__textarea_auto-resizable']
+            : '',
         ]"
         :value="value"
         @input="onInput"
@@ -205,13 +203,11 @@ watch(
 
 <style lang="scss" scoped module>
 .prefix-textarea {
-  --outline-width: v-bind(textareaOutlineWidth);
-  $padding-left: 16px;
-  --padding-top: v-bind(textareaPaddingTop);
-  --padding-top-without-outline: calc(
-    var(--padding-top) - var(--outline-width)
-  );
-  --offset-with-label: v-bind(textareaOffsetWithLabel);
+  $outline-width: 2px;
+  $padding: 16px;
+  $padding-without-outline: calc(#{$padding} - #{$outline-width});
+  $offset-with-label: 7px;
+  $height-without-label: calc(88px - #{$padding-without-outline} * 2);
 
   width: 100%;
 
@@ -220,12 +216,11 @@ watch(
 
     position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 
-    outline: solid var(--outline-width) transparent;
-    outline-offset: -var(--outline-width);
-    padding-inline: calc(#{$padding-left} - var(--outline-width));
-    padding-block: var(--padding-top-without-outline);
+    outline: solid $outline-width transparent;
+    outline-offset: -$outline-width;
+    padding: $padding-without-outline;
 
     box-sizing: border-box;
     background: $Surface_Neutral;
@@ -233,6 +228,8 @@ watch(
     border-radius: 8px;
     transition: background-color 0.3s ease, outline-color 0.3s ease;
     cursor: text;
+
+    min-height: v-bind(height);
 
     &_user-event {
       @include media-hover {
@@ -257,9 +254,7 @@ watch(
     }
 
     &_label-filled {
-      padding-top: calc(
-        var(--padding-top-without-outline) + var(--offset-with-label)
-      );
+      padding-top: calc(#{$padding-without-outline} + #{$offset-with-label});
     }
 
     &_error {
@@ -274,22 +269,16 @@ watch(
   &__textarea {
     @include body-1;
 
-    --height-without-label: calc(
-      v-bind(height) - (var(--padding-top-without-outline) * 2)
-    );
-
     box-sizing: border-box;
     background: unset;
     border: unset;
     outline: unset;
+    padding: 0;
     width: 100%;
     flex-grow: 1;
     color: $Bottom;
     caret-color: $Primary;
-    align-self: flex-end;
     resize: none;
-    min-height: 28px;
-    height: calc(var(--height-without-label) - var(--offset-with-label));
 
     &_error {
       caret-color: $Error;
@@ -301,11 +290,14 @@ watch(
 
     &_no-label {
       align-self: center;
-      height: var(--height-without-label);
     }
 
     &_resizable {
       resize: vertical;
+    }
+
+    &_auto-resizable {
+      height: v-bind(textareaHeight);
     }
 
     &:focus {
@@ -335,7 +327,7 @@ watch(
     @include body-1;
 
     position: absolute;
-    top: var(--padding-top);
+    top: $padding;
     color: $Bottom_60;
     transition: all 0.3s ease;
 
@@ -358,7 +350,7 @@ watch(
   &__tip {
     @include caption-1;
 
-    padding-left: $padding-left;
+    padding-left: $padding;
     margin-top: 4px;
     color: $Bottom_66;
 
