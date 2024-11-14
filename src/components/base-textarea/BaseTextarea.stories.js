@@ -35,6 +35,12 @@ const Template = (args) => ({
       inputVal.value = '';
     };
 
+    let resizeMode = ref(args.resize);
+
+    const switchResizeMode = () => {
+      resizeMode.value = resizeMode.value === 'auto' ? 'none' : 'auto';
+    };
+
     const inputVal = ref(
       ['LabelFilled', 'ErrorFilled', 'DisabledFilled'].includes(args.story)
         ? '345'
@@ -63,10 +69,19 @@ const Template = (args) => ({
 очень много текста.`;
     }
 
-    return { args, inputVal, validRes, toggleValidRes, addText, removeText };
+    return {
+      args,
+      inputVal,
+      validRes,
+      resizeMode,
+      toggleValidRes,
+      addText,
+      removeText,
+      switchResizeMode,
+    };
   },
   template: `
-    <BaseTextarea v-bind="args" v-model="inputVal" :valid-res="validRes">
+    <BaseTextarea v-bind="args" v-model="inputVal" :resize="resizeMode" :valid-res="validRes">
       <template #tip="{ alert, info, ban, circle }" v-if="args.tip">
         <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
         <span :class="args.tipColor">{{ args.tip }}</span>
@@ -77,9 +92,11 @@ const Template = (args) => ({
       <button @click="toggleValidRes">Переключить ошибку</button>
     </p>
     <p :style="{ margin: '0' }" v-else>Контент после textarea</p>
+    <p v-if="args.story === 'PrimaryWithSwitchResizeModeButton'" :style="{ margin: '16px 0 0' }">resizeMode: {{ resizeMode }}</p>
 
     <BaseButton v-if="args.story === 'ResizeAutoWithAddTextButton'" @click="addText">Добавить текст</BaseButton>
     <BaseButton v-if="args.story === 'ResizeAutoWithRemoveTextButton'" @click="removeText">Удалить текст</BaseButton>
+    <BaseButton v-if="args.story === 'PrimaryWithSwitchResizeModeButton'" @click="switchResizeMode">Переключить режим resize</BaseButton>
   `,
 });
 
@@ -100,6 +117,18 @@ PrimaryWithHeight.parameters = {
   docs: {
     source: {
       code: '<CdekTextarea v-model="inputVal" height="146px" />',
+    },
+  },
+};
+
+export const PrimaryWithSwitchResizeModeButton = Template.bind({});
+PrimaryWithSwitchResizeModeButton.args = {
+  story: 'PrimaryWithSwitchResizeModeButton',
+};
+PrimaryWithSwitchResizeModeButton.parameters = {
+  docs: {
+    source: {
+      code: '<CdekTextarea v-model="inputVal" />',
     },
   },
 };

@@ -84,6 +84,7 @@ const isReservedTipSpace = computed(() => {
 });
 
 const isResizable = computed(() => props.resize === RESIZE_MODES.USER);
+const isAutoResizable = computed(() => props.resize === RESIZE_MODES.AUTO);
 
 const isUserEvent = computed(() => !props.disabled);
 
@@ -102,32 +103,43 @@ const onInput = (event: Event) => {
   emit('update:modelValue', (event.target as HTMLTextAreaElement).value);
 };
 
-const resizeTextarea = () => {
+const textareaHeight = ref('100%');
+
+const resizeTextarea = async () => {
   if (!textareaRef.value || props.resize !== RESIZE_MODES.AUTO) {
     return;
   }
 
-  textareaRef.value.style.height = '0';
-  const scrollHeight = textareaRef.value.scrollHeight;
+  textareaHeight.value = '0';
 
-  textareaRef.value.style.height = 'auto';
-  textareaRef.value.style.height = scrollHeight + 'px';
+  await nextTick();
+  const scrollHeight = textareaRef.value.scrollHeight;
+  textareaHeight.value = scrollHeight + 'px';
 };
 
 onMounted(() => {
   resizeTextarea();
 });
 
-const getControl = () => textareaRef.value;
-
-defineExpose({ getControl });
-
 watch(
   () => props.modelValue,
   () => {
-    nextTick(resizeTextarea);
+    resizeTextarea();
   }
 );
+
+watch(
+  () => props.resize,
+  () => {
+    if (props.resize === RESIZE_MODES.AUTO) {
+      resizeTextarea();
+    }
+  }
+);
+
+const getControl = () => textareaRef.value;
+
+defineExpose({ getControl });
 </script>
 
 <template>
@@ -158,6 +170,9 @@ watch(
           isError ? $style['prefix-textarea__textarea_error'] : '',
           !label ? $style['prefix-textarea__textarea_no-label'] : '',
           isResizable ? $style['prefix-textarea__textarea_resizable'] : '',
+          isAutoResizable
+            ? $style['prefix-textarea__textarea_auto-resizable']
+            : '',
         ]"
         :value="value"
         @input="onInput"
@@ -189,10 +204,8 @@ watch(
 <style lang="scss" scoped module>
 .prefix-textarea {
   $outline-width: 2px;
-  $padding-left: 16px;
-  $padding-top: 16px;
-  $padding-top-without-outline: calc(#{$padding-top} - #{$outline-width});
-  $offset-with-label: 7px;
+  $padding: 16px;
+  $padding-without-outline: calc(#{$padding} - #{$outline-width});
 
   width: 100%;
 
@@ -201,12 +214,11 @@ watch(
 
     position: relative;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 
     outline: solid $outline-width transparent;
-    outline-offset: -#{$outline-width};
-    padding-inline: calc(#{$padding-left} - #{$outline-width});
-    padding-block: $padding-top-without-outline;
+    outline-offset: -$outline-width;
+    padding: $padding-without-outline;
 
     box-sizing: border-box;
     background: $Surface_Neutral;
@@ -214,6 +226,8 @@ watch(
     border-radius: 8px;
     transition: background-color 0.3s ease, outline-color 0.3s ease;
     cursor: text;
+
+    min-height: v-bind(height);
 
     &_user-event {
       @include media-hover {
@@ -238,9 +252,7 @@ watch(
     }
 
     &_label-filled {
-      padding-top: calc(
-        #{$padding-top-without-outline} + #{$offset-with-label}
-      );
+      padding-top: calc(#{$padding-without-outline} + 7px);
     }
 
     &_error {
@@ -255,22 +267,16 @@ watch(
   &__textarea {
     @include body-1;
 
-    $height-without-label: calc(
-      v-bind(height) - (#{$padding-top-without-outline} * 2)
-    );
-
     box-sizing: border-box;
     background: unset;
     border: unset;
     outline: unset;
+    padding: 0;
     width: 100%;
     flex-grow: 1;
     color: $Bottom;
     caret-color: $Primary;
-    align-self: flex-end;
     resize: none;
-    min-height: 28px;
-    height: calc(#{$height-without-label} - #{$offset-with-label});
 
     &_error {
       caret-color: $Error;
@@ -280,13 +286,12 @@ watch(
       color: $Bottom_66;
     }
 
-    &_no-label {
-      align-self: center;
-      height: $height-without-label;
-    }
-
     &_resizable {
       resize: vertical;
+    }
+
+    &_auto-resizable {
+      height: v-bind(textareaHeight);
     }
 
     &:focus {
@@ -316,7 +321,7 @@ watch(
     @include body-1;
 
     position: absolute;
-    top: $padding-top;
+    top: $padding;
     color: $Bottom_60;
     transition: all 0.3s ease;
 
@@ -339,7 +344,7 @@ watch(
   &__tip {
     @include caption-1;
 
-    padding-left: $padding-left;
+    padding-left: $padding;
     margin-top: 4px;
     color: $Bottom_66;
 
