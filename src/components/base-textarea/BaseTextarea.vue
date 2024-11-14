@@ -124,7 +124,7 @@ onMounted(() => {
 watch(
   () => props.modelValue,
   () => {
-    nextTick(resizeTextarea);
+    resizeTextarea();
   }
 );
 
@@ -132,7 +132,7 @@ watch(
   () => props.resize,
   () => {
     if (props.resize === RESIZE_MODES.AUTO) {
-      nextTick(resizeTextarea);
+      resizeTextarea();
     }
   }
 );
