@@ -102,24 +102,25 @@ const onInput = (event: Event) => {
   emit('update:modelValue', (event.target as HTMLTextAreaElement).value);
 };
 
-const textareaHeight = ref(props.height);
+const textareaOutlineWidth = '2px';
+const textareaPaddingTop = '16px';
+const textareaOffsetWithLabel = '7px';
 
 const resizeTextarea = () => {
   if (!textareaRef.value || props.resize !== RESIZE_MODES.AUTO) {
     return;
   }
 
-  textareaHeight.value = props.height;
-  // textareaRef.value.style.height = `calc(${props.height} - 28px${
-  //   props.label ? '- 7px' : ''
-  // })`;
+  textareaRef.value.style.height = `calc(${
+    props.height
+  } - ((${textareaPaddingTop} - ${textareaOutlineWidth}) * 2)${
+    props.label ? ' - ' + textareaOffsetWithLabel : ''
+  })`;
 
   const scrollHeight = textareaRef.value.scrollHeight;
 
-  textareaHeight.value = 'auto';
-  textareaHeight.value = scrollHeight + 'px';
-  // textareaRef.value.style.height = 'auto';
-  // textareaRef.value.style.height = scrollHeight + 'px';
+  textareaRef.value.style.height = 'auto';
+  textareaRef.value.style.height = scrollHeight + 'px';
 };
 
 onMounted(() => {
@@ -204,11 +205,13 @@ watch(
 
 <style lang="scss" scoped module>
 .prefix-textarea {
-  $outline-width: 2px;
+  --outline-width: v-bind(textareaOutlineWidth);
   $padding-left: 16px;
-  $padding-top: 16px;
-  $padding-top-without-outline: calc(#{$padding-top} - #{$outline-width});
-  $offset-with-label: 7px;
+  --padding-top: v-bind(textareaPaddingTop);
+  --padding-top-without-outline: calc(
+    var(--padding-top) - var(--outline-width)
+  );
+  --offset-with-label: v-bind(textareaOffsetWithLabel);
 
   width: 100%;
 
@@ -219,10 +222,10 @@ watch(
     display: flex;
     align-items: center;
 
-    outline: solid $outline-width transparent;
-    outline-offset: -#{$outline-width};
-    padding-inline: calc(#{$padding-left} - #{$outline-width});
-    padding-block: $padding-top-without-outline;
+    outline: solid var(--outline-width) transparent;
+    outline-offset: -var(--outline-width);
+    padding-inline: calc(#{$padding-left} - var(--outline-width));
+    padding-block: var(--padding-top-without-outline);
 
     box-sizing: border-box;
     background: $Surface_Neutral;
@@ -255,7 +258,7 @@ watch(
 
     &_label-filled {
       padding-top: calc(
-        #{$padding-top-without-outline} + #{$offset-with-label}
+        var(--padding-top-without-outline) + var(--offset-with-label)
       );
     }
 
@@ -272,7 +275,7 @@ watch(
     @include body-1;
 
     --height-without-label: calc(
-      v-bind(textareaHeight) - (#{$padding-top-without-outline} * 2)
+      v-bind(height) - (var(--padding-top-without-outline) * 2)
     );
 
     box-sizing: border-box;
@@ -286,7 +289,7 @@ watch(
     align-self: flex-end;
     resize: none;
     min-height: 28px;
-    height: calc(var(--height-without-label) - #{$offset-with-label});
+    height: calc(var(--height-without-label) - var(--offset-with-label));
 
     &_error {
       caret-color: $Error;
@@ -332,7 +335,7 @@ watch(
     @include body-1;
 
     position: absolute;
-    top: $padding-top;
+    top: var(--padding-top);
     color: $Bottom_60;
     transition: all 0.3s ease;
 
