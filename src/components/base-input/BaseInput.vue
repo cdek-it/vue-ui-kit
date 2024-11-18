@@ -26,14 +26,27 @@ const props = withDefaults(
      * `string` - текст ошибки, ошибка показывается
      */
     validRes?: true | string;
+    /**
+     * `true` - место под ошибку **не** зарезервировано, текст ошибки **не** будет показываться, даже если она есть
+     *
+     * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
+     *
+     * более приоритетный параметр, чем `showErrorIfExists`
+     */
     hideErrorMessage?: boolean;
+    /**
+     * `true` - место под ошибку **не** зарезервировано, текст ошибки будет показываться
+     *
+     * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
+     */
+    showErrorIfExists?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
     clearable?: boolean;
     class?: string;
   }>(),
-  { class: '' }
+  { class: '', hideErrorMessage: false, showErrorIfExists: false }
 );
 
 const isError = computed(() => typeof props.validRes === 'string');
@@ -61,6 +74,22 @@ const slots = useSlots();
 
 const hasRightIcon = computed(() => !!slots['icons-right']);
 const hasLeftIcon = computed(() => !!slots['icons-left']);
+const hasTip = computed(() => !!slots['tip']);
+
+const isReservedTipSpace = computed(() => {
+  if (props.hideErrorMessage) {
+    // показываем блок только если есть подсказка
+    return hasTip.value;
+  }
+
+  if (props.showErrorIfExists) {
+    // показываем блок, если есть подсказка или ошибка
+    return hasTip.value || isError.value;
+  }
+
+  // по умолчанию резервируем место под ошибку
+  return true;
+});
 
 const inputRef = ref<HTMLInputElement>();
 
@@ -150,14 +179,12 @@ defineExpose({ getControl });
         <slot name="icons-right"> </slot>
       </div>
     </label>
-    <div :class="$style['prefix-input__tip']">
-      <template v-if="isError">
-        <div
-          :class="$style['error']"
-          v-show="!hideErrorMessage"
-          v-html="validRes"
-        />
-      </template>
+    <div :class="$style['prefix-input__tip']" v-if="isReservedTipSpace">
+      <div
+        v-if="isError && !hideErrorMessage"
+        :class="$style['error']"
+        v-html="validRes"
+      />
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
       <slot

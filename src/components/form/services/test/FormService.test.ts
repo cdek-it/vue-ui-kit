@@ -25,8 +25,8 @@ describe('FormService:', () => {
   test('Вызывает callback, когда триггерится submit', () => {
     const mockCallback = vi.fn();
     const service = new FormService();
-    service.subscribeOnSubmit(mockCallback);
-    service.triggerSubmit();
+    service.subscribeOnShowErrors(mockCallback);
+    service.showErrors();
     expect(mockCallback).toBeCalledTimes(1);
   });
   test('Возвращает FormServiceControl для конкретного поля', () => {
@@ -45,5 +45,13 @@ describe('FormService:', () => {
     service.registerField('surname', 'Doe');
     service.clearForm();
     expect(service.fields).toEqual({ name: '', surname: '' });
+  });
+  test('getIsFormValid работает корректно', () => {
+    const service = new FormService();
+    service.registerField('name', 'Jane');
+    service.validateField('name', 'digits');
+    expect(service.getIsFormValid()).toBeFalsy();
+    service.validateField('name', true);
+    expect(service.getIsFormValid()).toBeTruthy();
   });
 });

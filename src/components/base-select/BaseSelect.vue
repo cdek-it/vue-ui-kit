@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import { computed, useSlots } from 'vue';
 import {
   Listbox,
   ListboxButton,
@@ -16,38 +16,52 @@ import BanIcon from './svg/ban.svg?component';
 import CircleCheckIcon from './svg/circle-check.svg?component';
 import InfoCircleIcon from './svg/info-circle.svg?component';
 
-export type Primitive = string | number | boolean;
+export type Primitive = string | number;
 
 type Value = string | number;
 
-export type GetValueFn = (item: any) => Value;
-export type GetTitleFn = (item: any) => string;
+export type GetValueFn = (item: IItemValue | Object) => Value;
+export type GetTitleFn = (item: IItemValue | Object) => string;
 
 const props = withDefaults(
   defineProps<{
     /**
      * Обновляется при выборе из поля value выбранного из массива items элемента
      *
-     * `string | number | boolean` - в случае, когда multiple = false
+     * `string | number` - в случае, когда multiple = false
      *
      * `Array<string | number>` - в случае, когда multiple = true
      */
     modelValue: Primitive | Array<Primitive>;
     /**
      * Элементы выпадающего списка.
-     * `Array<string | number> | Array<IItemValue>`
-     * [Описание модели](/cdek-vue-ui-kit?path=/story/ui-kit-cdekdropdown--primary)
+     *
+     * `Array<string | number> | Array<IItemValue> | Array<Object>`
+     *
+     * Подробнее о типе `IItemValue` в [документации](/?path=/docs/ui-kit-cdekselect-types--page)
      */
-    items: Array<IItemValue> | Array<Primitive> | Array<any>;
+    items: Array<IItemValue> | Array<Primitive> | Array<Object>;
     label?: string;
-
     /**
      * `true` - валидация пройдена, ошибку показывать не надо
      *
      * `string` - текст ошибки, ошибка показывается
      */
     validRes?: true | string;
+    /**
+     * `true` - место под ошибку **не** зарезервировано, текст ошибки **не** будет показываться, даже если она есть
+     *
+     * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
+     *
+     * более приоритетный параметр, чем `showErrorIfExists`
+     */
     hideErrorMessage?: boolean;
+    /**
+     * `true` - место под ошибку **не** зарезервировано, текст ошибки будет показываться
+     *
+     * `false` - место под ошибку зарезервировано, текст ошибки будет показываться
+     */
+    showErrorIfExists?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     small?: boolean;
@@ -64,27 +78,27 @@ const props = withDefaults(
      */
     getTitle?: GetTitleFn;
   }>(),
-  {}
+  { hideErrorMessage: false, showErrorIfExists: false }
 );
 
-const getNewValue = (item: IItemValue | Primitive) => {
+const getNewValue = (item: IItemValue | Primitive | Object) => {
   if (props.getValue) {
     return props.getValue(item);
   }
 
-  if (typeof item === 'object' && item.value) {
+  if (typeof item === 'object' && 'value' in item) {
     return item.value;
   }
 
   return item;
 };
 
-const getNewTitle = (item: IItemValue | Primitive) => {
+const getNewTitle = (item: IItemValue | Primitive | Object) => {
   if (props.getTitle) {
     return props.getTitle(item);
   }
 
-  if (typeof item === 'object' && item.title) {
+  if (typeof item === 'object' && 'title' in item) {
     return item.title;
   }
 
@@ -92,14 +106,17 @@ const getNewTitle = (item: IItemValue | Primitive) => {
 };
 
 const itemsIsObject = computed(() => typeof props.items[0] === 'object');
+
 const options = computed(() => {
   if (itemsIsObject.value) {
     if (props.getValue || props.getTitle) {
-      return props.items.map((item: IItemValue | Primitive) => {
-        return Object.assign(item, {
+      return props.items.map((item: IItemValue | Object, index: number) => {
+        return {
+          ...item,
+          index,
           value: getNewValue(item),
           title: getNewTitle(item),
-        });
+        };
       }) as Array<IItemValue>;
     }
 
@@ -107,21 +124,54 @@ const options = computed(() => {
   }
 
   return props.items.map(
-    (item) =>
+    (item, index) =>
       ({
         value: getNewValue(item),
         title: getNewTitle(item),
+        index,
       } as IItemValue)
   );
 });
 
 const isError = computed(() => typeof props.validRes === 'string');
 
+const slots = useSlots();
+const hasTip = computed(() => !!slots['tip']);
+
+const isReservedTipSpace = computed(() => {
+  if (props.hideErrorMessage) {
+    // показываем блок только если есть подсказка
+    return hasTip.value;
+  }
+
+  if (props.showErrorIfExists) {
+    // показываем блок, если есть подсказка или ошибка
+    return hasTip.value || isError.value;
+  }
+
+  // по умолчанию резервируем место под ошибку
+  return true;
+});
+
 const isUserEvent = computed(() => !props.disabled && !props.readonly);
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: Primitive | Array<Primitive>): void;
-  (e: 'select', item: IItemValue | Array<IItemValue>): void;
+  /**
+   * Выбранный элемент/элементы (в зависимости от `multiple`)
+   *
+   * В первом аргументе придет выбранный элемент с оригинального `items` без изменений
+   */
+  (
+    e: 'select',
+    item:
+      | IItemValue
+      | Array<IItemValue>
+      | Object
+      | Array<Object>
+      | Primitive
+      | Array<Primitive>
+  ): void;
 }>();
 
 const value = computed({
@@ -137,17 +187,33 @@ const value = computed({
     );
   },
   set(newValue) {
-    emit('select', newValue);
-
     if (Array.isArray(newValue)) {
+      const selectedItems = newValue.map((item) =>
+        typeof item.index === 'number' ? props.items[item.index] : item
+      );
+      emit('select', selectedItems);
+
       emit(
         'update:modelValue',
         newValue.map((item) => item.value)
       );
       return;
     }
+
+    const selectedItem =
+      typeof newValue.index === 'number'
+        ? props.items[newValue.index]
+        : newValue;
+    emit('select', selectedItem);
+
     emit('update:modelValue', newValue.value);
   },
+});
+
+const isFilled = computed(() => {
+  return Array.isArray(value.value)
+    ? value.value.length > 0
+    : 'value' in value.value;
 });
 </script>
 
@@ -179,9 +245,7 @@ const value = computed({
             v-if="label"
             :class="[
               $style['prefix-select__label'],
-              (Array.isArray(value) && value.length > 0) || Boolean((value as any).value)
-                ? $style['prefix-select__label_filled']
-                : '',
+              isFilled ? $style['prefix-select__label_filled'] : '',
               isError ? $style['prefix-select__label_error'] : '',
               readonly ? $style['prefix-select__label_readonly'] : '',
               small ? $style['prefix-select__label_small'] : '',
@@ -242,10 +306,10 @@ const value = computed({
         </ListboxOption>
       </ListboxOptions>
     </Listbox>
-    <div :class="$style['prefix-select__tip']">
-      <template v-if="isError">
-        <span class="error" v-show="!hideErrorMessage">{{ validRes }}</span>
-      </template>
+    <div :class="$style['prefix-select__tip']" v-if="isReservedTipSpace">
+      <span v-if="isError && !hideErrorMessage" class="error">{{
+        validRes
+      }}</span>
 
       <!-- @slot Предоставлены классы и стандартные иконки, примеры в историях -->
       <slot

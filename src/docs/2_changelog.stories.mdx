@@ -6,7 +6,50 @@ import { Meta } from '@storybook/addon-docs';
 
 ## Versions
 
-[`0.5.0`](#0.5.0) [`0.4.1`](#0.4.1) [`0.4.0`](#0.4.0) [`0.3.0`](#0.3.0) [`0.2.0`](#0.2.0) [`0.1.0-rc-010923`](#0.1.0-rc-010923) [`0.1.0-rc-270723`](#0.1.0-rc-270723) [`0.0.1`](#0.0.1)
+[`1.0.0`](#0.6.0) [`0.5.0`](#0.5.0) [`0.4.1`](#0.4.1) [`0.4.0`](#0.4.0) [`0.3.0`](#0.3.0) [`0.2.0`](#0.2.0) [`0.1.0-rc-010923`](#0.1.0-rc-010923) [`0.1.0-rc-270723`](#0.1.0-rc-270723) [`0.0.1`](#0.0.1)
+
+## <a name="1.0.0"></a>[1.0.0](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/1.0.0)
+
+### Fixed
+
+- [**CdekAutocomplete**](/story/ui-kit-cdekautocomplete--hidden-tip-block) dropdown теперь не залазит на CdekInput, если блок с подсказкой скрыт [#102](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/102)
+- [**CdekMaskedInput**](/story/ui-kit-cdekmaskedinput--clearable-input) clearable теперь вызывает событие очистки инпута [#101](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/101)
+- [**toastification**](/story/plugins-toastification--select-position-mobile) выбор позиции теперь работают корректно на мобильных устройствах [#100](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/100)
+- [**CdekSelect**](/story/ui-kit-cdekselect--falsy-value-item) теперь корректно обрабатывает ложные значения в `value` (пустая строка, 0) [#106](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/106)
+- [**CdekSelect**](/story/ui-kit-cdekselect--get-value) теперь не мутирует переданный массив `items` [#105](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/105)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--auto-resize-with-height) теперь CdekTextarea c resize="auto" не игнорирует атрибут height [#109](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/109)
+
+### Changed
+
+- [**CdekSelect**](/story/ui-kit-cdekselect--get-value) теперь отдает оригинальный объект из `items` в событии `select` [#105](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/105)
+- [**CdekAlert**](/story/ui-kit-cdekalert--primary-content-align-top) теперь при длинном заголовке иконка не сжимается [#99](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/99)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--auto-resize-initial-value) теперь CdekTextarea c resize="auto" расчитывает высоту с изначальным modelValue [#104](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/104)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--auto-resize-change-value) теперь CdekTextarea c resize="auto" расчитывает высоту при изменении modelValue мимо события input [#104](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/104)
+- [**CdekInput**](/story/ui-kit-cdekinput-basic--error-without-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--error-without-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekSelect**](/story/ui-kit-cdekselect--hide-error-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+
+### Added
+
+- [**CdekForm**](/story/form-change-values--page) добавлено событие change [#107](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/107)
+- [**CdekFormControl**](/story/form-change-values--page) добавлено событие change [#107](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/107)
+- [**CdekBreadcrumbs**](/story/ui-kit-cdekbreadcrumbs--primary) создан компонент CdekBreadcrumbs [#98](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/98)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--primary) создан компонент CdekTextarea [#97](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/97)
+- [**CdekForm**](/story/form-cdekform--primary-trimmed) добавлен атрибут trim-before-submit [#30](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/30)
+- [**CdekAlert**](/story/ui-kit-cdekalert--primary-content-align-top) добавлена возможность изменить положение контента в заголовке [#99](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/99)
+- [**CdekInput**](/story/ui-kit-cdekinput-basic--show-error-if-exists) добавлен параметр `showErrorIfExists` [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekSelect**](/story/ui-kit-cdekselect--show-error-if-exists) добавлен параметр `showErrorIfExists` [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--show-error-if-exists) добавлен параметр `showErrorIfExists` [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+
+### Build
+
+- Так как отключен доступ во внешку, теперь для пакетов используем registry https://repo.cdek.ru/repository/npm-public
+
+### Docs
+
+- [**Installation**](/story/installation--page) Добавлена инструкция для npm, если пакет не устанавливается
+- [**Contributing**](/story/contributing--page) Добавлена ссылка на инструкцию для версии с префиксами, смотри в секцию Тестирование на alpha версии
+- [**CdekSelect**](/story/ui-kit-cdekselect-types--page) Добавлена документация по типам
 
 ## <a name="0.5.0"></a>[0.5.0](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/0.5.0)
 

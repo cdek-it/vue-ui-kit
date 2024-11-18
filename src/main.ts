@@ -12,8 +12,10 @@ export * from './components/base-modal';
 export * from './components/base-select';
 export * from './components/base-spinner';
 export * from './components/base-switch';
+export * from './components/base-textarea';
 export * from './components/base-toaster';
 export * from './components/base-widget';
+export * from './components/base-breadcrumbs';
 export * from './components/form';
 
 export * from './plugins/toastification';

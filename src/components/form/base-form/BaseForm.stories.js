@@ -8,6 +8,9 @@ export default {
   title: 'Form/CdekForm',
   component: BaseForm,
   subcomponents: { BaseFormControl },
+  argTypes: {
+    trimBeforeSubmit: { control: 'boolean' },
+  },
 };
 
 const Template = (args) => ({
@@ -33,6 +36,8 @@ const Template = (args) => ({
               return true;
             },
           };
+        case 'ChangeEvent':
+          return 'required';
         default:
           return {};
       }
@@ -71,6 +76,12 @@ const Template = (args) => ({
       baseFormRef.value?.clearForm();
     };
 
+    const changeEventResult = ref({});
+
+    const change = (result) => {
+      changeEventResult.value = result;
+    };
+
     return {
       args,
       submit,
@@ -84,10 +95,12 @@ const Template = (args) => ({
       triggerSubmit,
       triggerSubmitResult,
       clearForm,
+      changeEventResult,
+      change,
     };
   },
   template: `
-    <BaseForm v-bind="args" @submit="submit" @submitError="submitErrors" ref="baseFormRef">
+    <BaseForm v-bind="args" @submit="submit" @submitError="submitErrors" @change="change" ref="baseFormRef">
       <BaseFormControl
         name="firstName"
         label="firstName"
@@ -107,14 +120,14 @@ const Template = (args) => ({
             : ''
         }"
       />
-      <button v-if="args.story !== 'ManualSubmit'">Продолжить</button>
+      <button v-if="args.story !== 'ManualSubmit' && args.story !== 'ChangeEvent'">Продолжить</button>
     </BaseForm>
     
     <p v-if="args.story === 'ClearForm'">
       <button @click="clearForm">Очистить форму</button>
     </p>
 
-    <p v-if="args.story !== 'ManualSubmit'">submit result: {{ form }}</p>
+    <p v-if="args.story !== 'ManualSubmit' && args.story !== 'ChangeEvent'">submit result: {{ form }}</p>
     <p v-if="args.story === 'WithValidation'">submitError result: {{ errors }}</p>
     <p v-if="args.story === 'ChangeLanguage'">
       <button @click="changeLocaleEn">Сменить язык на английский</button>
@@ -124,6 +137,7 @@ const Template = (args) => ({
       <button @click="triggerSubmit">Вызвать submit</button>
       <p>Ответ <code>triggerSubmit</code>: {{ triggerSubmitResult }}</p>
     </p>
+    <p v-if="args.story === 'ChangeEvent'">change event result: {{ changeEventResult }}</p>
   `,
 });
 
@@ -145,6 +159,27 @@ const submit = (values) => {
 
 <template>
   <CdekForm @submit="submit">
+    <CdekFormControl name="firstName" label="firstName" />
+    <CdekFormControl name="surname" label="surname" />
+
+    <button>Продолжить<button>
+  </CdekForm>
+</template>
+`,
+    },
+  },
+};
+
+export const PrimaryTrimmed = Template.bind({});
+PrimaryTrimmed.args = {
+  trimBeforeSubmit: true,
+};
+PrimaryTrimmed.parameters = {
+  docs: {
+    source: {
+      code: `
+<template>
+  <CdekForm trim-before-submit @submit="submit">
     <CdekFormControl name="firstName" label="firstName" />
     <CdekFormControl name="surname" label="surname" />
 
@@ -361,6 +396,41 @@ const clearForm = () => {
   </CdekForm>
   
   <button @click="clearForm">Очистить форму<button>
+</template>
+`,
+    },
+  },
+};
+
+export const ChangeEvent = Template.bind({});
+ChangeEvent.args = {
+  story: 'ChangeEvent',
+};
+ChangeEvent.parameters = {
+  docs: {
+    source: {
+      code: `
+<script lang="ts" setup>
+import type { FormChangeResult } from '@cdek-ui-kit/vue';
+
+const change = (result: FormChangeResult<CustomValuesT>) => {
+  /**
+   * В result будет лежать объект такого вида:
+   * type FormChangeResult<CustomValuesT = FieldsT> = {
+   *  isValid: boolean;
+   *  errors: ErrorsT;
+   *  values: CustomValuesT;
+   * };
+   */
+  console.log(result);
+}
+</script>
+
+<template>
+  <CdekForm @submit="submit" @change="change">
+    <CdekFormControl name="firstName" label="firstName" />
+    <CdekFormControl name="surname" label="surname" />
+  </CdekForm>
 </template>
 `,
     },

@@ -21,12 +21,18 @@ export const Template = (args: any) => ({
         ? 'input-small-story'
         : 'input-story';
 
-    return { args, inputVal, cn };
+    const validRes = ref(args.validRes);
+
+    const toggleValidRes = () => {
+      validRes.value = validRes.value === 'Ошибка' ? '' : 'Ошибка';
+    };
+
+    return { args, inputVal, cn, validRes, toggleValidRes };
   },
   template: `
     <div :class="cn">
-      <BaseInput v-bind="args" v-model="inputVal">
-        <template #tip="{ alert, info, ban, circle }">
+      <BaseInput v-bind="args" v-model="inputVal" :valid-res="validRes">
+        <template #tip="{ alert, info, ban, circle }" v-if="args.tip">
           <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
           <span :class="args.tipColor">{{ args.tip }}</span>
         </template>
@@ -39,6 +45,10 @@ export const Template = (args: any) => ({
           <button @click="test"><EyeIcon /></button>
         </template>
       </BaseInput>
+      <p v-if="args.story === 'ShowErrorIfExists'">
+        <button @click="toggleValidRes">Переключить ошибку</button>
+      </p>
+      <p :style="{ margin: '0' }" v-else>Контент после input</p>
     </div>
   `,
 });

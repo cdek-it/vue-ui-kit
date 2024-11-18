@@ -34,13 +34,20 @@ const Template = (args) => ({
       rules.value = ifEmail.value ? 'email' : '';
     };
 
-    return { args, ifEmail, toggleEmail, rules };
+    const changeEventResult = ref({});
+    const change = (result) => {
+      changeEventResult.value = result;
+    };
+
+    return { args, ifEmail, toggleEmail, rules, changeEventResult, change };
   },
   template: `
     <div>
       <BaseForm>
-        <BaseFormControl v-bind="args" :rules="rules" />
+        <BaseFormControl v-bind="args" @change="change" :rules="rules" />
         <p>Current validator: <code>'{{ rules }}'</code></p>
+        <p><code>change</code> event:</p>
+        <p><code>{{ changeEventResult }}</code></p>
       </BaseForm>
 
       <button @click="toggleEmail" v-if="args.story === 'ChangeValidatorRuntime'">

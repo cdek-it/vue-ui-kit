@@ -1,33 +1,53 @@
 <script lang="ts" setup>
-import { provide, reactive } from 'vue';
+import { provide, reactive, watch } from 'vue';
 
 import FormService, { FormServiceKey } from '../services/FormService';
 import type { FieldsT, ErrorsT } from '../services/types';
-import type { FormSubmitResult } from './BaseForm.types';
+import type { FormSubmitResult, FormChangeResult } from './BaseForm.types';
 
 const formService = reactive(new FormService());
 provide(FormServiceKey, formService);
 
+const props = defineProps<{
+  trimBeforeSubmit?: boolean;
+}>();
+
 const emit = defineEmits<{
   (e: 'submit', values: FieldsT): void;
   (e: 'submitError', errors: ErrorsT): void;
+  (e: 'change', result: FormChangeResult): void;
 }>();
 
 const submit: () => FormSubmitResult = () => {
-  for (const key of Object.getOwnPropertyNames(formService.errors)) {
-    if (typeof formService.errors[key] === 'string') {
-      const errorsObj = { ...formService.errors };
-      emit('submitError', errorsObj);
+  if (!formService.getIsFormValid()) {
+    const errorsObj = { ...formService.errors };
+    emit('submitError', errorsObj);
 
-      formService.triggerSubmit();
-      return { isValid: false, errors: errorsObj };
-    }
+    formService.showErrors();
+
+    return { isValid: false, errors: errorsObj };
+  }
+
+  if (props.trimBeforeSubmit) {
+    formService.trimForm();
   }
 
   const valuesObj = { ...formService.fields };
+
   emit('submit', valuesObj);
+
   return { isValid: true, values: valuesObj };
 };
+
+const change = () => {
+  const values = { ...formService.fields };
+  const errors = { ...formService.errors };
+  const isValid = formService.getIsFormValid();
+
+  emit('change', { isValid, values, errors });
+};
+
+watch(() => formService.fields, change, { deep: true });
 
 const triggerSubmit = <T = FieldsT>() => {
   return submit() as unknown as FormSubmitResult<T>;
@@ -44,7 +64,7 @@ defineExpose({
 </script>
 
 <template>
-  <form @submit.prevent="submit">
+  <form @submit.prevent="submit" @change="change">
     <slot />
   </form>
 </template>

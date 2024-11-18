@@ -259,6 +259,42 @@ SelectPosition.parameters = {
   },
 };
 
+export const SelectPositionMobile = Template.bind({});
+SelectPositionMobile.args = {
+  settings: {
+    title: 'Какой-то текст',
+  },
+  showToastSettings: {
+    position: POSITION.BOTTOM_CENTER,
+  },
+};
+SelectPositionMobile.parameters = {
+  docs: {
+    source: {
+      code: `
+        const toast = useToast();
+
+        let toastId;
+
+        const toastSettings = {
+          title: 'Какой-то текст',
+        }
+        
+        const settings = {
+          position: 'bottom-center'
+        }
+      
+        const showToast = () => {
+          toastId = toast(toastSettings, settings);
+        };
+      `,
+    },
+  },
+  viewport: {
+    defaultViewport: 'mobile1',
+  },
+};
+
 export const SetTimeout = Template.bind({});
 SetTimeout.args = {
   settings: {

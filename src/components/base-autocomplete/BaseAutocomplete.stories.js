@@ -1,6 +1,8 @@
 import BaseAutocomplete from './BaseAutocomplete.vue';
 import { ref } from 'vue';
 
+import './BaseAutocomplete.stories.css';
+
 export default {
   title: 'Ui kit/CdekAutocomplete',
   component: BaseAutocomplete,
@@ -46,7 +48,7 @@ const Template = (args) => ({
       <template #not-found>
         {{ args['not-found'] || 'Ничего не нашлось' }}
       </template>
-      <template #tip="{ alert, info, ban, circle }">
+      <template #tip="{ alert, info, ban, circle }" v-if="args.tip">
         <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
         <span :class="args.tipColor">{{ args.tip }}</span>
       </template>
@@ -328,6 +330,7 @@ WithErrorHiddenMessage.args = {
   label: 'Размер коробки',
   validRes: 'Ошибка',
   hideErrorMessage: true,
+  showErrorIfExists: false,
   items,
 };
 WithErrorHiddenMessage.parameters = {
@@ -486,6 +489,31 @@ EnabledAccentQuery.parameters = {
 <CdekAutocomplete 
   placeholder="Начните вводить" 
   enabled-accent-query
+  :items="[
+    { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg' },
+    { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },
+    { value: 3, title: 'Envelope, 10×10×10сm, up to 1kg' },
+    ...
+  ]" 
+/>
+`,
+    },
+  },
+};
+
+export const HiddenTipBlock = Template.bind({});
+HiddenTipBlock.args = {
+  placeholder: 'Начните вводить',
+  items,
+  class: 'hidden-tip-block',
+};
+HiddenTipBlock.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekAutocomplete 
+  class="hidden-tip-block"
+  placeholder="Начните вводить"
   :items="[
     { value: 1, title: 'Envelope, 42×5×5сm, up to 2kg' },
     { value: 2, title: 'Box XS, 17×12×9cm, up to 0,5kg' },

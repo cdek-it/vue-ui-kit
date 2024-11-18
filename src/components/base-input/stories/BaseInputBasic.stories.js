@@ -107,6 +107,77 @@ ErrorWithoutMessage.parameters = {
   },
 };
 
+export const ErrorWithoutMessageWithTip = Template.bind({});
+ErrorWithoutMessageWithTip.args = {
+  label: 'Серия и номер паспорта',
+  validRes: 'Ошибка',
+  hideErrorMessage: true,
+  tip: 'Подсказка',
+};
+ErrorWithoutMessageWithTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput
+  v-model="inputVal"
+  label="Серия и .."
+  valid-res="Ошибка"
+  hide-error-message
+>
+  <template #tip>
+    Подсказка
+  </template>
+</CdekInput>
+`,
+    },
+  },
+};
+
+export const ShowErrorIfExists = Template.bind({});
+ShowErrorIfExists.args = {
+  label: 'Серия и номер паспорта',
+  showErrorIfExists: true,
+  story: 'ShowErrorIfExists',
+};
+ShowErrorIfExists.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput
+  v-model="inputVal"
+  label="Серия и .."
+  show-error-if-exist
+/>
+`,
+    },
+  },
+};
+
+export const ShowErrorIfExistsWithTip = Template.bind({});
+ShowErrorIfExistsWithTip.args = {
+  label: 'Серия и номер паспорта',
+  showErrorIfExists: true,
+  story: 'ShowErrorIfExists',
+  tip: 'Подсказка',
+};
+ShowErrorIfExistsWithTip.parameters = {
+  docs: {
+    source: {
+      code: `
+<CdekInput
+  v-model="inputVal"
+  label="Серия и .."
+  show-error-if-exist
+>
+  <template #tip>
+    Подсказка
+  </template>
+</CdekInput>
+`,
+    },
+  },
+};
+
 export const ErrorFilled = Template.bind({});
 ErrorFilled.args = {
   label: 'Серия и номер паспорта',
