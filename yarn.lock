@@ -1761,6 +1761,41 @@
   resolved "https://repo.cdek.ru/repository/npm-public/@polka/url/-/url-1.0.0-next.25.tgz#f077fdc0b5d0078d30893396ff4827a13f99e817"
   integrity sha512-j7P6Rgr3mmtdkeDGTe0E/aYyWEWVtc5yFXtHCRHs28/jptDEWfaVOc5T7cblqy1XKPPfCxJc/8DwQ5YgLOZOVQ==
 
+"@primeuix/styled@^0.3.2":
+  version "0.3.2"
+  resolved "https://repo.cdek.ru/repository/npm-public/@primeuix/styled/-/styled-0.3.2.tgz#a6093e81a66fc78b915b5e8d998cc73c2c47a1dc"
+  integrity sha512-ColZes0+/WKqH4ob2x8DyNYf1NENpe5ZguOvx5yCLxaP8EIMVhLjWLO/3umJiDnQU4XXMLkn2mMHHw+fhTX/mw==
+  dependencies:
+    "@primeuix/utils" "^0.3.2"
+
+"@primeuix/utils@^0.3.2":
+  version "0.3.2"
+  resolved "https://repo.cdek.ru/repository/npm-public/@primeuix/utils/-/utils-0.3.2.tgz#dbf92f6b5e18abe214f592a0b51bf4ca02a1f808"
+  integrity sha512-B+nphqTQeq+i6JuICLdVWnDMjONome2sNz0xI65qIOyeB4EF12CoKRiCsxuZ5uKAkHi/0d1LqlQ9mIWRSdkavw==
+
+"@primevue/core@4.2.3":
+  version "4.2.3"
+  resolved "https://repo.cdek.ru/repository/npm-public/@primevue/core/-/core-4.2.3.tgz#b566eddc4968d72114b74947713f0cdb34f621e0"
+  integrity sha512-Qjxl6rPzkvLaUQQeM5wXlmFQK9Pox+rSC+r7sX9ZGXeacD0LJny9YAF0APDv/V5Z1RiXApDvfOQGeu7Xg50vyg==
+  dependencies:
+    "@primeuix/styled" "^0.3.2"
+    "@primeuix/utils" "^0.3.2"
+
+"@primevue/icons@4.2.3":
+  version "4.2.3"
+  resolved "https://repo.cdek.ru/repository/npm-public/@primevue/icons/-/icons-4.2.3.tgz#015abc7a38e949d43a71008fe398f93be243f03d"
+  integrity sha512-2yitSASyLdKtKPy8Fw8A71wycfZ14/lIlJ70JP0yGRy1nYbEBzEteMDGFOnlkFokbK/wdx9oOdYTDEul37FDdg==
+  dependencies:
+    "@primeuix/utils" "^0.3.2"
+    "@primevue/core" "4.2.3"
+
+"@primevue/themes@^4.2.3":
+  version "4.2.3"
+  resolved "https://repo.cdek.ru/repository/npm-public/@primevue/themes/-/themes-4.2.3.tgz#3aed0ca1c1573c0507e78e07bf2d104cab2812e8"
+  integrity sha512-hzHEwUWkTQihUEDmT9U3QADoAsYbA6mif6RJSR/hDTnPdXIcmr5RuZGq3pnLl943KfJTBiSp98F6LvSB8boJAw==
+  dependencies:
+    "@primeuix/styled" "^0.3.2"
+
 "@rollup/pluginutils@^4.2.1":
   version "4.2.1"
   resolved "https://repo.cdek.ru/repository/npm-public/@rollup/pluginutils/-/pluginutils-4.2.1.tgz#e6c6c3aba0744edce3fb2074922d3776c0af2a6d"
@@ -9811,6 +9846,16 @@ pretty-hrtime@^1.0.3:
   version "1.0.3"
   resolved "https://repo.cdek.ru/repository/npm-public/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha512-66hKPCr+72mlfiSjlEB1+45IjXSqvVAIy6mocupoww4tBFE9R9IhwwUGoI4G++Tc9Aq+2rxOt0RFU6gPcrte0A==
+
+primevue@^4.2.3:
+  version "4.2.3"
+  resolved "https://repo.cdek.ru/repository/npm-public/primevue/-/primevue-4.2.3.tgz#2a1f267b2a7d8394e41adad2a5d40283f2bba3a5"
+  integrity sha512-kAkSOHmyBhe0NNzjfmZSAFNlxAWPTuTjWvYSxSv2OLVdy61F+IPQAENygaB7UdB4wY7NNxeBVbphEgjuipwTww==
+  dependencies:
+    "@primeuix/styled" "^0.3.2"
+    "@primeuix/utils" "^0.3.2"
+    "@primevue/core" "4.2.3"
+    "@primevue/icons" "4.2.3"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
