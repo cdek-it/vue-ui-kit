@@ -38,9 +38,12 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.12",
+    "@primevue/auto-import-resolver": "^4.2.3",
+    "@primevue/themes": "^4.2.3",
     "@vee-validate/rules": "^4.7.3",
     "lodash": "^4.17.21",
     "maska": "^2.1.11",
+    "primevue": "^4.2.3",
     "vue": "3.3.4"
   },
   "devDependencies": {

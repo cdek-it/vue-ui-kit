@@ -55,7 +55,7 @@ export default defineConfig({
       fileName: (format) => `vue-ui-kit.${format}.js`,
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', 'primevue'],
       output: {
         // Provide global variables to use in the UMD build
         // Add external deps here
