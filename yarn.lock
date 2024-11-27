@@ -1773,6 +1773,13 @@
   resolved "https://repo.cdek.ru/repository/npm-public/@primeuix/utils/-/utils-0.3.2.tgz#dbf92f6b5e18abe214f592a0b51bf4ca02a1f808"
   integrity sha512-B+nphqTQeq+i6JuICLdVWnDMjONome2sNz0xI65qIOyeB4EF12CoKRiCsxuZ5uKAkHi/0d1LqlQ9mIWRSdkavw==
 
+"@primevue/auto-import-resolver@^4.2.3":
+  version "4.2.3"
+  resolved "https://repo.cdek.ru/repository/npm-public/@primevue/auto-import-resolver/-/auto-import-resolver-4.2.3.tgz#a56c7ea2251399e40cee56a589f232be959de439"
+  integrity sha512-X3rrTr+HBDnjOegVomq4GmYUSCBeol/DQdwIEU6M/t2+u3kiSpQ346sfwcfdWDOwp3Ks3gPunbcn6iglXSHphQ==
+  dependencies:
+    "@primevue/metadata" "4.2.3"
+
 "@primevue/core@4.2.3":
   version "4.2.3"
   resolved "https://repo.cdek.ru/repository/npm-public/@primevue/core/-/core-4.2.3.tgz#b566eddc4968d72114b74947713f0cdb34f621e0"
@@ -1788,6 +1795,11 @@
   dependencies:
     "@primeuix/utils" "^0.3.2"
     "@primevue/core" "4.2.3"
+
+"@primevue/metadata@4.2.3":
+  version "4.2.3"
+  resolved "https://repo.cdek.ru/repository/npm-public/@primevue/metadata/-/metadata-4.2.3.tgz#d3b3139da2b6aff9cc480c9f05b80953efdd05f1"
+  integrity sha512-ou47oOgcmsEyeXE85VHHXpefb2OS/XlYFWRoWZS6p1W6rHaEWI3TMBD6NwgsFZ5F4zRVnR/SPXuCURIm5HBi+Q==
 
 "@primevue/themes@^4.2.3":
   version "4.2.3"

@@ -1,11 +1,13 @@
 import Button from 'primevue/button';
 
 export default {
-  title: 'Plugins/Prime',
+  title: 'Prime/Button',
 };
 
 const Template = () => ({
-  components: { Button },
+  components: {
+    Button,
+  },
   setup() {
     return {};
   },

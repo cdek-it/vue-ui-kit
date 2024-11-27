@@ -1,0 +1,111 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Prime/Установка" />
+
+# Установка
+
+### Установка библиотеки PrimeVue
+
+Необходимо будет установить библиотеку PrimeVue в проект. Мы делаем таким образом, чтобы отвязаться от ui-kit,
+и чтобы обновление PrimeVue не зависело от библиотеки.
+
+```bash dark
+# Using npm
+npm install primevue
+
+# Using yarn
+yarn add primevue
+```
+
+`@primevue/themes` устанавливать не надо, тема приходит из библиотеки.
+
+Далее нужно подключить PrimeVue вместе с конфигурацией из ui-kit.
+
+```js dark
+import PrimeVue from 'primevue/config';
+import { getPrimeVueConfig } from '@cdek-ui-kit/vue';
+
+app.use(PrimeVue, getPrimeVueConfig());
+```
+
+В `getPrimeVueConfig` можно передать дополнительную конфигурацию, она будет объединена с дефолтной конфигурацией.
+
+Опции конфигурации можно посмотреть в [официальной документации](https://primevue.org/configuration/).
+
+### Подключение авто-импорта
+
+Рекомендуется подключить авто-импорт компонентов PrimeVue, их довольно много, и импортируются они в отдельных строчках, что не очень удобно.
+
+Для этого из библиотеки поставляется конфигурация для пакета `unplugin-vue-components`, который подключает авто-импорт любых компонентов Vue.
+
+Для начала установите `unplugin-vue-components`:
+
+```bash dark
+# Using npm
+npm i unplugin-vue-components -D
+
+# Using yarn
+yarn add -D unplugin-vue-components
+```
+
+После этого подключите пакет, как плагин в `vite.config.ts` с использованием функции `getComponentsAutoImportOptions` из библиотеки.
+
+```js dark
+import Components from 'unplugin-vue-components/vite';
+import { getComponentsAutoImportOptions } from '@cdek-ui-kit/vue';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+    Components(getComponentsAutoImportOptions({ onlyPrime: true })),
+  ],
+});
+```
+
+#### Опции
+
+- `onlyPrime` — если `true`, то будут импортироваться только компоненты PrimeVue, остальные компоненты Vue будут игнорироваться, по умолчанию `false`
+- `componentPrefix` — префикс для компонентов PrimeVue, по умолчанию `Prime`
+- `directivePrefix` — префикс для директив PrimeVue, по умолчанию `p`
+
+#### Кастомная настройка авто-импорта
+
+Если вы хотите дополнительно настроить авто-импорт самостоятельно, то можете использовать функцию `getPrimeVueResolver` из библиотеки.
+Она также поддерживает `componentPrefix` и `directivePrefix`. А вот фильтрацию компонентов вам нужно будет сделать самостоятельно.
+
+```js dark
+import Components from 'unplugin-vue-components/vite';
+import { getPrimeVueResolver } from '@cdek-ui-kit/vue';
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    Components({
+      resolvers: [getPrimeVueResolver()],
+    }),
+  ],
+});
+```
+
+Если использовать готовые настройки с помощью `getComponentsAutoImportOptions`, то для фильтрации там используется опция `excludeNames`.
+
+```js dark
+import Components from 'unplugin-vue-components/vite';
+import { getPrimeVueResolver } from '@cdek-ui-kit/vue';
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    Components({
+      excludeNames: [/^(?!(Prime|p-)).+/],
+      resolvers: [getPrimeVueResolver()],
+    }),
+  ],
+});
+```
+
+#### Типы
+
+Дабы typescript нормально распознавал компоненты PrimeVue, `Components` будет генерировать специальный файл в
+корне проекта - `components.d.ts`. Вам нужно подключить его в `tsconfig.json`.

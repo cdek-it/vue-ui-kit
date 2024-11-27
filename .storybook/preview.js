@@ -1,10 +1,11 @@
 import { app } from '@storybook/vue3';
 import { registerToastification } from '@/plugins/toastification';
-import { usePrimeVue } from '@/plugins/prime';
+import PrimeVue from 'primevue/config';
+import { getPrimeVueConfig } from '@/plugins/prime';
 import './themes/violet.css';
 
 registerToastification(app);
-usePrimeVue(app);
+app.use(PrimeVue, getPrimeVueConfig());
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
