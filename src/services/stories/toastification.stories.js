@@ -10,6 +10,7 @@ const Template = (args) => ({
     <div>
       <button @click="testService.getThis">Нажми на меня</button>
       <div>checkInstance: {{ testService.checkInstance }}</div>
+      <div>completeName: {{ testService.completeName }} </div>
     </div>
   `,
 });

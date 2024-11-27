@@ -2,6 +2,12 @@ import { getInstanceFactory, Multitone, useServiceFactory } from '@/services';
 
 class TestService extends Multitone {
   checkInstance?: boolean;
+  name = 'test';
+  firstname = 'testov';
+
+  get completeName() {
+    return this.name + ' ' + this.firstname;
+  }
 
   getThis() {
     this.checkInstance = this instanceof TestService;
