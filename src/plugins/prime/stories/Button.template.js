@@ -1,8 +1,6 @@
 import Button from 'primevue/button';
 import OverlayBadge from 'primevue/overlaybadge';
 
-export { Button };
-
 export const Template = (args) => ({
   components: { Button },
   setup() {

@@ -1,0 +1,38 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './Checkbox.template';
+
+<Meta
+  title="Prime/Checkbox"
+  argTypes={{
+    value: { control: 'text' },
+    defaultValue: { control: 'text' },
+    name: { control: 'text' },
+    binary: { control: 'boolean' },
+    indeterminate: { control: 'boolean' },
+    size: {
+      control: 'inline-radio',
+      options: ['small', 'large'],
+    },
+    invalid: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    variant: {
+      control: 'inline-radio',
+      options: ['outlined', 'filled'],
+    },
+    readonly: { control: 'boolean' },
+    required: { control: 'boolean' },
+    trueValue: { control: 'text' },
+    falseValue: { control: 'text' },
+  }}
+/>
+
+# Checkbox
+
+[PrimeVue](https://primevue.org/checkbox/), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5316&node-type=section&t=IsZXcTeGDFf3VTNt-0>)
+
+```html dark
+<PrimeCheckbox v-model="checked" binary />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>
