@@ -2757,6 +2757,18 @@
     vue-loader "^16.4.1"
     webpack ">=4.0.0 <6.0.0"
 
+"@tabler/icons-webfont@^3.22.0":
+  version "3.22.0"
+  resolved "https://repo.cdek.ru/repository/npm-public/@tabler/icons-webfont/-/icons-webfont-3.22.0.tgz#36a4fcb2ef8f2f2780cf57ebd5782a984edba9be"
+  integrity sha512-E2ALM+MdaPwNoqwugTi0/reVAzck4Al+pJ6FZB6RqqkWBgFzDHjYCASMJWW49mWgZ2ZpSJ0ElGl2ppKwYJX3tA==
+  dependencies:
+    "@tabler/icons" "3.22.0"
+
+"@tabler/icons@3.22.0":
+  version "3.22.0"
+  resolved "https://repo.cdek.ru/repository/npm-public/@tabler/icons/-/icons-3.22.0.tgz#f937ec65d98710b891da6368559ea15cbcd87f91"
+  integrity sha512-IfgGzhFph5OBr2wTieWL/hyAs0FThnq9O155a6kfGYxqx7h5LQw91wnRswhEaGhXCcfmR7ZVDUr9H+x4b9Pb8g==
+
 "@tanstack/virtual-core@3.10.1":
   version "3.10.1"
   resolved "https://repo.cdek.ru/repository/npm-public/@tanstack/virtual-core/-/virtual-core-3.10.1.tgz#a2312c6cfc6f0d8e3e9a93bb99f96552b82082af"
