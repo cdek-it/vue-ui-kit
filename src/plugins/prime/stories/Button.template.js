@@ -7,7 +7,7 @@ export const Template = (args) => ({
     return { args };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: '150px repeat(6, max-content)', gap: '15px', color: 'black', alignItems: 'center', justifyItems: 'center' }">
+<div :style="{ display: 'grid', gridTemplateColumns: '150px repeat(6, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
   <span :style="{ justifySelf: 'flex-start' }"><code>size</code></span>
   <span></span>
   <span><code>rounded</code></span>

@@ -6,7 +6,7 @@ export const Template = (args) => ({
     return { args };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(4, max-content)', gap: '20px', color: 'black', alignItems: 'center', justifyItems: 'center' }">
+<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(4, max-content)', gap: '20px', alignItems: 'center', justifyItems: 'center' }">
   <span :style="{ justifySelf: 'flex-start' }"><code>modelValue</code></span>
   <span></span>
   <span><code>invalid</code></span>

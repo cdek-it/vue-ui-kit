@@ -6,6 +6,10 @@ import type { PrimeVueConfiguration } from 'primevue/config';
 const primeConfig: PrimeVueConfiguration = {
   theme: {
     preset: Lara,
+    options: {
+      darkModeSelector: '.app-dark',
+      cssLayer: false,
+    },
   },
 };
 
