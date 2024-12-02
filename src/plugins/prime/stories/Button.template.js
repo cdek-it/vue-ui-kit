@@ -7,8 +7,8 @@ export const Template = (args) => ({
     return { args };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: '150px repeat(6, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
-  <span :style="{ justifySelf: 'flex-start' }"><code>size</code></span>
+<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(7, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
+  <span></span>
   <span></span>
   <span><code>rounded</code></span>
   <span><code>variant="outlined"</code></span>
@@ -16,7 +16,7 @@ export const Template = (args) => ({
   <span><code>disabled</code></span>
   <span><code>loading</code></span>
 
-  <span :style="{ justifySelf: 'flex-start' }"><code>large</code></span>
+  <span :style="{ justifySelf: 'flex-start' }"><code>size="large"</code></span>
   <Button size="large" v-bind="args" />
   <Button size="large" rounded v-bind="args" />
   <Button size="large" variant="outlined" v-bind="args" />
@@ -24,7 +24,7 @@ export const Template = (args) => ({
   <Button size="large" disabled v-bind="args" />
   <Button size="large" loading v-bind="args" />
 
-  <span :style="{ justifySelf: 'flex-start' }"><code>null</code> (default)</span>
+  <span></span>
   <Button v-bind="args" />
   <Button rounded v-bind="args" />
   <Button variant="outlined" v-bind="args" />
@@ -32,7 +32,7 @@ export const Template = (args) => ({
   <Button disabled v-bind="args" />
   <Button loading v-bind="args" />
 
-  <span :style="{ justifySelf: 'flex-start' }"><code>small</code></span>
+  <span :style="{ justifySelf: 'flex-start' }"><code>size="small"</code></span>
   <Button size="small" v-bind="args" />
   <Button size="small" rounded v-bind="args" />
   <Button size="small" variant="outlined" v-bind="args" />
@@ -49,14 +49,12 @@ export const TemplateBadge = (args) => ({
     return { args };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(5, max-content)', gap: '40px', rowGap: '20px', color: 'black', alignItems: 'center', justifyItems: 'center' }">
-  <span :style="{ justifySelf: 'flex-start' }"><code>size</code></span>
-  <span><code>xlarge</code></span>
-  <span><code>large</code></span>
-  <span><code>null</code> (default)</span>
-  <span><code>small</code></span>
-
+<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(4, max-content)', gap: '40px', rowGap: '20px', color: 'black', alignItems: 'center', justifyItems: 'center' }">
+  <span><code>size="xlarge"</code></span>
+  <span><code>size="large"</code></span>
   <span></span>
+  <span><code>size="small"</code></span>
+
   <OverlayBadge size="xlarge" v-bind="args">
     <Button label="Button" size="large" />
   </OverlayBadge>
