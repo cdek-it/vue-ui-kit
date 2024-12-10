@@ -1,0 +1,55 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './InputNumber.template';
+
+<Meta title="Prime/InputNumber" />
+
+# InputNumber
+
+[PrimeVue InputNumber](https://primevue.org/inputnumber)
+
+### Число
+
+```html dark
+<InputNumber v-model="value" />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>
+
+### Валюта
+
+```html dark
+<InputNumber v-model="value" mode="currency" currency="RUB" locale="ru-RU" />
+```
+
+<Story
+  name="Currency"
+  args={{ mode: 'currency', currency: 'RUB', locale: 'ru-RU' }}
+>
+  {Template.bind()}
+</Story>
+
+### Кнопки плюс/минус
+
+```html dark
+<InputNumber
+  v-model="value"
+  show-buttons
+  button-layout="horizontal"
+  increment-icon="ti ti-plus"
+  decrement-icon="ti ti-minus"
+/>
+```
+
+<Story
+  name="Plus/Minus Buttons"
+  args={{
+    showButtons: true,
+    buttonLayout: 'horizontal',
+    story: 'Plus/Minus',
+    incrementIcon: 'ti ti-plus',
+    decrementIcon: 'ti ti-minus',
+  }}
+>
+  {Template.bind()}
+</Story>
