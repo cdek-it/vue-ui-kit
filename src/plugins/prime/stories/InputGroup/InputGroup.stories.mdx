@@ -1,0 +1,56 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './InputGroup.template';
+
+<Meta title="Prime/InputGroup" />
+
+# InputGroup
+
+[PrimeVue InputGroup](https://primevue.org/inputgroup), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5932&node-type=section&t=2PSg63p2UfJ4cUzB-0>)
+
+### Положение иконки
+
+```html dark
+<!-- Слева -->
+<PrimeInputGroup>
+  <PrimeInputGroupAddon>
+    <i class="ti ti-user"></i>
+  </PrimeInputGroupAddon>
+  <PrimeInputText />
+</PrimeInputGroup>
+```
+
+<Story name="LeftIcon" args={{ icon: 'left' }}>
+  {Template.bind({})}
+</Story>
+
+```html dark
+<!-- Справа -->
+<PrimeInputGroup>
+  <PrimeInputText />
+  <PrimeInputGroupAddon>
+    <i class="ti ti-user"></i>
+  </PrimeInputGroupAddon>
+</PrimeInputGroup>
+```
+
+<Story name="RightIcon" args={{ icon: 'right' }}>
+  {Template.bind({})}
+</Story>
+
+```html dark
+<!-- Слева и справа -->
+<PrimeInputGroup>
+  <PrimeInputGroupAddon>
+    <i class="ti ti-user"></i>
+  </PrimeInputGroupAddon>
+  <PrimeInputText />
+  <PrimeInputGroupAddon>
+    <i class="ti ti-user"></i>
+  </PrimeInputGroupAddon>
+</PrimeInputGroup>
+```
+
+<Story name="BothIcons" args={{ icon: 'both' }}>
+  {Template.bind({})}
+</Story>
