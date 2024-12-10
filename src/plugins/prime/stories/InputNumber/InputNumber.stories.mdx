@@ -11,7 +11,7 @@ import { Template } from './InputNumber.template';
 ### Число
 
 ```html dark
-<InputNumber v-model="value" />
+<PrimeInputNumber v-model="value" />
 ```
 
 <Story name="Primary">{Template.bind({})}</Story>
@@ -19,7 +19,12 @@ import { Template } from './InputNumber.template';
 ### Валюта
 
 ```html dark
-<InputNumber v-model="value" mode="currency" currency="RUB" locale="ru-RU" />
+<PrimeInputNumber
+  v-model="value"
+  mode="currency"
+  currency="RUB"
+  locale="ru-RU"
+/>
 ```
 
 <Story
@@ -32,7 +37,7 @@ import { Template } from './InputNumber.template';
 ### Кнопки плюс/минус
 
 ```html dark
-<InputNumber
+<PrimeInputNumber
   v-model="value"
   show-buttons
   button-layout="horizontal"
