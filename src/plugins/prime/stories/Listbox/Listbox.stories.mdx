@@ -1,0 +1,74 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template, TemplateGrouped, TemplateCustom } from './Listbox.template';
+
+<Meta title="Prime/Listbox" />
+
+# Listbox
+
+[PrimeVue Listbox](https://primevue.org/listbox), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5829&node-type=section&t=2PSg63p2UfJ4cUzB-0>)
+
+### Базовый
+
+```html dark
+<PrimeListbox v-model="value" :options="options" />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>
+
+### C галочкой при выборе
+
+```html dark
+<PrimeListbox v-model="value" :options="options" checkmark />
+```
+
+<Story name="Checkmark" args={{ checkmark: true }}>
+  {Template.bind({})}
+</Story>
+
+### С группами
+
+Смотри подробнее в [документации](https://primevue.org/listbox/#group)
+
+```html dark
+<PrimeListbox v-model="value" :options="options">
+  <template #optiongroup="{ option }">
+    <div>
+      <i class="ti ti-brand-tabler" />
+      <div>{{ option.label }}</div>
+    </div>
+  </template>
+</PrimeListbox>
+```
+
+<Story name="Grouped">{TemplateGrouped.bind({})}</Story>
+
+### C иконкой и описанием
+
+Смотри подробнее в [документации](https://primevue.org/listbox/#template)
+
+```html dark
+<PrimeListbox v-model="value" :options="options">
+  <template #option="{ option }">
+    <div>
+      <i :class="option.icon" />
+      <div>
+        <div>{{ option.name }}</div>
+        <small>{{ option.description }}</small>
+      </div>
+    </div>
+  </template>
+</PrimeListbox>
+```
+
+<Story name="Custom">{TemplateCustom.bind({})}</Story>
+
+### Filter
+
+```html dark
+<PrimeListbox v-model="value" :options="options" filter />
+```
+
+<Story name="Filter" args={{ filter: true }}>
+  {Template.bind({})}
+</Story>
