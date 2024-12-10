@@ -9,8 +9,20 @@ import { Template } from './Chips.template';
 
 Отдельного компонента `Chips` в v4 нет, используем [Autocomplete](https://primevue.org/autocomplete/#multiple) с флагом `multiple`.
 
+### Любое значение
+
 ```html dark
-<!-- Нельзя вписать любое значение, только из списка, показывает дропдаун с вариантами -->
+<!-- Не показывает дропдаун с вариантами, нужно нажать на Enter -->
+<PrimeAutoComplete v-model="value" multiple :typeahead="false" />
+```
+
+<Story name="Any Value" args={{ multiple: true, typeahead: false }}>
+  {Template.bind({})}
+</Story>
+
+### Выбор из списка
+
+```html dark
 <!-- Функцию в complete нужно передать обязательно, и она должна обязательно изменить значение items, иначе зависнет -->
 <PrimeAutoComplete
   v-model="value"
@@ -18,9 +30,8 @@ import { Template } from './Chips.template';
   :suggestions="items"
   @complete="complete"
 />
-
-<!-- Можно вписать любое значение, не показывает дропдаун с вариантами, нужно нажать на Enter -->
-<PrimeAutoComplete v-model="value" multiple :typeahead="false" />
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Suggestions" args={{ multiple: true, story: 'Suggestions' }}>
+  {Template.bind({})}
+</Story>
