@@ -1,0 +1,28 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template, TemplateClear } from './Rating.template';
+
+<Meta title="Prime/Form/Rating" />
+
+# Rating
+
+[PrimeVue Rating](https://primevue.org/rating), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-6086&node-type=section&t=1Q8VTt6Y4LnVAfrv-0>)
+
+### Basic
+
+```html dark
+<PrimeRating v-model="value" />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>
+
+### With Clear Button
+
+```html dark
+<div>
+  <i class="ti ti-ban" @click="value = 0" />
+  <PrimeRating v-model="value" />
+</div>
+```
+
+<Story name="Clear">{TemplateClear.bind({})}</Story>
