@@ -31,6 +31,7 @@ import { Template, TemplateGrouped, TemplateCustom } from './Listbox.template';
 Смотри подробнее в [документации](https://primevue.org/listbox/#group)
 
 ```html dark
+<!-- options - кастомная структура, это пример реализации -->
 <PrimeListbox v-model="value" :options="options">
   <template #optiongroup="{ option }">
     <div>
@@ -48,6 +49,7 @@ import { Template, TemplateGrouped, TemplateCustom } from './Listbox.template';
 Смотри подробнее в [документации](https://primevue.org/listbox/#template)
 
 ```html dark
+<!-- options - кастомная структура, это пример реализации -->
 <PrimeListbox v-model="value" :options="options">
   <template #option="{ option }">
     <div>
