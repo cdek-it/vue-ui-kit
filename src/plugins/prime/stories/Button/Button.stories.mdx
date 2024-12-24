@@ -1,0 +1,125 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template, TemplateBadge } from './Button.template';
+
+<Meta title="Prime/Button" />
+
+# Button
+
+[PrimeVue](https://primevue.org/button), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=480-4174&node-type=section&t=l2VZW0ubKEcDpw1W-0>)
+
+### Icon
+
+```html dark
+<PrimeButton icon="ti ti-arrow-down-right" />
+```
+
+<Story
+  name="Icon"
+  args={{
+    icon: 'ti ti-arrow-down-right',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Label
+
+```html dark
+<PrimeButton label="Button" />
+```
+
+<Story
+  name="Label"
+  args={{
+    label: 'Button',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Icon + Label
+
+```html dark
+<PrimeButton icon="ti ti-arrow-down-right" label="Button" />
+```
+
+<Story
+  name="Icon With Label"
+  args={{
+    icon: 'ti ti-arrow-down-right',
+    label: 'Button',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Label + Icon
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-arrow-down-right" iconPos="right" />
+```
+
+<Story
+  name="Label With Icon"
+  args={{
+    label: 'Button',
+    icon: 'ti ti-arrow-down-right',
+    iconPos: 'right',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Badge
+
+[Figma](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=489-4069&node-type=section&t=96Rf4vdhhmN5WlPT-0>)
+
+```html dark
+<PrimeOverlayBadge value="Badge" severity="danger" :size="size">
+  <PrimeButton label="Button" />
+</PrimeOverlayBadge>
+```
+
+<Story
+  name="Badge"
+  args={{
+    value: 'Badge',
+    severity: 'danger',
+  }}
+  argTypes={{
+    value: { control: 'text' },
+    severity: {
+      control: 'inline-radio',
+      options: ['info', 'success', 'warn', 'danger', 'contrast'],
+    },
+    size: {
+      control: 'inline-radio',
+      options: ['small', 'large', 'xlarge'],
+    },
+  }}
+  parameters={{
+    controls: { include: ['value', 'severity', 'size'] },
+  }}
+>
+  {TemplateBadge.bind({})}
+</Story>
+
+### Severity
+
+[Figma](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=489-4122&node-type=section&t=96Rf4vdhhmN5WlPT-0>)
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-arrow-down-right" severity="danger" />
+```
+
+<Story
+  name="Severity Danger"
+  args={{
+    label: 'Button',
+    icon: 'ti ti-arrow-down-right',
+    severity: 'danger',
+  }}
+>
+  {Template.bind({})}
+</Story>

@@ -2,6 +2,8 @@ import { app } from '@storybook/vue3';
 import { registerToastification } from '@/plugins/toastification';
 import PrimeVue from 'primevue/config';
 import { getPrimeVueConfig } from '@/plugins/prime';
+
+import '@tabler/icons-webfont/dist/tabler-icons.min.css';
 import './themes/violet.css';
 
 registerToastification(app);

@@ -1,0 +1,60 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './InputNumber.template';
+
+<Meta title="Prime/Form/InputNumber" />
+
+# InputNumber
+
+[PrimeVue InputNumber](https://primevue.org/inputnumber), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5675&node-type=section&t=2PSg63p2UfJ4cUzB-0>)
+
+### Число
+
+```html dark
+<PrimeInputNumber v-model="value" />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>
+
+### Валюта
+
+```html dark
+<PrimeInputNumber
+  v-model="value"
+  mode="currency"
+  currency="RUB"
+  locale="ru-RU"
+/>
+```
+
+<Story
+  name="Currency"
+  args={{ mode: 'currency', currency: 'RUB', locale: 'ru-RU' }}
+>
+  {Template.bind()}
+</Story>
+
+### Кнопки плюс/минус
+
+```html dark
+<PrimeInputNumber
+  v-model="value"
+  show-buttons
+  button-layout="horizontal"
+  increment-icon="ti ti-plus"
+  decrement-icon="ti ti-minus"
+/>
+```
+
+<Story
+  name="Plus/Minus Buttons"
+  args={{
+    showButtons: true,
+    buttonLayout: 'horizontal',
+    story: 'Plus/Minus',
+    incrementIcon: 'ti ti-plus',
+    decrementIcon: 'ti ti-minus',
+  }}
+>
+  {Template.bind()}
+</Story>
