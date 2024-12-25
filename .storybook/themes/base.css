@@ -1,0 +1,9 @@
+/* Фиксы для сторибука, чтобы страница с типографикой нормально работала */
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+code {
+  font-family: 'Roboto Mono', monospace;
+}
