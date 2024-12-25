@@ -43,7 +43,7 @@ export default {
     900: '#0E4D00',
     alpha: 'rgba(34, 193, 0, 0.1)',
   },
-  // @see Gray https://www.figma.com/design/70PmUKyqbgjyd7dfEc3fzs/%F0%9F%9A%A7-Tokens-PrimeFace-(DS)?node-id=0-1&p=f&vars=1&m=dev
+  // @see Surface https://www.figma.com/design/70PmUKyqbgjyd7dfEc3fzs/%F0%9F%9A%A7-Tokens-PrimeFace-(DS)?node-id=0-1&p=f&vars=1&m=dev
   gray: {
     0: '#2F2F2F',
     50: '#FBFBFB',
@@ -57,5 +57,105 @@ export default {
     800: '#5E5E5D',
     900: '#444444',
     alpha: 'rgba(171, 170, 169, 0.1)',
+  },
+  // @see Info https://www.figma.com/design/70PmUKyqbgjyd7dfEc3fzs/%F0%9F%9A%A7-Tokens-PrimeFace-(DS)?node-id=0-1&p=f&vars=1&m=dev
+  blue: {
+    0: '#282D32',
+    50: '#F4F9FE',
+    100: '#C9E3FA',
+    200: '#9ECDF6',
+    300: '#74B8F3',
+    400: '#49A2EF',
+    500: '#1F8CEB',
+    600: '#1A77C8',
+    700: '#1662A5',
+    800: '#114D81',
+    900: '#0C385E',
+    alpha: 'rgba(31, 140, 235, 0.1)',
+  },
+  // @see Success https://www.figma.com/design/70PmUKyqbgjyd7dfEc3fzs/%F0%9F%9A%A7-Tokens-PrimeFace-(DS)?node-id=0-1&p=f&vars=1&var-id=112-107&m=dev
+  green: {
+    0: '#2A2F2B',
+    50: '#F6FBF6',
+    100: '#D2EDD5',
+    200: '#AFDEB3',
+    300: '#8CCF91',
+    400: '#68C170',
+    500: '#45B24E',
+    600: '#3B9742',
+    700: '#307D37',
+    800: '#1C471F',
+    900: '#1C471F',
+    alpha: 'rgba(69, 178, 78, 0.1)',
+  },
+};
+
+// @see Brand(primary) https://www.figma.com/design/70PmUKyqbgjyd7dfEc3fzs/%F0%9F%9A%A7-Tokens-PrimeFace-(DS)?node-id=0-1&p=f&vars=1&m=dev
+export const primaryColor = {
+  0: '{emerald.0}',
+  50: '{emerald.50}',
+  100: '{emerald.100}',
+  200: '{emerald.200}',
+  300: '{emerald.300}',
+  400: '{emerald.400}',
+  500: '{emerald.500}',
+  600: '{emerald.600}',
+  700: '{emerald.700}',
+  800: '{emerald.800}',
+  900: '{emerald.900}',
+  alpha: '{emerald.alpha}',
+};
+
+export const semanticColors = {
+  // @see Surface https://www.figma.com/design/70PmUKyqbgjyd7dfEc3fzs/%F0%9F%9A%A7-Tokens-PrimeFace-(DS)?node-id=0-1&p=f&vars=1&m=dev
+  surface: {
+    0: '{gray.0}',
+    50: '{gray.50}',
+    100: '{gray.100}',
+    200: '{gray.200}',
+    300: '{gray.300}',
+    400: '{gray.400}',
+    500: '{gray.500}',
+    600: '{gray.600}',
+    700: '{gray.700}',
+    800: '{gray.800}',
+    900: '{gray.900}',
+    ground: '{white.100}',
+    section: '{gray.alpha}',
+    card: '{surface.ground}',
+    overlay: '{black.20}',
+    border: '{surface.200}',
+    hover: '{surface.100}',
+    transparent: 'transparent',
+  },
+  // @see Info https://www.figma.com/design/70PmUKyqbgjyd7dfEc3fzs/%F0%9F%9A%A7-Tokens-PrimeFace-(DS)?node-id=0-1&p=f&vars=1&var-id=112-96&m=dev
+  info: {
+    0: '{blue.0}',
+    50: '{blue.50}',
+    100: '{blue.100}',
+    200: '{blue.200}',
+    300: '{blue.300}',
+    400: '{blue.400}',
+    500: '{blue.500}',
+    600: '{blue.600}',
+    700: '{blue.700}',
+    800: '{blue.800}',
+    900: '{blue.900}',
+    alpha: '{blue.alpha}',
+  },
+  // @see Success https://www.figma.com/design/70PmUKyqbgjyd7dfEc3fzs/%F0%9F%9A%A7-Tokens-PrimeFace-(DS)?node-id=0-1&p=f&vars=1&var-id=112-96&m=dev
+  success: {
+    0: '{green.0}',
+    50: '{green.50}',
+    100: '{green.100}',
+    200: '{green.200}',
+    300: '{green.300}',
+    400: '{green.400}',
+    500: '{green.500}',
+    600: '{green.600}',
+    700: '{green.700}',
+    800: '{green.900}',
+    900: '{green.900}',
+    alpha: '{green.alpha}',
   },
 };

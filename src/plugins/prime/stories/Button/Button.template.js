@@ -49,22 +49,18 @@ export const TemplateBadge = (args) => ({
     return { args };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(4, max-content)', gap: '40px', rowGap: '20px', color: 'black', alignItems: 'center', justifyItems: 'center' }">
-  <span><code>size="xlarge"</code></span>
+<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(3, max-content)', gap: '40px', rowGap: '20px', color: 'black', alignItems: 'center', justifyItems: 'center' }">
   <span><code>size="large"</code></span>
   <span></span>
   <span><code>size="small"</code></span>
 
-  <OverlayBadge size="xlarge" v-bind="args">
-    <Button label="Button" size="large" />
-  </OverlayBadge>
-  <OverlayBadge size="large" v-bind="args">
+  <OverlayBadge v-bind="args">
     <Button label="Button" size="large" />
   </OverlayBadge>
   <OverlayBadge v-bind="args">
     <Button label="Button" />
   </OverlayBadge>
-  <OverlayBadge size="small" v-bind="args">
+  <OverlayBadge v-bind="args">
     <Button label="Button" size="small" />
   </OverlayBadge>
 </div>
