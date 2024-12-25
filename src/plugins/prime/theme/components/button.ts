@@ -1,4 +1,16 @@
 export default {
+  padding: {
+    x: '1rem',
+    y: '0.607rem',
+  },
+  smPadding: {
+    x: '0.75rem',
+    y: '0.429rem',
+  },
+  lgPadding: {
+    x: '1.5rem',
+    y: '0.929rem',
+  },
   colorScheme: {
     primary: {
       focusRingColor: '{primary.focus.ring.color}',
@@ -28,18 +40,23 @@ export default {
     .p-button-icon-only {
       width: 2.5rem;
       height: 2.5rem;
+      padding: 0;
     }
 
-    .p-button-icon-only .p-button-icon {
+    .p-button-icon {
       font-size: 1.25rem;
     }
 
     .p-button-icon-only.p-button-lg {
-      width: 3.5rem;
       height: 3.5rem;
+      width: 3.5rem;
     }
 
-    .p-button-icon-only.p-button-lg .p-button-icon {
+    .p-button-lg {
+      --p-button-gap: 0.75rem;
+    }
+
+    .p-button-lg .p-button-icon {
       font-size: 1.5rem;
     }
 
@@ -48,7 +65,7 @@ export default {
       height: 2rem;
     }
 
-    .p-button-icon-only.p-button-sm .p-button-icon {
+    .p-button-sm .p-button-icon {
       font-size: 1rem;
     }
 

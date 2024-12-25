@@ -16,6 +16,7 @@ export default {
   },
   formField: {
     borderRadius: '7px',
+    lgFontSize: '1.25rem',
   },
   colorScheme: {
     primary: {
