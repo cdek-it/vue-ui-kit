@@ -7,3 +7,15 @@
 code {
   font-family: 'Roboto Mono', monospace;
 }
+
+code * {
+  font-family: 'Roboto Mono', monospace;
+}
+
+pre.prismjs {
+  font-family: 'Roboto Mono', monospace;
+}
+
+pre.prismjs * {
+  font-family: 'Roboto Mono', monospace;
+}
