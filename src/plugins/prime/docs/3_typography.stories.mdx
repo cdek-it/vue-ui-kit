@@ -1,0 +1,157 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Prime/Иконки и типографика" />
+
+# Иконки и типографика
+
+## Подключение
+
+Для подключения добавьте в `index.html` следующий код:
+
+```html dark
+<link rel="preconnect" href="https://public-static.cdek.ru" />
+<link
+  rel="stylesheet"
+  href="https://public-static.cdek.ru/common/icons/v3.22.0/tabler-icons.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://public-static.cdek.ru/common/typography/v1.0.0/typography.min.css"
+/>
+```
+
+### Иконки
+
+`tabler-icons.min.css` — это иконочный шрифт из [tabler](https://tabler.io/docs/icons/webfont). Добавляет иконочные классы типа `ti ti-home`.
+
+Название иконки вы можете взять прям с дизайна.
+
+<img src="/assets/typography-icon.png" />
+
+### Типографика
+
+`typography.min.css` — это стили для типографики. Он подключает шрифты Roboto (400, 500, 700) а
+также задает базовые свойства для `html`, `body` и заводит переменные в `:root`.
+
+```css dark
+html {
+  font-size: 14px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+:root {
+  --text-color: var(--black-80, rgba(0, 0, 0, 0.8));
+  --text-color-secondary: var(--black-60, rgba(0, 0, 0, 0.6));
+  --text-color-primary: var(--emerald-700, #188700);
+  --text-color-danger: var(--red-400, #e26e63);
+  --text-color-warning: var(--orange-400, #ffb330);
+  --text-color-success: var(--green-400, #68c170);
+  --text-color-info: var(--blue-400, #49a2ef);
+  --text-color-help: var(--purple-400, #ab77df);
+}
+```
+
+Также он заводит классы для каждого вида текста по [дизайну](<https://www.figma.com/design/2ZnL6XPKEpxAHvrlbRvnMu/Template-Tailwind-CSS-(DS)?node-id=3-1739&m=dev>).
+
+Название нужного класса вы также можете взять напрямую из дизайна. Важно нажимать именно на компонент `<Typography.*>`,
+а не на сам текст, иначе вы не увидите пометку с названием класса.
+
+<img src="/assets/typography-font-class.png" />
+
+## Готовые классы
+
+### Заголовки
+
+<section className="title-h1">title-h1</section>
+<section className="title-h2">title-h2</section>
+<section className="title-h3">title-h3</section>
+<section className="title-h4">title-h4</section>
+<section className="title-h5">title-h5</section>
+<section className="title-h6">title-h6</section>
+
+### Body Styles
+
+#### Large Size
+
+| Normal                                                                                                       | Secondary                                                                                                                        | Primary                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| <section className="body-bold-lg">body-bold-lg</section>                                                     | <section className="body-bold-lg-secondary">body-bold-lg-secondary</section>                                                     | <section className="body-bold-lg-primary">body-bold-lg-primary</section>                                                     |
+| <section className="body-bold-lg-disabled">body-bold-lg-disabled</section>                                   | <section className="body-bold-lg-secondary-disabled">body-bold-lg-secondary-disabled</section>                                   | <section className="body-bold-lg-primary-disabled">body-bold-lg-primary-disabled</section>                                   |
+| <section className="body-bold-lg-strikethrough">body-bold-lg-strikethrough</section>                         | <section className="body-bold-lg-strikethrough-secondary">body-bold-lg-strikethrough-secondary</section>                         | <section className="body-bold-lg-strikethrough-primary">body-bold-lg-strikethrough-primary</section>                         |
+| <section className="body-bold-lg-strikethrough-disabled">body-bold-lg-strikethrough-disabled</section>       | <section className="body-bold-lg-strikethrough-secondary-disabled">body-bold-lg-strikethrough-secondary-disabled</section>       | <section className="body-bold-lg-strikethrough-primary-disabled">body-bold-lg-strikethrough-primary-disabled</section>       |
+| <section className="body-medium-lg">body-medium-lg</section>                                                 | <section className="body-medium-lg-secondary">body-medium-lg-secondary</section>                                                 | <section className="body-medium-lg-primary">body-medium-lg-primary</section>                                                 |
+| <section className="body-medium-lg-disabled">body-medium-lg-disabled</section>                               | <section className="body-medium-lg-secondary-disabled">body-medium-lg-secondary-disabled</section>                               | <section className="body-medium-lg-primary-disabled">body-medium-lg-primary-disabled</section>                               |
+| <section className="body-medium-lg-strikethrough">body-medium-lg-strikethrough</section>                     | <section className="body-medium-lg-strikethrough-secondary">body-medium-lg-strikethrough-secondary</section>                     | <section className="body-medium-lg-strikethrough-primary">body-medium-lg-strikethrough-primary</section>                     |
+| <section className="body-medium-lg-strikethrough-disabled">body-medium-lg-strikethrough-disabled</section>   | <section className="body-medium-lg-strikethrough-secondary-disabled">body-medium-lg-strikethrough-secondary-disabled</section>   | <section className="body-medium-lg-strikethrough-primary-disabled">body-medium-lg-strikethrough-primary-disabled</section>   |
+| <section className="body-regular-lg">body-regular-lg</section>                                               | <section className="body-regular-lg-secondary">body-regular-lg-secondary</section>                                               | <section className="body-regular-lg-primary">body-regular-lg-primary</section>                                               |
+| <section className="body-regular-lg-disabled">body-regular-lg-disabled</section>                             | <section className="body-regular-lg-secondary-disabled">body-regular-lg-secondary-disabled</section>                             | <section className="body-regular-lg-primary-disabled">body-regular-lg-primary-disabled</section>                             |
+| <section className="body-regular-lg-strikethrough">body-regular-lg-strikethrough</section>                   | <section className="body-regular-lg-strikethrough-secondary">body-regular-lg-strikethrough-secondary</section>                   | <section className="body-regular-lg-strikethrough-primary">body-regular-lg-strikethrough-primary</section>                   |
+| <section className="body-regular-lg-strikethrough-disabled">body-regular-lg-strikethrough-disabled</section> | <section className="body-regular-lg-strikethrough-secondary-disabled">body-regular-lg-strikethrough-secondary-disabled</section> | <section className="body-regular-lg-strikethrough-primary-disabled">body-regular-lg-strikethrough-primary-disabled</section> |
+
+#### Base Size
+
+| Normal                                                                                                           | Secondary                                                                                                                            | Primary                                                                                                                          |
+| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- |
+| <section className="body-bold-base">body-bold-base</section>                                                     | <section className="body-bold-base-secondary">body-bold-base-secondary</section>                                                     | <section className="body-bold-base-primary">body-bold-base-primary</section>                                                     |
+| <section className="body-bold-base-disabled">body-bold-base-disabled</section>                                   | <section className="body-bold-base-secondary-disabled">body-bold-base-secondary-disabled</section>                                   | <section className="body-bold-base-primary-disabled">body-bold-base-primary-disabled</section>                                   |
+| <section className="body-bold-base-strikethrough">body-bold-base-strikethrough</section>                         | <section className="body-bold-base-strikethrough-secondary">body-bold-base-strikethrough-secondary</section>                         | <section className="body-bold-base-strikethrough-primary">body-bold-base-strikethrough-primary</section>                         |
+| <section className="body-bold-base-strikethrough-disabled">body-bold-base-strikethrough-disabled</section>       | <section className="body-bold-base-strikethrough-secondary-disabled">body-bold-base-strikethrough-secondary-disabled</section>       | <section className="body-bold-base-strikethrough-primary-disabled">body-bold-base-strikethrough-primary-disabled</section>       |
+| <section className="body-medium-base">body-medium-base</section>                                                 | <section className="body-medium-base-secondary">body-medium-base-secondary</section>                                                 | <section className="body-medium-base-primary">body-medium-base-primary</section>                                                 |
+| <section className="body-medium-base-disabled">body-medium-base-disabled</section>                               | <section className="body-medium-base-secondary-disabled">body-medium-base-secondary-disabled</section>                               | <section className="body-medium-base-primary-disabled">body-medium-base-primary-disabled</section>                               |
+| <section className="body-medium-base-strikethrough">body-medium-base-strikethrough</section>                     | <section className="body-medium-base-strikethrough-secondary">body-medium-base-strikethrough-secondary</section>                     | <section className="body-medium-base-strikethrough-primary">body-medium-base-strikethrough-primary</section>                     |
+| <section className="body-medium-base-strikethrough-disabled">body-medium-base-strikethrough-disabled</section>   | <section className="body-medium-base-strikethrough-secondary-disabled">body-medium-base-strikethrough-secondary-disabled</section>   | <section className="body-medium-base-strikethrough-primary-disabled">body-medium-base-strikethrough-primary-disabled</section>   |
+| <section className="body-regular-base">body-regular-base</section>                                               | <section className="body-regular-base-secondary">body-regular-base-secondary</section>                                               | <section className="body-regular-base-primary">body-regular-base-primary</section>                                               |
+| <section className="body-regular-base-disabled">body-regular-base-disabled</section>                             | <section className="body-regular-base-secondary-disabled">body-regular-base-secondary-disabled</section>                             | <section className="body-regular-base-primary-disabled">body-regular-base-primary-disabled</section>                             |
+| <section className="body-regular-base-strikethrough">body-regular-base-strikethrough</section>                   | <section className="body-regular-base-strikethrough-secondary">body-regular-base-strikethrough-secondary</section>                   | <section className="body-regular-base-strikethrough-primary">body-regular-base-strikethrough-primary</section>                   |
+| <section className="body-regular-base-strikethrough-disabled">body-regular-base-strikethrough-disabled</section> | <section className="body-regular-base-strikethrough-secondary-disabled">body-regular-base-strikethrough-secondary-disabled</section> | <section className="body-regular-base-strikethrough-primary-disabled">body-regular-base-strikethrough-primary-disabled</section> |
+
+#### Paragraph Styles
+
+| Normal                                                                                                                         | Secondary                                                                                                                                          | Primary                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| <section className="body-bold-lg-paragraph">body-bold-lg-paragraph</section>                                                   | <section className="body-bold-lg-secondary-paragraph">body-bold-lg-secondary-paragraph</section>                                                   | <section className="body-bold-lg-primary-paragraph">body-bold-lg-primary-paragraph</section>                                                   |
+| <section className="body-bold-lg-paragraph-disabled">body-bold-lg-paragraph-disabled</section>                                 | <section className="body-bold-lg-secondary-paragraph-disabled">body-bold-lg-secondary-paragraph-disabled</section>                                 | <section className="body-bold-lg-primary-paragraph-disabled">body-bold-lg-primary-paragraph-disabled</section>                                 |
+| <section className="body-bold-lg-strikethrough-paragraph">body-bold-lg-strikethrough-paragraph</section>                       | <section className="body-bold-lg-strikethrough-secondary-paragraph">body-bold-lg-strikethrough-secondary-paragraph</section>                       | <section className="body-bold-lg-strikethrough-primary-paragraph">body-bold-lg-strikethrough-primary-paragraph</section>                       |
+| <section className="body-bold-lg-strikethrough-paragraph-disabled">body-bold-lg-strikethrough-paragraph-disabled</section>     | <section className="body-bold-lg-strikethrough-secondary-paragraph-disabled">body-bold-lg-strikethrough-secondary-paragraph-disabled</section>     | <section className="body-bold-lg-strikethrough-primary-paragraph-disabled">body-bold-lg-strikethrough-primary-paragraph-disabled</section>     |
+| <section className="body-bold-base-paragraph">body-bold-base-paragraph</section>                                               | <section className="body-bold-base-secondary-paragraph">body-bold-base-secondary-paragraph</section>                                               | <section className="body-bold-base-primary-paragraph">body-bold-base-primary-paragraph</section>                                               |
+| <section className="body-bold-base-paragraph-disabled">body-bold-base-paragraph-disabled</section>                             | <section className="body-bold-base-secondary-paragraph-disabled">body-bold-base-secondary-paragraph-disabled</section>                             | <section className="body-bold-base-primary-paragraph-disabled">body-bold-base-primary-paragraph-disabled</section>                             |
+| <section className="body-bold-base-strikethrough-paragraph">body-bold-base-strikethrough-paragraph</section>                   | <section className="body-bold-base-strikethrough-secondary-paragraph">body-bold-base-strikethrough-secondary-paragraph</section>                   | <section className="body-bold-base-strikethrough-primary-paragraph">body-bold-base-strikethrough-primary-paragraph</section>                   |
+| <section className="body-bold-base-strikethrough-paragraph-disabled">body-bold-base-strikethrough-paragraph-disabled</section> | <section className="body-bold-base-strikethrough-secondary-paragraph-disabled">body-bold-base-strikethrough-secondary-paragraph-disabled</section> | <section className="body-bold-base-strikethrough-primary-paragraph-disabled">body-bold-base-strikethrough-primary-paragraph-disabled</section> |
+
+### Subtitles
+
+<section className="subtitle-base">subtitle-base</section>
+<section className="subtitle-base-secondary">subtitle-base-secondary</section>
+<section className="subtitle-base-primary">subtitle-base-primary</section>
+<section className="subtitle-sm">subtitle-sm</section>
+<section className="subtitle-sm-secondary">subtitle-sm-secondary</section>
+<section className="subtitle-sm-primary">subtitle-sm-primary</section>
+
+### Captions
+
+<section className="caption">caption</section>
+<section className="caption-secondary">caption-secondary</section>
+<section className="caption-primary">caption-primary</section>
+<section className="caption-disabled">caption-disabled</section>
+<section className="caption-secondary-disabled">
+  caption-secondary-disabled
+</section>
+<section className="caption-primary-disabled">caption-primary-disabled</section>
+
+### Service Text
+
+| Base                                                                     | Small                                                                |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| <section className="service-danger-base">service-danger-base</section>   | <section className="service-danger-sm">service-danger-sm</section>   |
+| <section className="service-warning-base">service-warning-base</section> | <section className="service-warning-sm">service-warning-sm</section> |
+| <section className="service-success-base">service-success-base</section> | <section className="service-success-sm">service-success-sm</section> |
+| <section className="service-info-base">service-info-base</section>       | <section className="service-info-sm">service-info-sm</section>       |
+| <section className="service-help-base">service-help-base</section>       | <section className="service-help-sm">service-help-sm</section>       |
+
+### Anchors
+
+<section className="anchor-base">anchor-base</section>
+<section className="anchor-sm">anchor-sm</section>
