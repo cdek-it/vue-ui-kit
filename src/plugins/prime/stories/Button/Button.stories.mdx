@@ -116,6 +116,12 @@ import { Template, TemplateBadge } from './Button.template';
     icon: 'ti ti-arrow-down-right',
     severity: 'danger',
   }}
+  argTypes={{
+    severity: {
+      control: 'inline-radio',
+      options: [null, 'info', 'success', 'warn', 'danger', 'help'],
+    },
+  }}
 >
   {Template.bind({})}
 </Story>
