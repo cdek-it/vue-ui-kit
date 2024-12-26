@@ -1,0 +1,116 @@
+/* 
+Этот файл генерируется автоматически с помощью скрипта scrips/new-label.sh
+Не редактируйте этот файл напрямую, вместо этого измените скрипт.
+*/
+
+/* New лейбл на историях */
+#prime-установка--page {
+  font-weight: bold;
+}
+
+#prime-установка--page svg {
+  display: none;
+}
+
+#prime-установка--page::before {
+  display: inline-block;
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  margin-left: 3px;
+  background: #1ea7fd;
+  border-radius: 50%;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+#prime-установка--page[data-selected='true']::before {
+  background: white;
+}
+
+#prime-тема--page {
+  font-weight: bold;
+}
+
+#prime-тема--page svg {
+  display: none;
+}
+
+#prime-тема--page::before {
+  display: inline-block;
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  margin-left: 3px;
+  background: #1ea7fd;
+  border-radius: 50%;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+#prime-тема--page[data-selected='true']::before {
+  background: white;
+}
+
+#prime-иконки-и-типографика--page {
+  font-weight: bold;
+}
+
+#prime-иконки-и-типографика--page svg {
+  display: none;
+}
+
+#prime-иконки-и-типографика--page::before {
+  display: inline-block;
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  margin-left: 3px;
+  background: #1ea7fd;
+  border-radius: 50%;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+#prime-иконки-и-типографика--page[data-selected='true']::before {
+  background: white;
+}
+
+/* New лейбл на компонентах */
+#prime-button {
+  font-weight: bold;
+}
+
+#prime-button::after {
+  display: inline-block;
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-left: 5px;
+  background: #1ea7fd;
+  border-radius: 50%;
+  align-self: center;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+#prime-form {
+  font-weight: bold;
+}
+
+#prime-form::after {
+  display: inline-block;
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-left: 5px;
+  background: #1ea7fd;
+  border-radius: 50%;
+  align-self: center;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
