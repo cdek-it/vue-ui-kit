@@ -12,6 +12,21 @@ app.use(PrimeVue, getPrimeVueConfig());
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
+  options: {
+    storySort: {
+      order: [
+        'Intro',
+        'Form',
+        'Prime',
+        'Prime Blocks',
+        'Ui kit',
+        'Plugins',
+        'Services',
+        '*',
+        'Deprecated',
+      ],
+    },
+  },
   controls: {
     matchers: {
       color: /(background|color)$/i,
