@@ -40,6 +40,13 @@ const widthAndHeight = {
 };
 
 export const tailwindConfigTheme = {
+  screens: {
+    sm: '576px',
+    md: '768px',
+    lg: '992px',
+    xl: '1200px',
+    '2xl': '1400px',
+  },
   colors: {
     surface: {
       ground: 'var(--p-surface-ground)',

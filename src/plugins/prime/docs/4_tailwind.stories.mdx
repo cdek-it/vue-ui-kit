@@ -66,7 +66,7 @@ export default {
 Если вы хотите изменить или добавить свои токены в уже заданные свойства,
 то можно использовать функцию `mergeTailwindTheme` из пакета `@cdek-ui-kit/vue`.
 
-Используйте этот вариант, если вам нужно изменить `colors`, `textColor`, `borderRadius`, `borderWidth`, `width` или `height`.
+Используйте этот вариант, если вам нужно изменить `screens`, `colors`, `textColor`, `borderRadius`, `borderWidth`, `width` или `height`.
 
 ```js dark
 const { mergeTailwindTheme } = require('@cdek-ui-kit/vue');
@@ -104,6 +104,23 @@ export default {
 ```
 
 ## Токены
+
+### Медиа запросы
+
+Медиа адаптированы под наши миксины, так что бы не было конфликтов со старым дизайном.
+
+```js dark
+screens: {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+  '2xl': '1400px',
+}
+```
+
+Для mobile first подхода используйте `<screen>:<rule>`, например `sm:w-10`. Для desktop first подхода используйте
+`max-<screen>:<rule>`, например `max-lg:w-10`.
 
 ### Background
 
