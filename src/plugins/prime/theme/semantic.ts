@@ -21,6 +21,7 @@ export default {
       hoverBorderColor: '{primary.color}',
       invalidBorderColor: '{danger.400}',
     },
+    textColor: '{black.80}',
   },
   focusRing: {
     width: '3.5px',

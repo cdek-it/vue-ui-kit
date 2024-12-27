@@ -3,6 +3,7 @@ import { registerToastification } from '@/plugins/toastification';
 import PrimeVue from 'primevue/config';
 import { getPrimeVueConfig } from '@/plugins/prime';
 
+import '../src/tailwind.css';
 import './themes/base.css';
 import './themes/violet.css';
 
