@@ -32,7 +32,7 @@ const checkRules = () => {
   });
 };
 
-const getColor = (icon) => {
+const getColor = (icon: string) => {
   switch (icon) {
     case 'ti-circle-check':
       return 'green';
