@@ -1,7 +1,7 @@
 export default {
   focusBorderColor: '{surface.200}',
 
-  css: ({ dt }: { dt: (key: string) => string }) => `
+  css: () => `
     .p-autocomplete-input-chip {
       padding-inline: 0.5rem;
     }

@@ -16,7 +16,7 @@ export default {
       },
     },
   },
-  css: ({ dt }: { dt: (key: string) => string }) => `
+  css: () => `
     .p-chip {
       height: 1.75rem;
     }
