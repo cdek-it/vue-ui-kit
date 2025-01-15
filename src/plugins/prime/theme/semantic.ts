@@ -20,6 +20,12 @@ export default {
       borderColor: '{surface.border}',
       hoverBorderColor: '{primary.color}',
       invalidBorderColor: '{danger.400}',
+      color: '{black.80}',
+      focusRing: {
+        color: '{primary.200}',
+        width: '0.25rem',
+        style: 'solid',
+      },
     },
     textColor: '{black.80}',
   },
