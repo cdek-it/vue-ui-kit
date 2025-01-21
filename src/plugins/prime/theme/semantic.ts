@@ -17,17 +17,38 @@ export default {
     formField: {
       background: '{surface.ground}',
       disabledBackground: '{black.10}',
+      disabledColor: '{black.80}',
+      placeholderColor: '{black.60}',
       borderColor: '{surface.border}',
       hoverBorderColor: '{primary.color}',
-      invalidBorderColor: '{danger.400}',
+      invalid: {
+        placeholderColor: '{black.60}',
+        borderColor: '{danger.400}',
+      },
       color: '{black.80}',
       focusRing: {
         color: '{primary.200}',
         width: '0.25rem',
         style: 'solid',
       },
+      icon: {
+        color: '{black.80}',
+      },
+      floatLabel: {
+        color: '{black.60}',
+      },
+      focus: {
+        border: {
+          color: '{surface.border}',
+        },
+      },
     },
     textColor: '{black.80}',
+    overlay: {
+      select: {
+        background: '{surface.ground}',
+      },
+    },
   },
   focusRing: {
     width: '3.5px',

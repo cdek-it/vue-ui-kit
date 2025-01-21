@@ -18,9 +18,9 @@ export const Template = (args) => ({
   <InputText placeholder="InputText" disabled v-bind="args" />
 
   <span :style="{ justifySelf: 'flex-start' }"><code>v-model="text input"</code></span>
-  <InputText :default-value="'text input'" v-bind="args" />
-  <InputText :default-value="'text input'" invalid v-bind="args" />
-  <InputText :default-value="'text input'" disabled v-bind="args" />
+  <InputText :default-value="'text input'" placeholder="InputText" v-bind="args" />
+  <InputText :default-value="'text input'" placeholder="InputText" invalid v-bind="args" />
+  <InputText :default-value="'text input'" placeholder="InputText" disabled v-bind="args" />
 </div>
 `,
 });

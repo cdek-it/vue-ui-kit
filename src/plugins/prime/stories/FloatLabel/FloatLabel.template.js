@@ -20,7 +20,7 @@ export const Template = (args) => ({
 
   <span :style="{ justifySelf: 'flex-start' }"></span>
   <FloatLabel variant="in">
-    <component :is="args.component" id="input1" v-bind="args" />
+    <component :is="args.component" id="input1" v-bind="args"/>
     <label for="input1">FloatLabel</label>
   </FloatLabel>
   <FloatLabel variant="in">

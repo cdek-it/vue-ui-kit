@@ -178,5 +178,6 @@ export default {
       --p-button-outlined-warn-border-color: ${dt('warning.400')};
       --p-button-outlined-danger-border-color: ${dt('danger.400')};
       --p-button-outlined-help-border-color: ${dt('help.400')};
+    }
   `,
 };
