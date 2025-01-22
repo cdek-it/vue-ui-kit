@@ -17,16 +17,16 @@ export const Template = (args) => ({
   <span><code>v-model="text input"</code></span>
 
   <span :style="{ justifySelf: 'flex-start' }"></span>
-  <Textarea placeholder="InputTextarea" v-bind="args" />
-  <Textarea v-model="value1" placeholder="InputTextarea" v-bind="args" />
+  <Textarea placeholder="InputTextarea" v-bind="args" rows="6" />
+  <Textarea v-model="value1" placeholder="InputTextarea" rows="6" v-bind="args" />
 
   <span :style="{ justifySelf: 'flex-start' }"><code>invalid</code></span>
-  <Textarea placeholder="InputTextarea" invalid v-bind="args" />
-  <Textarea v-model="value2" placeholder="InputTextarea" invalid v-bind="args" />
+  <Textarea placeholder="InputTextarea" rows="6" invalid v-bind="args" />
+  <Textarea v-model="value2" placeholder="InputTextarea" rows="6" invalid v-bind="args" />
 
   <span :style="{ justifySelf: 'flex-start' }"><code>disabled</code></span>
-  <Textarea placeholder="InputTextarea" disabled v-bind="args" />
-  <Textarea v-model="value3" placeholder="InputTextarea" disabled v-bind="args" />
+  <Textarea placeholder="InputTextarea" rows="6" disabled v-bind="args" />
+  <Textarea v-model="value3" placeholder="InputTextarea" rows="6" disabled v-bind="args" />
 </div>
 `,
 });

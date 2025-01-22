@@ -6,6 +6,7 @@ import autocomplete from './autocomplete';
 import chip from './chip';
 import floatlabel from './floatLabel';
 import inputtext from './inputText';
+import textarea from './textarea';
 
 export default {
   badge,
@@ -16,4 +17,5 @@ export default {
   chip,
   floatlabel,
   inputtext,
+  textarea,
 };
