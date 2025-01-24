@@ -7,6 +7,7 @@ import chip from './chip';
 import floatlabel from './floatLabel';
 import inputtext from './inputText';
 import textarea from './textarea';
+import inputotp from './inputotp';
 
 export default {
   badge,
@@ -18,4 +19,5 @@ export default {
   floatlabel,
   inputtext,
   textarea,
+  inputotp,
 };
