@@ -8,5 +8,6 @@ export default {
   
     .p-inputtext:disabled {
       opacity: ${dt('disabledOpacity')};
-    }`,
+    }
+  `,
 };
