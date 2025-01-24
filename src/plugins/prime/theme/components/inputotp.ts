@@ -6,8 +6,6 @@ export default {
         border-style: none;
         border-bottom-style: solid;
         caret-color: ${dt('primary.700')};
-
-        
         
         &:enabled:focus {
           outline-style: none;
