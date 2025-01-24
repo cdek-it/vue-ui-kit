@@ -8,6 +8,7 @@ import floatlabel from './floatLabel';
 import inputtext from './inputText';
 import textarea from './textarea';
 import inputotp from './inputotp';
+import toggleswitch from './toggleswitch';
 
 export default {
   badge,
@@ -20,4 +21,5 @@ export default {
   inputtext,
   textarea,
   inputotp,
+  toggleswitch,
 };
