@@ -9,6 +9,7 @@ import inputtext from './inputText';
 import textarea from './textarea';
 import inputotp from './inputotp';
 import toggleswitch from './toggleswitch';
+import iconfield from './iconfield';
 
 export default {
   badge,
@@ -22,4 +23,5 @@ export default {
   textarea,
   inputotp,
   toggleswitch,
+  iconfield,
 };

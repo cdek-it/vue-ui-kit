@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './InputText.template';
+import { Template, TemplateWithIcons } from './InputText.template';
 
 <Meta title="Prime/Form/InputText" />
 
@@ -13,3 +13,28 @@ import { Template } from './InputText.template';
 ```
 
 <Story name="Primary">{Template.bind({})}</Story>
+
+
+# С иконками
+Логика на работу крестика не прописана в ui-ките, на данный момент должна быть прописана на стороне приложения
+```html dark
+<script setup>
+  const inputValue = ref('');
+
+    const onClickDelete = () => {
+      inputValue.value = '';
+    };
+</script>
+
+<template>
+    <PrimeIconField>
+        <PrimeInputText v-model=inputValue placeholder="Normal" />
+        <PrimeInputIcon @click="onClickDelete">
+            <i class="ti ti-x" />
+        </PrimeInputIcon>
+    </PrimeIconField>
+</template>
+
+```
+
+<Story name="withIcons">{TemplateWithIcons.bind({})}</Story>
