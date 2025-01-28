@@ -10,6 +10,7 @@ import textarea from './textarea';
 import inputotp from './inputotp';
 import toggleswitch from './toggleswitch';
 import iconfield from './iconfield';
+import listbox from './listbox';
 
 export default {
   badge,
@@ -24,4 +25,5 @@ export default {
   inputotp,
   toggleswitch,
   iconfield,
+  listbox,
 };

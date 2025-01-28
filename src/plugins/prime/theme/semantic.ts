@@ -43,6 +43,23 @@ export default {
         },
       },
     },
+    list: {
+      gap: '0.25rem',
+      option: {
+        focus: {
+          background: '{surface.100}',
+          color: '{black.80}',
+        },
+        selected: {
+          background: '{primary.700}',
+          color: '{surface.ground}',
+          focus: {
+            color: '{surface.ground}',
+            background: '{primary.700}',
+          },
+        },
+      },
+    },
     textColor: '{black.80}',
     overlay: {
       select: {
