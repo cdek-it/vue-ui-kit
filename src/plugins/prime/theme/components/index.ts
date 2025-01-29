@@ -11,6 +11,7 @@ import inputotp from './inputotp';
 import toggleswitch from './toggleswitch';
 import iconfield from './iconfield';
 import listbox from './listbox';
+import radiobutton from './radiobutton';
 
 export default {
   badge,
@@ -26,4 +27,5 @@ export default {
   toggleswitch,
   iconfield,
   listbox,
+  radiobutton,
 };

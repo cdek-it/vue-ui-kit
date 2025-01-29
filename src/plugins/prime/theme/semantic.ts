@@ -65,6 +65,9 @@ export default {
       select: {
         background: '{surface.ground}',
       },
+      popover: {
+        background: '{surface.ground}',
+      },
     },
   },
   focusRing: {
