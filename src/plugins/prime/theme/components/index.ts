@@ -12,6 +12,7 @@ import toggleswitch from './toggleswitch';
 import iconfield from './iconfield';
 import listbox from './listbox';
 import radiobutton from './radiobutton';
+import rating from './rating';
 
 export default {
   badge,
@@ -28,4 +29,5 @@ export default {
   iconfield,
   listbox,
   radiobutton,
+  rating,
 };
