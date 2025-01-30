@@ -13,6 +13,7 @@ import iconfield from './iconfield';
 import listbox from './listbox';
 import radiobutton from './radiobutton';
 import rating from './rating';
+import togglebutton from './togglebutton';
 
 export default {
   badge,
@@ -30,4 +31,5 @@ export default {
   listbox,
   radiobutton,
   rating,
+  togglebutton,
 };
