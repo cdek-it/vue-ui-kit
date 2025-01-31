@@ -14,6 +14,7 @@ import listbox from './listbox';
 import radiobutton from './radiobutton';
 import rating from './rating';
 import togglebutton from './togglebutton';
+import slider from './slider';
 
 export default {
   badge,
@@ -32,4 +33,5 @@ export default {
   radiobutton,
   rating,
   togglebutton,
+  slider,
 };
