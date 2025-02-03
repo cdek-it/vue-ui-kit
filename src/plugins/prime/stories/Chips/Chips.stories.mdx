@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/addon-docs';
-import { Template } from './Chips.template';
+import { Template, ChangedIcon, CustomChip } from './Chips.template';
 
 <Meta title="Prime/Form/Chips" />
 
@@ -34,4 +34,48 @@ import { Template } from './Chips.template';
 
 <Story name="Suggestions" args={{ multiple: true, story: 'Suggestions' }}>
   {Template.bind({})}
+</Story>
+
+
+### Заменить иконку удаления
+
+```html dark
+<PrimeAutoComplete
+  v-model="value"
+  multiple
+  :suggestions="items"
+  @complete="complete"
+  removeTokenIcon="ti ti-x"
+/>
+```
+
+<Story name="ChangeRemoveIcon" args={{ multiple: true }}>
+  {ChangedIcon.bind({})}
+</Story>
+
+
+### CustomChip
+
+```html dark
+<!-- Не забыть передать класс p-autocomplete-chip для получения дефолтной стилизации -->
+<PrimeAutoComplete
+    v-model="value"
+    multiple
+    :suggestions="items"
+    @complete="complete"
+>
+    <template #chip="chipsProps">
+      <PrimeChip
+        class="p-autocomplete-chip"
+        :label="chipsProps.value"
+        icon="ti ti-check"
+        removeIcon="ti ti-x"
+        removable
+      />
+    </template>
+</PrimeAutoComplete>
+```
+
+<Story name="CustomChip" args={{ multiple: true }}>
+  {CustomChip.bind({})}
 </Story>

@@ -2,42 +2,14 @@
 
 # id историй в сайдбаре, которые без стрелочки, кружочек встает вместо иконки
 story_ids=(
-  "ui-kit-cdekautocomplete--hidden-tip-block"
-  "ui-kit-cdekalert--primary-content-align-top"
-  "ui-kit-cdekautocomplete--with-error-hidden-message"
-  "ui-kit-cdekinput-basic--error-without-message-with-tip"
-  "ui-kit-cdekinput-basic--show-error-if-exists"
-  "ui-kit-cdekinput-basic--show-error-if-exists-with-tip"
-  "ui-kit-cdekmaskedinput--hidden-error-message"
-  "ui-kit-cdekmaskedinput--clearable-input"
-  "ui-kit-cdekselect-types--page"
-  "ui-kit-cdekselect--with-tip"
-  "ui-kit-cdekselect--hide-error-message"
-  "ui-kit-cdekselect--hide-error-message-with-tip"
-  "ui-kit-cdekselect--show-error-if-exists"
-  "ui-kit-cdekselect--show-error-if-exists-with-tip"
-  "ui-kit-cdekselect--primitive-values"
-  "ui-kit-cdekselect--falsy-value-item"
-  "form-cdekform--primary-trimmed"
-  "form-cdekform--change-event"
-  "form-change-values--page"
-  "form-behavior--page"
-  "installation--page"
-  "contributing--page"
-  "plugins-toastification--select-position-mobile"
+  "prime-установка--page"
+  "prime-тема--page"
+  "prime-иконки-и-типографика--page"
 )
 # id компонентов в сайдбаре, который раскрываются, кружочек встает после текста
 component_ids=(
-  "ui-kit-cdekbreadcrumbs"
-  "ui-kit-cdekalert"
-  "ui-kit-cdekautocomplete"
-  "ui-kit-cdekinput"
-  "ui-kit-cdekinput-basic"
-  "ui-kit-cdekmaskedinput"
-  "ui-kit-cdekselect"
-  "ui-kit-cdektextarea"
-  "form-cdekform"
-  "plugins-toastification"
+  "prime-button"
+  "prime-form"
 )
 
 # Output file

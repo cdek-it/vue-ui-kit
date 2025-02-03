@@ -1,0 +1,322 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Prime/Tailwind" />
+
+# Tailwind
+
+При желании вы можете использовать Tailwind в своих проектах. Этот гайд поможет вам подключить Tailwind в проект и сделать интеграцию с Prime.
+
+## Установка
+
+Для начала установите Tailwind в проект c помощью [этого гайда](https://tailwindcss.com/docs/guides/vite#vue).
+
+Не забудьте выполнить команду `npx tailwindcss init -p` после установки зависимостей, она создает необходимые файлы для конфигурации и
+подключения Tailwind.
+
+На 4-м шаге вам необходимо добавить директивы `@tailwind`, для этого необязательно создавать новый файл, и необязательно называть его именно
+`style.css`. Добавьте эти директивы в любой файл, который импортируется в `main.ts`.
+
+## Интеграция с Prime
+
+Для интеграции с Prime вам необходимо установить плагин `tailwindcss-primeui`.
+
+```bash dark
+yarn add tailwindcss-primeui
+
+npm install tailwindcss-primeui
+```
+
+После установки плагина добавьте его в конфигурационный файл `tailwind.config.js`.
+
+```js dark
+export default {
+  // ...
+  plugins: [require('tailwindcss-primeui')],
+};
+```
+
+Подробнее о плагине можно узнать в [его документации](https://primevue.org/tailwind/). Если коротко то он добавляет `primary` и `surface` цвета.
+
+Если вы хотите использовать эти классы, чтобы переопределить стили праймовского компонента, добавляйте перед ним `!`.
+
+```html dark
+<PrimeInputText placeholder="Overriden" class="!p-8" />
+```
+
+По документации Prime предлагает использовать `layers`, чтобы не нужно было добавлять `!` перед классами, это пока сырая технология и вы убьете
+стили для Chrome (как минимум) ниже 99-й версии.
+
+### Тема
+
+Для того чтобы все токены были доступны, нужно добавить настройки темы в `tailwind.config.js`.
+
+```js dark
+const { tailwindConfigTheme } = require('@cdek-ui-kit/vue');
+
+export default {
+  // ...
+  theme: {
+    extend: {
+      ...tailwindConfigTheme,
+    },
+  },
+};
+```
+
+Если вы хотите изменить или добавить свои токены в уже заданные свойства,
+то можно использовать функцию `mergeTailwindTheme` из пакета `@cdek-ui-kit/vue`.
+
+Используйте этот вариант, если вам нужно изменить `screens`, `colors`, `textColor`, `borderRadius`, `borderWidth`, `width` или `height`.
+
+```js dark
+const { mergeTailwindTheme } = require('@cdek-ui-kit/vue');
+
+export default {
+  // ...
+  theme: {
+    extend: {
+      ...mergeTailwindTheme({
+        spacing: {
+          custom: '4px',
+        },
+      }),
+    },
+  },
+};
+```
+
+Если ваше изменение не попадает в эти свойства, то вы можете спокойно просто добавлять свойства.
+
+```js dark
+const { tailwindConfigTheme } = require('@cdek-ui-kit/vue');
+
+export default {
+  // ...
+  theme: {
+    extend: {
+      ...tailwindConfigTheme,
+      gridTemplateColumns: {
+        '100%': '100%',
+      },
+    },
+  },
+};
+```
+
+## Токены
+
+### Медиа запросы
+
+Медиа адаптированы под наши миксины, так что бы не было конфликтов со старым дизайном.
+
+```js dark
+screens: {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+  '2xl': '1400px',
+}
+```
+
+Для mobile first подхода используйте `<screen>:<rule>`, например `sm:w-10`. Для desktop first подхода используйте
+`max-<screen>:<rule>`, например `max-lg:w-10`.
+
+### Background
+
+[Figma](<https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-(DS)?node-id=0-1&p=f&vars=1&var-id=5-171&m=dev>)
+
+<div class="grid grid-flow-col gap-4">
+  <div>
+    <section class="bg-surface-ground">bg-surface-ground</section>
+    <section class="bg-surface-overlay">bg-surface-overlay</section>
+    <section class="bg-surface-section">bg-surface-section</section>
+    <section class="bg-surface-hover">bg-surface-hover</section>
+  </div>
+  <div>
+    <section class="bg-surface-0 text-white">bg-surface-0</section>
+    <section class="bg-surface-50">bg-surface-50</section>
+    <section class="bg-surface-100">bg-surface-100</section>
+    <section class="bg-surface-200">bg-surface-200</section>
+    <section class="bg-surface-300">bg-surface-300</section>
+    <section class="bg-surface-400">bg-surface-400</section>
+    <section class="bg-surface-500">bg-surface-500</section>
+    <section class="bg-surface-600">bg-surface-600</section>
+    <section class="bg-surface-700 text-white">bg-surface-700</section>
+    <section class="bg-surface-800 text-white">bg-surface-800</section>
+    <section class="bg-surface-900 text-white">bg-surface-900</section>
+  </div>
+  <div>
+    <section class="bg-primary text-white">bg-primary</section>
+    <section class="bg-primary-50">bg-primary-50</section>
+    <section class="bg-primary-100">bg-primary-100</section>
+    <section class="bg-primary-200">bg-primary-200</section>
+    <section class="bg-primary-300">bg-primary-300</section>
+    <section class="bg-primary-400">bg-primary-400</section>
+    <section class="bg-primary-500">bg-primary-500</section>
+    <section class="bg-primary-600">bg-primary-600</section>
+    <section class="bg-primary-700 text-white">bg-primary-700</section>
+    <section class="bg-primary-800 text-white">bg-primary-800</section>
+    <section class="bg-primary-900 text-white">bg-primary-900</section>
+  </div>
+  <div>
+    <section class="bg-info text-white">bg-info</section>
+    <section class="bg-success">bg-success</section>
+    <section class="bg-warning">bg-warning</section>
+    <section class="bg-danger text-white">bg-danger</section>
+    <section class="bg-help text-white">bg-help</section>
+  </div>
+</div>
+
+### Border
+
+[Figma](<https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-(DS)?node-id=0-1&p=f&vars=1&m=dev>)
+
+<div class="grid grid-flow-col gap-4">
+  <div class="flex flex-col gap-2">
+    <section class="rounded-none border border-surface-0 p-1">
+      rounded-none
+    </section>
+    <section class="rounded-sm border border-surface-0 p-1">rounded-sm</section>
+    <section class="rounded border border-surface-0 p-1">rounded</section>
+    <section class="rounded-md border border-surface-0 p-1">rounded-md</section>
+    <section class="rounded-lg border border-surface-0 p-1">rounded-lg</section>
+    <section class="rounded-kit border border-surface-0 p-1">
+      rounded-kit
+    </section>
+    <section class="rounded-xl border border-surface-0 p-1">rounded-xl</section>
+    <section class="rounded-2xl border border-surface-0 p-1">
+      rounded-2xl
+    </section>
+    <section class="rounded-3xl border border-surface-0 p-1">
+      rounded-3xl
+    </section>
+    <section class="rounded-full border border-surface-0 p-1">
+      rounded-full
+    </section>
+  </div>
+  <div class="flex flex-col gap-2">
+    <section class="border border-transparent p-1">border-transparent</section>
+    <section class="border border-primary p-1">border-primary</section>
+    <section class="border border-surface-border p-1">
+      border-surface-border
+    </section>
+  </div>
+  <div class="flex flex-col gap-2">
+    <section class="border border-surface-0 p-1">border-surface-0</section>
+    <section class="border border-surface-50 p-1">border-surface-50</section>
+    <section class="border border-surface-100 p-1">border-surface-100</section>
+    <section class="border border-surface-200 p-1">border-surface-200</section>
+    <section class="border border-surface-300 p-1">border-surface-300</section>
+    <section class="border border-surface-400 p-1">border-surface-400</section>
+    <section class="border border-surface-500 p-1">border-surface-500</section>
+    <section class="border border-surface-600 p-1">border-surface-600</section>
+    <section class="border border-surface-700 p-1">border-surface-700</section>
+    <section class="border border-surface-800 p-1">border-surface-800</section>
+    <section class="border border-surface-900 p-1">border-surface-900</section>
+  </div>
+  <div class="flex flex-col gap-2">
+    <section class="border border-info p-1">border-info</section>
+    <section class="border border-success p-1">border-success</section>
+    <section class="border border-warning p-1">border-warning</section>
+    <section class="border border-danger p-1">border-danger</section>
+    <section class="border border-help p-1">border-help</section>
+  </div>
+  <div class="flex flex-col gap-2">
+    <section class="border border-surface-0 p-1">border</section>
+    <section class="border-2 border-surface-0 p-1">border-2</section>
+    <section class="border-3 border-surface-0 p-1">border-3</section>
+    <section class="border-4 border-surface-0 p-1">border-4</section>
+  </div>
+</div>
+
+### Effects
+
+[Figma](<https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-(DS)?node-id=0-1&p=f&vars=1&m=dev>)
+
+<section class="opacity-0">opacity-0</section>
+<section class="opacity-10">opacity-10</section>
+<section class="opacity-20">opacity-20</section>
+<section class="opacity-30">opacity-30</section>
+<section class="opacity-40">opacity-40</section>
+<section class="opacity-50">opacity-50</section>
+<section class="opacity-60">opacity-60</section>
+<section class="opacity-70">opacity-70</section>
+<section class="opacity-80">opacity-80</section>
+<section class="opacity-90">opacity-90</section>
+<section class="opacity-100">opacity-100</section>
+
+### Sizing
+
+[Figma](<https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-(DS)?node-id=0-1&p=f&vars=1&m=dev>)
+
+Классы `w-*` и `h-*` можно использовать для задания абсолютной ширины и высоты элемента. Равны кол-ву `rem`.
+
+Доступные значения: 1 - 30, 34, 45, 50, 54, 58, 60
+
+<section class="flex items-center gap-2 mb-1">
+  <div>w-1 h-1</div> <section class="w-1 h-1 bg-surface-overlay" />
+  <code>width: 1rem; height: 1rem;</code>
+</section>
+
+<section class="flex items-center gap-2 mb-1">
+  <div>w-2 h-2</div> <section class="w-2 h-2 bg-surface-overlay" />
+  <code>width: 2rem; height: 2rem;</code>
+</section>
+
+### Spacing
+
+[Figma](<https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-(DS)?node-id=0-1&p=f&vars=1&m=dev>)
+
+Классы типа `gap-*`, `p-*`, `m-*` и т.д., везде где используется spacing значения из темы.
+
+Доступные значения: 0 - 12, 14, 16, 20, 24, 28, 32, 36, 40. Поставляются со стандартным конфигом tailwind.
+
+### Typography
+
+[Figma](<https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-(DS)?node-id=0-1&p=f&vars=1&m=dev>)
+
+<div class="grid grid-flow-col gap-4">
+  <div>
+    <section class="text-primary">text-primary</section>
+    <section class="text-color-primary bg-surface-0">
+      text-color-primary
+    </section>
+    <section class="text-color">text-color</section>
+    <section class="text-color-secondary">text-color-secondary</section>
+    <section class="text-white bg-surface-0">text-white</section>
+  </div>
+  <div>
+    <section class="text-surface-0">text-surface-0</section>
+    <section class="text-surface-50 bg-surface-0">text-surface-50</section>
+    <section class="text-surface-100 bg-surface-0">text-surface-100</section>
+    <section class="text-surface-200 bg-surface-0">text-surface-200</section>
+    <section class="text-surface-300 bg-surface-0">text-surface-300</section>
+    <section class="text-surface-400">text-surface-400</section>
+    <section class="text-surface-500">text-surface-500</section>
+    <section class="text-surface-600">text-surface-600</section>
+    <section class="text-surface-700">text-surface-700</section>
+    <section class="text-surface-800">text-surface-800</section>
+    <section class="text-surface-900">text-surface-900</section>
+  </div>
+  <div>
+    <section class="text-info">text-info</section>
+    <section class="text-success">text-success</section>
+    <section class="text-warning">text-warning</section>
+    <section class="text-danger">text-danger</section>
+    <section class="text-help">text-help</section>
+  </div>
+  <div>
+    <section class="text-xs">text-xs</section>
+    <section class="text-base">text-base</section>
+    <section class="text-lg">text-lg</section>
+    <section class="text-xl">text-xl</section>
+    <section class="text-2xl">text-2xl</section>
+    <section class="text-3xl">text-3xl</section>
+    <section class="text-4xl">text-4xl</section>
+    <section class="text-5xl">text-5xl</section>
+    <section class="text-6xl">text-6xl</section>
+    <section class="text-7xl">text-7xl</section>
+    <section class="text-8xl">text-8xl</section>
+  </div>
+</div>

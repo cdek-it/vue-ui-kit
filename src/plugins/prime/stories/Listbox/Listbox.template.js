@@ -99,7 +99,7 @@ export const TemplateCustom = (args) => ({
       <i :class="slotProps.option.icon" />
       <div class="ml-2">
         <div>{{ slotProps.option.name }}</div>
-        <small class="text-gray-500">{{ slotProps.option.description }}</small>
+        <small>{{ slotProps.option.description }}</small>
       </div>
     </div>
   </template>

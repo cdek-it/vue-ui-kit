@@ -3,6 +3,7 @@ import { registerToastification } from '@/plugins/toastification';
 import PrimeVue from 'primevue/config';
 import { getPrimeVueConfig } from '@/plugins/prime';
 
+import '../src/tailwind.css';
 import './themes/base.css';
 import './themes/violet.css';
 
@@ -11,6 +12,21 @@ app.use(PrimeVue, getPrimeVueConfig());
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
+  options: {
+    storySort: {
+      order: [
+        'Intro',
+        'Form',
+        'Prime',
+        'Prime Blocks',
+        'Ui kit',
+        'Plugins',
+        'Services',
+        '*',
+        'Deprecated',
+      ],
+    },
+  },
   controls: {
     matchers: {
       color: /(background|color)$/i,

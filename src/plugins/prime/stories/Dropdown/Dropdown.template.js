@@ -13,19 +13,19 @@ export const Template = (args) => ({
   <span><code>v-model="'Chip'"</code></span>
 
   <span></span>
-  <Select :options="options" :style="{ width: '200px' }" v-bind="args" />
-  <Select :options="options" :default-value="'Chip'" :style="{ width: '200px' }" v-bind="args" />
+  <Select :options="options" :style="{ width: '200px' }" v-bind="args" showClear />
+  <Select :options="options" :default-value="'Chip'" :style="{ width: '200px' }" v-bind="args" showClear />
 
   <span :style="{ justifySelf: 'flex-start' }"><code>invalid</code></span>
-  <Select :options="options" invalid :style="{ width: '200px' }" v-bind="args" />
-  <Select :options="options" invalid :default-value="'Chip'" :style="{ width: '200px' }" v-bind="args" />
+  <Select :options="options" invalid :style="{ width: '200px' }" v-bind="args" showClear />
+  <Select :options="options" invalid :default-value="'Chip'" :style="{ width: '200px' }" v-bind="args" showClear />
 
   <span :style="{ justifySelf: 'flex-start' }"><code>loading</code></span>
-  <Select :options="options" loading :style="{ width: '200px' }" v-bind="args" />
-  <Select :options="options" loading :default-value="'Chip'" :style="{ width: '200px' }" v-bind="args" />
+  <Select :options="options" loading :style="{ width: '200px' }" v-bind="args" showClear/>
+  <Select :options="options" loading :default-value="'Chip'" :style="{ width: '200px' }" v-bind="args" showClear />
 
   <span :style="{ justifySelf: 'flex-start' }"><code>disabled</code></span>
-  <Select :options="options" disabled :style="{ width: '200px' }" v-bind="args" />
+  <Select :options="options" disabled :style="{ width: '200px' }" v-bind="args" showClear />
   <Select :options="options" disabled :default-value="'Chip'" :style="{ width: '200px' }" v-bind="args" />
 </div>
 `,

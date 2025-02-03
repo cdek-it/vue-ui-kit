@@ -6,7 +6,7 @@ import { Template, TemplateBadge } from './Button.template';
 
 # Button
 
-[PrimeVue](https://primevue.org/button), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=480-4174&node-type=section&t=l2VZW0ubKEcDpw1W-0>)
+[PrimeVue Button](https://primevue.org/button), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=480-4174&node-type=section&t=l2VZW0ubKEcDpw1W-0>)
 
 ### Icon
 
@@ -73,11 +73,11 @@ import { Template, TemplateBadge } from './Button.template';
 
 ### Badge
 
-[Figma](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=489-4069&node-type=section&t=96Rf4vdhhmN5WlPT-0>)
+[PrimeVue OverlayBadge](https://primevue.org/badge/#overlay), [Figma](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=489-4069&node-type=section&t=96Rf4vdhhmN5WlPT-0>)
 
 ```html dark
-<PrimeOverlayBadge value="Badge" severity="danger" :size="size">
-  <PrimeButton label="Button" />
+<PrimeOverlayBadge value="Badge" severity="danger">
+  <PrimeButton label="Button" :size="size" />
 </PrimeOverlayBadge>
 ```
 
@@ -91,15 +91,11 @@ import { Template, TemplateBadge } from './Button.template';
     value: { control: 'text' },
     severity: {
       control: 'inline-radio',
-      options: ['info', 'success', 'warn', 'danger', 'contrast'],
-    },
-    size: {
-      control: 'inline-radio',
-      options: ['small', 'large', 'xlarge'],
+      options: [null, 'info', 'success', 'warn', 'danger'],
     },
   }}
   parameters={{
-    controls: { include: ['value', 'severity', 'size'] },
+    controls: { include: ['value', 'severity'] },
   }}
 >
   {TemplateBadge.bind({})}
@@ -119,6 +115,12 @@ import { Template, TemplateBadge } from './Button.template';
     label: 'Button',
     icon: 'ti ti-arrow-down-right',
     severity: 'danger',
+  }}
+  argTypes={{
+    severity: {
+      control: 'inline-radio',
+      options: [null, 'info', 'success', 'warn', 'danger', 'help'],
+    },
   }}
 >
   {Template.bind({})}
