@@ -9,10 +9,6 @@ export default {
   },
 
   css: ({ dt }: { dt: (key: string) => string }) => `
-    .p-rating.p-disabled {
-      
-    }
-  
     .p-rating.p-disabled .p-rating-icon {
       color: ${dt('black.60')};
     }

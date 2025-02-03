@@ -13,6 +13,7 @@ import iconfield from './iconfield';
 import listbox from './listbox';
 import radiobutton from './radiobutton';
 import rating from './rating';
+import selectbutton from './selectbutton';
 import togglebutton from './togglebutton';
 import slider from './slider';
 
@@ -32,6 +33,7 @@ export default {
   listbox,
   radiobutton,
   rating,
+  selectbutton,
   togglebutton,
   slider,
 };
