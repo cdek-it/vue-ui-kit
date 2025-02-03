@@ -34,6 +34,7 @@ export default {
    }
    
    .p-togglebutton.p-togglebutton-checked:not(:disabled):hover {
-    background: ${dt('primary.800')};}
+      background: ${dt('primary.800')};
+   }
   `,
 };
