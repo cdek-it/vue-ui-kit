@@ -4,6 +4,14 @@ export default {
       padding: 0.75rem 1rem;
     }
     
+    .p-selectbutton .p-togglebutton.p-togglebutton-sm {
+      padding: 0.6rem 0.75rem;
+    }
+    
+    .p-selectbutton .p-togglebutton.p-togglebutton-lg {
+      padding: 1rem 1.5rem;
+    }
+    
     .p-selectbutton .p-togglebutton::before {
       border-radius: 3.5px;
     }
@@ -18,8 +26,6 @@ export default {
       background: ${dt('form.field.disabled.background')};
       border-color:  ${dt('surface.transparent')};
     }
-    
-    
     
     .p-selectbutton .p-togglebutton:not(:disabled):hover {
       background: ${dt('black.10')};
