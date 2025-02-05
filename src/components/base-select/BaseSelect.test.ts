@@ -454,10 +454,7 @@ describe('Unit: BaseSelect', () => {
         .setValidRes(true)
         .setShowErrorIfExists(true)
         .build();
-      console.log(
-        '👾 ~ file: BaseTextarea.test.ts:231 ~ test ~ wrapper =>',
-        wrapper.html()
-      );
+
       const error = wrapper.find('.prefix-select__tip');
       expect(error.exists()).toBeFalsy();
     });
