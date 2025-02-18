@@ -11,6 +11,8 @@ interface PBlockToggleButtonBuilder {
   setOnLabel: (onLabel: string) => PBlockToggleButtonBuilder;
   setOffLabel: (offLabel: string) => PBlockToggleButtonBuilder;
   setModelValue: (modelValue: boolean) => PBlockToggleButtonBuilder;
+  setDefaultSlot: (defaultSlot: string) => PBlockToggleButtonBuilder;
+  setIconSlot: (iconSlot: string) => PBlockToggleButtonBuilder;
 }
 
 class PBlockToggleButtonBuilder {
@@ -35,6 +37,12 @@ class PBlockToggleButtonBuilder {
   @builderProp
   modelValue?: boolean;
 
+  @builderProp
+  defaultSlot?: string;
+
+  @builderProp
+  iconSlot?: string;
+
   build() {
     return mount(PBlockToggleButton, {
       props: {
@@ -45,6 +53,10 @@ class PBlockToggleButtonBuilder {
         onLabel: this.onLabel,
         offLabel: this.offLabel,
         modelValue: this.modelValue,
+      },
+      slots: {
+        default: this.defaultSlot || '',
+        icon: this.iconSlot || '',
       },
     });
   }
@@ -232,40 +244,65 @@ describe('Unit: PBlockToggleButton', () => {
     expect(wrapper.find('.ti-lock').exists()).toBeTruthy();
   });
 
-  //
-  // test('Если onIcon задан, то он имеет приоритет над baseIcon', () => {
-  //   const wrapper = new PBlockToggleButtonBuilder()
-  //     .setBaseIcon('ti ti-check')
-  //     .setOnIcon('ti ti-star')
-  //     .build();
-  //   expect(wrapper.find('.ti-star').exists()).toBeTruthy();
-  //   expect(wrapper.find('.ti-check').exists()).toBeFalsy();
-  // });
-  //
-  // test('Если offIcon задан, то он имеет приоритет над baseIcon', () => {
-  //   const wrapper = new PBlockToggleButtonBuilder()
-  //     .setBaseIcon('pi pi-check')
-  //     .setOffIcon('pi pi-star')
-  //     .build();
-  //   expect(wrapper.find('.pi-star').exists()).toBeTruthy();
-  //   expect(wrapper.find('.pi-check').exists()).toBeFalsy();
-  // });
-  //
-  // test('Если onLabel задан, то он имеет приоритет над baseLabel', () => {
-  //   const wrapper = new PBlockToggleButtonBuilder()
-  //     .setBaseLabel('Base Label')
-  //     .setOnLabel('On Label')
-  //     .build();
-  //   expect(wrapper.text()).toContain('On Label');
-  //   expect(wrapper.text()).not.toContain('Base Label');
-  // });
-  //
-  // test('Если offLabel задан, то он имеет приоритет над baseLabel', () => {
-  //   const wrapper = new PBlockToggleButtonBuilder()
-  //     .setBaseLabel('Base Label')
-  //     .setOffLabel('Off Label')
-  //     .build();
-  //   expect(wrapper.text()).toContain('Off Label');
-  //   expect(wrapper.text()).not.toContain('Base Label');
-  // });
+  test('При нажатии на кнопку прокидывается эмит focus', async () => {
+    const wrapper = new PBlockToggleButtonBuilder()
+      .setBaseIcon('ti ti-arrow-down-right')
+      .build();
+
+    const button = wrapper.find('button');
+
+    await button.trigger('focus');
+
+    expect(wrapper.emitted('focus')).toBeTruthy();
+  });
+
+  test('Прокидываются эмиты focus и blur с ToggleButton компонента', async () => {
+    const wrapper = new PBlockToggleButtonBuilder()
+      .setBaseIcon('ti ti-arrow-down-right')
+      .build();
+
+    const button = wrapper.find('button');
+
+    await button.trigger('focus');
+
+    expect(wrapper.emitted('focus')).toBeTruthy();
+
+    await button.trigger('blur');
+
+    expect(wrapper.emitted('blur')).toBeTruthy();
+  });
+
+  test('Компонент поддерживает v-model', async () => {
+    const wrapper = new PBlockToggleButtonBuilder().setModelValue(true).build();
+
+    const button = wrapper.find('button');
+
+    await button.trigger('click');
+
+    expect(wrapper.emitted('value-change')).toBeTruthy();
+
+    expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([false]);
+  });
+
+  test('Дефолтный слот прокидывается в ToggleButton', async () => {
+    const wrapper = new PBlockToggleButtonBuilder()
+      .setDefaultSlot('default clot')
+      .build();
+
+    const content = wrapper.find('.p-togglebutton-content');
+
+    expect(content.text()).toBe('default clot');
+  });
+
+  test('Иконочный слот прокидывается в ToggleButton', async () => {
+    const wrapper = new PBlockToggleButtonBuilder()
+      .setIconSlot('<i class="ti ti-ban"/>')
+      .build();
+
+    const content = wrapper.find('.p-togglebutton-content');
+
+    const iconSlot = content.find('i.ti-ban ');
+
+    expect(iconSlot.exists()).toBeTruthy();
+  });
 });
