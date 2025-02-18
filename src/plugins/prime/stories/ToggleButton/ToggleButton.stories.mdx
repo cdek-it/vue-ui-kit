@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './ToggleButton.template';
+import { Template, Slots } from './ToggleButton.template';
 
 <Meta title="Prime/Form/ToggleButton" />
 
@@ -22,3 +22,30 @@ import { Template } from './ToggleButton.template';
 
 <Story name="Primary">{Template.bind({})}</Story>
 
+
+### Слот
+
+В макетах скорее всего нет изменения текста, поэтому предлагаю передавать текст и икону через дефолтный слот. Обрати внимание, что при передаче дефолтного слота, иконочный слот работать не будет
+
+```html dark
+<ToggleButton>
+    <div>
+        <i class="ti ti-arrow-down-right"/> Дефолтный слот
+    </div>
+</ToggleButton>
+```
+
+<Story name="Slot" args={{ name: 'default'}}>{Slots.bind({})}</Story>
+
+
+### Слот иконки
+
+```html dark
+<ToggleButton off-label="ToggleButton" on-label="ToggleButton">
+     <template #icon>
+         <i class="ti ti-ban"/>
+     </template>
+</ToggleButton>
+```
+
+<Story name="Icon Slot"  args={{ name: 'icon', offLabel: 'ToggleButton', onLabel: 'ToggleButton' }}>{Slots.bind({})}</Story>
