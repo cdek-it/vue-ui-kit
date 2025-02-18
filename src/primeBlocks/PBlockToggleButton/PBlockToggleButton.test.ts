@@ -256,7 +256,7 @@ describe('Unit: PBlockToggleButton', () => {
     expect(wrapper.emitted('focus')).toBeTruthy();
   });
 
-  test('Прокидываются эмиты focus и blur с ToggleButton компонента', async () => {
+  test('Прокидываются эмиты focus, blur, change с ToggleButton компонента', async () => {
     const wrapper = new PBlockToggleButtonBuilder()
       .setBaseIcon('ti ti-arrow-down-right')
       .build();
@@ -270,6 +270,10 @@ describe('Unit: PBlockToggleButton', () => {
     await button.trigger('blur');
 
     expect(wrapper.emitted('blur')).toBeTruthy();
+
+    await button.trigger('change');
+
+    expect(wrapper.emitted('change')).toBeTruthy();
   });
 
   test('Компонент поддерживает v-model', async () => {
@@ -278,8 +282,6 @@ describe('Unit: PBlockToggleButton', () => {
     const button = wrapper.find('button');
 
     await button.trigger('click');
-
-    expect(wrapper.emitted('value-change')).toBeTruthy();
 
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([false]);
   });
