@@ -24,6 +24,7 @@ module.exports = {
       { varsIgnorePattern: 'props' },
     ],
     curly: 'error',
+    'no-console': 'error',
   },
   globals: {
     defineOptions: 'readonly',

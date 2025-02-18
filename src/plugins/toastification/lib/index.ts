@@ -15,6 +15,7 @@ import { isBrowser } from './ts/utils';
 
 const createMockToastInterface = (): ToastInterface => {
   const toast = () =>
+    // eslint-disable-next-line no-console
     console.warn(`[${VT_NAMESPACE}] This plugin does not support SSR!`);
   return new Proxy(toast, {
     get() {
