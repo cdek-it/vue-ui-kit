@@ -23,18 +23,38 @@ const Template = (args) => ({
   setup() {
     const isChecked = ref(args.modelValue);
 
-    console.log('args', args);
+    const emitsList = ref([]);
 
-    return { args, isChecked };
+    const onEmit = (e, name) => {
+      emitsList.value.push({ name, event: JSON.stringify(e) });
+    };
+
+    return { args, isChecked, emitsList, onEmit };
   },
   template: `
     <div v-if="args.story === 'vModel'">isChecked:  {{ isChecked }} </div>
-    <PBlockToggleButton v-bind="args" v-model="isChecked">
+    <PBlockToggleButton 
+        v-bind="args" 
+        v-model="isChecked" 
+        @focus="(e) => onEmit(e, 'focus')" 
+        @value-change="(e) => onEmit(e, 'value-change')" 
+        @blur="(e) => onEmit(e, 'blur')"
+        @change="(e) => onEmit(e, 'change')"
+        @update:modelValue="onEmit(e, 'update:modelValue')"
+    >
       <div v-if="args.story === 'DefaultSlot'">Дефолтный слот</div>
       <template #icon>
         <i v-if="args.story === 'IconSlot'" class="ti ti-ban"/>
       </template>
     </PBlockToggleButton>
+    
+    
+    <div v-if="args.story === 'emits'">
+      emits: 
+      <div v-for="emit in emitsList">
+        <span>{{ emit.name }}: {{ emit.event }}</span>
+      </div>
+    </div>
   `,
 });
 
@@ -90,7 +110,7 @@ VModel.parameters = {
   docs: {
     source: {
       code: `
-<PBlockToggleButton/>`,
+<PBlockToggleButton v-model="modelValue"/>`,
     },
   },
 };
@@ -105,9 +125,7 @@ DefaultSlot.parameters = {
   docs: {
     source: {
       code: `
-<PBlockToggleButton 
-    v-model="modelValue"
->
+<PBlockToggleButton>
     <div>Дефолтный слот</div>
 </PBlockToggleButton>`,
     },
@@ -129,6 +147,21 @@ IconSlot.parameters = {
         <i class="ti ti-ban"/>
     </template>
 </PBlockToggleButton>`,
+    },
+  },
+};
+
+export const Emits = Template.bind({});
+
+Emits.args = {
+  story: 'emits',
+};
+
+Emits.parameters = {
+  docs: {
+    source: {
+      code: `
+<PBlockToggleButton v-model="modelValue" />`,
     },
   },
 };
