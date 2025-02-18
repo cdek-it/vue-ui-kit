@@ -8,8 +8,6 @@ interface IPBlockToggleButton extends ToggleButtonProps {
 
 const props = defineProps<IPBlockToggleButton>();
 
-console.log('props offLabel', props.offLabel);
-
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void;
   (e: 'value-change', value: boolean): void;
