@@ -149,6 +149,9 @@ export const primaryColor = {
   800: '{emerald.800}',
   900: '{emerald.900}',
   alpha: '{emerald.alpha}',
+  color: {
+    hover: '{primary.800}',
+  },
 };
 
 export const semanticColors = {

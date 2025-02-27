@@ -1,0 +1,118 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template, Languages } from './Calendar.template';
+
+<Meta title="Prime/Form/Calendar" />
+
+# Calendar
+
+[PrimeVue](https://primevue.org/datepicker/), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5983&t=DTjaE9HCixtJGObg-4>)
+
+```html dark
+<PrimeDatePicker
+    showTime
+    show-button-bar
+    :todayButtonProps="{ label: 'Сегодня', variant: 'text'}"
+    :clear-button-props="{ label: 'Очистить', variant: 'text'}"
+/>
+```
+
+<Story name="Primary">{Template.bind({})}</Story>
+
+# Языки
+
+Прайм из коробки не берет язык браузера, поэтому языки нужно [прокидывать](https://primevue.org/configuration/#locale) в конфиг.
+
+```js dark
+
+primeVue.config.locale.dayNamesMin = [
+  'Пн',
+  'Вт',
+  'Ср',
+  'Чт',
+  'Пт',
+  'Сб',
+  'Вс',
+];
+
+primeVue.config.locale.monthNames = [
+  'Январь',
+  'Февраль',
+  'март',
+  'Апрель',
+  'Май',
+  'Июнь',
+  'Июль',
+  'Август',
+  'Сентябрь',
+  'Октябрь',
+  'Ноябрь',
+  'Декабрь',
+];
+
+// Отображаются при выборе месеяцев
+primeVue.config.locale.monthNamesShort = [
+  'Январь',
+  'Февраль',
+  'Март',
+  'Апрель',
+  'Май',
+  'Июнь',
+  'Июль',
+  'Август',
+  'Сентябрь',
+  'Октябрь',
+  'Ноябрь',
+  'Декабрь',
+];
+
+```
+
+```html dark
+<PrimeDatePicker
+    showTime
+    show-button-bar
+    :todayButtonProps="{ label: 'Сегодня', variant: 'text'}"
+    :clear-button-props="{ label: 'Очистить', variant: 'text'}"
+/>
+```
+
+<Story name="Languages">{Languages.bind({})}</Story>
+
+# Disabled
+```html dark
+<PrimeDatePicker
+    showTime
+    disabled
+    inline
+    show-button-bar
+    :todayButtonProps="{ label: 'Сегодня', variant: 'text'}"
+    :clear-button-props="{ label: 'Очистить', variant: 'text'}"
+/>
+```
+
+<Story name="Disabled"
+    args={{
+        inline: true,
+        disabled: true,
+    }}>
+{Template.bind({})}
+</Story>
+
+
+# Time only
+```html dark
+<PrimeDatePicker
+    timeOnly
+    show-button-bar
+    :todayButtonProps="{ label: 'Сегодня', variant: 'text'}"
+    :clear-button-props="{ label: 'Очистить', variant: 'text'}"
+/>
+```
+
+<Story name="TimeOnly"
+    args={{
+        timeOnly: true
+    }}>
+{Template.bind({})}
+</Story>
