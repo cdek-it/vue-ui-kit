@@ -7,6 +7,9 @@ export default {
     lgFontSize: '1.25rem',
   },
   colorScheme: {
+    content: {
+      background: '{surface.ground}',
+    },
     ...semanticColors,
     focusRingColor: '{primary.200}',
     primary: {

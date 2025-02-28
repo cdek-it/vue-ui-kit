@@ -1,39 +1,41 @@
+import autocomplete from './autocomplete';
 import badge from './badge';
 import button from './button';
 import checkbox from './checkbox';
-import overlaybadge from './overlayBadge';
-import autocomplete from './autocomplete';
 import chip from './chip';
+import datepicker from './datepicker';
 import floatlabel from './floatLabel';
-import inputtext from './inputText';
-import textarea from './textarea';
-import inputotp from './inputotp';
-import toggleswitch from './toggleswitch';
 import iconfield from './iconfield';
+import inputotp from './inputotp';
+import inputtext from './inputText';
 import listbox from './listbox';
+import overlaybadge from './overlayBadge';
 import radiobutton from './radiobutton';
 import rating from './rating';
 import selectbutton from './selectbutton';
-import togglebutton from './togglebutton';
 import slider from './slider';
+import textarea from './textarea';
+import togglebutton from './togglebutton';
+import toggleswitch from './toggleswitch';
 
 export default {
+  autocomplete,
   badge,
   button,
   checkbox,
-  overlaybadge,
-  autocomplete,
   chip,
+  datepicker,
   floatlabel,
-  inputtext,
-  textarea,
-  inputotp,
-  toggleswitch,
   iconfield,
+  inputotp,
+  inputtext,
   listbox,
+  overlaybadge,
   radiobutton,
   rating,
   selectbutton,
-  togglebutton,
   slider,
+  textarea,
+  togglebutton,
+  toggleswitch,
 };
