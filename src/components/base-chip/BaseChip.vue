@@ -112,10 +112,11 @@ const iconEnabled = computed(() => {
   outline-color: rgba(0, 0, 0, 0);
   transition: all 0.3s ease;
 
+  @include body-1;
+
   &:not([disabled]) {
     cursor: pointer;
   }
-  @include body-1;
 
   &:not(&_disabled) {
     &:focus-visible {
