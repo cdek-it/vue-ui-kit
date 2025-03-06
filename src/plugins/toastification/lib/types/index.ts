@@ -1,6 +1,7 @@
 import type { App, Component, ComponentPublicInstance } from 'vue';
 import type { EventBusInterface } from '../ts/eventBus';
 import type { TYPE, POSITION } from '../ts/constants';
+import type { VNode } from 'vue';
 
 export type ToastID = string | number;
 
@@ -188,10 +189,7 @@ export interface ToastComponent {
   listeners?: { [listenerEvent: string]: Function };
 }
 
-export type ToastContent =
-  | RenderableToastContent
-  | JSX.Element
-  | ToastComponent;
+export type ToastContent = RenderableToastContent | VNode | ToastComponent;
 
 export type ToastOptionsAndContent = ToastOptions & { content?: ToastContent };
 export type ToastOptionsAndRequiredContent = ToastOptions & {
