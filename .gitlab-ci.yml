@@ -1,5 +1,5 @@
 variables:
-  DOCKER_IMAGE: 'node:16'
+  DOCKER_IMAGE: 'node:20'
 
 stages:
   - lint

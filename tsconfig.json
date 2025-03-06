@@ -12,6 +12,8 @@
     }
   ],
   "compilerOptions": {
-    "target": "ES5"
+    "target": "ES5",
+    "skipLibCheck": true,
+    "esModuleInterop": true
   }
 }
