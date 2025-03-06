@@ -1,6 +1,6 @@
 {
   "name": "@cdek-ui-kit/vue",
-  "version": "2.0.0-alpha.site8591",
+  "version": "2.0.0-alpha.inner110",
   "type": "module",
   "files": [
     "dist"
@@ -46,7 +46,7 @@
     "maska": "^2.1.11",
     "primevue": "^4.2.3",
     "tailwindcss-primeui": "^0.3.4",
-    "vue": "3.3.4"
+    "vue": "3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

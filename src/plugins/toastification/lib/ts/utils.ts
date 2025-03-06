@@ -1,4 +1,4 @@
-import { defineComponent, toRaw, unref } from 'vue';
+import { defineComponent, toRaw, unref, type VNode } from 'vue';
 import type { Component } from 'vue';
 
 import type {
@@ -28,7 +28,7 @@ const isUndefined = (value: unknown): value is undefined =>
 const isObject = (value: unknown): value is DictionaryLike =>
   typeof value === 'object' && value !== null;
 
-const isJSX = (obj: unknown): obj is JSX.Element =>
+const isJSX = (obj: unknown): obj is VNode =>
   hasProp(obj, 'tag') && isNonEmptyString(obj.tag);
 
 const isToastComponent = (obj: unknown): obj is ToastComponent =>
