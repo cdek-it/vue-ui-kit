@@ -5,7 +5,7 @@ export default {
 </script>
 
 <script lang="ts" setup>
-import { inject, computed, reactive, watch } from 'vue';
+import { inject, computed, reactive, watch, ref, onMounted } from 'vue';
 
 import { FormServiceKey } from '../services/FormService';
 import type FormService from '../services/FormService';
@@ -42,6 +42,11 @@ const props = withDefaults(
      * Начальное значение
      */
     initialValue?: string;
+    /**
+     * Отложенная валидация.
+     * Не проверяет значение initialValue до первой потери фокуса у input.
+     */
+    deferredValidation?: boolean;
   }>(),
   { type: 'text', className: '', initialValue: '' }
 );
@@ -56,6 +61,8 @@ const fieldService = reactive(
 );
 fieldService.init(props.initialValue);
 
+const touched = ref(false);
+
 watch(
   () => props.rules,
   (newValue) => {
@@ -64,22 +71,44 @@ watch(
   { deep: true }
 );
 
+/**
+ * @description
+ * Обновление значения.
+ * Позволяет обновлять значение без валидации.
+ */
+const updateValue = (newValue: string): void => {
+  fieldService.change(newValue, props.deferredValidation && !touched.value);
+
+  emit('change', {
+    value: newValue,
+    isValid: fieldService.isValid === true,
+    error: fieldService.errorMessage,
+  });
+};
+
+const checkValue = () => {
+  touched.value = true;
+  updateValue(fieldService.value);
+};
+
 const value = computed({
   get() {
     return fieldService.value || '';
   },
   set(newValue) {
-    fieldService.change(newValue);
-    emit('change', {
-      value: newValue,
-      isValid: fieldService.isValid === true,
-      error: fieldService.errorMessage,
-    });
+    updateValue(newValue);
   },
+});
+
+onMounted(() => {
+  if (props.initialValue) {
+    checkValue();
+  }
 });
 
 const changeValue = (newValue: string) => {
   value.value = newValue;
+  checkValue();
 };
 
 const element = computed(() => {
@@ -109,6 +138,7 @@ defineExpose({
       v-model="value"
       :valid-res="fieldService.error"
       v-bind="$attrs"
+      @blur.once="checkValue"
     >
       <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
         <!-- @slot если `type !== 'slot'`, то все слоты передаются в дочерний компонент -->

@@ -18,6 +18,7 @@ interface ExtraMethods {
   setClassName: (val: string) => BaseFormControlBuilder;
   setInitialValue: (val: string) => BaseFormControlBuilder;
   setDefaultSlot: (slot: string) => BaseFormControlBuilder;
+  setDeferredValidation: (val: boolean) => BaseFormControlBuilder;
 }
 
 interface BaseFormControlBuilder extends ExtraMethods {}
@@ -29,6 +30,7 @@ class BaseFormControlBuilder {
   @builderProp className?: string;
   @builderProp initialValue?: string;
   @builderProp defaultSlot?: string;
+  @builderProp deferredValidation?: boolean;
 
   build() {
     const formService = new FormService();
@@ -42,6 +44,7 @@ class BaseFormControlBuilder {
         type: this.type,
         className: this.className,
         initialValue: this.initialValue,
+        deferredValidation: this.deferredValidation,
       },
       global: {
         provide: {
@@ -195,5 +198,43 @@ describe('Unit: BaseFormControl', () => {
 
     await wrapper.vm.changeValue(''); // нужно чтобы показалось сообщение об ошибке
     expect(wrapper.html()).toContain(`validRes = Обязательное поле`);
+  });
+
+  test('component receives deferred validation prop', () => {
+    const { wrapper } = new BaseFormControlBuilder()
+      .setName('name')
+      .setDeferredValidation(true)
+      .build();
+
+    expect((wrapper as any).props('deferredValidation')).toBeTruthy();
+  });
+
+  test('component with a deferred validation prop skips validation once', async () => {
+    const name = 'email';
+    const rule = 'email';
+    const emailIncorrectValue = 'wrong email type';
+    const emailIncorrectValue2 = 'wrong@email';
+    const emailCorrectValue = 'test@test.test';
+
+    const { wrapper, formService } = new BaseFormControlBuilder()
+      .setName(name)
+      .setInitialValue('')
+      .setRules(rule)
+      .setDeferredValidation(true)
+      .build();
+
+    const inputElement = wrapper.findComponent(BaseInput);
+
+    await inputElement.setValue(emailIncorrectValue);
+    expect(formService.getIsFormValid()).toBeTruthy();
+
+    await inputElement.find('input').trigger('blur');
+    expect(formService.getIsFormValid()).toBeFalsy();
+
+    await inputElement.setValue(emailIncorrectValue2);
+    expect(formService.getIsFormValid()).toBeFalsy();
+
+    await inputElement.setValue(emailCorrectValue);
+    expect(formService.getIsFormValid()).toBeTruthy();
   });
 });

@@ -52,10 +52,12 @@ export default class FormServiceControl {
   /**
    * Изменение значения в поле
    */
-  change(newValue: string) {
+  change(newValue: string, skipValidation = false) {
     this.formService.changeField(this.fieldName, newValue);
-    this.validateField();
-    this.showError();
+    if (!skipValidation) {
+      this.validateField();
+      this.showError();
+    }
   }
 
   /**

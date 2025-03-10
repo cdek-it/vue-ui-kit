@@ -22,6 +22,17 @@ describe('FormService:', () => {
     service.validateField('name', 'digits');
     expect(service.errors).toEqual({ name: 'digits' });
   });
+  test('Изменяет значение поля без/с валидации(ей) на примере email', () => {
+    const formService = new FormService();
+    formService.registerField('name', '');
+    const fieldService = formService.getFieldService('email', 'email');
+
+    fieldService.change('не корректный email', true);
+    expect(fieldService.errorMessage).toBeTruthy();
+
+    fieldService.change('не корректный email');
+    expect(fieldService.errorMessage).toEqual('Введите корректный email');
+  });
   test('Вызывает callback, когда триггерится submit', () => {
     const mockCallback = vi.fn();
     const service = new FormService();
