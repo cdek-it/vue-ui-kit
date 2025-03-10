@@ -186,6 +186,90 @@ const toggleEmail = () => {
   },
 };
 
+const DeferredValidationTemplate = (args) => ({
+  components: { BaseForm, BaseFormControl },
+  setup() {
+    const input = ref(null);
+    const changeResult = ref({});
+    const change = (result) => {
+      changeResult.value = result;
+    };
+
+    const changeToCorrectValue = () => {
+      input.value.changeValue('user@cdek.ru');
+    };
+
+    const changeToIncorrectValue = () => {
+      input.value.changeValue('user@cdek');
+    };
+
+    return {
+      args,
+      input,
+      changeResult,
+      change,
+      changeToCorrectValue,
+      changeToIncorrectValue,
+    };
+  },
+  template: `
+    <div>
+      <BaseForm>
+        <BaseFormControl
+          ref="input"
+          v-bind="args"
+          @change="change"
+        />
+        <br>
+        <p>Current validator: <code>'{{ args.rules }}'</code></p>
+        <br>
+        <hr>
+        <br>
+        <p><code>change</code> event:</p>
+        <br>
+        <p><code>{{ changeResult }}</code></p>
+      </BaseForm>
+      <br>
+      <hr>
+      <br>
+      <button @click="changeToCorrectValue">
+        Изменить значение на корректное
+      </button>
+      <br><br>
+      <hr>
+      <br>
+      <button @click="changeToIncorrectValue">
+        Изменить значение на не корректное
+      </button>
+      <br><br>
+      <hr>
+    </div>
+  `,
+});
+export const ChangeWithDeferredValidation = DeferredValidationTemplate.bind({});
+ChangeWithDeferredValidation.args = {
+  label: 'Email',
+  name: 'email',
+  rules: 'email',
+  deferredValidation: true,
+};
+ChangeWithDeferredValidation.parameters = {
+  docs: {
+    source: {
+      code: `
+        <CdekForm>
+          <CdekFormControl
+            name="email"
+            label="Email"
+            rules="email"
+            deferred-validation
+          />
+        </CdekForm>
+      `,
+    },
+  },
+};
+
 export const Email = Template.bind({});
 Email.args = {
   label: 'Email',
