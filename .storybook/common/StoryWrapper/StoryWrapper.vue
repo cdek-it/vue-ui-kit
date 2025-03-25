@@ -8,8 +8,6 @@ const emit = defineEmits<{
 const toggleTheme = () => {
   emit('toggled')
 };
-
-
 </script>
 
 <template>
