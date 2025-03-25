@@ -12,6 +12,52 @@ export default {
       content: {
         background: '{surface.ground}',
       },
+      focusRingColor: '{primary.200}',
+      formField: {
+        background: '{form.inputText.input.bg}',
+        disabledBackground: '{button.disabled.disabled.button.bg}',
+        placeholderColor: '{form.inputText.input.placeholder.text.color}',
+        borderColor: '{form.inputText.input.borderColor}',
+        hoverBorderColor: '{primary.color}',
+        invalid: {
+          placeholderColor: '{form.inputText.input.placeholder.text.color}',
+          borderColor: '{danger.400}',
+        },
+        color: '{form.inputText.input.text.color}',
+        focusRing: {
+          color: '{primary.200}',
+          width: '0.25rem',
+          style: 'solid',
+        },
+        icon: {
+          color: '{form.inputText.input.placeholder.text.color}',
+        },
+        floatLabel: {
+          color: '{general.text.secondary.color}',
+        },
+        focus: {
+          border: {
+            color: '{surface.border}',
+          },
+        },
+      },
+      list: {
+        gap: '0.25rem',
+        option: {
+          focus: {
+            background: '{surface.100}',
+            color: '{listBox.input.listItem.textColor}',
+          },
+          selected: {
+            background: '{primary.700}',
+            color: '{surface.ground}',
+            focus: {
+              color: '{surface.ground}',
+              background: '{primary.700}',
+            },
+          },
+        },
+      },
       overlay: {
         select: {
           background: '{surface.ground}',
@@ -28,27 +74,27 @@ export default {
       },
       focusRingColor: '{primary.200}',
       formField: {
-        background: '{surface.ground}',
-        disabledBackground: '{black.10}',
+        background: '{form.inputText.input.bg}',
+        disabledBackground: '{button.disabled.disabled.button.bg}',
         disabledColor: '{black.80}',
-        placeholderColor: '{black.60}',
-        borderColor: '{surface.border}',
+        placeholderColor: '{form.inputText.input.placeholder.text.color}',
+        borderColor: '{form.inputText.input.borderColor}',
         hoverBorderColor: '{primary.color}',
         invalid: {
-          placeholderColor: '{black.60}',
+          placeholderColor: '{form.inputText.input.placeholder.text.color}',
           borderColor: '{danger.400}',
         },
-        color: '{black.80}',
+        color: '{form.inputText.input.text.color}',
         focusRing: {
           color: '{primary.200}',
           width: '0.25rem',
           style: 'solid',
         },
         icon: {
-          color: '{black.80}',
+          color: '{form.inputText.input.placeholder.text.color}',
         },
         floatLabel: {
-          color: '{black.60}',
+          color: '{general.text.secondary.color}',
         },
         focus: {
           border: {
@@ -61,7 +107,7 @@ export default {
         option: {
           focus: {
             background: '{surface.100}',
-            color: '{black.80}',
+            color: '{listBox.input.listItem.textColor}',
           },
           selected: {
             background: '{primary.700}',

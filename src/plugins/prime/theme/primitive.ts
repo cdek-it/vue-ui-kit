@@ -236,6 +236,84 @@ export const primaryColor = {
   },
 };
 
+const form = {
+  light: {
+    inputText: {
+      input: {
+        bg: '{surface.ground}',
+        textColor: '{general.text.color}',
+        iconColor: '{general.text.color}',
+        borderColor: '{surface.border}',
+        placeholder: {
+          textColor: '{general.text.secondary.color}',
+        },
+      },
+    },
+    menu: {
+      item: {
+        menu: {
+          item: {
+            textColor: '{general.text.color}',
+          },
+        },
+      },
+    },
+    listBox: {
+      input: {
+        listItem: {
+          textColor: '{menu.item.menu.item.textColor}',
+        },
+      },
+    },
+  },
+  dark: {
+    inputText: {
+      input: {
+        bg: '{surface.ground}',
+        textColor: '{general.text.color}',
+        iconColor: '{general.text.color}',
+        borderColor: '{surface.border}',
+        placeholder: {
+          textColor: '{general.text.secondary.color}',
+        },
+      },
+    },
+    menu: {
+      item: {
+        menu: {
+          item: {
+            textColor: '{general.text.secondary.color}',
+          },
+        },
+      },
+    },
+    listBox: {
+      input: {
+        listItem: {
+          textColor: '{menu.item.menu.item.textColor}',
+        },
+      },
+    },
+  },
+};
+
+const button = {
+  light: {
+    disabled: {
+      disabledButtonBg: '{black.10}',
+      disabledButtonTextColor: '{general.text.secondary.color}',
+      disabledButtonBorderColor: '{surface.border}',
+    },
+  },
+  dark: {
+    disabled: {
+      disabledButtonBg: '{white.20}',
+      disabledButtonTextColor: '{general.text.secondary.color}',
+      disabledButtonBorderColor: '{surface.border}',
+    },
+  },
+};
+
 export const General = {
   light: {
     colorScheme: 'light',
@@ -349,6 +427,8 @@ export const semanticColors = {
       transparent: 'rgba(256, 256, 256, 0.0001)',
     },
     general: General.light,
+    form: form.light,
+    button: button.light,
     danger,
     info,
     warning,
@@ -389,6 +469,8 @@ export const semanticColors = {
       transparent: 'rgba(0, 0, 0, 0.0001)',
     },
     general: General.dark,
+    form: form.dark,
+    button: button.dark,
     danger,
     info,
     warning,

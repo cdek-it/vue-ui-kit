@@ -25,8 +25,6 @@ const mergedConfig = getPrimeVueConfig(storyBookConfig)
 
 app.use(PrimeVue, mergedConfig);
 
-
-
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   options: {
@@ -97,7 +95,7 @@ export const decorators = [
       setup() {
         const params = new URLSearchParams(window.location.search);
         const viewMode = params.get('viewMode');
-        const hasWrapper = (context.kind.toLowerCase().includes('prime') && viewMode === 'story') || false
+        const hasWrapper = (context.kind.toLowerCase().includes('prime') && viewMode === 'story')
 
         const removeBg = (doc) => {
           if (doc) {
