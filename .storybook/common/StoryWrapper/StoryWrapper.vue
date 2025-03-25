@@ -20,12 +20,6 @@ const toggleTheme = () => {
   </div>
 </template>
 
-<style lang="scss">
-.sb-show-main.sb-main-padded {
-  padding: 0;
-}
-</style>
-
 <style lang="scss" scoped>
 .story {
   &__button {
