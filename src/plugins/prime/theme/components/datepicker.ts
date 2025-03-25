@@ -45,7 +45,7 @@ export default {
   
   .p-datepicker-panel .p-button.p-button-icon-only {
     background: ${dt('{surface.transparent}')};
-    color: ${dt('{black.60}')};
+    color: ${dt('{general.actionIconColor}')};
     border-radius: 7px;
     width: 2rem;
     height: 2rem;
@@ -57,7 +57,7 @@ export default {
   
   .p-datepicker-panel .p-button:not(:disabled):not(:active).p-button-icon-only:hover {
     background: ${dt('{surface.hover}')};
-    color: ${dt('{black.60}')};
+    color: ${dt('{general.actionIconColor}')};
     box-shadow: none;
   }
   

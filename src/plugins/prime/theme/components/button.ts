@@ -134,9 +134,9 @@ export default {
     }
 
     .p-button:disabled {
-      background-color: ${dt('black.10')};
+      background-color: ${dt('form.field.disabledBackground')};
       border-color: ${dt('surface.border')};
-      color: ${dt('black.60')};
+      color: ${dt('form.field.placeholderColor')};
     }
 
     .p-button-icon-only {

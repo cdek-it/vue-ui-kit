@@ -79,6 +79,31 @@
   background: white;
 }
 
+#prime-темная-тема--page {
+  font-weight: bold;
+}
+
+#prime-темная-тема--page svg {
+  display: none;
+}
+
+#prime-темная-тема--page::before {
+  display: inline-block;
+  content: '';
+  width: 7px;
+  height: 7px;
+  margin-right: 7px;
+  margin-left: 3px;
+  background: #1ea7fd;
+  border-radius: 50%;
+  align-self: center;
+  flex-shrink: 0;
+}
+
+#prime-темная-тема--page[data-selected='true']::before {
+  background: white;
+}
+
 /* New лейбл на компонентах */
 #prime-button {
   font-weight: bold;
@@ -113,3 +138,4 @@
   flex-shrink: 0;
   margin-top: 3px;
 }
+
