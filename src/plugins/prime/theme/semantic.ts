@@ -1,7 +1,6 @@
-import { primaryColor, General, semanticColors } from './primitive';
+import { primaryColor, semanticColors } from './primitive';
 
 export default {
-  general: General,
   primary: primaryColor,
   formField: {
     borderRadius: '7px',
