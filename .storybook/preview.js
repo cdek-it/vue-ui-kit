@@ -2,28 +2,28 @@ import { app } from '@storybook/vue3';
 import { registerToastification } from '@/plugins/toastification';
 import PrimeVue from 'primevue/config';
 import { getPrimeVueConfig } from '@/plugins/prime';
-
+import Tooltip from 'primevue/tooltip';
 
 import '../src/tailwind.css';
 import './themes/base.css';
 import './themes/violet.css';
-import StoryWrapper from "./common/StoryWrapper/StoryWrapper.vue";
-import {onMounted} from "vue";
-
+import StoryWrapper from './common/StoryWrapper/StoryWrapper.vue';
+import { onMounted } from 'vue';
 
 registerToastification(app);
 
 const storyBookConfig = {
   theme: {
     options: {
-      darkModeSelector: '.theme-prime-dark'
-    }
-  }
-}
+      darkModeSelector: '.theme-prime-dark',
+    },
+  },
+};
 
-const mergedConfig = getPrimeVueConfig(storyBookConfig)
+const mergedConfig = getPrimeVueConfig(storyBookConfig);
 
 app.use(PrimeVue, mergedConfig);
+app.directive('tooltip', Tooltip);
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -65,8 +65,8 @@ export const parameters = {
       },
       {
         name: 'dark',
-        value: '#1C1B22'
-      }
+        value: '#1C1B22',
+      },
     ],
   },
   themes: {
@@ -89,21 +89,21 @@ export const argTypes = {
 // Пересмотреть после поднятия версии сторибука, сейчас какой-то костыль
 export const decorators = [
   (story, context) => {
-
     return {
       components: { story, StoryWrapper },
       setup() {
         const params = new URLSearchParams(window.location.search);
         const viewMode = params.get('viewMode');
-        const hasWrapper = (context.kind.toLowerCase().includes('prime') && viewMode === 'story')
+        const hasWrapper =
+          context.kind.toLowerCase().includes('prime') && viewMode === 'story';
 
         const removeBg = (doc) => {
           if (doc) {
-            doc.style.removeProperty("background");
+            doc.style.removeProperty('background');
           }
 
-          document.body.style.removeProperty("background");
-        }
+          document.body.style.removeProperty('background');
+        };
 
         // Пересмотреть после поднятия версии сторибука, сейчас какой-то костыль
         const onToggleHandler = (disable = false) => {
@@ -115,11 +115,12 @@ export const decorators = [
             return;
           }
 
-          const added = document.documentElement.classList.toggle('theme-prime-dark');
+          const added =
+            document.documentElement.classList.toggle('theme-prime-dark');
 
           if (added) {
-            const bgColor = '#1C1B22'
-            document.body.style.setProperty("background", bgColor, "important");
+            const bgColor = '#1C1B22';
+            document.body.style.setProperty('background', bgColor, 'important');
             if (doc) {
               doc.style.background = bgColor;
             }
@@ -127,19 +128,19 @@ export const decorators = [
             return;
           }
 
-          removeBg(doc)
-        }
+          removeBg(doc);
+        };
 
-        onMounted(() => onToggleHandler(true))
+        onMounted(() => onToggleHandler(true));
 
         return {
           hasWrapper,
-          onToggleHandler
-        }
+          onToggleHandler,
+        };
       },
-      template: '<story-wrapper v-if="hasWrapper" @toggled="onToggleHandler"><story/></story-wrapper>' +
-          '<story v-else />',
-    }
+      template:
+        '<story-wrapper v-if="hasWrapper" @toggled="onToggleHandler"><story/></story-wrapper>' +
+        '<story v-else />',
+    };
   },
 ];
-
