@@ -6,13 +6,25 @@ export default {
     light: {
       root: {
         background: '{black.10}',
-        color: '{black.80}',
+        color: '{general.text.color}',
       },
       icon: {
-        color: '{black.80}',
+        color: '{general.text.color}',
       },
       removeIcon: {
-        color: '{black.80}',
+        color: '{general.text.color}',
+      },
+    },
+    dark: {
+      root: {
+        background: '{white.20}',
+        color: '{general.text.color}',
+      },
+      icon: {
+        color: '{general.text.color}',
+      },
+      removeIcon: {
+        color: '{general.text.color}',
       },
     },
   },
