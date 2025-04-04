@@ -17,7 +17,6 @@ import slider from './slider';
 import textarea from './textarea';
 import togglebutton from './togglebutton';
 import toggleswitch from './toggleswitch';
-
 export default {
   autocomplete,
   badge,
