@@ -50,6 +50,12 @@ export default {
       box-shadow: none;
     }
     
+    .p-togglebutton:disabled {
+       background: ${dt('form.field.disabled.background')};
+       opacity: 1;
+       border: none
+    }
+    
     .p-selectbutton .p-togglebutton:not(:disabled):hover {
       color: ${dt('textColor')};
     }
