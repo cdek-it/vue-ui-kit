@@ -25,6 +25,7 @@ interface BaseAutocompleteBuilder {
   setMinLength: (minLength: number) => BaseAutocompleteBuilder;
   setAttrs: (attrs?: any) => BaseAutocompleteBuilder;
   setEnabledAccentQuery: (v: boolean) => BaseAutocompleteBuilder;
+  setShowAllOnFocus: (v: boolean) => BaseAutocompleteBuilder;
 }
 
 class BaseAutocompleteBuilder {
@@ -52,6 +53,9 @@ class BaseAutocompleteBuilder {
   @builderProp
   enabledAccentQuery?: boolean;
 
+  @builderProp
+  showAllOnFocus?: boolean;
+
   shallowBuild() {
     const wrapper = shallowMount(BaseAutocomplete as any, {
       props: {
@@ -64,6 +68,7 @@ class BaseAutocompleteBuilder {
         fetchItems: this.fetchItems,
         minLength: this.minLength,
         enabledAccentQuery: this.enabledAccentQuery,
+        showAllOnFocus: this.showAllOnFocus,
       },
       attrs: this.attrs,
       global: {
@@ -101,6 +106,7 @@ class BaseAutocompleteBuilder {
         fetchItems: this.fetchItems,
         minLength: this.minLength,
         enabledAccentQuery: this.enabledAccentQuery,
+        showAllOnFocus: this.showAllOnFocus,
       },
       attrs: this.attrs,
       global: {
@@ -611,6 +617,62 @@ describe('Unit: BaseAutocomplete', () => {
     const activeThirdCheck = dropDown.find('.prefix-dropdown-item_active');
 
     expect(activeThirdCheck.text()).toBe('Тест');
+  });
+
+  test('Если задан showAllOnFocus, то при фокусе выводим все опции ', async () => {
+    const items = [
+      { title: 'Тест', value: 1 },
+      { title: 'Тест2', value: 2 },
+      { title: 'Тест3', value: 3 },
+    ];
+
+    const wrapper = new BaseAutocompleteBuilder()
+      .setItems(items)
+      .setShowAllOnFocus(true)
+      .build();
+
+    const input = wrapper.getComponent(BaseInput) as unknown as VueWrapper;
+
+    const domInput = input.find('.prefix-input__input');
+
+    await domInput.trigger('focus');
+
+    await sleep(400); // Ждем из-за debounce
+
+    await flushPromises();
+
+    // Пытаемся найти опции
+    const options = wrapper.findAll('.prefix-dropdown-item');
+
+    expect(options.length).toBe(items.length);
+  });
+
+  test('Если не задан showAllOnFocus, то при фокусе не выводим все опции ', async () => {
+    const items = [
+      { title: 'Тест', value: 1 },
+      { title: 'Тест2', value: 2 },
+      { title: 'Тест3', value: 3 },
+    ];
+
+    const wrapper = new BaseAutocompleteBuilder()
+      .setItems(items)
+      .setShowAllOnFocus(false)
+      .build();
+
+    const input = wrapper.getComponent(BaseInput) as unknown as VueWrapper;
+
+    const domInput = input.find('.prefix-input__input');
+
+    await domInput.trigger('focus');
+
+    await sleep(400); // Ждем из-за debounce
+
+    await flushPromises();
+
+    // Пытаемся найти опции
+    const options = wrapper.findAll('.prefix-dropdown-item');
+
+    expect(options.length).toBe(0);
   });
 
   // TODO: Дописать тесты на логику с клавиатурой
