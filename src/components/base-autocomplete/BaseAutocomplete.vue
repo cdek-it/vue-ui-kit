@@ -88,6 +88,10 @@ const props = withDefaults(
      * Включить подсветку введенного значения у найденных элементов
      */
     enabledAccentQuery?: boolean;
+    /**
+     * Показать все опции при фокусе
+     */
+    showAllOnFocus?: boolean;
   }>(),
   {
     minLength: 3,
@@ -319,6 +323,14 @@ onBeforeUnmount(() => {
 
 const slots = useSlots();
 const hasNotFoundMessage = computed(() => Boolean(slots['not-found']));
+
+watch(hasFocus, () => {
+  if (!props.showAllOnFocus) {
+    return;
+  }
+
+  checkInputValue('');
+});
 </script>
 
 <template>
