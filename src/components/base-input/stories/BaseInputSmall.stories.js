@@ -117,7 +117,7 @@ SmallTip.parameters = {
 
 export const SmallLeftIcon = Template.bind({});
 SmallLeftIcon.args = {
-  story: 'LeftIcon',
+  story: 'SmallLeftIcon',
   placeholder: 'Поиск',
   small: true,
 };
@@ -136,10 +136,34 @@ SmallLeftIcon.parameters = {
   },
 };
 
+export const SmallLeftIconRTL = Template.bind({});
+SmallLeftIconRTL.args = {
+  story: 'SmallLeftIconRTL',
+  placeholder: 'بحث',
+  small: true,
+  rtl: true,
+};
+SmallLeftIconRTL.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="direction: rtl">
+  <CdekInput v-model="inputVal" small placeholder="بحث">
+    <template #icons-left>
+      <!-- иконка должна быть размером 24x24 -->
+      <button><SearchIcon /></button>
+    </template>
+  </CdekInput>
+</div>
+`,
+    },
+  },
+};
+
 export const SmallRightIcon = Template.bind({});
 SmallRightIcon.args = {
   label: 'Кол-во',
-  story: 'RightIcon',
+  story: 'SmallRightIcon',
   small: true,
 };
 SmallRightIcon.parameters = {
@@ -157,11 +181,34 @@ SmallRightIcon.parameters = {
   },
 };
 
+export const SmallRightIconRTL = Template.bind({});
+SmallRightIconRTL.args = {
+  label: 'عدد',
+  story: 'SmallRightIconRTL',
+  rtl: true,
+};
+SmallRightIconRTL.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="direction: rtl">
+  <CdekInput v-model="inputVal" label="عدد" small clearable>
+    <template #icons-right>
+      <!-- иконка должна быть размером 24x24 -->
+      <button><EyeIcon /></button>
+    </template>
+  </CdekInput>
+</div>
+`,
+    },
+  },
+};
+
 export const SmallRightIconClearable = Template.bind({});
 SmallRightIconClearable.args = {
   label: 'Кол-во',
   clearable: true,
-  story: 'RightIcon',
+  story: 'SmallRightIconClearable',
   small: true,
 };
 SmallRightIconClearable.parameters = {
@@ -174,6 +221,31 @@ SmallRightIconClearable.parameters = {
     <button><EyeIcon /></button>
   </template>
 </CdekInput>
+`,
+    },
+  },
+};
+
+export const SmallRightIconClearableRTL = Template.bind({});
+SmallRightIconClearableRTL.args = {
+  label: 'عدد',
+  story: 'SmallRightIconClearableRTL',
+  clearable: true,
+  small: true,
+  rtl: true,
+};
+SmallRightIconClearableRTL.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="direction: rtl">
+  <CdekInput v-model="inputVal" label="عدد" small clearable>
+    <template #icons-right>
+      <!-- иконка должна быть размером 24x24 -->
+      <button><EyeIcon /></button>
+    </template>
+  </CdekInput>
+</div>
 `,
     },
   },

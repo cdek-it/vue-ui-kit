@@ -275,7 +275,7 @@ defineExpose({ getControl });
     }
 
     &_right-icon {
-      padding-right: 8px;
+      padding-inline-end: 8px;
     }
 
     &_small {
@@ -399,7 +399,7 @@ defineExpose({ getControl });
   &__tip {
     @include caption-1;
 
-    padding-left: $padding-left;
+    padding-inline-start: $padding-left;
     margin-top: 4px;
     color: $Bottom_66;
 
@@ -425,7 +425,7 @@ defineExpose({ getControl });
     svg,
     :slotted(svg) {
       vertical-align: text-bottom;
-      margin-right: 4px;
+      margin-inline-end: 4px;
     }
   }
 
@@ -468,7 +468,7 @@ defineExpose({ getControl });
     }
 
     &_clearable {
-      margin-left: 4px;
+      margin-inline-start: 4px;
     }
   }
 
@@ -476,7 +476,7 @@ defineExpose({ getControl });
     line-height: 0;
 
     :slotted(svg) {
-      margin-right: 8px;
+      margin-inline-end: 8px;
     }
   }
 }
