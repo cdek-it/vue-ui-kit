@@ -74,7 +74,7 @@ describe('Unit: BaseButton', () => {
       'Если theme = $theme, то должен быть класс $themeClass',
       ({ theme, themeClass }: any) => {
         const wrapper = new BaseButtonBuilder().setTheme(theme).build();
-        expect(wrapper.classes(themeClass)).toBeTruthy();
+        expect(wrapper.classes(`${themeClass}-theme`)).toBeTruthy();
       }
     );
   });

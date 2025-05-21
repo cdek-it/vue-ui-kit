@@ -58,7 +58,7 @@ const spinnerColor = computed(() => {
     :class="[
       $style['prefix-button'],
       {
-        [$style[theme]]: true,
+        [$style[`${theme}-theme`]]: true,
         [$style['small']]: small,
         [$style['inline']]: width === 'content',
         [$style['icon']]: icon,
@@ -116,28 +116,28 @@ const spinnerColor = computed(() => {
     height: 36px;
   }
 
-  &.primary {
+  &.primary-theme {
     background: $Primary;
     color: $Peak;
   }
 
-  &.secondary {
+  &.secondary-theme {
     background: $Secondary_Button;
     color: $Primary;
   }
 
-  &.outline {
+  &.outline-theme {
     background: transparent;
     color: $Primary;
     border: 1px solid $Primary;
   }
 
-  &.ghost {
+  &.ghost-theme {
     background: transparent;
     color: $Primary;
   }
 
-  &.toaster {
+  &.toaster-theme {
     background: $Peak_20;
     color: $Peak;
 
