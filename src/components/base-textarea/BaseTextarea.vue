@@ -344,7 +344,7 @@ defineExpose({ getControl });
   &__tip {
     @include caption-1;
 
-    padding-left: $padding;
+    padding-inline-start: $padding;
     margin-top: 4px;
     color: $Bottom_66;
 
@@ -370,7 +370,7 @@ defineExpose({ getControl });
     svg,
     :slotted(svg) {
       vertical-align: text-bottom;
-      margin-right: 4px;
+      margin-inline-end: 4px;
     }
   }
 }

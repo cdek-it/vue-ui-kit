@@ -65,8 +65,15 @@ const Template = (args) => ({
 очень много текста.`;
     }
 
+    const cn = [
+      {
+        'input-rtl': args.rtl,
+      },
+    ];
+
     return {
       args,
+      cn,
       inputVal,
       validRes,
       resizeMode,
@@ -77,25 +84,27 @@ const Template = (args) => ({
     };
   },
   template: `
-    <BaseTextarea v-bind="args" v-model="inputVal" :resize="resizeMode" :valid-res="validRes">
-      <template #tip="{ alert, info, ban, circle }" v-if="args.tip">
-        <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
-        <span :class="args.tipColor">{{ args.tip }}</span>
+    <div :class="cn">
+      <BaseTextarea v-bind="args" v-model="inputVal" :resize="resizeMode" :valid-res="validRes">
+        <template #tip="{ alert, info, ban, circle }" v-if="args.tip">
+          <component v-if="['TipIcon', 'TipIconRTL'].includes(args.story)" :is="${args.tipIcon}" />
+          <span :class="args.tipColor">{{ args.tip }}</span>
+        </template>
+      </BaseTextarea>
+
+      <p v-if="args.story === 'ShowErrorIfExists'">
+        <button @click="toggleValidRes">Переключить ошибку</button>
+      </p>
+      <p :style="{ margin: '0' }" v-else>Контент после textarea</p>
+      <br />
+      <p v-if="args.story === 'SwitchResizeMode'" :style="{ margin: '16px 0 0' }">resizeMode: {{ resizeMode }}</p>
+
+      <template v-if="args.story === 'AutoResizeChangeValue'">
+        <BaseButton @click="addText" width="content" small style="margin-right: 8px;">Добавить текст</BaseButton>
+        <BaseButton @click="removeText" width="content" small>Удалить текст</BaseButton>
       </template>
-    </BaseTextarea>
-
-    <p v-if="args.story === 'ShowErrorIfExists'">
-      <button @click="toggleValidRes">Переключить ошибку</button>
-    </p>
-    <p :style="{ margin: '0' }" v-else>Контент после textarea</p>
-    <br />
-    <p v-if="args.story === 'SwitchResizeMode'" :style="{ margin: '16px 0 0' }">resizeMode: {{ resizeMode }}</p>
-
-    <template v-if="args.story === 'AutoResizeChangeValue'">
-      <BaseButton @click="addText" width="content" small style="margin-right: 8px;">Добавить текст</BaseButton>
-      <BaseButton @click="removeText" width="content" small>Удалить текст</BaseButton>
-    </template>
-    <BaseButton v-if="args.story === 'SwitchResizeMode'" @click="switchResizeMode" width="content" small>Переключить режим resize</BaseButton>
+      <BaseButton v-if="args.story === 'SwitchResizeMode'" @click="switchResizeMode" width="content" small>Переключить режим resize</BaseButton>
+    </div>
   `,
 });
 
@@ -482,6 +491,37 @@ TipIcon.parameters = {
     <span>Пояснение или помощь</span>
   </template>
 </CdekTextarea>
+`,
+    },
+  },
+};
+
+export const TipIconRTL = Template.bind({});
+TipIconRTL.argTypes = {
+  tipIcon: {
+    options: ['info', 'alert', 'ban', 'circle'],
+    type: 'select',
+  },
+};
+TipIconRTL.args = {
+  label: 'تعليق',
+  tip: 'توضيح أو مساعدة',
+  tipIcon: 'info',
+  story: 'TipIconRTL',
+  rtl: true,
+};
+TipIconRTL.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="direction: rtl">
+  <CdekTextarea v-model="inputVal" label="تعليق">
+    <template #tip="{ info }">
+      <component :is="info" />
+      <span>توضيح أو مساعدة</span>
+    </template>
+  </CdekTextarea>
+</div>
 `,
     },
   },
