@@ -209,6 +209,10 @@ defineExpose({ getControl });
 
   width: 100%;
 
+  :deep(svg) {
+    display: inline;
+  }
+
   &__control {
     $this: &;
 

@@ -214,6 +214,10 @@ defineExpose({ getControl });
 
   width: 100%;
 
+  :deep(svg) {
+    display: inline;
+  }
+
   &_small {
     padding-top: 20px;
   }
