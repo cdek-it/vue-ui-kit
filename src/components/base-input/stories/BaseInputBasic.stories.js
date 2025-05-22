@@ -23,6 +23,22 @@ Primary.parameters = {
   },
 };
 
+export const PrimaryRTL = Template.bind({});
+PrimaryRTL.args = {
+  rtl: true,
+};
+PrimaryRTL.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="direction: rtl">
+  <CdekInput v-model="inputVal" />
+</div>
+`,
+    },
+  },
+};
+
 export const Placeholder = Template.bind({});
 Placeholder.args = {
   placeholder: 'Поиск',
@@ -30,7 +46,7 @@ Placeholder.args = {
 Placeholder.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" placeholder="Поиск"/>',
+      code: '<CdekInput v-model="inputVal" placeholder="Поиск" />',
     },
   },
 };
@@ -42,7 +58,7 @@ Label.args = {
 Label.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .."/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." />',
     },
   },
 };
@@ -55,7 +71,25 @@ LabelFilled.args = {
 LabelFilled.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .."/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." />',
+    },
+  },
+};
+
+export const LabelFilledRTL = Template.bind({});
+LabelFilledRTL.args = {
+  label: 'السلسلة ورقم الجواز"',
+  story: 'LabelFilledRTL',
+  rtl: true,
+};
+LabelFilledRTL.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="direction: rtl">
+  <CdekInput v-model="inputVal" label="السلسلة ورقم الجواز" />
+</div>
+`,
     },
   },
 };
@@ -81,7 +115,7 @@ Error.args = {
 Error.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка"/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка" />',
     },
   },
 };
@@ -187,7 +221,7 @@ ErrorFilled.args = {
 ErrorFilled.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка"/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." valid-res="Ошибка" />',
     },
   },
 };
@@ -200,7 +234,7 @@ Disabled.args = {
 Disabled.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." disabled/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." disabled />',
     },
   },
 };
@@ -214,7 +248,7 @@ DisabledWithError.args = {
 DisabledWithError.parameters = {
   docs: {
     source: {
-      code: '<CdekInput v-model="inputVal" label="Серия и .." disabled valid-res="Ошибка"/>',
+      code: '<CdekInput v-model="inputVal" label="Серия и .." disabled valid-res="Ошибка" />',
     },
   },
 };

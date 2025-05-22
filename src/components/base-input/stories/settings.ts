@@ -9,17 +9,36 @@ export const Template = (args: any) => ({
   components: { BaseInput, SearchIcon, EyeIcon },
   setup() {
     const inputVal = ref(
-      ['LabelFilled', 'RightIconDisabled', 'ClearableFocus'].includes(
-        args.story
-      )
+      [
+        'LabelFilled',
+        'LabelFilledRTL',
+        'RightIconDisabled',
+        'RightIconReadonly',
+        'ClearableFocus',
+      ].includes(args.story)
         ? '345'
         : ''
     );
 
-    const cn =
-      args.small && !['RightIcon', 'LeftIcon'].includes(args.story)
+    const cn = [
+      args.small &&
+      ![
+        'RightIcon',
+        'SmallRightIcon',
+        'SmallRightIconRTL',
+        'SmallRightIconClearable',
+        'SmallRightIconClearableRTL',
+        'LeftIcon',
+        'LeftIconRTL',
+        'SmallLeftIcon',
+        'SmallLeftIconRTL',
+      ].includes(args.story)
         ? 'input-small-story'
-        : 'input-story';
+        : 'input-story',
+      {
+        'input-rtl': args.rtl,
+      },
+    ];
 
     const validRes = ref(args.validRes);
 
@@ -33,15 +52,31 @@ export const Template = (args: any) => ({
     <div :class="cn">
       <BaseInput v-bind="args" v-model="inputVal" :valid-res="validRes">
         <template #tip="{ alert, info, ban, circle }" v-if="args.tip">
-          <component v-if="args.story === 'TipIcon'" :is="${args.tipIcon}" />
+          <component v-if="['TipIcon', 'TipIconRTL'].includes(args.story)" :is="${args.tipIcon}" />
           <span :class="args.tipColor">{{ args.tip }}</span>
         </template>
 
-        <template #icons-left v-if="args.story === 'LeftIcon'">
+        <template #icons-left v-if="['LeftIcon', 'LeftIconRTL', 'SmallLeftIcon', 'SmallLeftIconRTL'].includes(args.story)">
           <SearchIcon />
         </template>
-
-        <template #icons-right v-if="['RightIconDisabled', 'RightIcon'].includes(args.story)">
+        <template
+          #icons-right
+          v-if="
+            [
+              'RightIcon',
+              'RightIconError',
+              'RightIconDisabled',
+              'RightIconReadonly',
+              'RightIconClearable',
+              'RightIconRTL',
+              'RightIconClearableRTL',
+              'SmallRightIcon',
+              'SmallRightIconRTL',
+              'SmallRightIconClearable',
+              'SmallRightIconClearableRTL'
+            ].includes(args.story)
+          "
+        >
           <button @click="test"><EyeIcon /></button>
         </template>
       </BaseInput>

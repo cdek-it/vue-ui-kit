@@ -85,6 +85,37 @@ TipIcon.parameters = {
   },
 };
 
+export const TipIconRTL = Template.bind({});
+TipIconRTL.argTypes = {
+  tipIcon: {
+    options: ['info', 'alert', 'ban', 'circle'],
+    type: 'select',
+  },
+};
+TipIconRTL.args = {
+  label: 'السلسلة ورقم الجواز',
+  tip: 'توضيح أو مساعدة',
+  tipIcon: 'info',
+  story: 'TipIconRTL',
+  rtl: true,
+};
+TipIconRTL.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="direction: rtl">
+  <CdekInput v-model="inputVal" label="السلسلة ورقم الجواز">
+    <template #tip="{ info }">
+      <component :is="info" />
+      <span>توضيح أو مساعدة</span>
+    </template>
+  </CdekInput>
+</div>
+`,
+    },
+  },
+};
+
 export const RightIcon = Template.bind({});
 RightIcon.args = {
   label: 'Серия и номер паспорта',
@@ -105,11 +136,34 @@ RightIcon.parameters = {
   },
 };
 
+export const RightIconRTL = Template.bind({});
+RightIconRTL.args = {
+  label: 'السلسلة ورقم الجواز',
+  story: 'RightIconRTL',
+  rtl: true,
+};
+RightIconRTL.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="direction: rtl">
+  <CdekInput v-model="inputVal" label="السلسلة ورقم الجواز">
+    <template #icons-right>
+      <!-- иконка должна быть размером 24x24 -->
+      <button><EyeIcon /></button>
+    </template>
+  </CdekInput>
+</div>
+`,
+    },
+  },
+};
+
 export const RightIconError = Template.bind({});
 RightIconError.args = {
   label: 'Серия и номер паспорта',
   validRes: 'Ошибка',
-  story: 'RightIcon',
+  story: 'RightIconError',
 };
 RightIconError.parameters = {
   docs: {
@@ -150,7 +204,7 @@ RightIconDisabled.parameters = {
 export const RightIconReadonly = Template.bind({});
 RightIconReadonly.args = {
   label: 'Серия и номер паспорта',
-  story: 'RightIconDisabled',
+  story: 'RightIconReadonly',
   readonly: true,
 };
 RightIconReadonly.parameters = {
@@ -172,7 +226,7 @@ export const RightIconClearable = Template.bind({});
 RightIconClearable.args = {
   label: 'Серия и номер паспорта',
   clearable: true,
-  story: 'RightIcon',
+  story: 'RightIconClearable',
 };
 RightIconClearable.parameters = {
   docs: {
@@ -189,11 +243,35 @@ RightIconClearable.parameters = {
   },
 };
 
+export const RightIconClearableRTL = Template.bind({});
+RightIconClearableRTL.args = {
+  label: 'السلسلة ورقم الجواز',
+  clearable: true,
+  story: 'RightIconClearableRTL',
+  rtl: true,
+};
+RightIconClearableRTL.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="direction: rtl">
+  <CdekInput v-model="inputVal" label="السلسلة ورقم الجواز" clearable>
+    <template #icons-right>
+      <!-- иконка должна быть размером 24x24 -->
+      <button><EyeIcon /></button>
+    </template>
+  </CdekInput>
+</div>
+`,
+    },
+  },
+};
+
 export const SmallRightIconClearable = Template.bind({});
 SmallRightIconClearable.args = {
   label: 'Серия и номер паспорта',
   clearable: true,
-  story: 'RightIcon',
+  story: 'SmallRightIconClearable',
   class: 'input-small-with-icon',
 };
 SmallRightIconClearable.parameters = {
@@ -226,6 +304,29 @@ LeftIcon.parameters = {
     <button><SearchIcon /></button>
   </template>
 </CdekInput>
+`,
+    },
+  },
+};
+
+export const LeftIconRTL = Template.bind({});
+LeftIconRTL.args = {
+  story: 'LeftIconRTL',
+  placeholder: 'بحث',
+  rtl: true,
+};
+LeftIconRTL.parameters = {
+  docs: {
+    source: {
+      code: `
+<div style="direction: rtl"
+  <CdekInput v-model="inputVal" placeholder="بحث">
+    <template #icons-left>
+      <!-- иконка должна быть размером 24x24 -->
+      <button><SearchIcon /></button>
+    </template>
+  </CdekInput>
+</div>
 `,
     },
   },
