@@ -43,7 +43,7 @@ export default {
       background: ${dt('black.10')};
     }
 
-    .p-selectbutton .p-togglebutton.p-togglebutton-checked:disabled::before {
+    .p-selectbutton .p-togglebutton.p-togglebutton-checked:disabled .p-togglebutton-content {
       background: ${dt('surface.transparent')};
       box-shadow: none;
     }
