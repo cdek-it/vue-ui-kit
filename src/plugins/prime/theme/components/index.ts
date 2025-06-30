@@ -17,6 +17,9 @@ import slider from './slider';
 import textarea from './textarea';
 import togglebutton from './togglebutton';
 import toggleswitch from './toggleswitch';
+import menubar from './menubar';
+import panelmenu from './panelmenu';
+
 export default {
   autocomplete,
   badge,
@@ -37,4 +40,6 @@ export default {
   textarea,
   togglebutton,
   toggleswitch,
+  menubar,
+  panelmenu,
 };

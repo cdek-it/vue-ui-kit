@@ -1,4 +1,4 @@
-import tokens from '@/plugins/prime/theme/tokens';
+import tokens from './tokens';
 
 /**
  * Примитивные цвета

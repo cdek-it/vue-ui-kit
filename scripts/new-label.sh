@@ -11,6 +11,7 @@ story_ids=(
 component_ids=(
   "prime-button"
   "prime-form"
+  "prime-menu"
 )
 
 # Output file
