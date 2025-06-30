@@ -1,0 +1,17 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './PanelMenu.template';
+
+<Meta title="Prime/Menu/PanelMenu" />
+
+# MenuBar
+
+[PrimeVue MenuBar](https://primevue.org/menubar), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12875&m=dev>)
+
+### Basic
+
+```html dark
+<Menubar :model="items" />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>

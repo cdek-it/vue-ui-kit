@@ -1,3 +1,5 @@
+import tokens from './tokens';
+
 /**
  * Примитивные цвета
  */
@@ -446,6 +448,7 @@ export const semanticColors = {
     content: {
       background: '{surface.ground}',
     },
+    ...tokens.light,
   },
   dark: {
     surface: {
@@ -485,5 +488,6 @@ export const semanticColors = {
     text: {
       color: '{white.100}',
     },
+    ...tokens.dark,
   },
 };

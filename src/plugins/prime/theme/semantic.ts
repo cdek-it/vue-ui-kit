@@ -7,8 +7,8 @@ export default {
     lgFontSize: '1.25rem',
   },
   colorScheme: {
-    dark: {
-      ...semanticColors.dark,
+    light: {
+      ...semanticColors.light,
       content: {
         background: '{surface.ground}',
       },
@@ -16,6 +16,7 @@ export default {
       formField: {
         background: '{form.inputText.input.bg}',
         disabledBackground: '{button.disabled.disabled.button.bg}',
+        disabledColor: '{black.80}',
         placeholderColor: '{form.inputText.input.placeholder.text.color}',
         borderColor: '{form.inputText.input.borderColor}',
         hoverBorderColor: '{primary.color}',
@@ -66,9 +67,31 @@ export default {
           background: '{surface.ground}',
         },
       },
+      navigation: {
+        item: {
+          focus: {
+            background: '{menuItemMenuitemHoverBg}',
+            color: `{menuItemMenuitemHoverTextColor}`,
+          },
+          icon: {
+            focus: {
+              color: '{menuItemMenuitemActiveIconColor}',
+            },
+          },
+        },
+        submenu: {
+          icon: {
+            size: '1.25rem',
+            color: '{menuItemMenuitemHoverIconColor}',
+            focus: {
+              color: '{menuItemMenuitemHoverIconColor}',
+            },
+          },
+        },
+      },
     },
-    light: {
-      ...semanticColors.light,
+    dark: {
+      ...semanticColors.dark,
       content: {
         background: '{surface.ground}',
       },
@@ -76,7 +99,6 @@ export default {
       formField: {
         background: '{form.inputText.input.bg}',
         disabledBackground: '{button.disabled.disabled.button.bg}',
-        disabledColor: '{black.80}',
         placeholderColor: '{form.inputText.input.placeholder.text.color}',
         borderColor: '{form.inputText.input.borderColor}',
         hoverBorderColor: '{primary.color}',
