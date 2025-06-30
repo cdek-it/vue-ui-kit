@@ -1,4 +1,4 @@
-const css = ({ dt }: { dt: (token: string) => string }) => `
+const css = () => `
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
   }
