@@ -12,8 +12,10 @@ export default {
     padding: 0,
   },
   colorScheme: {
-    today: {
-      background: '{surface.transparent}',
+    light: {
+      today: {
+        background: '{surface.transparent}',
+      },
     },
   },
   css: ({ dt }: { dt: (key: string) => string }) => `

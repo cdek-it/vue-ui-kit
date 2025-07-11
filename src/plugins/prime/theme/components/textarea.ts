@@ -1,6 +1,5 @@
 export default {
-  paddingY: '{form.field.padding.x}',
-
+  root: { paddingY: '{form.field.padding.x}' },
   css: ({ dt }: { dt: (token: string) => string }) => `
     .p-textarea {
       line-height: normal;

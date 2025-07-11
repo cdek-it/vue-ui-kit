@@ -1,7 +1,9 @@
 export default {
-  paddingX: '0.5rem',
-  paddingY: '0',
-  borderRadius: '3.5px',
+  root: {
+    paddingX: '0.5rem',
+    paddingY: '0',
+    borderRadius: '3.5px',
+  },
   colorScheme: {
     light: {
       root: {

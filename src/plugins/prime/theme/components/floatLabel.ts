@@ -1,9 +1,10 @@
 export default {
-  fontWeight: 400,
-  focusColor: '{primary.700}',
-
-  active: {
-    fontSize: '0.875rem',
+  root: {
+    fontWeight: 400,
+    focusColor: '{primary.700}',
+    active: {
+      fontSize: '0.875rem',
+    },
   },
 
   in: {
