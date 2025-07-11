@@ -19,6 +19,7 @@ import togglebutton from './togglebutton';
 import toggleswitch from './toggleswitch';
 import menubar from './menubar';
 import panelmenu from './panelmenu';
+import tooltip from './tooltip';
 
 export default {
   autocomplete,
@@ -40,6 +41,7 @@ export default {
   textarea,
   togglebutton,
   toggleswitch,
+  tooltip,
   menubar,
   panelmenu,
 };

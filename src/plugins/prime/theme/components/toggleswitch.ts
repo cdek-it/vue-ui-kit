@@ -1,11 +1,13 @@
 export default {
   colorScheme: {
-    handle: {
-      background: '{form.field.background}',
-      hoverBackground: '{form.field.background}',
-      checkedBackground: '{form.field.background}',
-      checkedHoverBackground: '{form.field.background}',
-      disabledBackground: '{form.field.background}',
+    light: {
+      handle: {
+        background: '{form.field.background}',
+        hoverBackground: '{form.field.background}',
+        checkedBackground: '{form.field.background}',
+        checkedHoverBackground: '{form.field.background}',
+        disabledBackground: '{form.field.background}',
+      },
     },
   },
 

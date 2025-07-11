@@ -1,7 +1,9 @@
 export default {
-  width: '1.5rem',
-  height: '1.5rem',
-  borderRadius: '3.5px',
+  root: {
+    width: '1.5rem',
+    height: '1.5rem',
+    borderRadius: '3.5px',
+  },
   css: ({ dt }: { dt: (key: string) => string }) => `
     .p-checkbox[data-p-indeterminate] {
       --p-checkbox-background: ${dt('primary.color')};

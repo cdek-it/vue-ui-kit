@@ -1,29 +1,29 @@
 export default {
-  borderRadius: '100px',
+  root: {
+    borderRadius: '100px',
+    disabledBackground: '{black.10}',
+    disabledColor: '{black.60}',
+  },
 
   colorScheme: {
-    background: '{black.10}',
-    color: '{black.60}',
-    checked: {
-      background: '{primary.700}',
-      color: '{surface.ground}',
-      borderColor: '{primary.700}',
-    },
-    hover: {
-      background: '{primary.alpha}',
-      color: '{primary.700}',
-    },
-    disabled: {
-      background: '{black.10}',
-      color: '{black.60}',
-    },
-    content: {
-      checkedBackground: '{surface.transparent}',
-    },
-    icon: {
-      color: '{black.60}',
-      hoverColor: '{primary.700}',
-      checkedColor: '{surface.ground}',
+    light: {
+      root: {
+        background: '{black.10}',
+        color: '{black.60}',
+        checkedBackground: '{primary.700}',
+        checkedColor: '{surface.ground}',
+        checkedBorderColor: '{primary.700}',
+        hoverBackground: '{primary.alpha}',
+        hoverColor: '{primary.700}',
+      },
+      content: {
+        checkedBackground: '{surface.transparent}',
+      },
+      icon: {
+        color: '{black.60}',
+        hoverColor: '{primary.700}',
+        checkedColor: '{surface.ground}',
+      },
     },
   },
 

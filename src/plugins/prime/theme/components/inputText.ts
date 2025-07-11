@@ -1,5 +1,7 @@
 export default {
-  paddingY: '0.679rem',
+  root: {
+    paddingY: '0.679rem',
+  },
 
   css: ({ dt }: { dt: (token: string) => string }) => `
     .p-inputtext {

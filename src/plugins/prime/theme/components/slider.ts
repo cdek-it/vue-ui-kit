@@ -1,17 +1,20 @@
 export default {
-  colorScheme: {
-    range: {
-      background: '{primary.700}',
-    },
-    handle: {
-      background: '{primary.700}',
+  handle: {
+    background: '{primary.700}',
+    hoverBackground: '{primary.800}',
+    content: {
       hoverBackground: '{primary.800}',
-      content: {
-        background: '{primary.700}',
-        hoverBackground: '{primary.800}',
-      },
-      focusRing: {
-        width: 0,
+    },
+    focusRing: {
+      width: 0,
+    },
+  },
+  colorScheme: {
+    light: {
+      handle: {
+        content: {
+          background: '{primary.700}',
+        },
       },
     },
   },

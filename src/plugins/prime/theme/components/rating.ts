@@ -1,4 +1,10 @@
 export default {
+  icon: {
+    size: '1.25rem',
+    color: '{black.60}',
+    hoverColor: '{orange.500}',
+    activeColor: '{orange.400}',
+  },
   colorScheme: {
     icon: {
       size: '1.25rem',

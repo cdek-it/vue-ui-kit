@@ -1,16 +1,17 @@
 export default {
-  padding: {
-    x: '1rem',
-    y: '0.607rem',
+  root: {
+    paddingX: '1rem',
+    paddingY: '0.607rem',
+    sm: {
+      paddingX: '0.75rem',
+      paddingY: '0.429rem',
+    },
+    lg: {
+      paddingX: '1.5rem',
+      paddingY: '0.929rem',
+    },
   },
-  smPadding: {
-    x: '0.75rem',
-    y: '0.429rem',
-  },
-  lgPadding: {
-    x: '1.5rem',
-    y: '0.929rem',
-  },
+
   colorScheme: {
     primary: {
       focusRingColor: '{primary.focus.ring.color}',

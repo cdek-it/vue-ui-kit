@@ -1,3 +1,7 @@
 export default {
-  outlineWidth: '0',
+  root: {
+    outline: {
+      width: '0',
+    },
+  },
 };

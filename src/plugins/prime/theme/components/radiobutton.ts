@@ -1,7 +1,7 @@
 export default {
-  width: '23px',
-  height: '23px',
-  colorScheme: {
+  root: {
+    width: '23px',
+    height: '23px',
     disabledBackground: '{black.10}',
     checkedDisabledBorderColor: '{surface.200}',
   },
