@@ -1,6 +1,7 @@
 export default {
   root: {
-    gap: '1rem',
+    padding: 0,
+    gap: '{menuItemMenuitemSpacing}',
   },
 
   css: ({ dt }: { dt: (token: string) => string }) => `
