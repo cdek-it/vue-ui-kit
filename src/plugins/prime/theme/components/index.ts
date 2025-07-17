@@ -20,6 +20,7 @@ import toggleswitch from './toggleswitch';
 import menubar from './menubar';
 import panelmenu from './panelmenu';
 import tooltip from './tooltip';
+import carousel from './carousel';
 
 export default {
   autocomplete,
@@ -44,4 +45,5 @@ export default {
   tooltip,
   menubar,
   panelmenu,
+  carousel,
 };

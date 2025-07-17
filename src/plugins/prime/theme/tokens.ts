@@ -984,13 +984,13 @@ export default {
     },
     Media: {
       Carousel: {
-        carouselIndicatorsPadding: 14,
+        carouselIndicatorsPadding: '1rem',
         carouselIndicatorBg: '#dbdada',
         carouselIndicatorHoverBg: '#5e5e5d',
         carouselIndicatorActiveBg: '#5e5e5d',
-        carouselIndicatorBorderRadius: 14,
-        carouselIndicatorWidth: 7,
-        carouselIndicatorHeight: 7,
+        carouselIndicatorBorderRadius: '1rem',
+        carouselIndicatorWidth: '0.5rem',
+        carouselIndicatorHeight: '0.5rem',
       },
       Galleria: {
         Close: {
@@ -2035,13 +2035,13 @@ export default {
     },
     Media: {
       Carousel: {
-        carouselIndicatorsPadding: 14,
+        carouselIndicatorsPadding: '1rem',
         carouselIndicatorBg: '#444444',
         carouselIndicatorHoverBg: '#919190',
         carouselIndicatorActiveBg: '#919190',
-        carouselIndicatorBorderRadius: 14,
-        carouselIndicatorWidth: 7,
-        carouselIndicatorHeight: 7,
+        carouselIndicatorBorderRadius: '1rem',
+        carouselIndicatorWidth: '0.5rem',
+        carouselIndicatorHeight: '0.5rem',
       },
       Galleria: {
         Close: {
