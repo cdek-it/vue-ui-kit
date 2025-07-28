@@ -23,6 +23,11 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: install
+
+      - name: Run build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
