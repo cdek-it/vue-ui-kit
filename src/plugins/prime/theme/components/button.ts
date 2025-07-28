@@ -8,7 +8,8 @@ export default {
     },
     lg: {
       paddingX: '1.5rem',
-      paddingY: '0.929rem',
+      paddingY: '0.7415rem',
+      fontSize: '1.25rem',
     },
   },
 
@@ -179,6 +180,10 @@ export default {
       --p-button-outlined-warn-border-color: ${dt('warning.400')};
       --p-button-outlined-danger-border-color: ${dt('danger.400')};
       --p-button-outlined-help-border-color: ${dt('help.400')};
+    }
+    
+    .p-button-lg .p-button-label {
+      font-weight: 700;
     }
   `,
 };
