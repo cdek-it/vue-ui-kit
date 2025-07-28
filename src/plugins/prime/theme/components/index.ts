@@ -21,6 +21,8 @@ import menubar from './menubar';
 import panelmenu from './panelmenu';
 import tooltip from './tooltip';
 import carousel from './carousel';
+import progressspinner from './progressspinner';
+import tag from './tag';
 
 export default {
   autocomplete,
@@ -35,6 +37,7 @@ export default {
   inputtext,
   listbox,
   overlaybadge,
+  progressspinner,
   radiobutton,
   rating,
   selectbutton,
@@ -46,4 +49,5 @@ export default {
   menubar,
   panelmenu,
   carousel,
+  tag,
 };

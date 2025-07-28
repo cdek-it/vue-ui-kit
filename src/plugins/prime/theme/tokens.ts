@@ -32,7 +32,7 @@ export default {
       textSecondaryColor: 'rgba(0, 0, 0, 0.6000)',
       highlightBg: '#188700',
       highlightTextColor: '#ffffff',
-      borderRadius: 7,
+      borderRadius: '0.5rem',
       inlineSpacing: 7,
       disabledOpacity: '0.6',
       dividerColor: '#dbdada',
@@ -279,9 +279,9 @@ export default {
     },
     Misc: {
       Tag: {
-        tagHeight: 21,
-        tagFontSize: 12.25,
-        tagPadding: 7,
+        tagHeight: '1.1487rem',
+        tagFontSize: '0.7656rem',
+        tagPadding: '1px 0.5rem',
       },
       Skeleton: {
         skeletonBg: '#dbdada',
@@ -1083,7 +1083,7 @@ export default {
       textSecondaryColor: 'rgba(255, 255, 255, 0.8000)',
       highlightBg: '#76d961',
       highlightTextColor: 'rgba(0, 0, 0, 0.8000)',
-      borderRadius: 7,
+      borderRadius: '0.5rem',
       inlineSpacing: 7,
       disabledOpacity: '0.6',
       dividerColor: '#444444',
@@ -1330,9 +1330,9 @@ export default {
     },
     Misc: {
       Tag: {
-        tagHeight: 21,
-        tagFontSize: 12.25,
-        tagPadding: 7,
+        tagHeight: '1.1487rem',
+        tagFontSize: '0.7656rem',
+        tagPadding: '1px 0.5rem',
       },
       Skeleton: {
         skeletonBg: '#444444',
