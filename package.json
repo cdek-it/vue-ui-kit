@@ -1,5 +1,5 @@
 {
-  "name": "@cdek-ui-kit/vue",
+  "name": "@cdek-it/vue-ui-kit",
   "version": "2.0.0-alpha.inner189",
   "type": "module",
   "files": [
@@ -21,7 +21,7 @@
     }
   },
   "publishConfig": {
-    "@cdek-ui-kit:registry": "https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/"
+    "access": "public"
   },
   "scripts": {
     "build": "run-p type-check build-only",
