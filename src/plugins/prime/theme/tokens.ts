@@ -33,7 +33,7 @@ export default {
       highlightBg: '#188700',
       highlightTextColor: '#ffffff',
       borderRadius: '0.5rem',
-      inlineSpacing: 7,
+      inlineSpacing: '0.5rem',
       disabledOpacity: '0.6',
       dividerColor: '#dbdada',
       divider: '1px solid $dividerColor',
@@ -279,9 +279,9 @@ export default {
     },
     Misc: {
       Tag: {
-        tagHeight: '1.1487rem',
-        tagFontSize: '0.7656rem',
-        tagPadding: '1px 0.5rem',
+        tagHeight: '1.5rem',
+        tagFontSize: '0.875rem',
+        tagPadding: '0.07rem 0.5rem',
       },
       Skeleton: {
         skeletonBg: '#dbdada',
@@ -298,13 +298,13 @@ export default {
       },
       Chip: {
         chipHeight: 24.5,
-        chipBg: 'rgba(0, 0, 0, 0.1000)',
-        chipTextColor: 'rgba(0, 0, 0, 0.8000)',
-        chipBorderRadius: 3.5,
+        chipBg: '{black.10}',
+        chipTextColor: '{black.80}',
+        chipBorderRadius: '0.25rem',
         chipBorderColor: 'rgba(255, 255, 255, 0.0001)',
         chipBorder: '1px solid $chipBorderColor',
         chipPaddingTopBottom: 0,
-        chipPaddingLeftRight: 7,
+        chipPaddingLeftRight: '0.5rem',
         chipPadding: '$chipPaddingTopBottom $chipPaddingLeftRight',
       },
       Avatar: {
@@ -1332,7 +1332,7 @@ export default {
       Tag: {
         tagHeight: '1.1487rem',
         tagFontSize: '0.7656rem',
-        tagPadding: '1px 0.5rem',
+        tagPadding: '0.06rem 0.44rem',
       },
       Skeleton: {
         skeletonBg: '#444444',
@@ -1348,14 +1348,14 @@ export default {
         badgeDotSize: 7,
       },
       Chip: {
-        chipHeight: 24.5,
-        chipBg: 'rgba(255, 255, 255, 0.2000)',
-        chipTextColor: '#ffffff',
-        chipBorderRadius: 3.5,
+        chipHeight: '5.3125rem',
+        chipBg: '{black.10}',
+        chipTextColor: '{black.80}',
+        chipBorderRadius: '0.25rem',
         chipBorderColor: 'rgba(0, 0, 0, 0.0001)',
         chipBorder: '1px solid $chipBorderColor',
         chipPaddingTopBottom: 0,
-        chipPaddingLeftRight: 7,
+        chipPaddingLeftRight: '0.5px',
         chipPadding: '$chipPaddingTopBottom $chipPaddingLeftRight',
       },
       Avatar: {

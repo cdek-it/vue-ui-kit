@@ -1,10 +1,8 @@
-import { ref } from 'vue';
 import Tag from 'primevue/tag';
 
 export const Template = (args) => ({
   components: { Tag },
   setup() {
-    const value = ref(args.defaultValue || 50);
     const severity = [
       'primary',
       'secondary',
@@ -13,7 +11,7 @@ export const Template = (args) => ({
       'warn',
       'danger',
     ];
-    return { args, value, severity };
+    return { args, severity };
   },
   template: `
     <div class="grid grid-cols-2 gap-4">

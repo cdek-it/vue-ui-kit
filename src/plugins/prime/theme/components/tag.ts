@@ -4,7 +4,7 @@ export const root: TagTokenSections.Root = {
   fontSize: '{misc.tag.tagFontSize}',
   fontWeight: '700',
   padding: '{misc.tag.tagPadding}',
-  gap: '0.22rem',
+  gap: '0.25rem',
   borderRadius: '{general.borderRadius}',
   roundedBorderRadius: '100px',
 };
