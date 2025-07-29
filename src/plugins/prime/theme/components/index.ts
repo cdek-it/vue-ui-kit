@@ -23,6 +23,8 @@ import tooltip from './tooltip';
 import carousel from './carousel';
 import progressspinner from './progressspinner';
 import tag from './tag';
+import divider from './divider';
+import skeleton from './skeleton';
 
 export default {
   autocomplete,
@@ -31,6 +33,7 @@ export default {
   checkbox,
   chip,
   datepicker,
+  divider,
   floatlabel,
   iconfield,
   inputotp,
@@ -41,6 +44,7 @@ export default {
   radiobutton,
   rating,
   selectbutton,
+  skeleton,
   slider,
   textarea,
   togglebutton,

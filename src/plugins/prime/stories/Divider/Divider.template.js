@@ -17,7 +17,7 @@ export const ContentTemplate = (args) => ({
   },
   template: `
     <Divider v-bind="args">
-      <div class="text-sm font-semibold text-gray-500">
+      <div>
         <i class="ti ti-info-circle mr-2"></i>
         Content
       </div>
