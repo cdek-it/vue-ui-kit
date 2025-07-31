@@ -54,13 +54,3 @@ npm publish
 ## CI publishing
 
 Есть мануальный пайплайн на ветке `main`, версия также возьмется с `package.json`.
-
-## Установка в сторонний репозиторий
-
-```bash
-npm config set -- '//gitlab.cdek.ru/api/v4/projects/2094/packages/npm/:_authToken' "M__vw1BxxuyPg5htzoZw"
-npm config set @cdek-ui-kit:registry https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/
-yarn add @cdek-ui-kit/vue
-```
-
-Auth token вставленный в примере подходит только для чтения
