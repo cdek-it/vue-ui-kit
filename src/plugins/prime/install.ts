@@ -1,13 +1,12 @@
 import merge from 'lodash/merge';
-import { definePreset } from '@primevue/themes';
+import { definePreset } from '@primeuix/themes';
 import Aura from '@primevue/themes/aura';
 import theme from './theme';
 
-import type { PrimeVueConfiguration } from 'primevue/config';
-
+// @ts-ignore
 const CdekPreset = definePreset(Aura, theme);
 
-const primeConfig: PrimeVueConfiguration = {
+const primeConfig = {
   theme: {
     preset: CdekPreset,
     options: {
@@ -17,8 +16,6 @@ const primeConfig: PrimeVueConfiguration = {
   },
 };
 
-export type { PrimeVueConfiguration };
-
-export const getPrimeVueConfig = (config?: PrimeVueConfiguration) => {
+export const getPrimeVueConfig = (config: Record<string, unknown>) => {
   return merge(primeConfig, config || {});
 };

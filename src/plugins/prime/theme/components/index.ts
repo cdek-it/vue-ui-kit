@@ -21,6 +21,10 @@ import menubar from './menubar';
 import panelmenu from './panelmenu';
 import tooltip from './tooltip';
 import carousel from './carousel';
+import progressspinner from './progressspinner';
+import tag from './tag';
+import divider from './divider';
+import skeleton from './skeleton';
 
 export default {
   autocomplete,
@@ -29,15 +33,18 @@ export default {
   checkbox,
   chip,
   datepicker,
+  divider,
   floatlabel,
   iconfield,
   inputotp,
   inputtext,
   listbox,
   overlaybadge,
+  progressspinner,
   radiobutton,
   rating,
   selectbutton,
+  skeleton,
   slider,
   textarea,
   togglebutton,
@@ -46,4 +53,5 @@ export default {
   menubar,
   panelmenu,
   carousel,
+  tag,
 };
