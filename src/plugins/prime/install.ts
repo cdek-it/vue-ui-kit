@@ -16,6 +16,6 @@ const primeConfig = {
   },
 };
 
-export const getPrimeVueConfig = (config: Record<string, unknown>) => {
+export const getPrimeVueConfig = (config?: Record<string, unknown>) => {
   return merge(primeConfig, config || {});
 };
