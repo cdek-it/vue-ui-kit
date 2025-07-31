@@ -6,7 +6,7 @@
 
 ## Prerequisits
 
-- Node v16.x
+- Node v20.x
 - yarn v1.22.x
 
 ## Recommended IDE Setup
@@ -24,7 +24,7 @@ VsCode settings for auto-formatting:
 
 ## Versions
 
-- [vue@3.3.4](https://blog.vuejs.org/posts/vue-3-3)
+- [vue@3.5.18](https://blog.vuejs.org/posts/vue-3-5)
 
 ## Commands
 
@@ -37,15 +37,6 @@ VsCode settings for auto-formatting:
 - Генерация типовых файлов для компонента `yarn gen:component ComponentName`
 
 ## Manual Publishing
-
-Добавить файл в корне `.npmrc` с контентом
-
-```
-@cdek-ui-kit:registry=https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/
-
-# Add token for uploading to the registry.
-'//gitlab.cdek.ru/api/v4/projects/2094/packages/npm/:_authToken'="<deploy_token>"
-```
 
 Deploy token можно создать в настройках репозитория (доступно только для мейнтейнеров).
 
