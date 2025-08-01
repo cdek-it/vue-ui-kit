@@ -17,6 +17,7 @@ import slider from './slider';
 import textarea from './textarea';
 import togglebutton from './togglebutton';
 import toggleswitch from './toggleswitch';
+import megamenu from './megamenu';
 import menubar from './menubar';
 import panelmenu from './panelmenu';
 import tooltip from './tooltip';
@@ -50,6 +51,7 @@ export default {
   togglebutton,
   toggleswitch,
   tooltip,
+  megamenu,
   menubar,
   panelmenu,
   carousel,
