@@ -1,4 +1,4 @@
-import Chip from 'primevue/Chip';
+import Chip from 'primevue/chip';
 
 export const Template = (args) => ({
   components: { Chip },
