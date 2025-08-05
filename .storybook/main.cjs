@@ -24,7 +24,7 @@ module.exports = {
   },
   async viteFinal(config, { configType }) {
     if (configType === 'PRODUCTION') {
-      config.base = '/cdek-vue-ui-kit/';
+      config.base = '/vue-ui-kit/';
     }
 
     return mergeConfig(config, {
