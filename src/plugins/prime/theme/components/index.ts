@@ -25,6 +25,7 @@ import progressspinner from './progressspinner';
 import tag from './tag';
 import divider from './divider';
 import skeleton from './skeleton';
+import accordion from './accordion';
 
 export default {
   autocomplete,
@@ -54,4 +55,5 @@ export default {
   panelmenu,
   carousel,
   tag,
+  accordion,
 };
