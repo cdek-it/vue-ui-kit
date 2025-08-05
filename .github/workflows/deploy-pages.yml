@@ -27,11 +27,15 @@ jobs:
         with:
           node-version: '20'
 
+      - run: corepack enable
+
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+
       - name: Configure GitHub Pages ⚙️
         uses: actions/configure-pages@v5
-
-      - name: Install dependencies 📦
-        run: npm ci
 
       - name: Build Storybook 🛠️
         run: |
