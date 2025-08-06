@@ -28,6 +28,7 @@ import tag from './tag';
 import tieredmenu from './tieredmenu';
 import divider from './divider';
 import skeleton from './skeleton';
+import accordion from './accordion';
 
 export default {
   autocomplete,
@@ -60,4 +61,5 @@ export default {
   carousel,
   tag,
   tieredmenu,
+  accordion,
 };
