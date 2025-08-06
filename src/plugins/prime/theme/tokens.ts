@@ -739,7 +739,7 @@ export default {
         stepsItemBorderColor: '#dbdada',
         stepsItemBorder: '1px solid $stepsItemBorderColor',
         stepsItemTextColor: 'rgba(0, 0, 0, 0.8000)',
-        stepsItemFontWeight: '500',
+        stepsItemFontWeight: '400',
         stepsItemNumberWidth: 21,
         stepsItemNumberHeight: 21,
         stepsItemNumberFontSize: 14,
