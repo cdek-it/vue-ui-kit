@@ -771,8 +771,8 @@ export default {
         accordionContentTextColor: 'rgba(0, 0, 0, 0.8000)',
         accordionContentPaddingTop: 0,
         accordionContentPaddingRight: 0,
-        accordionContentPaddingBottom: 14,
-        accordionContentPaddingLeft: 24.5,
+        accordionContentPaddingBottom: '1rem',
+        accordionContentPaddingLeft: '1.75rem',
         accordionContentPadding:
           '$accordionContentPaddingTop $accordionContentPaddingRight $accordionContentPaddingBottom $accordionContentPaddingLeft',
       },
