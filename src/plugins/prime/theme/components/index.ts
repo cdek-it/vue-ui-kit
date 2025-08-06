@@ -13,6 +13,8 @@ import overlaybadge from './overlayBadge';
 import radiobutton from './radiobutton';
 import rating from './rating';
 import selectbutton from './selectbutton';
+import stepper from './stepper';
+import steppanel from './steppanel';
 import slider from './slider';
 import textarea from './textarea';
 import togglebutton from './togglebutton';
@@ -47,6 +49,8 @@ export default {
   radiobutton,
   rating,
   selectbutton,
+  stepper,
+  steppanel,
   skeleton,
   slider,
   textarea,

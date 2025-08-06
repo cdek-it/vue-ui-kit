@@ -85,9 +85,7 @@ export const MenuGroupTemplate = (args) => ({
   },
   template: `
     <div style="padding: 2rem; background: #f8f9fa; min-height: 300px;">
-      <h3 style="margin-bottom: 1rem; color: #333;">Menu with Divider Groups</h3>
-      
-      <div style="display: flex; gap: 2rem; align-items: flex-start;">
+Меню с разделительными группами<div style="display: flex; gap: 2rem; align-items: flex-start;">
         <!-- Menu with grouped items -->
         <div style="background: white; border-radius: 8px; box-shadow: 0 3.5px 3.5px 0 rgba(0, 0, 0, 0.2); padding: 0.5rem;">
           <Menu :model="menuItems" />
