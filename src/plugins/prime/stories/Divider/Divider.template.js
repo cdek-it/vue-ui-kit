@@ -39,26 +39,26 @@ export const MenuGroupTemplate = (args) => ({
             icon: 'pi pi-plus',
             command: () => {
               console.log('New clicked');
-            }
+            },
           },
           {
             label: 'Open',
             icon: 'pi pi-folder-open',
             command: () => {
               console.log('Open clicked');
-            }
+            },
           },
           {
             label: 'Save',
             icon: 'pi pi-save',
             command: () => {
               console.log('Save clicked');
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
-        separator: true
+        separator: true,
       },
       {
         label: 'Export Options',
@@ -68,17 +68,17 @@ export const MenuGroupTemplate = (args) => ({
             icon: 'pi pi-file-pdf',
             command: () => {
               console.log('Export PDF clicked');
-            }
+            },
           },
           {
             label: 'Export as Excel',
             icon: 'pi pi-file-excel',
             command: () => {
               console.log('Export Excel clicked');
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     ]);
 
     return { args, menuItems };
