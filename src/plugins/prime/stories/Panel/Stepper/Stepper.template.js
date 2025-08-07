@@ -183,13 +183,13 @@ export const Template = (args) => ({
         <StepList>
           <Step v-slot="{ activateCallback, value, a11yAttrs }" asChild :value="1">
             <div class="flex flex-row flex-auto gap-2" v-bind="a11yAttrs.root">
-              <button class="bg-transparent border-0 inline-flex flex-col gap-2" style="display: flex; flex-direction: row;" @click="activateCallback" v-bind="a11yAttrs.header">
+              <button class="bg-transparent border-0 inline-flex flex-col items-center gap-2" style="display: flex; flex-direction: row;" @click="activateCallback" v-bind="a11yAttrs.header">
                 <span :class="['rounded-full border-2 inline-flex items-center justify-center', { 'bg-primary text-primary-contrast border-primary': value <= activeStep, 'border-surface-200 dark:border-surface-700': value > activeStep }]" style="width: 32px !important; height: 32px !important; min-width: 32px; min-height: 32px; flex-shrink: 0" data-pc-section="number">
                   <i class="ti ti-home" style="font-size: 16px"></i>
                 </span>
-                <div class="flex flex-col justify-content-center gap-1">
-                  <span class="text-sm font-medium" data-pc-section="title">Личные данные</span>
-                  <span class="text-xs text-surface-500" data-pc-section="title">Основная информация</span>
+                <div class="flex flex-col items-start gap-1">
+                  <span class="text-sm font-medium text-left" data-pc-section="title">Личные данные</span>
+                  <span class="text-xs text-surface-500 text-left" data-pc-section="title">Основная информация</span>
                 </div>
               </button>
               <Divider />
@@ -197,13 +197,13 @@ export const Template = (args) => ({
           </Step>
           <Step v-slot="{ activateCallback, value, a11yAttrs }" asChild :value="2">
             <div class="flex flex-row flex-auto gap-2 pl-2" v-bind="a11yAttrs.root">
-              <button class="bg-transparent border-0 inline-flex flex-col gap-2" style="display: flex; flex-direction: row;" @click="activateCallback" v-bind="a11yAttrs.header">
+              <button class="bg-transparent border-0 inline-flex flex-col items-center gap-2" style="display: flex; flex-direction: row;" @click="activateCallback" v-bind="a11yAttrs.header">
                 <span :class="['rounded-full border-2 inline-flex items-center justify-center', { 'bg-primary text-primary-contrast border-primary': value <= activeStep, 'border-surface-200 dark:border-surface-700': value > activeStep }]" style="width: 32px !important; height: 32px !important; min-width: 32px; min-height: 32px; flex-shrink: 0" data-pc-section="number">
                   <i class="ti ti-star" style="font-size: 16px"></i>
                 </span>
-                <div class="flex flex-col gap-1">
-                  <span class="text-sm font-medium" data-pc-section="title">Интересы</span>
-                  <span class="text-xs text-surface-500" data-pc-section="title">Выберите предпочтения</span>
+                <div class="flex flex-col items-start gap-1">
+                  <p class="text-sm font-medium" data-pc-section="title">Интересы</p>
+                  <span class="text-xs text-surface-500 text-left" data-pc-section="title">Выберите предпочтения</span>
                 </div>
               </button>
               <Divider />
@@ -215,9 +215,9 @@ export const Template = (args) => ({
                 <span :class="['rounded-full border-2 inline-flex items-center justify-center', { 'bg-primary text-primary-contrast border-primary': value <= activeStep, 'border-surface-200 dark:border-surface-700': value > activeStep }]" style="width: 32px !important; height: 32px !important; min-width: 32px; min-height: 32px; flex-shrink: 0" data-pc-section="number">
                   <i class="ti ti-check" style="font-size: 16px"></i>
                 </span>
-                <div class="flex flex-col gap-1">
-                  <span class="text-sm font-medium" data-pc-section="title">Завершение</span>
-                  <span class="text-xs text-surface-500" data-pc-section="title">Подтверждение данных</span>
+                <div class="flex flex-col items-start gap-1">
+                  <span class="text-sm font-medium text-left" data-pc-section="title">Завершение</span>
+                  <span class="text-xs text-surface-500 text-left" data-pc-section="title">Подтверждение данных</span>
                 </div>
               </button>
             </div>
@@ -258,7 +258,7 @@ export const Template = (args) => ({
               </div>
             </div>
             <div class="flex pt-6 justify-between">
-              <Button label="Назад" severity="outlined" icon="pi pi-arrow-left" @click="activateCallback(1)" />
+              <Button class="p-button p-component p-button-secondary" label="Назад" severity="outlined" icon="pi pi-arrow-left" @click="activateCallback(1)" />
               <Button label="Далее" icon="pi pi-arrow-right" iconPos="right" @click="activateCallback(3)" />
             </div>
           </StepPanel>
