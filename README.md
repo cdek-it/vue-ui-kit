@@ -2,7 +2,7 @@
 
 Библиотека компонентов на Vue 3 для витрин
 
-Актуальный storybook http://frontdev.pages.cdek.ru/cdek-vue-ui-kit
+Актуальный storybook https://cdek-it.github.io/vue-ui-kit/
 
 ## Prerequisits
 
