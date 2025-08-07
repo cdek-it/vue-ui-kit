@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template, ContentTemplate, MenuGroupTemplate } from './Divider.template';
+import { Template, ContentTemplate } from './Divider.template';
 
 <Meta title="Prime/Divider" />
 
@@ -115,34 +115,3 @@ import { Template, ContentTemplate, MenuGroupTemplate } from './Divider.template
 ```
 
 <Story name="ContentBottom" args={{align:"bottom", layout: "vertical", class: "h-[100px]"}}>{ContentTemplate.bind({})}</Story>
-
-## Menu Group with Dividers
-
-Демонстрация использования Divider в контексте меню с группировкой элементов.
-
-```html dark
-<Menu :model="menuItems" />
-```
-
-где `menuItems` содержит элементы с `separator: true` для создания разделителей между группами.
-
-<Story name="MenuGroup">{MenuGroupTemplate.bind({})}</Story>
-
-### Dotted Menu Group
-
-```html dark
-<Menu :model="menuItems" />
-<Divider type="dotted" />
-```
-
-<Story name="MenuGroupDotted" args={{type: "dotted"}}>{MenuGroupTemplate.bind({})}</Story>
-
-### Dashed Menu Group
-
-```html dark
-<Menu :model="menuItems" />
-<Divider type="dashed" />
-```
-
-<Story name="MenuGroupDashed" args={{type: "dashed"}}>{MenuGroupTemplate.bind({})}</Story>
-
