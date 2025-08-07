@@ -26,6 +26,7 @@ import tag from './tag';
 import divider from './divider';
 import skeleton from './skeleton';
 import accordion from './accordion';
+import dialog from './dialog';
 
 export default {
   autocomplete,
@@ -56,4 +57,5 @@ export default {
   carousel,
   tag,
   accordion,
+  dialog,
 };
