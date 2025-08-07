@@ -4,29 +4,32 @@ import { ref } from 'vue';
 export const Template = (args) => ({
   components: { Menu },
   setup() {
+    const lastAction = ref('');
+
     // Простая структура для Menu компонента
     const items = ref([
       {
         label: 'New',
         icon: 'pi pi-plus',
         command: () => {
-          console.log('New clicked');
+          lastAction.value = 'New clicked';
         },
       },
       {
         label: 'Search',
         icon: 'pi pi-search',
         command: () => {
-          console.log('Search clicked');
+          lastAction.value = 'Search clicked';
         },
       },
     ]);
 
-    return { args, items };
+    return { args, items, lastAction };
   },
   template: `
     <div>
       <Menu :model="items"/>
+      <div class="mt-5" v-if="lastAction">Last action: {{ lastAction }}</div>
     </div>
 `,
 });
@@ -34,7 +37,8 @@ export const Template = (args) => ({
 export const Grouped = (args) => ({
   components: { Menu },
   setup() {
-    // Структура с группами (submenu headers) как в HTML примере
+    const lastAction = ref('');
+
     const items = ref([
       {
         label: 'Documents',
@@ -43,14 +47,14 @@ export const Grouped = (args) => ({
             label: 'New',
             icon: 'pi pi-plus',
             command: () => {
-              console.log('New document');
+              lastAction.value = 'New document clicked';
             },
           },
           {
             label: 'Search',
             icon: 'pi pi-search',
             command: () => {
-              console.log('Search documents');
+              lastAction.value = 'Search documents clicked';
             },
           },
         ],
@@ -62,33 +66,35 @@ export const Grouped = (args) => ({
             label: 'Settings',
             icon: 'pi pi-cog',
             command: () => {
-              console.log('Settings');
+              lastAction.value = 'Settings clicked';
             },
           },
           {
             label: 'Logout',
             icon: 'pi pi-sign-out',
             command: () => {
-              console.log('Logout');
+              lastAction.value = 'Logout clicked';
             },
           },
         ],
       },
     ]);
 
-    return { args, items };
+    return { args, items, lastAction };
   },
   template: `
     <div>
       <Menu :model="items"/>
+      <div class="mt-5" v-if="lastAction">Last action: {{ lastAction }}</div>
     </div>
-`,
+  `,
 });
 
 export const Popup = (args) => ({
   components: { Menu },
   setup() {
-    // Структура для Popup меню с группами и тенью
+    const lastAction = ref('');
+
     const items = ref([
       {
         label: 'File Operations',
@@ -97,21 +103,21 @@ export const Popup = (args) => ({
             label: 'New',
             icon: 'pi pi-plus',
             command: () => {
-              console.log('New clicked');
+              lastAction.value = 'New clicked';
             },
           },
           {
             label: 'Open',
             icon: 'pi pi-folder-open',
             command: () => {
-              console.log('Open clicked');
+              lastAction.value = 'Open clicked';
             },
           },
           {
             label: 'Save',
             icon: 'pi pi-save',
             command: () => {
-              console.log('Save clicked');
+              lastAction.value = 'Save clicked';
             },
           },
         ],
@@ -123,21 +129,21 @@ export const Popup = (args) => ({
             label: 'Export as PDF',
             icon: 'pi pi-file-pdf',
             command: () => {
-              console.log('Export PDF clicked');
+              lastAction.value = 'Export PDF clicked';
             },
           },
           {
             label: 'Export as Excel',
             icon: 'pi pi-file-excel',
             command: () => {
-              console.log('Export Excel clicked');
+              lastAction.value = 'Export Excel clicked';
             },
           },
           {
             label: 'Print',
             icon: 'pi pi-print',
             command: () => {
-              console.log('Print clicked');
+              lastAction.value = 'Print clicked';
             },
           },
         ],
@@ -149,44 +155,46 @@ export const Popup = (args) => ({
             label: 'Settings',
             icon: 'pi pi-cog',
             command: () => {
-              console.log('Settings clicked');
+              lastAction.value = 'Settings clicked';
             },
           },
           {
             label: 'Help',
             icon: 'pi pi-question-circle',
             command: () => {
-              console.log('Help clicked');
+              lastAction.value = 'Help clicked';
             },
           },
         ],
       },
     ]);
 
-    return { args, items };
+    return { args, items, lastAction };
   },
   template: `
+    <style>
+      .popup-story .p-menu.p-component {
+        box-shadow: 0 3.5px 3.5px 0 rgba(0, 0, 0, 0.2) !important;
+        border-radius: 8px !important;
+        border: 1px solid #e5e7eb !important;
+        background: #ffffff !important;
+      }
+    </style>
+
     <div style="padding: 2rem; background: #f8f9fa; min-height: 300px; display: flex; align-items: flex-start;">
-      <style>
-        .popup-story .p-menu.p-component {
-          box-shadow: 0 3.5px 3.5px 0 rgba(0, 0, 0, 0.2) !important;
-          border-radius: 8px !important;
-          border: 1px solid #e5e7eb !important;
-          background: #ffffff !important;
-        }
-      </style>
       <div class="popup-story">
-        <Menu 
-          :model="items" 
-          style="
+        <Menu
+            :model="items"
+            style="
             display: inline-block; 
             box-shadow: 0 3.5px 3.5px 0 rgba(0, 0, 0, 0.2); 
             border-radius: 8px; 
             border: 1px solid #e5e7eb; 
             background: #ffffff;
-          " 
+          "
         />
+        <div class="mt-5" v-if="lastAction" style="margin-top: 1rem;">Last action: {{ lastAction }}</div>
       </div>
     </div>
-`,
+  `,
 });
