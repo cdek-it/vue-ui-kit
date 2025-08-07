@@ -1,11 +1,16 @@
 import { ref } from 'vue';
 import { Dialog } from 'primevue';
 import Button from 'primevue/button';
+import { addons } from '@storybook/addons';
 
 export const Template = (args) => ({
   components: { Dialog, Button },
   setup() {
     const visible = ref(args.modal === false);
+    const channel = addons.getChannel();
+    channel.on('storyChanged', () => {
+      visible.value = false;
+    });
 
     return { args, visible };
   },
