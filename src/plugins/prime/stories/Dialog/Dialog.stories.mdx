@@ -11,7 +11,7 @@ import { Template } from './Dialog.template';
 ### Default
 
 ```html dark
-<Dialog modal />
+<PrimeDialog modal />
 ```
 
 <Story name="Default">{Template.bind({})}</Story>
@@ -19,7 +19,7 @@ import { Template } from './Dialog.template';
 
 ### noModal
 ```html dark
-<Dialog :modal="false" />
+<PrimeDialog :modal="false" />
 ```
 
 <Story name="noModal" args={{modal: false}}>{Template.bind({})}</Story>
