@@ -53,19 +53,13 @@ export const colorScheme: MegaMenuTokenSections.ColorScheme = {
       // Обычное состояние
       color: '{menu.item.menuitemTextColor}',
 
-      // Hover состояние
-      hoverColor: '{menu.item.menuitemHoverTextColor}',
-      hoverBackground: '{menu.item.menuitemHoverBg}',
-
       // Active состояние
       activeColor: '{menu.item.menuitemActiveTextColor}',
       activeBackground: '{menu.item.menuitemActiveBg}',
-      activeHoverBackground: '{menu.item.menuitemActiveHoverBg}',
 
       // Иконки
       icon: {
         color: '{menu.item.menuitemIconColor}',
-        hoverColor: '{menu.item.menuitemHoverIconColor}',
         activeColor: '{menu.item.menuitemActiveIconColor}',
       },
     },
@@ -75,19 +69,13 @@ export const colorScheme: MegaMenuTokenSections.ColorScheme = {
       // Обычное состояние
       color: '{menu.item.menuitemTextColor}',
 
-      // Hover состояние
-      hoverColor: '{menu.item.menuitemHoverTextColor}',
-      hoverBackground: '{menu.item.menuitemHoverBg}',
-
       // Active состояние
       activeColor: '{menu.item.menuitemActiveTextColor}',
       activeBackground: '{menu.item.menuitemActiveBg}',
-      activeHoverBackground: '{menu.item.menuitemActiveHoverBg}',
 
       // Иконки
       icon: {
         color: '{menu.item.menuitemIconColor}',
-        hoverColor: '{menu.item.menuitemHoverIconColor}',
         activeColor: '{menu.item.menuitemActiveIconColor}',
       },
     },
