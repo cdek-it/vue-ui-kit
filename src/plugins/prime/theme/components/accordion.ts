@@ -26,7 +26,7 @@ export const colorScheme: AccordionTokenSections.ColorScheme = {
   },
 };
 
-export const css = ({ dt }: { dt: (token: string) => string }) => `
+export const css = () => `
   .p-accordionheader {
     justify-content: start;
   }
