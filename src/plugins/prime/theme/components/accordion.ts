@@ -26,7 +26,7 @@ export const colorScheme: AccordionTokenSections.ColorScheme = {
   },
 };
 
-export const css = ({ dt }: { dt: (token: string) => string }) => `
+export const css = () => `
   .p-accordionheader {
     justify-content: start;
   }
@@ -39,16 +39,6 @@ export const css = ({ dt }: { dt: (token: string) => string }) => `
   
   .p-accordionpanel.p-accordionpanel-active .p-accordionheader-toggle-icon {
     transform: rotate(180deg);
-  }
-  
-  .p-accordionpanel.p-disabled {
-    opacity: 1;
-    mix-blend-mode: unset;
-  }
-
-  .p-accordionpanel.p-disabled .p-accordionheader,
-  .p-accordionpanel.p-disabled .p-accordionheader-toggle-icon {
-    color: rgb(163, 163, 163);
   }
   
   .p-accordionpanel:last-child {
