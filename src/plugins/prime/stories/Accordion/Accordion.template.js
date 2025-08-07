@@ -95,7 +95,7 @@ export const TemplateWithDisabledPanel = (args) => ({
     };
   },
   template: `
-    <div class="p-6 bg-gray-300 rounded">
+    <div class="p-6 rounded">
       <Accordion>
         <AccordionPanel value="1">
           <AccordionHeader>Заголовок панели</AccordionHeader>

@@ -41,16 +41,6 @@ export const css = ({ dt }: { dt: (token: string) => string }) => `
     transform: rotate(180deg);
   }
   
-  .p-accordionpanel.p-disabled {
-    opacity: 1;
-    mix-blend-mode: unset;
-  }
-
-  .p-accordionpanel.p-disabled .p-accordionheader,
-  .p-accordionpanel.p-disabled .p-accordionheader-toggle-icon {
-    color: rgb(163, 163, 163);
-  }
-  
   .p-accordionpanel:last-child {
     border-bottom: none;
   }
