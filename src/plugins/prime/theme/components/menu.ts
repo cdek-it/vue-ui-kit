@@ -58,12 +58,6 @@ export const colorScheme: MenuTokenSections.ColorScheme = {
         focusColor: '{primary.color}',
       },
     },
-    submenuHeader: {
-      color: '{surface.500}',
-      background: 'transparent',
-      fontWeight: '600',
-      padding: '0.75rem 1rem',
-    },
   },
   dark: {
     item: {
@@ -79,12 +73,6 @@ export const colorScheme: MenuTokenSections.ColorScheme = {
         color: '{surface.400}',
         focusColor: '{primary.color}',
       },
-    },
-    submenuHeader: {
-      color: '{surface.400}',
-      background: 'transparent',
-      fontWeight: '600',
-      padding: '0.75rem 1rem',
     },
   },
 };
