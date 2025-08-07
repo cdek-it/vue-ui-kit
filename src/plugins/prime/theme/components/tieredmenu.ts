@@ -57,7 +57,7 @@ export const colorScheme: TieredMenuTokenSections.ColorScheme = {
       hoverColor: '{menu.item.menuitemHoverTextColor}',
       hoverBackground: '{menu.item.menuitemHoverBg}',
 
-      // Active состояние  
+      // Active состояние
       activeColor: '{menu.item.menuitemActiveTextColor}',
       activeBackground: '{menu.item.menuitemActiveBg}',
       activeHoverBackground: '{menu.item.menuitemActiveHoverBg}',
@@ -66,9 +66,9 @@ export const colorScheme: TieredMenuTokenSections.ColorScheme = {
       icon: {
         color: '{menu.item.menuitemIconColor}',
         hoverColor: '{menu.item.menuitemHoverIconColor}',
-        activeColor: '{menu.item.menuitemActiveIconColor}'
-      }
-    }
+        activeColor: '{menu.item.menuitemActiveIconColor}',
+      },
+    },
   },
   dark: {
     item: {
@@ -79,7 +79,7 @@ export const colorScheme: TieredMenuTokenSections.ColorScheme = {
       hoverColor: '{menu.item.menuitemHoverTextColor}',
       hoverBackground: '{menu.item.menuitemHoverBg}',
 
-      // Active состояние  
+      // Active состояние
       activeColor: '{menu.item.menuitemActiveTextColor}',
       activeBackground: '{menu.item.menuitemActiveBg}',
       activeHoverBackground: '{menu.item.menuitemActiveHoverBg}',
@@ -88,10 +88,10 @@ export const colorScheme: TieredMenuTokenSections.ColorScheme = {
       icon: {
         color: '{menu.item.menuitemIconColor}',
         hoverColor: '{menu.item.menuitemHoverIconColor}',
-        activeColor: '{menu.item.menuitemActiveIconColor}'
-      }
-    }
-  }
+        activeColor: '{menu.item.menuitemActiveIconColor}',
+      },
+    },
+  },
 };
 
 export default {

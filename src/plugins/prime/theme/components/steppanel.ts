@@ -1,3 +1,3 @@
 export default {
-    // TODO: Add stepper theme configuration
+  // TODO: Add stepper theme configuration
 };

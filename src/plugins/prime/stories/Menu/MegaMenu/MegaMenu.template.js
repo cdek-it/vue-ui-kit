@@ -17,9 +17,9 @@ export const Template = (args) => ({
                 { label: 'Armchair' },
                 { label: 'Coffee Table' },
                 { label: 'Couch' },
-                { label: 'TV Stand' }
-              ]
-            }
+                { label: 'TV Stand' },
+              ],
+            },
           ],
           [
             {
@@ -27,17 +27,15 @@ export const Template = (args) => ({
               items: [
                 { label: 'Bar stool' },
                 { label: 'Chair' },
-                { label: 'Table' }
-              ]
-            }
+                { label: 'Table' },
+              ],
+            },
           ],
           [
             {
               label: 'Bathroom',
-              items: [
-                { label: 'Accessories' }
-              ]
-            }
+              items: [{ label: 'Accessories' }],
+            },
           ],
           [
             {
@@ -47,11 +45,11 @@ export const Template = (args) => ({
                 { label: 'Chaise lounge' },
                 { label: 'Cupboard' },
                 { label: 'Dresser' },
-                { label: 'Wardrobe' }
-              ]
-            }
-          ]
-        ]
+                { label: 'Wardrobe' },
+              ],
+            },
+          ],
+        ],
       },
       {
         label: 'Electronics',
@@ -64,9 +62,9 @@ export const Template = (args) => ({
                 { label: 'Mouse' },
                 { label: 'Notebook' },
                 { label: 'Keyboard' },
-                { label: 'Printer' }
-              ]
-            }
+                { label: 'Printer' },
+              ],
+            },
           ],
           [
             {
@@ -74,9 +72,9 @@ export const Template = (args) => ({
               items: [
                 { label: 'Projector' },
                 { label: 'Speakers' },
-                { label: 'TVs' }
-              ]
-            }
+                { label: 'TVs' },
+              ],
+            },
           ],
           [
             {
@@ -85,11 +83,11 @@ export const Template = (args) => ({
                 { label: 'Accessories' },
                 { label: 'Console' },
                 { label: 'PC' },
-                { label: 'Video Games' }
-              ]
-            }
-          ]
-        ]
+                { label: 'Video Games' },
+              ],
+            },
+          ],
+        ],
       },
       {
         label: 'Sports',
@@ -101,9 +99,9 @@ export const Template = (args) => ({
                 { label: 'Kits' },
                 { label: 'Shoes' },
                 { label: 'Shorts' },
-                { label: 'Training' }
-              ]
-            }
+                { label: 'Training' },
+              ],
+            },
           ],
           [
             {
@@ -112,9 +110,9 @@ export const Template = (args) => ({
                 { label: 'Accessories' },
                 { label: 'Shoes' },
                 { label: 'T-Shirts' },
-                { label: 'Shorts' }
-              ]
-            }
+                { label: 'Shorts' },
+              ],
+            },
           ],
           [
             {
@@ -123,12 +121,12 @@ export const Template = (args) => ({
                 { label: 'Kickboard' },
                 { label: 'Nose Clip' },
                 { label: 'Swimsuits' },
-                { label: 'Paddles' }
-              ]
-            }
-          ]
-        ]
-      }
+                { label: 'Paddles' },
+              ],
+            },
+          ],
+        ],
+      },
     ]);
 
     return { args, items };
@@ -139,7 +137,6 @@ export const Template = (args) => ({
     </div>
 `,
 });
-
 
 export const Vertical = (args) => ({
   components: { MegaMenu },
@@ -156,9 +153,9 @@ export const Vertical = (args) => ({
                 { label: 'Armchair' },
                 { label: 'Coffee Table' },
                 { label: 'Couch' },
-                { label: 'TV Stand' }
-              ]
-            }
+                { label: 'TV Stand' },
+              ],
+            },
           ],
           [
             {
@@ -166,17 +163,15 @@ export const Vertical = (args) => ({
               items: [
                 { label: 'Bar stool' },
                 { label: 'Chair' },
-                { label: 'Table' }
-              ]
-            }
+                { label: 'Table' },
+              ],
+            },
           ],
           [
             {
               label: 'Bathroom',
-              items: [
-                { label: 'Accessories' }
-              ]
-            }
+              items: [{ label: 'Accessories' }],
+            },
           ],
           [
             {
@@ -186,11 +181,11 @@ export const Vertical = (args) => ({
                 { label: 'Chaise lounge' },
                 { label: 'Cupboard' },
                 { label: 'Dresser' },
-                { label: 'Wardrobe' }
-              ]
-            }
-          ]
-        ]
+                { label: 'Wardrobe' },
+              ],
+            },
+          ],
+        ],
       },
       {
         label: 'Electronics',
@@ -203,9 +198,9 @@ export const Vertical = (args) => ({
                 { label: 'Mouse' },
                 { label: 'Notebook' },
                 { label: 'Keyboard' },
-                { label: 'Printer' }
-              ]
-            }
+                { label: 'Printer' },
+              ],
+            },
           ],
           [
             {
@@ -213,9 +208,9 @@ export const Vertical = (args) => ({
               items: [
                 { label: 'Projector' },
                 { label: 'Speakers' },
-                { label: 'TVs' }
-              ]
-            }
+                { label: 'TVs' },
+              ],
+            },
           ],
           [
             {
@@ -224,11 +219,11 @@ export const Vertical = (args) => ({
                 { label: 'Accessories' },
                 { label: 'Console' },
                 { label: 'PC' },
-                { label: 'Video Games' }
-              ]
-            }
-          ]
-        ]
+                { label: 'Video Games' },
+              ],
+            },
+          ],
+        ],
       },
       {
         label: 'Sports',
@@ -240,9 +235,9 @@ export const Vertical = (args) => ({
                 { label: 'Kits' },
                 { label: 'Shoes' },
                 { label: 'Shorts' },
-                { label: 'Training' }
-              ]
-            }
+                { label: 'Training' },
+              ],
+            },
           ],
           [
             {
@@ -251,9 +246,9 @@ export const Vertical = (args) => ({
                 { label: 'Accessories' },
                 { label: 'Shoes' },
                 { label: 'T-Shirts' },
-                { label: 'Shorts' }
-              ]
-            }
+                { label: 'Shorts' },
+              ],
+            },
           ],
           [
             {
@@ -262,12 +257,12 @@ export const Vertical = (args) => ({
                 { label: 'Kickboard' },
                 { label: 'Nose Clip' },
                 { label: 'Swimsuits' },
-                { label: 'Paddles' }
-              ]
-            }
-          ]
-        ]
-      }
+                { label: 'Paddles' },
+              ],
+            },
+          ],
+        ],
+      },
     ]);
 
     return { args, items };

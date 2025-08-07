@@ -11,15 +11,15 @@ export const Template = (args) => ({
         icon: 'pi pi-plus',
         command: () => {
           console.log('New clicked');
-        }
+        },
       },
       {
         label: 'Search',
         icon: 'pi pi-search',
         command: () => {
           console.log('Search clicked');
-        }
-      }
+        },
+      },
     ]);
 
     return { args, items };
@@ -30,7 +30,6 @@ export const Template = (args) => ({
     </div>
 `,
 });
-
 
 export const Grouped = (args) => ({
   components: { Menu },
@@ -45,16 +44,16 @@ export const Grouped = (args) => ({
             icon: 'pi pi-plus',
             command: () => {
               console.log('New document');
-            }
+            },
           },
           {
             label: 'Search',
             icon: 'pi pi-search',
             command: () => {
               console.log('Search documents');
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         label: 'Profile',
@@ -64,17 +63,17 @@ export const Grouped = (args) => ({
             icon: 'pi pi-cog',
             command: () => {
               console.log('Settings');
-            }
+            },
           },
           {
             label: 'Logout',
             icon: 'pi pi-sign-out',
             command: () => {
               console.log('Logout');
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     ]);
 
     return { args, items };
@@ -99,23 +98,23 @@ export const Popup = (args) => ({
             icon: 'pi pi-plus',
             command: () => {
               console.log('New clicked');
-            }
+            },
           },
           {
             label: 'Open',
             icon: 'pi pi-folder-open',
             command: () => {
               console.log('Open clicked');
-            }
+            },
           },
           {
             label: 'Save',
             icon: 'pi pi-save',
             command: () => {
               console.log('Save clicked');
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         label: 'Export Options',
@@ -125,23 +124,23 @@ export const Popup = (args) => ({
             icon: 'pi pi-file-pdf',
             command: () => {
               console.log('Export PDF clicked');
-            }
+            },
           },
           {
             label: 'Export as Excel',
             icon: 'pi pi-file-excel',
             command: () => {
               console.log('Export Excel clicked');
-            }
+            },
           },
           {
             label: 'Print',
             icon: 'pi pi-print',
             command: () => {
               console.log('Print clicked');
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         label: 'User Actions',
@@ -151,17 +150,17 @@ export const Popup = (args) => ({
             icon: 'pi pi-cog',
             command: () => {
               console.log('Settings clicked');
-            }
+            },
           },
           {
             label: 'Help',
             icon: 'pi pi-question-circle',
             command: () => {
               console.log('Help clicked');
-            }
-          }
-        ]
-      }
+            },
+          },
+        ],
+      },
     ]);
 
     return { args, items };

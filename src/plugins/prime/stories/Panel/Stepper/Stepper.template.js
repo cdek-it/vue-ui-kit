@@ -5,7 +5,6 @@ import StepItem from 'primevue/stepitem';
 import StepPanels from 'primevue/steppanels';
 import StepPanel from 'primevue/steppanel';
 import Button from 'primevue/button';
-import { ref } from 'vue';
 
 // Horizontal Stepper
 export const Horizontal = (args) => ({

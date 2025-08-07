@@ -1,4 +1,4 @@
- import { TieredMenu } from 'primevue';
+import { TieredMenu } from 'primevue';
 import { ref } from 'vue';
 
 export const Template = (args) => ({
@@ -15,26 +15,26 @@ export const Template = (args) => ({
             items: [
               {
                 label: 'Bookmark',
-                icon: 'pi pi-fw pi-bookmark'
+                icon: 'pi pi-fw pi-bookmark',
               },
               {
                 label: 'Video',
-                icon: 'pi pi-fw pi-video'
-              }
-            ]
+                icon: 'pi pi-fw pi-video',
+              },
+            ],
           },
           {
             label: 'Delete',
-            icon: 'pi pi-fw pi-trash'
+            icon: 'pi pi-fw pi-trash',
           },
           {
-            separator: true
+            separator: true,
           },
           {
             label: 'Export',
-            icon: 'pi pi-fw pi-external-link'
-          }
-        ]
+            icon: 'pi pi-fw pi-external-link',
+          },
+        ],
       },
       {
         label: 'Edit',
@@ -42,21 +42,21 @@ export const Template = (args) => ({
         items: [
           {
             label: 'Left',
-            icon: 'pi pi-fw pi-align-left'
+            icon: 'pi pi-fw pi-align-left',
           },
           {
             label: 'Right',
-            icon: 'pi pi-fw pi-align-right'
+            icon: 'pi pi-fw pi-align-right',
           },
           {
             label: 'Center',
-            icon: 'pi pi-fw pi-align-center'
+            icon: 'pi pi-fw pi-align-center',
           },
           {
             label: 'Justify',
-            icon: 'pi pi-fw pi-align-justify'
-          }
-        ]
+            icon: 'pi pi-fw pi-align-justify',
+          },
+        ],
       },
       {
         label: 'Users',
@@ -64,11 +64,11 @@ export const Template = (args) => ({
         items: [
           {
             label: 'New',
-            icon: 'pi pi-fw pi-user-plus'
+            icon: 'pi pi-fw pi-user-plus',
           },
           {
             label: 'Delete',
-            icon: 'pi pi-fw pi-user-minus'
+            icon: 'pi pi-fw pi-user-minus',
           },
           {
             label: 'Search',
@@ -80,17 +80,17 @@ export const Template = (args) => ({
                 items: [
                   {
                     label: 'Print',
-                    icon: 'pi pi-fw pi-print'
-                  }
-                ]
+                    icon: 'pi pi-fw pi-print',
+                  },
+                ],
               },
               {
                 icon: 'pi pi-fw pi-bars',
-                label: 'List'
-              }
-            ]
-          }
-        ]
+                label: 'List',
+              },
+            ],
+          },
+        ],
       },
       {
         label: 'Events',
@@ -102,13 +102,13 @@ export const Template = (args) => ({
             items: [
               {
                 label: 'Save',
-                icon: 'pi pi-fw pi-calendar-plus'
+                icon: 'pi pi-fw pi-calendar-plus',
               },
               {
                 label: 'Delete',
-                icon: 'pi pi-fw pi-calendar-minus'
-              }
-            ]
+                icon: 'pi pi-fw pi-calendar-minus',
+              },
+            ],
           },
           {
             label: 'Archive',
@@ -116,19 +116,19 @@ export const Template = (args) => ({
             items: [
               {
                 label: 'Remove',
-                icon: 'pi pi-fw pi-calendar-minus'
-              }
-            ]
-          }
-        ]
+                icon: 'pi pi-fw pi-calendar-minus',
+              },
+            ],
+          },
+        ],
       },
       {
-        separator: true
+        separator: true,
       },
       {
         label: 'Quit',
-        icon: 'pi pi-fw pi-power-off'
-      }
+        icon: 'pi pi-fw pi-power-off',
+      },
     ]);
 
     return { args, items };
@@ -139,6 +139,3 @@ export const Template = (args) => ({
     </div>
 `,
 });
-
-
-
