@@ -2,6 +2,7 @@ import type { DialogTokenSections } from '@primeuix/themes/types/dialog';
 
 const root: DialogTokenSections.Root = {
   background: '{overlay.overlay.overlayContentBg}',
+  shadow: '0 0.25rem 0.25rem 0 {form.overlay.inputOverlayShadowColor}',
 };
 
 const header: DialogTokenSections.Header = {
