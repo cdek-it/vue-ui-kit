@@ -56,6 +56,7 @@ export const colorScheme: TieredMenuTokenSections.ColorScheme = {
       // Active состояние
       activeColor: '{menu.item.menuitemActiveTextColor}',
       activeBackground: '{menu.item.menuitemActiveBg}',
+      activeHoverBackground: '{menu.item.menuitemActiveHoverBg}',
 
       // Иконки
       icon: {
@@ -72,6 +73,7 @@ export const colorScheme: TieredMenuTokenSections.ColorScheme = {
       // Active состояние
       activeColor: '{menu.item.menuitemActiveTextColor}',
       activeBackground: '{menu.item.menuitemActiveBg}',
+      activeHoverBackground: '{menu.item.menuitemActiveHoverBg}',
 
       // Иконки
       icon: {
