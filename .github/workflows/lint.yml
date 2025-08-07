@@ -2,7 +2,6 @@ name: Lint on Push
 
 on:
   push:         # срабатывает при любом пуше
-  pull_request: # и при создании/обновлении PR
 
 jobs:
   lint:
