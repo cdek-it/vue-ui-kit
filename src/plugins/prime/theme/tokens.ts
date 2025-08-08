@@ -341,7 +341,8 @@ export default {
         Header: {
           dialogHeaderBg: '#ffffff',
           dialogHeaderBorderColor: '#dbdada',
-          dialogHeaderBorder: '1px solid $dialogHeaderBorderColor',
+          dialogHeaderBorder:
+            '1px solid {overlay.dialog.header.dialogHeaderBorderColor}',
           dialogHeaderTextColor: 'rgba(0, 0, 0, 0.8000)',
           dialogHeaderFontWeight: 'bold',
           dialogHeaderFontSize: 17.5,
@@ -1395,7 +1396,8 @@ export default {
         Header: {
           dialogHeaderBg: '#1c1b22',
           dialogHeaderBorderColor: '#444444',
-          dialogHeaderBorder: '1px solid $dialogHeaderBorderColor',
+          dialogHeaderBorder:
+            '1px solid {overlay.dialog.header.dialogHeaderBorderColor}',
           dialogHeaderTextColor: '#ffffff',
           dialogHeaderFontWeight: 'bold',
           dialogHeaderFontSize: 17.5,

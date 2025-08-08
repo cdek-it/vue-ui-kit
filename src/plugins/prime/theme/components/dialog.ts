@@ -23,6 +23,10 @@ const footer: DialogTokenSections.Footer = {
 };
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
+  .p-dialog-header {
+    border-bottom: ${dt('overlay.dialog.header.dialogHeaderBorder')};
+  }
+
   .p-dialog-footer {
     justify-content: flex-start;
   }
