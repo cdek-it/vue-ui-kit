@@ -1,14 +1,16 @@
-name: "Запрос на изменение компонента"
-description: "Форма для запроса изменений в существующих компонентах дизайн-системы"
-title: "[CHANGE] "
+name: "Изменение компонента"
+description: "Форма для запроса изменений в существующие компоненты дизайн-системы"
+title: "[ИЗМЕНЕНИЕ] "
 labels: ["type/enhancement", "status/needs-triage"]
 assignees: []
 body:
   - type: markdown
     attributes:
       value: |
-        Форма предназначена для сбора структурированной информации о необходимости изменения компонента в дизайн-системе.
-        
+        **Используйте формат: [компонент]:[описание изменения]**
+        Например: "Dialog: реализовать возможность изменения размера окна"
+
+        Форма предназначена для сбора информации о необходимости изменения компонента в дизайн-системе.
         **Перед созданием запроса на изменение:**
         - Убедитесь, что изменение не нарушит существующую функциональность
         - Проверьте, не было ли уже создано похожего запроса
@@ -29,38 +31,95 @@ body:
       label: "Компонент для изменения"
       description: "Выберите компонент, который требует изменений"
       options:
-        - Button
-        - Input
-        - Alert
-        - Modal
-        - Card
-        - Table
-        - Navigation
-        - Dropdown
-        - Checkbox
-        - Radio
-        - Switch
-        - Slider
-        - Progress
-        - Badge
-        - Avatar
-        - Tooltip
-        - Popover
-        - Other
+        - "Menu"
+        - "Breadcrumb"
+        - "Menu"
+        - "Menubar"
+        - "MegaMenu"
+        - "TieredMenu"
+        - "PanelMenu"
+        - "Tab"
+        - "DataTable"
+        - "Paginator"
+        - "Timeline"
+        - "Upload"
+        - "Carousel"
+        - "Galleria"
+        - "MenuItem.Base"
+        - "MenuItem.Group"
+        - "MenuItem.Node"
+        - "MenuItem.Template"
+        - "Avatar"
+        - "Badge"
+        - "Chip"
+        - "MeterGroup"
+        - "ProgressBar"
+        - "Tag"
+        - "ProgressSpinner"
+        - "Skeleton"
+        - "Tooltip"
+        - "Dialog"
+        - "ConfirmDialog"
+        - "OverlayPanel"
+        - "Sidebar"
+        - "Divider"
+        - "ScrollPanel"
+        - "Accordion"
+        - "Card"
+        - "Stepper"
+        - "Message"
+        - "Button"
+        - "Button.Badge"
+        - "Button.Severity"
+        - "Calendar"
+        - "Checkbox"
+        - "Chips"
+        - "Dropdown"
+        - "InputGroup"
+        - "InputMask"
+        - "InputNumber"
+        - "InputOtp"
+        - "InputSwitch"
+        - "InputText"
+        - "Listbox"
+        - "MultiSelect"
+        - "Password"
+        - "RadioButton"
+        - "Rating"
+        - "SelectButton"
+        - "Slider"
+        - "Textarea"
+        - "ToggleButton"
+        - "FloatLabel"
     validations:
       required: true
       
   - type: textarea
-    id: description
+    id: what_to_change
     attributes:
-      label: "Подробное описание изменений"
-      description: "Используйте структуру: [Изменить] → [Результат] → [Причина]"
-      placeholder: |
-        **[Изменить]:** Укажите, что именно предлагается изменить
-        
-        **[Результат]:** Опишите ожидаемый результат от изменения
-        
-        **[Причина]:** Объясните, почему необходимо это изменение
+      label: "Что изменить"
+      description: "Укажите, что именно предлагается изменить"
+      placeholder: "Опишите конкретные элементы, свойства или поведение компонента, которые требуют изменения"
+      render: markdown
+    validations:
+      required: true
+      
+  - type: textarea
+    id: expected_result
+    attributes:
+      label: "Ожидаемый результат"
+      description: "Опишите ожидаемый результат от изменения"
+      placeholder: "Как должен выглядеть или работать компонент после внесения изменений"
+      render: markdown
+    validations:
+      required: true
+      
+  - type: textarea
+    id: change_reason
+    attributes:
+      label: "Причина изменения"
+      description: "Объясните, почему необходимо это изменение"
+      placeholder: "Обоснуйте необходимость изменения: проблемы, которые решает, улучшения, которые приносит"
       render: markdown
     validations:
       required: true
@@ -86,23 +145,6 @@ body:
         - "Breaking - изменение с нарушением совместимости"
     validations:
       required: true
-      
-  - type: checkboxes
-    id: affected_frameworks
-    attributes:
-      label: "Затронутые фреймворки"
-      description: "В каких фреймворках требуется изменение"
-      options:
-        - label: "React"
-          required: false
-        - label: "Vue"
-          required: false
-        - label: "Angular"
-          required: false
-        - label: "React Native"
-          required: false
-        - label: "Vanilla JavaScript"
-          required: false
           
   - type: dropdown
     id: priority
@@ -113,21 +155,9 @@ body:
         - "Critical - блокирует текущую разработку"
         - "High - нужно в текущем спринте"
         - "Medium - планируется в ближайшие месяцы"
-        - "Low - nice to have"
+        - "Low"
     validations:
       required: true
-      
-  - type: textarea
-    id: backward_compatibility
-    attributes:
-      label: "Обратная совместимость"
-      description: "Опишите влияние изменения на существующий код"
-      placeholder: |
-        - Будет ли изменение breaking change?
-        - Какие части API затронуты?
-        - Нужна ли миграция существующего кода?
-        - Предлагаемая стратегия deprecation
-      render: markdown
       
   - type: textarea
     id: additional_details
@@ -138,6 +168,6 @@ body:
         - Ссылки на исследования или примеры
         - Технические ограничения
         - Временные рамки
-        - Другие важные детали
+        – Другое
       placeholder: "Укажите дополнительную информацию..."
       render: markdown
