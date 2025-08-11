@@ -8,4 +8,4 @@ contact_links:
     about: "Используйте шаблон для запроса изменений"
   - name: "Запрос на создание"
     url: "https://github.com/cdek-it/vue-ui-kit/issues/new?template=issue-creation-request.yaml"
-    about: "Используйте шаблон для запроса создания новых компонентов"
+    about: "Используйте шаблон для запроса создания новых компонентов
