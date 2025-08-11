@@ -43,7 +43,8 @@ export default {
             activeBorderColor: '{primary.color}',
             color: '{stepper.stepsItemTextColor}',
             activeColor: '{general.primaryColorText}',
-            size: '2rem',
+            width: '{stepper.stepsItemNumberWidth}',
+            height: '{stepper.stepsItemNumberHeight}',
             fontSize: '{stepper.stepsItemNumberFontSize}',
             fontWeight: '{stepper.stepsItemFontWeight}',
             transition: '{transition.duration}',
@@ -144,10 +145,46 @@ export default {
 
         .p-step-number {
             border: 1px solid var(--p-stepper-step-number-border-color);
+            width: var(--p-stepper-step-number-width, 32px) !important;
+            height: var(--p-stepper-step-number-height, 32px) !important;
+            min-width: var(--p-stepper-step-number-width, 32px);
+            min-height: var(--p-stepper-step-number-height, 32px);
+            flex-shrink: 0;
         }
         
         .p-steppanel {
             background: transparent;
+        }
+
+        [data-pc-name="step"] {
+            text-align: left;
+        }
+
+        [data-pc-section="title"] {
+            text-align: left;
+        }
+
+        .p-stepper [data-pc-section="title"],
+        .p-stepper .flex.flex-col {
+            text-align: left;
+        }
+
+        .p-stepper .text-sm,
+        .p-stepper .text-xs {
+            text-align: left !important;
+        }
+
+        [data-pc-section="number"] {
+            align-self: center;
+            margin-top: 2px;
+        }
+
+        .p-stepper button[style*="flex-direction: row"] {
+            align-items: flex-start;
+        }
+
+        .p-stepper .inline-flex.flex-col.gap-2 {
+            align-items: flex-start;
         }
 
         .p-stepper .p-button-secondary {
@@ -162,6 +199,21 @@ export default {
         }
 
         .p-stepper .p-button-secondary:focus {
+            box-shadow: 0 0 0 0.2rem var(--p-primary-200) !important;
+        }
+
+        .p-stepper .p-button[data-p-severity="outlined"] {
+            background: transparent !important;
+            border: 1px solid var(--p-primary-color) !important;
+            color: var(--p-primary-color) !important;
+        }
+
+        .p-stepper .p-button[data-p-severity="outlined"]:hover {
+            background: var(--p-primary-color) !important;
+            color: var(--p-primary-contrast-color) !important;
+        }
+
+        .p-stepper .p-button[data-p-severity="outlined"]:focus {
             box-shadow: 0 0 0 0.2rem var(--p-primary-200) !important;
         }
     `,

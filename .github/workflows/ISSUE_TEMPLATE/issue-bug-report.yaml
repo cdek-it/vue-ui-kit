@@ -1,0 +1,188 @@
+name: "Bug Report - Исправление бага компонента"
+description: "Сообщение о проблемах в существующих компонентах дизайн-системы"
+title: "[BUG] "
+labels: ["type/bug", "status/needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Форма предназначена для сбора структурированной информации об ошибках в компонентах дизайн-системы.
+        
+        **🐛 Перед созданием bug report:**
+        - Убедитесь, что используете последнюю версию компонента
+        - Проверьте, не был ли уже создан похожий bug report
+        - Подготовьте steps для воспроизведения проблемы
+        
+  - type: dropdown
+    id: component
+    attributes:
+      label: "Компонент с багом"
+      description: "Выберите компонент, в котором обнаружена проблема"
+      options:
+        - Button
+        - Input
+        - Alert
+        - Modal
+        - Card
+        - Table
+        - Navigation
+        - Dropdown
+        - Checkbox
+        - Radio
+        - Switch
+        - Slider
+        - Progress
+        - Badge
+        - Avatar
+        - Tooltip
+        - Popover
+        - Other
+    validations:
+      required: true
+      
+  - type: input
+    id: component_version
+    attributes:
+      label: "Версия компонента"
+      description: "Укажите версию дизайн-системы или компонента"
+      placeholder: "v2.1.4 или latest"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: bug_description
+    attributes:
+      label: "Описание бага"
+      description: "Используйте структурированный формат описания"
+      placeholder: |
+        **Баг:** Краткое описание сути проблемы
+        
+        **Ожидаемое поведение:** Как должен работать компонент
+        
+        **Фактическое поведение:** Что происходит на самом деле
+        
+        **Последовательность действий для воспроизведения:**
+        1. Первый шаг
+        2. Второй шаг
+        3. Третий шаг
+        4. Observe the bug
+      render: markdown
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "Критичность бага"
+      description: "Оцените влияние бага на функциональность"
+      options:
+        - "Critical - Полностью блокирует функциональность"
+        - "High - Значительно влияет на UX"
+        - "Medium - Заметная проблема, но есть workaround"
+        - "Low - Минорная визуальная проблема"
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: frequency
+    attributes:
+      label: "Частота воспроизведения"
+      description: "Как часто проявляется проблема"
+      options:
+        - "Всегда (100%)"
+        - "Часто (75-99%)"
+        - "Иногда (25-74%)"
+        - "Редко (1-24%)"
+        - "Единичный случай"
+        
+  - type: checkboxes
+    id: affected_frameworks
+    attributes:
+      label: "Затронутые фреймворки"
+      description: "В каких фреймворках наблюдается проблема"
+      options:
+        - label: "React"
+          required: false
+        - label: "Vue"
+          required: false
+        - label: "Angular"
+          required: false
+        - label: "React Native"
+          required: false
+        - label: "Vanilla JavaScript"
+          required: false
+          
+  - type: textarea
+    id: environment
+    attributes:
+      label: "Информация об окружении"
+      description: "Детали окружения где проявляется баг"
+      placeholder: |
+        **Browser:** Chrome 96.0.4664.110 (или другой)
+        **OS:** macOS Monterey 12.1 (или другая)
+        **Device:** Desktop/Mobile/Tablet
+        **Screen Resolution:** 1920x1080
+        **Framework Version:** React 18.2.0
+        **Additional Dependencies:** 
+      render: markdown
+      
+  - type: textarea
+    id: reproduction_code
+    attributes:
+      label: "Код для воспроизведения"
+      description: "Минимальный код example демонстрирующий проблему"
+      placeholder: |
+        ```jsx
+        // Minimal reproduction example
+        import { Button } from '@design-system/react';
+        
+        function BugExample() {
+          return (
+            <Button onClick={handleClick}>
+              Click me
+            </Button>
+          );
+        }
+        ```
+      render: markdown
+      
+  - type: textarea
+    id: visual_proof
+    attributes:
+      label: "Визуальные доказательства"
+      description: "Ссылки на скриншоты, видео или live examples"
+      placeholder: |
+        **Screenshots:**
+        - [Attach screenshots here]
+        
+        **Video/GIF:**
+        - [Link to video demonstration]
+        
+        **Live Demo:**
+        - [CodeSandbox/CodePen/Stackblitz link]
+        
+        **Console Errors:**
+        - [Any relevant console error messages]
+      render: markdown
+      
+  - type: textarea
+    id: workaround
+    attributes:
+      label: "Временное решение (workaround)"
+      description: "Если знаете способ обойти проблему, опишите его"
+      placeholder: "Опишите временное решение если оно существует..."
+      render: markdown
+      
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Дополнительная информация"
+      description: |
+        Любая дополнительная информация:
+        - Связанные issues или bug reports
+        - Relevant research или documentation
+        - User impact assessment
+        - Business priority
+      placeholder: "Укажите дополнительную информацию..."
+      render: markdown

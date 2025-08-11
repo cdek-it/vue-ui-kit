@@ -1,0 +1,133 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template, TemplatePositions, TemplateCustomSize } from './Drawer.template';
+
+<Meta title="Prime/Overlay/Drawer" />
+
+# Drawer
+
+[PrimeVue Drawer](https://primevue.org/drawer), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=480-4174&node-type=section&t=l2VZW0ubKEcDpw1W-0>)
+
+### Basic
+
+```html dark
+<Button label="Show Drawer" @click="visible = true" />
+<Drawer v-model:visible="visible">
+  <template #header>
+    <h3>Drawer Header</h3>
+  </template>
+  <p>Drawer content goes here...</p>
+</Drawer>
+```
+
+<Story
+  name="Basic"
+  args={{}}
+>
+  {Template.bind({})}
+</Story>
+
+### Positions
+
+Drawer can be positioned on any side of the screen.
+
+```html dark
+<Drawer v-model:visible="visible" position="left">
+  <p>Left drawer content</p>
+</Drawer>
+```
+
+<Story
+  name="Positions"
+  args={{}}
+>
+  {TemplatePositions.bind({})}
+</Story>
+
+### Custom Size
+
+```html dark
+<Drawer v-model:visible="visible" style="width: 300px">
+  <p>Custom sized drawer</p>
+</Drawer>
+```
+
+<Story
+  name="Custom Size"
+  args={{}}
+>
+  {TemplateCustomSize.bind({})}
+</Story>
+
+### Without Modal
+
+Drawer can be displayed without modal overlay.
+
+```html dark
+<Drawer v-model:visible="visible" :modal="false">
+  <template #header>
+    <h3>Non-Modal Drawer</h3>
+  </template>
+  <p>This drawer doesn't block interaction with the background.</p>
+</Drawer>
+```
+
+<Story
+  name="Without Modal"
+  args={{
+    modal: false,
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Dismissible
+
+Control whether the drawer can be dismissed by clicking outside or pressing Escape.
+
+```html dark
+<Drawer v-model:visible="visible" :dismissible="false">
+  <template #header>
+    <h3>Non-Dismissible Drawer</h3>
+  </template>
+  <p>This drawer can only be closed using the close button.</p>
+</Drawer>
+```
+
+<Story
+  name="Non-Dismissible"
+  args={{
+    dismissible: false,
+  }}
+  argTypes={{
+    dismissible: { control: 'boolean' },
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Position Variants
+
+```html dark
+<Drawer v-model:visible="visible" position="right">
+  <template #header>
+    <h3>Right Drawer</h3>
+  </template>
+  <p>Drawer positioned on the right side.</p>
+</Drawer>
+```
+
+<Story
+  name="Position Right"
+  args={{
+    position: 'right',
+  }}
+  argTypes={{
+    position: {
+      control: 'inline-radio',
+      options: ['left', 'right', 'top', 'bottom'],
+    },
+  }}
+>
+  {Template.bind({})}
+</Story>
