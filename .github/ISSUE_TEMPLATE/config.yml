@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Сообщить об ошибке"
+    url: "https://github.com/cdek-it/vue-ui-kit/issues/new?template=issue-bug-report.yaml"
+    about: "Используйте шаблон для сообщения об ошибках"
+  - name: "Запрос на изменение"
+    url: "https://github.com/cdek-it/vue-ui-kit/issues/new?template=issue-change-request.yaml"
+    about: "Используйте шаблон для запроса изменений"
+  - name: "Запрос на создание"
+    url: "https://github.com/cdek-it/vue-ui-kit/issues/new?template=issue-creation-request.yaml"
+    about: "Используйте шаблон для запроса создания новых компонентов
