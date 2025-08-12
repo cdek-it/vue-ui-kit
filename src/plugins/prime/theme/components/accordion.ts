@@ -26,13 +26,14 @@ export const colorScheme: AccordionTokenSections.ColorScheme = {
   },
 };
 
-export const css = ({ dt }: { dt: (token: string) => string }) => `
+export const css = () => `
   .p-accordionheader {
     justify-content: start;
   }
 
   .p-accordionheader .p-accordionheader-toggle-icon {
     order: -1;
+    flex-shrink: 0;
     margin-right: 0.5rem;
     transform: rotate(-90deg);
   }

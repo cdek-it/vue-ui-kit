@@ -31,6 +31,7 @@ import tieredmenu from './tieredmenu';
 import divider from './divider';
 import skeleton from './skeleton';
 import accordion from './accordion';
+import dialog from './dialog';
 
 export default {
   autocomplete,
@@ -66,4 +67,5 @@ export default {
   tag,
   tieredmenu,
   accordion,
+  dialog,
 };

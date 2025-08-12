@@ -60,7 +60,7 @@ export default {
       actionIconHoverBg: '#ebebea',
       actionIconHoverColor: 'rgba(0, 0, 0, 0.8000)',
       actionIconHoverBorderColor: 'rgba(255, 255, 255, 0.0001)',
-      actionIconBorderRadius: 7,
+      actionIconBorderRadius: '0.5rem',
       actionIconTransition:
         'background-color $transitionDuration, color $transitionDuration, box-shadow $transitionDuration',
       scaleSM: '0.875',
@@ -341,29 +341,33 @@ export default {
         Header: {
           dialogHeaderBg: '#ffffff',
           dialogHeaderBorderColor: '#dbdada',
-          dialogHeaderBorder: '1px solid $dialogHeaderBorderColor',
+          dialogHeaderBorder:
+            '1px solid {overlay.dialog.header.dialogHeaderBorderColor}',
           dialogHeaderTextColor: 'rgba(0, 0, 0, 0.8000)',
           dialogHeaderFontWeight: 'bold',
           dialogHeaderFontSize: 17.5,
           dialogHeaderIconPadding: 7,
-          dialogHeaderPaddingTopBottom: 14,
-          dialogHeaderPaddingLeftRight: 21,
+          dialogHeaderPaddingTopBottom: '1rem',
+          dialogHeaderPaddingLeftRight: '1.5rem',
           dialogHeaderPadding:
-            '$dialogHeaderPaddingLeftRight $dialogHeaderPaddingLeftRight $dialogHeaderPaddingTopBottom',
+            '{overlay.dialog.header.dialogHeaderPaddingLeftRight} {overlay.dialog.header.dialogHeaderPaddingLeftRight} {overlay.dialog.header.dialogHeaderPaddingTopBottom}',
         },
         Body: {
-          dialogContentPaddingTopBottom: 21,
-          dialogContentPaddingLeftRight: 21,
+          dialogContentPaddingTopBottom: '1.5rem',
+          dialogContentPaddingLeftRight: '1.5rem',
           dialogContentPadding:
-            '$dialogContentPaddingTopBottom $dialogContentPaddingLeftRight',
+            '{overlay.dialog.body.dialogContentPaddingTopBottom} {overlay.dialog.body.dialogContentPaddingLeftRight}',
         },
         Footer: {
           dialogFooterBorderColor: 'rgba(255, 255, 255, 0.0001)',
           dialogFooterBorder: '1px solid $dialogFooterBorderColor',
           dialogFooterPaddingTopBottom: 0,
-          dialogFooterPaddingLeftRight: 21,
+          dialogFooterPaddingLeftRight: '1.5rem',
           dialogFooterPadding:
-            '$dialogFooterPaddingTopBottom $dialogFooterPaddingLeftRight $dialogFooterPaddingLeftRight',
+            '{overlay.dialog.footer.dialogFooterPaddingTopBottom}' +
+            '{overlay.dialog.footer.dialogFooterPaddingLeftRight}' +
+            '{overlay.dialog.footer.dialogFooterPaddingLeftRight}' +
+            '{overlay.dialog.footer.dialogFooterPaddingLeftRight}',
           dialogFooterButtonGap: 7,
         },
       },
@@ -628,7 +632,7 @@ export default {
         calendarHeaderFontWeight: 'bold',
         calendarHeaderCellPadding: 3.5,
         calendarMonthYearHeaderHoverTextColor: '#188700',
-        calendarCellDatePadding: 3.5,
+        calendarCellDatePadding: '0.25rem',
         calendarCellDateWidth: 28,
         calendarCellDateHeight: 28,
         calendarCellDateBorderRadius: 7,
@@ -1111,7 +1115,7 @@ export default {
       actionIconHoverBg: '#5e5e5d',
       actionIconHoverColor: '#ffffff',
       actionIconHoverBorderColor: 'rgba(0, 0, 0, 0.0001)',
-      actionIconBorderRadius: 7,
+      actionIconBorderRadius: '0.5rem',
       actionIconTransition:
         'background-color $transitionDuration, color $transitionDuration, box-shadow $transitionDuration',
       scaleSM: '0.875',
@@ -1392,29 +1396,33 @@ export default {
         Header: {
           dialogHeaderBg: '#1c1b22',
           dialogHeaderBorderColor: '#444444',
-          dialogHeaderBorder: '1px solid $dialogHeaderBorderColor',
+          dialogHeaderBorder:
+            '1px solid {overlay.dialog.header.dialogHeaderBorderColor}',
           dialogHeaderTextColor: '#ffffff',
           dialogHeaderFontWeight: 'bold',
           dialogHeaderFontSize: 17.5,
           dialogHeaderIconPadding: 7,
-          dialogHeaderPaddingTopBottom: 14,
-          dialogHeaderPaddingLeftRight: 21,
+          dialogHeaderPaddingTopBottom: '1rem',
+          dialogHeaderPaddingLeftRight: '1.5rem',
           dialogHeaderPadding:
-            '$dialogHeaderPaddingLeftRight $dialogHeaderPaddingLeftRight $dialogHeaderPaddingTopBottom',
+            '{overlay.dialog.header.dialogHeaderPaddingLeftRight} {overlay.dialog.header.dialogHeaderPaddingLeftRight} {overlay.dialog.header.dialogHeaderPaddingTopBottom}',
         },
         Body: {
-          dialogContentPaddingTopBottom: 21,
-          dialogContentPaddingLeftRight: 21,
+          dialogContentPaddingTopBottom: '1.5rem',
+          dialogContentPaddingLeftRight: '1.5rem',
           dialogContentPadding:
-            '$dialogContentPaddingTopBottom $dialogContentPaddingLeftRight',
+            '{overlay.dialog.body.dialogContentPaddingTopBottom} {overlay.dialog.body.dialogContentPaddingLeftRight}',
         },
         Footer: {
           dialogFooterBorderColor: 'rgba(0, 0, 0, 0.0001)',
           dialogFooterBorder: '1px solid $dialogFooterBorderColor',
           dialogFooterPaddingTopBottom: 0,
-          dialogFooterPaddingLeftRight: 21,
+          dialogFooterPaddingLeftRight: '1.5rem',
           dialogFooterPadding:
-            '$dialogFooterPaddingTopBottom $dialogFooterPaddingLeftRight $dialogFooterPaddingLeftRight',
+            '{overlay.dialog.footer.dialogFooterPaddingTopBottom}' +
+            '{overlay.dialog.footer.dialogFooterPaddingLeftRight}' +
+            '{overlay.dialog.footer.dialogFooterPaddingLeftRight}' +
+            '{overlay.dialog.footer.dialogFooterPaddingLeftRight}',
           dialogFooterButtonGap: 7,
         },
       },
@@ -1679,7 +1687,7 @@ export default {
         calendarHeaderFontWeight: 'bold',
         calendarHeaderCellPadding: 3.5,
         calendarMonthYearHeaderHoverTextColor: '#76d961',
-        calendarCellDatePadding: 3.5,
+        calendarCellDatePadding: '0.25rem',
         calendarCellDateWidth: 28,
         calendarCellDateHeight: 28,
         calendarCellDateBorderRadius: 7,
