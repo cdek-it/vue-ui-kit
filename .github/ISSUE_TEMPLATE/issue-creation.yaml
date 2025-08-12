@@ -1,0 +1,143 @@
+name: "Создание компонента"
+description: "Форма для запроса создания новых компонентов дизайн-системы"
+title: "[СОЗДАНИЕ] "
+labels: ["type/feature", "status/needs-triage", "area/new-component"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Используйте формат: [компонент]:[назначение]**
+        Например: "ProgressStepper: для отображения многошагового процесса"
+
+        Форма предназначена для сбора информации о необходимости создания нового компонента в дизайн-системе.
+        **Перед созданием нового компонента, убедитесь что:**
+        - Аналогичный компонент не существует в системе
+        - Функциональность нельзя реализовать комбинацией существующих компонентов
+        - Компонент будет переиспользован в минимум 3 местах
+      
+  - type: textarea
+    id: component_add
+    attributes:
+      label: "Что предлагается добавить"
+      description: "Опишите что именно предлагается добавить"
+      placeholder: "Например: Компонент для отображения прогресса загрузки файлов с возможностью отмены и показом скорости загрузки"
+      render: markdown
+    validations:
+      required: true
+      
+  - type: textarea
+    id: component_result
+    attributes:
+      label: "Ожидаемый результат"
+      description: "Какой результат ожидается от нового компонента"
+      placeholder: "Например: Пользователи смогут видеть прогресс загрузки, отменять процесс и получать обратную связь о скорости загрузки, что улучшит UX при работе с файлами"
+      render: markdown
+    validations:
+      required: true
+      
+  - type: textarea
+    id: component_reason
+    attributes:
+      label: "Причина необходимости"
+      description: "Почему возникла необходимость в новом компоненте"
+      placeholder: "Почему возникла необходимость в новом компоненте"
+      render: markdown
+    validations:
+      required: true
+      
+  - type: input
+    id: design_prototype
+    attributes:
+      label: "Ссылка на дизайн-файл с прототипом"
+      description: "Приложите ссылку на прототип нового компонента"
+      placeholder: "https://figma.com/file/..."
+    validations:
+      required: true
+      
+  - type: textarea
+    id: primary_use_case
+    attributes:
+      label: "Основной сценарий использования"
+      description: "Опишите главный сценарий использования компонента"
+      placeholder: |
+        Пример: Компонент BaseButton используется для создания интерактивных кнопок в формах и интерфейсах.
+        
+        - Отправка форм
+        - Навигация между страницами
+        - Вызов модальных окон
+        - Подтверждение действий пользователя
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: secondary_use_cases
+    attributes:
+      label: "Дополнительные сценарии"
+      description: "Опишите дополнительные варианты использования компонента"
+      placeholder: |
+        Пример: Дополнительные сценарии для BaseButton:
+        
+        - Использование как toggle-кнопка
+        - Группировка кнопок в toolbar
+        - Кнопки с иконками без текста
+        - Floating action buttons
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: edge_cases
+    attributes:
+      label: "Граничные случаи"
+      description: "Опишите особые ситуации и граничные случаи использования"
+      placeholder: |
+        Пример: Граничные случаи для BaseButton:
+        
+        - Очень длинный текст кнопки
+        - Кнопка в disabled состоянии
+        - Кнопка с loading состоянием
+        - Адаптивность на мобильных устройствах
+        - Работа с клавиатурной навигацией
+      render: markdown
+    validations:
+      required: false
+      
+  - type: dropdown
+    id: priority
+    attributes:
+      label: "Приоритет запроса"
+      description: "Укажите приоритет создания компонента"
+      options:
+        - "Critical - блокирует текущую разработку"
+        - "High - нужно в текущем спринте"
+        - "Medium - планируется в ближайшие месяцы"
+        - "Low"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: similar_components
+    attributes:
+      label: "Похожие компоненты"
+      description: "Укажите похожие компоненты в других дизайн-системах или библиотеках"
+      placeholder: |
+        **Примеры из других систем:**
+        - Material UI: [ComponentName]
+        - Ant Design: [ComponentName]
+        - Chakra UI: [ComponentName]
+      render: markdown
+      
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Дополнительная информация"
+      description: |
+        Любая дополнительная информация:
+        - Ссылки на исследования или обратную связь пользователей
+        - Примеры использования в продукте
+        - Требования заинтересованных сторон
+        – Другое
+      placeholder: "Укажите дополнительную информацию..."
+      render: markdown
