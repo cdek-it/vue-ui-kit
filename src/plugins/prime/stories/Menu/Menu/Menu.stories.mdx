@@ -1,0 +1,34 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template, Grouped, Popup } from './Menu.template';
+
+<Meta title="Prime/Menu/Menu" />
+
+# Menu
+
+[PrimeVue Menu](https://primevue.org/menu), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12826&t=pouTtKZoDCznSsjq-11>)
+
+### Basic
+
+```html dark
+<Menu :model="items" />
+```
+
+<Story name="Basic">{Template.bind({})}</Story>
+
+
+### Group
+
+```html dark
+<Menu :model="items" />
+```
+
+<Story name="Group">{Grouped.bind({})}</Story>
+
+### Popup
+
+```html dark
+<Menu :model="items" popup />
+```
+
+<Story name="Popup">{Popup.bind({})}</Story>
