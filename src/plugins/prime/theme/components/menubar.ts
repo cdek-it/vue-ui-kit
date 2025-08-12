@@ -38,7 +38,7 @@ export default {
     
     .p-menubar-item.p-disabled {
       background: ${dt('ButtonDisabledDisabledButtonBg')};
-      border-radius: calc(${dt('menuItemMenuitemBorderRadius')} * 1px);
+      border-radius: ${dt('menuItemMenuitemBorderRadius')};
       border: 1px solid ${dt('buttonDisabledDisabledButtonBorderColor')};
     }
     
