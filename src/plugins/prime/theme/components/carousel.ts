@@ -31,7 +31,7 @@ export default {
 
   css: ({ dt }: { dt: (token: string) => string }) => `
     .p-carousel .p-button-icon-only.p-button-rounded {
-      border-radius: calc(${dt('generalActionIconBorderRadius')} * 1px);
+      border-radius: ${dt('generalActionIconBorderRadius')};
     }
 
     .p-carousel .p-button-text.p-button-secondary:not(:disabled):active {
