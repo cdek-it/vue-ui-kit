@@ -15,7 +15,7 @@ body:
         - Убедитесь, что используете последнюю версию компонента
         - Проверьте, не был ли уже создан похожий bug report
         - Подготовьте steps для воспроизведения проблемы
-        
+
   - type: dropdown
     id: component
     attributes:
@@ -23,8 +23,67 @@ body:
       description: "Выберите компонент, в котором обнаружена проблема"
       options:
         - "Menu"
+        - "Breadcrumb"
+        - "Menubar"
+        - "MegaMenu"
+        - "TieredMenu"
+        - "PanelMenu"
+        - "Tab"
+        - "DataTable"
+        - "Paginator"
+        - "Timeline"
+        - "Upload"
+        - "Carousel"
+        - "Galleria"
+        - "MenuItem.Base"
+        - "MenuItem.Group"
+        - "MenuItem.Node"
+        - "MenuItem.Template"
+        - "Avatar"
+        - "Badge"
+        - "Chip"
+        - "MeterGroup"
+        - "ProgressBar"
+        - "Tag"
+        - "ProgressSpinner"
+        - "Skeleton"
+        - "Tooltip"
+        - "Dialog"
+        - "ConfirmDialog"
+        - "OverlayPanel"
+        - "Sidebar"
+        - "Divider"
+        - "ScrollPanel"
+        - "Accordion"
+        - "Card"
+        - "Stepper"
+        - "Message"
+        - "Button"
+        - "Button.Badge"
+        - "Button.Severity"
+        - "Calendar"
+        - "Checkbox"
+        - "Chips"
+        - "Dropdown"
+        - "InputGroup"
+        - "InputMask"
+        - "InputNumber"
+        - "InputOtp"
+        - "InputSwitch"
+        - "InputText"
+        - "Listbox"
+        - "MultiSelect"
+        - "Password"
+        - "RadioButton"
+        - "Rating"
+        - "SelectButton"
+        - "Slider"
+        - "Textarea"
+        - "ToggleButton"
+        - "FloatLabel"
+    validations:
       required: true
-      
+
   - type: input
     id: component_version
     attributes:
@@ -33,7 +92,7 @@ body:
       placeholder: "v2.1.4 или последняя"
     validations:
       required: true
-      
+
   - type: textarea
     id: bug_summary
     attributes:
@@ -42,7 +101,7 @@ body:
       placeholder: "Краткое описание сути проблемы"
     validations:
       required: true
-      
+
   - type: textarea
     id: expected_behavior
     attributes:
@@ -51,7 +110,7 @@ body:
       placeholder: "Опишите как должен работать компонент"
     validations:
       required: true
-      
+
   - type: textarea
     id: actual_behavior
     attributes:
@@ -60,7 +119,7 @@ body:
       placeholder: "Опишите что происходит на самом деле"
     validations:
       required: true
-      
+
   - type: textarea
     id: reproduction_steps
     attributes:
@@ -73,7 +132,7 @@ body:
       render: markdown
     validations:
       required: true
-      
+
   - type: dropdown
     id: severity
     attributes:
@@ -82,11 +141,9 @@ body:
       options:
         - "Critical - Полностью блокирует функциональность"
         - "High - Значительно влияет на UX"
-        - "Medium - Заметная проблема, но есть workaround"
+        - "Medium - Заметная проблема, но есть обходной путь"
         - "Low - Минорная визуальная проблема"
-    validations:
-      required: false
-          
+
   - type: textarea
     id: browser
     attributes:
@@ -95,7 +152,7 @@ body:
       placeholder: "Chrome 96.0.4664.110"
     validations:
       required: true
-      
+
   - type: textarea
     id: operating_system
     attributes:
@@ -104,7 +161,7 @@ body:
       placeholder: "macOS Monterey 12.1"
     validations:
       required: true
-      
+
   - type: textarea
     id: device_type
     attributes:
@@ -113,72 +170,50 @@ body:
       placeholder: "Desktop/Mobile/Tablet"
     validations:
       required: true
-      
+
   - type: textarea
     id: screen_resolution
     attributes:
       label: "Разрешение экрана"
       description: "Укажите разрешение экрана"
       placeholder: "1920x1080"
-    validations:
-      required: false
-      
+
   - type: textarea
     id: framework_version
     attributes:
       label: "Версия фреймворка"
       description: "Укажите версию используемого фреймворка"
       placeholder: "React 18.2.0"
-    validations:
-      required: false
-      
+
   - type: textarea
     id: additional_dependencies
     attributes:
       label: "Дополнительные зависимости"
       description: "Укажите другие важные зависимости и их версии"
       placeholder: "Next.js 13.0.0, TypeScript 4.8.0"
-    validations:
-      required: false
-      
+
   - type: textarea
     id: reproduction_code
     attributes:
       label: "Код для воспроизведения"
-      description: "Минимальный код для примера демонстрирующий проблему"
-      placeholder: |
-        ```jsx
-        // Minimal reproduction example
-        import { Button } from '@design-system/react';
-        
-        function BugExample() {
-          return (
-            <Button onClick={handleClick}>
-              Click me
-            </Button>
-          );
-        }
-        ```
+      description: "Минимальный пример демонстрирующий проблему"
+      placeholder: "// Минимальный пример кода"
       render: markdown
-      
+
   - type: textarea
     id: screenshots
     attributes:
       label: "Скриншоты"
       description: "Ссылка на скриншоты/видео, демонстрирующие проблему"
-      placeholder: "Прикрепите скриншоты здесь или вставьте ссылки на изображения"
-    validations:
-      required: false
-      
+      placeholder: "Прикрепите скриншоты или ссылки на изображения"
+
   - type: textarea
     id: live_demo
     attributes:
       label: "Живая демонстрация"
       description: "Ссылка на CodeSandbox, CodePen, Stackblitz или другую онлайн-демонстрацию"
       placeholder: "Ссылка на CodeSandbox/CodePen/Stackblitz"
-    validations:
-      required: false
-      
+
   - type: textarea
     id: console_errors
     attributes:
@@ -186,9 +221,7 @@ body:
       description: "Любые соответствующие сообщения об ошибках из консоли браузера"
       placeholder: "Вставьте сообщения об ошибках из консоли"
       render: markdown
-    validations:
-      required: false
-      
+
   - type: textarea
     id: workaround
     attributes:
@@ -196,7 +229,7 @@ body:
       description: "Если знаете способ обойти проблему, опишите его"
       placeholder: "Опишите временное решение если оно существует"
       render: markdown
-      
+
   - type: textarea
     id: additional_context
     attributes:
@@ -205,6 +238,6 @@ body:
         - Связанные задачи или отчеты об ошибках
         - Соответствующие исследования или документация
         - Бизнес-приоритет
-        – Другое
+        - Другое
       placeholder: "Укажите дополнительную информацию..."
       render: markdown
