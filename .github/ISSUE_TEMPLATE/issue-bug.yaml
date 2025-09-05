@@ -24,7 +24,6 @@ body:
       options:
         - "Menu"
         - "Breadcrumb"
-        - "Menu"
         - "Menubar"
         - "MegaMenu"
         - "TieredMenu"
