@@ -17,11 +17,34 @@ export const content: AccordionTokenSections.Content = {
 export const colorScheme: AccordionTokenSections.ColorScheme = {
   light: {
     header: {
+      background: '{panel.accordion.accordionHeaderBg}',
       color: '{panel.accordion.accordionHeaderTextColor}',
       toggleIcon: {
         color: '{panel.accordion.accordionHeaderTextColor}',
       },
+      activeBackground: '{panel.accordion.accordionHeaderActiveBg}',
       activeColor: '{panel.accordion.accordionHeaderActiveTextColor}',
+      hoverBackground: '{panel.accordion.accordionHeaderHoverBg}',
+      activeHoverBackground: '{panel.accordion.accordionHeaderActiveHoverBg}',
+    },
+    content: {
+      background: '{panel.accordion.accordionContentBg}',
+    },
+  },
+  dark: {
+    header: {
+      background: '{panel.accordion.accordionHeaderBg}',
+      color: '{panel.accordion.accordionHeaderTextColor}',
+      toggleIcon: {
+        color: '{panel.accordion.accordionHeaderTextColor}',
+      },
+      activeBackground: '{panel.accordion.accordionHeaderActiveBg}',
+      activeColor: '{panel.accordion.accordionHeaderActiveTextColor}',
+      hoverBackground: '{panel.accordion.accordionHeaderHoverBg}',
+      activeHoverBackground: '{panel.accordion.accordionHeaderActiveHoverBg}',
+    },
+    content: {
+      background: '{panel.accordion.accordionContentBg}',
     },
   },
 };
