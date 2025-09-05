@@ -15,7 +15,7 @@ body:
         - Убедитесь, что изменение не нарушит существующую функциональность
         - Проверьте, не было ли уже создано похожего запроса
         - Подготовьте обоснование необходимости изменения
-        
+
   - type: input
     id: title
     attributes:
@@ -24,7 +24,7 @@ body:
       placeholder: "Например: Алерт: добавить возможность закрытия по таймеру"
     validations:
       required: true
-      
+
   - type: dropdown
     id: component
     attributes:
@@ -33,7 +33,6 @@ body:
       options:
         - "Menu"
         - "Breadcrumb"
-        - "Menu"
         - "Menubar"
         - "MegaMenu"
         - "TieredMenu"
@@ -93,7 +92,7 @@ body:
         - "FloatLabel"
     validations:
       required: true
-      
+
   - type: textarea
     id: what_to_change
     attributes:
@@ -103,7 +102,7 @@ body:
       render: markdown
     validations:
       required: true
-      
+
   - type: textarea
     id: expected_result
     attributes:
@@ -113,7 +112,7 @@ body:
       render: markdown
     validations:
       required: true
-      
+
   - type: textarea
     id: change_reason
     attributes:
@@ -123,14 +122,14 @@ body:
       render: markdown
     validations:
       required: true
-      
+
   - type: input
     id: design_file
     attributes:
       label: "Ссылка на дизайн-файл"
       description: "Приложите ссылку на прототип с изменениями"
       placeholder: "https://figma.com/file/..."
-      
+
   - type: dropdown
     id: change_type
     attributes:
@@ -145,7 +144,7 @@ body:
         - "Breaking - изменение с нарушением совместимости"
     validations:
       required: true
-          
+
   - type: dropdown
     id: priority
     attributes:
@@ -158,7 +157,7 @@ body:
         - "Low"
     validations:
       required: true
-      
+
   - type: textarea
     id: additional_details
     attributes:
@@ -168,6 +167,6 @@ body:
         - Ссылки на исследования или примеры
         - Технические ограничения
         - Временные рамки
-        – Другое
+        - Другое
       placeholder: "Укажите дополнительную информацию..."
       render: markdown
