@@ -1,0 +1,30 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './Breadcrumb.template';
+
+<Meta title="Prime/Menu/Breadcrumb" />
+
+# MenuBar
+
+[PrimeVue Breadcrumb](https://primevue.org/Breadcrumb), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12778&m=dev>)
+
+### Basic
+
+```html dark
+<script setup>
+const home = ref({
+  icon: 'ti ti-home',
+});
+const items = ref([
+  { label: 'Electronics',  },
+  { label: 'Computer' },
+  { label: 'Accessories' },
+  { label: 'Keyboard' },
+  { label: 'Wireless' },
+]);
+</script>
+
+<PrimeBreadcrumb :home="home" :model="items" />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>
