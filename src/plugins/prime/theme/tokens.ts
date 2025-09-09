@@ -815,7 +815,7 @@ export default {
       Messages: {
         messageMargin: 0,
         messagePadding: '1rem',
-        messageBorderWidth: '0.5rem',
+        messageBorderWidth: '0.25rem',
         messageIconFontSize: '1.875rem',
         messageTextFontSize: 14,
         messageTextFontWeight: 'normal',
@@ -1870,7 +1870,7 @@ export default {
       Messages: {
         messageMargin: 0,
         messagePadding: '1rem',
-        messageBorderWidth: '0.5rem',
+        messageBorderWidth: '0.25rem',
         messageIconFontSize: '1.875rem',
         messageTextFontSize: 14,
         messageTextFontWeight: 'normal',
