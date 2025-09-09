@@ -2,6 +2,7 @@ import type { MessageTokenSections } from '@primeuix/themes/types/message';
 
 const content: MessageTokenSections.Content = {
   gap: '1rem',
+  padding: '{message.messages.messagePadding}',
 };
 
 const icon: MessageTokenSections.Icon = {
