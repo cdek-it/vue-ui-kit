@@ -19,6 +19,7 @@ export const css = ({ dt }: { dt: (token: string) => string }) => `
     color: ${dt('message.severities.info.infoMessageIconColor')};
     border-color: ${dt('message.severities.info.infoMessageBorderColor')};
     border-left-color: ${dt('message.severities.info.infoMessageIconColor')};
+    background: ${dt('message.severities.info.infoMessageBg')};
   }
   
   .p-message-success {
@@ -27,6 +28,7 @@ export const css = ({ dt }: { dt: (token: string) => string }) => `
     border-left-color: ${dt(
       'message.severities.success.successMessageIconColor'
     )};
+    background: ${dt('message.severities.success.successMessageBg')};
   }
   
   .p-message-warn {
@@ -35,6 +37,7 @@ export const css = ({ dt }: { dt: (token: string) => string }) => `
     border-left-color: ${dt(
       'message.severities.warning.warningMessageIconColor'
     )};
+    background: ${dt('message.severities.warning.warningMessageBg')};
   }
   
   .p-message-error {
@@ -43,6 +46,7 @@ export const css = ({ dt }: { dt: (token: string) => string }) => `
     border-left-color: ${dt(
       'message.severities.danger.dangerMessageIconColor'
     )};
+    background: ${dt('message.severities.danger.dangerMessageBg')};
   }
   
 `;
