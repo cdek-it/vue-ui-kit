@@ -23,13 +23,17 @@ export const css = ({ dt }: { dt: (token: string) => string }) => `
     padding: 0.25rem;
     border-radius: ${dt('menu.item.menuitemBorderRadius')};
   }
+
+  .p-breadcrumb-item:last-child {
+    opacity: 0.6;
+  }
   
-  .p-breadcrumb-item:hover {
+  .p-breadcrumb-item:not(:last-child):hover {
     background: ${dt('menu.item.menuitemHoverBg')};
   }
   
-  .p-breadcrumb-item:last-child {
-    opacity: 0.6;
+  .p-breadcrumb-item:last-child:hover * {
+    cursor: default;
   }
   
   .p-breadcrumb-item-icon {
