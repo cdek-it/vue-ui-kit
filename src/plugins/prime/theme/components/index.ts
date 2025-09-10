@@ -28,6 +28,7 @@ import skeleton from './skeleton';
 import accordion from './accordion';
 import dialog from './dialog';
 import message from './message';
+import breadcrumb from './breadcrumb';
 
 export default {
   autocomplete,
@@ -60,4 +61,5 @@ export default {
   accordion,
   dialog,
   message,
+  breadcrumb,
 };
