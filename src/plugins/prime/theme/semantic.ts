@@ -89,6 +89,10 @@ export default {
           },
         },
       },
+      stepper: {
+        stepsItemBg: '{surface.ground}',
+        stepsItemBorderColor: '{surface.border}',
+      },
     },
     dark: {
       ...semanticColors.dark,
@@ -149,7 +153,15 @@ export default {
           background: '{surface.ground}',
         },
       },
+      stepper: {
+        stepsItemBg: '{surface.ground}',
+        stepsItemBorderColor: '{surface.border}',
+      },
     },
+  },
+  stepper: {
+    stepsItemBg: '{surface.ground}',
+    stepsItemBorderColor: '{surface.border}',
   },
   focusRing: {
     width: '3.5px',

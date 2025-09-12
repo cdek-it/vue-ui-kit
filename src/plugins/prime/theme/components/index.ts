@@ -13,16 +13,21 @@ import overlaybadge from './overlayBadge';
 import radiobutton from './radiobutton';
 import rating from './rating';
 import selectbutton from './selectbutton';
+import stepper from './stepper';
+import steppanel from './steppanel';
 import slider from './slider';
 import textarea from './textarea';
 import togglebutton from './togglebutton';
 import toggleswitch from './toggleswitch';
+import menu from './menu';
+import megamenu from './megamenu';
 import menubar from './menubar';
 import panelmenu from './panelmenu';
 import tooltip from './tooltip';
 import carousel from './carousel';
 import progressspinner from './progressspinner';
 import tag from './tag';
+import tieredmenu from './tieredmenu';
 import divider from './divider';
 import skeleton from './skeleton';
 import accordion from './accordion';
@@ -48,16 +53,21 @@ export default {
   radiobutton,
   rating,
   selectbutton,
+  stepper,
+  steppanel,
   skeleton,
   slider,
   textarea,
   togglebutton,
   toggleswitch,
   tooltip,
+  menu,
+  megamenu,
   menubar,
   panelmenu,
   carousel,
   tag,
+  tieredmenu,
   accordion,
   dialog,
   message,
