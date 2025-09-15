@@ -1,6 +1,6 @@
 {
   "name": "@cdek-it/vue-ui-kit",
-  "version": "2.0.0-alpha.ds41",
+  "version": "2.0.0-alpha.ds44",
   "type": "module",
   "files": [
     "dist"

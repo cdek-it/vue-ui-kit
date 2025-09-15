@@ -49,7 +49,6 @@ export const css = ({ dt }: { dt: (token: string) => string }) => `
     )};
     background: ${dt('message.severities.danger.dangerMessageBg')};
   }
-  
 `;
 
 export default {
