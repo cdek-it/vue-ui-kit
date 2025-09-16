@@ -1,5 +1,30 @@
 import { primaryColor, semanticColors } from './primitive';
 
+const navigation = {
+  list: {
+    padding: 0,
+  },
+  item: {
+    focus: {
+      background: '{menu.item.menuitemHoverBg}',
+      color: '{menu.item.menuitemHoverTextColor}',
+    },
+    activeColor: '{menu.item.menuitemHoverTextColor}',
+    icon: {
+      color: '{menu.item.menuitemIconColor}',
+      focus: {
+        color: '{menu.item.menuitemHoverIconColor}',
+      },
+    },
+  },
+  submenuIcon: {
+    size: '{menu.item.menuitemSubmenuIconFontSize}',
+    color: '{menu.item.menuitemIconColor}',
+    focusColor: '{menu.item.menuitemHoverIconColor}',
+    activeColor: '{menu.item.menuitemHoverIconColor}',
+  },
+};
+
 export default {
   primary: primaryColor,
   formField: {
@@ -67,28 +92,7 @@ export default {
           background: '{surface.ground}',
         },
       },
-      navigation: {
-        item: {
-          focus: {
-            background: '{menuItemMenuitemHoverBg}',
-            color: `{menuItemMenuitemHoverTextColor}`,
-          },
-          icon: {
-            focus: {
-              color: '{menuItemMenuitemActiveIconColor}',
-            },
-          },
-        },
-        submenu: {
-          icon: {
-            size: '1.25rem',
-            color: '{menuItemMenuitemHoverIconColor}',
-            focus: {
-              color: '{menuItemMenuitemHoverIconColor}',
-            },
-          },
-        },
-      },
+      navigation,
     },
     dark: {
       ...semanticColors.dark,
@@ -149,6 +153,7 @@ export default {
           background: '{surface.ground}',
         },
       },
+      navigation,
     },
   },
   focusRing: {

@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template, CheckedItem } from './MenuBar.template';
+import { Template } from './MenuBar.template';
 
 <Meta title="Prime/Menu/MenuBar" />
 
@@ -10,81 +10,10 @@ import { Template, CheckedItem } from './MenuBar.template';
 
 ### Basic
 
-```html dark
-<Menubar :model="items" />
-```
-
-<Story name="Primary">{Template.bind({})}</Story>
-
-### Checked
-
 ```jsx dark
 const selectedClass = 'p-menuitem-checked';
 
-
-const items = ref([
-  {
-    label: 'Home',
-    class: selectedClass,
-  },
-  {
-    label: 'Features',
-  },
-  {
-    label: 'Projects',
-    items: [
-      {
-        label: 'Components',
-      },
-      {
-        label: 'Blocks',
-      },
-      {
-        label: 'UI Kit',
-      },
-      {
-        label: 'Templates',
-        items: [
-          {
-            label: 'Apollo',
-          },
-          {
-            label: 'Ultima',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    icon: 'ti ti-user',
-    label: 'Contact',
-    disabled: true,
-    items: [
-      {
-        label: 'Components',
-      },
-      {
-        label: 'Blocks',
-      },
-      {
-        label: 'UI Kit',
-      },
-      {
-        label: 'Templates',
-        items: [
-          {
-            label: 'Apollo',
-          },
-          {
-            label: 'Ultima',
-          },
-        ],
-      },
-    ],
-  },
-]);
-
-<Menubar :model="items" />
+<PrimeMenubar :model="items" />
 ```
 
-<Story name="Checked">{CheckedItem.bind({})}</Story>
+<Story name="Primary">{Template.bind({})}</Story>
