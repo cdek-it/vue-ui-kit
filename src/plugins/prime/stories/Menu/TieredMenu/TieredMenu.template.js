@@ -1,9 +1,9 @@
-import { Menubar } from 'primevue';
+import { TieredMenu } from 'primevue';
 import { ref } from 'vue';
 import { baseMenuItems } from '@/plugins/prime/stories/Menu/consts';
 
 export const Template = (args) => ({
-  components: { Menubar },
+  components: { TieredMenu },
   setup() {
     const items = ref(baseMenuItems);
 
@@ -17,9 +17,9 @@ export const Template = (args) => ({
   },
   template: `
     <div>
-      <Menubar :model="items"/>
+      <TieredMenu :model="items"/>
       <br>
       <pre><code>{{ codeSnippet }}</code></pre>
     </div>
-`,
+  `,
 });

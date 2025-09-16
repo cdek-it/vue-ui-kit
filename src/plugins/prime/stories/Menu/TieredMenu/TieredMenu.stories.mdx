@@ -1,0 +1,19 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './TieredMenu.template';
+
+<Meta title="Prime/Menu/TieredMenu" />
+
+# TieredMenu
+
+[PrimeVue Menu](https://primevue.org/tieredmenu), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12975&m=dev>)
+
+### Basic
+
+```jsx dark
+const selectedClass = 'p-menuitem-checked';
+
+<PrimeTieredMenu :model="items" />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>

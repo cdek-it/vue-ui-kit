@@ -1,11 +1,18 @@
-import { Menubar } from 'primevue';
+import { Menu } from 'primevue';
 import { ref } from 'vue';
-import { baseMenuItems } from '@/plugins/prime/stories/Menu/consts';
+import {
+  baseMenuItems,
+  selectedClass,
+} from '@/plugins/prime/stories/Menu/consts';
 
 export const Template = (args) => ({
-  components: { Menubar },
+  components: { Menu },
   setup() {
     const items = ref(baseMenuItems);
+
+    delete items.value[0].class;
+
+    items.value[0]['items'][0]['class'] = selectedClass;
 
     const codeSnippet = `const items ='${JSON.stringify(
       items.value,
@@ -17,9 +24,9 @@ export const Template = (args) => ({
   },
   template: `
     <div>
-      <Menubar :model="items"/>
+      <Menu :model="items"/>
       <br>
       <pre><code>{{ codeSnippet }}</code></pre>
     </div>
-`,
+  `,
 });
