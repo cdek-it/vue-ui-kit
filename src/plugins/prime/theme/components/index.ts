@@ -30,6 +30,7 @@ import dialog from './dialog';
 import message from './message';
 import breadcrumb from './breadcrumb';
 import card from './card';
+import tabs from './tabs';
 
 export default {
   autocomplete,
@@ -64,4 +65,5 @@ export default {
   message,
   breadcrumb,
   card,
+  tabs,
 };
