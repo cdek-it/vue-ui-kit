@@ -3,7 +3,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
     mix-blend-mode: luminosity;
   }
   
-  [class^="p-menu"].p-component {
+  [class*="menu"].p-component {
     border: none;
   }
   
@@ -13,16 +13,20 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
     border: 1px solid ${dt('buttonDisabledDisabledButtonBorderColor')};
   }
    
-  [class*="p-menu"][class*="item"]:not(.p-disabled).p-menuitem-checked > [class*="item-content"] [class*="icon"] {
+  [class*="menu"][class*="item"]:not(.p-disabled).p-menuitem-checked > [class*="item-content"] [class*="icon"] {
      color: ${dt('menu.item.menuitemActiveIconColor')};
   }
   
-  [class*="p-menu"][class*="item"].p-menuitem-checked > [class*="item-content"] {
+  [class*="menu"][class*="item"].p-menuitem-checked > [class*="item-content"] {
     background: ${dt('menuItemMenuitemActiveBg')};
     color: ${dt('menuItemMenuitemActiveTextColor')};
   }
   
-  [class*="p-menu"][class*="item"].p-menuitem-checked > [class*="item-content"]:hover {
+  [class*="menu"][class*="item"]:has(.p-menuitem-checked) > [class*="item-content"] {
+    background: ${dt('menuItemMenuitemHoverBg')};
+  }
+  
+  [class*="menu"][class*="item"].p-menuitem-checked > [class*="item-content"]:hover {
     background: ${dt('menuItemMenuitemActiveHoverBg')};
     color: ${dt('menuItemMenuitemActiveTextColor')};
   }
