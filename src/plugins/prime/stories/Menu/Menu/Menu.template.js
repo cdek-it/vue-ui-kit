@@ -1,32 +1,25 @@
 import { Menu } from 'primevue';
-import { ref } from 'vue';
-import {
-  baseMenuItems,
-  selectedClass,
-} from '@/plugins/prime/stories/Menu/consts';
+import { selectedClass } from '@/plugins/prime/stories/Menu/_common/consts';
+import { useMenu } from '@/plugins/prime/stories/Menu/_common/composables/useMenu';
+import CodeSnippet from '@/plugins/prime/stories/_common/CodeSnippet.vue';
 
 export const Template = (args) => ({
-  components: { Menu },
+  components: { Menu, CodeSnippet },
   setup() {
-    const items = ref(baseMenuItems);
+    const { items } = useMenu();
 
     delete items.value[0].class;
 
     items.value[0]['items'][0]['class'] = selectedClass;
 
-    const codeSnippet = `const items ='${JSON.stringify(
-      items.value,
-      null,
-      2
-    )}' />`;
-
-    return { args, items, codeSnippet };
+    return { args, items };
   },
   template: `
+    
     <div>
       <Menu :model="items"/>
       <br>
-      <pre><code>{{ codeSnippet }}</code></pre>
+      <CodeSnippet :code="items"/>
     </div>
   `,
 });

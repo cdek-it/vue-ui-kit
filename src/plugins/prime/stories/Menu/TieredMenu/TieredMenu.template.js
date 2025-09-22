@@ -1,25 +1,19 @@
 import { TieredMenu } from 'primevue';
-import { ref } from 'vue';
-import { baseMenuItems } from '@/plugins/prime/stories/Menu/consts';
+import CodeSnippet from '@/plugins/prime/stories/_common/CodeSnippet.vue';
+import { useMenu } from '@/plugins/prime/stories/Menu/_common/composables/useMenu';
 
 export const Template = (args) => ({
-  components: { TieredMenu },
+  components: { TieredMenu, CodeSnippet },
   setup() {
-    const items = ref(baseMenuItems);
+    const { items } = useMenu();
 
-    const codeSnippet = `const items ='${JSON.stringify(
-      items.value,
-      null,
-      2
-    )}' />`;
-
-    return { args, items, codeSnippet };
+    return { args, items };
   },
   template: `
     <div>
       <TieredMenu :model="items"/>
       <br>
-      <pre><code>{{ codeSnippet }}</code></pre>
+      <CodeSnippet :code="items"/>
     </div>
   `,
 });
