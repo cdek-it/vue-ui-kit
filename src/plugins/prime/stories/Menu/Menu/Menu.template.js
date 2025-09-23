@@ -1,7 +1,7 @@
 import { Menu } from 'primevue';
-import { selectedMenuItemClass } from '@/plugins/prime/stories/Menu/_common/consts';
 import { useMenu } from '@/plugins/prime/stories/Menu/_common/composables/useMenu';
 import CodeSnippet from '@/plugins/prime/stories/_common/CodeSnippet.vue';
+import { selectedMenuItemClass } from '@/plugins/prime/consts';
 
 export const Template = (args) => ({
   components: { Menu, CodeSnippet },
