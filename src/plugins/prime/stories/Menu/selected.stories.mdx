@@ -2,19 +2,21 @@ import { Meta } from '@storybook/addon-docs';
 
 <Meta title="Prime/Menu/Selected" />
 
-# selectedMenuItemClass
+
+
+## `selectedMenuItemClass`
 
 ```ts
-const selectedMenuItemClass = 'p-menuitem-checked';
+export const selectedMenuItemClass = 'p-menuitem-checked';
 ```
 
 ### Описание
 
-Константа `selectedMenuItemClass` содержит CSS-класс `p-menuitem-checked`.
-Этот класс используется для **подсветки активных пунктов меню** в компонентах PrimeVue (например, [`Menu`](https://primevue.org/menu/)).
+`selectedMenuItemClass` — это константа, содержащая имя CSS-класса `p-menuitem-checked`.
+Данный класс используется в PrimeVue для **подсветки активных пунктов меню**.
 
-> 💡 **Важно:** стили для этого класса уже встроены в PrimeVue.
-> То есть, чтобы подсветить элемент меню, достаточно добавить ему класс `p-menuitem-checked` — дополнительных CSS-правил писать не нужно.
+> 💡 Стили для этого класса уже встроены в PrimeVue.
+> Дополнительных CSS-правил добавлять не нужно — подсветка работает «из коробки».
 
 ---
 
@@ -25,7 +27,7 @@ const selectedMenuItemClass = 'p-menuitem-checked';
 ```ts
 import { ref } from 'vue';
 import type { MenuItem } from 'primevue/menuitem';
-import { selectedMenuItemClass } from '@cdek-it/vue-ui-kit';
+import { selectedMenuItemClass } from '@/plugins/prime/consts';
 
 export const useMenu = () => {
   const items = ref<MenuItem[]>([
@@ -52,7 +54,7 @@ export const useMenu = () => {
     },
   ]);
 
-  const clearselectedMenuItemClass = (menuItems: MenuItem[]) => {
+  const clearSelectedClass = (menuItems: MenuItem[]) => {
     menuItems.forEach((item) => {
       if (item.class?.includes(selectedMenuItemClass)) {
         item.class = item.class
@@ -62,14 +64,16 @@ export const useMenu = () => {
           .trim() || undefined;
       }
       if (item.items) {
-        clearselectedMenuItemClass(item.items as MenuItem[]);
+        clearSelectedClass(item.items as MenuItem[]);
       }
     });
   };
 
   const onClickItem = (item: MenuItem) => {
-    clearselectedMenuItemClass(items.value);
-    item.class = item.class ? `${item.class} ${selectedMenuItemClass}` : selectedMenuItemClass;
+    clearSelectedClass(items.value);
+    item.class = item.class
+      ? `${item.class} ${selectedMenuItemClass}`
+      : selectedMenuItemClass;
   };
 
   const addCommandHandler = (menuItems: MenuItem[]) => {
@@ -105,7 +109,6 @@ const { items } = useMenu();
 
 ### Итог
 
-* `selectedMenuItemClass` = `'p-menuitem-checked'`.
-* Этот класс уже стилизован в PrimeVue.
-* Чтобы подсветить элемент, достаточно присвоить ему `selectedMenuItemClass`, импортированный из библиотеки.
-* Дополнительные стили можно добавить при необходимости, но базовые эффекты (цвет выделения и фон) уже работают «из коробки».
+* `selectedMenuItemClass` — это **константа**, содержащая имя CSS-класса для выделения активных пунктов меню.
+* Чтобы подсветить элемент меню, используйте именно эту константу (например, `item.class = selectedMenuItemClass`).
+* Стили для `p-menuitem-checked` уже есть в PrimeVue, так что дополнительная настройка не требуется.
