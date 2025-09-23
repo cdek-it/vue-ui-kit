@@ -1,17 +1,11 @@
 import { Menubar } from 'primevue';
-import { ref } from 'vue';
-import { baseMenuItems } from '@/plugins/prime/stories/Menu/consts';
+import { useMenu } from '@/plugins/prime/stories/Menu/_common/composables/useMenu';
+import CodeSnippet from '@/plugins/prime/stories/_common/CodeSnippet.vue';
 
 export const Template = (args) => ({
-  components: { Menubar },
+  components: { Menubar, CodeSnippet },
   setup() {
-    const items = ref(baseMenuItems);
-
-    const codeSnippet = `const items ='${JSON.stringify(
-      items.value,
-      null,
-      2
-    )}' />`;
+    const { items, codeSnippet } = useMenu();
 
     return { args, items, codeSnippet };
   },
@@ -19,7 +13,7 @@ export const Template = (args) => ({
     <div>
       <Menubar :model="items"/>
       <br>
-      <pre><code>{{ codeSnippet }}</code></pre>
+      <CodeSnippet :code="items"/>
     </div>
 `,
 });

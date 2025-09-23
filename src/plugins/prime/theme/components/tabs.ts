@@ -19,7 +19,9 @@ export const css = ({ dt }: { dt: (token: string) => string }) => `
   
   .p-tab-active {
     border-bottom-width: ${dt('panel.tabView.tabviewHeaderBorderWidth')};
-    padding-bottom: 1.10714285714rem; //15.5px padding
+    padding-bottom: calc(1.32142857rem - ${dt(
+      'panel.tabView.tabviewHeaderBorderWidth'
+    )});
   }
 `;
 

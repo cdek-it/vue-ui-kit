@@ -31,6 +31,7 @@ import message from './message';
 import breadcrumb from './breadcrumb';
 import card from './card';
 import tabs from './tabs';
+import tieredmenu from './tieredmenu';
 
 export default {
   autocomplete,
@@ -66,4 +67,5 @@ export default {
   breadcrumb,
   card,
   tabs,
+  tieredmenu,
 };
