@@ -1,10 +1,10 @@
-export const selectedClass = 'p-menuitem-checked';
+import { selectedMenuItemClass } from '@/plugins/prime/consts';
 
 export const baseMenuItems = [
   {
     label: 'Home',
     icon: 'ti ti-user',
-    class: selectedClass,
+    class: selectedMenuItemClass,
     items: [
       {
         label: 'Components',
