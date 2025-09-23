@@ -11,7 +11,9 @@ export const Template = (args) => ({
   },
   template: `
     <div>
-      <TieredMenu :model="items"/>
+      <div class="card flex justify-center">
+        <TieredMenu :model="items"/>
+      </div>
       <br>
       <CodeSnippet :code="items"/>
     </div>
