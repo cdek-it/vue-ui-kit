@@ -10,7 +10,7 @@ export const Template = (args) => ({
 
     delete items.value[0].class;
 
-    items.value[0]['items'][0]['class'] = selectedClass;
+    items.value[0]['items'][0]['class'] = selectedMenuItemClass;
 
     return { args, items };
   },
