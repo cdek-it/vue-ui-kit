@@ -1,10 +1,8 @@
 import { ref } from 'vue';
 import type { MenuItem } from 'primevue/menuitem';
-import {
-  baseMenuItems,
-  selectedMenuItemClass,
-} from '@/plugins/prime/stories/Menu/_common/consts';
+import { baseMenuItems } from '@/plugins/prime/stories/Menu/_common/consts';
 import { cloneDeep } from 'lodash';
+import { selectedMenuItemClass } from '@/plugins/prime/consts';
 
 export const useMenu = () => {
   const items = ref<MenuItem[]>(cloneDeep(baseMenuItems) as MenuItem[]);
@@ -12,11 +10,11 @@ export const useMenu = () => {
   // Убираем selectedClass со всех пунктов рекурсивно
   const clearSelectedClass = (menuItems: MenuItem[]) => {
     menuItems.forEach((item) => {
-      if (item.class?.includes(selectedClass)) {
+      if (item.class?.includes(selectedMenuItemClass)) {
         item.class =
           item.class
             .split(' ')
-            .filter((c: string) => c !== selectedClass)
+            .filter((c: string) => c !== selectedMenuItemClass)
             .join(' ')
             .trim() || undefined;
       }
@@ -66,8 +64,8 @@ export const useMenu = () => {
         break;
       }
       current.class = current.class
-        ? `${current.class} ${selectedClass}`
-        : selectedClass;
+        ? `${current.class} ${selectedMenuItemClass}`
+        : selectedMenuItemClass;
       currentItems = (current.items as MenuItem[]) || [];
     }
   };
