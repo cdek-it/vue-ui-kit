@@ -1,0 +1,156 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import {
+  AvatarTemplate,
+  AvatarIconTemplate,
+  AvatarImageTemplate,
+  AvatarBadgeTemplate,
+  AvatarIconBadgeTemplate,
+  AvatarImageBadgeTemplate,
+} from './Avatar.template.js';
+
+<Meta title="Prime/Misc/Avatar" />
+
+# Avatar
+
+[PrimeVue Avatar](https://primevue.org/avatar), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=484-4972&m=dev>)
+
+## Label
+```html dark
+<PrimeAvatar label="U" size="xlarge" />
+<PrimeAvatar label="U" size="large" />
+<PrimeAvatar label="U" />
+
+<!-- rounded -->
+<PrimeAvatar label="U" size="xlarge" shape="circle" />
+<PrimeAvatar label="U" size="large" shape="circle" />
+<PrimeAvatar label="U" shape="circle" />
+```
+
+<Story name="Label">
+  {AvatarTemplate.bind({})}
+</Story>
+
+## Icon
+```html dark
+<PrimeAvatar icon="pi pi-user" size="xlarge" />
+<PrimeAvatar icon="pi pi-user" size="large" />
+<PrimeAvatar icon="pi pi-user" />
+
+<!-- rounded -->
+<PrimeAvatar icon="pi pi-user" size="xlarge" shape="circle" />
+<PrimeAvatar icon="pi pi-user" size="large" shape="circle" />
+<PrimeAvatar icon="pi pi-user" shape="circle" />
+```
+
+<Story name="Icon">
+  {AvatarIconTemplate.bind({})}
+</Story>
+
+## Image
+```html dark
+<PrimeAvatar image="assets/avatar.png" size="xlarge" />
+<PrimeAvatar image="assets/avatar.png" size="large" />
+<PrimeAvatar image="assets/avatar.png" />
+
+<!-- rounded -->
+<PrimeAvatar image="assets/avatar.png" size="xlarge" shape="circle" />
+<PrimeAvatar image="assets/avatar.png" size="large" shape="circle" />
+<PrimeAvatar image="assets/avatar.png" shape="circle" />
+```
+
+<Story name="Image">
+  {AvatarImageTemplate.bind({})}
+</Story>
+
+## Label With Badge
+
+[Badge](/docs/prime-misc-badge--default-story)
+
+```html dark
+<PrimeOverlayBadge value="Badge" severity="primary">
+  <PrimeAvatar label="U" size="xlarge" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="secondary">
+  <PrimeAvatar label="U" size="large" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="success">
+  <PrimeAvatar label="U" />
+</PrimeOverlayBadge>
+
+<!-- rounded -->
+<PrimeOverlayBadge value="Badge" severity="info">
+  <PrimeAvatar label="U" size="xlarge" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="warn">
+  <PrimeAvatar label="U" size="large" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="danger">
+  <PrimeAvatar label="U" shape="circle" />
+</PrimeOverlayBadge>
+```
+
+<Story name="Label With Badge">
+  {AvatarBadgeTemplate.bind({})}
+</Story>
+
+## Icon With Badge
+
+[Badge](/docs/prime-misc-badge--default-story)
+
+```html dark
+<PrimeOverlayBadge value="Badge" severity="primary">
+  <PrimeAvatar icon="ti ti-user" size="xlarge" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="secondary">
+  <PrimeAvatar icon="ti ti-user" size="large" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="success">
+  <PrimeAvatar icon="ti ti-user" />
+</PrimeOverlayBadge>
+
+<!-- rounded -->
+<PrimeOverlayBadge value="Badge" severity="info">
+  <PrimeAvatar icon="ti ti-user" size="xlarge" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="warn">
+  <PrimeAvatar icon="ti ti-user" size="large" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="danger">
+  <PrimeAvatar icon="ti ti-user" shape="circle" />
+</PrimeOverlayBadge>
+```
+
+<Story name="Icon With Badge">
+  {AvatarIconBadgeTemplate.bind({})}
+</Story>
+
+## Image With Badge
+
+[Badge](/docs/prime-misc-badge--default-story)
+
+```html dark
+<PrimeOverlayBadge value="Badge" severity="primary">
+  <PrimeAvatar image="assets/avatar.png" size="xlarge" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="secondary">
+  <PrimeAvatar image="assets/avatar.png" size="large" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="success">
+  <PrimeAvatar image="assets/avatar.png" />
+</PrimeOverlayBadge>
+
+<!-- rounded -->
+<PrimeOverlayBadge value="Badge" severity="info">
+  <PrimeAvatar image="assets/avatar.png" size="xlarge" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="warn">
+  <PrimeAvatar image="assets/avatar.png" size="large" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="danger">
+  <PrimeAvatar image="assets/avatar.png" shape="circle" />
+</PrimeOverlayBadge>
+```
+
+<Story name="Image With Badge">
+  {AvatarImageBadgeTemplate.bind({})}
+</Story>

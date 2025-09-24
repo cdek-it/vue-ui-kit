@@ -32,6 +32,7 @@ import breadcrumb from './breadcrumb';
 import card from './card';
 import tabs from './tabs';
 import tieredmenu from './tieredmenu';
+import avatar from './avatar';
 
 export default {
   autocomplete,
@@ -68,4 +69,5 @@ export default {
   card,
   tabs,
   tieredmenu,
+  avatar,
 };
