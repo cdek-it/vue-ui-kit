@@ -22,3 +22,5 @@ export * from './plugins/prime';
 export * from './plugins/toastification';
 
 export * from './services';
+
+export * from './plugins/prime/consts';

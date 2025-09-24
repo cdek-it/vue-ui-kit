@@ -1,78 +1,19 @@
-import { ref } from 'vue';
 import { PanelMenu } from 'primevue';
+import CodeSnippet from '@/plugins/prime/stories/_common/CodeSnippet.vue';
+import { useMenu } from '@/plugins/prime/stories/Menu/_common/composables/useMenu';
 
 export const Template = (args) => ({
-  components: { PanelMenu },
+  components: { PanelMenu, CodeSnippet },
   setup() {
-    const items = ref([
-      {
-        label: 'Files',
-        items: [
-          {
-            label: 'Documents',
-            items: [
-              {
-                label: 'Invoices',
-                items: [
-                  {
-                    label: 'Pending',
-                  },
-                  {
-                    label: 'Paid',
-                  },
-                ],
-              },
-              {
-                label: 'Clients',
-              },
-            ],
-          },
-          {
-            label: 'Images',
-            items: [
-              {
-                label: 'Logos',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        label: 'Cloud',
-        items: [
-          {
-            label: 'Upload',
-          },
-          {
-            label: 'Download',
-          },
-          {
-            label: 'Sync',
-          },
-        ],
-      },
-      {
-        label: 'Devices',
-        disabled: true,
-        items: [
-          {
-            label: 'Phone',
-          },
-          {
-            label: 'Desktop',
-          },
-          {
-            label: 'Tablet',
-          },
-        ],
-      },
-    ]);
+    const { items } = useMenu();
 
     return { args, items };
   },
   template: `
     <div>
       <PanelMenu :model="items" multiple/>
+      <br>
+      <CodeSnippet :code="items"/>
     </div>
 `,
 });
