@@ -2,8 +2,10 @@ import { Meta, Story } from '@storybook/addon-docs';
 import {
   AvatarTemplate,
   AvatarIconTemplate,
+  AvatarImageTemplate,
   AvatarBadgeTemplate,
   AvatarIconBadgeTemplate,
+  AvatarImageBadgeTemplate,
 } from './Avatar.template.js';
 
 <Meta title="Prime/Misc/Avatar" />
@@ -42,6 +44,22 @@ import {
 
 <Story name="Icon">
   {AvatarIconTemplate.bind({})}
+</Story>
+
+## Image
+```html dark
+<PrimeAvatar image="assets/avatar.png" size="xlarge" />
+<PrimeAvatar image="assets/avatar.png" size="large" />
+<PrimeAvatar image="assets/avatar.png" />
+
+<!-- rounded -->
+<PrimeAvatar image="assets/avatar.png" size="xlarge" shape="circle" />
+<PrimeAvatar image="assets/avatar.png" size="large" shape="circle" />
+<PrimeAvatar image="assets/avatar.png" shape="circle" />
+```
+
+<Story name="Image">
+  {AvatarImageTemplate.bind({})}
 </Story>
 
 ## Label With Badge
@@ -104,4 +122,35 @@ import {
 
 <Story name="Icon With Badge">
   {AvatarIconBadgeTemplate.bind({})}
+</Story>
+
+## Image With Badge
+
+[Badge](/docs/prime-misc-badge--default-story)
+
+```html dark
+<PrimeOverlayBadge value="Badge" severity="primary">
+  <PrimeAvatar image="assets/avatar.png" size="xlarge" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="secondary">
+  <PrimeAvatar image="assets/avatar.png" size="large" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="success">
+  <PrimeAvatar image="assets/avatar.png" />
+</PrimeOverlayBadge>
+
+<!-- rounded -->
+<PrimeOverlayBadge value="Badge" severity="info">
+  <PrimeAvatar image="assets/avatar.png" size="xlarge" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="warn">
+  <PrimeAvatar image="assets/avatar.png" size="large" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="danger">
+  <PrimeAvatar image="assets/avatar.png" shape="circle" />
+</PrimeOverlayBadge>
+```
+
+<Story name="Image With Badge">
+  {AvatarImageBadgeTemplate.bind({})}
 </Story>
