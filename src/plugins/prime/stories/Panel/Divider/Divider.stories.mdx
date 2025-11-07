@@ -1,0 +1,118 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template, ContentTemplate } from './Divider.template';
+
+<Meta title="Prime/Panel/Divider" />
+
+# Divider
+
+[PrimeVue Divider](https://primevue.org/divider), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=5241-3731&m=dev>)
+
+### Default
+
+```html dark
+<PrimeDivider />
+```
+
+<Story name="Default">{Template.bind({})}</Story>
+
+### Type
+
+```html dark
+<PrimeDivider type="dotted"/>
+```
+
+<Story name="Dotted" args={{type: "dotted"}}>{Template.bind({})}</Story>
+
+```html dark
+<PrimeDivider type="dashed"/>
+```
+
+<Story name="Dashed" args={{type: "dashed"}}>{Template.bind({})}</Story>
+
+
+## With content
+
+### Default
+```html dark
+<PrimeDivider>
+    <div class="text-sm font-semibold text-gray-500">
+      <i class="ti ti-info-circle mr-2"></i>
+      Content
+    </div>
+</PrimeDivider>
+```
+
+<Story name="ContentDefault" >{ContentTemplate.bind({})}</Story>
+
+
+
+### Left
+```html dark
+<PrimeDivider align="left">
+    <div class="text-sm font-semibold text-gray-500">
+      <i class="ti ti-info-circle mr-2"></i>
+      Content
+    </div>
+</PrimeDivider>
+```
+
+<Story name="ContentLeft" args={{align:"left"}}>{ContentTemplate.bind({})}</Story>
+
+
+
+### Right
+```html dark
+<PrimeDivider align="right">
+    <div class="text-sm font-semibold text-gray-500">
+      <i class="ti ti-info-circle mr-2"></i>
+      Content
+    </div>
+</PrimeDivider>
+```
+
+<Story name="ContentRight" args={{align:"left"}}>{ContentTemplate.bind({})}</Story>
+
+
+## With content vertical
+
+### Default
+```html dark
+<PrimeDivider layout="vertical">
+    <div class="text-sm font-semibold text-gray-500">
+      <i class="ti ti-info-circle mr-2"></i>
+      Content
+    </div>
+</PrimeDivider>
+```
+
+<Story name="VerticalContentDefault" args={{layout: "vertical", class: "h-[100px]"}}>{ContentTemplate.bind({})}</Story>
+
+
+
+### Top
+```html dark
+<PrimeDivider align="top" layout="vertical">
+    <div class="text-sm font-semibold text-gray-500">
+      <i class="ti ti-info-circle mr-2"></i>
+      Content
+    </div>
+</PrimeDivider>
+```
+
+<Story name="ContentTop" args={{align:"top", layout: "vertical", class: "h-[100px]"}}>{ContentTemplate.bind({})}</Story>
+
+
+
+### Bottom
+```html dark
+<PrimeDivider align="bottom" layout="vertical">
+    <div class="text-sm font-semibold text-gray-500">
+      <i class="ti ti-info-circle mr-2"></i>
+      Content
+    </div>
+</PrimeDivider>
+```
+
+<Story name="ContentBottom" args={{align:"bottom", layout: "vertical", class: "h-[100px]"}}>{ContentTemplate.bind({})}</Story>
+

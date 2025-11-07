@@ -1,0 +1,159 @@
+<script lang="ts">
+export default {
+  inheritAttrs: false,
+};
+</script>
+
+<script lang="ts" setup>
+import { inject, computed, reactive, watch, ref, onMounted } from 'vue';
+
+import { FormServiceKey } from '../services/FormService';
+import type FormService from '../services/FormService';
+import type { RulesT } from '../services/types';
+import type { FieldChangeResult } from './BaseFormControl.types';
+
+import BaseInput from '../../base-input/BaseInput.vue';
+import BaseAutocomplete from '../../base-autocomplete/BaseAutocomplete.vue';
+
+const props = withDefaults(
+  defineProps<{
+    /**
+     * Под таким именем свойства результат придет в событии `submit` от `CdekForm`
+     */
+    name: string;
+    /**
+     * Правила валидации, подробнее описано в [Validation](/?path=/docs/form-cdekform-validation--page) и в [GlobalValidators](/?path=/docs/form-cdekform-globalvalidators--page)
+     */
+    rules?: RulesT;
+    /**
+     * - `text` CdekInput
+     * - `number` CdekInput с `type="number"`
+     * - `autocomplete` CdekAutocomplete
+     * - `slot` Кастомный компонент, подробнее в описании `default` slot
+     */
+    type?: 'text' | 'number' | 'autocomplete' | 'slot';
+    /**
+     * Чтобы повесить класс на родительский `div`, используйте это свойство
+     *
+     * Чтобы класс был на самом элементе (т.е. на `CdekInput` и т.д.), используйте просто `class`
+     */
+    className?: string;
+    /**
+     * Начальное значение
+     */
+    initialValue?: string;
+    /**
+     * Отложенная валидация.
+     * Не проверяет значение initialValue до первой потери фокуса у input.
+     */
+    deferredValidation?: boolean;
+  }>(),
+  { type: 'text', className: '', initialValue: '' }
+);
+
+const emit = defineEmits<{
+  (e: 'change', value: FieldChangeResult): void;
+}>();
+
+const formService = inject(FormServiceKey) as FormService;
+const fieldService = reactive(
+  formService.getFieldService(props.name, props.rules)
+);
+fieldService.init(props.initialValue);
+
+const touched = ref(false);
+
+watch(
+  () => props.rules,
+  (newValue) => {
+    fieldService.updateValidators(newValue);
+  },
+  { deep: true }
+);
+
+/**
+ * @description
+ * Обновление значения.
+ * Позволяет обновлять значение без валидации.
+ */
+const updateValue = (newValue: string): void => {
+  fieldService.change(newValue, props.deferredValidation && !touched.value);
+
+  emit('change', {
+    value: newValue,
+    isValid: fieldService.isValid === true,
+    error: fieldService.errorMessage,
+  });
+};
+
+const checkValue = () => {
+  touched.value = true;
+  updateValue(fieldService.value);
+};
+
+const value = computed({
+  get() {
+    return fieldService.value || '';
+  },
+  set(newValue) {
+    updateValue(newValue);
+  },
+});
+
+onMounted(() => {
+  if (props.initialValue) {
+    checkValue();
+  }
+});
+
+const changeValue = (newValue: string) => {
+  value.value = newValue;
+  checkValue();
+};
+
+const element = computed(() => {
+  if (props.type === 'autocomplete') {
+    return BaseAutocomplete;
+  }
+
+  if (['text', 'number'].includes(props.type)) {
+    return BaseInput;
+  }
+
+  return null;
+});
+
+defineExpose({
+  changeValue,
+});
+</script>
+
+<template>
+  <div :class="className">
+    <!-- type="number" передается только для BaseInput -->
+    <component
+      v-if="element"
+      :is="element"
+      :type="type === 'number' ? 'number' : undefined"
+      v-model="value"
+      :valid-res="fieldService.error"
+      v-bind="$attrs"
+      @blur.once="checkValue"
+    >
+      <template v-for="(_, slot) of $slots" v-slot:[slot]="scope">
+        <!-- @slot если `type !== 'slot'`, то все слоты передаются в дочерний компонент -->
+        <slot :name="slot" v-bind="scope" />
+      </template>
+    </component>
+
+    <!--
+      @slot Если `type="slot"` или не найден подходящий элемент, то передаем в slot `value`, `changeValue` и `validRes` для кастомной обработки.
+    -->
+    <slot
+      v-else
+      :value="value"
+      :change-value="changeValue"
+      :valid-res="fieldService.error"
+    />
+  </div>
+</template>

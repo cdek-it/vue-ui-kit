@@ -1,0 +1,58 @@
+import type { MessageTokenSections } from '@primeuix/themes/types/message';
+
+const content: MessageTokenSections.Content = {
+  gap: '1rem',
+  padding: '{message.messages.messagePadding}',
+};
+
+const icon: MessageTokenSections.Icon = {
+  size: '{message.messages.messageIconFontSize}',
+};
+
+export const css = ({ dt }: { dt: (token: string) => string }) => `
+  .p-message {
+    outline: unset;
+    border: 1px solid;
+    border-left-width: ${dt('message.messages.messageBorderWidth')};
+  }
+  
+  .p-message-info {
+    color: ${dt('message.severities.info.infoMessageIconColor')};
+    border-color: ${dt('message.severities.info.infoMessageBorderColor')};
+    border-left-color: ${dt('message.severities.info.infoMessageIconColor')};
+    background: ${dt('message.severities.info.infoMessageBg')};
+  }
+  
+  .p-message-success {
+    color: ${dt('message.severities.success.successMessageIconColor')};
+    border-color: ${dt('message.severities.success.successMessageBorderColor')};
+    border-left-color: ${dt(
+      'message.severities.success.successMessageIconColor'
+    )};
+    background: ${dt('message.severities.success.successMessageBg')};
+  }
+  
+  .p-message-warn {
+    color: ${dt('message.severities.warning.warningMessageIconColor')};
+    border-color: ${dt('message.severities.warning.warningMessageBorderColor')};
+    border-left-color: ${dt(
+      'message.severities.warning.warningMessageIconColor'
+    )};
+    background: ${dt('message.severities.warning.warningMessageBg')};
+  }
+  
+  .p-message-error {
+    color: ${dt('message.severities.danger.dangerMessageIconColor')};
+    border-color: ${dt('message.severities.danger.dangerMessageBorderColor')};
+    border-left-color: ${dt(
+      'message.severities.danger.dangerMessageIconColor'
+    )};
+    background: ${dt('message.severities.danger.dangerMessageBg')};
+  }
+`;
+
+export default {
+  content,
+  icon,
+  css,
+};

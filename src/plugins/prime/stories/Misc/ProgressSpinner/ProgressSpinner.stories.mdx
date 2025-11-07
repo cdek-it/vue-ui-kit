@@ -1,0 +1,26 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './ProgressSpinner.template';
+
+<Meta title="Prime/Misc/ProgressSpinner" />
+
+# ProgressSpinner
+
+[PrimeVue ProgressSpinner](https://primevue.org/progressspinner), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=1219-3086&m=dev>)
+
+### Base
+
+```html dark
+<PrimeProgressSpinner />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>
+
+### Смена размера
+У компонента в прайме нет пропса "size", обертку делать не хочу, поэтому если что делаем вот так
+```html dark
+<PrimeProgressSpinner class="!w-[300px] !h-[300px]" />
+```
+<Story name="Size" args={{class: '!w-[300px] !h-[300px]', value: 'Custom Size' }}>
+  {Template.bind()}
+</Story>

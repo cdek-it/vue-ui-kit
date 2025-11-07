@@ -1,0 +1,163 @@
+// Peak
+$Peak: var(--Peak, #fff);
+$Peak_80: var(--Peak_80, rgba(255, 255, 255, 80%));
+$Peak_70: var(--Peak_70, rgba(255, 255, 255, 70%));
+$Peak_60: var(--Peak_60, rgba(255, 255, 255, 60%));
+$Peak_50: var(--Peak_50, rgba(255, 255, 255, 50%));
+$Peak_40: var(--Peak_40, rgba(255, 255, 255, 40%));
+$Peak_30: var(--Peak_30, rgba(255, 255, 255, 30%));
+$Peak_20: var(--Peak_20, rgba(255, 255, 255, 20%));
+$Peak_10: var(--Peak_10, rgba(255, 255, 255, 10%));
+$Peak_5: var(--Peak_5, rgba(255, 255, 255, 5%));
+
+// Bottom
+$Bottom_Calm: var(--Bottom_Calm, #5b6976);
+$Bottom: var(--Bottom, #000000);
+$Bottom_66: var(--Bottom_66, rgba(0, 0, 0, 66%));
+$Bottom_60: var(--Bottom_60, rgba(0, 0, 0, 60%));
+$Bottom_50: var(--Bottom_50, rgba(0, 0, 0, 50%));
+$Bottom_40: var(--Bottom_40, rgba(0, 0, 0, 40%));
+$Bottom_30: var(--Bottom_30, rgba(0, 0, 0, 30%));
+$Bottom_20: var(--Bottom_20, rgba(0, 0, 0, 20%));
+$Bottom_10: var(--Bottom_10, rgba(0, 0, 0, 10%));
+$Bottom_5: var(--Bottom_5, rgba(0, 0, 0, 5%));
+
+// Primary
+$Primary_Calm: var(--Primary_Calm, #688b78);
+$Primary_Active: var(--Primary_Active, #158e3a);
+$Primary: var(--Primary, #1ab248);
+$Primary_70: var(--Primary_70, rgba(26, 178, 72, 70%));
+$Primary_50: var(--Primary_50, rgba(26, 178, 72, 50%));
+$Primary_40: var(--Primary_40, rgba(26, 178, 72, 40%));
+$Primary_30: var(--Primary_30, rgba(26, 178, 72, 30%));
+$Primary_20: var(--Primary_20, rgba(26, 178, 72, 20%));
+$Primary_10: var(--Primary_10, rgba(26, 178, 72, 10%));
+$Primary_5: var(--Primary_5, rgba(26, 178, 72, 5%));
+
+// Secondary
+$Secondary_Calm: var(--Secondary_Calm, #847e9d);
+$Secondary_Active: var(--Secondary_Active, #1a0962);
+$Secondary: var(--Secondary, #4b3c87);
+$Secondary_70: var(--Secondary_70, rgba(75, 60, 135, 70%));
+$Secondary_50: var(--Secondary_50, rgba(75, 60, 135, 50%));
+$Secondary_40: var(--Secondary_40, rgba(75, 60, 135, 40%));
+$Secondary_30: var(--Secondary_30, rgba(75, 60, 135, 30%));
+$Secondary_20: var(--Secondary_20, rgba(75, 60, 135, 20%));
+$Secondary_10: var(--Secondary_10, rgba(75, 60, 135, 10%));
+$Secondary_5: var(--Secondary_5, rgba(75, 60, 135, 5%));
+
+// Tertiary
+$Tertiary_Calm: var(--Tertiary_Calm, #9da9b6);
+$Tertiary_Active: var(--Tertiary_Active, #35485f);
+$Tertiary: var(--Tertiary, #627790);
+$Tertiary_70: var(--Tertiary_70, rgba(98, 119, 144, 70%));
+$Tertiary_50: var(--Tertiary_50, rgba(98, 119, 144, 50%));
+$Tertiary_40: var(--Tertiary_40, rgba(98, 119, 144, 40%));
+$Tertiary_30: var(--Tertiary_30, rgba(98, 119, 144, 30%));
+$Tertiary_20: var(--Tertiary_20, rgba(98, 119, 144, 20%));
+$Tertiary_10: var(--Tertiary_10, rgba(98, 119, 144, 10%));
+$Tertiary_5: var(--Tertiary_5, rgba(98, 119, 144, 5%));
+
+// Error
+$Error_Calm: var(--Error_Calm, #e58787);
+$Error_Active: var(--Error_Active, #9f011d);
+$Error: var(--Error, #e40029);
+$Error_70: var(--Error_70, rgba(228, 0, 41, 70%));
+$Error_50: var(--Error_50, rgba(228, 0, 41, 50%));
+$Error_40: var(--Error_40, rgba(228, 0, 41, 40%));
+$Error_30: var(--Error_30, rgba(228, 0, 41, 30%));
+$Error_20: var(--Error_20, rgba(228, 0, 41, 20%));
+$Error_10: var(--Error_10, rgba(228, 0, 41, 10%));
+$Error_5: var(--Error_5, rgba(228, 0, 41, 5%));
+
+// Attention
+$Attention_Calm: var(--Attention_Calm, #f4a344);
+$Attention_Active: var(--Attention_Active, #b55700);
+$Attention: var(--Attention, #f47500);
+$Attention_70: var(--Attention_70, rgba(244, 117, 0, 70%));
+$Attention_50: var(--Attention_50, rgba(244, 117, 0, 50%));
+$Attention_40: var(--Attention_40, rgba(244, 117, 0, 40%));
+$Attention_30: var(--Attention_30, rgba(244, 117, 0, 30%));
+$Attention_20: var(--Attention_20, rgba(244, 117, 0, 20%));
+$Attention_10: var(--Attention_10, rgba(244, 117, 0, 10%));
+$Attention_5: var(--Attention_5, rgba(244, 117, 0, 5%));
+
+// Success
+$Success_Calm: var(--Success_Calm, #93bb8c);
+$Success_Active: var(--Success_Active, #106f00);
+$Success: var(--Success, #17a000);
+$Success_70: var(--Success_70, rgba(23, 160, 0, 70%));
+$Success_50: var(--Success_50, rgba(23, 160, 0, 50%));
+$Success_40: var(--Success_40, rgba(23, 160, 0, 40%));
+$Success_30: var(--Success_30, rgba(23, 160, 0, 30%));
+$Success_20: var(--Success_20, rgba(23, 160, 0, 20%));
+$Success_10: var(--Success_10, rgba(23, 160, 0, 10%));
+$Success_5: var(--Success_5, rgba(23, 160, 0, 5%));
+
+// Marine
+$Marine_Calm: var(--Marine_Calm, #8ec1cc);
+$Marine_Active: var(--Marine_Active, #007089);
+$Marine: var(--Marine, #00bbe4);
+$Marine_70: var(--Marine_70, rgba(0, 187, 228, 70%));
+$Marine_50: var(--Marine_50, rgba(0, 187, 228, 50%));
+$Marine_40: var(--Marine_40, rgba(0, 187, 228, 40%));
+$Marine_30: var(--Marine_30, rgba(0, 187, 228, 30%));
+$Marine_20: var(--Marine_20, rgba(0, 187, 228, 20%));
+$Marine_10: var(--Marine_10, rgba(0, 187, 228, 10%));
+$Marine_5: var(--Marine_5, rgba(0, 187, 228, 5%));
+
+// Specific
+$Primary_Button: var(--Primary_Button, #1ab248);
+$Primary_Button_Hover: var(--Primary_Button_Hover, #30cc5f);
+$Secondary_Button: var(--Secondary_Button, rgba(26, 178, 72, 10%));
+$Button_Disable: var(--Button_Disable, rgba(0, 0, 0, 35%));
+$Input_Disable: var(--Input_Disable, rgba(51, 85, 104, 15%));
+$Background: var(--Background, #f5f8fe);
+$Textmatch: var(--Textmatch, #e8ff58);
+$DarkSpinner: var(
+  --DarkSpinner,
+  conic-gradient(
+    from 0deg at 100% 47.92%,
+    rgba(6, 151, 152, 0) 0deg,
+    #1ab248 63.75deg,
+    rgba(6, 151, 152, 0) 360deg
+  )
+);
+$LightSpinner: var(
+  --LightSpinner,
+  conic-gradient(
+    from 0deg at 100% 47.92%,
+    rgba(255, 255, 255, 0) 0deg,
+    #ffffff 127.5deg,
+    rgba(255, 255, 255, 0) 360deg
+  )
+);
+
+// Surface
+$Surface_Neutral: var(--Surface_Neutral, rgba(51, 85, 104, 5%));
+$Surface_Marine: var(--Surface_Marine, rgba(0, 187, 228, 5%));
+$Surface_Secondary: var(--Surface_Secondary, rgba(32, 0, 228, 5%));
+$Surface_Error: var(--Surface_Error, rgba(228, 0, 41, 5%));
+$Surface_Attention: var(--Surface_Attention, rgba(244, 117, 0, 5%));
+$Surface_Access: var(--Surface_Access, rgba(23, 160, 0, 5%));
+$Surface_Background: var(--Surface_Background, rgba(245, 248, 254, 90%));
+
+// Surface
+$Mint_Hi: var(--Mint_Hi, linear-gradient(45deg, #004b4e, #01949a));
+$Mint_Mid: var(--Mint_Mid, linear-gradient(45deg, #008dac, #9af3d3));
+$Mint_Low: var(--Mint_Low, linear-gradient(45deg, #a5efff, #e6ffda));
+$Violet_Hi: var(--Violet_Hi, linear-gradient(45deg, #34227b, #7c5bff));
+$Violet_Mid: var(--Violet_Mid, linear-gradient(45deg, #9351ff, #6cfaf1));
+$Violet_Low: var(--Violet_Low, linear-gradient(45deg, #cdc0ff, #cffffc));
+$Pink_Hi: var(--Pink_Hi, linear-gradient(45deg, #3e004e, #df5eff));
+$Pink_Mid: var(--Pink_Mid, linear-gradient(45deg, #8a01de, #f2bfff));
+$Pink_Low: var(--Pink_Low, linear-gradient(45deg, #e4b7ff, #fcf2ff));
+$Blue_Hi: var(--Blue_Hi, linear-gradient(45deg, #00178e, #0097ec));
+$Blue_Mid: var(--Blue_Mid, linear-gradient(45deg, #3431fb, #57ddff));
+$Blue_Low: var(--Blue_Low, linear-gradient(45deg, #b4dfff, #e0f9ff));
+$Orange_Hi: var(--Orange_Hi, linear-gradient(45deg, #840057, #dc9e00));
+$Orange_Mid: var(--Orange_Mid, linear-gradient(45deg, #ff3cbd, #ffc633));
+$Orange_Low: var(--Orange_Low, linear-gradient(45deg, #ffbfe9, #ffecba));
+$Green_Hi: var(--Green_Hi, linear-gradient(45deg, #007a1b, #fee500));
+$Green_Mid: var(--Green_Mid, linear-gradient(45deg, #5eff81, #fff503));
+$Green_Low: var(--Green_Low, linear-gradient(45deg, #b5ffc5, #fffdc2));

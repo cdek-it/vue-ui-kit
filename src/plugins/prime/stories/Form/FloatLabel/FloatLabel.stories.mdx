@@ -1,0 +1,49 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './FloatLabel.template';
+
+<Meta title="Prime/Form/FloatLabel" />
+
+# FloatLabel
+
+[PrimeVue FloatLabel](https://primevue.org/floatlabel), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=2168-9279&m=dev>)
+
+### Input
+
+Какие пропсы передавать в инпут см. [InputText](/docs/prime-form-inputtext--primary)
+
+```html dark
+<PrimeFloatLabel variant="in">
+  <PrimeInputText id="input" />
+  <label for="input">FloatLabel</label>
+</PrimeFloatLabel>
+```
+
+<Story
+  name="Input"
+  args={{
+    component: 'InputText',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Textarea
+
+Какие пропсы передавать в textarea см. [Textarea](/docs/prime-form-textarea--primary)
+
+```html dark
+<PrimeFloatLabel variant="in">
+  <PrimeTextarea id="textarea" />
+  <label for="textarea">FloatLabel</label>
+</PrimeFloatLabel>
+```
+
+<Story
+  name="Textarea"
+  args={{
+    component: 'Textarea',
+  }}
+>
+  {Template.bind({})}
+</Story>

@@ -1,0 +1,19 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './Menu.template';
+
+<Meta title="Prime/Menu/Menu" />
+
+# Menu
+
+[PrimeVue Menu](https://primevue.org/menu), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12826&m=dev>)
+
+### Basic
+
+```jsx dark
+const selectedClass = 'p-menuitem-checked';
+
+<PrimeMenu :model="items" />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>

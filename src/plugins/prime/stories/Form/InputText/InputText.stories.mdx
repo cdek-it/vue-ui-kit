@@ -1,0 +1,40 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template, TemplateWithIcons } from './InputText.template';
+
+<Meta title="Prime/Form/InputText" />
+
+# InputText
+
+[PrimeVue InputText](https://primevue.org/inputtext), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5470&node-type=section&t=2PSg63p2UfJ4cUzB-0>)
+
+```html dark
+<PrimeInputText v-model="value" placeholder="InputText" />
+```
+
+<Story name="Primary">{Template.bind({})}</Story>
+
+
+# С иконками
+Логика на работу крестика не прописана в ui-ките, на данный момент должна быть прописана на стороне приложения
+```html dark
+<script setup>
+  const inputValue = ref('');
+
+    const onClickDelete = () => {
+      inputValue.value = '';
+    };
+</script>
+
+<template>
+    <PrimeIconField>
+        <PrimeInputText v-model=inputValue placeholder="Normal" />
+        <PrimeInputIcon @click="onClickDelete">
+            <i class="ti ti-x" />
+        </PrimeInputIcon>
+    </PrimeIconField>
+</template>
+
+```
+
+<Story name="withIcons">{TemplateWithIcons.bind({})}</Story>

@@ -1,0 +1,108 @@
+variables:
+  DOCKER_IMAGE: 'node:20'
+
+stages:
+  - lint
+  - publish
+  - storybook
+
+.common:
+  image: ${DOCKER_IMAGE}
+
+  cache:
+    key: vue-ui-kit-vendor
+    paths:
+      - node_modules/
+
+  tags:
+    - docker
+
+yarn:
+  stage: .pre
+  extends: .common
+
+  script:
+    - yarn install
+
+  cache:
+    policy: push
+
+lint:
+  stage: lint
+  extends: .common
+  except:
+    - main
+  script:
+    - yarn run lint:cli
+
+  cache:
+    policy: pull
+
+test:
+  stage: lint
+  extends: .common
+  except:
+    - main
+  script:
+    - yarn run test:cli
+
+  cache:
+    policy: pull
+
+type-check:
+  stage: lint
+  extends: .common
+  except:
+    - main
+  script:
+    - yarn run type-check
+
+  cache:
+    policy: pull
+
+publish:
+  stage: publish
+  extends: .common
+  only:
+    - main
+    - /^release\/.*/
+  when: manual
+
+  script:
+    - sh scripts/release.sh
+
+  cache:
+    policy: pull
+
+publish-with-prefix:
+  stage: publish
+  extends: .common
+  only:
+    - main
+    - /^release\/.*/
+  when: manual
+
+  script:
+    - set -euo pipefail
+    - echo "$STYLE_PREFIX" | md5sum
+    - sh scripts/release-prefixed.sh
+
+  cache:
+    policy: pull
+
+pages:
+  stage: storybook
+  extends: .common
+  script:
+    - yarn build-storybook -o public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main
+    - /^release\/.*/
+  when: manual
+
+  cache:
+    paths:
+      - public/

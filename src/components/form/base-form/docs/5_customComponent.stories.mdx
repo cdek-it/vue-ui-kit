@@ -1,0 +1,41 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Form/Custom Component" />
+
+# Использование кастомных компонентов
+
+Если вам не хватает стандартной функциональности `CdekFormControl`, но при этом вы хотите использовать функционал формы, то есть
+возможность использовать кастомные компоненты внутри `CdekFormControl`.
+
+Для этого необходимо передать `type="slot"` в `CdekFormControl`.
+
+В slot передаются 3 свойства:
+
+- `value` текущее значение в форме
+- `changeValue` функция принимающая новое значение и меняющая его в форме
+- `validRes` результат валидации, `true` если все ок, либо сообщение об ошибке
+
+Все компоненты формы из библиотеки, даже не входящие в `CdekFormControl` поддерживают `v-model` и `valid-res`. В своих компонентах можете сделать
+кастомную обработку, но лучше придерживаться общей концепции.
+
+```html dark
+<CdekFormControl
+  type="slot"
+  name="customField"
+  v-slot="{ value, changeValue, validRes }"
+>
+  <CustomComponent
+    :model-value="value"
+    @update:model-value="changeValue"
+    :valid-res="validRes"
+  />
+</CdekFormControl>
+```
+
+Таким образом вы получаете возможность использовать валидаторы, сбор данных и обработку ошибок, которые вшиты в форму.
+
+> Нажмите кнопку `Submit` и вы увидете результат валидации значения
+
+> Выберите значение в селекте, нажмите `Submit` и вы увидите результат сабмита
+
+<Story id="form-cdekformcontrol--custom-component" />

@@ -1,0 +1,34 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './Tag.template';
+
+<Meta title="Prime/Misc/Tag" />
+
+# Tag
+
+[PrimeVue Tag](https://primevue.org/tag), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=484-4921&m=dev>)
+
+### Default
+
+```html dark
+<PrimeTag value="Tag" />
+```
+
+<Story name="Default" args={{value: "Tag"}}>{Template.bind({})}</Story>
+
+#Rounded
+
+```html dark
+<PrimeTag value="Tag" rounded />
+```
+
+<Story name="Rounded" args={{value: "Tag", rounded: true}}>{Template.bind({})}</Story>
+
+
+#With icon
+
+```html dark
+<PrimeTag value="Tag" icon="ti ti-info-circle" />
+```
+
+<Story name="Icon" args={{value: "Tag", icon: "ti ti-info-circle"}}>{Template.bind({})}</Story>

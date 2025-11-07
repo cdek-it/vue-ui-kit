@@ -1,0 +1,26 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './Badge.template';
+
+<Meta title="Prime/Misc/Badge" />
+
+# Badge
+
+[PrimeVue Badge](https://primevue.org/badge), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=484-4871&m=dev>)
+
+### Default
+
+```html dark
+<PrimeBadge value="Badge" />
+```
+
+<Story name="Default" args={{value: "Badge"}}>{Template.bind({})}</Story>
+
+
+#Dot
+
+```html dark
+<PrimeBadge />
+```
+
+<Story name="Icon">{Template.bind({})}</Story>

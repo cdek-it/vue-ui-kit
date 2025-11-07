@@ -1,0 +1,91 @@
+name: Auto-assign by labels (satellite)
+
+on:
+  issues:
+    types: [opened, labeled, unlabeled, edited]
+  pull_request:
+    types: [opened, labeled, unlabeled, edited]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+ 
+
+jobs:
+  assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Auto-assign based on main hub mapping
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          script: |
+            const org = context.repo.owner;
+            const repo = context.repo.repo;
+            const item = context.payload.issue || context.payload.pull_request;
+
+            if (!item) {
+              console.log("❌ Не найден issue или PR");
+              return;
+            }
+
+            const number = item.number;
+            const labels = item.labels.map(l => l.name);
+            console.log("🏷️ Лейблы:", labels.join(", "));
+
+            // 🔹 Сопоставление label → команда, как на основном хабе
+            const labelToTeam = {
+              "area/design-system": "design-team",
+              "area/components": "frontend-specialists",
+              "area/accessibility": "a11y-experts",
+              "area/performance": "performance-team",
+              "area/tooling": "devops-team",
+              "area/i18n": "i18n-team",
+              "area/mobile": "mobile-team"
+            };
+
+            // Текущие assignees
+            const currentAssignees = item.assignees?.map(a => a.login) || [];
+            const desiredAssignees = new Set();
+
+            for (const label of labels) {
+              const team = labelToTeam[label];
+              if (!team) continue;
+
+              try {
+                const members = await github.rest.teams.listMembersInOrg({
+                  org: 'cdek-it', // организация основного хаба
+                  team_slug: team
+                });
+                members.data.forEach(m => desiredAssignees.add(m.login));
+              } catch (error) {
+                console.log(`⚠️ Не удалось получить участников команды ${team}: ${error.message}`);
+              }
+            }
+
+            const toAdd = Array.from(desiredAssignees).filter(a => !currentAssignees.includes(a));
+            const toRemove = currentAssignees.filter(a => !desiredAssignees.has(a));
+
+            if (toAdd.length > 0) {
+              await github.rest.issues.addAssignees({
+                owner: org,
+                repo,
+                issue_number: number,
+                assignees: toAdd
+              });
+              console.log("✅ Добавлены новые assignees");
+            }
+
+            if (toRemove.length > 0) {
+              await github.rest.issues.removeAssignees({
+                owner: org,
+                repo,
+                issue_number: number,
+                assignees: toRemove
+              });
+              console.log("✅ Удалены лишние assignees");
+            }

@@ -1,0 +1,63 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Installation" />
+
+# Установка
+
+Для установки необходимо, чтобы в системе был прописан путь до группы `@cdek-ui-kit`. Это можно как зашить в файл `.npmrc`
+(если используете npm для установки пакетов), так и прописать вручную командой. Есть еще файл `.yarnrc` в который по идее тоже можно
+прописать путь до группы. Однако у меня не получилось заставить это работать.
+
+> Буду признательна, если пришлете файлы `.npmrc`/`.yarnrc`, если вы работаете через них
+
+Пока я советую самый универсальный вариант. Сделайте у себя файл `init.sh`, который будет проводить первоначальную настройку проекта.
+
+```bash dark
+npm config set -- '//gitlab.cdek.ru/api/v4/projects/2094/packages/npm/:_authToken' "M__vw1BxxuyPg5htzoZw"
+npm config set @cdek-ui-kit:registry https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/
+# Здесь можно скопировать энвы или произвести доп. действия, который нужны при первой настройке
+yarn install # для yarn
+npm i # для npm
+```
+
+Самые важные настройки - это первые 2. Они необходимы, чтобы установить/скачать пакет.
+
+Сама установка проводится через команду
+
+```bash dark
+yarn add @cdek-ui-kit/vue # yarn
+npm add @cdek-ui-kit/vue  # npm
+```
+
+Стили автоматически не подтягиваются, вам нужно импортировать их вручную, через
+
+```js dark
+// From JavaScript
+import '@cdek-ui-kit/vue/style.css';
+```
+
+или
+
+```css dark
+// From SCSS
+@import '@cdek-ui-kit/vue/style.css';
+```
+
+## Переустановка после выпуска на новой версии
+
+Если с `npm` возникает ошибка
+
+```bash dark
+npm ERR! code ETARGET
+npm ERR! notarget No matching version found for @cdek-ui-kit/vue@0.6.0-alpha.il17.
+npm ERR! notarget In most cases you or one of your dependencies are requesting
+npm ERR! notarget a package version that doesn't exist.
+```
+
+Запустите команду
+
+```bash dark
+npm cache clean --force
+```
+
+И установите еще раз.

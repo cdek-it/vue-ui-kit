@@ -1,0 +1,73 @@
+// Desktop-first
+
+@mixin media-xs {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media (max-width: 992px) {
+    @content;
+  }
+}
+
+@mixin media-lg {
+  @media (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin media-xl {
+  @media (max-width: 1400px) {
+    @content;
+  }
+}
+
+// Mobile first
+
+@mixin media-min-sm {
+  @media (min-width: 576px) {
+    @content;
+  }
+}
+
+@mixin media-min-md {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media-min-lg {
+  @media (min-width: 992px) {
+    @content;
+  }
+}
+
+@mixin media-min-xl {
+  @media (min-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin media-min-xxl {
+  @media (min-width: 1400px) {
+    @content;
+  }
+}
+
+// Hover
+
+@mixin media-hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,265 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Changelog" />
+
+# Changelog
+
+## Versions
+
+[`2.0.0`](#2.0.0) [`1.0.0`](#1.0.0) [`0.5.0`](#0.5.0) [`0.4.1`](#0.4.1) [`0.4.0`](#0.4.0) [`0.3.0`](#0.3.0) [`0.2.0`](#0.2.0)
+[`0.1.0-rc-010923`](#0.1.0-rc-010923) [`0.1.0-rc-270723`](#0.1.0-rc-270723) [`0.0.1`](#0.0.1)
+
+## <a name="2.0.0"></a>[2.0.0](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/2.0.0)
+
+### Changed
+
+- [**useServiceFactory**](/story/services-servicefactory--this) самостоятельно биндит контекст для методов [#25](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/25)
+- Обновлен @primevue/auto-import-resolver, @primevue/themes, primevue до 4.3.6, tailwindcss-primeui 0.6.1 [#132](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/132)
+- Создание пресета при помощи пакета primeuix [#135](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/135)
+- [**Chip**](/story/prime-chip--default-story) исправлены стили для Chip в соответствии с макетами. [#136](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/136)
+- [**Accordion**](/docs/prime-accordion--аккордеонс-1-йпанелью) исправлены стили для Accordion в соответствии с макетами. [#24](https://github.com/cdek-it/vue-ui-kit/issues/24)
+
+### Added
+
+- [**CdekFormControl**](/story/form-cdekformcontrol--change-with-deferred-validation) добавлена возможность отключить валидацию при первом вводе через пропс deferredValidation [#80](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/80)
+- [**PrimeVue**](/story/prime-установка--page) добавлены плагины для подключения PrimeVue [#112](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/112)
+- **lint** в eslint включено правило на console.log [#113](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/113)
+- **theme** подготовлены истории для проверки темы [#114](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/114)
+- [**Иконки и типографика**](/story/prime-иконки-и-типографика--page) добавлена инструкция для подключения иконок в проекты [#115](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/115), [#122](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/122)
+- **theme** стилизованы компоненты формы [#116](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/116)
+- [**ToggleButton**](/story/prime-form-togglebutton--primary) стилизован компонент ToggleButton [#117](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/117)
+- [**SelectButton**](/story/prime-form-selectbutton--primary) стилизован компонент SelectButton [#129](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/129)
+- **theme** добавлена кнопка на переключение темной темы [#123](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/123)
+- **theme** перенесены токены из макетов, добавлены истории для [**MenuBar**](/story/prime-menu-menubar--primary), [**PanelMenu**](/story/prime-menu-menubar--primary) [#127](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/127)
+- [**MenuBar**](/story/prime-menu-menubar--primary) стилизован компонент MenuBar [#127](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/127), [#133](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/133)
+- [**Carousel**](/story/prime-carousel--карусельс-5-ювидимымииз-8-мислайдами) стилизован компонент Carousel [#134](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/134)
+- [**ProgressSpinner**](/story/prime-progressspinner--primary) стилизован компонент ProgressSpinner [#136](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/136)
+- [**Tag**](/story/prime-tag--default-story) стилизован компонент Tag [#136](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/136)
+- [**Chip**](/story/prime-chip--default-story) добавлен сториз для Chip [#136](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/136)
+- [**Skeleton**](/story/prime-skeleton--default-story) добавлен сториз для Skeleton [#136](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/136)
+- [**Divider**](/story/prime-divider--default-story) добавлен сториз для Divider [#136](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/136)
+- [**Button**](/story/prime-button--icon-with-label) изменены настройки шрифта для кнопки размера `large` [#137](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/137)
+- [**Accordion**](/docs/prime-accordion--аккордеонс-1-йпанелью) стилизация компонента под ДС и настройка story [#2](https://github.com/cdek-it/vue-ui-kit/issues/2)
+- [**Dialog**](/docs/prime-dialog--default-story) стилизация компонента под ДС и настройка story [#5](https://github.com/cdek-it/vue-ui-kit/issues/5)
+- [**Message**](/docs/prime-message--primary) стилизация компонента под ДС и настройка story [#26](https://github.com/cdek-it/vue-ui-kit/issues/26)
+- [**Breadcrumb**](/docs/prime-menu-breadcrumb--primary) стилизация компонента под ДС и настройка story [#31](https://github.com/cdek-it/vue-ui-kit/issues/31)
+- [**Badge**](/docs/prime-misc-badge--default-story) стилизация компонента под ДС и настройка story [#33](https://github.com/cdek-it/vue-ui-kit/issues/33)
+- [**Card**](/docs/prime-panel-card--default-story) стилизация компонента под ДС и настройка story [#35](https://github.com/cdek-it/vue-ui-kit/issues/35)
+- [**Tab**](/docs/prime-menu-tab--primary) стилизация компонента под ДС и настройка story [#37](https://github.com/cdek-it/vue-ui-kit/issues/37)
+- [**Menu**](/docs/prime-menu-menu--primary) стилизация компонента под ДС и настройка story [#39](https://github.com/cdek-it/vue-ui-kit/issues/39)
+- [**TieredMenu**](/docs/prime-menu-tieredmenu--primary) стилизация компонента под ДС и настройка story [#40](https://github.com/cdek-it/vue-ui-kit/issues/40)
+- [**Avatar**](/docs/prime-misc-avatar--label) стилизация компонента под ДС и настройка story [#43](https://github.com/cdek-it/vue-ui-kit/issues/43)
+
+
+### Breaking change
+
+- **build** Смена версии node на 20, поднята версия Vue до 3.5, исправлены ошибки и ворнинги при сборке [#106](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/106)
+- **CdekButton** Изменены классы темы для избегания конфликтов имен с Tailwind (.outline -> .outline-theme) [#128](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/128)
+
+## <a name="1.1.0"></a>[1.1.0](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/1.1.0)
+
+### Added
+
+- [**CdekAutocomplete**](/story/ui-kit-cdekautocomplete--show-all-on-focus) добавлен пропс showAllOnFocus для отображения всех опций при фокусе  [#126](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/126)
+
+## <a name="1.0.0"></a>[1.0.0](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/1.0.0)
+
+### Fixed
+
+- [**CdekAutocomplete**](/story/ui-kit-cdekautocomplete--hidden-tip-block) dropdown теперь не залазит на CdekInput, если блок с подсказкой скрыт [#102](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/102)
+- [**CdekMaskedInput**](/story/ui-kit-cdekmaskedinput--clearable-input) clearable теперь вызывает событие очистки инпута [#101](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/101)
+- [**toastification**](/story/plugins-toastification--select-position-mobile) выбор позиции теперь работают корректно на мобильных устройствах [#100](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/100)
+- [**CdekSelect**](/story/ui-kit-cdekselect--falsy-value-item) теперь корректно обрабатывает ложные значения в `value` (пустая строка, 0) [#106](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/106)
+- [**CdekSelect**](/story/ui-kit-cdekselect--get-value) теперь не мутирует переданный массив `items` [#105](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/105)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--auto-resize-with-height) теперь CdekTextarea c resize="auto" не игнорирует атрибут height [#109](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/109)
+
+### Changed
+
+- [**CdekSelect**](/story/ui-kit-cdekselect--get-value) теперь отдает оригинальный объект из `items` в событии `select` [#105](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/105)
+- [**CdekAlert**](/story/ui-kit-cdekalert--primary-content-align-top) теперь при длинном заголовке иконка не сжимается [#99](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/99)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--auto-resize-initial-value) теперь CdekTextarea c resize="auto" расчитывает высоту с изначальным modelValue [#104](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/104)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--auto-resize-change-value) теперь CdekTextarea c resize="auto" расчитывает высоту при изменении modelValue мимо события input [#104](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/104)
+- [**CdekInput**](/story/ui-kit-cdekinput-basic--error-without-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--error-without-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekSelect**](/story/ui-kit-cdekselect--hide-error-message) - теперь при `hideErrorMessage`, если подсказки нет, то блок будет скрыт [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+
+### Added
+
+- [**CdekForm**](/story/form-change-values--page) добавлено событие change [#107](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/107)
+- [**CdekFormControl**](/story/form-change-values--page) добавлено событие change [#107](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/107)
+- [**CdekBreadcrumbs**](/story/ui-kit-cdekbreadcrumbs--primary) создан компонент CdekBreadcrumbs [#98](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/98)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--primary) создан компонент CdekTextarea [#97](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/97)
+- [**CdekForm**](/story/form-cdekform--primary-trimmed) добавлен атрибут trim-before-submit [#30](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/30)
+- [**CdekAlert**](/story/ui-kit-cdekalert--primary-content-align-top) добавлена возможность изменить положение контента в заголовке [#99](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/99)
+- [**CdekInput**](/story/ui-kit-cdekinput-basic--show-error-if-exists) добавлен параметр `showErrorIfExists` [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekSelect**](/story/ui-kit-cdekselect--show-error-if-exists) добавлен параметр `showErrorIfExists` [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+- [**CdekTextarea**](/story/ui-kit-cdektextarea--show-error-if-exists) добавлен параметр `showErrorIfExists` [#103](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/103)
+
+### Build
+
+- Так как отключен доступ во внешку, теперь для пакетов используем registry https://repo.cdek.ru/repository/npm-public
+
+### Docs
+
+- [**Installation**](/story/installation--page) Добавлена инструкция для npm, если пакет не устанавливается
+- [**Contributing**](/story/contributing--page) Добавлена ссылка на инструкцию для версии с префиксами, смотри в секцию Тестирование на alpha версии
+- [**CdekSelect**](/story/ui-kit-cdekselect-types--page) Добавлена документация по типам
+
+## <a name="0.5.0"></a>[0.5.0](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/0.5.0)
+
+### Fixed
+
+- **toastification** крестик теперь не уплывает на айфонах [#53](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/53)
+
+### Added
+
+- [**CdekFormControl**](/story/form-custom-component--page) добавлена возможность использовать кастомные компоненты [#94](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/94)
+- [**CdekFormControl**](/story/form-cdekformcontrol--input-type-number) добавлена поддержка типа `number`, пока он просто прокидывается на `input` [#92](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/92)
+- [**CdekMaskedInput**](/story/ui-kit-cdekmaskedinput--phone) создан компонент на основе `CdekInput`, позволяющий использовать [маски](https://beholdr.github.io/maska/#/) [#95](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/95)
+
+### Docs
+
+- История релизов теперь хранится в Storybook [#96](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/93)
+- Теперь есть требование сразу описывать изменения в **Changelog** при разработке [#96](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/93)
+- [**CdekHeadline**](/story/deprecated-cdekheadline--primary) переехал в категорию deprecated [#93](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/93)
+- [**CdekFormControl**](/story/form-validation--page) немного изменила документацию по валидации, чтобы было очевиднее, что `rules` передаются в `CdekFormControl`, а не на `CdekForm` [#51](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/51)
+- [**CdekAutocomplete**](/story/ui-kit-cdekautocomplete--not-found) добавлена историю на то, как менять сообщение "не найдено" [#35](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/35)
+- [**CdekAutocomplete**](/story/ui-kit-cdekautocomplete--with-label) добавлена историю с лейблом [#34](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/34)
+
+### Closed issues
+
+- [**CdekFormControl**](/story/form-cdekformcontrol--custom-class) закрыт [#78](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/78), уже есть возможность прокинуть класс на родителя
+- **CdekInput** закрыт [#46](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/46), мозилла слишком рано вставляет значение, попытки забрать значение после гидрации не очень хорошо работают. На данный момент единственное решение - отключать автокомплит.
+
+## <a name="0.4.1"></a>[0.4.1](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/0.4.1)
+
+### Fixed
+
+- **CdekInput** не добавлялся класс `.cdek-input` на корневой элемент
+
+## <a name="0.4.0"></a>[0.4.0](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/0.4.0)
+
+### Changed
+
+- **SCSS** Цвета теперь будут браться с CSS переменных, там прописаны дефолтные значения, так что если переменной в проекте нет, будет браться оно, иначе ваше значение [#87](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/87)
+
+### Build
+
+- Теперь есть отдельная джоба `publish-with-prefix`, которая позволит публиковать версии с другим префиксом. Значение берется из Gitlab CI переменной `STYLE_PREFIX`, которую нужно задавать перед запуском джобы. [#89](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/89)
+- При билде с префиксом теперь нет упоминания `cdek` в исходниках (ни в стилях, ни в js), за исключением названия экспорта [#86](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/86), [#85](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/85)
+
+### Docs
+
+- Версию больше не нужно указывать, было не очень полезно [#90](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/90)
+- Добавлены общие страницы с документацией (установка, contributing, стили, префиксы) [#88](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/88)
+
+## <a name="0.3.0"></a>[0.3.0](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/0.3.0)
+
+### Breaking change
+
+- Стили теперь **НЕ** импортятся автоматически, их нужно [импортировать вручную](/story/installation--page). [#77](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/77)
+
+### Fixed
+
+- **SCSS** пофикшены неправильные стили в миксинах `headline-6` и `headline-7`. [#82](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/82)
+
+### Changed
+
+- **CdekButton, CdekChip, CdekInput** добавлен `type="button"` на все кнопки, которые могут быть задействованы в формах. Если не было кнопки `type="submit"`, они начали сабмиттить формы, что вызывало неожиданное поведение. [#84](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/84)
+- **CdekInput** обводка инпута при фокусе теперь не снаружи, а внутри [#75](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/75)
+- **CdekInput** цвет плейсхолдера при фокусе стал бледнее [#72](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/72)
+- **CdekLink** цвет ссылки стал темнее (`$Primary_Active`) [#81](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/81)
+
+### Added
+
+- **CdekAlert** добавлен компонент `CdekAlert` [#83](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/83)
+- [**CdekInput**](/story/ui-kit-cdekinput-basic--html-error) добавлена возможность прокинуть html внутрь ошибки [#73](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/73)
+
+## <a name="0.2.0"></a>[0.2.0](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/0.2.0)
+
+### Fixed
+
+- Теперь библиотека не ломается при SSR [#61](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/61)
+- **CdekModal**: Анимация больше не подлагивает над элементами с `z-index` [#70](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/70)
+- **CdekInput**: Паддинги теперь совпадают с макетом [#64](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/64)
+- **CdekInput**: Исправлен сниппет кода в документации для встраивания иконки справа [#47](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/47)
+- **CdekAutocomplete**: При нажатии на enter с невыбранной опцией больше не возникает ошибка [#63](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/63)
+- **toastification**: Была поправлена анимация ухода нескольких уведомлений [#61](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/61)
+
+### Added
+
+- [**CdekModal**](/story/ui-kit-cdekmodal-modal--wrapper-without-paddings): Добавлена настройка для отключения паддингов на обертке [#71](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/71)
+- [**CdekModal**](/story/ui-kit-cdekmodal-modal--without-close-button): Добавлена настройка для скрытия крестика [#71](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/71)
+- [**CdekAutocomplete**](/story/ui-kit-cdekautocomplete--enabled-accent-query): Добавлена опция для подсвечивания поисковой строки [#65](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/65)
+- [**CdekFormControl**](/story/form-cdekformcontrol--custom-slot): Добавлена поддержка слотов, необходимых для `CdekInput` и `CdekAutocomplete` [#62](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/62)
+- [**CdekSwitch**](/story/ui-kit-cdekswitch--slot-label): Добавлена возможность прокинуть html с помощью slot [#60](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/60)
+- [**CdekButton**](/story/ui-kit-cdekbutton--as-div): Добавлена возможность рендера с другим тегом, не только `button` [#59](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/59)
+- [**toastification**](/story/plugins-toastification-stringsupport--primary): Добавлена возможность показа сообщения строкой [#36](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/36)
+- **toastification**: Добавлена возможность передачи [расположения](/story/plugins-toastification--select-position) и [timeout](/story/plugins-toastification--set-timeout) в настройках [#55](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/55)
+- [**CdekForm**](/story/form-change-values--page): Добавлена возможность очистки формы [#54](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/54)
+- **CdekSelect**: Теперь поддерживает свойства [getTitle](/story/ui-kit-cdekselect--get-value) и [getValue](/story/ui-kit-cdekselect--get-title) по аналогии со `CdekAutocomplete` [#52](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/52)
+- [**CdekSelect**](/story/ui-kit-cdekselect--scoped-slots-selected-option-and-custom-option): Теперь поддерживает `scoped-slot` для опции для кастомной верстки [#22](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/22)
+- [**CdekBadge**](/story/ui-kit-cdekbadge--slot): Добавлена возможность передачи html посредством slot [#39](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/39)
+
+## <a name="0.1.0-rc-010923"></a>[0.1.0-rc-010923](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/0.1.0-rc-010923)
+
+### Changed
+
+- Крестик в `CdekInput` (при опции `clearable`) теперь не показывается на `hover`, только при `focus` [#57](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/57)
+
+### Fixed
+
+- Сменили цвет `$Primary_Active` с `#127d32` на `#158e3a` [#50](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/50)
+- При маленькой ширине `CdekInput`, инпут больше не вылезает за границу и иконки не съезжают [#48](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/48)
+- `CdekAutocomplete` теперь не показывает варианты поиска (если они пришли позже) при потере фокуса [#56](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/56)
+- Крестик в `CdekInput` (при опции `clearable`) теперь нельзя нажать, пока поле не в фокусе, что убирает случайные нажатия по крестику на телефонах из-за того, что его не было видно [#57](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/57)
+
+## <a name="0.1.0-rc-270723"></a>[0.1.0-rc-270723](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/0.1.0-rc-270723)
+
+### Fixed
+
+- **CdekFormControl**: не менялся текст ошибки при переключении языка на НЕзаполненной форме, [issue](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/45 '‌')
+- **CdekInput**: не срабатывал сеттер на input на некоторых мобильных устройствах, [issue](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/44 '‌')
+- **SCSS**: градиенты были написаны неправильно, из-за чего не работали, [issue](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/40 '‌')
+
+### Added
+
+- **CdekChip**: компонент для установки фильтров, [issue](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/41 '‌')
+- **CdekAutocomplete**: теперь есть возможность передавать кастомные объекты, дополнительно передав `getValue` и `getTitle`, по которым будет определяться, как сделать вывод, [issue](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/38 '‌')
+- **CdekAutocomplete**: теперь можно менять значение после инициализации, просто изменив переменную, которая передается в `v-model` (не забывайте, что чтобы это сработало корректно, эта опция должна быть указана в `items`), [issue](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/38 '‌')
+
+### Changed
+
+- **Ошибки:** все компоненты, поддерживающие вывод ошибки (CdekInput, CdekAutocomplete, CdekSelect и т.д.), теперь выводят ошибку без иконки, а также добавилась возможность скрыть текст ошибки, [issue](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/32 '‌')
+- **CdekAutocomplete**: событие `@select` теперь присылает выбранную опцию в таком виде, как вы и прислали, например если вы отдали массив строк, то в селект придет строка, а если массив кастомных объектов, то ваш кастомный объект, [issue](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/38 '‌')
+- **CdekAutocomplete**: задержка теперь происходит с помощью `debounce`, а не `setTimeout`, теперь работа с автокомплитом более плавная, [issue](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/38 '‌')
+
+### Optimized
+
+- **CdekFormControl**: слишком много вызывался валидатор поля, 4 раза на одно изменение, снизили кол-во, [issue](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/issues/26 '‌')
+
+## <a name="0.0.1"></a>[0.0.1](https://gitlab.cdek.ru/FrontDev/cdek-vue-ui-kit/-/releases/0.0.1)
+
+### Features
+
+- **SCSS**: сделаны переменные и предоставлены для импорта
+- **Компоненты**:
+
+  1. CdekAutocomplete
+  2. CdekBadge
+  3. CdekButton
+  4. CdekDropdown
+  5. CdekHeadline
+  6. CdekInput
+  7. CdekLink
+  8. CdekModal
+  9. CdekSelect
+  10. CdekSpinner
+  11. CdekSwitch
+  12. CdekToaster
+  13. CdekWidget
+  14. CdekForm
+  15. CdekFormControl
+
+- **Plugins**: toastification
+- **Services**: Multitone + useServiceFactory

@@ -1,0 +1,34 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './Skeleton.template';
+
+<Meta title="Prime/Misc/Skeleton" />
+
+# Skeleton
+
+[PrimeVue Skeleton](https://primevue.org/skeleton), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=5241-3731&m=dev>)
+
+### Default
+
+```html dark
+<PrimeSkeleton />
+```
+
+<Story name="Default">{Template.bind({})}</Story>
+
+# Circle
+
+```html dark
+<PrimeSkeleton shape="circle" size="100px"/>
+```
+
+<Story name="Circle" args={{shape: "circle", size: "100px"}}>{Template.bind({})}</Story>
+
+
+# Disable animations
+
+```html dark
+<PrimeSkeleton size="100px"  animation="none" />
+```
+
+<Story name="NoAnimate" args={{animation: "none", size: "100px"}}>{Template.bind({})}</Story>

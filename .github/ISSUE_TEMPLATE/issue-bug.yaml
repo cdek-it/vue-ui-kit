@@ -1,0 +1,243 @@
+name: "Исправление бага"
+description: "Сообщение о проблемах в существующих компонентах дизайн-системы"
+title: "[БАГ] "
+labels: ["type/bug", "status/needs-triage"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Используйте формат: [компонент]:[описание проблемы]**
+        Например: "Dropdown: не закрывается при клике вне области компонента"
+        
+        Форма предназначена для сбора информации с воспроизведением этапов бага, что сокращает время на диагностику и исправление проблем.
+        **Перед созданием баг репорта:**
+        - Убедитесь, что используете последнюю версию компонента
+        - Проверьте, не был ли уже создан похожий bug report
+        - Подготовьте steps для воспроизведения проблемы
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: "Компонент с багом"
+      description: "Выберите компонент, в котором обнаружена проблема"
+      options:
+        - "Menu"
+        - "Breadcrumb"
+        - "Menubar"
+        - "MegaMenu"
+        - "TieredMenu"
+        - "PanelMenu"
+        - "Tab"
+        - "DataTable"
+        - "Paginator"
+        - "Timeline"
+        - "Upload"
+        - "Carousel"
+        - "Galleria"
+        - "MenuItem.Base"
+        - "MenuItem.Group"
+        - "MenuItem.Node"
+        - "MenuItem.Template"
+        - "Avatar"
+        - "Badge"
+        - "Chip"
+        - "MeterGroup"
+        - "ProgressBar"
+        - "Tag"
+        - "ProgressSpinner"
+        - "Skeleton"
+        - "Tooltip"
+        - "Dialog"
+        - "ConfirmDialog"
+        - "OverlayPanel"
+        - "Sidebar"
+        - "Divider"
+        - "ScrollPanel"
+        - "Accordion"
+        - "Card"
+        - "Stepper"
+        - "Message"
+        - "Button"
+        - "Button.Badge"
+        - "Button.Severity"
+        - "Calendar"
+        - "Checkbox"
+        - "Chips"
+        - "Dropdown"
+        - "InputGroup"
+        - "InputMask"
+        - "InputNumber"
+        - "InputOtp"
+        - "InputSwitch"
+        - "InputText"
+        - "Listbox"
+        - "MultiSelect"
+        - "Password"
+        - "RadioButton"
+        - "Rating"
+        - "SelectButton"
+        - "Slider"
+        - "Textarea"
+        - "ToggleButton"
+        - "FloatLabel"
+    validations:
+      required: true
+
+  - type: input
+    id: component_version
+    attributes:
+      label: "Версия компонента"
+      description: "Укажите версию дизайн-системы или компонента"
+      placeholder: "v2.1.4 или последняя"
+    validations:
+      required: true
+
+  - type: textarea
+    id: bug_summary
+    attributes:
+      label: "Краткое описание бага"
+      description: "Опишите суть проблемы в нескольких предложениях"
+      placeholder: "Краткое описание сути проблемы"
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_behavior
+    attributes:
+      label: "Ожидаемое поведение"
+      description: "Как должен работать компонент"
+      placeholder: "Опишите как должен работать компонент"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual_behavior
+    attributes:
+      label: "Фактическое поведение"
+      description: "Что происходит на самом деле"
+      placeholder: "Опишите что происходит на самом деле"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction_steps
+    attributes:
+      label: "Последовательность действий для воспроизведения"
+      description: "Пошаговые инструкции для воспроизведения проблемы"
+      placeholder: |
+        1. Первый шаг
+        2. Второй шаг
+        3. Третий шаг
+      render: markdown
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: "Критичность бага"
+      description: "Оцените влияние бага на функциональность"
+      options:
+        - "Critical - Полностью блокирует функциональность"
+        - "High - Значительно влияет на UX"
+        - "Medium - Заметная проблема, но есть обходной путь"
+        - "Low - Минорная визуальная проблема"
+
+  - type: textarea
+    id: browser
+    attributes:
+      label: "Браузер"
+      description: "Укажите браузер и его версию"
+      placeholder: "Chrome 96.0.4664.110"
+    validations:
+      required: true
+
+  - type: textarea
+    id: operating_system
+    attributes:
+      label: "Операционная система"
+      description: "Укажите ОС и её версию"
+      placeholder: "macOS Monterey 12.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: device_type
+    attributes:
+      label: "Тип устройства"
+      description: "Укажите тип устройства"
+      placeholder: "Desktop/Mobile/Tablet"
+    validations:
+      required: true
+
+  - type: textarea
+    id: screen_resolution
+    attributes:
+      label: "Разрешение экрана"
+      description: "Укажите разрешение экрана"
+      placeholder: "1920x1080"
+
+  - type: textarea
+    id: framework_version
+    attributes:
+      label: "Версия фреймворка"
+      description: "Укажите версию используемого фреймворка"
+      placeholder: "React 18.2.0"
+
+  - type: textarea
+    id: additional_dependencies
+    attributes:
+      label: "Дополнительные зависимости"
+      description: "Укажите другие важные зависимости и их версии"
+      placeholder: "Next.js 13.0.0, TypeScript 4.8.0"
+
+  - type: textarea
+    id: reproduction_code
+    attributes:
+      label: "Код для воспроизведения"
+      description: "Минимальный пример демонстрирующий проблему"
+      placeholder: "// Минимальный пример кода"
+      render: markdown
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: "Скриншоты"
+      description: "Ссылка на скриншоты/видео, демонстрирующие проблему"
+      placeholder: "Прикрепите скриншоты или ссылки на изображения"
+
+  - type: textarea
+    id: live_demo
+    attributes:
+      label: "Живая демонстрация"
+      description: "Ссылка на CodeSandbox, CodePen, Stackblitz или другую онлайн-демонстрацию"
+      placeholder: "Ссылка на CodeSandbox/CodePen/Stackblitz"
+
+  - type: textarea
+    id: console_errors
+    attributes:
+      label: "Ошибки в консоли"
+      description: "Любые соответствующие сообщения об ошибках из консоли браузера"
+      placeholder: "Вставьте сообщения об ошибках из консоли"
+      render: markdown
+
+  - type: textarea
+    id: workaround
+    attributes:
+      label: "Временное решение (workaround)"
+      description: "Если знаете способ обойти проблему, опишите его"
+      placeholder: "Опишите временное решение если оно существует"
+      render: markdown
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: "Дополнительная информация"
+      description: |
+        - Связанные задачи или отчеты об ошибках
+        - Соответствующие исследования или документация
+        - Бизнес-приоритет
+        - Другое
+      placeholder: "Укажите дополнительную информацию..."
+      render: markdown

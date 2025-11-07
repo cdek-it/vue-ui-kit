@@ -1,0 +1,81 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { Template, ChangedIcon, CustomChip } from './Chips.template';
+
+<Meta title="Prime/Form/Chips" />
+
+# Chips
+
+[PrimeVue](https://primevue.org/autocomplete/#multiple), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5572&node-type=section&t=4j1yOYM0tyTZeYYu-0>)
+
+Отдельного компонента `Chips` в v4 нет, используем [Autocomplete](https://primevue.org/autocomplete/#multiple) с флагом `multiple`.
+
+### Любое значение
+
+```html dark
+<!-- Не показывает дропдаун с вариантами, нужно нажать на Enter -->
+<PrimeAutoComplete v-model="value" multiple :typeahead="false" />
+```
+
+<Story name="Any Value" args={{ multiple: true, typeahead: false }}>
+  {Template.bind({})}
+</Story>
+
+### Выбор из списка
+
+```html dark
+<!-- Функцию в complete нужно передать обязательно, и она должна обязательно изменить значение items, иначе зависнет -->
+<PrimeAutoComplete
+  v-model="value"
+  multiple
+  :suggestions="items"
+  @complete="complete"
+/>
+```
+
+<Story name="Suggestions" args={{ multiple: true, story: 'Suggestions' }}>
+  {Template.bind({})}
+</Story>
+
+
+### Заменить иконку удаления
+
+```html dark
+<PrimeAutoComplete
+  v-model="value"
+  multiple
+  :suggestions="items"
+  @complete="complete"
+  removeTokenIcon="ti ti-x"
+/>
+```
+
+<Story name="ChangeRemoveIcon" args={{ multiple: true }}>
+  {ChangedIcon.bind({})}
+</Story>
+
+
+### CustomChip
+
+```html dark
+<!-- Не забыть передать класс p-autocomplete-chip для получения дефолтной стилизации -->
+<PrimeAutoComplete
+    v-model="value"
+    multiple
+    :suggestions="items"
+    @complete="complete"
+>
+    <template #chip="chipsProps">
+      <PrimeChip
+        class="p-autocomplete-chip"
+        :label="chipsProps.value"
+        icon="ti ti-check"
+        removeIcon="ti ti-x"
+        removable
+      />
+    </template>
+</PrimeAutoComplete>
+```
+
+<Story name="CustomChip" args={{ multiple: true }}>
+  {CustomChip.bind({})}
+</Story>
