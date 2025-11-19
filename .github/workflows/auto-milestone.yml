@@ -1,0 +1,186 @@
+name: Auto Milestone & Label Management
+
+on:
+  push:
+    branches:
+      - 'release/v*'
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  manage-milestones-and-labels:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Auto milestone and label management
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
+          script: |
+            const org = context.repo.owner;
+            const repo = context.repo.repo;
+
+            function extractVersion(str) {
+              const match = str.match(/^v?(\d+\.\d+(\.\d+)?)$/);
+              return match ? match[1] : null;
+            }
+
+            function compareVersions(a, b) {
+              const pa = a.split('.').map(Number);
+              const pb = b.split('.').map(Number);
+              for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+                const x = pa[i] || 0;
+                const y = pb[i] || 0;
+                if (x !== y) return x - y;
+              }
+              return 0;
+            }
+
+            // 1) Создание label при push в release/v*
+            if (context.eventName === 'push') {
+              const ref = context.ref;
+              if (!ref.startsWith('refs/heads/release/v')) return;
+
+              const version = extractVersion(ref.replace('refs/heads/release/', ''));
+              if (!version) return;
+
+              const labelName = `release:v${version}`;
+              const labels = await github.rest.issues.listLabelsForRepo({ owner: org, repo });
+
+              if (!labels.data.some(l => l.name === labelName)) {
+                await github.rest.issues.createLabel({
+                  owner: org,
+                  repo,
+                  name: labelName,
+                  color: '0e8a16',
+                  description: `Release version v${version}`
+                });
+                console.log(`✅ Label "${labelName}" создан.`);
+              }
+
+              return;
+            }
+
+            // 2) Присвоение label + назначение milestone для PR
+            if (context.eventName === 'pull_request') {
+              const pr = context.payload.pull_request;
+              const releaseMatch = pr.head.ref.match(/^release\/v(\d+\.\d+(\.\d+)?)$/)
+                                || pr.base.ref.match(/^release\/v(\d+\.\d+(\.\d+)?)$/);
+
+              if (!releaseMatch) return;
+              const version = releaseMatch[1];
+              const labelName = `release:v${version}`;
+
+              await github.rest.issues.addLabels({
+                owner: org,
+                repo,
+                issue_number: pr.number,
+                labels: [labelName]
+              });
+              console.log(`✅ Label "${labelName}" добавлен в PR #${pr.number}`);
+
+              // Назначение milestone
+              const milestoneTitle = `v${version}`;
+              const milestones = await github.rest.issues.listMilestones({ owner: org, repo, state: 'open' });
+              const milestone = milestones.data.find(m => m.title === milestoneTitle);
+
+              if (milestone) {
+                await github.rest.issues.update({
+                  owner: org,
+                  repo,
+                  issue_number: pr.number,
+                  milestone: milestone.number
+                });
+                console.log(`📌 Milestone "${milestoneTitle}" назначен PR #${pr.number}`);
+              } else {
+                console.log(`⚠️ Milestone "${milestoneTitle}" не найден — назначение пропущено.`);
+              }
+
+              return;
+            }
+
+            // 3) После релиза: закрыть milestone и перенести задачи
+            if (context.eventName === 'release' && context.payload.action === 'published') {
+              const tag = context.payload.release.tag_name;
+
+              function parseVersion(name) {
+                const m = name.match(/^v(\d+)\.(\d+)\.(\d+)$/);
+                return m ? { major: +m[1], minor: +m[2], patch: +m[3] } : null;
+              }
+
+              function isGreater(a, b) {
+                if (a.major !== b.major) return a.major > b.major;
+                if (a.minor !== b.minor) return a.minor > b.minor;
+                return a.patch > b.patch;
+              }
+
+              const currentVersion = parseVersion(tag);
+              if (!currentVersion) {
+                console.log(`⚠️ Tag ${tag} не похож на vX.Y.Z — перенос пропущен.`);
+                return;
+              }
+
+              const milestoneTitle = `v${currentVersion.major}.${currentVersion.minor}.${currentVersion.patch}`;
+              const { data: allMilestones } = await github.rest.issues.listMilestones({
+                owner: org,
+                repo,
+                state: 'all'
+              });
+
+              const current = allMilestones.find(m => m.title === milestoneTitle);
+              if (!current) {
+                console.log(`⚠️ Milestone "${milestoneTitle}" не найден.`);
+                return;
+              }
+
+              // Находим следующий milestone по SemVer
+              const versions = allMilestones
+                .map(m => ({ m, v: parseVersion(m.title) }))
+                .filter(x => x.v && isGreater(x.v, currentVersion))
+                .sort((a, b) =>
+                  isGreater(a.v, b.v) ? 1 : -1
+                );
+
+              const next = versions.length ? versions[0].m : null;
+
+              const openIssues = await github.rest.issues.listForRepo({
+                owner: org,
+                repo,
+                milestone: current.number,
+                state: 'open',
+                per_page: 100
+              });
+
+              if (next) {
+                for (const issue of openIssues.data) {
+                  await github.rest.issues.update({
+                    owner: org,
+                    repo,
+                    issue_number: issue.number,
+                    milestone: next.number
+                  });
+                  console.log(`➡️ #${issue.number} перенесён → ${next.title}`);
+                }
+              } else {
+                console.log(`⚠️ Следующий milestone не найден — задачи остаются в закрытом.`);
+              }
+
+              await github.rest.issues.updateMilestone({
+                owner: org,
+                repo,
+                milestone_number: current.number,
+                state: 'closed'
+              });
+
+              console.log(`🎉 Milestone "${milestoneTitle}" закрыт.`);
+            }
