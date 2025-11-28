@@ -1,0 +1,30 @@
+{
+  "inputtext": {
+    "root": {
+      "fontSize": "1rem",
+      "paddingX": "0.75rem",
+      "paddingY": "1.25rem"
+    }
+  },
+  "select": {
+    "root": {
+      "fontSize": "1rem",
+      "paddingX": "0.75rem",
+      "paddingY": "1.25rem"
+    }
+  },
+  "dialog": {
+    "extra": {
+      "minWidth": "30rem"
+    }
+  },
+  "message": {
+    "width": "30rem"
+  },
+  "toast": {
+    "width": "30rem"
+  },
+  "drawer": {
+    "width": "30rem"
+  }
+}
