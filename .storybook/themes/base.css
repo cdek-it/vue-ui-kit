@@ -1,7 +1,7 @@
 /* Фиксы для сторибука, чтобы страница с типографикой нормально работала */
 
-* {
-  font-family: 'Roboto', sans-serif;
+body, p {
+  font-family: 'PT Sans', 'Roboto', sans-serif;
 }
 
 code {
