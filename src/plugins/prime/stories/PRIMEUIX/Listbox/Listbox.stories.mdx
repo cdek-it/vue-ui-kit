@@ -1,0 +1,137 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  MultipleTemplate,
+  GroupTemplate,
+  FilterTemplate,
+  TemplateCustomTemplate,
+  DisabledTemplate,
+  InvalidTemplate
+} from './Listbox.template';
+
+<Meta title="PRIMEUIX/Form/Listbox" />
+
+# Listbox
+
+Listbox - это компонент для выбора элементов из списка.
+
+[Документация PrimeVue](https://primevue.org/listbox/)
+
+---
+
+## Базовый
+
+Listbox используется с двусторонней привязкой через v-model и массивом опций.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Listbox v-model="selectedCity" :options="cities" optionLabel="name" />
+```
+
+---
+
+## Множественный выбор
+
+Свойство `multiple` позволяет выбрать несколько элементов.
+
+<Story name="Множественный выбор">
+  {MultipleTemplate.bind({})}
+</Story>
+
+```html
+<Listbox v-model="selectedCities" :options="cities" optionLabel="name" multiple />
+```
+
+---
+
+## Группы
+
+Опции можно группировать с помощью свойств `optionGroupLabel` и `optionGroupChildren`.
+
+<Story name="Группы">
+  {GroupTemplate.bind({})}
+</Story>
+
+```html
+<Listbox 
+  v-model="selectedCity" 
+  :options="groupedCities" 
+  optionLabel="label" 
+  optionGroupLabel="label"
+  optionGroupChildren="items"
+/>
+```
+
+---
+
+## Фильтр
+
+Свойство `filter` добавляет поле поиска для фильтрации опций.
+
+<Story name="Фильтр">
+  {FilterTemplate.bind({})}
+</Story>
+
+```html
+<Listbox 
+  v-model="selectedCity" 
+  :options="cities" 
+  optionLabel="name"
+  filter
+  filterPlaceholder="Поиск города"
+/>
+```
+
+---
+
+## Шаблон
+
+Слот `option` позволяет настроить отображение каждой опции.
+
+<Story name="Шаблон">
+  {TemplateCustomTemplate.bind({})}
+</Story>
+
+```html
+<Listbox v-model="selectedCity" :options="cities" optionLabel="name">
+  <template #option="slotProps">
+    <div class="flex items-center gap-2">
+      <i class="pi pi-map-marker"></i>
+      <div>{{ slotProps.option.name }}</div>
+    </div>
+  </template>
+</Listbox>
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с компонентом.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<Listbox v-model="selectedCity" :options="cities" optionLabel="name" disabled />
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<Listbox v-model="selectedCity" :options="cities" optionLabel="name" invalid />
+<small class="text-red-600">Необходимо выбрать город</small>
+```
+

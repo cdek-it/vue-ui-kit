@@ -1,0 +1,93 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  VerticalTemplate,
+  ContentTemplate,
+  TypesTemplate
+} from './Divider.template';
+
+<Meta title="PRIMEUIX/Panel/Divider" />
+
+# Divider
+
+Divider - это компонент для визуального разделения контента.
+
+[Документация PrimeVue](https://primevue.org/divider/)
+
+---
+
+## Базовый
+
+Divider используется как горизонтальный разделитель по умолчанию.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<p>Текст сверху</p>
+<Divider />
+<p>Текст снизу</p>
+```
+
+---
+
+## Вертикальный
+
+Установите `layout` в `vertical` для вертикального разделителя.
+
+<Story name="Вертикальный">
+  {VerticalTemplate.bind({})}
+</Story>
+
+```html
+<div class="flex">
+  <div>Раздел 1</div>
+  <Divider layout="vertical" />
+  <div>Раздел 2</div>
+</div>
+```
+
+---
+
+## С содержимым
+
+Divider может содержать контент, выравниваемый с помощью свойства `align`.
+
+<Story name="С содержимым">
+  {ContentTemplate.bind({})}
+</Story>
+
+```html
+<Divider align="left">
+  <div class="inline-flex items-center">
+    <i class="pi pi-user mr-2"></i>
+    <b>Иконка</b>
+  </div>
+</Divider>
+
+<Divider align="center">
+  <span class="p-tag">Бейдж</span>
+</Divider>
+
+<Divider align="right">
+  <Button label="Кнопка" icon="pi pi-search" />
+</Divider>
+```
+
+---
+
+## Типы
+
+Доступны различные стили линии: solid, dashed, dotted.
+
+<Story name="Типы">
+  {TypesTemplate.bind({})}
+</Story>
+
+```html
+<Divider type="solid" />
+<Divider type="dashed" />
+<Divider type="dotted" />
+```
+

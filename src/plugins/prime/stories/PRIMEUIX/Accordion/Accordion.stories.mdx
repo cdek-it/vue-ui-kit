@@ -1,0 +1,151 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  MultipleTemplate,
+  ControlledTemplate,
+  TemplateCustomTemplate,
+  DisabledTemplate
+} from './Accordion.template';
+
+<Meta title="PRIMEUIX/Panel/Accordion" />
+
+# Accordion
+
+Accordion - это компонент для отображения сворачиваемых панелей контента в группах.
+
+[Документация PrimeVue](https://primevue.org/accordion/)
+
+---
+
+## Базовый
+
+Accordion по умолчанию работает в режиме одной открытой панели.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Accordion value="0">
+  <AccordionPanel value="0">
+    <AccordionHeader>Заголовок I</AccordionHeader>
+    <AccordionContent>
+      <p>Содержимое панели I</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="1">
+    <AccordionHeader>Заголовок II</AccordionHeader>
+    <AccordionContent>
+      <p>Содержимое панели II</p>
+    </AccordionContent>
+  </AccordionPanel>
+</Accordion>
+```
+
+---
+
+## Множественный выбор
+
+Включите свойство `multiple` для разрешения одновременного открытия нескольких панелей.
+
+<Story name="Множественный выбор">
+  {MultipleTemplate.bind({})}
+</Story>
+
+```html
+<Accordion multiple>
+  <AccordionPanel value="0">
+    <AccordionHeader>Заголовок I</AccordionHeader>
+    <AccordionContent>
+      <p>Содержимое панели I</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="1">
+    <AccordionHeader>Заголовок II</AccordionHeader>
+    <AccordionContent>
+      <p>Содержимое панели II</p>
+    </AccordionContent>
+  </AccordionPanel>
+</Accordion>
+```
+
+---
+
+## Управляемый
+
+Accordion может быть управляем через v-model.
+
+<Story name="Управляемый">
+  {ControlledTemplate.bind({})}
+</Story>
+
+```html
+<Accordion v-model:value="activeIndex" multiple>
+  <AccordionPanel value="0">
+    <AccordionHeader>Заголовок I</AccordionHeader>
+    <AccordionContent>
+      <p>Содержимое панели I</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="1">
+    <AccordionHeader>Заголовок II</AccordionHeader>
+    <AccordionContent>
+      <p>Содержимое панели II</p>
+    </AccordionContent>
+  </AccordionPanel>
+</Accordion>
+```
+
+---
+
+## Шаблон
+
+AccordionHeader может содержать пользовательский контент.
+
+<Story name="Шаблон">
+  {TemplateCustomTemplate.bind({})}
+</Story>
+
+```html
+<Accordion value="0">
+  <AccordionPanel value="0">
+    <AccordionHeader>
+      <span class="flex items-center gap-2">
+        <i class="pi pi-user"></i>
+        <span class="font-bold">О нас</span>
+      </span>
+    </AccordionHeader>
+    <AccordionContent>
+      <p>Содержимое раздела О нас</p>
+    </AccordionContent>
+  </AccordionPanel>
+</Accordion>
+```
+
+---
+
+## Отключенный
+
+Отдельные панели могут быть отключены с помощью свойства `disabled`.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<Accordion value="0">
+  <AccordionPanel value="0">
+    <AccordionHeader>Заголовок I</AccordionHeader>
+    <AccordionContent>
+      <p>Содержимое панели I</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="1" disabled>
+    <AccordionHeader>Заголовок II (отключен)</AccordionHeader>
+    <AccordionContent>
+      <p>Содержимое панели II</p>
+    </AccordionContent>
+  </AccordionPanel>
+</Accordion>
+```
+

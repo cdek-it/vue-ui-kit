@@ -1,0 +1,92 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  IconTemplate,
+  ImageTemplate,
+  RemovableTemplate,
+  TemplateCustomTemplate
+} from './Chip.template';
+
+<Meta title="PRIMEUIX/Misc/Chip" />
+
+# Chip
+
+Chip - это компонент для представления небольших блоков информации.
+
+[Документация PrimeVue](https://primevue.org/chip/)
+
+---
+
+## Базовый
+
+Chip отображается с текстовой меткой через свойство `label`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Chip label="Действие" />
+<Chip label="Комедия" />
+```
+
+---
+
+## Иконка
+
+Chip может отображаться с иконкой.
+
+<Story name="Иконка">
+  {IconTemplate.bind({})}
+</Story>
+
+```html
+<Chip label="Apple" icon="pi pi-apple" />
+<Chip label="Facebook" icon="pi pi-facebook" />
+```
+
+---
+
+## Изображение
+
+Chip может отображаться с изображением через свойство `image`.
+
+<Story name="Изображение">
+  {ImageTemplate.bind({})}
+</Story>
+
+```html
+<Chip label="Эми Элснер" image="avatar.png" />
+```
+
+---
+
+## Удаляемый
+
+Установка свойства `removable` добавляет иконку для удаления чипа.
+
+<Story name="Удаляемый">
+  {RemovableTemplate.bind({})}
+</Story>
+
+```html
+<Chip label="Действие" removable @remove="handleRemove" />
+```
+
+---
+
+## Шаблон
+
+Контент может быть полностью настроен с помощью слота по умолчанию.
+
+<Story name="Шаблон">
+  {TemplateCustomTemplate.bind({})}
+</Story>
+
+```html
+<Chip>
+  <span class="font-bold">Пользователь: </span>
+  <span>user@example.com</span>
+</Chip>
+```
+

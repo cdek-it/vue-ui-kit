@@ -1,0 +1,150 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  ChipsTemplate,
+  GroupTemplate,
+  FilterTemplate,
+  TemplateCustomTemplate,
+  DisabledTemplate,
+  InvalidTemplate
+} from './MultiSelect.template';
+
+<Meta title="PRIMEUIX/Form/MultiSelect" />
+
+# MultiSelect
+
+MultiSelect - это компонент для выбора нескольких элементов из списка.
+
+[Документация PrimeVue](https://primevue.org/multiselect/)
+
+---
+
+## Базовый
+
+MultiSelect используется с двусторонней привязкой через v-model и массивом опций.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<MultiSelect 
+  v-model="selectedCities" 
+  :options="cities" 
+  optionLabel="name" 
+  placeholder="Выберите города"
+/>
+```
+
+---
+
+## С чипами
+
+Режим отображения `chip` показывает выбранные элементы как чипы.
+
+<Story name="С чипами">
+  {ChipsTemplate.bind({})}
+</Story>
+
+```html
+<MultiSelect 
+  v-model="selectedCities" 
+  :options="cities" 
+  optionLabel="name"
+  display="chip"
+  placeholder="Выберите города"
+/>
+```
+
+---
+
+## Группы
+
+Опции можно группировать с помощью свойств `optionGroupLabel` и `optionGroupChildren`.
+
+<Story name="Группы">
+  {GroupTemplate.bind({})}
+</Story>
+
+```html
+<MultiSelect 
+  v-model="selectedCities" 
+  :options="groupedCities" 
+  optionLabel="label" 
+  optionGroupLabel="label"
+  optionGroupChildren="items"
+  placeholder="Выберите города"
+/>
+```
+
+---
+
+## Фильтр
+
+Свойство `filter` добавляет поле поиска для фильтрации опций.
+
+<Story name="Фильтр">
+  {FilterTemplate.bind({})}
+</Story>
+
+```html
+<MultiSelect 
+  v-model="selectedCities" 
+  :options="cities" 
+  optionLabel="name"
+  filter
+  filterPlaceholder="Поиск города"
+  placeholder="Выберите города"
+/>
+```
+
+---
+
+## Шаблон
+
+Слот `option` позволяет настроить отображение каждой опции.
+
+<Story name="Шаблон">
+  {TemplateCustomTemplate.bind({})}
+</Story>
+
+```html
+<MultiSelect v-model="selectedCities" :options="cities" optionLabel="name">
+  <template #option="slotProps">
+    <div class="flex items-center gap-2">
+      <i class="pi pi-map-marker"></i>
+      <div>{{ slotProps.option.name }}</div>
+    </div>
+  </template>
+</MultiSelect>
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с компонентом.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<MultiSelect v-model="selectedCities" :options="cities" optionLabel="name" disabled />
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<MultiSelect v-model="selectedCities" :options="cities" optionLabel="name" invalid />
+<small class="text-red-600">Необходимо выбрать хотя бы один город</small>
+```
+

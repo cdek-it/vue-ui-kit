@@ -1,0 +1,132 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  IconsTemplate,
+  ControlledTemplate,
+  DisabledTemplate
+} from './Tabs.template';
+
+<Meta title="PRIMEUIX/Panel/Tabs" />
+
+# Tabs
+
+Tabs - это компонент для организации контента в отдельные вкладки.
+
+[Документация PrimeVue](https://primevue.org/tabs/)
+
+---
+
+## Базовый
+
+Tabs состоит из TabList с Tab компонентами и TabPanels с TabPanel компонентами.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Tabs value="0">
+  <TabList>
+    <Tab value="0">Заголовок I</Tab>
+    <Tab value="1">Заголовок II</Tab>
+    <Tab value="2">Заголовок III</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel value="0">
+      <p>Содержимое панели I</p>
+    </TabPanel>
+    <TabPanel value="1">
+      <p>Содержимое панели II</p>
+    </TabPanel>
+    <TabPanel value="2">
+      <p>Содержимое панели III</p>
+    </TabPanel>
+  </TabPanels>
+</Tabs>
+```
+
+---
+
+## С иконками
+
+Tab может содержать иконки.
+
+<Story name="С иконками">
+  {IconsTemplate.bind({})}
+</Story>
+
+```html
+<Tabs value="0">
+  <TabList>
+    <Tab value="0">
+      <i class="pi pi-home mr-2"></i>
+      Главная
+    </Tab>
+    <Tab value="1">
+      <i class="pi pi-calendar mr-2"></i>
+      Календарь
+    </Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel value="0">
+      <p>Содержимое главной страницы</p>
+    </TabPanel>
+    <TabPanel value="1">
+      <p>Содержимое календаря</p>
+    </TabPanel>
+  </TabPanels>
+</Tabs>
+```
+
+---
+
+## Управляемый
+
+Tabs может быть управляем через v-model.
+
+<Story name="Управляемый">
+  {ControlledTemplate.bind({})}
+</Story>
+
+```html
+<Tabs v-model="activeTab">
+  <TabList>
+    <Tab value="0">Заголовок I</Tab>
+    <Tab value="1">Заголовок II</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel value="0">
+      <p>Содержимое панели I</p>
+    </TabPanel>
+    <TabPanel value="1">
+      <p>Содержимое панели II</p>
+    </TabPanel>
+  </TabPanels>
+</Tabs>
+```
+
+---
+
+## Отключенные
+
+Отдельные вкладки могут быть отключены.
+
+<Story name="Отключенные">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<Tabs value="0">
+  <TabList>
+    <Tab value="0">Заголовок I</Tab>
+    <Tab value="1" disabled>Заголовок II (отключен)</Tab>
+    <Tab value="2">Заголовок III</Tab>
+  </TabList>
+  <TabPanels>
+    <TabPanel value="0"><p>Содержимое панели I</p></TabPanel>
+    <TabPanel value="1"><p>Содержимое панели II</p></TabPanel>
+    <TabPanel value="2"><p>Содержимое панели III</p></TabPanel>
+  </TabPanels>
+</Tabs>
+```
+

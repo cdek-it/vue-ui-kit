@@ -1,0 +1,78 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  WithoutHeaderTemplate
+} from './ConfirmPopup.template';
+
+<Meta title="PRIMEUIX/Overlay/ConfirmPopup" />
+
+# ConfirmPopup
+
+ConfirmPopup - это компонент для отображения всплывающих диалогов подтверждения.
+
+[Документация PrimeVue](https://primevue.org/confirmpopup/)
+
+---
+
+## Базовый
+
+ConfirmPopup управляется через ConfirmationService и `useConfirm` composable.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<ConfirmPopup />
+<Button label="Удалить" severity="danger" @click="showConfirm" />
+```
+
+```javascript
+import { useConfirm } from 'primevue/useconfirm';
+
+const confirm = useConfirm();
+
+const showConfirm = (event) => {
+  confirm.require({
+    target: event.currentTarget,
+    message: 'Вы уверены, что хотите продолжить?',
+    icon: 'pi pi-exclamation-triangle',
+    rejectProps: {
+      label: 'Отменить',
+      severity: 'secondary',
+      outlined: true
+    },
+    acceptProps: {
+      label: 'Подтвердить'
+    },
+    accept: () => {
+      // действие при подтверждении
+    }
+  });
+};
+```
+
+---
+
+## Без заголовка
+
+ConfirmPopup может отображаться без заголовка.
+
+<Story name="Без заголовка">
+  {WithoutHeaderTemplate.bind({})}
+</Story>
+
+```javascript
+confirm.require({
+  target: event.currentTarget,
+  message: 'Вы уверены?',
+  icon: 'pi pi-info-circle',
+  rejectProps: {
+    label: 'Нет'
+  },
+  acceptProps: {
+    label: 'Да'
+  }
+});
+```
+

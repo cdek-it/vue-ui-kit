@@ -1,0 +1,80 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  SubtitleTemplate,
+  AdvancedTemplate
+} from './Card.template';
+
+<Meta title="PRIMEUIX/Panel/Card" />
+
+# Card
+
+Card - это гибкий контейнер с возможностью настройки заголовка, содержимого и футера.
+
+[Документация PrimeVue](https://primevue.org/card/)
+
+---
+
+## Базовый
+
+Card отображается с помощью слота `content`, `title` и `subtitle` опциональны.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Card>
+  <template #title>Простая карточка</template>
+  <template #content>
+    <p>Содержимое карточки</p>
+  </template>
+</Card>
+```
+
+---
+
+## С подзаголовком
+
+Подзаголовок добавляется с помощью слота `subtitle`.
+
+<Story name="С подзаголовком">
+  {SubtitleTemplate.bind({})}
+</Story>
+
+```html
+<Card>
+  <template #title>Заголовок</template>
+  <template #subtitle>Подзаголовок</template>
+  <template #content>
+    <p>Содержимое карточки</p>
+  </template>
+</Card>
+```
+
+---
+
+## Расширенная
+
+Используйте слоты `header` и `footer` для дополнительного контента.
+
+<Story name="Расширенная">
+  {AdvancedTemplate.bind({})}
+</Story>
+
+```html
+<Card>
+  <template #header>
+    <img alt="user header" src="image.png" />
+  </template>
+  <template #title>Расширенная карточка</template>
+  <template #subtitle>Подзаголовок карточки</template>
+  <template #content>
+    <p>Содержимое карточки</p>
+  </template>
+  <template #footer>
+    <Button label="Сохранить" />
+  </template>
+</Card>
+```
+

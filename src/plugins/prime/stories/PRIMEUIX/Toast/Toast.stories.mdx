@@ -1,0 +1,99 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  PositionTemplate,
+  MultipleTemplate,
+  StickyTemplate
+} from './Toast.template';
+
+<Meta title="PRIMEUIX/Messages/Toast" />
+
+# Toast
+
+Toast - это компонент для отображения временных сообщений.
+
+[Документация PrimeVue](https://primevue.org/toast/)
+
+---
+
+## Базовый
+
+Toast требует использования ToastService и `useToast` composable.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Toast />
+<Button label="Успех" @click="showSuccess" />
+```
+
+```javascript
+import { useToast } from 'primevue/usetoast';
+
+const toast = useToast();
+
+const showSuccess = () => {
+  toast.add({ 
+    severity: 'success', 
+    summary: 'Успех', 
+    detail: 'Сообщение отправлено', 
+    life: 3000 
+  });
+};
+```
+
+---
+
+## Позиции
+
+Свойство `position` определяет расположение toast сообщений.
+
+<Story name="Позиции">
+  {PositionTemplate.bind({})}
+</Story>
+
+```html
+<Toast position="top-left" group="tl" />
+<Toast position="top-center" group="tc" />
+<Toast position="top-right" group="tr" />
+<Toast position="bottom-left" group="bl" />
+<Toast position="bottom-center" group="bc" />
+<Toast position="bottom-right" group="br" />
+```
+
+---
+
+## Множественные
+
+Несколько toast сообщений могут быть отображены одновременно.
+
+<Story name="Множественные">
+  {MultipleTemplate.bind({})}
+</Story>
+
+```javascript
+toast.add({ severity: 'info', summary: 'Сообщение 1', detail: 'Первое сообщение', life: 3000 });
+toast.add({ severity: 'success', summary: 'Сообщение 2', detail: 'Второе сообщение', life: 3000 });
+toast.add({ severity: 'warn', summary: 'Сообщение 3', detail: 'Третье сообщение', life: 3000 });
+```
+
+---
+
+## Закрепленные
+
+Toast сообщение без свойства `life` остается видимым до закрытия пользователем.
+
+<Story name="Закрепленные">
+  {StickyTemplate.bind({})}
+</Story>
+
+```javascript
+toast.add({ 
+  severity: 'info', 
+  summary: 'Закрепленное', 
+  detail: 'Это сообщение не исчезнет автоматически' 
+});
+```
+

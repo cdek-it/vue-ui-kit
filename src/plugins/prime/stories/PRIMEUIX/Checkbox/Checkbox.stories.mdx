@@ -1,0 +1,98 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  GroupTemplate,
+  DynamicTemplate,
+  DisabledTemplate,
+  InvalidTemplate
+} from './Checkbox.template';
+
+<Meta title="PRIMEUIX/Form/Checkbox" />
+
+# Checkbox
+
+Checkbox - это расширение стандартного элемента checkbox с темизацией.
+
+[Документация PrimeVue](https://primevue.org/checkbox/)
+
+---
+
+## Базовый
+
+Checkbox используется с двусторонней привязкой через v-model и свойством `binary`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Checkbox v-model="checked" inputId="agree" binary />
+<label for="agree">Я согласен с условиями</label>
+```
+
+---
+
+## Группа
+
+Несколько checkbox могут быть использованы для выбора нескольких значений.
+
+<Story name="Группа">
+  {GroupTemplate.bind({})}
+</Story>
+
+```html
+<div class="flex items-center">
+  <Checkbox v-model="categories" inputId="cat1" value="Technology" />
+  <label for="cat1">Технологии</label>
+</div>
+<div class="flex items-center">
+  <Checkbox v-model="categories" inputId="cat2" value="Finance" />
+  <label for="cat2">Финансы</label>
+</div>
+```
+
+---
+
+## Динамические значения
+
+Checkbox может работать с динамическими значениями из массива объектов.
+
+<Story name="Динамические значения">
+  {DynamicTemplate.bind({})}
+</Story>
+
+```html
+<div v-for="city in cities" :key="city.code" class="flex items-center">
+  <Checkbox v-model="selectedCities" :inputId="city.code" :value="city" />
+  <label :for="city.code">{{ city.name }}</label>
+</div>
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с checkbox.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<Checkbox v-model="checked" inputId="disabled" binary disabled />
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<Checkbox v-model="checked" inputId="invalid" binary invalid />
+<small class="text-red-600">Это поле обязательно</small>
+```

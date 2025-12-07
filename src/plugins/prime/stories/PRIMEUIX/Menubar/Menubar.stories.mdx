@@ -1,0 +1,73 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  ContentTemplate
+} from './Menubar.template';
+
+<Meta title="PRIMEUIX/Menu/Menubar" />
+
+# Menubar
+
+Menubar - это горизонтальное меню с вложенными подменю.
+
+[Документация PrimeVue](https://primevue.org/menubar/)
+
+---
+
+## Базовый
+
+Menubar требует массив элементов через свойство `model`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Menubar :model="items" />
+```
+
+```javascript
+const items = ref([
+  {
+    label: 'Главная',
+    icon: 'pi pi-home'
+  },
+  {
+    label: 'Функции',
+    icon: 'pi pi-star',
+    items: [
+      {
+        label: 'Основные',
+        items: [
+          {
+            label: 'Сохранить',
+            icon: 'pi pi-save'
+          }
+        ]
+      }
+    ]
+  }
+]);
+```
+
+---
+
+## С контентом
+
+Слоты `start` и `end` позволяют добавить пользовательский контент.
+
+<Story name="С контентом">
+  {ContentTemplate.bind({})}
+</Story>
+
+```html
+<Menubar :model="items">
+  <template #start>
+    <span class="font-bold text-xl">LOGO</span>
+  </template>
+  <template #end>
+    <Button label="Войти" />
+  </template>
+</Menubar>
+```
+

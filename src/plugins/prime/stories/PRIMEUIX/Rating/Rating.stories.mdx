@@ -1,0 +1,87 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  WithoutCancelTemplate,
+  ReadOnlyTemplate,
+  DisabledTemplate,
+  NumberOfStarsTemplate
+} from './Rating.template';
+
+<Meta title="PRIMEUIX/Form/Rating" />
+
+# Rating
+
+Rating - это компонент для оценки, позволяющий пользователям выбирать рейтинг.
+
+[Документация PrimeVue](https://primevue.org/rating/)
+
+---
+
+## Базовый
+
+Rating используется с двусторонней привязкой через v-model.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Rating v-model="value" />
+```
+
+---
+
+## Без отмены
+
+Кнопка отмены может быть скрыта установкой свойства `cancel` в false.
+
+<Story name="Без отмены">
+  {WithoutCancelTemplate.bind({})}
+</Story>
+
+```html
+<Rating v-model="value" :cancel="false" />
+```
+
+---
+
+## Только чтение
+
+Режим только для чтения предотвращает изменение рейтинга.
+
+<Story name="Только чтение">
+  {ReadOnlyTemplate.bind({})}
+</Story>
+
+```html
+<Rating v-model="value" readonly />
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с компонентом.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<Rating v-model="value" disabled />
+```
+
+---
+
+## Количество звезд
+
+Количество звезд можно настроить с помощью свойства `stars`.
+
+<Story name="Количество звезд">
+  {NumberOfStarsTemplate.bind({})}
+</Story>
+
+```html
+<Rating v-model="value" :stars="10" />
+```
+

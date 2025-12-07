@@ -1,0 +1,177 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  IconsTemplate,
+  SeverityTemplate,
+  TextTemplate,
+  OutlinedTemplate,
+  RoundedTemplate,
+  SizesTemplate,
+  DisabledTemplate,
+  LoadingTemplate,
+  GroupTemplate
+} from './Button.template';
+
+<Meta title="PRIMEUIX/Button/Button" />
+
+# Button
+
+Button - это расширение стандартного элемента button с темизацией.
+
+[Документация PrimeVue](https://primevue.org/button/)
+
+---
+
+## Базовый
+
+Button отображается с помощью свойства `label`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Отправить" />
+<Button label="Сохранить" severity="secondary" />
+```
+
+---
+
+## Иконки
+
+Button может содержать иконки через свойство `icon`.
+
+<Story name="Иконки">
+  {IconsTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Поиск" icon="pi pi-search" />
+<Button icon="pi pi-search" />
+<Button label="Поиск" icon="pi pi-search" iconPos="right" />
+```
+
+---
+
+## Тяжесть
+
+Доступны различные цветовые варианты с помощью свойства `severity`.
+
+<Story name="Тяжесть">
+  {SeverityTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Primary" />
+<Button label="Secondary" severity="secondary" />
+<Button label="Success" severity="success" />
+<Button label="Danger" severity="danger" />
+```
+
+---
+
+## Текстовые
+
+Свойство `text` создает кнопку без фона.
+
+<Story name="Текстовые">
+  {TextTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Primary" text />
+<Button label="Secondary" severity="secondary" text />
+```
+
+---
+
+## Контурные
+
+Свойство `outlined` создает кнопку с границей.
+
+<Story name="Контурные">
+  {OutlinedTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Primary" outlined />
+<Button label="Secondary" severity="secondary" outlined />
+```
+
+---
+
+## Скругленные
+
+Свойство `rounded` создает скругленную кнопку.
+
+<Story name="Скругленные">
+  {RoundedTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Primary" rounded />
+<Button label="Secondary" severity="secondary" rounded />
+```
+
+---
+
+## Размеры
+
+Button доступен в трёх размерах.
+
+<Story name="Размеры">
+  {SizesTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Small" size="small" />
+<Button label="Normal" />
+<Button label="Large" size="large" />
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с кнопкой.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Отправить" disabled />
+```
+
+---
+
+## Загрузка
+
+Свойство `loading` отображает индикатор загрузки.
+
+<Story name="Загрузка">
+  {LoadingTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Загрузка" loading />
+<Button label="Поиск" icon="pi pi-search" loading />
+```
+
+---
+
+## Группа
+
+Кнопки можно группировать вместе.
+
+<Story name="Группа">
+  {GroupTemplate.bind({})}
+</Story>
+
+```html
+<div class="flex">
+  <Button label="Сохранить" icon="pi pi-check" />
+  <Button label="Удалить" icon="pi pi-trash" severity="danger" />
+  <Button label="Отменить" icon="pi pi-times" severity="secondary" />
+</div>
+```

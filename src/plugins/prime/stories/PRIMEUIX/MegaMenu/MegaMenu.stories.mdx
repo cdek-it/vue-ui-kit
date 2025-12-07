@@ -1,0 +1,71 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  VerticalTemplate
+} from './MegaMenu.template';
+
+<Meta title="PRIMEUIX/Menu/MegaMenu" />
+
+# MegaMenu
+
+MegaMenu - это компонент навигации с многоуровневыми вложенными элементами в виде сетки.
+
+[Документация PrimeVue](https://primevue.org/megamenu/)
+
+---
+
+## Базовый
+
+MegaMenu требует массив элементов через свойство `model` с двумерной структурой для столбцов.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<MegaMenu :model="items" />
+```
+
+```javascript
+const items = ref([
+  {
+    label: 'Мебель',
+    icon: 'pi pi-box',
+    items: [
+      [
+        {
+          label: 'Гостиная',
+          items: [
+            { label: 'Диван' },
+            { label: 'Кресло' }
+          ]
+        }
+      ],
+      [
+        {
+          label: 'Спальня',
+          items: [
+            { label: 'Кровать' },
+            { label: 'Шкаф' }
+          ]
+        }
+      ]
+    ]
+  }
+]);
+```
+
+---
+
+## Вертикальный
+
+Свойство `orientation` устанавливает вертикальную ориентацию.
+
+<Story name="Вертикальный">
+  {VerticalTemplate.bind({})}
+</Story>
+
+```html
+<MegaMenu :model="items" orientation="vertical" />
+```
+

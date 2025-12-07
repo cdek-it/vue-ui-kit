@@ -1,0 +1,93 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  PositionsTemplate,
+  InputTemplate,
+  FocusTemplate,
+  ObjectTemplate
+} from './Tooltip.template';
+
+<Meta title="PRIMEUIX/Misc/Tooltip" />
+
+# Tooltip
+
+Tooltip - это директива для отображения всплывающих подсказок при наведении или фокусе.
+
+[Документация PrimeVue](https://primevue.org/tooltip/)
+
+---
+
+## Базовый
+
+Tooltip используется как директива v-tooltip.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Button v-tooltip="'Это всплывающая подсказка'" label="Наведите курсор" />
+```
+
+---
+
+## Позиции
+
+Доступны четыре позиции: top, bottom, left, right.
+
+<Story name="Позиции">
+  {PositionsTemplate.bind({})}
+</Story>
+
+```html
+<Button v-tooltip.top="'Сверху'" label="Сверху" />
+<Button v-tooltip.bottom="'Снизу'" label="Снизу" />
+<Button v-tooltip.left="'Слева'" label="Слева" />
+<Button v-tooltip.right="'Справа'" label="Справа" />
+```
+
+---
+
+## На полях ввода
+
+Tooltip можно использовать с полями ввода.
+
+<Story name="На полях ввода">
+  {InputTemplate.bind({})}
+</Story>
+
+```html
+<InputText v-tooltip="'Введите ваше имя'" type="text" placeholder="Имя пользователя" />
+```
+
+---
+
+## Фокус
+
+Модификатор `focus` показывает tooltip при фокусе элемента.
+
+<Story name="Фокус">
+  {FocusTemplate.bind({})}
+</Story>
+
+```html
+<InputText v-tooltip.focus="'Введите минимум 6 символов'" type="text" placeholder="Пароль" />
+```
+
+---
+
+## Объект конфигурации
+
+Tooltip может принимать объект конфигурации для расширенных настроек.
+
+<Story name="Объект конфигурации">
+  {ObjectTemplate.bind({})}
+</Story>
+
+```html
+<Button 
+  v-tooltip="{ value: 'Это подсказка', showDelay: 500, hideDelay: 300 }" 
+  label="С задержкой" 
+/>
+```
+

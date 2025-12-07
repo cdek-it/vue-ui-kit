@@ -1,0 +1,49 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  CustomTemplate
+} from './ScrollPanel.template';
+
+<Meta title="PRIMEUIX/Panel/ScrollPanel" />
+
+# ScrollPanel
+
+ScrollPanel - это компонент для настраиваемой области прокрутки с пользовательскими полосами прокрутки.
+
+[Документация PrimeVue](https://primevue.org/scrollpanel/)
+
+---
+
+## Базовый
+
+ScrollPanel обертывает контент для создания настраиваемой прокрутки.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<ScrollPanel style="width: 100%; height: 200px">
+  <p>Длинный контент...</p>
+  <p>Еще контент...</p>
+</ScrollPanel>
+```
+
+---
+
+## Пользовательский стиль
+
+ScrollPanel можно стилизовать с помощью CSS классов.
+
+<Story name="Пользовательский стиль">
+  {CustomTemplate.bind({})}
+</Story>
+
+```html
+<ScrollPanel style="width: 100%; height: 300px" class="custom-scrollpanel">
+  <div v-for="i in 20" :key="i">
+    Элемент {{ i }}
+  </div>
+</ScrollPanel>
+```
+

@@ -1,0 +1,95 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  IconTemplate,
+  RoundedTemplate,
+  IconOnlyTemplate,
+  SeverityTemplate
+} from './Tag.template';
+
+<Meta title="PRIMEUIX/Misc/Tag" />
+
+# Tag
+
+Tag - это компонент для категоризации контента.
+
+[Документация PrimeVue](https://primevue.org/tag/)
+
+---
+
+## Базовый
+
+Tag отображается с текстовым значением через свойство `value`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Tag value="Новый" />
+<Tag value="Премиум" severity="success" />
+```
+
+---
+
+## Иконка
+
+Tag может отображаться с иконкой через свойство `icon`.
+
+<Story name="Иконка">
+  {IconTemplate.bind({})}
+</Story>
+
+```html
+<Tag icon="pi pi-user" value="Основной" />
+<Tag icon="pi pi-check" value="Успех" severity="success" />
+```
+
+---
+
+## Округленный
+
+Свойство `rounded` создает округленный tag.
+
+<Story name="Округленный">
+  {RoundedTemplate.bind({})}
+</Story>
+
+```html
+<Tag value="Основной" rounded />
+<Tag value="Успех" severity="success" rounded />
+```
+
+---
+
+## Только иконка
+
+Tag может отображать только иконку без текста.
+
+<Story name="Только иконка">
+  {IconOnlyTemplate.bind({})}
+</Story>
+
+```html
+<Tag icon="pi pi-check" severity="success" rounded />
+<Tag icon="pi pi-bookmark" severity="info" rounded />
+```
+
+---
+
+## Тяжесть
+
+Доступны различные цветовые варианты с помощью свойства `severity`.
+
+<Story name="Тяжесть">
+  {SeverityTemplate.bind({})}
+</Story>
+
+```html
+<Tag value="Primary" />
+<Tag value="Success" severity="success" />
+<Tag value="Info" severity="info" />
+<Tag value="Warn" severity="warn" />
+<Tag value="Danger" severity="danger" />
+```
+

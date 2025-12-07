@@ -1,0 +1,104 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  IconTemplate,
+  ClosableTemplate,
+  CustomTemplate,
+  SizesTemplate
+} from './Message.template';
+
+<Meta title="PRIMEUIX/Messages/Message" />
+
+# Message
+
+Message - это компонент для отображения встроенных сообщений.
+
+[Документация PrimeVue](https://primevue.org/message/)
+
+---
+
+## Базовый
+
+Message отображается с различными уровнями тяжести через свойство `severity`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Message>Информационное сообщение</Message>
+<Message severity="success">Сообщение об успехе</Message>
+<Message severity="info">Информационное сообщение</Message>
+<Message severity="warn">Предупреждающее сообщение</Message>
+<Message severity="error">Сообщение об ошибке</Message>
+```
+
+---
+
+## С иконками
+
+Пользовательская иконка может быть определена через свойство `icon`.
+
+<Story name="С иконками">
+  {IconTemplate.bind({})}
+</Story>
+
+```html
+<Message icon="pi pi-send">Отправить сообщение</Message>
+<Message severity="success" icon="pi pi-check-circle">Успешно сохранено</Message>
+```
+
+---
+
+## Закрываемые
+
+Свойство `closable` добавляет кнопку закрытия.
+
+<Story name="Закрываемые">
+  {ClosableTemplate.bind({})}
+</Story>
+
+```html
+<Message closable>Это сообщение можно закрыть</Message>
+<Message severity="success" closable>Операция выполнена успешно</Message>
+```
+
+---
+
+## Пользовательский контент
+
+Слот по умолчанию позволяет добавить пользовательский контент.
+
+<Story name="Пользовательский контент">
+  {CustomTemplate.bind({})}
+</Story>
+
+```html
+<Message severity="info">
+  <div class="flex items-center gap-3">
+    <i class="pi pi-info-circle"></i>
+    <div>
+      <div class="font-bold">Обновление доступно</div>
+      <div>Доступна новая версия приложения</div>
+    </div>
+    <Button label="Обновить" />
+  </div>
+</Message>
+```
+
+---
+
+## Размеры
+
+Message доступен в трёх размерах.
+
+<Story name="Размеры">
+  {SizesTemplate.bind({})}
+</Story>
+
+```html
+<Message size="small">Маленькое сообщение</Message>
+<Message>Обычное сообщение</Message>
+<Message size="large">Большое сообщение</Message>
+```
+

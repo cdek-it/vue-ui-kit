@@ -1,0 +1,94 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  PositionTemplate,
+  HeadlessTemplate
+} from './ConfirmDialog.template';
+
+<Meta title="PRIMEUIX/Overlay/ConfirmDialog" />
+
+# ConfirmDialog
+
+ConfirmDialog - это компонент для отображения диалогов подтверждения.
+
+[Документация PrimeVue](https://primevue.org/confirmdialog/)
+
+---
+
+## Базовый
+
+ConfirmDialog управляется через ConfirmationService и `useConfirm` composable.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<ConfirmDialog />
+<Button label="Удалить" severity="danger" @click="showConfirm" />
+```
+
+```javascript
+import { useConfirm } from 'primevue/useconfirm';
+
+const confirm = useConfirm();
+
+const showConfirm = () => {
+  confirm.require({
+    message: 'Вы действительно хотите продолжить?',
+    header: 'Подтверждение',
+    icon: 'pi pi-exclamation-triangle',
+    rejectProps: {
+      label: 'Отменить',
+      severity: 'secondary',
+      outlined: true
+    },
+    acceptProps: {
+      label: 'Подтвердить'
+    },
+    accept: () => {
+      // действие при подтверждении
+    }
+  });
+};
+```
+
+---
+
+## Позиция
+
+Свойство `position` определяет расположение диалога.
+
+<Story name="Позиция">
+  {PositionTemplate.bind({})}
+</Story>
+
+```html
+<ConfirmDialog group="top" position="top" />
+```
+
+---
+
+## Без кнопок
+
+Слот `container` позволяет полностью настроить внешний вид диалога.
+
+<Story name="Без кнопок">
+  {HeadlessTemplate.bind({})}
+</Story>
+
+```html
+<ConfirmDialog group="headless">
+  <template #container="{ message, acceptCallback, rejectCallback }">
+    <div class="flex flex-col items-center p-8">
+      <span class="font-bold text-2xl">{{ message.header }}</span>
+      <p>{{ message.message }}</p>
+      <div class="flex gap-2">
+        <Button label="Сохранить" @click="acceptCallback" />
+        <Button label="Отменить" @click="rejectCallback" />
+      </div>
+    </div>
+  </template>
+</ConfirmDialog>
+```
+

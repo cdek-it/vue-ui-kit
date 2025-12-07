@@ -1,0 +1,89 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  SizesTemplate,
+  NestedTemplate,
+  VerticalTemplate
+} from './Splitter.template';
+
+<Meta title="PRIMEUIX/Panel/Splitter" />
+
+# Splitter
+
+Splitter - это компонент для разделения области на изменяемые по размеру панели.
+
+[Документация PrimeVue](https://primevue.org/splitter/)
+
+---
+
+## Базовый
+
+Splitter требует два SplitterPanel компонента для отображения.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Splitter style="height: 300px">
+  <SplitterPanel>Панель 1</SplitterPanel>
+  <SplitterPanel>Панель 2</SplitterPanel>
+</Splitter>
+```
+
+---
+
+## Размеры панелей
+
+Свойство `size` устанавливает начальный размер панели в процентах.
+
+<Story name="Размеры панелей">
+  {SizesTemplate.bind({})}
+</Story>
+
+```html
+<Splitter style="height: 300px">
+  <SplitterPanel :size="20">Панель 1 (20%)</SplitterPanel>
+  <SplitterPanel :size="80">Панель 2 (80%)</SplitterPanel>
+</Splitter>
+```
+
+---
+
+## Вложенный
+
+Splitter компоненты могут быть вложены друг в друга.
+
+<Story name="Вложенный">
+  {NestedTemplate.bind({})}
+</Story>
+
+```html
+<Splitter style="height: 300px">
+  <SplitterPanel :size="30">Панель 1</SplitterPanel>
+  <SplitterPanel :size="70">
+    <Splitter layout="vertical">
+      <SplitterPanel :size="50">Панель 2</SplitterPanel>
+      <SplitterPanel :size="50">Панель 3</SplitterPanel>
+    </Splitter>
+  </SplitterPanel>
+</Splitter>
+```
+
+---
+
+## Вертикальный
+
+Свойство `layout` устанавливает вертикальную ориентацию.
+
+<Story name="Вертикальный">
+  {VerticalTemplate.bind({})}
+</Story>
+
+```html
+<Splitter layout="vertical" style="height: 300px">
+  <SplitterPanel>Панель 1</SplitterPanel>
+  <SplitterPanel>Панель 2</SplitterPanel>
+</Splitter>
+```
+

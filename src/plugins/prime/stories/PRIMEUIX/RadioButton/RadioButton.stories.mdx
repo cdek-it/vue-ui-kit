@@ -1,0 +1,79 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  GroupTemplate,
+  DisabledTemplate,
+  InvalidTemplate
+} from './RadioButton.template';
+
+<Meta title="PRIMEUIX/Form/RadioButton" />
+
+# RadioButton
+
+RadioButton - это расширение стандартного элемента radio с темизацией.
+
+[Документация PrimeVue](https://primevue.org/radiobutton/)
+
+---
+
+## Базовый
+
+RadioButton используется с двусторонней привязкой через v-model.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<div class="flex items-center">
+  <RadioButton v-model="pizza" inputId="cheese" name="pizza" value="Cheese" />
+  <label for="cheese" class="ml-2">Сырная</label>
+</div>
+```
+
+---
+
+## Группа
+
+Группа RadioButton создается путем использования одинакового значения `name` для всех кнопок.
+
+<Story name="Группа">
+  {GroupTemplate.bind({})}
+</Story>
+
+```html
+<div v-for="cat in categories" :key="cat.key" class="flex items-center">
+  <RadioButton v-model="category" :inputId="cat.key" name="category" :value="cat.key" />
+  <label :for="cat.key" class="ml-2">{{ cat.name }}</label>
+</div>
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с radio button.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<RadioButton v-model="value" inputId="cheese" name="pizza" value="Cheese" disabled />
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<RadioButton v-model="value" inputId="cheese" name="pizza" value="Cheese" invalid />
+<small class="text-red-600">Выберите один вариант</small>
+```
+

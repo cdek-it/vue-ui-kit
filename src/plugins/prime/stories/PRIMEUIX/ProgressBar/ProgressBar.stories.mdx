@@ -1,0 +1,75 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  DynamicTemplate,
+  IndeterminateTemplate,
+  ColorTemplate
+} from './ProgressBar.template';
+
+<Meta title="PRIMEUIX/Misc/ProgressBar" />
+
+# ProgressBar
+
+ProgressBar - это индикатор прогресса для отображения статуса задачи.
+
+[Документация PrimeVue](https://primevue.org/progressbar/)
+
+---
+
+## Базовый
+
+ProgressBar отображается со свойством `value`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<ProgressBar :value="50" />
+```
+
+---
+
+## Динамическое значение
+
+Значение ProgressBar может обновляться динамически.
+
+<Story name="Динамическое значение">
+  {DynamicTemplate.bind({})}
+</Story>
+
+```html
+<ProgressBar :value="value" />
+```
+
+---
+
+## Неопределенный
+
+Режим `indeterminate` отображает анимацию неопределенного прогресса.
+
+<Story name="Неопределенный">
+  {IndeterminateTemplate.bind({})}
+</Story>
+
+```html
+<ProgressBar mode="indeterminate" />
+```
+
+---
+
+## Пользовательский цвет
+
+ProgressBar с различными значениями прогресса.
+
+<Story name="Пользовательский цвет">
+  {ColorTemplate.bind({})}
+</Story>
+
+```html
+<ProgressBar :value="25" />
+<ProgressBar :value="50" />
+<ProgressBar :value="75" />
+<ProgressBar :value="100" />
+```
+

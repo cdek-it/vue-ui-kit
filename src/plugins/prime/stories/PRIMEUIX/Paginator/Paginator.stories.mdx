@@ -1,0 +1,89 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  TemplateCustomTemplate,
+  RowsPerPageTemplate
+} from './Paginator.template';
+
+<Meta title="PRIMEUIX/Data/Paginator" />
+
+# Paginator
+
+Paginator - это компонент для навигации по страницам данных.
+
+[Документация PrimeVue](https://primevue.org/paginator/)
+
+---
+
+## Базовый
+
+Paginator управляется через свойства `first`, `rows` и `totalRecords`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Paginator 
+  :first="first" 
+  :rows="rows" 
+  :totalRecords="120" 
+  @page="onPageChange"
+/>
+```
+
+```javascript
+const first = ref(0);
+const rows = ref(10);
+
+const onPageChange = (event) => {
+  first.value = event.first;
+  rows.value = event.rows;
+};
+```
+
+---
+
+## Шаблон
+
+Свойство `template` и слоты позволяют настроить отображение.
+
+<Story name="Шаблон">
+  {TemplateCustomTemplate.bind({})}
+</Story>
+
+```html
+<Paginator 
+  :first="first" 
+  :rows="rows" 
+  :totalRecords="120"
+  template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+>
+  <template #start>
+    <span>Всего записей: 120</span>
+  </template>
+  <template #end>
+    <span>Страница {{ page }}</span>
+  </template>
+</Paginator>
+```
+
+---
+
+## Строки на странице
+
+Свойство `rowsPerPageOptions` позволяет выбрать количество строк на странице.
+
+<Story name="Строки на странице">
+  {RowsPerPageTemplate.bind({})}
+</Story>
+
+```html
+<Paginator 
+  v-model:first="first" 
+  v-model:rows="rows" 
+  :totalRecords="120" 
+  :rowsPerPageOptions="[10, 20, 30]"
+/>
+```
+

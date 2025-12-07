@@ -1,0 +1,111 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  SelectionTemplate,
+  MultipleSelectionTemplate,
+  CheckboxTemplate,
+  FilterTemplate
+} from './Tree.template';
+
+<Meta title="PRIMEUIX/Data/Tree" />
+
+# Tree
+
+Tree - это компонент для отображения иерархических данных в древовидной структуре.
+
+[Документация PrimeVue](https://primevue.org/tree/)
+
+---
+
+## Базовый
+
+Tree требует массив узлов через свойство `value`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Tree :value="nodes" />
+```
+
+```javascript
+const nodes = ref([
+  {
+    key: '0',
+    label: 'Документы',
+    icon: 'pi pi-folder',
+    children: [
+      {
+        key: '0-0',
+        label: 'Работа',
+        icon: 'pi pi-folder',
+        children: [
+          { key: '0-0-0', label: 'Отчет.doc', icon: 'pi pi-file' }
+        ]
+      }
+    ]
+  }
+]);
+```
+
+---
+
+## Выбор
+
+Свойство `selectionMode="single"` включает одиночный выбор узлов.
+
+<Story name="Выбор">
+  {SelectionTemplate.bind({})}
+</Story>
+
+```html
+<Tree :value="nodes" v-model:selectionKeys="selectedKey" selectionMode="single" />
+```
+
+```javascript
+const selectedKey = ref();
+```
+
+---
+
+## Множественный выбор
+
+Свойство `selectionMode="multiple"` позволяет выбирать несколько узлов.
+
+<Story name="Множественный выбор">
+  {MultipleSelectionTemplate.bind({})}
+</Story>
+
+```html
+<Tree :value="nodes" v-model:selectionKeys="selectedKeys" selectionMode="multiple" />
+```
+
+---
+
+## Checkbox
+
+Свойство `selectionMode="checkbox"` добавляет чекбоксы для выбора.
+
+<Story name="Checkbox">
+  {CheckboxTemplate.bind({})}
+</Story>
+
+```html
+<Tree :value="nodes" v-model:selectionKeys="selectedKeys" selectionMode="checkbox" />
+```
+
+---
+
+## Фильтр
+
+Свойство `filter` включает фильтрацию узлов дерева.
+
+<Story name="Фильтр">
+  {FilterTemplate.bind({})}
+</Story>
+
+```html
+<Tree :value="nodes" filter filterMode="strict" />
+```
+

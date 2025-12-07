@@ -1,0 +1,118 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  IconsTemplate,
+  CustomTemplate,
+  SizesTemplate,
+  DisabledTemplate,
+  InvalidTemplate
+} from './ToggleButton.template';
+
+<Meta title="PRIMEUIX/Form/ToggleButton" />
+
+# ToggleButton
+
+ToggleButton - это компонент для выбора булевого значения с помощью кнопки.
+
+[Документация PrimeVue](https://primevue.org/togglebutton/)
+
+---
+
+## Базовый
+
+ToggleButton используется с двусторонней привязкой через v-model.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<ToggleButton v-model="checked" onLabel="Да" offLabel="Нет" />
+```
+
+---
+
+## С иконками
+
+Свойства `onIcon` и `offIcon` позволяют добавить иконки к состояниям.
+
+<Story name="С иконками">
+  {IconsTemplate.bind({})}
+</Story>
+
+```html
+<ToggleButton 
+  v-model="checked" 
+  onIcon="pi pi-check" 
+  offIcon="pi pi-times" 
+  onLabel="Включено" 
+  offLabel="Выключено" 
+/>
+```
+
+---
+
+## Пользовательский
+
+ToggleButton можно настроить с помощью различных свойств.
+
+<Story name="Пользовательский">
+  {CustomTemplate.bind({})}
+</Story>
+
+```html
+<ToggleButton 
+  v-model="checked" 
+  onIcon="pi pi-volume-up" 
+  offIcon="pi pi-volume-off" 
+  onLabel="Звук вкл" 
+  offLabel="Звук выкл"
+  severity="success"
+/>
+```
+
+---
+
+## Размеры
+
+ToggleButton предоставляет размеры `small` и `large` в качестве альтернативы базовому.
+
+<Story name="Размеры">
+  {SizesTemplate.bind({})}
+</Story>
+
+```html
+<ToggleButton v-model="value1" onLabel="On" offLabel="Off" size="small" class="min-w-16" />
+<ToggleButton v-model="value2" onLabel="On" offLabel="Off" class="min-w-20" />
+<ToggleButton v-model="value3" onLabel="On" offLabel="Off" size="large" class="min-w-24" />
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с кнопкой.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<ToggleButton v-model="checked" onLabel="Да" offLabel="Нет" disabled />
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<ToggleButton v-model="checked" onLabel="Согласен" offLabel="Не согласен" invalid />
+<small class="text-red-600">Необходимо согласиться</small>
+```
+

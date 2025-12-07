@@ -1,0 +1,83 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  ContentTemplate,
+  ImageTemplate
+} from './Popover.template';
+
+<Meta title="PRIMEUIX/Overlay/Popover" />
+
+# Popover
+
+Popover - это компонент для отображения оверлейного контента.
+
+[Документация PrimeVue](https://primevue.org/popover/)
+
+---
+
+## Базовый
+
+Popover управляется через метод `toggle`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Показать" @click="toggle" />
+<Popover ref="op">
+  <div class="p-4">
+    <p>Содержимое popover</p>
+  </div>
+</Popover>
+```
+
+```javascript
+const op = ref();
+
+const toggle = (event) => {
+  op.value.toggle(event);
+};
+```
+
+---
+
+## С контентом
+
+Popover может содержать любой контент.
+
+<Story name="С контентом">
+  {ContentTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Продукты" @click="toggle" />
+<Popover ref="op">
+  <div class="p-4">
+    <div class="font-semibold mb-3">Список продуктов</div>
+    <ul>
+      <li v-for="product in products">
+        {{ product.name }} - {{ product.price }} ₽
+      </li>
+    </ul>
+  </div>
+</Popover>
+```
+
+---
+
+## С изображением
+
+Popover может отображать изображения.
+
+<Story name="С изображением">
+  {ImageTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Показать изображение" @click="toggle" />
+<Popover ref="op">
+  <img src="image.jpg" alt="Product" />
+</Popover>
+```
+

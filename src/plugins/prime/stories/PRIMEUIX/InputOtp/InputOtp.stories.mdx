@@ -1,0 +1,110 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  MaskTemplate,
+  IntegerTemplate,
+  LengthTemplate,
+  TemplateCustomTemplate,
+  InvalidTemplate
+} from './InputOtp.template';
+
+<Meta title="PRIMEUIX/Form/InputOtp" />
+
+# InputOtp
+
+InputOtp - это компонент для ввода одноразовых паролей.
+
+[Документация PrimeVue](https://primevue.org/inputotp/)
+
+---
+
+## Базовый
+
+InputOtp используется с двусторонней привязкой через v-model.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<InputOtp v-model="value" />
+```
+
+---
+
+## Маска
+
+Свойство `mask` скрывает введенные символы.
+
+<Story name="Маска">
+  {MaskTemplate.bind({})}
+</Story>
+
+```html
+<InputOtp v-model="value" mask />
+```
+
+---
+
+## Целочисленный
+
+Свойство `integerOnly` разрешает только числовой ввод.
+
+<Story name="Целочисленный">
+  {IntegerTemplate.bind({})}
+</Story>
+
+```html
+<InputOtp v-model="value" integerOnly />
+```
+
+---
+
+## Количество полей
+
+Свойство `length` определяет количество полей ввода.
+
+<Story name="Количество полей">
+  {LengthTemplate.bind({})}
+</Story>
+
+```html
+<InputOtp v-model="value" :length="8" />
+```
+
+---
+
+## Шаблон
+
+Слот по умолчанию позволяет настроить каждое поле ввода.
+
+<Story name="Шаблон">
+  {TemplateCustomTemplate.bind({})}
+</Story>
+
+```html
+<InputOtp v-model="value">
+  <template #default="{ attrs, events, index }">
+    <input type="text" v-bind="attrs" v-on="events" />
+    <div v-if="index === 2" class="px-3">
+      <i class="pi pi-minus" />
+    </div>
+  </template>
+</InputOtp>
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<InputOtp v-model="value" invalid />
+<small class="text-red-600">Неверный код</small>
+```
+

@@ -1,0 +1,81 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  VerticalTemplate,
+  AutoplayTemplate
+} from './Carousel.template';
+
+<Meta title="PRIMEUIX/Media/Carousel" />
+
+# Carousel
+
+Carousel - это компонент для циклического отображения контента.
+
+[Документация PrimeVue](https://primevue.org/carousel/)
+
+---
+
+## Базовый
+
+Carousel требует массив элементов в качестве значения и шаблон для отображения каждого элемента.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Carousel :value="items" :numVisible="3" :numScroll="1">
+  <template #item="slotProps">
+    <div>{{ slotProps.data }}</div>
+  </template>
+</Carousel>
+```
+
+---
+
+## Вертикальный
+
+Установите `orientation` в `vertical` для вертикального отображения.
+
+<Story name="Вертикальный">
+  {VerticalTemplate.bind({})}
+</Story>
+
+```html
+<Carousel 
+  :value="items" 
+  :numVisible="1" 
+  :numScroll="1" 
+  orientation="vertical" 
+  verticalViewPortHeight="360px"
+>
+  <template #item="slotProps">
+    <div>{{ slotProps.data }}</div>
+  </template>
+</Carousel>
+```
+
+---
+
+## Автовоспроизведение
+
+Включите `autoplayInterval` для автоматического переключения слайдов.
+
+<Story name="Автовоспроизведение">
+  {AutoplayTemplate.bind({})}
+</Story>
+
+```html
+<Carousel 
+  :value="items" 
+  :numVisible="3" 
+  :numScroll="1" 
+  :autoplayInterval="3000" 
+  circular
+>
+  <template #item="slotProps">
+    <div>{{ slotProps.data }}</div>
+  </template>
+</Carousel>
+```
+

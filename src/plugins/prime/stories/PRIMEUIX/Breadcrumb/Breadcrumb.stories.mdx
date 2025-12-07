@@ -1,0 +1,58 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  TemplateCustomTemplate
+} from './Breadcrumb.template';
+
+<Meta title="PRIMEUIX/Menu/Breadcrumb" />
+
+# Breadcrumb
+
+Breadcrumb - это компонент навигации, отображающий иерархию текущего местоположения страницы.
+
+[Документация PrimeVue](https://primevue.org/breadcrumb/)
+
+---
+
+## Базовый
+
+Breadcrumb использует модель элементов, где каждый элемент определяет метку и/или иконку.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Breadcrumb :home="home" :model="items" />
+```
+
+```javascript
+const home = ref({ icon: 'pi pi-home', route: '/' });
+const items = ref([
+  { label: 'Электроника' },
+  { label: 'Компьютер' },
+  { label: 'Аксессуары' }
+]);
+```
+
+---
+
+## Шаблон
+
+Пользовательский контент может быть размещен внутри элементов breadcrumb с помощью слота `item`.
+
+<Story name="Шаблон">
+  {TemplateCustomTemplate.bind({})}
+</Story>
+
+```html
+<Breadcrumb :home="home" :model="items">
+  <template #item="{ item, props }">
+    <a v-bind="props.action" class="flex items-center gap-2">
+      <span :class="item.icon" />
+      <span class="font-semibold">{{ item.label }}</span>
+    </a>
+  </template>
+</Breadcrumb>
+```
+

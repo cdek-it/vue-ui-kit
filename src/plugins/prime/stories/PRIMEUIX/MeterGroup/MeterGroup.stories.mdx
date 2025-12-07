@@ -1,0 +1,73 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  VerticalTemplate,
+  IconTemplate
+} from './MeterGroup.template';
+
+<Meta title="PRIMEUIX/Misc/MeterGroup" />
+
+# MeterGroup
+
+MeterGroup - это компонент для группировки нескольких значений в виде единого индикатора прогресса.
+
+[Документация PrimeVue](https://primevue.org/metergroup/)
+
+---
+
+## Базовый
+
+MeterGroup требует массив значений через свойство `value`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<MeterGroup :value="value" />
+```
+
+```javascript
+const value = ref([
+  { label: 'Приложения', color: '#34d399', value: 24 },
+  { label: 'Видео', color: '#fbbf24', value: 20 },
+  { label: 'Музыка', color: '#60a5fa', value: 12 }
+]);
+```
+
+---
+
+## Вертикальный
+
+Свойство `orientation` устанавливает вертикальную ориентацию.
+
+<Story name="Вертикальный">
+  {VerticalTemplate.bind({})}
+</Story>
+
+```html
+<MeterGroup :value="value" orientation="vertical" style="height: 300px" />
+```
+
+---
+
+## С иконками
+
+Слот `label` позволяет настроить отображение меток.
+
+<Story name="С иконками">
+  {IconTemplate.bind({})}
+</Story>
+
+```html
+<MeterGroup :value="value">
+  <template #label="{ value }">
+    <div v-for="val in value" :key="val.label">
+      <i :class="val.icon" :style="{ color: val.color }"></i>
+      <span>{{ val.label }}</span>
+      <span>{{ val.value }}%</span>
+    </div>
+  </template>
+</MeterGroup>
+```
+

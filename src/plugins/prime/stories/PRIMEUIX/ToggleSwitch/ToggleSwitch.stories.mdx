@@ -1,0 +1,73 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  PreselectionTemplate,
+  DisabledTemplate,
+  InvalidTemplate
+} from './ToggleSwitch.template';
+
+<Meta title="PRIMEUIX/Form/ToggleSwitch" />
+
+# ToggleSwitch
+
+ToggleSwitch - это компонент для выбора булевого значения.
+
+[Документация PrimeVue](https://primevue.org/toggleswitch/)
+
+---
+
+## Базовый
+
+ToggleSwitch используется с двусторонней привязкой через v-model.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<ToggleSwitch v-model="checked" />
+```
+
+---
+
+## Предустановленное значение
+
+ToggleSwitch может иметь предустановленное значение.
+
+<Story name="Предустановленное значение">
+  {PreselectionTemplate.bind({})}
+</Story>
+
+```html
+<ToggleSwitch v-model="checked" />
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с переключателем.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<ToggleSwitch v-model="checked" disabled />
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<ToggleSwitch v-model="checked" invalid />
+<small class="text-red-600">Необходимо включить</small>
+```
+

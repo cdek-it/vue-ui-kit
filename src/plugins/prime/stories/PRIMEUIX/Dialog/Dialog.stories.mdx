@@ -1,0 +1,121 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  FooterTemplate,
+  WithoutHeaderTemplate,
+  ModalTemplate,
+  PositionTemplate,
+  MaximizableTemplate
+} from './Dialog.template';
+
+<Meta title="PRIMEUIX/Overlay/Dialog" />
+
+# Dialog
+
+Dialog - это компонент для отображения контента в оверлейном окне.
+
+[Документация PrimeVue](https://primevue.org/dialog/)
+
+---
+
+## Базовый
+
+Dialog управляется через свойство `visible`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Показать" @click="visible = true" />
+<Dialog v-model:visible="visible" header="Заголовок" style="width: 30rem">
+  <p>Содержимое диалога</p>
+</Dialog>
+```
+
+---
+
+## С футером
+
+Слот `footer` позволяет добавить кнопки действий.
+
+<Story name="С футером">
+  {FooterTemplate.bind({})}
+</Story>
+
+```html
+<Dialog v-model:visible="visible" header="Заголовок">
+  <p>Содержимое диалога</p>
+  <template #footer>
+    <Button label="Отменить" text @click="visible = false" />
+    <Button label="Сохранить" @click="visible = false" />
+  </template>
+</Dialog>
+```
+
+---
+
+## Без заголовка
+
+Свойство `showHeader` скрывает заголовок диалога.
+
+<Story name="Без заголовка">
+  {WithoutHeaderTemplate.bind({})}
+</Story>
+
+```html
+<Dialog v-model:visible="visible" :showHeader="false">
+  <p>Содержимое диалога</p>
+  <template #footer>
+    <Button label="OK" @click="visible = false" />
+  </template>
+</Dialog>
+```
+
+---
+
+## Модальный
+
+Свойство `modal` блокирует взаимодействие с фоном.
+
+<Story name="Модальный">
+  {ModalTemplate.bind({})}
+</Story>
+
+```html
+<Dialog v-model:visible="visible" modal header="Модальное окно">
+  <p>Содержимое диалога</p>
+</Dialog>
+```
+
+---
+
+## Позиции
+
+Свойство `position` определяет расположение диалога.
+
+<Story name="Позиции">
+  {PositionTemplate.bind({})}
+</Story>
+
+```html
+<Dialog v-model:visible="visible" :position="position" header="Диалог">
+  <p>Содержимое диалога</p>
+</Dialog>
+```
+
+---
+
+## Максимизируемый
+
+Свойство `maximizable` добавляет кнопку максимизации.
+
+<Story name="Максимизируемый">
+  {MaximizableTemplate.bind({})}
+</Story>
+
+```html
+<Dialog v-model:visible="visible" maximizable header="Максимизируемое окно">
+  <p>Содержимое диалога</p>
+</Dialog>
+```

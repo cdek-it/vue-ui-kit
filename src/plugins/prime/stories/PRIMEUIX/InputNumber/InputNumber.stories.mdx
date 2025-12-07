@@ -1,0 +1,150 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  ButtonsTemplate,
+  MinMaxTemplate,
+  DecimalTemplate,
+  CurrencyTemplate,
+  PercentTemplate,
+  VerticalTemplate,
+  DisabledTemplate,
+  InvalidTemplate
+} from './InputNumber.template';
+
+<Meta title="PRIMEUIX/Form/InputNumber" />
+
+# InputNumber
+
+InputNumber - это поле ввода для предоставления числового ввода с помощью спиннера.
+
+[Документация PrimeVue](https://primevue.org/inputnumber/)
+
+---
+
+## Базовый
+
+InputNumber используется с двусторонней привязкой через v-model.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<InputNumber v-model="value" />
+```
+
+---
+
+## С кнопками
+
+Свойство `showButtons` отображает кнопки увеличения/уменьшения.
+
+<Story name="С кнопками">
+  {ButtonsTemplate.bind({})}
+</Story>
+
+```html
+<InputNumber v-model="value" showButtons mode="decimal" />
+```
+
+---
+
+## Мин/Макс
+
+Свойства `min` и `max` ограничивают диапазон значений.
+
+<Story name="Мин/Макс">
+  {MinMaxTemplate.bind({})}
+</Story>
+
+```html
+<InputNumber v-model="value" showButtons :min="0" :max="100" />
+```
+
+---
+
+## Дробные числа
+
+Дробные числа настраиваются с помощью `minFractionDigits` и `maxFractionDigits`.
+
+<Story name="Дробные числа">
+  {DecimalTemplate.bind({})}
+</Story>
+
+```html
+<InputNumber v-model="value" :minFractionDigits="2" :maxFractionDigits="2" />
+```
+
+---
+
+## Валюта
+
+Режим `currency` форматирует значение как валюту.
+
+<Story name="Валюта">
+  {CurrencyTemplate.bind({})}
+</Story>
+
+```html
+<InputNumber v-model="value" mode="currency" currency="RUB" locale="ru-RU" />
+<InputNumber v-model="value" mode="currency" currency="USD" locale="en-US" />
+<InputNumber v-model="value" mode="currency" currency="EUR" locale="de-DE" />
+```
+
+---
+
+## Проценты
+
+Свойства `prefix` и `suffix` добавляют текст до или после значения.
+
+<Story name="Проценты">
+  {PercentTemplate.bind({})}
+</Story>
+
+```html
+<InputNumber v-model="value" prefix="%" />
+```
+
+---
+
+## Вертикальные кнопки
+
+Свойство `buttonLayout` устанавливает расположение кнопок.
+
+<Story name="Вертикальные кнопки">
+  {VerticalTemplate.bind({})}
+</Story>
+
+```html
+<InputNumber v-model="value" showButtons buttonLayout="vertical" />
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с полем.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<InputNumber v-model="value" disabled />
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<InputNumber v-model="value" invalid />
+<small class="text-red-600">Это поле обязательно</small>
+```
+

@@ -1,0 +1,363 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  DropdownTemplate,
+  ObjectsTemplate,
+  FormsTemplate,
+  TemplateCustomTemplate,
+  GroupTemplate,
+  ForceSelectionTemplate,
+  VirtualScrollTemplate,
+  MultipleTemplate,
+  FloatLabelTemplate,
+  IftaLabelTemplate,
+  ClearIconTemplate,
+  SizesTemplate,
+  FilledTemplate,
+  DisabledTemplate,
+  InvalidTemplate
+} from './AutoComplete.template';
+
+<Meta title="PRIMEUIX/Form/AutoComplete" />
+
+# AutoComplete
+
+AutoComplete - это компонент ввода, который предоставляет подсказки в реальном времени при вводе.
+
+[Документация PrimeVue](https://primevue.org/autocomplete/)
+
+---
+
+## Базовый
+
+AutoComplete используется со свойством `v-model` для двусторонней привязки значения. Кроме того, требуются свойство `suggestions` и метод `complete` для получения результатов.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete v-model="value" :suggestions="items" @complete="search" />
+```
+
+---
+
+## Выпадающий список
+
+Включение свойства `dropdown` отображает кнопку рядом с полем ввода, где поведение кнопки определяется свойством `dropdownMode`, которое принимает **blank** или **current** в качестве возможных значений. **blank** - это режим по умолчанию для отправки запроса с пустой строкой, тогда как настройка **current** отправляет запрос с текущим значением поля ввода.
+
+<Story name="Выпадающий список">
+  {DropdownTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete v-model="value" dropdown :suggestions="items" @complete="search" />
+```
+
+---
+
+## Объекты
+
+AutoComplete может работать с объектами, используя свойство `optionLabel`, которое определяет метку для отображения в качестве подсказки. Значение, переданное в модель, по-прежнему будет экземпляром объекта подсказки.
+
+<Story name="Объекты">
+  {ObjectsTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete 
+  v-model="selectedCountry" 
+  optionLabel="name" 
+  :suggestions="filteredCountries" 
+  @complete="search" 
+/>
+```
+
+---
+
+## Формы
+
+AutoComplete легко интегрируется с библиотекой PrimeVue Forms.
+
+<Story name="Формы">
+  {FormsTemplate.bind({})}
+</Story>
+
+```html
+<Form v-slot="$form" :resolver="resolver" :initialValues="initialValues" @submit="onFormSubmit">
+  <div class="flex flex-col gap-1">
+    <AutoComplete 
+      name="country.name" 
+      optionLabel="name" 
+      :suggestions="filteredCountries" 
+      @complete="search" 
+      fluid 
+    />
+    <Message 
+      v-if="$form.country?.name?.invalid" 
+      severity="error" 
+      size="small"
+    >
+      {{ $form.country.name.error?.message }}
+    </Message>
+  </div>
+  <Button type="submit" severity="secondary" label="Отправить" />
+</Form>
+```
+
+---
+
+## Шаблон
+
+AutoComplete предлагает несколько слотов для настройки через шаблоны.
+
+<Story name="Шаблон">
+  {TemplateCustomTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete 
+  v-model="selectedCountry" 
+  optionLabel="name" 
+  :suggestions="filteredCountries" 
+  @complete="search"
+>
+  <template #option="slotProps">
+    <div class="flex items-center">
+      <img 
+        :alt="slotProps.option.name" 
+        :src="getFlagUrl(slotProps.option.code)"
+        class="mr-2"
+        style="width: 18px" 
+      />
+      <div>{{ slotProps.option.name }}</div>
+    </div>
+  </template>
+  <template #header>
+    <div class="font-medium px-3 py-2">Доступные страны</div>
+  </template>
+  <template #footer>
+    <div class="px-3 py-3">
+      <Button label="Добавить новую" fluid severity="secondary" text size="small" />
+    </div>
+  </template>
+</AutoComplete>
+```
+
+---
+
+## Группы
+
+Группы опций указываются с помощью свойств `optionGroupLabel` и `optionGroupChildren`.
+
+<Story name="Группы">
+  {GroupTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete 
+  v-model="selectedCity" 
+  :suggestions="filteredCities" 
+  @complete="search" 
+  optionLabel="label" 
+  optionGroupLabel="label" 
+  optionGroupChildren="items"
+  placeholder="Подсказка: введите 'a'"
+/>
+```
+
+---
+
+## Принудительный выбор
+
+Когда включено `forceSelection`, подсказка должна быть выбрана, иначе значение ввода будет очищено.
+
+<Story name="Принудительный выбор">
+  {ForceSelectionTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete 
+  v-model="value" 
+  :suggestions="items" 
+  @complete="search" 
+  forceSelection 
+/>
+```
+
+---
+
+## Виртуальная прокрутка
+
+Виртуальная прокрутка используется для рендеринга больших списков данных. Включите `virtualScrollerOptions` для активации виртуальной прокрутки.
+
+<Story name="Виртуальная прокрутка">
+  {VirtualScrollTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete 
+  v-model="value" 
+  :suggestions="filteredItems" 
+  @complete="search" 
+  :virtualScrollerOptions="{ itemSize: 38 }" 
+/>
+```
+
+---
+
+## Множественный выбор
+
+Включите свойство `multiple` для выбора нескольких значений. В этом режиме значением модели является массив.
+
+<Story name="Множественный выбор">
+  {MultipleTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete 
+  v-model="selectedCountries" 
+  :suggestions="filteredCountries" 
+  @complete="search" 
+  optionLabel="name" 
+  multiple 
+/>
+```
+
+---
+
+## Float Label
+
+Метка может быть размещена поверх компонента.
+
+<Story name="Float Label">
+  {FloatLabelTemplate.bind({})}
+</Story>
+
+```html
+<FloatLabel>
+  <AutoComplete 
+    v-model="value" 
+    inputId="autocomplete" 
+    :suggestions="items" 
+    @complete="search" 
+  />
+  <label for="autocomplete">Поиск страны</label>
+</FloatLabel>
+```
+
+---
+
+## Ifta Label
+
+IFTA (Input Filled Text Animation) - альтернативный стиль метки.
+
+<Story name="Ifta Label">
+  {IftaLabelTemplate.bind({})}
+</Story>
+
+```html
+<IftaLabel>
+  <AutoComplete 
+    v-model="value" 
+    inputId="autocomplete-ifta" 
+    :suggestions="items" 
+    @complete="search"
+    variant="filled" 
+  />
+  <label for="autocomplete-ifta">Поиск страны</label>
+</IftaLabel>
+```
+
+---
+
+## Иконка очистки
+
+Когда включено, кнопка очистки отображается для быстрого удаления значения.
+
+<Story name="Иконка очистки">
+  {ClearIconTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete 
+  v-model="value" 
+  :suggestions="items" 
+  @complete="search" 
+  showClear 
+/>
+```
+
+---
+
+## Размеры
+
+AutoComplete доступен в трёх размерах.
+
+<Story name="Размеры">
+  {SizesTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete v-model="value" size="small" :suggestions="items" @complete="search" />
+<AutoComplete v-model="value" :suggestions="items" @complete="search" />
+<AutoComplete v-model="value" size="large" :suggestions="items" @complete="search" />
+```
+
+---
+
+## Заполненный
+
+Вариант `filled` применяет альтернативный стиль оформления.
+
+<Story name="Заполненный">
+  {FilledTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete 
+  v-model="value" 
+  :suggestions="items" 
+  @complete="search" 
+  variant="filled" 
+/>
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие пользователя с компонентом.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete 
+  v-model="value" 
+  :suggestions="items" 
+  @complete="search" 
+  disabled 
+/>
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<AutoComplete 
+  v-model="value" 
+  :suggestions="items" 
+  @complete="search" 
+  invalid 
+/>
+```
+

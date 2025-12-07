@@ -1,0 +1,86 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  AutoTemplate,
+  CustomTemplate
+} from './FileUpload.template';
+
+<Meta title="PRIMEUIX/File/FileUpload" />
+
+# FileUpload
+
+FileUpload - это компонент для загрузки файлов с расширенными возможностями.
+
+[Документация PrimeVue](https://primevue.org/fileupload/)
+
+---
+
+## Базовый
+
+FileUpload требует свойства `name` и `url` для загрузки.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<FileUpload 
+  name="demo[]" 
+  url="/api/upload" 
+  @upload="onUpload" 
+  :multiple="true" 
+  accept="image/*" 
+  :maxFileSize="1000000"
+>
+  <template #empty>
+    <p>Перетащите файлы сюда для загрузки.</p>
+  </template>
+</FileUpload>
+```
+
+---
+
+## Авто загрузка
+
+Режим `basic` с свойством `auto` автоматически загружает файлы после выбора.
+
+<Story name="Авто загрузка">
+  {AutoTemplate.bind({})}
+</Story>
+
+```html
+<FileUpload 
+  mode="basic" 
+  name="demo[]" 
+  url="/api/upload" 
+  accept="image/*" 
+  :maxFileSize="1000000" 
+  auto
+  chooseLabel="Выбрать"
+/>
+```
+
+---
+
+## Пользовательская загрузка
+
+Свойство `customUpload` позволяет реализовать собственную логику загрузки.
+
+<Story name="Пользовательская загрузка">
+  {CustomTemplate.bind({})}
+</Story>
+
+```html
+<FileUpload 
+  name="demo[]" 
+  @select="onSelectedFiles" 
+  :multiple="true" 
+  accept="image/*" 
+  customUpload
+>
+  <template #empty>
+    <p>Перетащите файлы сюда для загрузки.</p>
+  </template>
+</FileUpload>
+```
+

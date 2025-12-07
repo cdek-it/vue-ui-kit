@@ -1,0 +1,74 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  VerticalTemplate
+} from './Stepper.template';
+
+<Meta title="PRIMEUIX/Panel/Stepper" />
+
+# Stepper
+
+Stepper - это компонент для пошагового процесса.
+
+[Документация PrimeVue](https://primevue.org/stepper/)
+
+---
+
+## Базовый
+
+Stepper состоит из StepList с Step компонентами и StepPanels с StepPanel компонентами.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Stepper>
+  <StepList>
+    <Step value="1">Персональные данные</Step>
+    <Step value="2">Адрес</Step>
+    <Step value="3">Подтверждение</Step>
+  </StepList>
+  <StepPanels>
+    <StepPanel v-slot="{ activateCallback }" value="1">
+      <div>Содержимое шага 1</div>
+      <Button label="Далее" @click="activateCallback('2')" />
+    </StepPanel>
+    <StepPanel v-slot="{ activateCallback }" value="2">
+      <div>Содержимое шага 2</div>
+      <Button label="Назад" @click="activateCallback('1')" />
+      <Button label="Далее" @click="activateCallback('3')" />
+    </StepPanel>
+    <StepPanel v-slot="{ activateCallback }" value="3">
+      <div>Содержимое шага 3</div>
+      <Button label="Назад" @click="activateCallback('2')" />
+    </StepPanel>
+  </StepPanels>
+</Stepper>
+```
+
+---
+
+## Вертикальный
+
+Свойство `orientation` устанавливает вертикальную ориентацию.
+
+<Story name="Вертикальный">
+  {VerticalTemplate.bind({})}
+</Story>
+
+```html
+<Stepper orientation="vertical">
+  <StepList>
+    <Step value="1">Шаг 1</Step>
+    <Step value="2">Шаг 2</Step>
+    <Step value="3">Шаг 3</Step>
+  </StepList>
+  <StepPanels>
+    <StepPanel value="1">Содержимое шага 1</StepPanel>
+    <StepPanel value="2">Содержимое шага 2</StepPanel>
+    <StepPanel value="3">Содержимое шага 3</StepPanel>
+  </StepPanels>
+</Stepper>
+```
+

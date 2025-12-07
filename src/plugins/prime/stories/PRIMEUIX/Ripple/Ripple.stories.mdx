@@ -1,0 +1,66 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  CardTemplate,
+  CustomColorTemplate
+} from './Ripple.template';
+
+<Meta title="PRIMEUIX/Misc/Ripple" />
+
+# Ripple
+
+Ripple - это директива для добавления эффекта волны при клике на элемент.
+
+[Документация PrimeVue](https://primevue.org/ripple/)
+
+---
+
+## Базовый
+
+Ripple используется как директива v-ripple.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Button v-ripple label="По умолчанию" />
+<Button v-ripple label="Успех" severity="success" />
+<Button v-ripple label="Инфо" severity="info" />
+```
+
+---
+
+## На карточке
+
+Ripple можно применить к любому элементу.
+
+<Story name="На карточке">
+  {CardTemplate.bind({})}
+</Story>
+
+```html
+<Card v-ripple class="cursor-pointer">
+  <template #title>Карточка с Ripple</template>
+  <template #content>
+    <p>Кликните на карточку</p>
+  </template>
+</Card>
+```
+
+---
+
+## Пользовательский цвет
+
+Цвет ripple эффекта можно настроить.
+
+<Story name="Пользовательский цвет">
+  {CustomColorTemplate.bind({})}
+</Story>
+
+```html
+<Button v-ripple="{ class: 'bg-red-400' }" label="Красный ripple" />
+<Button v-ripple="{ class: 'bg-green-400' }" label="Зеленый ripple" />
+<Button v-ripple="{ class: 'bg-blue-400' }" label="Синий ripple" />
+```
+

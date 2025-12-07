@@ -1,0 +1,107 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  ShapesTemplate,
+  SizesTemplate,
+  CardTemplate,
+  ListTemplate
+} from './Skeleton.template';
+
+<Meta title="PRIMEUIX/Misc/Skeleton" />
+
+# Skeleton
+
+Skeleton - это компонент-заполнитель для отображения во время загрузки контента.
+
+[Документация PrimeVue](https://primevue.org/skeleton/)
+
+---
+
+## Базовый
+
+Skeleton отображается как прямоугольник по умолчанию.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Skeleton />
+<Skeleton width="75%" />
+<Skeleton width="50%" />
+```
+
+---
+
+## Формы
+
+Доступны различные формы с помощью свойства `shape`.
+
+<Story name="Формы">
+  {ShapesTemplate.bind({})}
+</Story>
+
+```html
+<Skeleton shape="square" size="4rem" />
+<Skeleton shape="circle" size="4rem" />
+```
+
+---
+
+## Размеры
+
+Размер skeleton можно настроить с помощью свойств `width`, `height` и `size`.
+
+<Story name="Размеры">
+  {SizesTemplate.bind({})}
+</Story>
+
+```html
+<Skeleton shape="circle" size="3rem" />
+<Skeleton shape="circle" size="4rem" />
+<Skeleton shape="circle" size="5rem" />
+```
+
+---
+
+## Карточка
+
+Пример использования skeleton для карточки.
+
+<Story name="Карточка">
+  {CardTemplate.bind({})}
+</Story>
+
+```html
+<div class="card">
+  <div class="flex mb-4">
+    <Skeleton shape="circle" size="4rem" />
+    <div>
+      <Skeleton width="100%" />
+      <Skeleton width="75%" />
+    </div>
+  </div>
+  <Skeleton width="100%" height="150px" />
+</div>
+```
+
+---
+
+## Список
+
+Пример использования skeleton для списка.
+
+<Story name="Список">
+  {ListTemplate.bind({})}
+</Story>
+
+```html
+<div v-for="i in 5" :key="i">
+  <Skeleton shape="circle" size="4rem" />
+  <div>
+    <Skeleton width="100%" />
+    <Skeleton width="75%" />
+  </div>
+</div>
+```
+

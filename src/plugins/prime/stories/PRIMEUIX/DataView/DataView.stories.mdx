@@ -1,0 +1,86 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  GridTemplate,
+  PaginationTemplate
+} from './DataView.template';
+
+<Meta title="PRIMEUIX/Data/DataView" />
+
+# DataView
+
+DataView - это компонент для отображения данных в различных макетах (список или сетка).
+
+[Документация PrimeVue](https://primevue.org/dataview/)
+
+---
+
+## Базовый
+
+DataView требует массив данных через свойство `value` и шаблоны для отображения элементов.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<DataView :value="products">
+  <template #list="slotProps">
+    <div v-for="product in slotProps.items" :key="product.id">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <div>{{ product.price }} ₽</div>
+    </div>
+  </template>
+</DataView>
+```
+
+```javascript
+const products = ref([
+  { id: 1, name: 'Продукт 1', description: 'Описание', price: 100 }
+]);
+```
+
+---
+
+## Сетка
+
+Свойство `layout="grid"` переключает отображение в режим сетки.
+
+<Story name="Сетка">
+  {GridTemplate.bind({})}
+</Story>
+
+```html
+<DataView :value="products" layout="grid">
+  <template #grid="slotProps">
+    <div class="grid grid-cols-4 gap-4">
+      <div v-for="product in slotProps.items" :key="product.id">
+        <h3>{{ product.name }}</h3>
+        <div>{{ product.price }} ₽</div>
+      </div>
+    </div>
+  </template>
+</DataView>
+```
+
+---
+
+## Пагинация
+
+Свойство `paginator` и `rows` включают пагинацию.
+
+<Story name="Пагинация">
+  {PaginationTemplate.bind({})}
+</Story>
+
+```html
+<DataView :value="products" :rows="3" paginator>
+  <template #list="slotProps">
+    <div v-for="product in slotProps.items" :key="product.id">
+      {{ product.name }}
+    </div>
+  </template>
+</DataView>
+```
+

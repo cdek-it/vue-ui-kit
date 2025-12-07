@@ -1,0 +1,130 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  GroupTemplate,
+  PopupTemplate,
+  IconsTemplate
+} from './Menu.template';
+
+<Meta title="PRIMEUIX/Menu/Menu" />
+
+# Menu
+
+Menu - это компонент для отображения списка команд навигации.
+
+[Документация PrimeVue](https://primevue.org/menu/)
+
+---
+
+## Базовый
+
+Menu требует массив элементов через свойство `model`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Menu :model="items" />
+```
+
+```javascript
+const items = ref([
+  {
+    label: 'Обновить',
+    icon: 'pi pi-refresh'
+  },
+  {
+    label: 'Удалить',
+    icon: 'pi pi-times'
+  },
+  {
+    separator: true
+  },
+  {
+    label: 'Главная',
+    icon: 'pi pi-home'
+  }
+]);
+```
+
+---
+
+## Группы
+
+Элементы меню могут быть сгруппированы с помощью вложенного массива `items`.
+
+<Story name="Группы">
+  {GroupTemplate.bind({})}
+</Story>
+
+```javascript
+const items = ref([
+  {
+    label: 'Документы',
+    items: [
+      {
+        label: 'Новый',
+        icon: 'pi pi-plus'
+      },
+      {
+        label: 'Поиск',
+        icon: 'pi pi-search'
+      }
+    ]
+  }
+]);
+```
+
+---
+
+## С кнопкой
+
+Свойство `popup` позволяет отображать меню как оверлей.
+
+<Story name="С кнопкой">
+  {PopupTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Показать" @click="toggle" />
+<Menu ref="menu" :model="items" popup />
+```
+
+```javascript
+const menu = ref();
+
+const toggle = (event) => {
+  menu.value.toggle(event);
+};
+```
+
+---
+
+## С иконками
+
+Элементы меню могут содержать иконки через свойство `icon`.
+
+<Story name="С иконками">
+  {IconsTemplate.bind({})}
+</Story>
+
+```javascript
+const items = ref([
+  {
+    label: 'Файл',
+    icon: 'pi pi-file',
+    items: [
+      {
+        label: 'Создать',
+        icon: 'pi pi-plus'
+      },
+      {
+        label: 'Открыть',
+        icon: 'pi pi-folder-open'
+      }
+    ]
+  }
+]);
+```
+

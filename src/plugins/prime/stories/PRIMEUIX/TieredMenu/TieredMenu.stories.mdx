@@ -1,0 +1,76 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  PopupTemplate
+} from './TieredMenu.template';
+
+<Meta title="PRIMEUIX/Menu/TieredMenu" />
+
+# TieredMenu
+
+TieredMenu - это компонент для отображения вложенных наложений в иерархической структуре.
+
+[Документация PrimeVue](https://primevue.org/tieredmenu/)
+
+---
+
+## Базовый
+
+TieredMenu требует массив элементов через свойство `model`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<TieredMenu :model="items" />
+```
+
+```javascript
+const items = ref([
+  {
+    label: 'Файл',
+    icon: 'pi pi-file',
+    items: [
+      {
+        label: 'Создать',
+        icon: 'pi pi-plus',
+        items: [
+          {
+            label: 'Документ',
+            icon: 'pi pi-file'
+          },
+          {
+            label: 'Изображение',
+            icon: 'pi pi-image'
+          }
+        ]
+      }
+    ]
+  }
+]);
+```
+
+---
+
+## Popup
+
+Свойство `popup` позволяет отображать меню как оверлей.
+
+<Story name="Popup">
+  {PopupTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Показать" @click="toggle" />
+<TieredMenu ref="menu" :model="items" popup />
+```
+
+```javascript
+const menu = ref();
+
+const toggle = (event) => {
+  menu.value.toggle(event);
+};
+```
+

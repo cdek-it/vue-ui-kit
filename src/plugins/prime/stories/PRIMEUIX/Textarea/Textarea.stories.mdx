@@ -1,0 +1,103 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  AutoResizeTemplate,
+  FilledTemplate,
+  DisabledTemplate,
+  InvalidTemplate,
+  FluidTemplate
+} from './Textarea.template';
+
+<Meta title="PRIMEUIX/Form/Textarea" />
+
+# Textarea
+
+Textarea - это многострочное текстовое поле с темизацией.
+
+[Документация PrimeVue](https://primevue.org/textarea/)
+
+---
+
+## Базовый
+
+Textarea используется с двусторонней привязкой через v-model.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Textarea v-model="value" rows="5" placeholder="Введите текст" />
+```
+
+---
+
+## Автоизменение размера
+
+Свойство `autoResize` автоматически изменяет высоту textarea в зависимости от контента.
+
+<Story name="Автоизменение размера">
+  {AutoResizeTemplate.bind({})}
+</Story>
+
+```html
+<Textarea v-model="value" autoResize rows="3" />
+```
+
+---
+
+## Заполненный
+
+Вариант `filled` применяет альтернативный стиль оформления.
+
+<Story name="Заполненный">
+  {FilledTemplate.bind({})}
+</Story>
+
+```html
+<Textarea v-model="value" variant="filled" rows="5" />
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с полем.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<Textarea v-model="value" disabled rows="5" />
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<Textarea v-model="value" invalid rows="5" />
+<small class="text-red-600">Это поле обязательно</small>
+```
+
+---
+
+## Fluid
+
+Свойство `fluid` заставляет Textarea занимать всю доступную ширину.
+
+<Story name="Fluid">
+  {FluidTemplate.bind({})}
+</Story>
+
+```html
+<Textarea v-model="value" fluid rows="5" />
+```
+

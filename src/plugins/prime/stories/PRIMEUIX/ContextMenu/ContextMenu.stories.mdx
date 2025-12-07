@@ -1,0 +1,67 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  ImageTemplate
+} from './ContextMenu.template';
+
+<Meta title="PRIMEUIX/Menu/ContextMenu" />
+
+# ContextMenu
+
+ContextMenu - это компонент для отображения контекстного меню при клике правой кнопкой мыши.
+
+[Документация PrimeVue](https://primevue.org/contextmenu/)
+
+---
+
+## Базовый
+
+ContextMenu требует массив элементов через свойство `model` и показывается через метод `show`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<ContextMenu ref="cm" :model="items" />
+<div @contextmenu="onRightClick">
+  Щелкните правой кнопкой мыши
+</div>
+```
+
+```javascript
+const cm = ref();
+const items = ref([
+  {
+    label: 'Сохранить',
+    icon: 'pi pi-save'
+  },
+  {
+    separator: true
+  },
+  {
+    label: 'Удалить',
+    icon: 'pi pi-trash'
+  }
+]);
+
+const onRightClick = (event) => {
+  cm.value.show(event);
+};
+```
+
+---
+
+## С изображением
+
+ContextMenu может быть привязан к изображению или другому элементу.
+
+<Story name="С изображением">
+  {ImageTemplate.bind({})}
+</Story>
+
+```html
+<ContextMenu ref="cm" :model="items" />
+<img @contextmenu="onImageRightClick" src="image.jpg" alt="Image" />
+```
+

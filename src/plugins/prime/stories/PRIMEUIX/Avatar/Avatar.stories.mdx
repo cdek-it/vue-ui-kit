@@ -1,0 +1,144 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  IconTemplate,
+  ImageTemplate,
+  SizesTemplate,
+  ShapesTemplate,
+  GroupTemplate,
+  BadgeTemplate,
+  StylesTemplate
+} from './Avatar.template';
+
+<Meta title="PRIMEUIX/Misc/Avatar" />
+
+# Avatar
+
+Avatar - это компонент для представления пользователя с иконкой, изображением или текстом.
+
+[Документация PrimeVue](https://primevue.org/avatar/)
+
+---
+
+## Базовый
+
+Аватар с текстовой меткой определяется свойством `label`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Avatar label="Д" size="large" />
+<Avatar label="ИВ" size="large" />
+<Avatar label="МА" size="large" />
+```
+
+---
+
+## Иконка
+
+Аватар с иконкой определяется свойством `icon`.
+
+<Story name="Иконка">
+  {IconTemplate.bind({})}
+</Story>
+
+```html
+<Avatar icon="pi pi-user" size="large" />
+<Avatar icon="pi pi-user" size="large" style="background-color: #2196F3; color: #ffffff" />
+```
+
+---
+
+## Изображение
+
+Аватар с изображением определяется свойством `image`.
+
+<Story name="Изображение">
+  {ImageTemplate.bind({})}
+</Story>
+
+```html
+<Avatar image="https://example.com/avatar.png" size="large" />
+```
+
+---
+
+## Размеры
+
+Avatar доступен в различных размерах.
+
+<Story name="Размеры">
+  {SizesTemplate.bind({})}
+</Story>
+
+```html
+<Avatar label="ХЛ" size="xlarge" />
+<Avatar label="Б" size="large" />
+<Avatar label="С" />
+<Avatar label="М" size="small" />
+```
+
+---
+
+## Формы
+
+Avatar поддерживает квадратную и круглую формы.
+
+<Story name="Формы">
+  {ShapesTemplate.bind({})}
+</Story>
+
+```html
+<Avatar label="К" size="large" />
+<Avatar label="К" size="large" shape="circle" />
+```
+
+---
+
+## Группа
+
+Несколько аватаров можно сгруппировать с помощью компонента AvatarGroup.
+
+<Story name="Группа">
+  {GroupTemplate.bind({})}
+</Story>
+
+```html
+<AvatarGroup>
+  <Avatar image="https://example.com/avatar1.png" size="large" />
+  <Avatar image="https://example.com/avatar2.png" size="large" />
+  <Avatar label="+2" size="large" />
+</AvatarGroup>
+```
+
+---
+
+## Бейдж
+
+Бейдж может отображаться поверх аватара с помощью директивы v-badge.
+
+<Story name="Бейдж">
+  {BadgeTemplate.bind({})}
+</Story>
+
+```html
+<Avatar image="https://example.com/avatar.png" size="large" v-badge.danger="4" />
+<Avatar icon="pi pi-user" size="large" v-badge.success />
+```
+
+---
+
+## Стили
+
+Avatar можно настроить с пользовательскими цветами.
+
+<Story name="Стили">
+  {StylesTemplate.bind({})}
+</Story>
+
+```html
+<Avatar label="АБ" size="large" style="background-color: #ee9cda; color: #000000" />
+```
+

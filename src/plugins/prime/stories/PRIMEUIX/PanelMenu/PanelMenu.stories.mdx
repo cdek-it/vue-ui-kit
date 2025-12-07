@@ -1,0 +1,67 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  MultipleTemplate
+} from './PanelMenu.template';
+
+<Meta title="PRIMEUIX/Menu/PanelMenu" />
+
+# PanelMenu
+
+PanelMenu - это гибридное меню с аккордеоном и деревом.
+
+[Документация PrimeVue](https://primevue.org/panelmenu/)
+
+---
+
+## Базовый
+
+PanelMenu требует массив элементов через свойство `model`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<PanelMenu :model="items" />
+```
+
+```javascript
+const items = ref([
+  {
+    label: 'Файл',
+    icon: 'pi pi-file',
+    items: [
+      {
+        label: 'Создать',
+        icon: 'pi pi-plus',
+        items: [
+          {
+            label: 'Документ',
+            icon: 'pi pi-file'
+          }
+        ]
+      },
+      {
+        label: 'Открыть',
+        icon: 'pi pi-folder-open'
+      }
+    ]
+  }
+]);
+```
+
+---
+
+## Множественный
+
+Свойство `multiple` позволяет открывать несколько панелей одновременно.
+
+<Story name="Множественный">
+  {MultipleTemplate.bind({})}
+</Story>
+
+```html
+<PanelMenu :model="items" multiple />
+```
+

@@ -1,0 +1,104 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  SizesTemplate,
+  FilledTemplate,
+  DisabledTemplate,
+  InvalidTemplate,
+  FluidTemplate
+} from './InputText.template';
+
+<Meta title="PRIMEUIX/Form/InputText" />
+
+# InputText
+
+InputText - это расширение стандартного элемента input с темизацией.
+
+[Документация PrimeVue](https://primevue.org/inputtext/)
+
+---
+
+## Базовый
+
+InputText используется с двусторонней привязкой через v-model.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<InputText v-model="value" placeholder="Введите текст" />
+```
+
+---
+
+## Размеры
+
+InputText доступен в трёх размерах.
+
+<Story name="Размеры">
+  {SizesTemplate.bind({})}
+</Story>
+
+```html
+<InputText v-model="value" size="small" placeholder="Small" />
+<InputText v-model="value" placeholder="Normal" />
+<InputText v-model="value" size="large" placeholder="Large" />
+```
+
+---
+
+## Заполненный
+
+Вариант `filled` применяет альтернативный стиль оформления.
+
+<Story name="Заполненный">
+  {FilledTemplate.bind({})}
+</Story>
+
+```html
+<InputText v-model="value" variant="filled" placeholder="Заполненный" />
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с полем.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<InputText v-model="value" disabled />
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<InputText v-model="value" invalid placeholder="Невалидное поле" />
+<small class="text-red-600">Это поле обязательно</small>
+```
+
+---
+
+## Fluid
+
+Свойство `fluid` заставляет InputText занимать всю доступную ширину.
+
+<Story name="Fluid">
+  {FluidTemplate.bind({})}
+</Story>
+
+```html
+<InputText v-model="value" fluid />
+```

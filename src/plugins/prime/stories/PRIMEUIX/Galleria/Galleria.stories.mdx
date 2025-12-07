@@ -1,0 +1,118 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  ThumbnailTemplate,
+  AutoplayTemplate,
+  FullscreenTemplate
+} from './Galleria.template';
+
+<Meta title="PRIMEUIX/Media/Galleria" />
+
+# Galleria
+
+Galleria - это расширенный компонент галереи изображений с режимами предварительного просмотра и миниатюр.
+
+[Документация PrimeVue](https://primevue.org/galleria/)
+
+---
+
+## Базовый
+
+Galleria требует массив изображений через свойство `value` и шаблоны для отображения элементов.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Galleria :value="images" :numVisible="5">
+  <template #item="slotProps">
+    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" />
+  </template>
+  <template #thumbnail="slotProps">
+    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" />
+  </template>
+</Galleria>
+```
+
+```javascript
+const images = ref([
+  {
+    itemImageSrc: 'image1.jpg',
+    thumbnailImageSrc: 'image1-thumb.jpg',
+    alt: 'Изображение 1'
+  }
+]);
+```
+
+---
+
+## Миниатюры
+
+Свойства `showThumbnails` и `showItemNavigators` управляют отображением миниатюр и навигации.
+
+<Story name="Миниатюры">
+  {ThumbnailTemplate.bind({})}
+</Story>
+
+```html
+<Galleria 
+  :value="images" 
+  :numVisible="3" 
+  :showThumbnails="true"
+  :showItemNavigators="true"
+>
+  <template #item="slotProps">
+    <img :src="slotProps.item.itemImageSrc" />
+  </template>
+  <template #thumbnail="slotProps">
+    <img :src="slotProps.item.thumbnailImageSrc" />
+  </template>
+</Galleria>
+```
+
+---
+
+## Автовоспроизведение
+
+Свойство `autoPlay` и `transitionInterval` включают автоматическую смену слайдов.
+
+<Story name="Автовоспроизведение">
+  {AutoplayTemplate.bind({})}
+</Story>
+
+```html
+<Galleria 
+  :value="images" 
+  :autoPlay="true"
+  :transitionInterval="3000"
+>
+  <template #item="slotProps">
+    <img :src="slotProps.item.itemImageSrc" />
+  </template>
+</Galleria>
+```
+
+---
+
+## Полноэкранный режим
+
+Свойство `fullScreen` включает полноэкранный режим галереи.
+
+<Story name="Полноэкранный режим">
+  {FullscreenTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Показать галерею" @click="visible = true" />
+<Galleria 
+  v-model:visible="visible"
+  :value="images" 
+  :fullScreen="true"
+>
+  <template #item="slotProps">
+    <img :src="slotProps.item.itemImageSrc" />
+  </template>
+</Galleria>
+```
+

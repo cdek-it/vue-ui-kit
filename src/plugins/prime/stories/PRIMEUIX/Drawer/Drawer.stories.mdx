@@ -1,0 +1,110 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  PositionTemplate,
+  SizeTemplate,
+  FullScreenTemplate,
+  WithoutHeaderTemplate
+} from './Drawer.template';
+
+<Meta title="PRIMEUIX/Overlay/Drawer" />
+
+# Drawer
+
+Drawer - это компонент боковой панели для навигации или отображения контента.
+
+[Документация PrimeVue](https://primevue.org/drawer/)
+
+---
+
+## Базовый
+
+Drawer управляется через свойство `visible`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Показать" @click="visible = true" />
+<Drawer v-model:visible="visible" header="Drawer">
+  <p>Содержимое drawer</p>
+</Drawer>
+```
+
+---
+
+## Позиции
+
+Свойство `position` определяет расположение drawer: left, right, top, bottom.
+
+<Story name="Позиции">
+  {PositionTemplate.bind({})}
+</Story>
+
+```html
+<Drawer v-model:visible="visible" header="Слева">
+  <p>Содержимое drawer</p>
+</Drawer>
+
+<Drawer v-model:visible="visible" header="Справа" position="right">
+  <p>Содержимое drawer</p>
+</Drawer>
+```
+
+---
+
+## Размеры
+
+Размер drawer настраивается через inline стили.
+
+<Story name="Размеры">
+  {SizeTemplate.bind({})}
+</Story>
+
+```html
+<Drawer v-model:visible="visible" header="Маленький" style="width: 20rem">
+  <p>Содержимое drawer</p>
+</Drawer>
+
+<Drawer v-model:visible="visible" header="Большой" style="width: 40rem">
+  <p>Содержимое drawer</p>
+</Drawer>
+```
+
+---
+
+## Полноэкранный
+
+Значение `full` для `position` делает drawer полноэкранным.
+
+<Story name="Полноэкранный">
+  {FullScreenTemplate.bind({})}
+</Story>
+
+```html
+<Drawer v-model:visible="visible" header="Полноэкранный" position="full">
+  <p>Содержимое drawer</p>
+</Drawer>
+```
+
+---
+
+## Без заголовка
+
+Свойство `showCloseIcon` скрывает иконку закрытия.
+
+<Story name="Без заголовка">
+  {WithoutHeaderTemplate.bind({})}
+</Story>
+
+```html
+<Drawer v-model:visible="visible" :showCloseIcon="false">
+  <div class="flex items-center gap-2 mb-4">
+    <i class="pi pi-bars"></i>
+    <span class="font-semibold">Меню</span>
+  </div>
+  <p>Содержимое drawer</p>
+</Drawer>
+```
+

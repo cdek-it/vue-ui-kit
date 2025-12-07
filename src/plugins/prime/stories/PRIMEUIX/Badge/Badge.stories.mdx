@@ -1,0 +1,137 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  IconTemplate,
+  SizesTemplate,
+  DotTemplate,
+  PositionTemplate,
+  SeverityTemplate,
+  OverlayTemplate
+} from './Badge.template';
+
+<Meta title="PRIMEUIX/Misc/Badge" />
+
+# Badge
+
+Badge - это компонент для отображения небольшой числовой метки или индикатора статуса.
+
+[Документация PrimeVue](https://primevue.org/badge/)
+
+---
+
+## Базовый
+
+Badge отображает числовое значение с помощью свойства `value`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Badge value="2" />
+<Badge value="8" severity="success" />
+<Badge value="4" severity="info" />
+```
+
+---
+
+## Иконка
+
+Badge можно использовать с другими компонентами, такими как Button, с помощью директивы v-badge.
+
+<Story name="Иконка">
+  {IconTemplate.bind({})}
+</Story>
+
+```html
+<Button label="Электронная почта" icon="pi pi-inbox" v-badge="2" />
+<Button label="Сообщения" icon="pi pi-envelope" v-badge.danger="8" />
+```
+
+---
+
+## Размеры
+
+Badge доступен в различных размерах.
+
+<Story name="Размеры">
+  {SizesTemplate.bind({})}
+</Story>
+
+```html
+<Badge value="6" size="xlarge" />
+<Badge value="4" size="large" />
+<Badge value="2" />
+```
+
+---
+
+## Без значения
+
+Badge без значения отображается как точка.
+
+<Story name="Без значения">
+  {DotTemplate.bind({})}
+</Story>
+
+```html
+<Badge severity="info" />
+<Button label="Новые уведомления" v-badge.danger />
+```
+
+---
+
+## Позиция
+
+Badge может быть позиционирован относительно другого компонента.
+
+<Story name="Позиция">
+  {PositionTemplate.bind({})}
+</Story>
+
+```html
+<Button icon="pi pi-bell" v-badge="2" />
+<Button icon="pi pi-bell" v-badge.danger="5" />
+<Button icon="pi pi-bell" v-badge.success />
+```
+
+---
+
+## Модификаторы тяжести
+
+Доступны различные цветовые варианты с помощью свойства `severity`.
+
+<Story name="Модификаторы тяжести">
+  {SeverityTemplate.bind({})}
+</Story>
+
+```html
+<Badge value="Primary" />
+<Badge value="Success" severity="success" />
+<Badge value="Info" severity="info" />
+<Badge value="Warn" severity="warn" />
+<Badge value="Danger" severity="danger" />
+```
+
+---
+
+## Overlay
+
+Badge можно разместить поверх другого элемента с помощью компонента `OverlayBadge`.
+
+<Story name="Overlay">
+  {OverlayTemplate.bind({})}
+</Story>
+
+```html
+<OverlayBadge value="2">
+  <i class="ti ti-bell" style="font-size: 2rem" />
+</OverlayBadge>
+<OverlayBadge value="4" severity="danger">
+  <i class="ti ti-calendar" style="font-size: 2rem" />
+</OverlayBadge>
+<OverlayBadge severity="danger">
+  <i class="ti ti-mail" style="font-size: 2rem" />
+</OverlayBadge>
+```
+

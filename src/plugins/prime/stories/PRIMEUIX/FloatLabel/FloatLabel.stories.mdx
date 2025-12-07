@@ -1,0 +1,103 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  SelectTemplate,
+  AutoCompleteTemplate,
+  TextareaTemplate,
+  InvalidTemplate
+} from './FloatLabel.template';
+
+<Meta title="PRIMEUIX/Form/FloatLabel" />
+
+# FloatLabel
+
+FloatLabel - это компонент для отображения плавающих меток на полях ввода.
+
+[Документация PrimeVue](https://primevue.org/floatlabel/)
+
+---
+
+## Базовый
+
+FloatLabel оборачивает поле ввода и его метку для создания эффекта плавающей метки.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<FloatLabel>
+  <InputText id="username" v-model="value" />
+  <label for="username">Имя пользователя</label>
+</FloatLabel>
+```
+
+---
+
+## Select
+
+FloatLabel работает с компонентом Select.
+
+<Story name="Select">
+  {SelectTemplate.bind({})}
+</Story>
+
+```html
+<FloatLabel>
+  <Select id="city" v-model="selectedCity" :options="cities" optionLabel="name" />
+  <label for="city">Выберите город</label>
+</FloatLabel>
+```
+
+---
+
+## AutoComplete
+
+FloatLabel работает с компонентом AutoComplete.
+
+<Story name="AutoComplete">
+  {AutoCompleteTemplate.bind({})}
+</Story>
+
+```html
+<FloatLabel>
+  <AutoComplete id="autocomplete" v-model="value" :suggestions="items" @complete="search" />
+  <label for="autocomplete">Поиск города</label>
+</FloatLabel>
+```
+
+---
+
+## Textarea
+
+FloatLabel работает с компонентом Textarea.
+
+<Story name="Textarea">
+  {TextareaTemplate.bind({})}
+</Story>
+
+```html
+<FloatLabel>
+  <Textarea id="description" v-model="value" rows="5" />
+  <label for="description">Описание</label>
+</FloatLabel>
+```
+
+---
+
+## Невалидный
+
+FloatLabel поддерживает состояние ошибки.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<FloatLabel>
+  <InputText id="username" v-model="value" invalid />
+  <label for="username">Имя пользователя</label>
+</FloatLabel>
+<small class="text-red-600">Это поле обязательно</small>
+```
+

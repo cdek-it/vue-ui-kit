@@ -1,0 +1,112 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  MultipleTemplate,
+  IconsTemplate,
+  CustomTemplate,
+  DisabledTemplate,
+  InvalidTemplate
+} from './SelectButton.template';
+
+<Meta title="PRIMEUIX/Form/SelectButton" />
+
+# SelectButton
+
+SelectButton - это компонент для выбора значения из списка с использованием кнопок.
+
+[Документация PrimeVue](https://primevue.org/selectbutton/)
+
+---
+
+## Базовый
+
+SelectButton используется с двусторонней привязкой через v-model и массивом опций.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<SelectButton v-model="value" :options="options" />
+```
+
+---
+
+## Множественный
+
+SelectButton позволяет выбрать несколько значений с помощью свойства `multiple`.
+
+<Story name="Множественный">
+  {MultipleTemplate.bind({})}
+</Story>
+
+```html
+<SelectButton v-model="value" :options="options" multiple />
+```
+
+---
+
+## С иконками
+
+Слот `option` можно использовать для отображения пользовательского контента, например иконок.
+
+<Story name="С иконками">
+  {IconsTemplate.bind({})}
+</Story>
+
+```html
+<SelectButton v-model="value" :options="options" optionValue="value">
+  <template #option="slotProps">
+    <i :class="slotProps.option.icon"></i>
+  </template>
+</SelectButton>
+```
+
+---
+
+## Пользовательский контент
+
+Для работы с объектами используйте свойства `optionLabel` и `optionValue`.
+
+<Story name="Пользовательский контент">
+  {CustomTemplate.bind({})}
+</Story>
+
+```html
+<SelectButton 
+  v-model="value" 
+  :options="options" 
+  optionLabel="name" 
+  optionValue="value" 
+/>
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие с компонентом.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<SelectButton v-model="value" :options="options" disabled />
+```
+
+---
+
+## Невалидный
+
+Невалидное состояние используется для индикации ошибок валидации.
+
+<Story name="Невалидный">
+  {InvalidTemplate.bind({})}
+</Story>
+
+```html
+<SelectButton v-model="value" :options="options" invalid />
+<small class="text-red-600">Необходимо выбрать вариант</small>
+```
+

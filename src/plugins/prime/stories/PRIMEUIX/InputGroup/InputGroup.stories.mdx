@@ -1,0 +1,97 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  MultipleTemplate,
+  ButtonTemplate,
+  CheckboxTemplate
+} from './InputGroup.template';
+
+<Meta title="PRIMEUIX/Form/InputGroup" />
+
+# InputGroup
+
+InputGroup - это компонент для группировки полей ввода с дополнительным контентом.
+
+[Документация PrimeVue](https://primevue.org/inputgroup/)
+
+---
+
+## Базовый
+
+InputGroup используется для добавления аддонов к полям ввода.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<InputGroup>
+  <InputGroupAddon>
+    <i class="pi pi-user"></i>
+  </InputGroupAddon>
+  <InputText v-model="value" placeholder="Имя пользователя" />
+</InputGroup>
+```
+
+---
+
+## Множественные аддоны
+
+InputGroup может содержать несколько аддонов.
+
+<Story name="Множественные аддоны">
+  {MultipleTemplate.bind({})}
+</Story>
+
+```html
+<InputGroup>
+  <InputGroupAddon>
+    <i class="pi pi-globe"></i>
+  </InputGroupAddon>
+  <InputGroupAddon>www</InputGroupAddon>
+  <InputText v-model="value" placeholder="website" />
+  <InputGroupAddon>.com</InputGroupAddon>
+</InputGroup>
+```
+
+---
+
+## Кнопки
+
+Кнопки могут быть добавлены в InputGroup.
+
+<Story name="Кнопки">
+  {ButtonTemplate.bind({})}
+</Story>
+
+```html
+<InputGroup>
+  <Button label="Поиск" />
+  <InputText v-model="value" placeholder="Ключевое слово" />
+</InputGroup>
+
+<InputGroup>
+  <InputText v-model="value" placeholder="Ключевое слово" />
+  <Button icon="pi pi-search" severity="secondary" />
+</InputGroup>
+```
+
+---
+
+## Checkbox и RadioButton
+
+Checkbox и RadioButton могут быть интегрированы в InputGroup.
+
+<Story name="Checkbox">
+  {CheckboxTemplate.bind({})}
+</Story>
+
+```html
+<InputGroup>
+  <InputGroupAddon>
+    <Checkbox v-model="checked" binary />
+  </InputGroupAddon>
+  <InputText v-model="value" placeholder="Имя пользователя" />
+</InputGroup>
+```
+

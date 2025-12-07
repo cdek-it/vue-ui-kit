@@ -1,0 +1,113 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  SortTemplate,
+  FilterTemplate,
+  SelectionTemplate,
+  PaginationTemplate
+} from './DataTable.template';
+
+<Meta title="PRIMEUIX/Data/DataTable" />
+
+# DataTable
+
+DataTable - это компонент для отображения данных в табличном формате с возможностями сортировки, фильтрации и пагинации.
+
+[Документация PrimeVue](https://primevue.org/datatable/)
+
+---
+
+## Базовый
+
+DataTable требует массив данных через свойство `value` и Column компоненты как дочерние элементы.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<DataTable :value="products">
+  <Column field="code" header="Код"></Column>
+  <Column field="name" header="Название"></Column>
+  <Column field="category" header="Категория"></Column>
+</DataTable>
+```
+
+```javascript
+const products = ref([
+  { code: 'P001', name: 'Продукт 1', category: 'Электроника' },
+  { code: 'P002', name: 'Продукт 2', category: 'Одежда' }
+]);
+```
+
+---
+
+## Сортировка
+
+Свойство `sortable` на Column включает сортировку для столбца.
+
+<Story name="Сортировка">
+  {SortTemplate.bind({})}
+</Story>
+
+```html
+<DataTable :value="products" sortMode="multiple">
+  <Column field="code" header="Код" sortable></Column>
+  <Column field="name" header="Название" sortable></Column>
+</DataTable>
+```
+
+---
+
+## Фильтрация
+
+Свойство `filters` и `filterDisplay` включают фильтрацию данных.
+
+<Story name="Фильтрация">
+  {FilterTemplate.bind({})}
+</Story>
+
+```html
+<DataTable :value="products" :filters="filters" filterDisplay="row">
+  <Column field="code" header="Код" :showFilterMenu="false">
+    <template #filter="{ filterModel, filterCallback }">
+      <input v-model="filterModel.value" @input="filterCallback()" />
+    </template>
+  </Column>
+</DataTable>
+```
+
+---
+
+## Выбор
+
+Свойство `selection` и Column с `selectionMode` включают выбор строк.
+
+<Story name="Выбор">
+  {SelectionTemplate.bind({})}
+</Story>
+
+```html
+<DataTable :value="products" v-model:selection="selectedProducts" dataKey="code">
+  <Column selectionMode="multiple"></Column>
+  <Column field="code" header="Код"></Column>
+</DataTable>
+```
+
+---
+
+## Пагинация
+
+Свойство `paginator` включает пагинацию данных.
+
+<Story name="Пагинация">
+  {PaginationTemplate.bind({})}
+</Story>
+
+```html
+<DataTable :value="products" paginator :rows="5">
+  <Column field="code" header="Код"></Column>
+  <Column field="name" header="Название"></Column>
+</DataTable>
+```
+

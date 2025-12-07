@@ -1,0 +1,98 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  HorizontalTemplate,
+  CustomIconTemplate,
+  AlternateTemplate
+} from './Timeline.template';
+
+<Meta title="PRIMEUIX/Data/Timeline" />
+
+# Timeline
+
+Timeline - это компонент для визуализации серии связанных событий в хронологическом порядке.
+
+[Документация PrimeVue](https://primevue.org/timeline/)
+
+---
+
+## Базовый
+
+Timeline требует массив событий через свойство `value`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Timeline :value="events">
+  <template #content="slotProps">
+    <small>{{ slotProps.item.date }}</small>
+    <p>{{ slotProps.item.status }}</p>
+  </template>
+</Timeline>
+```
+
+---
+
+## Горизонтальный
+
+Свойство `layout` устанавливает ориентацию timeline.
+
+<Story name="Горизонтальный">
+  {HorizontalTemplate.bind({})}
+</Story>
+
+```html
+<Timeline :value="events" layout="horizontal">
+  <template #content="slotProps">
+    <span>{{ slotProps.item }}</span>
+  </template>
+</Timeline>
+```
+
+---
+
+## С иконками
+
+Слот `marker` позволяет настроить маркеры событий.
+
+<Story name="С иконками">
+  {CustomIconTemplate.bind({})}
+</Story>
+
+```html
+<Timeline :value="events">
+  <template #marker="slotProps">
+    <span class="flex items-center justify-center rounded-full">
+      <i :class="slotProps.item.icon"></i>
+    </span>
+  </template>
+  <template #content="slotProps">
+    <Card>
+      <template #title>{{ slotProps.item.status }}</template>
+      <template #subtitle>{{ slotProps.item.date }}</template>
+    </Card>
+  </template>
+</Timeline>
+```
+
+---
+
+## Чередующийся
+
+Свойство `align` со значением `alternate` размещает контент чередующимся образом.
+
+<Story name="Чередующийся">
+  {AlternateTemplate.bind({})}
+</Story>
+
+```html
+<Timeline :value="events" align="alternate">
+  <template #content="slotProps">
+    <small>{{ slotProps.item.date }}</small>
+    <p>{{ slotProps.item.status }}</p>
+  </template>
+</Timeline>
+```
+

@@ -1,0 +1,80 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  InteractiveTemplate,
+  ReadonlyTemplate
+} from './Steps.template';
+
+<Meta title="PRIMEUIX/Panel/Steps" />
+
+# Steps
+
+Steps - это компонент индикатора для отображения прогресса в пошаговом процессе.
+
+[Документация PrimeVue](https://primevue.org/steps/)
+
+---
+
+## Базовый
+
+Steps требует массив элементов через свойство `model`.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Steps :model="items" />
+```
+
+```javascript
+const items = ref([
+  { label: 'Персональные данные' },
+  { label: 'Резервирование' },
+  { label: 'Оплата' },
+  { label: 'Подтверждение' }
+]);
+```
+
+---
+
+## Интерактивный
+
+Steps может быть интерактивным с помощью свойства `activeStep` и обработчика `command`.
+
+<Story name="Интерактивный">
+  {InteractiveTemplate.bind({})}
+</Story>
+
+```html
+<Steps :model="items" :activeStep="activeStep" />
+```
+
+```javascript
+const activeStep = ref(0);
+const items = ref([
+  {
+    label: 'Персональные данные',
+    command: () => { activeStep.value = 0; }
+  },
+  {
+    label: 'Резервирование',
+    command: () => { activeStep.value = 1; }
+  }
+]);
+```
+
+---
+
+## Только чтение
+
+Свойство `readonly` отключает навигацию по шагам.
+
+<Story name="Только чтение">
+  {ReadonlyTemplate.bind({})}
+</Story>
+
+```html
+<Steps :model="items" :activeStep="1" readonly />
+```
+

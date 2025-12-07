@@ -1,0 +1,105 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { 
+  BasicTemplate,
+  InputTemplate,
+  StepTemplate,
+  RangeTemplate,
+  VerticalTemplate,
+  DisabledTemplate
+} from './Slider.template';
+
+<Meta title="PRIMEUIX/Form/Slider" />
+
+# Slider
+
+Slider - это компонент для выбора значения с помощью ползунка.
+
+[Документация PrimeVue](https://primevue.org/slider/)
+
+---
+
+## Базовый
+
+Slider используется с двусторонней привязкой через v-model.
+
+<Story name="Базовый">
+  {BasicTemplate.bind({})}
+</Story>
+
+```html
+<Slider v-model="value" />
+```
+
+---
+
+## С полем ввода
+
+Slider можно использовать совместно с полем ввода.
+
+<Story name="С полем ввода">
+  {InputTemplate.bind({})}
+</Story>
+
+```html
+<div class="flex items-center gap-4">
+  <Slider v-model="value" class="flex-1" />
+  <InputText v-model.number="value" class="w-20" />
+</div>
+```
+
+---
+
+## Шаг
+
+Свойство `step` определяет инкремент/декремент значения.
+
+<Story name="Шаг">
+  {StepTemplate.bind({})}
+</Story>
+
+```html
+<Slider v-model="value" :step="20" />
+```
+
+---
+
+## Диапазон
+
+Включите свойство `range` для выбора диапазона значений.
+
+<Story name="Диапазон">
+  {RangeTemplate.bind({})}
+</Story>
+
+```html
+<Slider v-model="value" range />
+```
+
+---
+
+## Вертикальный
+
+Установите `orientation` в `vertical` для вертикального слайдера.
+
+<Story name="Вертикальный">
+  {VerticalTemplate.bind({})}
+</Story>
+
+```html
+<Slider v-model="value" orientation="vertical" style="height: 200px" />
+```
+
+---
+
+## Отключенный
+
+Отключенное состояние предотвращает взаимодействие со слайдером.
+
+<Story name="Отключенный">
+  {DisabledTemplate.bind({})}
+</Story>
+
+```html
+<Slider v-model="value" disabled />
+```
+
