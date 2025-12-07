@@ -5,7 +5,6 @@ import PrimeVue from 'primevue/config';
 import { getPrimeVueConfig } from '@/plugins/prime';
 import Tooltip from 'primevue/tooltip';
 import ConfirmationService from 'primevue/confirmationservice';
-import { ToastService } from '@/services/toastService.ts';
 
 import '../src/tailwind.css';
 import './themes/base.css';
@@ -42,13 +41,9 @@ const storyBookConfig = {
 
 const mergedConfig = getPrimeVueConfig(storyBookConfig);
 
-setup((app) => {
-  registerToastification(app);
-  app.use(PrimeVue, mergedConfig);
-  app.use(ConfirmationService);
-  app.use(ToastService);
-  app.directive('tooltip', Tooltip);
-});
+app.use(PrimeVue, mergedConfig);
+app.use(ConfirmationService);
+app.directive('tooltip', Tooltip);
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

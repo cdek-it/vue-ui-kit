@@ -1,5 +1,10 @@
 import merge from 'lodash/merge';
-import { CdekPreset } from './theme3.0/CdekPreset';
+import { definePreset } from '@primeuix/themes';
+import Lara from '@primevue/themes/lara';
+import theme from './theme2.0';
+
+// @ts-ignore
+const CdekPreset = definePreset(Lara, theme);
 
 const primeConfig = {
   theme: {
