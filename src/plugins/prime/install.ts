@@ -1,10 +1,10 @@
 import merge from 'lodash/merge';
 import { definePreset } from '@primeuix/themes';
-import Aura from '@primevue/themes/aura';
-import theme from './theme';
+import Lara from '@primevue/themes/lara';
+import theme from './theme2.0';
 
 // @ts-ignore
-const CdekPreset = definePreset(Aura, theme);
+const CdekPreset = definePreset(Lara, theme);
 
 const primeConfig = {
   theme: {

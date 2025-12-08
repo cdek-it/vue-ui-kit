@@ -47,82 +47,136 @@ export default {
             shadow: "{focusRing.shadow}"
           }
         },
-        outlined: {
-          primary: {
-            hoverBackground: "{primary.50}",
-            activeBackground: "{primary.100}",
-            borderColor: "{primary.200}",
-            color: "{colors.green.500}"
-          },
-          success: {
-            hoverBackground: "{extend.pallete.success.100}",
-            activeBackground: "{surface.extend.transparent}",
-            borderColor: "{extend.pallete.success.600}",
-            color: "{extend.pallete.success.600}"
-          },
-          info: {
-            hoverBackground: "{extend.pallete.info.100}",
-            activeBackground: "{surface.extend.transparent}",
-            borderColor: "{extend.pallete.info.600}",
-            color: "{extend.pallete.info.600}"
-          },
-          warn: {
-            hoverBackground: "{extend.pallete.warn.100}",
-            activeBackground: "{surface.extend.transparent}",
-            borderColor: "{extend.pallete.warn.600}",
-            color: "{extend.pallete.warn.600}"
-          },
-          help: {
-            hoverBackground: "{extend.pallete.help.100}",
-            activeBackground: "{surface.extend.transparent}",
-            borderColor: "{extend.pallete.help.600}",
-            color: "{extend.pallete.help.600}"
-          },
-          danger: {
-            hoverBackground: "{extend.pallete.error.100}",
-            activeBackground: "{surface.extend.transparent}",
-            borderColor: "{extend.pallete.error.600}",
-            color: "{extend.pallete.error.600}"
-          }
+        info: {
+          background: "{extend.pallete.info.300}",
+          hoverBackground: "{extend.pallete.info.400}",
+          activeBackground: "{extend.pallete.info.300}",
+          borderColor: "{surface.extend.transparent}",
+          hoverBorderColor: "{surface.extend.transparent}",
+          activeBorderColor: "{surface.extend.transparent}",
+          color: "{extend.pallete.info.900}",
+          hoverColor: "{extend.pallete.info.950}",
+          activeColor: "{extend.pallete.info.900}"
         },
-        text: {
-          primary: {
-            hoverBackground: "{surface.100}",
-            activeBackground: "{surface.extend.transparent}",
-            color: "{text.color}"
-          },
-          success: {
-            hoverBackground: "{extend.pallete.success.100}",
-            activeBackground: "{surface.extend.transparent}",
-            color: "{extend.pallete.success.600}"
-          },
-          info: {
-            hoverBackground: "{extend.pallete.info.100}",
-            activeBackground: "{surface.extend.transparent}",
-            color: "{extend.pallete.info.600}"
-          },
-          warn: {
-            hoverBackground: "{extend.pallete.warn.100}",
-            activeBackground: "{surface.extend.transparent}",
-            color: "{extend.pallete.warn.600}"
-          },
-          help: {
-            hoverBackground: "{extend.pallete.help.100}",
-            activeBackground: "{surface.extend.transparent}",
-            color: "{extend.pallete.help.600}"
-          },
-          danger: {
-            hoverBackground: "{extend.pallete.error.100}",
-            activeBackground: "{surface.extend.transparent}",
-            color: "{extend.pallete.error.600}"
-          }
+        success: {
+          background: "{extend.pallete.success.300}",
+          hoverBackground: "{extend.pallete.success.400}",
+          activeBackground: "{extend.pallete.success.300}",
+          borderColor: "{surface.extend.transparent}",
+          hoverBorderColor: "{surface.extend.transparent}",
+          activeBorderColor: "{surface.extend.transparent}",
+          color: "{extend.pallete.success.900}",
+          hoverColor: "{extend.pallete.success.950}",
+          activeColor: "{extend.pallete.success.900}"
         },
-        link: {
-          color: "{text.color}",
-          hoverColor: "{text.hoverColor}",
-          activeColor: "{text.color}"
+        warn: {
+          background: "{extend.pallete.warn.300}",
+          hoverBackground: "{extend.pallete.warn.400}",
+          activeBackground: "{extend.pallete.warn.300}",
+          borderColor: "{surface.extend.transparent}",
+          hoverBorderColor: "{surface.extend.transparent}",
+          activeBorderColor: "{surface.extend.transparent}",
+          color: "{extend.pallete.warn.900}",
+          hoverColor: "{extend.pallete.warn.950}",
+          activeColor: "{extend.pallete.warn.900}"
         },
-        root: "#ffffff"
+        help: {
+          background: "{extend.pallete.help.300}",
+          hoverBackground: "{extend.pallete.help.400}",
+          activeBackground: "{extend.pallete.help.300}",
+          borderColor: "{surface.extend.transparent}",
+          hoverBorderColor: "{surface.extend.transparent}",
+          activeBorderColor: "{surface.extend.transparent}",
+          color: "{extend.pallete.help.900}",
+          hoverColor: "{extend.pallete.help.950}",
+          activeColor: "{extend.pallete.help.900}"
+        },
+        danger: {
+          background: "{extend.pallete.error.300}",
+          hoverBackground: "{extend.pallete.error.400}",
+          activeBackground: "{extend.pallete.error.300}",
+          borderColor: "{surface.extend.transparent}",
+          hoverBorderColor: "{surface.extend.transparent}",
+          activeBorderColor: "{surface.extend.transparent}",
+          color: "{extend.pallete.error.900}",
+          hoverColor: "{extend.pallete.error.950}",
+          activeColor: "{extend.pallete.error.900}"
+        }
+      },
+      outlined: {
+        primary: {
+          hoverBackground: "{primary.50}",
+          activeBackground: "{primary.100}",
+          borderColor: "{primary.200}",
+          color: "{colors.green.500}"
+        },
+        success: {
+          hoverBackground: "{extend.pallete.success.100}",
+          activeBackground: "{surface.extend.transparent}",
+          borderColor: "{extend.pallete.success.600}",
+          color: "{extend.pallete.success.600}"
+        },
+        info: {
+          hoverBackground: "{extend.pallete.info.100}",
+          activeBackground: "{surface.extend.transparent}",
+          borderColor: "{extend.pallete.info.600}",
+          color: "{extend.pallete.info.600}"
+        },
+        warn: {
+          hoverBackground: "{extend.pallete.warn.100}",
+          activeBackground: "{surface.extend.transparent}",
+          borderColor: "{extend.pallete.warn.600}",
+          color: "{extend.pallete.warn.600}"
+        },
+        help: {
+          hoverBackground: "{extend.pallete.help.100}",
+          activeBackground: "{surface.extend.transparent}",
+          borderColor: "{extend.pallete.help.600}",
+          color: "{extend.pallete.help.600}"
+        },
+        danger: {
+          hoverBackground: "{extend.pallete.error.100}",
+          activeBackground: "{surface.extend.transparent}",
+          borderColor: "{extend.pallete.error.600}",
+          color: "{extend.pallete.error.600}"
+        }
+      },
+      text: {
+        primary: {
+          hoverBackground: "{surface.100}",
+          activeBackground: "{surface.extend.transparent}",
+          color: "{text.color}"
+        },
+        success: {
+          hoverBackground: "{extend.pallete.success.100}",
+          activeBackground: "{surface.extend.transparent}",
+          color: "{extend.pallete.success.600}"
+        },
+        info: {
+          hoverBackground: "{extend.pallete.info.100}",
+          activeBackground: "{surface.extend.transparent}",
+          color: "{extend.pallete.info.600}"
+        },
+        warn: {
+          hoverBackground: "{extend.pallete.warn.100}",
+          activeBackground: "{surface.extend.transparent}",
+          color: "{extend.pallete.warn.600}"
+        },
+        help: {
+          hoverBackground: "{extend.pallete.help.100}",
+          activeBackground: "{surface.extend.transparent}",
+          color: "{extend.pallete.help.600}"
+        },
+        danger: {
+          hoverBackground: "{extend.pallete.error.100}",
+          activeBackground: "{surface.extend.transparent}",
+          color: "{extend.pallete.error.600}"
+        }
+      },
+      link: {
+        color: "{text.color}",
+        hoverColor: "{text.hoverColor}",
+        activeColor: "{text.color}"
       }
     }
   },
@@ -224,61 +278,6 @@ export default {
     },
     label: {
       fontWeight: "42.857142857142854rem"
-    },
-    info: {
-      background: "{extend.pallete.info.300}",
-      hoverBackground: "{extend.pallete.info.400}",
-      activeBackground: "{extend.pallete.info.300}",
-      borderColor: "{surface.extend.transparent}",
-      hoverBorderColor: "{surface.extend.transparent}",
-      activeBorderColor: "{surface.extend.transparent}",
-      color: "{extend.pallete.info.900}",
-      hoverColor: "{extend.pallete.info.950}",
-      activeColor: "{extend.pallete.info.900}"
-    },
-    success: {
-      background: "{extend.pallete.success.300}",
-      hoverBackground: "{extend.pallete.success.400}",
-      activeBackground: "{extend.pallete.success.300}",
-      borderColor: "{surface.extend.transparent}",
-      hoverBorderColor: "{surface.extend.transparent}",
-      activeBorderColor: "{surface.extend.transparent}",
-      color: "{extend.pallete.success.900}",
-      hoverColor: "{extend.pallete.success.950}",
-      activeColor: "{extend.pallete.success.900}"
-    },
-    warn: {
-      background: "{extend.pallete.warn.300}",
-      hoverBackground: "{extend.pallete.warn.400}",
-      activeBackground: "{extend.pallete.warn.300}",
-      borderColor: "{surface.extend.transparent}",
-      hoverBorderColor: "{surface.extend.transparent}",
-      activeBorderColor: "{surface.extend.transparent}",
-      color: "{extend.pallete.warn.900}",
-      hoverColor: "{extend.pallete.warn.950}",
-      activeColor: "{extend.pallete.warn.900}"
-    },
-    help: {
-      background: "{extend.pallete.help.300}",
-      hoverBackground: "{extend.pallete.help.400}",
-      activeBackground: "{extend.pallete.help.300}",
-      borderColor: "{surface.extend.transparent}",
-      hoverBorderColor: "{surface.extend.transparent}",
-      activeBorderColor: "{surface.extend.transparent}",
-      color: "{extend.pallete.help.900}",
-      hoverColor: "{extend.pallete.help.950}",
-      activeColor: "{extend.pallete.help.900}"
-    },
-    danger: {
-      background: "{extend.pallete.error.300}",
-      hoverBackground: "{extend.pallete.error.400}",
-      activeBackground: "{extend.pallete.error.300}",
-      borderColor: "{surface.extend.transparent}",
-      hoverBorderColor: "{surface.extend.transparent}",
-      activeBorderColor: "{surface.extend.transparent}",
-      color: "{extend.pallete.error.900}",
-      hoverColor: "{extend.pallete.error.950}",
-      activeColor: "{extend.pallete.error.900}"
     }
   }
 };

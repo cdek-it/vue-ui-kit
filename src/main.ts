@@ -18,7 +18,7 @@ export * from './components/base-widget';
 export * from './components/base-breadcrumbs';
 export * from './components/form';
 
-export * from './plugins/prime';
+export * from './plugins/prime/theme2.0/components';
 export * from './plugins/toastification';
 
 export * from './services';
