@@ -1,4 +1,8 @@
+import checkboxCss from './components/css/checkbox';
+
 const css = ({ dt }: { dt: (token: string) => string }) => `
+   ${checkboxCss({ dt })}
+
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
   }
