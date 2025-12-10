@@ -9,7 +9,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-invalid .p-checkbox-box, .p-checkbox:not(.p-disabled):has(.p-checkbox-input:focus-visible).p-invalid .p-checkbox-box  {
   box-shadow: 0 0 0  ${dt('focusRing.width')}
-  ${dt('theme.focusRing.extend.invalid')}
+  ${dt('focusRing.extend.invalid')}
 }
 
 .p-invalid .p-checkbox-box, .p-checkbox:not(.p-disabled):has(.p-checkbox-input:focus-visible).p-invalid .p-checkbox-box  {

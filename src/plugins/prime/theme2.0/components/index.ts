@@ -5,7 +5,7 @@ export default {
       hoverColor: '{text.hoverColor}',
       activeColor: '{text.color}',
       activeHoverColor: '{text.hoverColor}',
-      borderColor: '{surface.extend.transparent}',
+      borderColor: '{transparent}',
       padding: '1rem 0 1rem 0',
       fontWeight: '700',
       borderRadius: '0',
@@ -37,22 +37,22 @@ export default {
     },
     panel: {
       borderWidth: '0',
-      borderColor: '{surface.extend.transparent}',
+      borderColor: '{transparent}',
     },
     colorScheme: {
       light: {
         header: {
-          background: '{surface.extend.transparent}',
-          hoverBackground: '{surface.extend.transparent}',
-          activeBackground: '{surface.extend.transparent}',
-          activeHoverBackground: '{surface.extend.transparent}',
+          background: '{transparent}',
+          hoverBackground: '{transparent}',
+          activeBackground: '{transparent}',
+          activeHoverBackground: '{transparent}',
         },
       },
     },
     content: {
       borderWidth: '1px 0 0 0',
-      borderColor: '{surface.extend.transparent}',
-      background: '{surface.extend.transparent}',
+      borderColor: '{transparent}',
+      background: '{transparent}',
       color: '{text.color}',
       padding: '0 0 1rem 1.75rem',
     },
@@ -211,36 +211,36 @@ export default {
           background: '{surface.900}',
         },
         success: {
-          color: '{extend.palette.success.900}',
-          background: '{extend.palette.success.300}',
+          color: '{success.900}',
+          background: '{success.300}',
         },
         info: {
-          color: '{extend.palette.info.900}',
-          background: '{extend.palette.info.300}',
+          color: '{info.900}',
+          background: '{info.300}',
         },
         warn: {
-          color: '{extend.palette.warn.900}',
-          background: '{extend.palette.warn.300}',
+          color: '{warn.900}',
+          background: '{warn.300}',
         },
         danger: {
-          color: '{extend.palette.error.900}',
-          background: '{extend.palette.error.300}',
+          color: '{error.900}',
+          background: '{error.300}',
         },
       },
     },
     extend: {
       extDot: {
         success: {
-          background: '{colors.green.400}',
+          background: '{colors.solid.green.400}',
         },
         info: {
-          background: '{extend.palette.info.400}',
+          background: '{info.400}',
         },
         warn: {
-          background: '{extend.palette.warn.400}',
+          background: '{warn.400}',
         },
         danger: {
-          background: '{extend.palette.error.400}',
+          background: '{error.400}',
         },
         lg: {
           size: '0.75rem',
@@ -283,7 +283,7 @@ export default {
     },
     root: {
       padding: '0.25rem',
-      background: '{surface.extend.transparent}',
+      background: '{transparent}',
       gap: '0',
       transitionDuration: '{formField.transitionDuration}',
     },
@@ -312,42 +312,42 @@ export default {
     extend: {
       extOutlined: {
         danger: {
-          focusBackground: '{surface.extend.transparent}',
+          focusBackground: '{transparent}',
         },
         warn: {
-          focusBackground: '{surface.extend.transparent}',
+          focusBackground: '{transparent}',
         },
         info: {
-          focusBackground: '{surface.extend.transparent}',
+          focusBackground: '{transparent}',
         },
         help: {
-          focusBackground: '{surface.extend.transparent}',
+          focusBackground: '{transparent}',
         },
         success: {
-          focusBackground: '{surface.extend.transparent}',
+          focusBackground: '{transparent}',
         },
       },
       disabledBackground: '{formField.disabledBackground}',
       disabledColor: '{formField.disabledColor}',
       extText: {
         danger: {
-          focusBackground: '{surface.extend.transparent}',
+          focusBackground: '{transparent}',
         },
         warn: {
-          focusBackground: '{surface.extend.transparent}',
+          focusBackground: '{transparent}',
         },
         info: {
-          focusBackground: '{surface.extend.transparent}',
+          focusBackground: '{transparent}',
         },
         help: {
-          focusBackground: '{surface.extend.transparent}',
+          focusBackground: '{transparent}',
         },
         success: {
-          focusBackground: '{surface.extend.transparent}',
+          focusBackground: '{transparent}',
         },
       },
       extLink: {
-        background: '{surface.extend.transparent}',
+        background: '{transparent}',
         colorHover: '{text.hoverColor}',
         paddingX: '0',
         paddingY: '0.25rem',
@@ -387,9 +387,9 @@ export default {
             background: '{primary.color}',
             hoverBackground: '{primary.hoverColor}',
             activeBackground: '{primary.color}',
-            borderColor: '{surface.extend.transparent}',
-            hoverBorderColor: '{surface.extend.transparent}',
-            activeBorderColor: '{surface.extend.transparent}',
+            borderColor: '{transparent}',
+            hoverBorderColor: '{transparent}',
+            activeBorderColor: '{transparent}',
             color: '{text.extend.colorPrimaryStatic}',
             hoverColor: '{text.extend.colorPrimaryStatic}',
             activeColor: '{text.extend.colorPrimaryStatic}',
@@ -402,9 +402,9 @@ export default {
             background: '{surface.900}',
             hoverBackground: '{surface.800}',
             activeBackground: '{surface.900}',
-            borderColor: '{surface.extend.transparent}',
-            hoverBorderColor: '{surface.extend.transparent}',
-            activeBorderColor: '{surface.extend.transparent}',
+            borderColor: '{transparent}',
+            hoverBorderColor: '{transparent}',
+            activeBorderColor: '{transparent}',
             color: '{text.extend.colorInverted}',
             hoverColor: '{text.extend.colorInverted}',
             activeColor: '{text.extend.colorInverted}',
@@ -417,9 +417,9 @@ export default {
             background: '{surface.200}',
             hoverBackground: '{surface.300}',
             activeBackground: '{surface.200}',
-            borderColor: '{surface.extend.transparent}',
-            hoverBorderColor: '{surface.extend.transparent}',
-            activeBorderColor: '{surface.extend.transparent}',
+            borderColor: '{transparent}',
+            hoverBorderColor: '{transparent}',
+            activeBorderColor: '{transparent}',
             color: '{text.color}',
             hoverColor: '{text.color}',
             activeColor: '{text.color}',
@@ -429,59 +429,59 @@ export default {
             },
           },
           info: {
-            background: '{extend.palette.info.300}',
-            hoverBackground: '{extend.palette.info.400}',
-            activeBackground: '{extend.palette.info.300}',
-            borderColor: '{surface.extend.transparent}',
-            hoverBorderColor: '{surface.extend.transparent}',
-            activeBorderColor: '{surface.extend.transparent}',
-            color: '{extend.palette.info.900}',
-            hoverColor: '{extend.palette.info.950}',
-            activeColor: '{extend.palette.info.900}',
+            background: '{info.300}',
+            hoverBackground: '{info.400}',
+            activeBackground: '{info.300}',
+            borderColor: '{transparent}',
+            hoverBorderColor: '{transparent}',
+            activeBorderColor: '{transparent}',
+            color: '{info.900}',
+            hoverColor: '{info.950}',
+            activeColor: '{info.900}',
           },
           success: {
-            background: '{extend.palette.success.300}',
-            hoverBackground: '{extend.palette.success.400}',
-            activeBackground: '{extend.palette.success.300}',
-            borderColor: '{surface.extend.transparent}',
-            hoverBorderColor: '{surface.extend.transparent}',
-            activeBorderColor: '{surface.extend.transparent}',
-            color: '{extend.palette.success.900}',
-            hoverColor: '{extend.palette.success.950}',
-            activeColor: '{extend.palette.success.900}',
+            background: '{success.300}',
+            hoverBackground: '{success.400}',
+            activeBackground: '{success.300}',
+            borderColor: '{transparent}',
+            hoverBorderColor: '{transparent}',
+            activeBorderColor: '{transparent}',
+            color: '{success.900}',
+            hoverColor: '{success.950}',
+            activeColor: '{success.900}',
           },
           warn: {
-            background: '{extend.palette.warn.300}',
-            hoverBackground: '{extend.palette.warn.400}',
-            activeBackground: '{extend.palette.warn.300}',
-            borderColor: '{surface.extend.transparent}',
-            hoverBorderColor: '{surface.extend.transparent}',
-            activeBorderColor: '{surface.extend.transparent}',
-            color: '{extend.palette.warn.900}',
-            hoverColor: '{extend.palette.warn.950}',
-            activeColor: '{extend.palette.warn.900}',
+            background: '{warn.300}',
+            hoverBackground: '{warn.400}',
+            activeBackground: '{warn.300}',
+            borderColor: '{transparent}',
+            hoverBorderColor: '{transparent}',
+            activeBorderColor: '{transparent}',
+            color: '{warn.900}',
+            hoverColor: '{warn.950}',
+            activeColor: '{warn.900}',
           },
           help: {
-            background: '{extend.palette.help.300}',
-            hoverBackground: '{extend.palette.help.400}',
-            activeBackground: '{extend.palette.help.300}',
-            borderColor: '{surface.extend.transparent}',
-            hoverBorderColor: '{surface.extend.transparent}',
-            activeBorderColor: '{surface.extend.transparent}',
-            color: '{extend.palette.help.900}',
-            hoverColor: '{extend.palette.help.950}',
-            activeColor: '{extend.palette.help.900}',
+            background: '{help.300}',
+            hoverBackground: '{help.400}',
+            activeBackground: '{help.300}',
+            borderColor: '{transparent}',
+            hoverBorderColor: '{transparent}',
+            activeBorderColor: '{transparent}',
+            color: '{help.900}',
+            hoverColor: '{help.950}',
+            activeColor: '{help.900}',
           },
           danger: {
-            background: '{extend.palette.error.300}',
-            hoverBackground: '{extend.palette.error.400}',
-            activeBackground: '{extend.palette.error.300}',
-            borderColor: '{surface.extend.transparent}',
-            hoverBorderColor: '{surface.extend.transparent}',
-            activeBorderColor: '{surface.extend.transparent}',
-            color: '{extend.palette.error.900}',
-            hoverColor: '{extend.palette.error.950}',
-            activeColor: '{extend.palette.error.900}',
+            background: '{error.300}',
+            hoverBackground: '{error.400}',
+            activeBackground: '{error.300}',
+            borderColor: '{transparent}',
+            hoverBorderColor: '{transparent}',
+            activeBorderColor: '{transparent}',
+            color: '{error.900}',
+            hoverColor: '{error.950}',
+            activeColor: '{error.900}',
           },
         },
         outlined: {
@@ -489,69 +489,69 @@ export default {
             hoverBackground: '{primary.50}',
             activeBackground: '{primary.100}',
             borderColor: '{primary.200}',
-            color: '{colors.green.500}',
+            color: '{colors.solid.green.500}',
           },
           success: {
-            hoverBackground: '{extend.palette.success.100}',
-            activeBackground: '{surface.extend.transparent}',
-            borderColor: '{extend.palette.success.600}',
-            color: '{extend.palette.success.600}',
+            hoverBackground: '{success.100}',
+            activeBackground: '{transparent}',
+            borderColor: '{success.600}',
+            color: '{success.600}',
           },
           info: {
-            hoverBackground: '{extend.palette.info.100}',
-            activeBackground: '{surface.extend.transparent}',
-            borderColor: '{extend.palette.info.600}',
-            color: '{extend.palette.info.600}',
+            hoverBackground: '{info.100}',
+            activeBackground: '{transparent}',
+            borderColor: '{info.600}',
+            color: '{info.600}',
           },
           warn: {
-            hoverBackground: '{extend.palette.warn.100}',
-            activeBackground: '{surface.extend.transparent}',
-            borderColor: '{extend.palette.warn.600}',
-            color: '{extend.palette.warn.600}',
+            hoverBackground: '{warn.100}',
+            activeBackground: '{transparent}',
+            borderColor: '{warn.600}',
+            color: '{warn.600}',
           },
           help: {
-            hoverBackground: '{extend.palette.help.100}',
-            activeBackground: '{surface.extend.transparent}',
-            borderColor: '{extend.palette.help.600}',
-            color: '{extend.palette.help.600}',
+            hoverBackground: '{help.100}',
+            activeBackground: '{transparent}',
+            borderColor: '{help.600}',
+            color: '{help.600}',
           },
           danger: {
-            hoverBackground: '{extend.palette.error.100}',
-            activeBackground: '{surface.extend.transparent}',
-            borderColor: '{extend.palette.error.600}',
-            color: '{extend.palette.error.600}',
+            hoverBackground: '{error.100}',
+            activeBackground: '{transparent}',
+            borderColor: '{error.600}',
+            color: '{error.600}',
           },
         },
         text: {
           primary: {
             hoverBackground: '{surface.100}',
-            activeBackground: '{surface.extend.transparent}',
+            activeBackground: '{transparent}',
             color: '{text.color}',
           },
           success: {
-            hoverBackground: '{extend.palette.success.100}',
-            activeBackground: '{surface.extend.transparent}',
-            color: '{extend.palette.success.600}',
+            hoverBackground: '{success.100}',
+            activeBackground: '{transparent}',
+            color: '{success.600}',
           },
           info: {
-            hoverBackground: '{extend.palette.info.100}',
-            activeBackground: '{surface.extend.transparent}',
-            color: '{extend.palette.info.600}',
+            hoverBackground: '{info.100}',
+            activeBackground: '{transparent}',
+            color: '{info.600}',
           },
           warn: {
-            hoverBackground: '{extend.palette.warn.100}',
-            activeBackground: '{surface.extend.transparent}',
-            color: '{extend.palette.warn.600}',
+            hoverBackground: '{warn.100}',
+            activeBackground: '{transparent}',
+            color: '{warn.600}',
           },
           help: {
-            hoverBackground: '{extend.palette.help.100}',
-            activeBackground: '{surface.extend.transparent}',
-            color: '{extend.palette.help.600}',
+            hoverBackground: '{help.100}',
+            activeBackground: '{transparent}',
+            color: '{help.600}',
           },
           danger: {
-            hoverBackground: '{extend.palette.error.100}',
-            activeBackground: '{surface.extend.transparent}',
-            color: '{extend.palette.error.600}',
+            hoverBackground: '{error.100}',
+            activeBackground: '{transparent}',
+            color: '{error.600}',
           },
         },
         link: {
@@ -705,7 +705,7 @@ export default {
   },
   chip: {
     extend: {
-      borderColor: '{surface.extend.transparent}',
+      borderColor: '{transparent}',
     },
     root: {
       borderRadius: '{borderRadius.sm}',
@@ -749,11 +749,11 @@ export default {
   confirmdialog: {
     extend: {
       extIcon: {
-        success: '{extend.palette.success.500}',
-        info: '{extend.palette.info.500}',
-        help: '{extend.palette.help.500}',
-        warn: '{extend.palette.warn.500}',
-        danger: '{extend.palette.error.500}',
+        success: '{success.500}',
+        info: '{info.500}',
+        help: '{help.500}',
+        warn: '{warn.500}',
+        danger: '{error.500}',
       },
     },
     icon: {
@@ -1075,12 +1075,12 @@ export default {
         borderColor: '{content.borderColor}',
         hoverBackground: '{content.hoverBackground}',
       },
+      extTitle: {
+        width: '15rem',
+      },
       extTimePicker: {
         minWidth: '2.857142857142857rem',
         color: '{content.color}',
-      },
-      extTitle: {
-        width: '15rem',
       },
     },
     panel: {
@@ -1250,11 +1250,11 @@ export default {
   drawer: {
     extend: {
       borderRadius: '{overlay.popover.borderRadius}',
+      width: '{sizingDrawer.width}',
       extHeader: {
         gap: '0.5rem',
         borderColor: '{drawer.root.borderColor}',
       },
-      width: '{sizingDrawer.width}',
     },
     root: {
       background: '{overlay.modal.background}',
@@ -1387,7 +1387,7 @@ export default {
           background: '{surface.100}',
         },
         thumbnailNavButton: {
-          hoverBackground: '{colors.extend.white.20}',
+          hoverBackground: '{colors.alpha.white.20}',
           color: '{text.color}',
           hoverColor: '{text.hoverColor}',
         },
@@ -1404,8 +1404,8 @@ export default {
       transitionDuration: '{transitionDuration}',
     },
     navButton: {
-      background: '{surface.extend.transparent}',
-      hoverBackground: '{colors.extend.white.20}',
+      background: '{transparent}',
+      hoverBackground: '{colors.alpha.white.20}',
       color: '{text.extend.colorInverted}',
       hoverColor: '{text.extend.colorInverted}',
       size: '4rem',
@@ -1446,7 +1446,7 @@ export default {
       size: '1rem',
     },
     caption: {
-      background: '{colors.extend.white.50}',
+      background: '{colors.alpha.white.50}',
       color: '{text.color}',
       padding: '0.5rem',
     },
@@ -1468,18 +1468,18 @@ export default {
       },
     },
     insetIndicatorList: {
-      background: '{colors.extend.black.50}',
+      background: '{colors.alpha.black.50}',
     },
     insetIndicatorButton: {
-      background: '{colors.extend.white.10}',
-      hoverBackground: '{colors.extend.white.20}',
-      activeBackground: '{colors.extend.white.50}',
+      background: '{colors.alpha.white.10}',
+      hoverBackground: '{colors.alpha.white.20}',
+      activeBackground: '{colors.alpha.white.50}',
     },
     closeButton: {
       size: '4rem',
       gutter: '0.5rem',
-      background: '{colors.extend.white.10}',
-      hoverBackground: '{colors.extend.white.20}',
+      background: '{colors.alpha.white.10}',
+      hoverBackground: '{colors.alpha.white.20}',
       color: '{text.extend.colorInverted}',
       hoverColor: '{text.extend.colorInverted}',
       borderRadius: '{borderRadius.lg}',
@@ -1499,16 +1499,16 @@ export default {
     colorScheme: {
       light: {
         success: {
-          background: '{extend.palette.success.50}',
-          borderColor: '{extend.palette.success.500}',
+          background: '{success.50}',
+          borderColor: '{success.500}',
           color: '{text.color}',
           shadow: 'none',
           outlined: {
             color: '{text.color}',
-            borderColor: '{extend.palette.success.500}',
+            borderColor: '{success.500}',
           },
           closeButton: {
-            hoverBackground: '{extend.palette.success.200}',
+            hoverBackground: '{success.200}',
             focusRing: {
               color: '{focusRing.color}',
               shadow: 'none',
@@ -1543,16 +1543,16 @@ export default {
           },
         },
         warn: {
-          background: '{extend.palette.warn.50}',
-          borderColor: '{extend.palette.warn.500}',
+          background: '{warn.50}',
+          borderColor: '{warn.500}',
           color: '{text.color}',
           shadow: 'none',
           outlined: {
             color: '{text.color}',
-            borderColor: '{extend.palette.warn.500}',
+            borderColor: '{warn.500}',
           },
           closeButton: {
-            hoverBackground: '{extend.palette.warn.200}',
+            hoverBackground: '{warn.200}',
             focusRing: {
               color: '{focusRing.color}',
               shadow: 'none',
@@ -1563,16 +1563,16 @@ export default {
           },
         },
         error: {
-          background: '{extend.palette.error.50}',
-          borderColor: '{extend.palette.error.500}',
+          background: '{error.50}',
+          borderColor: '{error.500}',
           color: '{text.color}',
           shadow: 'none',
           outlined: {
             color: '{text.color}',
-            borderColor: '{extend.palette.error.500}',
+            borderColor: '{error.500}',
           },
           closeButton: {
-            hoverBackground: '{extend.palette.error.200}',
+            hoverBackground: '{error.200}',
             focusRing: {
               color: '{focusRing.color}',
               shadow: 'none',
@@ -1619,20 +1619,20 @@ export default {
           },
         },
         info: {
-          background: '{extend.palette.info.50}',
-          borderColor: '{extend.palette.info.500}',
+          background: '{info.50}',
+          borderColor: '{info.500}',
           color: '{text.color}',
           shadow: 'none',
-          outlined: {
-            color: '{text.color}',
-            borderColor: '{extend.palette.info.500}',
-          },
           closeButton: {
-            hoverBackground: '{extend.palette.info.200}',
+            hoverBackground: '{info.200}',
             focusRing: {
               color: '{focusRing.color}',
               shadow: 'none',
             },
+          },
+          outlined: {
+            color: '{text.color}',
+            borderColor: '{info.500}',
           },
           simple: {
             color: '{text.color}',
@@ -1646,10 +1646,10 @@ export default {
         gap: '0.25rem',
       },
       extInfo: {
-        color: '{extend.palette.info.500}',
+        color: '{info.500}',
         closeButton: {
-          color: '{extend.palette.info.500}',
-          borderColor: '{extend.palette.info.500}',
+          color: '{info.500}',
+          borderColor: '{info.500}',
         },
         caption: {
           color: '{text.color}',
@@ -1662,30 +1662,30 @@ export default {
         width: '0.07142857142857142rem',
       },
       extSuccess: {
-        color: '{extend.palette.success.500}',
+        color: '{success.500}',
         closeButton: {
-          color: '{extend.palette.success.500}',
-          borderColor: '{extend.palette.success.500}',
+          color: '{success.500}',
+          borderColor: '{success.500}',
         },
         caption: {
           color: '{text.color}',
         },
       },
       extWarn: {
-        color: '{extend.palette.warn.500}',
+        color: '{warn.500}',
         closeButton: {
-          color: '{extend.palette.warn.500}',
-          borderColor: '{extend.palette.warn.500}',
+          color: '{warn.500}',
+          borderColor: '{warn.500}',
         },
         caption: {
           color: '{text.color}',
         },
       },
       extError: {
-        color: '{extend.palette.error.500}',
+        color: '{error.500}',
         closeButton: {
-          color: '{extend.palette.error.500}',
-          borderColor: '{extend.palette.error.500}',
+          color: '{error.500}',
+          borderColor: '{error.500}',
         },
         caption: {
           color: '{text.color}',
@@ -1750,7 +1750,7 @@ export default {
     colorScheme: {
       light: {
         addon: {
-          background: '{surface.extend.transparent}',
+          background: '{transparent}',
           borderColor: '{formField.borderColor}',
           color: '{text.mutedColor}',
         },
@@ -1766,9 +1766,9 @@ export default {
     colorScheme: {
       light: {
         button: {
-          background: '{surface.extend.transparent}',
+          background: '{transparent}',
           hoverBackground: '{content.hoverBackground}',
-          activeBackground: '{surface.extend.transparent}',
+          activeBackground: '{transparent}',
           borderColor: '{formField.borderColor}',
           hoverBorderColor: '{formField.borderColor}',
           activeBorderColor: '{formField.borderColor}',
@@ -1924,7 +1924,7 @@ export default {
     colorScheme: {
       light: {
         root: {
-          background: '{surface.extend.transparent}',
+          background: '{transparent}',
         },
       },
     },
@@ -1937,7 +1937,7 @@ export default {
       },
     },
     root: {
-      borderColor: '{surface.extend.transparent}',
+      borderColor: '{transparent}',
       borderRadius: '{content.borderRadius}',
       color: '{content.color}',
       gap: '0.25rem',
@@ -2076,12 +2076,12 @@ export default {
     colorScheme: {
       light: {
         root: {
-          background: '{surface.extend.transparent}',
+          background: '{transparent}',
         },
       },
     },
     root: {
-      borderColor: '{surface.extend.transparent}',
+      borderColor: '{transparent}',
       borderRadius: '{navigation.item.borderRadius}',
       color: '{content.color}',
       gap: '0.25rem',
@@ -2221,7 +2221,6 @@ export default {
       color: '{datatable.filter.overlaySelect.color}',
       shadow: '{overlay.select.shadow}',
     },
-    readonlyBackground: '{formField.readonlyBackground}',
     list: {
       padding: '{list.padding}',
       header: {
@@ -2229,6 +2228,7 @@ export default {
       },
       gap: '{list.gap}',
     },
+    readonlyBackground: '{formField.readonlyBackground}',
     option: {
       focusBackground: '{list.option.focusBackground}',
       selectedBackground: '{list.option.selectedBackground}',
@@ -2262,12 +2262,12 @@ export default {
       padding: '0 0.5rem',
       gap: '0.5rem',
       borderRadius: '{content.borderRadius}',
-      background: '{surface.extend.transparent}',
+      background: '{transparent}',
       color: '{content.color}',
       transitionDuration: '{transitionDuration}',
     },
     navButton: {
-      background: '{surface.extend.transparent}',
+      background: '{transparent}',
       hoverBackground: '{content.hoverBackground}',
       selectedBackground: '{highlight.background}',
       color: '{text.color}',
@@ -2310,8 +2310,8 @@ export default {
       transitionDuration: '{transitionDuration}',
     },
     panel: {
-      background: '{surface.extend.transparent}',
-      borderColor: '{surface.extend.transparent}',
+      background: '{transparent}',
+      borderColor: '{transparent}',
       borderWidth: '0.07142857142857142rem',
       color: '{content.color}',
       padding: '0.25rem',
@@ -2352,9 +2352,9 @@ export default {
     colorScheme: {
       light: {
         strength: {
-          weakBackground: '{extend.palette.error.500}',
-          mediumBackground: '{extend.palette.warn.500}',
-          strongBackground: '{extend.palette.success.600}',
+          weakBackground: '{error.500}',
+          mediumBackground: '{warn.500}',
+          strongBackground: '{success.600}',
         },
       },
     },
@@ -2411,10 +2411,10 @@ export default {
     colorScheme: {
       light: {
         root: {
-          colorOne: '{extend.palette.success.500}',
-          colorTwo: '{extend.palette.info.500}',
-          colorThree: '{extend.palette.error.500}',
-          colorFour: '{extend.palette.warn.500}',
+          colorOne: '{success.500}',
+          colorTwo: '{info.500}',
+          colorThree: '{error.500}',
+          colorFour: '{warn.500}',
         },
       },
     },
@@ -2482,8 +2482,8 @@ export default {
     icon: {
       size: '1.5rem',
       color: '{surface.500}',
-      hoverColor: '{extend.palette.warn.500}',
-      activeColor: '{extend.palette.warn.500}',
+      hoverColor: '{warn.500}',
+      activeColor: '{warn.500}',
     },
   },
   ripple: {
@@ -2666,19 +2666,19 @@ export default {
       borderRadius: '{borderRadius.xl}',
       background: '{surface.900}',
       hoverBackground: '{surface.900}',
-      content: {
-        borderRadius: '{borderRadius.xl}',
-        hoverBackground: '{surface.900}',
-        width: '0.75rem',
-        height: '0.75rem',
-        shadow: 'none',
-      },
       focusRing: {
         width: '{formField.focusRing.width}',
         style: '{formField.focusRing.style}',
         color: '{formField.focusRing.color}',
         offset: '{formField.focusRing.offset}',
         shadow: '{formField.shadow}',
+      },
+      content: {
+        borderRadius: '{borderRadius.xl}',
+        hoverBackground: '{surface.900}',
+        width: '0.75rem',
+        height: '0.75rem',
+        shadow: 'none',
       },
     },
   },
@@ -2717,9 +2717,9 @@ export default {
         gap: '0.25rem',
       },
       extStepNumber: {
-        invalidBackground: '{extend.palette.error.400}',
-        invalidColor: '{extend.palette.error.900}',
-        invalidBorderColor: '{extend.palette.error.400}',
+        invalidBackground: '{error.400}',
+        invalidColor: '{error.900}',
+        invalidBorderColor: '{error.400}',
       },
     },
     root: {
@@ -2798,9 +2798,9 @@ export default {
           shadow: '0px 0px 10px 50px rgba(255, 255, 255, 0.6)',
         },
         tab: {
-          background: '{surface.extend.transparent}',
-          hoverBackground: '{surface.extend.transparent}',
-          activeBackground: '{surface.extend.transparent}',
+          background: '{transparent}',
+          hoverBackground: '{transparent}',
+          activeBackground: '{transparent}',
         },
       },
     },
@@ -2809,7 +2809,7 @@ export default {
     },
     tablist: {
       borderWidth: '0 0 2px 0',
-      background: '{surface.extend.transparent}',
+      background: '{transparent}',
       borderColor: '{content.borderColor}',
     },
     tab: {
@@ -2833,7 +2833,7 @@ export default {
       },
     },
     tabpanel: {
-      background: '{surface.extend.transparent}',
+      background: '{transparent}',
       color: '{text.color}',
       padding: '1rem',
       focusRing: {
@@ -2867,13 +2867,13 @@ export default {
     colorScheme: {
       light: {
         info: {
-          background: '{extend.palette.info.50}',
-          borderColor: '{extend.palette.info.500}',
+          background: '{info.50}',
+          borderColor: '{info.500}',
           color: '{text.color}',
           detailColor: '{text.color}',
           shadow: '{overlay.popover.shadow}',
           closeButton: {
-            hoverBackground: '{extend.palette.info.200}',
+            hoverBackground: '{info.200}',
             focusRing: {
               color: '{focusRing.color}',
               shadow: 'none',
@@ -2881,13 +2881,13 @@ export default {
           },
         },
         success: {
-          background: '{extend.palette.success.50}',
-          borderColor: '{extend.palette.success.500}',
+          background: '{success.50}',
+          borderColor: '{success.500}',
           color: '{text.color}',
           detailColor: '{text.color}',
           shadow: '{overlay.popover.shadow}',
           closeButton: {
-            hoverBackground: '{extend.palette.success.200}',
+            hoverBackground: '{success.200}',
             focusRing: {
               color: '{focusRing.color}',
               shadow: 'none',
@@ -2895,13 +2895,13 @@ export default {
           },
         },
         warn: {
-          background: '{extend.palette.warn.50}',
-          borderColor: '{extend.palette.warn.500}',
+          background: '{warn.50}',
+          borderColor: '{warn.500}',
           color: '{text.color}',
           detailColor: '{text.color}',
           shadow: '{overlay.popover.shadow}',
           closeButton: {
-            hoverBackground: '{extend.palette.warn.200}',
+            hoverBackground: '{warn.200}',
             focusRing: {
               color: '{focusRing.color}',
               shadow: 'none',
@@ -2909,13 +2909,13 @@ export default {
           },
         },
         error: {
-          background: '{extend.palette.error.50}',
-          borderColor: '{extend.palette.error.500}',
+          background: '{error.50}',
+          borderColor: '{error.500}',
           color: '{text.color}',
           detailColor: '{text.color}',
           shadow: '{overlay.popover.shadow}',
           closeButton: {
-            hoverBackground: '{extend.palette.error.200}',
+            hoverBackground: '{error.200}',
             focusRing: {
               color: '{focusRing.color}',
               shadow: 'none',
@@ -2932,10 +2932,10 @@ export default {
     },
     extend: {
       extInfo: {
-        color: '{extend.palette.info.500}',
+        color: '{info.500}',
         closeButton: {
-          color: '{extend.palette.info.500}',
-          borderColor: '{extend.palette.info.500}',
+          color: '{info.500}',
+          borderColor: '{info.500}',
         },
         caption: {
           color: '{text.color}',
@@ -2948,30 +2948,30 @@ export default {
         width: '0.07142857142857142rem',
       },
       extSuccess: {
-        color: '{extend.palette.success.500}',
+        color: '{success.500}',
         closeButton: {
-          color: '{extend.palette.success.500}',
-          borderColor: '{extend.palette.success.500}',
+          color: '{success.500}',
+          borderColor: '{success.500}',
         },
         caption: {
           color: '{text.color}',
         },
       },
       extWarn: {
-        color: '{extend.palette.warn.500}',
+        color: '{warn.500}',
         closeButton: {
-          color: '{extend.palette.warn.500}',
-          borderColor: '{extend.palette.warn.500}',
+          color: '{warn.500}',
+          borderColor: '{warn.500}',
         },
         caption: {
           color: '{text.color}',
         },
       },
       extError: {
-        color: '{extend.palette.error.500}',
+        color: '{error.500}',
         closeButton: {
-          color: '{extend.palette.error.500}',
-          borderColor: '{extend.palette.error.500}',
+          color: '{error.500}',
+          borderColor: '{error.500}',
         },
         caption: {
           color: '{text.color}',
@@ -3028,20 +3028,20 @@ export default {
           color: '{text.color}',
         },
         success: {
-          background: '{extend.palette.success.400}',
-          color: '{extend.palette.success.900}',
+          background: '{success.400}',
+          color: '{success.900}',
         },
         info: {
-          background: '{extend.palette.info.300}',
-          color: '{extend.palette.info.900}',
+          background: '{info.300}',
+          color: '{info.900}',
         },
         warn: {
-          background: '{extend.palette.warn.300}',
-          color: '{extend.palette.warn.900}',
+          background: '{warn.300}',
+          color: '{warn.900}',
         },
         danger: {
-          background: '{extend.palette.error.300}',
-          color: '{extend.palette.error.900}',
+          background: '{error.300}',
+          color: '{error.900}',
         },
       },
     },
@@ -3113,8 +3113,8 @@ export default {
       },
     },
     root: {
-      background: '{surface.extend.transparent}',
-      borderColor: '{surface.extend.transparent}',
+      background: '{transparent}',
+      borderColor: '{transparent}',
       color: '{content.color}',
       borderRadius: '{content.borderRadius}',
       shadow: '{overlay.navigation.shadow}',
@@ -3169,7 +3169,7 @@ export default {
       content: {
         borderRadius: '{content.borderRadius}',
         size: '0.75rem',
-        background: '{surface.extend.transparent}',
+        background: '{transparent}',
         insetShadow: 'none',
       },
     },
@@ -3244,7 +3244,7 @@ export default {
       disabledColor: '{formField.disabledColor}',
     },
     content: {
-      checkedBackground: '{surface.extend.transparent}',
+      checkedBackground: '{transparent}',
       checkedShadow: 'none',
       padding: '0',
       borderRadius: '0',
@@ -3293,10 +3293,10 @@ export default {
         offset: '{formField.focusRing.offset}',
         shadow: '{formField.shadow}',
       },
-      borderColor: '{surface.extend.transparent}',
-      hoverBorderColor: '{surface.extend.transparent}',
-      checkedBorderColor: '{surface.extend.transparent}',
-      checkedHoverBorderColor: '{surface.extend.transparent}',
+      borderColor: '{transparent}',
+      hoverBorderColor: '{transparent}',
+      checkedBorderColor: '{transparent}',
+      checkedHoverBorderColor: '{transparent}',
       invalidBorderColor: '{formField.invalidBorderColor}',
       transitionDuration: '{formField.transitionDuration}',
       slideDuration: '0.2s',
