@@ -325,30 +325,30 @@ export default {
     rounded: '71.35714285714286rem',
   },
   typography: {
-    'font-family': {
-      heading: '{font-family.heading}',
-      base: '{font-family.base}',
+    fontFamily: {
+      heading: 'TT Fellows',
+      base: 'PT Sans',
     },
-    'font-weight': {
-      regular: '{font-weight.regular}',
-      medium: '{font-weight.medium}',
-      bold: '{font-weight.bold}',
+    fontWeight: {
+      regular: 'Regular',
+      medium: 'Medium',
+      bold: 'Bold',
     },
-    'font-size': {
-      'text-xs': '{Size.text-xs}',
-      'text-sm': '{Size.text-sm}',
-      'text-base': '{Size.text-base}',
-      'text-lg': '{Size.text-lg}',
-      'text-xl': '{Size.text-xl}',
-      'text-2xl': '{Size.text-2xl}',
-      'text-3xl': '{Size.text-3xl}',
-      'text-4xl': '{Size.text-4xl}',
-      'text-5xl': '{Size.text-5xl}',
-      'text-6xl': '{Size.text-6xl}',
-      'text-7xl': '{Size.text-7xl}',
-      'text-8xl': '{Size.text-8xl}',
+    fontSize: {
+      'text-xs': '0.75rem',
+      'text-sm': '0.875rem',
+      'text-base': '1rem',
+      'text-lg': '1.125rem',
+      'text-xl': '1.25rem',
+      'text-2xl': '1.5rem',
+      'text-3xl': '1.875rem',
+      'text-4xl': '2.25rem',
+      'text-5xl': '3rem',
+      'text-6xl': '3.75rem',
+      'text-7xl': '4.5rem',
+      'text-8xl': '6rem',
     },
-    'line-height': {
+    lineHeight: {
       leading: 'auto',
       'leading-10': '0.7857142857142857rem',
       'leading-15': '0.8571428571428571rem',
