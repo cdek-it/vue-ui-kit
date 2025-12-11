@@ -330,9 +330,10 @@ export default {
       base: 'PT Sans',
     },
     fontWeight: {
-      regular: 'Regular',
-      medium: 'Medium',
-      bold: 'Bold',
+      regular: 400,
+      medium: 500,
+      demibold: 600,
+      bold: 700,
     },
     fontSize: {
       'text-xs': '0.75rem',
