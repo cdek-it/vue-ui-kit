@@ -588,7 +588,7 @@ export default {
         paddingY: '1rem',
       },
       label: {
-        fontWeight: '42.857142857142854rem',
+        fontWeight: '{typography.fontWeight.bold}',
       },
     },
   },
