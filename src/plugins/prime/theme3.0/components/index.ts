@@ -36,8 +36,8 @@ export default {
       transitionDuration: '{formField.transitionDuration}',
     },
     panel: {
-      borderWidth: '0',
-      borderColor: '{transparent}',
+      borderWidth: '0 0 0.07142857142857142rem 0',
+      borderColor: '{formField.borderColor}',
     },
     colorScheme: {
       light: {
@@ -310,6 +310,7 @@ export default {
   },
   button: {
     extend: {
+      disabledBackground: '{formField.disabledBackground}',
       extOutlined: {
         danger: {
           focusBackground: '{transparent}',
@@ -327,7 +328,6 @@ export default {
           focusBackground: '{transparent}',
         },
       },
-      disabledBackground: '{formField.disabledBackground}',
       disabledColor: '{formField.disabledColor}',
       extText: {
         danger: {
@@ -1075,12 +1075,12 @@ export default {
         borderColor: '{content.borderColor}',
         hoverBackground: '{content.hoverBackground}',
       },
-      extTitle: {
-        width: '15rem',
-      },
       extTimePicker: {
         minWidth: '2.857142857142857rem',
         color: '{content.color}',
+      },
+      extTitle: {
+        width: '15rem',
       },
     },
     panel: {
@@ -1100,6 +1100,9 @@ export default {
     title: {
       gap: '0.5rem',
       fontWeight: '50rem',
+    },
+    inputIcon: {
+      color: '{formField.iconColor}',
     },
     selectMonth: {
       hoverBackground: '{content.hoverBackground}',
@@ -1127,9 +1130,6 @@ export default {
       lg: {
         width: '0',
       },
-    },
-    inputIcon: {
-      color: '{formField.iconColor}',
     },
     group: {
       borderColor: '{content.borderColor}',
@@ -1250,11 +1250,11 @@ export default {
   drawer: {
     extend: {
       borderRadius: '{overlay.popover.borderRadius}',
-      width: '{sizingDrawer.width}',
       extHeader: {
         gap: '0.5rem',
         borderColor: '{drawer.root.borderColor}',
       },
+      width: '{sizingDrawer.width}',
     },
     root: {
       background: '{overlay.modal.background}',
@@ -1623,16 +1623,16 @@ export default {
           borderColor: '{info.500}',
           color: '{text.color}',
           shadow: 'none',
+          outlined: {
+            color: '{text.color}',
+            borderColor: '{info.500}',
+          },
           closeButton: {
             hoverBackground: '{info.200}',
             focusRing: {
               color: '{focusRing.color}',
               shadow: 'none',
             },
-          },
-          outlined: {
-            color: '{text.color}',
-            borderColor: '{info.500}',
           },
           simple: {
             color: '{text.color}',
@@ -2221,6 +2221,7 @@ export default {
       color: '{datatable.filter.overlaySelect.color}',
       shadow: '{overlay.select.shadow}',
     },
+    readonlyBackground: '{formField.readonlyBackground}',
     list: {
       padding: '{list.padding}',
       header: {
@@ -2228,7 +2229,6 @@ export default {
       },
       gap: '{list.gap}',
     },
-    readonlyBackground: '{formField.readonlyBackground}',
     option: {
       focusBackground: '{list.option.focusBackground}',
       selectedBackground: '{list.option.selectedBackground}',
@@ -2666,19 +2666,19 @@ export default {
       borderRadius: '{borderRadius.xl}',
       background: '{surface.900}',
       hoverBackground: '{surface.900}',
-      focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
-      },
       content: {
         borderRadius: '{borderRadius.xl}',
         hoverBackground: '{surface.900}',
         width: '0.75rem',
         height: '0.75rem',
         shadow: 'none',
+      },
+      focusRing: {
+        width: '{formField.focusRing.width}',
+        style: '{formField.focusRing.style}',
+        color: '{formField.focusRing.color}',
+        offset: '{formField.focusRing.offset}',
+        shadow: '{formField.shadow}',
       },
     },
   },
@@ -3350,6 +3350,14 @@ export default {
     },
     filter: {
       margin: '0 0 0.5rem 0',
+    },
+  },
+  overlaybadge: {
+    root: {
+      outline: {
+        width: '0',
+        color: '{transparent}',
+      },
     },
   },
 };

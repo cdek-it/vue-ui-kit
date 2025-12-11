@@ -184,7 +184,7 @@ export default {
     },
   },
   transitionDuration: '0.2s',
-  disabledOpacity: '3.5714285714285716rem',
+  disabledOpacity: '0.5',
   iconSizeMedium: '1rem',
   iconSizeLarge: '1.25rem',
   anchorGutter: '0.14285714285714285rem',
