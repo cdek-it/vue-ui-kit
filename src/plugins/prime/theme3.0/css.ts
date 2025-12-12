@@ -1,8 +1,10 @@
 import avatarCss from './components/css/avatar';
+import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
+   ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
 
   .p-disabled, .p-component:disabled {

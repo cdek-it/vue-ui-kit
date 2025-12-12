@@ -311,6 +311,7 @@ export default {
   button: {
     extend: {
       disabledBackground: '{formField.disabledBackground}',
+      borderWidth: '0',
       extOutlined: {
         danger: {
           focusBackground: '{transparent}',
@@ -581,14 +582,16 @@ export default {
         iconOnlyWidth: '2rem',
         paddingX: '0.75rem',
         paddingY: '0.5rem',
+        fontSize: '{typography.fontSize.text-sm}',
       },
       lg: {
         iconOnlyWidth: '3.5714285714285716rem',
         paddingX: '1.5rem',
         paddingY: '1rem',
+        fontSize: '{typography.fontSize.text-xl}',
       },
       label: {
-        fontWeight: '{typography.fontWeight.bold}',
+        fontWeight: '{typography.fontWeight.demibold}',
       },
     },
   },
