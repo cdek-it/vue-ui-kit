@@ -15,58 +15,20 @@ import { Template } from '../Button/Button.template';
 
 [Figma](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=489-4122>)
 
+#### Secondary
 
-
-#### Info
-
-<PrimeButton label="Button" icon="ti ti-info-circle" severity="info" />
+<PrimeButton label="Button" icon="ti ti-help-circle" severity="secondary" />
 
 <Story
-  name="Info"
+  name="Secondary"
   args={{
     label: 'Button',
-    icon: 'ti ti-info-circle',
-    severity: 'info',
+    icon: 'ti ti-arrow-down-right',
+    severity: 'secondary',
   }}
 >
   {Template.bind({})}
 </Story>
-
-
-
-#### Success
-
-<PrimeButton label="Button" icon="ti ti-check" severity="success" />
-
-<Story
-  name="Success"
-  args={{
-    label: 'Button',
-    icon: 'ti ti-check',
-    severity: 'success',
-  }}
->
-  {Template.bind({})}
-</Story>
-
-
-
-#### Warn
-
-<PrimeButton label="Button" icon="ti ti-alert-triangle" severity="warn" />
-
-<Story
-  name="Warn"
-  args={{
-    label: 'Button',
-    icon: 'ti ti-alert-triangle',
-    severity: 'warn',
-  }}
->
-  {Template.bind({})}
-</Story>
-
-
 
 #### Danger
 
@@ -83,32 +45,46 @@ import { Template } from '../Button/Button.template';
   {Template.bind({})}
 </Story>
 
+#### Warn
 
-#### Help
-
-<PrimeButton label="Button" icon="ti ti-help-circle" severity="help" />
+<PrimeButton label="Button" icon="ti ti-alert-triangle" severity="warn" />
 
 <Story
-  name="Help"
+  name="Warn"
   args={{
     label: 'Button',
-    icon: 'ti ti-help-circle',
-    severity: 'help',
+    icon: 'ti ti-alert-triangle',
+    severity: 'warn',
   }}
 >
   {Template.bind({})}
 </Story>
 
-#### Secondary
+#### Success
 
-<PrimeButton label="Button" icon="ti ti-help-circle" severity="secondary" />
+<PrimeButton label="Button" icon="ti ti-check" severity="success" />
 
 <Story
-  name="Secondary"
+  name="Success"
   args={{
     label: 'Button',
-    icon: 'ti ti-arrow-down-right',
-    severity: 'secondary',
+    icon: 'ti ti-check',
+    severity: 'success',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+#### Info
+
+<PrimeButton label="Button" icon="ti ti-info-circle" severity="info" />
+
+<Story
+  name="Info"
+  args={{
+    label: 'Button',
+    icon: 'ti ti-info-circle',
+    severity: 'info',
   }}
 >
   {Template.bind({})}
