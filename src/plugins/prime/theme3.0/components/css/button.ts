@@ -9,11 +9,11 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-button .p-button-icon {
-  font-size: ${dt('fonts.fontSize.text-xl')};
+  font-size: ${dt('fonts.fontSize.xl')};
 }
 
 .p-button.p-button-lg .p-button-icon {
-  font-size: ${dt('fonts.fontSize.text-2xl')};
+  font-size: ${dt('fonts.fontSize.2xl')};
 }
 
 .p-component.p-button-secondary:disabled {
