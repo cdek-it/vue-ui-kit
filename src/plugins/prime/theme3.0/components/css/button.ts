@@ -1,6 +1,6 @@
 const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-button.p-component .p-button-label {
-  font-family: ${dt('typography.fontFamily.heading')};
+  font-family: ${dt('fonts.fontFamily.heading')};
 }
 
 .p-component.p-button:focus-visible {
@@ -9,11 +9,11 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-button .p-button-icon {
-  font-size: ${dt('typography.fontSize.text-xl')};
+  font-size: ${dt('fonts.fontSize.text-xl')};
 }
 
 .p-button.p-button-lg .p-button-icon {
-  font-size: ${dt('typography.fontSize.text-2xl')};
+  font-size: ${dt('fonts.fontSize.text-2xl')};
 }
 
 .p-component.p-button-secondary:disabled {

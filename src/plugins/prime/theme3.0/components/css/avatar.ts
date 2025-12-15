@@ -1,6 +1,6 @@
 const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-avatar.p-component {
-  font-weight: ${dt('typography.fontWeight.bold')};
+  font-weight: ${dt('fonts.fontWeight.bold')};
 }
 `;
 

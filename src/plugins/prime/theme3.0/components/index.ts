@@ -582,13 +582,13 @@ export default {
         iconOnlyWidth: '2rem',
         paddingX: '0.75rem',
         paddingY: '0.5rem',
-        fontSize: '{typography.fontSize.text-sm}',
+        fontSize: '{fonts.fontSize.text-sm}',
       },
       lg: {
         iconOnlyWidth: '3.5714285714285716rem',
         paddingX: '1.5rem',
         paddingY: '1rem',
-        fontSize: '{typography.fontSize.text-xl}',
+        fontSize: '{fonts.fontSize.text-xl}',
       },
       label: {
         fontWeight: '{fonts.fontWeight.demibold}',
