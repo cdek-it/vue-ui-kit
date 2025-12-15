@@ -26,6 +26,24 @@ import { Template } from '../Button/Button.template';
   {Template.bind({})}
 </Story>
 
+
+#### Tertiary
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-help-circle" severity="contrast" />
+```
+
+<Story
+  name="Tertiary"
+  args={{
+    label: 'Button',
+    icon: 'ti ti-arrow-down-right',
+    severity: 'contrast',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
 #### Danger
 ```html dark
 <PrimeButton label="Button" icon="ti ti-arrow-down-right" severity="danger" />

@@ -7,7 +7,7 @@ export default {
       activeHoverColor: '{text.hoverColor}',
       borderColor: '{transparent}',
       padding: '1rem 0 1rem 0',
-      fontWeight: '700',
+      fontWeight: '{fonts.fontWeight.bold}',
       borderRadius: '0',
       borderWidth: '0 0 0 0',
       focusRing: {
@@ -127,7 +127,7 @@ export default {
     optionGroup: {
       background: '{list.optionGroup.background}',
       color: '{list.optionGroup.color}',
-      fontWeight: '{list.optionGroup.fontWeight}',
+      fontWeight: '{fonts.fontWeight.demibold}',
       padding: '{list.optionGroup.padding}',
     },
     dropdown: {
@@ -164,7 +164,7 @@ export default {
     root: {
       width: '2rem',
       height: '2rem',
-      fontSize: '1rem',
+      fontSize: '{fonts.fontSize.base}',
       color: '{text.extend.colorPrimaryStatic}',
       background: '{primary.color}',
       borderRadius: '{borderRadius.md}',
@@ -179,7 +179,7 @@ export default {
     lg: {
       width: '2.5rem',
       height: '2.5rem',
-      fontSize: '1rem',
+      fontSize: '{fonts.fontSize.base}',
       icon: {
         size: '1rem',
       },
@@ -190,13 +190,13 @@ export default {
     xl: {
       width: '3.5rem',
       height: '3.5rem',
-      fontSize: '1.125rem',
       icon: {
         size: '1.5rem',
       },
       group: {
         offset: '-1.5rem',
       },
+      fontSize: '{fonts.fontSize.base}',
     },
   },
   badge: {
@@ -253,8 +253,8 @@ export default {
     root: {
       borderRadius: '{borderRadius.xl}',
       padding: '0.5357142857142857rem',
-      fontSize: '0.75rem',
-      fontWeight: '28.571428571428573rem',
+      fontSize: '{fonts.fontSize.xs}',
+      fontWeight: '{fonts.fontWeight.regular}',
       minWidth: '1.5rem',
       height: '1.5rem',
     },
@@ -262,17 +262,17 @@ export default {
       size: '0.5rem',
     },
     sm: {
-      fontSize: '0.625rem',
+      fontSize: '{fonts.fontSize.xs}',
       minWidth: '0',
       height: '0',
     },
     lg: {
-      fontSize: '0.875rem',
+      fontSize: '{fonts.fontSize.xs}',
       minWidth: '1.75rem',
       height: '1.75rem',
     },
     xl: {
-      fontSize: '1rem',
+      fontSize: '{fonts.fontSize.xs}',
       minWidth: '2rem',
       height: '2rem',
     },
@@ -310,8 +310,6 @@ export default {
   },
   button: {
     extend: {
-      disabledBackground: '{formField.disabledBackground}',
-      borderWidth: '0',
       extOutlined: {
         danger: {
           focusBackground: '{transparent}',
@@ -329,6 +327,7 @@ export default {
           focusBackground: '{transparent}',
         },
       },
+      disabledBackground: '{formField.disabledBackground}',
       disabledColor: '{formField.disabledColor}',
       extText: {
         danger: {
@@ -380,6 +379,7 @@ export default {
         paddingX: '1.5rem',
         paddingY: '1.25rem',
       },
+      borderWidth: '0.07142857142857142rem',
     },
     colorScheme: {
       light: {
@@ -591,7 +591,7 @@ export default {
         fontSize: '{typography.fontSize.text-xl}',
       },
       label: {
-        fontWeight: '{typography.fontWeight.demibold}',
+        fontWeight: '{fonts.fontWeight.demibold}',
       },
     },
   },
@@ -613,8 +613,8 @@ export default {
       gap: '0.25rem',
     },
     title: {
-      fontSize: '1.25rem',
-      fontWeight: '50rem',
+      fontSize: '{fonts.fontSize.lg}',
+      fontWeight: '{fonts.fontWeight.demibold}',
     },
     subtitle: {
       color: '{text.mutedColor}',
@@ -884,7 +884,7 @@ export default {
       },
     },
     columnTitle: {
-      fontWeight: '50rem',
+      fontWeight: '{fonts.fontWeight.bold}',
     },
     row: {
       background: '{content.background}',
@@ -922,7 +922,7 @@ export default {
       },
     },
     columnFooter: {
-      fontWeight: '50rem',
+      fontWeight: '{fonts.fontWeight.bold}',
     },
     dropPoint: {
       color: '{highlight.background}',
@@ -1102,7 +1102,7 @@ export default {
     },
     title: {
       gap: '0.5rem',
-      fontWeight: '50rem',
+      fontWeight: '{fonts.fontWeight.bold}',
     },
     inputIcon: {
       color: '{formField.iconColor}',
@@ -1150,7 +1150,7 @@ export default {
     },
     weekDay: {
       padding: '0.25rem',
-      fontWeight: '50rem',
+      fontWeight: '{fonts.fontWeight.bold}',
       color: '{content.color}',
     },
     date: {
@@ -1215,8 +1215,8 @@ export default {
       gap: '0',
     },
     title: {
-      fontSize: '1.25rem',
-      fontWeight: '1.25rem',
+      fontSize: '{fonts.fontSize.xl}',
+      fontWeight: '{fonts.fontWeight.demibold}',
     },
     content: {
       padding: '1.5rem',
@@ -1253,11 +1253,11 @@ export default {
   drawer: {
     extend: {
       borderRadius: '{overlay.popover.borderRadius}',
+      width: '{sizingDrawer.width}',
       extHeader: {
         gap: '0.5rem',
         borderColor: '{drawer.root.borderColor}',
       },
-      width: '{sizingDrawer.width}',
     },
     root: {
       background: '{overlay.modal.background}',
@@ -1270,8 +1270,8 @@ export default {
         '{overlay.modal.padding} {overlay.modal.padding} 14 {overlay.modal.padding} ',
     },
     title: {
-      fontSize: '1.5rem',
-      fontWeight: '42.857142857142854rem',
+      fontSize: '{fonts.fontSize.xl}',
+      fontWeight: '{fonts.fontWeight.demibold}',
     },
     content: {
       padding: '{overlay.modal.padding}',
@@ -1355,10 +1355,10 @@ export default {
       transitionDuration: '{formField.transitionDuration}',
       positionX: '{formField.paddingX}',
       positionY: '{formField.paddingY}',
-      fontWeight: '35.714285714285715rem',
+      fontWeight: '{fonts.fontWeight.regular}',
       active: {
-        fontSize: '0.8571428571428571rem',
-        fontWeight: '35.714285714285715rem',
+        fontSize: '{fonts.fontSize.sm}',
+        fontWeight: '{fonts.fontWeight.regular}',
       },
     },
     over: {
@@ -1711,13 +1711,13 @@ export default {
       },
     },
     text: {
-      fontSize: '1rem',
-      fontWeight: '35.714285714285715rem',
+      fontSize: '{fonts.fontSize.base}',
+      fontWeight: '{fonts.fontWeight.bold}',
       sm: {
-        fontSize: '1rem',
+        fontSize: '{fonts.fontSize.base}',
       },
       lg: {
-        fontSize: '1rem',
+        fontSize: '{fonts.fontSize.base}',
       },
     },
     icon: {
@@ -1911,7 +1911,7 @@ export default {
     optionGroup: {
       background: '{list.optionGroup.background}',
       color: '{list.optionGroup.color}',
-      fontWeight: '{list.optionGroup.fontWeight}',
+      fontWeight: '{fonts.fontWeight.demibold}',
       padding: '{list.option.padding}',
     },
     checkmark: {
@@ -2053,7 +2053,7 @@ export default {
     },
     submenuLabel: {
       padding: '{navigation.submenuLabel.padding}',
-      fontWeight: '{navigation.submenuLabel.fontWeight}',
+      fontWeight: '{fonts.fontWeight.demibold}',
       background: '{navigation.submenuLabel.background}',
       color: '{navigation.submenuLabel.color}',
     },
@@ -2071,7 +2071,7 @@ export default {
       },
       extSubmenuLabel: {
         padding: '{navigation.submenuLabel.padding}',
-        fontWeight: '{navigation.submenuLabel.fontWeight}',
+        fontWeight: '{fonts.fontWeight.demibold}',
         background: '{navigation.submenuLabel.background}',
         color: '{navigation.submenuLabel.color}',
       },
@@ -2247,7 +2247,7 @@ export default {
     optionGroup: {
       background: '{list.optionGroup.background}',
       color: '{list.optionGroup.color}',
-      fontWeight: '{list.optionGroup.fontWeight}',
+      fontWeight: '{fonts.fontWeight.demibold}',
       padding: '{list.optionGroup.padding}',
     },
     clearIcon: {
@@ -2269,6 +2269,9 @@ export default {
       color: '{content.color}',
       transitionDuration: '{transitionDuration}',
     },
+    currentPageReport: {
+      color: '{text.mutedColor}',
+    },
     navButton: {
       background: '{transparent}',
       hoverBackground: '{content.hoverBackground}',
@@ -2286,9 +2289,6 @@ export default {
         offset: '{focusRing.offset}',
         focus: '{focusRing.shadow}',
       },
-    },
-    currentPageReport: {
-      color: '{text.mutedColor}',
     },
     jumpToPageInput: {
       maxWidth: '5rem',
@@ -2398,8 +2398,8 @@ export default {
   progressbar: {
     label: {
       color: '{text.extend.colorPrimaryStatic}',
-      fontSize: '0.875rem',
-      fontWeight: '42.857142857142854rem',
+      fontSize: '{fonts.fontSize.xs}',
+      fontWeight: '{fonts.fontWeight.regular}',
     },
     root: {
       background: '{content.borderColor}',
@@ -2601,7 +2601,7 @@ export default {
     optionGroup: {
       background: '{list.optionGroup.background}',
       color: '{list.optionGroup.color}',
-      fontWeight: '{list.optionGroup.fontWeight}',
+      fontWeight: '{fonts.fontWeight.demibold}',
       padding: '{list.option.padding}',
     },
     clearIcon: {
@@ -2753,7 +2753,7 @@ export default {
     stepTitle: {
       color: '{text.color}',
       activeColor: '{text.color}',
-      fontWeight: '35.714285714285715rem',
+      fontWeight: '{fonts.fontWeight.regular}',
     },
     stepNumber: {
       background: '{content.background}',
@@ -2763,8 +2763,8 @@ export default {
       color: '{text.color}',
       activeColor: '{text.extend.colorPrimaryStatic}',
       size: '1.5rem',
-      fontSize: '1.125rem',
-      fontWeight: '35.714285714285715rem',
+      fontSize: '{fonts.fontSize.base}',
+      fontWeight: '{fonts.fontWeight.bold}',
       borderRadius: '{content.borderRadius}',
       shadow: 'none',
     },
@@ -2783,13 +2783,13 @@ export default {
       gap: '0.5rem',
     },
     itemLabel: {
-      fontWeight: '35.714285714285715rem',
+      fontWeight: '{fonts.fontWeight.regular}',
     },
     itemNumber: {
       background: '{content.background}',
       size: '2.25rem',
-      fontSize: '1.125rem',
-      fontWeight: '35.714285714285715rem',
+      fontSize: '{fonts.fontSize.base}',
+      fontWeight: '{fonts.fontWeight.bold}',
       borderRadius: '50%',
       shadow: 'none',
     },
@@ -2824,7 +2824,7 @@ export default {
       hoverColor: '{text.color}',
       activeColor: '{text.color}',
       padding: '1rem',
-      fontWeight: '50rem',
+      fontWeight: '{fonts.fontWeight.demibold}',
       margin: '0 0 -1px 0',
       gap: '0.5rem',
       focusRing: {
@@ -2998,12 +2998,12 @@ export default {
       gap: '0.25rem',
     },
     summary: {
-      fontWeight: '35.714285714285715rem',
-      fontSize: '1rem',
+      fontWeight: '{fonts.fontWeight.bold}',
+      fontSize: '{fonts.fontSize.base}',
     },
     detail: {
-      fontWeight: '35.714285714285715rem',
-      fontSize: '0.875rem',
+      fontWeight: '{fonts.fontWeight.regular}',
+      fontSize: '{fonts.fontSize.sm}',
     },
     closeButton: {
       width: '2rem',
@@ -3049,8 +3049,8 @@ export default {
       },
     },
     root: {
-      fontSize: '0.875rem',
-      fontWeight: '50rem',
+      fontSize: '{fonts.fontSize.xs}',
+      fontWeight: '{fonts.fontWeight.regular}',
       padding: '0.285rem 0.5rem',
       gap: '0.25rem',
       borderRadius: '{borderRadius.sm}',
@@ -3092,14 +3092,14 @@ export default {
       },
     },
     sm: {
-      fontSize: '0',
-      paddingX: '0',
-      paddingY: '0',
+      fontSize: '{fonts.fontSize.base}',
+      paddingX: '{formField.sm.paddingX}',
+      paddingY: '{formField.sm.paddingY}',
     },
     lg: {
-      fontSize: '0',
-      paddingX: '0',
-      paddingY: '0',
+      fontSize: '{fonts.fontSize.base}',
+      paddingX: '{formField.lg.paddingX}',
+      paddingY: '{formField.lg.paddingY}',
     },
   },
   tieredmenu: {
@@ -3211,7 +3211,7 @@ export default {
       padding: '0.5rem 1rem',
       borderRadius: '{borderRadius.rounded}',
       gap: '0.5rem',
-      fontWeight: '35.714285714285715rem',
+      fontWeight: '{fonts.fontWeight.demibold}',
       hoverBackground: '{surface.300}',
       borderColor: '{surface.200}',
       color: '{text.color}',

@@ -11,7 +11,7 @@ export default {
     },
     optionGroup: {
       padding: '0.5rem 0.75rem',
-      fontWeight: '600',
+      fontWeight: '{fonts.fontWeight.demibold}',
     },
   },
   focusRing: {
@@ -40,12 +40,12 @@ export default {
     borderRadius: '{borderRadius.md}',
     transitionDuration: '{transitionDuration}',
     sm: {
-      fontSize: '1rem',
+      fontSize: '{fonts.fontSize.base}',
       paddingX: '0.044642857142857144rem',
       paddingY: '0.03571428571428571rem',
     },
     lg: {
-      fontSize: '1rem',
+      fontSize: '{fonts.fontSize.base}',
       paddingX: '0.0625rem',
       paddingY: '0.05357142857142857rem',
     },
@@ -158,7 +158,7 @@ export default {
     },
     submenuLabel: {
       padding: '0.625rem 1rem',
-      fontWeight: '600',
+      fontWeight: '{fonts.fontWeight.demibold}',
     },
     submenuIcon: {
       size: '1.25rem',

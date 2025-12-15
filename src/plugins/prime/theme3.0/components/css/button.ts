@@ -61,7 +61,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-button-sm.p-button-icon-only {
-  height: ${dt('button.root.iconOnlyWidth')};
+  height: ${dt('button.root.sm.iconOnlyWidth')};
 }
 `;
 
