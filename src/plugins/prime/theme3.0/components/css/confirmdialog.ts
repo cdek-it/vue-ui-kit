@@ -23,6 +23,10 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   max-width: ${dt('sizingDialog.xlg.extra.maxWidth')};
 }
 
+.p-dialog .p-dialog-header .p-dialog-title {
+  gap: ${dt('spacing.gap.gap-2')};
+}
+
 /* Стилизация иконки в заголовке диалога */
 .p-confirmdialog .p-dialog-header .p-icon {
   display: inline-flex;

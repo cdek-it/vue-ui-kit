@@ -81,7 +81,7 @@ const Template = (args) => ({
       <ConfirmDialog :class="getSizeClass(args.size)" :pt="{ root: { 'data-pc-severity': args.severity } }">
         <template #container="{ message, acceptCallback, rejectCallback }">
           <div class="p-dialog-header">
-            <div class="p-dialog-title" style="display: flex; align-items: center; gap: 0.5rem;">
+            <div class="p-dialog-title">
               <i v-if="message.icon" :class="message.icon" class="p-icon"></i>
               <span>{{ message.header }}</span>
             </div>
@@ -512,7 +512,7 @@ export const AllVariants = () => ({
       <ConfirmDialog v-for="variant in variants" :key="variant.group" :group="variant.group" :class="getSizeClass(variant.size)" :pt="{ root: { 'data-pc-severity': variant.severity } }">
         <template #container="{ message, acceptCallback, rejectCallback }">
           <div class="p-dialog-header">
-            <div class="p-dialog-title" style="display: flex; align-items: center; gap: 0.5rem;">
+            <div class="p-dialog-title">
               <i v-if="message.icon" :class="message.icon" class="p-icon"></i>
               <span>{{ message.header }}</span>
             </div>
