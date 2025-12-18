@@ -3,14 +3,16 @@ import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
 import DialogCss from './components/css/dialog';
 import confirmdialogCss from './components/css/confirmdialog';
+import breadcrumbCss from './components/css/breadcrumb';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
-    ${DialogCss({ dt })}
+   ${DialogCss({ dt })}
    ${confirmdialogCss({ dt })}
-
+   ${breadcrumbCss({ dt })}
+  
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
   }
