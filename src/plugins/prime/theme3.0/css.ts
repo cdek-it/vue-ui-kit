@@ -1,11 +1,15 @@
 import avatarCss from './components/css/avatar';
 import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
+import DialogCss from './components/css/dialog';
+import confirmdialogCss from './components/css/confirmdialog';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
+    ${DialogCss({ dt })}
+   ${confirmdialogCss({ dt })}
 
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
