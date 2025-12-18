@@ -5,12 +5,12 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-confirmdialog .p-dialog-header .p-icon {
   display: inline-flex;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: ${dt('fontSize.2xl')};
+  height: ${dt('fontSize.2xl')};
 }
 
 .p-confirmdialog .p-dialog-header .p-icon::before {
-  font-size: 1.5rem;
+font-size: ${dt('fontSize.2xl')};
 }
 
 .p-confirmdialog .p-dialog-footer {
