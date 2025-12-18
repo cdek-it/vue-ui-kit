@@ -1,0 +1,289 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+import ConfirmDialog from 'primevue/confirmdialog';
+
+<Meta 
+  title="Prime/ConfirmDialog/Documentation" 
+  component={ConfirmDialog}
+/>
+
+# ConfirmDialog
+
+ConfirmDialog компонент используется для подтверждения действий пользователя. Он предоставляет модальное окно с сообщением и кнопками подтверждения/отмены.
+
+## Дизайн
+
+Компонент разработан на основе дизайна из Figma:
+[Figma Design](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-kit-PrimeFace--1.0.0-beta-?node-id=520-6928)
+
+## Варианты Severity
+
+ConfirmDialog поддерживает 5 вариантов severity, каждый с уникальным цветом иконки:
+
+### Danger (Критические действия)
+- **Цвет иконки:** Красный (#E85244)
+- **Использование:** Удаление, отмена необратимых действий
+- **Иконка:** `pi pi-exclamation-triangle`
+
+### Warning (Предупреждения)
+- **Цвет иконки:** Оранжевый
+- **Использование:** Предупреждения о потере данных, важные уведомления
+- **Иконка:** `pi pi-exclamation-circle`
+
+### Success (Успешные действия)
+- **Цвет иконки:** Зелёный
+- **Использование:** Подтверждение успешных операций
+- **Иконка:** `pi pi-check-circle`
+
+### Info (Информация)
+- **Цвет иконки:** Синий
+- **Использование:** Информационные сообщения
+- **Иконка:** `pi pi-info-circle`
+
+### Help (Справка)
+- **Цвет иконки:** Фиолетовый
+- **Использование:** Справочные диалоги, подсказки
+- **Иконка:** `pi pi-question-circle`
+
+## Структура
+
+```
+┌─────────────────────────────────────────┐
+│ Header (опционально)                    │
+│  ├─ Icon (severity-based)               │
+│  └─ Title                               │
+├─────────────────────────────────────────┤
+│ Content                                 │
+│  ├─ Icon (severity-based)               │
+│  └─ Message                             │
+├─────────────────────────────────────────┤
+│ Footer                                  │
+│  ├─ Reject Button                       │
+│  └─ Accept Button                       │
+└─────────────────────────────────────────┘
+```
+
+## Размеры из Figma
+
+- **Content padding:** 21px (1.5rem)
+- **Footer padding:** 21px (1.5rem)
+- **Footer gap:** 7px (0.5rem) между кнопками
+- **Icon size:** 21px (1.5rem)
+- **Border radius:** Из overlay.modal токена
+- **Min width:** Задана через Figma Variables
+
+## Использование
+
+### Базовый пример
+
+```vue dark
+<script setup>
+import { useConfirm } from 'primevue/useconfirm';
+
+const confirm = useConfirm();
+
+const deleteItem = () => {
+  confirm.require({
+    header: 'Подтверждение удаления',
+    message: 'Вы уверены, что хотите удалить этот элемент?',
+    icon: 'pi pi-exclamation-triangle',
+    acceptLabel: 'Удалить',
+    rejectLabel: 'Отмена',
+    accept: () => {
+      // Логика удаления
+      console.log('Элемент удалён');
+    },
+    reject: () => {
+      // Логика отмены
+      console.log('Отменено');
+    }
+  });
+};
+</script>
+
+<template>
+  <ConfirmDialog />
+  <Button @click="deleteItem" label="Удалить" />
+</template>
+```
+
+### С группами
+
+Можно использовать несколько диалогов одновременно через группы:
+
+```vue dark
+<template>
+  <ConfirmDialog group="delete" />
+  <ConfirmDialog group="save" />
+  
+  <Button @click="showDeleteDialog" label="Удалить" />
+  <Button @click="showSaveDialog" label="Сохранить" />
+</template>
+
+<script setup>
+import { useConfirm } from 'primevue/useconfirm';
+
+const confirm = useConfirm();
+
+const showDeleteDialog = () => {
+  confirm.require({
+    group: 'delete',
+    header: 'Удаление',
+    message: 'Удалить элемент?',
+    icon: 'pi pi-trash'
+  });
+};
+
+const showSaveDialog = () => {
+  confirm.require({
+    group: 'save',
+    header: 'Сохранение',
+    message: 'Сохранить изменения?',
+    icon: 'pi pi-save'
+  });
+};
+</script>
+```
+
+### Без заголовка
+
+```vue dark
+<script setup>
+const confirm = useConfirm();
+
+const showSimple = () => {
+  confirm.require({
+    message: 'Вы уверены?',
+    icon: 'pi pi-question',
+    acceptLabel: 'Да',
+    rejectLabel: 'Нет'
+  });
+};
+</script>
+```
+
+## API
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| group | string | null | Группа для множественных диалогов |
+| breakpoints | object | null | Breakpoints для responsive |
+| draggable | boolean | true | Возможность перетаскивания |
+
+### useConfirm Options
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| message | string | null | Текст сообщения |
+| header | string | null | Заголовок диалога |
+| icon | string | null | CSS класс иконки |
+| acceptLabel | string | 'Yes' | Текст кнопки подтверждения |
+| rejectLabel | string | 'No' | Текст кнопки отмены |
+| accept | function | null | Callback при подтверждении |
+| reject | function | null | Callback при отмене |
+| group | string | null | Группа диалога |
+
+## Стилизация
+
+Компонент использует следующие CSS классы:
+
+- `.p-confirmdialog` - основной контейнер
+- `.p-dialog-header` - заголовок
+- `.p-dialog-content` - область контента
+- `.p-confirmdialog-icon` - иконка
+- `.p-confirmdialog-message` - текст сообщения
+- `.p-dialog-footer` - футер с кнопками
+
+### Design Tokens
+
+\`\`\`typescript
+confirmdialog: {
+  extend: {
+    extIcon: {
+      success: '{success.500}',
+      info: '{info.500}',
+      help: '{help.500}',
+      warn: '{warn.500}',
+      danger: '{error.500}',
+    },
+  },
+  icon: {
+    size: '1.5rem',
+    color: '{overlay.modal.color}',
+  },
+  content: {
+    gap: '0',
+  },
+}
+\`\`\`
+
+## Accessibility
+
+- ✅ Keyboard navigation (Tab, Enter, Escape)
+- ✅ Focus trap внутри диалога
+- ✅ ARIA атрибуты для screen readers
+- ✅ Достаточный цветовой контраст
+- ✅ Читаемый line-height для текста
+
+## Best Practices
+
+1. **Используйте правильный severity:**
+   - `danger` для необратимых действий
+   - `warn` для предупреждений
+   - `success` для подтверждений
+   - `info` для информации
+   - `help` для справки
+
+2. **Пишите понятные сообщения:**
+   - Будьте конкретны
+   - Объясните последствия
+   - Используйте простой язык
+
+3. **Правильные тексты кнопок:**
+   - Используйте глаголы действия
+   - Будьте конкретны ("Удалить" вместо "Да")
+   - Сохраняйте краткость
+
+4. **Не злоупотребляйте:**
+   - Не показывайте диалог для каждого действия
+   - Используйте только для важных решений
+   - Рассмотрите альтернативы (toast, inline confirmation)
+
+## Примеры использования
+
+### Удаление элемента
+```javascript dark
+confirm.require({
+  header: 'Удалить пользователя?',
+  message: 'Пользователь и все его данные будут удалены безвозвратно.',
+  icon: 'pi pi-user-minus',
+  acceptLabel: 'Удалить',
+  rejectLabel: 'Отмена',
+  accept: () => deleteUser()
+});
+```
+
+### Выход без сохранения
+```javascript dark
+confirm.require({
+  header: 'Несохранённые изменения',
+  message: 'У вас есть несохранённые изменения. Выйти без сохранения?',
+  icon: 'pi pi-exclamation-triangle',
+  acceptLabel: 'Выйти',
+  rejectLabel: 'Остаться',
+  accept: () => router.push('/dashboard')
+});
+```
+
+### Подтверждение отправки
+```javascript dark
+confirm.require({
+  header: 'Отправить форму?',
+  message: 'Проверьте введённые данные перед отправкой.',
+  icon: 'pi pi-send',
+  acceptLabel: 'Отправить',
+  rejectLabel: 'Проверить ещё раз',
+  accept: () => submitForm()
+});
+```
