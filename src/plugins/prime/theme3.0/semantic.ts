@@ -60,8 +60,8 @@ export default {
   sizingInputtext: {
     root: {
       fontSize: '1rem',
-      paddingX: '0.75rem',
-      paddingY: '0.75rem',
+      paddingX: '1rem',
+      paddingY: '1rem',
     },
     sm: {
       fontSize: '1rem',
@@ -70,12 +70,12 @@ export default {
     },
     lg: {
       fontSize: '1rem',
-      paddingX: '0.75rem',
+      paddingX: '1.25rem',
       paddingY: '1.25rem',
     },
     xlg: {
       fontSize: '1rem',
-      paddingX: '0.75rem',
+      paddingX: '1.5rem',
       paddingY: '1.5rem',
     },
   },
@@ -187,8 +187,12 @@ export default {
       shadow: '0 2px 12px 0 rgba(0, 0, 0, 0.1)',
     },
   },
+  opacity: {
+    default: '{opacity.100}',
+    muted: '{opacity.50}',
+    disabled: '{opacity.0}',
+  },
   transitionDuration: '0.2s',
-  disabledOpacity: '0.5',
   iconSizeMedium: '1rem',
   iconSizeLarge: '1.25rem',
   anchorGutter: '0.14285714285714285rem',
