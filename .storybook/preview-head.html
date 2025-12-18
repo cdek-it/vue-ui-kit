@@ -26,10 +26,6 @@
 />
 <link
   rel="stylesheet"
-  href="https://public-static.cdek.ru/common/typography/v2.0.1/typography.min.css"
-/>
-<link
-  rel="stylesheet"
   href="https://public-static.cdek.ru/common/fonts/roboto/v48/fonts.css"
 />
 
@@ -63,6 +59,99 @@
     font-size: 87.5%;
   }
 </style>
+
+<!-- <style>
+  /* ConfirmDialog стили согласно Figma */
+  .p-confirmdialog,
+  .p-dialog.p-confirmdialog {
+    border-radius: 1.5rem !important; /* 21px */
+    min-width: 280px !important;
+  }
+
+  .p-confirmdialog .p-dialog-header,
+  .p-dialog.p-confirmdialog .p-dialog-header {
+    padding: 21px 21px 14px 21px !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    gap: 7px !important;
+  }
+
+  .p-confirmdialog .p-dialog-content,
+  .p-dialog.p-confirmdialog .p-dialog-content {
+    padding: 14px 21px 21px 21px !important;
+  }
+
+  /* Скрыть иконку из content, показать только в header */
+  .p-confirmdialog .p-dialog-content .p-confirm-dialog-icon,
+  .p-dialog.p-confirmdialog .p-dialog-content .p-confirm-dialog-icon {
+    display: none !important;
+  }
+
+  .p-confirmdialog .p-dialog-footer,
+  .p-dialog.p-confirmdialog .p-dialog-footer {
+    padding: 0 21px 21px 21px !important;
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    justify-content: flex-end !important;
+    gap: 0.5rem !important; /* 7px */
+  }
+
+  /* Цвета иконок в header по severity */
+  .p-confirmdialog[data-pc-severity="danger"] .p-dialog-header .p-icon,
+  .p-dialog.p-confirmdialog[data-pc-severity="danger"] .p-dialog-header .p-icon,
+  .p-confirmdialog.p-confirm-dialog-danger .p-dialog-header .p-icon {
+    color: #E85244 !important;
+  }
+
+  .p-confirmdialog[data-pc-severity="warn"] .p-dialog-header .p-icon,
+  .p-dialog.p-confirmdialog[data-pc-severity="warn"] .p-dialog-header .p-icon,
+  .p-confirmdialog.p-confirm-dialog-warn .p-dialog-header .p-icon {
+    color: #F5B83D !important;
+  }
+
+  .p-confirmdialog[data-pc-severity="success"] .p-dialog-header .p-icon,
+  .p-dialog.p-confirmdialog[data-pc-severity="success"] .p-dialog-header .p-icon,
+  .p-confirmdialog.p-confirm-dialog-success .p-dialog-header .p-icon {
+    color: #44E858 !important;
+  }
+
+  .p-confirmdialog[data-pc-severity="info"] .p-dialog-header .p-icon,
+  .p-dialog.p-confirmdialog[data-pc-severity="info"] .p-dialog-header .p-icon,
+  .p-confirmdialog.p-confirm-dialog-info .p-dialog-header .p-icon {
+    color: #4496E8 !important;
+  }
+
+  .p-confirmdialog[data-pc-severity="help"] .p-dialog-header .p-icon,
+  .p-dialog.p-confirmdialog[data-pc-severity="help"] .p-dialog-header .p-icon,
+  .p-confirmdialog.p-confirm-dialog-help .p-dialog-header .p-icon {
+    color: #A855F7 !important;
+  }
+
+  /* Цвета иконок в content (если они там есть) */
+  .p-confirmdialog[data-pc-severity="danger"] .p-confirm-dialog-icon,
+  .p-dialog.p-confirmdialog[data-pc-severity="danger"] .p-confirm-dialog-icon {
+    color: #E85244 !important;
+  }
+
+  .p-confirmdialog[data-pc-severity="warn"] .p-confirm-dialog-icon,
+  .p-dialog.p-confirmdialog[data-pc-severity="warn"] .p-confirm-dialog-icon {
+    color: #F5B83D !important;
+  }
+
+  .p-confirmdialog[data-pc-severity="success"] .p-confirm-dialog-icon,
+  .p-dialog.p-confirmdialog[data-pc-severity="success"] .p-confirm-dialog-icon {
+    color: #44E858 !important;
+  }
+
+  .p-confirmdialog[data-pc-severity="info"] .p-confirm-dialog-icon,
+  .p-dialog.p-confirmdialog[data-pc-severity="info"] .p-confirm-dialog-icon {
+    color: #4496E8 !important;
+  }
+
+  .p-confirmdialog[data-pc-severity="help"] .p-confirm-dialog-icon,
+  .p-dialog.p-confirmdialog[data-pc-severity="help"] .p-confirm-dialog-icon {
+    color: #A855F7 !important;
+  }
+</style> -->
 
 <script>
   window.global = window;

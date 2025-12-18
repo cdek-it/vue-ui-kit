@@ -8,6 +8,7 @@ import ConfirmationService from 'primevue/confirmationservice';
 import '../src/tailwind.css';
 import './themes/base.css';
 import './themes/violet.css';
+import './typoghraphy.css';
 import StoryWrapper from './common/StoryWrapper/StoryWrapper.vue';
 import { onMounted } from 'vue';
 
