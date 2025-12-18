@@ -87,20 +87,24 @@ export default {
   sizingDialog: {
     extra: {
       minWidth: '25rem',
+      maxWidth: '25rem',
     },
     sm: {
       extra: {
         minWidth: '20rem',
+        maxWidth: '20rem',
       },
     },
     lg: {
       extra: {
         minWidth: '30rem',
+        maxWidth: '30rem',
       },
     },
     xlg: {
       extra: {
         minWidth: '45rem',
+        maxWidth: '45rem',
       },
     },
   },

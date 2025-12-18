@@ -22,7 +22,7 @@ export default {
     size: {
       control: 'select',
       options: ['sm', 'default', 'lg', 'xlg'],
-      description: 'Размер диалога (sm: 20rem, default: 25rem, lg: 30rem, xlg: 45rem)',
+      description: 'Размер диалога (использует токены sizingDialog из semantic.ts)',
     },
     header: {
       control: 'text',
@@ -52,18 +52,9 @@ const Template = (args) => ({
   setup() {
     const confirm = useConfirm();
 
-    const getDialogStyle = (size) => {
-      const sizes = {
-        sm: '20rem',
-        default: '25rem',
-        lg: '30rem',
-        xlg: '45rem',
-      };
-      const width = sizes[size] || sizes.default;
-      return {
-        minWidth: width,
-        maxWidth: width,
-      };
+    const getSizeClass = (size) => {
+      if (!size || size === 'default') return '';
+      return `p-confirmdialog-${size}`;
     };
 
     const showDialog = () => {
@@ -83,27 +74,25 @@ const Template = (args) => ({
       });
     };
 
-    return { args, showDialog, getDialogStyle };
+    return { args, showDialog, getSizeClass };
   },
   template: `
     <div>
-      <ConfirmDialog>
+      <ConfirmDialog :class="getSizeClass(args.size)" :pt="{ root: { 'data-pc-severity': args.severity } }">
         <template #container="{ message, acceptCallback, rejectCallback }">
-          <div class="p-dialog p-confirmdialog" :data-pc-severity="message.severity" :style="getDialogStyle(args.size)">
-            <div class="p-dialog-header">
-              <div class="p-dialog-title" style="display: flex; align-items: center; gap: 0.5rem;">
-                <i v-if="message.icon" :class="message.icon" class="p-icon"></i>
-                <span>{{ message.header }}</span>
-              </div>
-              <Button @click="rejectCallback" icon="ti ti-x" text class="p-dialog-header-close" />
+          <div class="p-dialog-header">
+            <div class="p-dialog-title" style="display: flex; align-items: center; gap: 0.5rem;">
+              <i v-if="message.icon" :class="message.icon" class="p-icon"></i>
+              <span>{{ message.header }}</span>
             </div>
-            <div class="p-dialog-content">
-              <span class="p-confirmdialog-message">{{ message.message }}</span>
-            </div>
-            <div class="p-dialog-footer">
-              <Button :label="message.rejectLabel || 'Нет'" @click="rejectCallback" text />
-              <Button :label="message.acceptLabel || 'Да'" @click="acceptCallback" :severity="message.severity || 'secondary'" />
-            </div>
+            <Button @click="rejectCallback" icon="ti ti-x" text class="p-dialog-header-close" />
+          </div>
+          <div class="p-dialog-content">
+            <span class="p-confirmdialog-message">{{ message.message }}</span>
+          </div>
+          <div class="p-dialog-footer">
+            <Button :label="message.rejectLabel || 'Нет'" @click="rejectCallback" text />
+            <Button :label="message.acceptLabel || 'Да'" @click="acceptCallback" :severity="message.severity || 'secondary'" />
           </div>
         </template>
       </ConfirmDialog>
@@ -325,8 +314,8 @@ const showHelp = () => {
   },
 };
 
-export const LongMessageSmall = Template.bind({});
-LongMessageSmall.args = {
+export const SizeSmall = Template.bind({});
+SizeSmall.args = {
   severity: 'danger',
   header: 'Подтверждение действия',
   message:
@@ -337,19 +326,19 @@ LongMessageSmall.args = {
   icon: 'ti ti-circle-x',
   acceptLabel: 'Понятно',
   rejectLabel: 'Отмена',
-  buttonLabel: 'Размер SM (20rem)',
+  buttonLabel: 'Размер SM',
   size: 'sm',
 };
-LongMessageSmall.parameters = {
+SizeSmall.parameters = {
   docs: {
     description: {
-      story: 'Диалог с длинным сообщением. Размер SM: min-width и max-width = 20rem.',
+      story: 'Диалог размера SM. Использует токен sizingDialog.sm.extra.minWidth (20rem).',
     },
   },
 };
 
-export const LongMessageDefault = Template.bind({});
-LongMessageDefault.args = {
+export const SizeDefault = Template.bind({});
+SizeDefault.args = {
   severity: 'danger',
   header: 'Подтверждение действия',
   message:
@@ -360,19 +349,19 @@ LongMessageDefault.args = {
   icon: 'ti ti-circle-x',
   acceptLabel: 'Понятно',
   rejectLabel: 'Отмена',
-  buttonLabel: 'Размер Default (25rem)',
+  buttonLabel: 'Размер Default',
   size: 'default',
 };
-LongMessageDefault.parameters = {
+SizeDefault.parameters = {
   docs: {
     description: {
-      story: 'Диалог с длинным сообщением. Размер Default: min-width и max-width = 25rem.',
+      story: 'Диалог размера Default. Использует токен sizingDialog.extra.minWidth (25rem).',
     },
   },
 };
 
-export const LongMessageLarge = Template.bind({});
-LongMessageLarge.args = {
+export const SizeLarge = Template.bind({});
+SizeLarge.args = {
   severity: 'danger',
   header: 'Подтверждение действия',
   message:
@@ -383,19 +372,19 @@ LongMessageLarge.args = {
   icon: 'ti ti-circle-x',
   acceptLabel: 'Понятно',
   rejectLabel: 'Отмена',
-  buttonLabel: 'Размер LG (30rem)',
+  buttonLabel: 'Размер LG',
   size: 'lg',
 };
-LongMessageLarge.parameters = {
+SizeLarge.parameters = {
   docs: {
     description: {
-      story: 'Диалог с длинным сообщением. Размер LG: min-width и max-width = 30rem.',
+      story: 'Диалог размера LG. Использует токен sizingDialog.lg.extra.minWidth (30rem).',
     },
   },
 };
 
-export const LongMessageExtraLarge = Template.bind({});
-LongMessageExtraLarge.args = {
+export const SizeExtraLarge = Template.bind({});
+SizeExtraLarge.args = {
   severity: 'danger',
   header: 'Подтверждение действия',
   message:
@@ -406,13 +395,13 @@ LongMessageExtraLarge.args = {
   icon: 'ti ti-circle-x',
   acceptLabel: 'Понятно',
   rejectLabel: 'Отмена',
-  buttonLabel: 'Размер XLG (45rem)',
+  buttonLabel: 'Размер XLG',
   size: 'xlg',
 };
-LongMessageExtraLarge.parameters = {
+SizeExtraLarge.parameters = {
   docs: {
     description: {
-      story: 'Диалог с длинным сообщением. Размер XLG: min-width и max-width = 45rem.',
+      story: 'Диалог размера XLG. Использует токен sizingDialog.xlg.extra.minWidth (45rem).',
     },
   },
 };
@@ -470,18 +459,9 @@ export const AllVariants = () => ({
   setup() {
     const confirm = useConfirm();
 
-    const getDialogStyle = (size) => {
-      const sizes = {
-        sm: '20rem',
-        default: '25rem',
-        lg: '30rem',
-        xlg: '45rem',
-      };
-      const width = sizes[size] || sizes.default;
-      return {
-        minWidth: width,
-        maxWidth: width,
-      };
+    const getSizeClass = (size) => {
+      if (!size || size === 'default') return '';
+      return `p-confirmdialog-${size}`;
     };
 
     // Используем данные из существующих stories
@@ -525,27 +505,25 @@ export const AllVariants = () => ({
       });
     };
 
-    return { variants, showVariant, getDialogStyle };
+    return { variants, showVariant, getSizeClass };
   },
   template: `
     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-      <ConfirmDialog v-for="variant in variants" :key="variant.group" :group="variant.group">
+      <ConfirmDialog v-for="variant in variants" :key="variant.group" :group="variant.group" :class="getSizeClass(variant.size)" :pt="{ root: { 'data-pc-severity': variant.severity } }">
         <template #container="{ message, acceptCallback, rejectCallback }">
-          <div class="p-dialog p-confirmdialog" :data-pc-severity="message.severity" :style="getDialogStyle(variant.size)">
-            <div class="p-dialog-header">
-              <div class="p-dialog-title" style="display: flex; align-items: center; gap: 0.5rem;">
-                <i v-if="message.icon" :class="message.icon" class="p-icon"></i>
-                <span>{{ message.header }}</span>
-              </div>
-              <Button @click="rejectCallback" icon="ti ti-x" text class="p-dialog-header-close" />
+          <div class="p-dialog-header">
+            <div class="p-dialog-title" style="display: flex; align-items: center; gap: 0.5rem;">
+              <i v-if="message.icon" :class="message.icon" class="p-icon"></i>
+              <span>{{ message.header }}</span>
             </div>
-            <div class="p-dialog-content">
-              <span class="p-confirmdialog-message">{{ message.message }}</span>
-            </div>
-            <div class="p-dialog-footer">
-              <Button :label="message.rejectLabel || 'Нет'" @click="rejectCallback" text />
-              <Button :label="message.acceptLabel || 'Да'" @click="acceptCallback" :severity="message.severity || 'secondary'" />
-            </div>
+            <Button @click="rejectCallback" icon="ti ti-x" text class="p-dialog-header-close" />
+          </div>
+          <div class="p-dialog-content">
+            <span class="p-confirmdialog-message">{{ message.message }}</span>
+          </div>
+          <div class="p-dialog-footer">
+            <Button :label="message.rejectLabel || 'Нет'" @click="rejectCallback" text />
+            <Button :label="message.acceptLabel || 'Да'" @click="acceptCallback" :severity="message.severity || 'secondary'" />
           </div>
         </template>
       </ConfirmDialog>
