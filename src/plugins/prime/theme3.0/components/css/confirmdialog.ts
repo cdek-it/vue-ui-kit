@@ -27,6 +27,11 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   gap: ${dt('spacing.gap.gap-2')};
 }
 
+/* Кнопка закрытия в хедере - rounded */
+.p-confirmdialog .p-dialog-header-close {
+  border-radius: ${dt('borderRadius.xl')};
+}
+
 /* Стилизация иконки в заголовке диалога */
 .p-confirmdialog .p-dialog-header .p-icon {
   display: inline-flex;
