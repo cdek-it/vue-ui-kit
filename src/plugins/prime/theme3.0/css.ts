@@ -1,12 +1,20 @@
 import avatarCss from './components/css/avatar';
 import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
+import DialogCss from './components/css/dialog';
+import confirmdialogCss from './components/css/confirmdialog';
+import breadcrumbCss from './components/css/breadcrumb';
+import dividerCss from './components/css/divider';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
-
+   ${DialogCss({ dt })}
+   ${confirmdialogCss({ dt })}
+   ${breadcrumbCss({ dt })}
+   ${dividerCss({ dt })}
+  
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
   }
