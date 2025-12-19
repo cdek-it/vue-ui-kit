@@ -4,7 +4,6 @@ import checkboxCss from './components/css/checkbox';
 import DialogCss from './components/css/dialog';
 import confirmdialogCss from './components/css/confirmdialog';
 import breadcrumbCss from './components/css/breadcrumb';
-import textinputCss from './components/css/textinput';
 import dividerCss from './components/css/divider';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
@@ -14,7 +13,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${DialogCss({ dt })}
    ${confirmdialogCss({ dt })}
    ${breadcrumbCss({ dt })}
-   ${textinputCss({ dt })}
    ${dividerCss({ dt })}
   
   .p-disabled, .p-component:disabled {
