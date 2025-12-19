@@ -183,6 +183,11 @@ export default {
       shadow: '0 2px 12px 0 rgba(0, 0, 0, 0.1)',
     },
   },
+  opacity: {
+    default: '{opacity.100}',
+    muted: '{opacity.50}',
+    disabled: '{opacity.0}',
+  },
   transitionDuration: '0.2s',
   disabledOpacity: '0.5',
   iconSizeMedium: '1rem',
