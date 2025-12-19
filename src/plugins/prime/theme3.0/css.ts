@@ -2,6 +2,7 @@ import avatarCss from './components/css/avatar';
 import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
+import confirmdialogCss from './components/css/confirmdialog';
 import dialogCss from './components/css/dialog';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
@@ -9,6 +10,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
+   ${confirmdialogCss({ dt })}
    ${dialogCss({ dt })}
 
   .p-disabled, .p-component:disabled {
