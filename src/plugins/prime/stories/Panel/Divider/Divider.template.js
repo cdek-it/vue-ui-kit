@@ -18,7 +18,7 @@ export const ContentTemplate = (args) => ({
   template: `
     <Divider v-bind="args">
       <div>
-        <i class="ti ti-info-circle mr-2"></i>
+        <i class="ti ti-info-circle"></i>
         Content
       </div>
     </Divider>
