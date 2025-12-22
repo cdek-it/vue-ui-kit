@@ -1,0 +1,95 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './Dialog.template';
+
+<Meta title="Prime/Overlay/Dialog" />
+
+# Dialog
+
+[PrimeVue Dialog](https://primevue.org/dialog)
+
+Компонент Dialog отображает модальное окно с различными размерами.
+
+## Default (Extra)
+
+Размер по умолчанию с `min-width` и `max-width` из `sizingDialog.extra`.
+
+```html dark
+<Dialog 
+  header="Заголовок диалога" 
+  modal 
+  v-model:visible="visible"
+  class="p-dialog-extra"
+>
+  <div>Содержимое диалога</div>
+  <template #footer>
+    <Button label="Отмена" text" />
+    <Button label="Сохранить" />
+  </template>
+</Dialog>
+```
+
+<Story name="Default (Extra)" args={{ class: 'p-dialog-extra' }}>{Template.bind({})}</Story>
+
+## Small (SM)
+
+Компактный диалог с `min-width` и `max-width` из `sizingDialog.sm.extra`.
+
+```html dark
+<Dialog 
+  header="Заголовок диалога" 
+  modal 
+  v-model:visible="visible"
+  class="p-dialog-sm-extra"
+>
+  <div>Содержимое диалога</div>
+  <template #footer>
+    <Button label="Отмена" text" />
+    <Button label="Сохранить" />
+  </template>
+</Dialog>
+```
+
+<Story name="Small (SM)" args={{ class: 'p-dialog-sm-extra' }}>{Template.bind({})}</Story>
+
+## Large (LG)
+
+Диалог с большим содержимым, `min-width` и `max-width` из `sizingDialog.lg.extra`.
+
+```html dark
+<Dialog 
+  header="Заголовок диалога" 
+  modal 
+  v-model:visible="visible"
+  class="p-dialog-lg-extra"
+>
+  <div>Содержимое диалога</div>
+  <template #footer>
+    <Button label="Отмена" text" />
+    <Button label="Сохранить" />
+  </template>
+</Dialog>
+```
+
+<Story name="Large (LG)" args={{ class: 'p-dialog-lg-extra' }}>{Template.bind({})}</Story>
+
+## Extra Large (XLG)
+
+Диалог с максимальным содержимым, `min-width` и `max-width` из `sizingDialog.xlg.extra`.
+
+```html dark
+<Dialog 
+  header="Заголовок диалога" 
+  modal 
+  v-model:visible="visible"
+  class="p-dialog-xlg-extra"
+>
+  <div>Содержимое диалога</div>
+  <template #footer>
+    <Button label="Отмена" text" />
+    <Button label="Сохранить" />
+  </template>
+</Dialog>
+```
+
+<Story name="Extra Large (XLG)" args={{ class: 'p-dialog-xlg-extra' }}>{Template.bind({})}</Story>
