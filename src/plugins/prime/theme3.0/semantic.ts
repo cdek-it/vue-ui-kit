@@ -87,20 +87,24 @@ export default {
   sizingDialog: {
     extra: {
       minWidth: '25rem',
+      maxWidth: '25rem',
     },
     sm: {
       extra: {
         minWidth: '20rem',
+        maxWidth: '20rem',
       },
     },
     lg: {
       extra: {
         minWidth: '30rem',
+        maxWidth: '30rem',
       },
     },
     xlg: {
       extra: {
         minWidth: '45rem',
+        maxWidth: '45rem',
       },
     },
   },
@@ -182,6 +186,11 @@ export default {
     navigation: {
       shadow: '0 2px 12px 0 rgba(0, 0, 0, 0.1)',
     },
+  },
+  opacity: {
+    default: '{opacity.100}',
+    muted: '{opacity.50}',
+    disabled: '{opacity.0}',
   },
   transitionDuration: '0.2s',
   disabledOpacity: '0.5',
