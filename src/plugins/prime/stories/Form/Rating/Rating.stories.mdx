@@ -1,28 +1,79 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template, TemplateClear } from './Rating.template';
+import { Template } from './Rating.template';
 
 <Meta title="Prime/Form/Rating" />
 
 # Rating
 
-[PrimeVue Rating](https://primevue.org/rating), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-6086&node-type=section&t=1Q8VTt6Y4LnVAfrv-0>)
+[PrimeVue Rating](https://primevue.org/rating)
 
-### Basic
+Компонент Rating используется для оценки с помощью звезд.
 
-```html dark
-<PrimeRating v-model="value" />
-```
+## Default
 
-<Story name="Primary">{Template.bind({})}</Story>
-
-### With Clear Button
+Базовый компонент рейтинга.
 
 ```html dark
-<div>
-  <i class="ti ti-ban" @click="value = 0" />
-  <PrimeRating v-model="value" />
-</div>
+<script setup>
+import { ref } from 'vue';
+
+const value = ref(null);
+</script>
+
+<template>
+  <Rating v-model="value" />
+</template>
 ```
 
-<Story name="Clear">{TemplateClear.bind({})}</Story>
+<Story name="Default">{Template.bind({})}</Story>
+
+## With Value
+
+Рейтинг с предустановленным значением.
+
+```html dark
+<Rating v-model="value" />
+```
+
+<Story name="With Value" args={{ modelValue: 3 }}>{Template.bind({})}</Story>
+
+## Read Only
+
+Рейтинг только для чтения.
+
+```html dark
+<Rating v-model="value" :readonly="true" />
+```
+
+<Story name="Read Only" args={{ modelValue: 4, readonly: true }}>{Template.bind({})}</Story>
+
+## Disabled
+
+Отключенный рейтинг.
+
+```html dark
+<Rating v-model="value" :disabled="true" />
+```
+
+<Story name="Disabled" args={{ modelValue: 2, disabled: true }}>{Template.bind({})}</Story>
+
+## Without Cancel
+
+Рейтинг без возможности отмены выбора.
+
+```html dark
+<Rating v-model="value" :cancel="false" />
+```
+
+<Story name="Without Cancel" args={{ modelValue: 3, cancel: false }}>{Template.bind({})}</Story>
+
+## Custom Stars
+
+Рейтинг с пользовательским количеством звезд.
+
+```html dark
+<Rating v-model="value" :stars="10" />
+```
+
+<Story name="Custom Stars" args={{ modelValue: 7, stars: 10 }}>{Template.bind({})}</Story>

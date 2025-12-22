@@ -8,27 +8,103 @@ import { Template } from './Skeleton.template';
 
 [PrimeVue Skeleton](https://primevue.org/skeleton), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=5241-3731&m=dev>)
 
-### Default
+Компонент Skeleton используется как placeholder для загружаемого контента.
+
+## Default Rectangle
+
+Базовый прямоугольный скелетон.
 
 ```html dark
-<PrimeSkeleton />
+<Skeleton />
 ```
 
 <Story name="Default">{Template.bind({})}</Story>
 
-# Circle
+## Small Rectangle
+
+Маленький прямоугольный скелетон.
 
 ```html dark
-<PrimeSkeleton shape="circle" size="100px"/>
+<Skeleton width="10rem" height="2rem" />
 ```
 
-<Story name="Circle" args={{shape: "circle", size: "100px"}}>{Template.bind({})}</Story>
+<Story name="Small Rectangle" args={{ width: '10rem', height: '2rem' }}>{Template.bind({})}</Story>
 
+## Large Rectangle
 
-# Disable animations
+Большой прямоугольный скелетон.
 
 ```html dark
-<PrimeSkeleton size="100px"  animation="none" />
+<Skeleton width="100%" height="10rem" />
 ```
 
-<Story name="NoAnimate" args={{animation: "none", size: "100px"}}>{Template.bind({})}</Story>
+<Story name="Large Rectangle" args={{ width: '100%', height: '10rem' }}>{Template.bind({})}</Story>
+
+## Circle Small
+
+Маленький круглый скелетон (для аватаров).
+
+```html dark
+<Skeleton shape="circle" size="3rem" />
+```
+
+<Story name="Circle Small" args={{ shape: 'circle', size: '3rem' }}>{Template.bind({})}</Story>
+
+## Circle Medium
+
+Средний круглый скелетон.
+
+```html dark
+<Skeleton shape="circle" size="5rem" />
+```
+
+<Story name="Circle Medium" args={{ shape: 'circle', size: '5rem' }}>{Template.bind({})}</Story>
+
+## Circle Large
+
+Большой круглый скелетон.
+
+```html dark
+<Skeleton shape="circle" size="8rem" />
+```
+
+<Story name="Circle Large" args={{ shape: 'circle', size: '8rem' }}>{Template.bind({})}</Story>
+
+## No Animation
+
+Скелетон без анимации.
+
+```html dark
+<Skeleton animation="none" width="100%" height="5rem" />
+```
+
+<Story name="No Animation" args={{ animation: 'none', width: '100%', height: '5rem' }}>{Template.bind({})}</Story>
+
+## Card Layout
+
+Пример скелетона для карточки с аватаром и текстом.
+
+```html dark
+<div style="display: flex; gap: 1rem; align-items: center">
+  <Skeleton shape="circle" size="4rem" />
+  <div style="flex: 1">
+    <Skeleton width="100%" height="1rem" style="margin-bottom: 0.5rem" />
+    <Skeleton width="75%" height="1rem" />
+  </div>
+</div>
+```
+
+<Story name="Card Layout">
+  {() => ({
+    components: { Skeleton },
+    template: `
+      <div style="display: flex; gap: 1rem; align-items: center">
+        <Skeleton shape="circle" size="4rem" />
+        <div style="flex: 1">
+          <Skeleton width="100%" height="1rem" style="margin-bottom: 0.5rem" />
+          <Skeleton width="75%" height="1rem" />
+        </div>
+      </div>
+    `
+  })}
+</Story>

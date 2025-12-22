@@ -8,19 +8,74 @@ import { Template } from './ProgressSpinner.template';
 
 [PrimeVue ProgressSpinner](https://primevue.org/progressspinner), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=1219-3086&m=dev>)
 
-### Base
+Компонент ProgressSpinner отображает анимированный индикатор загрузки с четырьмя цветами.
+
+## Default
+
+Базовый спиннер с цветами из дизайн-токенов: success (зеленый), info (синий), error (красный), warn (желтый).
 
 ```html dark
-<PrimeProgressSpinner />
+<ProgressSpinner />
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Default">{Template.bind({})}</Story>
 
-### Смена размера
-У компонента в прайме нет пропса "size", обертку делать не хочу, поэтому если что делаем вот так
+## Small Size
+
+Маленький спиннер (50x50px).
+
 ```html dark
-<PrimeProgressSpinner class="!w-[300px] !h-[300px]" />
+<ProgressSpinner style="width: 50px; height: 50px" />
 ```
-<Story name="Size" args={{class: '!w-[300px] !h-[300px]', value: 'Custom Size' }}>
-  {Template.bind()}
-</Story>
+
+<Story name="Small" args={{ style: 'width: 50px; height: 50px' }}>{Template.bind({})}</Story>
+
+## Medium Size
+
+Средний спиннер (100x100px).
+
+```html dark
+<ProgressSpinner style="width: 100px; height: 100px" />
+```
+
+<Story name="Medium" args={{ style: 'width: 100px; height: 100px' }}>{Template.bind({})}</Story>
+
+## Large Size
+
+Большой спиннер (150x150px).
+
+```html dark
+<ProgressSpinner style="width: 150px; height: 150px" />
+```
+
+<Story name="Large" args={{ style: 'width: 150px; height: 150px' }}>{Template.bind({})}</Story>
+
+## Extra Large Size
+
+Очень большой спиннер (200x200px).
+
+```html dark
+<ProgressSpinner style="width: 200px; height: 200px" />
+```
+
+<Story name="Extra Large" args={{ style: 'width: 200px; height: 200px' }}>{Template.bind({})}</Story>
+
+## Custom Stroke Width
+
+Спиннер с пользовательской толщиной линии.
+
+```html dark
+<ProgressSpinner strokeWidth="8" />
+```
+
+<Story name="Custom Stroke" args={{ strokeWidth: '8' }}>{Template.bind({})}</Story>
+
+## Custom Animation Duration
+
+Спиннер с пользовательской скоростью анимации.
+
+```html dark
+<ProgressSpinner animationDuration="1s" />
+```
+
+<Story name="Custom Duration" args={{ animationDuration: '1s' }}>{Template.bind({})}</Story>

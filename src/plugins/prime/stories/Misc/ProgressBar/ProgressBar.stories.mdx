@@ -1,0 +1,81 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './ProgressBar.template';
+
+<Meta title="Prime/Misc/ProgressBar" />
+
+# ProgressBar
+
+[PrimeVue ProgressBar](https://primevue.org/progressbar)
+
+Компонент ProgressBar отображает прогресс выполнения операции.
+
+## Default
+
+Базовый прогресс-бар.
+
+```html dark
+<ProgressBar :value="50" />
+```
+
+<Story name="Default" args={{ value: 50 }}>{Template.bind({})}</Story>
+
+## Zero Progress
+
+Прогресс-бар с нулевым значением.
+
+```html dark
+<ProgressBar :value="0" />
+```
+
+<Story name="Zero Progress" args={{ value: 0 }}>{Template.bind({})}</Story>
+
+## 25% Progress
+
+Прогресс-бар на 25%.
+
+```html dark
+<ProgressBar :value="25" />
+```
+
+<Story name="25% Progress" args={{ value: 25 }}>{Template.bind({})}</Story>
+
+## 75% Progress
+
+Прогресс-бар на 75%.
+
+```html dark
+<ProgressBar :value="75" />
+```
+
+<Story name="75% Progress" args={{ value: 75 }}>{Template.bind({})}</Story>
+
+## Complete
+
+Полностью заполненный прогресс-бар.
+
+```html dark
+<ProgressBar :value="100" />
+```
+
+<Story name="Complete" args={{ value: 100 }}>{Template.bind({})}</Story>
+
+## With Label
+
+Прогресс-бар с отображением значения.
+
+```html dark
+<ProgressBar :value="60" :showValue="true" />
+```
+
+<Story name="With Label" args={{ value: 60, showValue: true }}>{Template.bind({})}</Story>
+
+## Indeterminate
+
+Неопределенный прогресс (анимация загрузки).
+
+```html dark
+<ProgressBar mode="indeterminate" />
+```
+
+<Story name="Indeterminate" args={{ mode: 'indeterminate' }}>{Template.bind({})}</Story>

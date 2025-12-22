@@ -5,6 +5,7 @@ import checkboxCss from './components/css/checkbox';
 import confirmdialogCss from './components/css/confirmdialog';
 import dialogCss from './components/css/dialog';
 import dividerCss from './components/css/divider';
+import inputtextCss from './components/css/inputtext';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
@@ -14,6 +15,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${confirmdialogCss({ dt })}
    ${dialogCss({ dt })}
    ${dividerCss({ dt })}
+   ${inputtextCss({ dt })}
 
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
