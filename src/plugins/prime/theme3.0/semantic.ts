@@ -59,85 +59,106 @@ export default {
   },
   sizingInputtext: {
     root: {
-      fontSize: '1rem',
-      paddingX: '0.75rem',
-      paddingY: '0.75rem',
+      fontSize: '{fonts.fontSize.base}',
+      paddingX: '{spacing.padding.p4}',
+      paddingY: '{spacing.padding.p4}',
     },
     sm: {
-      fontSize: '1rem',
-      paddingX: '0.75rem',
-      paddingY: '0.75rem',
+      fontSize: '{fonts.fontSize.base}',
+      paddingX: '{spacing.padding.p3}',
+      paddingY: '{spacing.padding.p3}',
     },
     lg: {
-      fontSize: '1rem',
-      paddingX: '0.75rem',
-      paddingY: '1.25rem',
+      fontSize: '{fonts.fontSize.base}',
+      paddingX: '{spacing.padding.p5}',
+      paddingY: '{spacing.padding.p5}',
     },
     xlg: {
-      fontSize: '1rem',
-      paddingX: '0.75rem',
-      paddingY: '1.5rem',
+      fontSize: '{fonts.fontSize.base}',
+      paddingX: '{spacing.padding.p6}',
+      paddingY: '{spacing.padding.p6}',
     },
   },
   sizingSelect: {
-    fontSize: '1rem',
-    paddingX: '0.75rem',
-    paddingY: '1rem',
+    root: {
+      fontSize: '{fonts.fontSize.base}',
+      paddingX: '{spacing.padding.p4}',
+      paddingY: '{spacing.padding.p4}',
+    },
+    sm: {
+      fontSize: '{fonts.fontSize.base}',
+      paddingX: '{spacing.padding.p3}',
+      paddingY: '{spacing.padding.p3}',
+    },
+    lg: {
+      fontSize: '{fonts.fontSize.base}',
+      paddingX: '{spacing.padding.p5}',
+      paddingY: '{spacing.padding.p5}',
+    },
+    xlg: {
+      fontSize: '{fonts.fontSize.base}',
+      paddingX: '{spacing.padding.p6}',
+      paddingY: '{spacing.padding.p6}',
+    },
   },
   sizingDialog: {
     extra: {
-      minWidth: '25rem',
+      minWidth: '{sizing.width.w25}',
+      maxWidth: '{sizing.width.w25}',
     },
     sm: {
       extra: {
-        minWidth: '20rem',
+        minWidth: '{sizing.width.w20}',
+        maxWidth: '{sizing.width.w20}',
       },
     },
     lg: {
       extra: {
-        minWidth: '30rem',
+        minWidth: '{sizing.width.w30}',
+        maxWidth: '{sizing.width.w30}',
       },
     },
     xlg: {
       extra: {
-        minWidth: '45rem',
+        minWidth: '{sizing.width.w45}',
+        maxWidth: '{sizing.width.w45}',
       },
     },
   },
   sizingMessage: {
-    width: '25rem',
+    width: '{sizing.width.w25}',
     sm: {
-      width: '20rem',
+      width: '{sizing.width.w20}',
     },
     lg: {
-      width: '30rem',
+      width: '{sizing.width.w30}',
     },
     xlg: {
-      width: '45rem',
+      width: '{sizing.width.w45}',
     },
   },
   sizingToast: {
-    width: '25rem',
+    width: '{sizing.width.w25}',
     sm: {
-      width: '20rem',
+      width: '{sizing.width.w20}',
     },
     lg: {
-      width: '30rem',
+      width: '{sizing.width.w30}',
     },
     xlg: {
-      width: '45rem',
+      width: '{sizing.width.w45}',
     },
   },
   sizingDrawer: {
-    width: '25rem',
+    width: '{sizing.width.w25}',
     sm: {
-      width: '20rem',
+      width: '{sizing.width.w20}',
     },
     lg: {
-      width: '30rem',
+      width: '{sizing.width.w30}',
     },
     xlg: {
-      width: '45rem',
+      width: '{sizing.width.w45}',
     },
   },
   content: {
@@ -182,6 +203,11 @@ export default {
     navigation: {
       shadow: '0 2px 12px 0 rgba(0, 0, 0, 0.1)',
     },
+  },
+  opacity: {
+    default: '{opacity.100}',
+    muted: '{opacity.50}',
+    disabled: '{opacity.0}',
   },
   transitionDuration: '0.2s',
   disabledOpacity: '0.5',

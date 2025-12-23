@@ -1,9 +1,11 @@
 import avatarCss from './components/css/avatar';
+import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
+   ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
 
