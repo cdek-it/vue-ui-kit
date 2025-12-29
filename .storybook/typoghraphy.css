@@ -167,7 +167,7 @@
   line-height: var(--lineHeight-40);
 }
 
-.body-bold-base-disabled-paragraph {
+.body-bold-base-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -207,7 +207,7 @@
   line-height: var(--lineHeight-40);
 }
 
-.body-bold-base-primary-disabled-paragraph {
+.body-bold-base-primary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -247,7 +247,7 @@
   line-height: var(--lineHeight-40);
 }
 
-.body-bold-base-secondary-disabled-paragraph {
+.body-bold-base-secondary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -289,7 +289,7 @@
   text-decoration-line: line-through;
 }
 
-.body-bold-base-strikethrough-disabled-paragraph {
+.body-bold-base-strikethrough-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -333,7 +333,7 @@
   text-decoration-line: line-through;
 }
 
-.body-bold-base-strikethrough-primary-disabled-paragraph {
+.body-bold-base-strikethrough-primary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -377,7 +377,7 @@
   text-decoration-line: line-through;
 }
 
-.body-bold-base-strikethrough-secondary-disabled-paragraph {
+.body-bold-base-strikethrough-secondary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -419,7 +419,7 @@
   line-height: var(--lineHeight-45);
 }
 
-.body-bold-lg-disabled-paragraph {
+.body-bold-lg-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -459,7 +459,7 @@
   line-height: var(--lineHeight-45);
 }
 
-.body-bold-lg-primary-disabled-paragraph {
+.body-bold-lg-primary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -499,7 +499,7 @@
   line-height: var(--lineHeight-45);
 }
 
-.body-bold-lg-secondary-disabled-paragraph {
+.body-bold-lg-secondary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -541,7 +541,7 @@
   text-decoration-line: line-through;
 }
 
-.body-bold-lg-strikethrough-disabled-paragraph {
+.body-bold-lg-strikethrough-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -585,7 +585,7 @@
   text-decoration-line: line-through;
 }
 
-.body-bold-lg-strikethrough-primary-disabled-paragraph {
+.body-bold-lg-strikethrough-primary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -629,7 +629,7 @@
   text-decoration-line: line-through;
 }
 
-.body-bold-lg-strikethrough-secondary-disabled-paragraph {
+.body-bold-lg-strikethrough-secondary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-bold/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -671,7 +671,7 @@
   line-height: var(--lineHeight-40);
 }
 
-.body-regular-base-disabled-paragraph {
+.body-regular-base-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -711,7 +711,7 @@
   line-height: var(--lineHeight-40);
 }
 
-.body-regular-base-primary-disabled-paragraph {
+.body-regular-base-primary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -751,7 +751,7 @@
   line-height: var(--lineHeight-40);
 }
 
-.body-regular-base-secondary-disabled-paragraph {
+.body-regular-base-secondary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -793,7 +793,7 @@
   text-decoration-line: line-through;
 }
 
-.body-regular-base-strikethrough-disabled-paragraph {
+.body-regular-base-strikethrough-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -837,7 +837,7 @@
   text-decoration-line: line-through;
 }
 
-.body-regular-base-strikethrough-primary-disabled-paragraph {
+.body-regular-base-strikethrough-primary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -881,7 +881,7 @@
   text-decoration-line: line-through;
 }
 
-.body-regular-base-strikethrough-secondary-disabled-paragraph {
+.body-regular-base-strikethrough-secondary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-base/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -923,7 +923,7 @@
   line-height: var(--lineHeight-45);
 }
 
-.body-regular-lg-disabled-paragraph {
+.body-regular-lg-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -963,7 +963,7 @@
   line-height: var(--lineHeight-45);
 }
 
-.body-regular-lg-primary-disabled-paragraph {
+.body-regular-lg-primary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -1003,7 +1003,7 @@
   line-height: var(--lineHeight-45);
 }
 
-.body-regular-lg-secondary-disabled-paragraph {
+.body-regular-lg-secondary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -1045,7 +1045,7 @@
   text-decoration-line: line-through;
 }
 
-.body-regular-lg-strikethrough-disabled-paragraph {
+.body-regular-lg-strikethrough-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -1089,7 +1089,7 @@
   text-decoration-line: line-through;
 }
 
-.body-regular-lg-strikethrough-primary-disabled-paragraph {
+.body-regular-lg-strikethrough-primary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
@@ -1133,7 +1133,7 @@
   text-decoration-line: line-through;
 }
 
-.body-regular-lg-strikethrough-secondary-disabled-paragraph {
+.body-regular-lg-strikethrough-secondary-paragraph-disabled {
   color: var(--text-color-disabled);
   /* secondary-font/text-lg/font-regular/leading-normal/no-underline */
   font-family: var(--fontFamily-base);
