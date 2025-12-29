@@ -1,12 +1,23 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template, TemplateWithIcons } from './InputText.template';
+import { 
+  Template, 
+  TemplateWithIcons, 
+  TemplateReadonly, 
+  TemplateFloatLabel,
+  TemplateFloatLabelOn,
+  TemplateFloatLabelOver,
+  TemplateFloatLabelWithIcons,
+  TemplateSizes 
+} from './InputText.template';
 
 <Meta title="Prime/Form/InputText" />
 
 # InputText
 
-[PrimeVue InputText](https://primevue.org/inputtext), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5470&node-type=section&t=2PSg63p2UfJ4cUzB-0>)
+[PrimeVue InputText](https://primevue.org/inputtext), [Макет](<https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/%F0%9F%A7%A9-UI-kit-PrimeFace--1.0.0-beta-?node-id=15-13444&m=dev>)
+
+## Базовые состояния
 
 ```html dark
 <PrimeInputText v-model="value" placeholder="InputText" />
@@ -14,27 +25,130 @@ import { Template, TemplateWithIcons } from './InputText.template';
 
 <Story name="Primary">{Template.bind({})}</Story>
 
+## Readonly
 
-# С иконками
-Логика на работу крестика не прописана в ui-ките, на данный момент должна быть прописана на стороне приложения
+Состояние только для чтения с особым фоном.
+
+```html dark
+<PrimeInputText v-model="value" placeholder="Placeholder" readonly />
+```
+
+<Story name="Readonly">{TemplateReadonly.bind({})}</Story>
+
+## С иконками
+
+Логика на работу крестика не прописана в ui-ките, на данный момент должна быть прописана на стороне приложения.
+Иконка появляется только когда в поле введен хотя бы один символ.
+
 ```html dark
 <script setup>
   const inputValue = ref('');
 
-    const onClickDelete = () => {
-      inputValue.value = '';
-    };
+  const onClickDelete = () => {
+    inputValue.value = '';
+  };
 </script>
 
 <template>
-    <PrimeIconField>
-        <PrimeInputText v-model=inputValue placeholder="Normal" />
-        <PrimeInputIcon @click="onClickDelete">
-            <i class="ti ti-x" />
-        </PrimeInputIcon>
-    </PrimeIconField>
+  <PrimeIconField>
+    <PrimeInputText v-model="inputValue" placeholder="Normal" />
+    <PrimeInputIcon v-if="inputValue.length > 0" @click="onClickDelete">
+      <i class="ti ti-x" />
+    </PrimeInputIcon>
+  </PrimeIconField>
 </template>
-
 ```
 
 <Story name="withIcons">{TemplateWithIcons.bind({})}</Story>
+
+## FloatLabel
+
+Плавающая метка для InputText. Поддерживает три варианта позиционирования.
+
+### Variant: Inside (IFTA)
+
+Метка находится внутри поля и поднимается вверх при фокусе или наличии значения.
+
+```html dark
+<PrimeFloatLabel variant="inside">
+  <PrimeInputText id="username" v-model="value" />
+  <label for="username">FloatLabel</label>
+</PrimeFloatLabel>
+```
+
+<Story name="FloatLabel">{TemplateFloatLabel.bind({})}</Story>
+
+### Variant: On
+
+Метка появляется на границе поля при фокусе или наличии значения.
+
+```html dark
+<PrimeFloatLabel variant="on">
+  <PrimeInputText id="username" v-model="value" />
+  <label for="username">FloatLabel</label>
+</PrimeFloatLabel>
+```
+
+<Story name="FloatLabelOn">{TemplateFloatLabelOn.bind({})}</Story>
+
+### Variant: Over
+
+Метка находится над полем и поднимается выше при фокусе или наличии значения.
+
+```html dark
+<PrimeFloatLabel variant="over">
+  <PrimeInputText id="username" v-model="value" />
+  <label for="username">FloatLabel</label>
+</PrimeFloatLabel>
+```
+
+<Story name="FloatLabelOver">{TemplateFloatLabelOver.bind({})}</Story>
+
+## FloatLabel с иконками
+
+Комбинация FloatLabel и IconField.
+Иконка очистки появляется только когда есть значение в поле.
+
+```html dark
+<script setup>
+  const inputValue = ref('InputText');
+
+  const onClickDelete = () => {
+    inputValue.value = '';
+  };
+</script>
+
+<template>
+  <PrimeFloatLabel>
+    <PrimeIconField>
+      <PrimeInputText id="float-icon" v-model="inputValue" />
+      <PrimeInputIcon v-if="inputValue.length > 0" @click="onClickDelete">
+        <i class="ti ti-x" />
+      </PrimeInputIcon>
+    </PrimeIconField>
+    <label for="float-icon">FloatLabel</label>
+  </PrimeFloatLabel>
+</template>
+```
+
+<Story name="FloatLabelWithIcons">{TemplateFloatLabelWithIcons.bind({})}</Story>
+
+## Размеры (sizingTextInput)
+
+Различные размеры InputText согласно дизайн-токенам.
+
+```html dark
+<!-- Small -->
+<PrimeInputText placeholder="Small" class="p-inputtext-sm" />
+
+<!-- Default -->
+<PrimeInputText placeholder="Default" />
+
+<!-- Large -->
+<PrimeInputText placeholder="Large" class="p-inputtext-lg" />
+
+<!-- Extra Large -->
+<PrimeInputText placeholder="Extra Large" class="p-inputtext-xlg" />
+```
+
+<Story name="Sizes">{TemplateSizes.bind({})}</Story>

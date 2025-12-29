@@ -1,19 +1,91 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './TieredMenu.template';
+import { BasicTemplate, PopupTemplate } from './TieredMenu.template';
 
 <Meta title="Prime/Menu/TieredMenu" />
 
 # TieredMenu
 
-[PrimeVue Menu](https://primevue.org/tieredmenu), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12975&m=dev>)
+[PrimeVue TieredMenu](https://primevue.org/tieredmenu)
 
-### Basic
+Компонент TieredMenu отображает многоуровневое меню с поддержкой вложенных подменю.
+
+## Basic
+
+Базовое многоуровневое меню. По умолчанию все пункты не выбраны. При клике на пункт меню ему присваивается класс `p-menuitem-checked`.
+
+[PrimeVue Basic Example](https://primevue.org/tieredmenu/#basic)
 
 ```jsx dark
-const selectedClass = 'p-menuitem-checked';
+const items = [
+  {
+    label: 'File',
+    icon: 'ti ti-file',
+    items: [
+      {
+        label: 'New',
+        icon: 'ti ti-plus',
+      },
+      {
+        label: 'Open',
+        icon: 'ti ti-folder-open',
+      }
+    ]
+  }
+];
 
-<PrimeTieredMenu :model="items" />
+<TieredMenu :model="items" />
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+## Popup
+
+Меню в режиме popup (overlay). Открывается по клику на кнопку.
+
+[PrimeVue Popup Example](https://primevue.org/tieredmenu/#popup)
+
+```jsx dark
+const menu = ref();
+const items = [...];
+
+const toggle = (event) => {
+  menu.value.toggle(event);
+};
+
+<Button label="Show Menu" @click="toggle" />
+<TieredMenu ref="menu" :model="items" :popup="true" />
+```
+
+<Story name="Popup">{PopupTemplate.bind({})}</Story>
+
+## Особенности стилизации
+
+### Design Tokens
+Основные стили определены в `src/plugins/prime/theme3.0/components/index.ts`:
+- Цвета (background, color, border)
+- Отступы (padding, gap)
+- Состояния (hover, focus, active, disabled)
+
+### Дополнительные CSS
+Дополнительные стили в `src/plugins/prime/theme3.0/components/css/tieredmenu.ts`:
+- Border для submenu overlay
+- Caption стили (цвет, размер шрифта)
+- Улучшенная структура label с flex-direction: column
+- Active state для caption с opacity
+
+## Состояния
+
+- **Default** - обычное состояние (по умолчанию все пункты не выбраны)
+- **Hover** - при наведении (светлый фон)
+- **Selected** - активный элемент (темный фон), класс `p-menuitem-checked` добавляется при клике
+- **Disabled** - неактивный элемент
+
+### CSS для выбранного состояния
+
+```css
+.p-tieredmenu .p-tieredmenu-item.p-menuitem-checked > .p-tieredmenu-item-content {
+  background: var(--p-tieredmenu-ext-item-active-background);
+  color: var(--p-tieredmenu-ext-item-active-color);
+}
+```

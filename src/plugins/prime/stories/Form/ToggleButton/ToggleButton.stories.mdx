@@ -4,11 +4,13 @@ import { Template, Slots } from './ToggleButton.template';
 
 <Meta title="Prime/Form/ToggleButton" />
 
-# Rating
+# ToggleButton
 
-[PrimeVue ToggleButton](https://primevue.org/togglebutton/), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-4821&t=3YXMhb09kaDg7lEL-4>)
+[PrimeVue ToggleButton](https://primevue.org/togglebutton/), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/%F0%9F%A7%A9-UI-kit-PrimeFace--1.0.0-beta-?node-id=174-1363)
 
-### Basic
+### Основные варианты
+
+Компонент поддерживает различные размеры (small, base, large, xlarge), состояния (checked/unchecked, disabled), а также позиции иконок (left, right, icon-only).
 
 ```html dark
 <PrimeToggleButton
@@ -22,6 +24,46 @@ import { Template, Slots } from './ToggleButton.template';
 
 <Story name="Primary">{Template.bind({})}</Story>
 
+### Размеры
+
+Доступны 4 размера:
+- `size="small"` - маленький размер
+- По умолчанию - базовый размер
+- `size="large"` - большой размер
+- `:pt="{ root: { class: 'p-togglebutton-xlarge' } }"` - очень большой размер
+
+### Иконки
+
+Иконки можно размещать слева (по умолчанию), справа (`icon-pos="right"`), или использовать только иконку без текста (`:pt="{ root: { class: 'p-togglebutton-icon-only' } }"`).
+
+```html dark
+<!-- Иконка слева -->
+<ToggleButton 
+    v-model="checked" 
+    off-icon="ti ti-arrow-down-right" 
+    on-icon="ti ti-arrow-down-right"
+    off-label="ToggleButton" 
+    on-label="ToggleButton" 
+/>
+
+<!-- Иконка справа -->
+<ToggleButton 
+    v-model="checked" 
+    off-icon="ti ti-arrow-down-right" 
+    on-icon="ti ti-arrow-down-right"
+    icon-pos="right"
+    off-label="ToggleButton" 
+    on-label="ToggleButton" 
+/>
+
+<!-- Только иконка -->
+<ToggleButton 
+    :pt="{ root: { class: 'p-togglebutton-icon-only' } }"
+    v-model="checked" 
+    off-icon="ti ti-arrow-down-right" 
+    on-icon="ti ti-arrow-down-right"
+/>
+```
 
 ### Слот
 
@@ -36,7 +78,6 @@ import { Template, Slots } from './ToggleButton.template';
 ```
 
 <Story name="Slot" args={{ name: 'default'}}>{Slots.bind({})}</Story>
-
 
 ### Слот иконки
 

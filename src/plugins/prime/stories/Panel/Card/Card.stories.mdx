@@ -6,29 +6,110 @@ import { Template } from './Card.template';
 
 # Card
 
-[PrimeVue Card](https://primevue.org/card), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=1207-3471&m=dev>)
+[PrimeVue Card](https://primevue.org/card), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/%F0%9F%A7%A9-UI-kit-PrimeFace--1.0.0-beta-?node-id=1213-4134)
 
-### Default
+Card компонент используется для группировки контента. Поддерживает header, title, subtitle, content и footer слоты.
+
+## Варианты
+
+### Default (Overlay)
+
+Карточка с тенью (overlay: true) - используется по умолчанию.
 
 ```html dark
-<PrimeCard>
-    <template #header>HEADER</template>
-
-    <template #title>
-      <div class="flex flex-col gap-1">
-        <p class="title-h4">Title</p>
-        <p class="caption">Caption</p>
-      </div>
-    </template>
-
-    <template #content>
-      CONTENT
-    </template>
-
-    <template #footer>
-      FOOTER
-    </template>
-</PrimeCard>
+<Card>
+  <template #title>Title</template>
+  <template #subtitle>Caption</template>
+  <template #content>
+    Content
+  </template>
+</Card>
 ```
 
-<Story name="Default" args={{title: "Title"}}>{Template.bind({})}</Story>
+<Story name="Default">{Template.bind({})}</Story>
+
+### Inline (без тени)
+
+Карточка без тени (overlay: false) - для использования внутри других контейнеров.
+
+```html dark
+<Card :pt="{ root: { class: 'p-card-inline' } }">
+  <template #title>Title</template>
+  <template #subtitle>Caption</template>
+  <template #content>
+    Content
+  </template>
+</Card>
+```
+
+<Story name="Inline" args={{inline: true}}>{Template.bind({})}</Story>
+
+## Примеры
+
+### With Header
+
+```html dark
+<Card>
+  <template #header>
+    <img src="image.jpg" alt="Header" />
+  </template>
+  <template #title>Title</template>
+  <template #subtitle>Caption</template>
+  <template #content>
+    Content
+  </template>
+</Card>
+```
+
+<Story name="WithHeader" args={{showHeader: true}}>{Template.bind({})}</Story>
+
+### With Footer
+
+```html dark
+<Card>
+  <template #title>Title</template>
+  <template #subtitle>Caption</template>
+  <template #content>
+    Content
+  </template>
+  <template #footer>
+    <Button label="Action" />
+  </template>
+</Card>
+```
+
+<Story name="WithFooter" args={{showFooter: true}}>{Template.bind({})}</Story>
+
+### Without Caption
+
+```html dark
+<Card>
+  <template #title>Title</template>
+  <template #content>
+    Content
+  </template>
+</Card>
+```
+
+<Story name="WithoutCaption" args={{showCaption: false}}>{Template.bind({})}</Story>
+
+### Inline With Header and Footer
+
+```html dark
+<Card :pt="{ root: { class: 'p-card-inline' } }">
+  <template #header>
+    <img src="image.jpg" alt="Header" />
+  </template>
+  <template #title>Title</template>
+  <template #subtitle>Caption</template>
+  <template #content>
+    Content
+  </template>
+  <template #footer>
+    <Button label="Action" />
+  </template>
+</Card>
+```
+
+<Story name="InlineWithHeaderAndFooter" args={{inline: true, showHeader: true, showFooter: true}}>{Template.bind({})}</Story>
+

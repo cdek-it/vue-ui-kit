@@ -1,0 +1,59 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { BasicTemplate } from './MegaMenu.template';
+
+<Meta title="Prime/Menu/MegaMenu" />
+
+# MegaMenu
+
+[PrimeVue MegaMenu](https://primevue.org/megamenu)
+
+Компонент MegaMenu отображает расширенное меню с многоколоночной структурой.
+
+## Basic
+
+Базовое мега-меню с многоколоночной структурой. По умолчанию все пункты не выбраны. При клике на пункт меню ему присваивается класс `p-menuitem-checked`.
+
+[PrimeVue Basic Example](https://primevue.org/megamenu/#basic)
+
+```jsx dark
+const items = [
+  {
+    label: 'Products',
+    icon: 'ti ti-box',
+    items: [
+      [
+        {
+          label: 'Electronics',
+          items: [
+            { label: 'Laptops', icon: 'ti ti-device-laptop' },
+            { label: 'Phones', icon: 'ti ti-device-mobile' }
+          ]
+        }
+      ]
+    ]
+  }
+];
+
+<MegaMenu :model="items" />
+```
+
+<Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+## Особенности стилизации
+
+### Design Tokens
+Основные стили определены в `src/plugins/prime/theme3.0/components/index.ts` с использованием `colorScheme` для разделения цветовых значений.
+
+### Дополнительные CSS
+Дополнительные стили в `src/plugins/prime/theme3.0/components/css/megamenu.ts`:
+- Caption стили
+- Active state стили
+- Многоколоночная структура
+
+## Состояния
+
+- **Default** - обычное состояние
+- **Hover** - при наведении
+- **Selected** - активный элемент, класс `p-menuitem-checked`
+- **Disabled** - неактивный элемент

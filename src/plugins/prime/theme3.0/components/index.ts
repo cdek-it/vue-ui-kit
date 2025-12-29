@@ -1368,8 +1368,8 @@ export default {
     },
     inside: {
       input: {
-        paddingTop: '1.875rem',
-        paddingBottom: '{formField.paddingY}',
+        paddingTop: '28px',
+        paddingBottom: '14px',
       },
       active: {
         top: '{formField.paddingY}',
@@ -1817,9 +1817,9 @@ export default {
       readonlyBackground: '{formField.readonlyBackground}',
       iconSize: '{iconSizeMedium}',
       extXlg: {
-        fontSize: '{sizingInputtext.root.fontSize}',
-        paddingX: '{sizingInputtext.root.paddingX}',
-        paddingY: '{sizingInputtext.root.paddingY}',
+        fontSize: '{sizingInputtext.xlg.fontSize}',
+        paddingX: '{sizingInputtext.xlg.paddingX}',
+        paddingY: '{sizingInputtext.xlg.paddingY}',
       },
     },
     root: {
@@ -1842,14 +1842,14 @@ export default {
       borderRadius: '{formField.borderRadius}',
       transitionDuration: '{formField.transitionDuration}',
       sm: {
-        fontSize: '{sizingInputtext.root.fontSize}',
-        paddingX: '{sizingInputtext.root.paddingX}',
-        paddingY: '{sizingInputtext.root.paddingY}',
+        fontSize: '{sizingInputtext.sm.fontSize}',
+        paddingX: '{sizingInputtext.sm.paddingX}',
+        paddingY: '{sizingInputtext.sm.paddingY}',
       },
       lg: {
-        fontSize: '{sizingInputtext.root.fontSize}',
-        paddingX: '{sizingInputtext.root.paddingX}',
-        paddingY: '{sizingInputtext.root.paddingY}',
+        fontSize: '{sizingInputtext.lg.fontSize}',
+        paddingX: '{sizingInputtext.lg.paddingX}',
+        paddingY: '{sizingInputtext.lg.paddingY}',
       },
       focusRing: {
         width: '{formField.focusRing.width}',
@@ -1924,25 +1924,56 @@ export default {
     },
   },
   megamenu: {
-    colorScheme: {
-      light: {
-        root: {
-          background: '{transparent}',
-        },
-      },
-    },
     extend: {
       extItem: {
         caption: {
           color: '{text.mutedColor}',
           gap: '0.25rem',
         },
+        icon: {
+          activeColor: '{navigation.item.icon.activeColor}'
+        },
+        activeBackground: '{navigation.item.activeBackground}',
+        activeColor: '{navigation.item.activeColor}'
+      },
+    },
+    colorScheme: {
+      light: {
+        root: {
+          background: '{transparent}',
+          borderColor: '{transparent}',
+          color: '{content.color}'
+        },
+        item: {
+          focusBackground: '{navigation.item.focusBackground}',
+          color: '{navigation.item.color}',
+          focusColor: '{navigation.item.focusColor}',
+          icon: {
+            color: '{navigation.item.icon.color}',
+            focusColor: '{navigation.item.icon.focusColor}',
+          },
+        },
+        overlay: {
+          background: '{content.background}',
+          borderColor: '{content.borderColor}',
+          color: '{content.color}',
+        },
+        submenuLabel: {
+          background: '{navigation.submenuLabel.background}',
+          color: '{navigation.submenuLabel.color}'
+        },
+        submenuIcon: {
+          color: '{navigation.submenuIcon.color}',
+          focusColor: '{navigation.submenuIcon.focusColor}',
+          activeColor: '{navigation.submenuIcon.activeColor}',
+        },
+        separator: {
+          borderColor: '{content.borderColor}'
+        }
       },
     },
     root: {
-      borderColor: '{transparent}',
       borderRadius: '{content.borderRadius}',
-      color: '{content.color}',
       gap: '0.25rem',
       transitionDuration: '{transitionDuration}',
       verticalOrientation: {
@@ -1959,26 +1990,13 @@ export default {
       padding: '{navigation.item.padding}',
     },
     item: {
-      focusBackground: '{navigation.item.focusBackground}',
-      activeBackground: '{navigation.item.activeBackground}',
-      color: '{navigation.item.color}',
-      focusColor: '{navigation.item.focusColor}',
-      activeColor: '{navigation.item.activeColor}',
       padding: '{navigation.item.padding}',
       borderRadius: '{navigation.item.borderRadius}',
       gap: '{navigation.item.gap}',
-      icon: {
-        color: '{navigation.item.icon.color}',
-        focusColor: '{navigation.item.icon.focusColor}',
-        activeColor: '{navigation.item.icon.activeColor}',
-      },
     },
     overlay: {
       padding: '0.25rem',
-      background: '{content.background}',
-      borderColor: '{content.borderColor}',
       borderRadius: '{content.borderRadius}',
-      color: '{content.color}',
       shadow: '{overlay.navigation.shadow}',
       gap: '0',
     },
@@ -1989,17 +2007,9 @@ export default {
     submenuLabel: {
       padding: '{navigation.submenuLabel.padding}',
       fontWeight: '{navigation.submenuLabel.fontWeight}',
-      background: '{navigation.submenuLabel.background}',
-      color: '{navigation.submenuLabel.color}',
     },
     submenuIcon: {
       size: '{navigation.submenuIcon.size}',
-      color: '{navigation.submenuIcon.color}',
-      focusColor: '{navigation.submenuIcon.focusColor}',
-      activeColor: '{navigation.submenuIcon.activeColor}',
-    },
-    separator: {
-      borderColor: '{content.borderColor}',
     },
     mobileButton: {
       borderRadius: '{navigation.item.borderRadius}',
@@ -2023,44 +2033,60 @@ export default {
       extItem: {
         caption: {
           color: '{text.mutedColor}',
-          gap: '0.25rem',
+          gap: '0.25rem'
         },
-      },
+        icon: {
+          activeColor: '{navigation.item.icon.activeColor}'
+        },
+        activeBackground: '{navigation.item.activeBackground}',
+        activeColor: '{navigation.item.activeColor}'
+      }
     },
     root: {
-      background: '{content.background}',
-      borderColor: '{content.borderColor}',
-      color: '{content.color}',
       borderRadius: '{content.borderRadius}',
       shadow: '{overlay.navigation.shadow}',
-      transitionDuration: '{transitionDuration}',
+      transitionDuration: '{transitionDuration}'
+    },
+    colorScheme: {
+      light: {
+        root: {
+          background: '{content.background}',
+          borderColor: '{content.borderColor}',
+          color: '{content.color}'
+        },
+        item: {
+          focusBackground: '{navigation.item.focusBackground}',
+          color: '{navigation.item.color}',
+          focusColor: '{navigation.item.focusColor}',
+          icon: {
+            color: '{navigation.item.icon.color}',
+            focusColor: '{navigation.item.icon.focusColor}',
+          },
+        },
+        submenuLabel: {
+        background: '{navigation.submenuLabel.background}',
+        color: '{navigation.submenuLabel.color}'
+        },
+        separator: {
+          borderColor: '{content.borderColor}'
+        }
     },
     list: {
       padding: '{navigation.list.padding}',
-      gap: '{navigation.list.gap}',
+      gap: '{navigation.list.gap}'
     },
     item: {
-      focusBackground: '{navigation.item.focusBackground}',
-      color: '{navigation.item.color}',
-      focusColor: '{navigation.item.focusColor}',
       padding: '{navigation.item.padding}',
       borderRadius: '{navigation.item.borderRadius}',
       gap: '{navigation.item.gap}',
-      icon: {
-        color: '{navigation.item.icon.color}',
-        focusColor: '{navigation.item.icon.focusColor}',
-      },
     },
     submenuLabel: {
       padding: '{navigation.submenuLabel.padding}',
       fontWeight: '{fonts.fontWeight.demibold}',
-      background: '{navigation.submenuLabel.background}',
-      color: '{navigation.submenuLabel.color}',
     },
-    separator: {
-      borderColor: '{content.borderColor}',
     },
   },
+  заменить токены на новые из файла фигмы с помощью плагина, ща ии сломал структуру
   menubar: {
     extend: {
       extItem: {
@@ -2068,6 +2094,11 @@ export default {
           color: '{text.mutedColor}',
           gap: '0.25rem',
         },
+        icon: {
+          activeColor: '{navigation.item.icon.activeColor}'
+        },
+        activeBackground: '{navigation.item.activeBackground}',
+        activeColor: '{navigation.item.activeColor}'
       },
       extSubmenuLabel: {
         padding: '{navigation.submenuLabel.padding}',
@@ -2080,13 +2111,35 @@ export default {
       light: {
         root: {
           background: '{transparent}',
+          borderColor: '{transparent}',
+          color: '{content.color}'
         },
+        item: {
+          focusBackground: '{navigation.item.focusBackground}',
+          color: '{navigation.item.color}',
+          focusColor: '{navigation.item.focusColor}',
+          icon: {
+            color: '{navigation.item.icon.color}',
+            focusColor: '{navigation.item.icon.focusColor}',
+            activeColor: '{navigation.item.icon.activeColor}',
+          },
+        },
+        submenu: {
+          background: '{content.background}',
+          borderColor: '{content.borderColor}',
+        },
+        submenuIcon: {
+          color: '{navigation.submenuIcon.color}',
+          focusColor: '{navigation.submenuIcon.focusColor}',
+          activeColor: '{navigation.submenuIcon.activeColor}',
+        },
+        separator: {
+          borderColor: '{content.borderColor}'
+        }
       },
     },
     root: {
-      borderColor: '{transparent}',
       borderRadius: '{navigation.item.borderRadius}',
-      color: '{content.color}',
       gap: '0.25rem',
       padding: '{navigation.list.padding}',
       transitionDuration: '{transitionDuration}',
@@ -2096,37 +2149,19 @@ export default {
       padding: '0.5rem 0.75rem',
     },
     item: {
-      focusBackground: '{navigation.item.focusBackground}',
-      activeBackground: '{navigation.item.activeBackground}',
-      color: '{navigation.item.color}',
-      focusColor: '{navigation.item.focusColor}',
-      activeColor: '{navigation.item.activeColor}',
       padding: '{navigation.item.padding}',
       borderRadius: '{navigation.item.borderRadius}',
       gap: '{navigation.item.gap}',
-      icon: {
-        color: '{navigation.item.icon.color}',
-        focusColor: '{navigation.item.icon.focusColor}',
-        activeColor: '{navigation.item.icon.activeColor}',
-      },
     },
     submenu: {
       padding: '{navigation.list.padding}',
       gap: '{navigation.list.gap}',
-      background: '{content.background}',
-      borderColor: '{content.borderColor}',
       borderRadius: '{content.borderRadius}',
       shadow: '{overlay.navigation.shadow}',
       mobileIndent: '0.75rem',
       icon: {
         size: '{navigation.submenuIcon.size}',
-        color: '{navigation.submenuIcon.color}',
-        focusColor: '{navigation.submenuIcon.focusColor}',
-        activeColor: '{navigation.submenuIcon.activeColor}',
       },
-    },
-    separator: {
-      borderColor: '{content.borderColor}',
     },
     mobileButton: {
       borderRadius: '{navigation.item.borderRadius}',
@@ -2306,17 +2341,42 @@ export default {
           color: '{text.mutedColor}',
           gap: '0.25rem',
         },
+        icon: {
+          activeColor: '{navigation.item.icon.activeColor}'
+        },
       },
     },
     root: {
       gap: '0.25rem',
       transitionDuration: '{transitionDuration}',
     },
+    colorScheme: {
+      light: {
+        panel: {
+          background: '{transparent}',
+          borderColor: '{transparent}',
+          color: '{content.color}',
+        },
+        item: {
+          focusBackground: '{navigation.item.focusBackground}',
+          color: '{navigation.item.color}',
+          focusColor: '{navigation.item.focusColor}',
+          icon: {
+            color: '{navigation.item.icon.color}',
+            focusColor: '{navigation.item.icon.focusColor}',
+          },
+        },
+        submenuIcon: {
+          color: '{navigation.submenuIcon.color}',
+          focusColor: '{navigation.submenuIcon.focusColor}',
+        },
+        separator: {
+          borderColor: '{content.borderColor}'
+        }
+      },
+    },
     panel: {
-      background: '{transparent}',
-      borderColor: '{transparent}',
       borderWidth: '0.07142857142857142rem',
-      color: '{content.color}',
       padding: '0.25rem',
       borderRadius: '{content.borderRadius}',
       first: {
@@ -2329,26 +2389,12 @@ export default {
       },
     },
     item: {
-      focusBackground: '{navigation.item.focusBackground}',
-      color: '{navigation.item.color}',
-      focusColor: '{navigation.item.focusColor}',
       gap: '0.5rem',
       padding: '{navigation.item.padding}',
       borderRadius: '{navigation.item.borderRadius}',
-      icon: {
-        color: '{navigation.item.icon.color}',
-        focusColor: '{navigation.item.icon.focusColor}',
-      },
     },
     submenu: {
       indent: '0.75rem',
-    },
-    separator: {
-      borderColor: '{content.borderColor}',
-    },
-    submenuIcon: {
-      color: '{navigation.submenuIcon.color}',
-      focusColor: '{navigation.submenuIcon.focusColor}',
     },
   },
   password: {
@@ -2622,10 +2668,12 @@ export default {
         root: {
           invalidBorderColor: '{formField.invalidBorderColor}',
         },
+        extend: {
+          background: '{surface.200}',
+          paddingX: '{spacing.padding.p1}',
+          paddingY: '{spacing.padding.p1}'
+        },
       },
-    },
-    extend: {
-      background: '{surface.200}',
     },
     root: {
       borderRadius: '{borderRadius.rounded}',
@@ -3104,6 +3152,8 @@ export default {
   },
   tieredmenu: {
     extend: {
+      paddingX: '0.25rem',
+      paddingY: '0.25rem',
       extSubmenu: {
         borderColor: '{content.borderColor}',
         background: '{content.background}',
@@ -3113,40 +3163,50 @@ export default {
           gap: '0.25rem',
           color: '{text.mutedColor}',
         },
+        icon: {
+          activeColor: '{navigation.item.icon.activeColor}'
+        },
+        activeBackground: '{navigation.item.activeBackground}',
+        activeColor: '{navigation.item.activeColor}'
       },
     },
     root: {
-      background: '{transparent}',
-      borderColor: '{transparent}',
-      color: '{content.color}',
       borderRadius: '{content.borderRadius}',
       shadow: '{overlay.navigation.shadow}',
       transitionDuration: '{transitionDuration}',
+    },
+    colorScheme: {
+      light: {
+        root: {
+          background: '{content.background}',
+          borderColor: '{content.borderColor}',
+          color: '{content.color}'
+        },
+        item: {
+          focusBackground: '{navigation.item.focusBackground}',
+          color: '{navigation.item.color}',
+          focusColor: '{navigation.item.focusColor}',
+          icon: {
+            color: '{navigation.item.icon.color}',
+            focusColor: '{navigation.item.icon.focusColor}',
+          },
+        },
+        separator: {
+          borderColor: '{content.borderColor}'
+        }
+      },
     },
     list: {
       padding: '{navigation.list.padding}',
       gap: '{navigation.list.gap}',
     },
     item: {
-      focusBackground: '{navigation.item.focusBackground}',
-      activeBackground: '{navigation.item.activeBackground}',
-      color: '{navigation.item.color}',
-      focusColor: '{navigation.item.focusColor}',
-      activeColor: '{navigation.item.activeColor}',
       padding: '{navigation.item.padding}',
       borderRadius: '{navigation.item.borderRadius}',
       gap: '{navigation.item.gap}',
-      icon: {
-        color: '{navigation.item.icon.color}',
-        focusColor: '{navigation.item.icon.focusColor}',
-        activeColor: '{navigation.item.icon.activeColor}',
-      },
     },
     submenu: {
       mobileIndent: '0.75rem',
-    },
-    separator: {
-      borderColor: '{content.borderColor}',
     },
   },
   timeline: {
@@ -3186,7 +3246,30 @@ export default {
       light: {
         root: {
           background: '{surface.200}',
+          hoverBackground: '{surface.300}',
+          borderColor: '{surface.200}',
+          color: '{text.color}',
+          hoverColor: '{text.color}',
+          checkedBackground: '{surface.900}',
+          checkedColor: '{text.extend.colorInverted}',
+          checkedBorderColor: '{surface.900}',
+          disabledBackground: '{formField.disabledBackground}',
+          disabledBorderColor: '{formField.disabledBackground}',
+          disabledColor: '{formField.disabledColor}',
+          invalidBorderColor: '{formField.invalidBorderColor}',
+          icon: {
+            color: '{text.color}',
+            hoverColor: '{text.color}',
+            checkedColor: '{text.extend.colorInverted}',
+            disabledColor: '{formField.disabledColor}',
+          }
         },
+        extend: {
+          hoverBorderColor: '{surface.300}',
+          checkedHoverColor: '{text.extend.colorInverted}',
+          checkedHoverBackground: '{surface.800}',
+          checkedHoverBorderColor: '{surface.800}'
+        }
       },
     },
     extend: {
@@ -3199,10 +3282,6 @@ export default {
       extSm: {
         iconOnlyWidth: '2.142857142857143rem',
       },
-      hoverBorderColor: '{surface.300}',
-      checkedHoverColor: '{text.extend.colorInverted}',
-      checkedHoverBackground: '{surface.800}',
-      checkedHoverBorderColor: '{surface.800}',
       extLg: {
         iconOnlyWidth: '3.5714285714285716rem',
       },
@@ -3212,17 +3291,6 @@ export default {
       borderRadius: '{borderRadius.rounded}',
       gap: '0.5rem',
       fontWeight: '{fonts.fontWeight.demibold}',
-      hoverBackground: '{surface.300}',
-      borderColor: '{surface.200}',
-      color: '{text.color}',
-      hoverColor: '{text.color}',
-      checkedBackground: '{surface.900}',
-      checkedColor: '{text.extend.colorInverted}',
-      checkedBorderColor: '{surface.900}',
-      disabledBackground: '{formField.disabledBackground}',
-      disabledBorderColor: '{formField.disabledBackground}',
-      disabledColor: '{formField.disabledColor}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
       focusRing: {
         width: '{formField.focusRing.width}',
         style: '{formField.focusRing.style}',
@@ -3239,12 +3307,6 @@ export default {
         padding: '1rem 1.5rem',
       },
       transitionDuration: '{formField.transitionDuration}',
-    },
-    icon: {
-      color: '{text.color}',
-      hoverColor: '{text.color}',
-      checkedColor: '{text.extend.colorInverted}',
-      disabledColor: '{formField.disabledColor}',
     },
     content: {
       checkedBackground: '{transparent}',

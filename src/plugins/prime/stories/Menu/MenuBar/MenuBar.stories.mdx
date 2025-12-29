@@ -1,19 +1,54 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './MenuBar.template';
+import { BasicTemplate } from './MenuBar.template';
 
 <Meta title="Prime/Menu/MenuBar" />
 
 # MenuBar
 
-[PrimeVue MenuBar](https://primevue.org/menubar), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12875&m=dev>)
+[PrimeVue Menubar](https://primevue.org/menubar)
 
-### Basic
+Компонент Menubar отображает горизонтальное меню навигации.
+
+## Basic
+
+Базовое горизонтальное меню. По умолчанию все пункты не выбраны. При клике на пункт меню ему присваивается класс `p-menuitem-checked`.
+
+[PrimeVue Basic Example](https://primevue.org/menubar/#basic)
 
 ```jsx dark
-const selectedClass = 'p-menuitem-checked';
+const items = [
+  {
+    label: 'File',
+    icon: 'ti ti-file',
+    items: [
+      {
+        label: 'New',
+        icon: 'ti ti-plus',
+      }
+    ]
+  }
+];
 
-<PrimeMenubar :model="items" />
+<Menubar :model="items" />
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+## Особенности стилизации
+
+### Design Tokens
+Основные стили определены в `src/plugins/prime/theme3.0/components/index.ts` с использованием `colorScheme` для разделения цветовых значений.
+
+### Дополнительные CSS
+Дополнительные стили в `src/plugins/prime/theme3.0/components/css/menubar.ts`:
+- Caption стили
+- Active state стили
+- Submenu label стили
+
+## Состояния
+
+- **Default** - обычное состояние
+- **Hover** - при наведении
+- **Selected** - активный элемент, класс `p-menuitem-checked`
+- **Disabled** - неактивный элемент
