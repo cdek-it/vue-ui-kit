@@ -1498,3 +1498,8 @@
   line-height: var(--lineHeight-30);
   text-decoration: underline;
 }
+
+[class^="anchor-"]::selection {
+    background: var(--p-success-500, #44E858);
+    color: var(--text-color);
+}
