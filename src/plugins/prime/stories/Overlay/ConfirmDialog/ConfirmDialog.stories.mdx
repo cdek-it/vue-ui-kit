@@ -1,0 +1,295 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './ConfirmDialog.template';
+
+<Meta title="Prime/Overlay/ConfirmDialog" />
+
+# ConfirmDialog
+
+[PrimeVue ConfirmDialog](https://primevue.org/confirmdialog)
+
+Компонент ConfirmDialog используется для подтверждения действий пользователя с различными размерами и severity.
+
+## Default
+
+Диалог подтверждения по умолчанию с размером `extra`.
+
+```html dark
+<script setup>
+import { useConfirm } from 'primevue/useconfirm';
+
+const confirm = useConfirm();
+
+const showConfirm = () => {
+  confirm.require({
+    message: 'Вы уверены, что хотите продолжить?',
+    header: 'Подтверждение',
+    icon: 'ti ti-alert-triangle',
+    acceptLabel: 'Да',
+    rejectLabel: 'Нет'
+  });
+};
+</script>
+
+<template>
+  <Button @click="showConfirm">Показать диалог</Button>
+  <ConfirmDialog />
+</template>
+```
+
+<Story name="Default">{Template.bind({})}</Story>
+
+## Small (SM)
+
+Компактный диалог подтверждения.
+
+```html dark
+<ConfirmDialog class="p-confirmdialog-sm" />
+```
+
+<Story name="Small (SM)" args={{ class: 'p-confirmdialog-sm' }}>{Template.bind({})}</Story>
+
+## Large (LG)
+
+Диалог подтверждения с большим содержимым.
+
+```html dark
+<ConfirmDialog class="p-confirmdialog-lg" />
+```
+
+<Story name="Large (LG)" args={{ class: 'p-confirmdialog-lg', message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.' }}>{Template.bind({})}</Story>
+
+## Extra Large (XLG)
+
+Диалог подтверждения с максимальным содержимым.
+
+```html dark
+<ConfirmDialog class="p-confirmdialog-xlg" />
+```
+
+<Story name="Extra Large (XLG)" args={{ class: 'p-confirmdialog-xlg', message: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.' }}>{Template.bind({})}</Story>
+
+## Severity: Success
+
+Диалог подтверждения успешного действия с иконкой в хедере.
+
+```html dark
+<script setup>
+const showConfirm = () => {
+  confirm.require({
+    group: 'headless',
+    message: 'Операция выполнена успешно!',
+    header: 'Успех',
+    icon: 'ti ti-circle-check',
+    acceptLabel: 'OK',
+    rejectLabel: 'Отмена',
+    acceptProps: { severity: 'success' },
+    rejectProps: { severity: 'secondary', text: true }
+  });
+};
+</script>
+
+<template>
+  <ConfirmDialog group="headless" class="p-confirm-dialog-accept">
+    <template #container="{ message, acceptCallback, rejectCallback }">
+      <div class="p-dialog-header">
+        <div class="p-dialog-title">
+          <i class="ti ti-circle-check p-icon"></i>
+          <span>Успех</span>
+        </div>
+        <button class="p-dialog-header-close p-button p-button-text p-button-rounded" type="button" @click="rejectCallback">
+        </button>
+      </div>
+      <div class="p-dialog-content">
+        <p>{{ message.message }}</p>
+      </div>
+      <div class="p-dialog-footer">
+        <Button label="Отмена" severity="secondary" text @click="rejectCallback" />
+        <Button label="OK" severity="success" @click="acceptCallback" />
+      </div>
+    </template>
+  </ConfirmDialog>
+</template>
+```
+
+<Story name="Severity: Success" args={{ header: 'Успех', message: 'Операция выполнена успешно!', icon: 'ti ti-circle-check', acceptLabel: 'OK', acceptSeverity: 'success', class: 'p-confirm-dialog-accept' }}>{Template.bind({})}</Story>
+
+## Severity: Info
+
+Информационный диалог подтверждения с иконкой в хедере.
+
+```html dark
+<script setup>
+const showConfirm = () => {
+  confirm.require({
+    group: 'headless',
+    message: 'Это информационное сообщение',
+    header: 'Информация',
+    icon: 'ti ti-info-circle',
+    acceptLabel: 'Понятно',
+    rejectLabel: 'Закрыть',
+    acceptProps: { severity: 'info' },
+    rejectProps: { severity: 'secondary', text: true }
+  });
+};
+</script>
+
+<template>
+  <ConfirmDialog group="headless" class="p-confirm-dialog-info">
+    <template #container="{ message, acceptCallback, rejectCallback }">
+      <div class="p-dialog-header">
+        <div class="p-dialog-title">
+          <i class="ti ti-info-circle p-icon"></i>
+          <span>Информация</span>
+        </div>
+        <button class="p-dialog-header-close p-button p-button-text p-button-rounded" type="button" @click="rejectCallback">
+        </button>
+      </div>
+      <div class="p-dialog-content">
+        <p>{{ message.message }}</p>
+      </div>
+      <div class="p-dialog-footer">
+        <Button label="Закрыть" severity="secondary" text @click="rejectCallback" />
+        <Button label="Понятно" severity="info" @click="acceptCallback" />
+      </div>
+    </template>
+  </ConfirmDialog>
+</template>
+```
+
+<Story name="Severity: Info" args={{ header: 'Информация', message: 'Это информационное сообщение', icon: 'ti ti-info-circle', acceptLabel: 'Понятно', acceptSeverity: 'info', class: 'p-confirm-dialog-info' }}>{Template.bind({})}</Story>
+
+## Severity: Warn
+
+Диалог предупреждения с иконкой в хедере.
+
+```html dark
+<script setup>
+const showConfirm = () => {
+  confirm.require({
+    group: 'headless',
+    message: 'Внимание! Это действие может иметь последствия',
+    header: 'Предупреждение',
+    icon: 'ti ti-alert-triangle',
+    acceptLabel: 'Продолжить',
+    rejectLabel: 'Отмена',
+    acceptProps: { severity: 'warn' },
+    rejectProps: { severity: 'secondary', text: true }
+  });
+};
+</script>
+
+<template>
+  <ConfirmDialog group="headless" class="p-confirm-dialog-warn">
+    <template #container="{ message, acceptCallback, rejectCallback }">
+      <div class="p-dialog-header">
+        <div class="p-dialog-title">
+          <i class="ti ti-alert-triangle p-icon"></i>
+          <span>Предупреждение</span>
+        </div>
+        <button class="p-dialog-header-close p-button p-button-text p-button-rounded" type="button" @click="rejectCallback">
+        </button>
+      </div>
+      <div class="p-dialog-content">
+        <p>{{ message.message }}</p>
+      </div>
+      <div class="p-dialog-footer">
+        <Button label="Отмена" severity="secondary" text @click="rejectCallback" />
+        <Button label="Продолжить" severity="warn" @click="acceptCallback" />
+      </div>
+    </template>
+  </ConfirmDialog>
+</template>
+```
+
+<Story name="Severity: Warn" args={{ header: 'Предупреждение', message: 'Внимание! Это действие может иметь последствия', icon: 'ti ti-alert-triangle', acceptLabel: 'Продолжить', acceptSeverity: 'warn', class: 'p-confirm-dialog-warn' }}>{Template.bind({})}</Story>
+
+## Severity: Help
+
+Диалог справки с иконкой в хедере.
+
+```html dark
+<script setup>
+const showConfirm = () => {
+  confirm.require({
+    group: 'headless',
+    message: 'Нужна помощь с этим действием?',
+    header: 'Справка',
+    icon: 'ti ti-help-circle',
+    acceptLabel: 'Да',
+    rejectLabel: 'Нет',
+    acceptProps: { severity: 'help' },
+    rejectProps: { severity: 'secondary', text: true }
+  });
+};
+</script>
+
+<template>
+  <ConfirmDialog group="headless" class="p-confirm-dialog-help">
+    <template #container="{ message, acceptCallback, rejectCallback }">
+      <div class="p-dialog-header">
+        <div class="p-dialog-title">
+          <i class="ti ti-help-circle p-icon"></i>
+          <span>Справка</span>
+        </div>
+        <button class="p-dialog-header-close p-button p-button-text p-button-rounded" type="button" @click="rejectCallback">
+        </button>
+      </div>
+      <div class="p-dialog-content">
+        <p>{{ message.message }}</p>
+      </div>
+      <div class="p-dialog-footer">
+        <Button label="Нет" severity="secondary" text @click="rejectCallback" />
+        <Button label="Да" severity="help" @click="acceptCallback" />
+      </div>
+    </template>
+  </ConfirmDialog>
+</template>
+```
+
+<Story name="Severity: Help" args={{ header: 'Справка', message: 'Нужна помощь с этим действием?', icon: 'ti ti-help-circle', acceptLabel: 'Да', acceptSeverity: 'help', class: 'p-confirm-dialog-help' }}>{Template.bind({})}</Story>
+
+## Severity: Danger
+
+Диалог критического действия с иконкой в хедере.
+
+```html dark
+<script setup>
+const showConfirm = () => {
+  confirm.require({
+    group: 'headless',
+    message: 'Это действие нельзя отменить. Продолжить?',
+    header: 'Опасность',
+    icon: 'ti ti-circle-x',
+    acceptLabel: 'Удалить',
+    rejectLabel: 'Отмена',
+    acceptProps: { severity: 'danger' },
+    rejectProps: { severity: 'secondary', text: true }
+  });
+};
+</script>
+
+<template>
+  <ConfirmDialog group="headless" class="p-confirm-dialog-error">
+    <template #container="{ message, acceptCallback, rejectCallback }">
+      <div class="p-dialog-header">
+        <div class="p-dialog-title">
+          <i class="ti ti-circle-x p-icon"></i>
+          <span>Опасность</span>
+        </div>
+        <button class="p-dialog-header-close p-button p-button-text p-button-rounded" type="button" @click="rejectCallback">
+        </button>
+      </div>
+      <div class="p-dialog-content">
+        <p>{{ message.message }}</p>
+      </div>
+      <div class="p-dialog-footer">
+        <Button label="Отмена" severity="secondary" text @click="rejectCallback" />
+        <Button label="Удалить" severity="danger" @click="acceptCallback" />
+      </div>
+    </template>
+  </ConfirmDialog>
+</template>
+```
+
+<Story name="Severity: Danger" args={{ header: 'Опасность', message: 'Это действие нельзя отменить. Продолжить?', icon: 'ti ti-circle-x', acceptLabel: 'Удалить', acceptSeverity: 'danger', class: 'p-confirm-dialog-error' }}>{Template.bind({})}</Story>

@@ -6,9 +6,69 @@ import { Template } from './Tooltip.template';
 
 # Tooltip
 
-[PrimeVue Tooltip](https://primevue.org/tooltip), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=24-1369&t=SNTwtTnoE2SvjSdq-0>)
+[PrimeVue Tooltip](https://primevue.org/tooltip)
 
-### Base
+Компонент Tooltip отображает всплывающую подсказку при наведении на элемент.
 
-<Story name="Primary">{Template.bind({})}</Story>
+## Default
 
+Базовая подсказка.
+
+```html dark
+<Button label="Наведите на меня" v-tooltip="'Это подсказка'" />
+```
+
+<Story name="Default">{Template.bind({})}</Story>
+
+## Top Position
+
+Подсказка сверху.
+
+```html dark
+<Button label="Наведите на меня" v-tooltip.top="'Подсказка сверху'" />
+```
+
+<Story name="Top Position" args={{ value: 'Подсказка сверху' }}>{Template.bind({})}</Story>
+
+## Right Position
+
+Подсказка справа.
+
+```html dark
+<Button label="Наведите на меня" v-tooltip.right="'Подсказка справа'" />
+```
+
+<Story name="Right Position" args={{ value: 'Подсказка справа' }}>{Template.bind({})}</Story>
+
+## Bottom Position
+
+Подсказка снизу.
+
+```html dark
+<Button label="Наведите на меня" v-tooltip.bottom="'Подсказка снизу'" />
+```
+
+<Story name="Bottom Position" args={{ value: 'Подсказка снизу' }}>{Template.bind({})}</Story>
+
+## Left Position
+
+Подсказка слева.
+
+```html dark
+<Button label="Наведите на меня" v-tooltip.left="'Подсказка слева'" />
+```
+
+<Story name="Left Position" args={{ value: 'Подсказка слева' }}>{Template.bind({})}</Story>
+
+## Long Text
+
+Подсказка с длинным текстом.
+
+```html dark
+<Button 
+  label="Наведите на меня" 
+  v-tooltip="'Это очень длинная подсказка, которая содержит много текста и может переноситься на несколько строк'"
+/>
+```
+
+<Story name="Long Text" args={{ value: 'Это очень длинная подсказка, которая содержит много текста и может переноситься на несколько строк' }}>{Template.bind({})}</Story>

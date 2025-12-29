@@ -1,0 +1,39 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './ScrollPanel.template';
+
+<Meta title="Prime/Panel/ScrollPanel" />
+
+# ScrollPanel
+
+[PrimeVue ScrollPanel](https://primevue.org/scrollpanel)
+
+Компонент ScrollPanel предоставляет кастомную полосу прокрутки для контента.
+
+## Default
+
+Базовая панель с прокруткой.
+
+```html dark
+<ScrollPanel style="width: 100%; height: 200px">
+  <div style="padding: 1rem; line-height: 1.5">
+    <p>Lorem ipsum dolor sit amet...</p>
+  </div>
+</ScrollPanel>
+```
+
+<Story name="Default">{Template.bind({})}</Story>
+
+## Custom Height
+
+Панель с пользовательской высотой.
+
+```html dark
+<ScrollPanel style="width: 100%; height: 300px">
+  <div style="padding: 1rem">
+    <p>Контент с прокруткой...</p>
+  </div>
+</ScrollPanel>
+```
+
+<Story name="Custom Height">{Template.bind({})}</Story>

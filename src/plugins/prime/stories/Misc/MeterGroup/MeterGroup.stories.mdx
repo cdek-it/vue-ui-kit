@@ -1,0 +1,202 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './MeterGroup.template';
+
+<Meta title="Prime/Misc/MeterGroup" />
+
+# MeterGroup
+
+[PrimeVue MeterGroup](https://primevue.org/metergroup)
+
+Компонент MeterGroup отображает несколько значений в виде сегментированной полосы прогресса.
+
+## Default
+
+Базовый MeterGroup с несколькими значениями и цветами из палитры severity.
+
+```html dark
+<script setup>
+const value = [
+  { label: 'Success', color: '#44e858', value: 25 },  // success.500
+  { label: 'Info', color: '#4496e8', value: 15 },     // info.500
+  { label: 'Warn', color: '#f5b83d', value: 20 },     // warn.500
+  { label: 'Error', color: '#e85244', value: 10 }     // error.500
+];
+</script>
+
+<template>
+  <MeterGroup :value="value" />
+</template>
+```
+
+<Story name="Default" args={{ 
+  value: [
+    { label: 'Success', color: '#44e858', value: 25 },
+    { label: 'Info', color: '#4496e8', value: 15 },
+    { label: 'Warn', color: '#f5b83d', value: 20 },
+    { label: 'Error', color: '#e85244', value: 10 }
+  ]
+}}>{Template.bind({})}</Story>
+
+## Two Values
+
+MeterGroup с двумя значениями.
+
+```html dark
+<script setup>
+const value = [
+  { label: 'Used', color: '#e85244', value: 60 },    // error.500
+  { label: 'Free', color: '#44e858', value: 40 }     // success.500
+];
+</script>
+
+<template>
+  <MeterGroup :value="value" />
+</template>
+```
+
+<Story name="Two Values" args={{ 
+  value: [
+    { label: 'Used', color: '#e85244', value: 60 },
+    { label: 'Free', color: '#44e858', value: 40 }
+  ]
+}}>{Template.bind({})}</Story>
+
+## Three Values
+
+MeterGroup с тремя значениями.
+
+```html dark
+<script setup>
+const value = [
+  { label: 'CPU', color: '#4496e8', value: 30 },      // info.500
+  { label: 'Memory', color: '#f5b83d', value: 45 },   // warn.500
+  { label: 'Storage', color: '#44e858', value: 25 }   // success.500
+];
+</script>
+
+<template>
+  <MeterGroup :value="value" />
+</template>
+```
+
+<Story name="Three Values" args={{ 
+  value: [
+    { label: 'CPU', color: '#4496e8', value: 30 },
+    { label: 'Memory', color: '#f5b83d', value: 45 },
+    { label: 'Storage', color: '#44e858', value: 25 }
+  ]
+}}>{Template.bind({})}</Story>
+
+## Five Values
+
+MeterGroup с пятью значениями из расширенной палитры.
+
+```html dark
+<script setup>
+const value = [
+  { label: 'Video', color: '#e85244', value: 20 },    // error.500
+  { label: 'Photos', color: '#f5b83d', value: 15 },   // warn.500
+  { label: 'Documents', color: '#4496e8', value: 25 }, // info.500
+  { label: 'Music', color: '#a855f7', value: 10 },    // help.500 (purple)
+  { label: 'Other', color: '#64748b', value: 30 }     // slate.500
+];
+</script>
+
+<template>
+  <MeterGroup :value="value" />
+</template>
+```
+
+<Story name="Five Values" args={{ 
+  value: [
+    { label: 'Video', color: '#e85244', value: 20 },
+    { label: 'Photos', color: '#f5b83d', value: 15 },
+    { label: 'Documents', color: '#4496e8', value: 25 },
+    { label: 'Music', color: '#a855f7', value: 10 },
+    { label: 'Other', color: '#64748b', value: 30 }
+  ]
+}}>{Template.bind({})}</Story>
+
+## With Icons
+
+MeterGroup с иконками в метках.
+
+```html dark
+<script setup>
+const value = [
+  { label: 'Apps', color: '#44e858', value: 25, icon: 'ti ti-apps' },
+  { label: 'Messages', color: '#f5b83d', value: 15, icon: 'ti ti-message' },
+  { label: 'Media', color: '#4496e8', value: 20, icon: 'ti ti-photo' },
+  { label: 'System', color: '#a855f7', value: 10, icon: 'ti ti-settings' }
+];
+</script>
+
+<template>
+  <MeterGroup :value="value" />
+</template>
+```
+
+<Story name="With Icons" args={{ 
+  value: [
+    { label: 'Apps', color: '#44e858', value: 25, icon: 'ti ti-apps' },
+    { label: 'Messages', color: '#f5b83d', value: 15, icon: 'ti ti-message' },
+    { label: 'Media', color: '#4496e8', value: 20, icon: 'ti ti-photo' },
+    { label: 'System', color: '#a855f7', value: 10, icon: 'ti ti-settings' }
+  ]
+}}>{Template.bind({})}</Story>
+
+## Vertical Orientation
+
+MeterGroup с вертикальной ориентацией.
+
+```html dark
+<MeterGroup :value="value" orientation="vertical" style="height: 300px" />
+```
+
+<Story name="Vertical" args={{ 
+  value: [
+    { label: 'Success', color: '#44e858', value: 25 },
+    { label: 'Info', color: '#4496e8', value: 15 },
+    { label: 'Warn', color: '#f5b83d', value: 20 },
+    { label: 'Error', color: '#e85244', value: 10 }
+  ],
+  orientation: 'vertical',
+  style: 'height: 300px'
+}}>{Template.bind({})}</Story>
+
+## Label Position Start
+
+MeterGroup с метками в начале.
+
+```html dark
+<MeterGroup :value="value" labelPosition="start" />
+```
+
+<Story name="Label Start" args={{ 
+  value: [
+    { label: 'Success', color: '#44e858', value: 25 },
+    { label: 'Info', color: '#4496e8', value: 15 },
+    { label: 'Warn', color: '#f5b83d', value: 20 },
+    { label: 'Error', color: '#e85244', value: 10 }
+  ],
+  labelPosition: 'start'
+}}>{Template.bind({})}</Story>
+
+## Label Position End
+
+MeterGroup с метками в конце.
+
+```html dark
+<MeterGroup :value="value" labelPosition="end" />
+```
+
+<Story name="Label End" args={{ 
+  value: [
+    { label: 'Success', color: '#44e858', value: 25 },
+    { label: 'Info', color: '#4496e8', value: 15 },
+    { label: 'Warn', color: '#f5b83d', value: 20 },
+    { label: 'Error', color: '#e85244', value: 10 }
+  ],
+  labelPosition: 'end'
+}}>{Template.bind({})}</Story>

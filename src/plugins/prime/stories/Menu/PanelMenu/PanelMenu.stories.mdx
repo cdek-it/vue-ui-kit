@@ -1,17 +1,61 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './PanelMenu.template';
+import { BasicTemplate } from './PanelMenu.template';
 
 <Meta title="Prime/Menu/PanelMenu" />
 
 # PanelMenu
 
-[PrimeVue PanelMenu](https://primevue.org/PanelMenu), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12975&m=dev>)
+[PrimeVue PanelMenu](https://primevue.org/panelmenu)
 
-### Basic
+Компонент PanelMenu отображает меню в виде аккордеона с раскрывающимися панелями.
 
-```html dark
-<Menubar :model="items" />
+## Basic
+
+Базовое меню-аккордеон. По умолчанию все пункты не выбраны. При клике на пункт меню ему присваивается класс `p-menuitem-checked`.
+
+[PrimeVue Basic Example](https://primevue.org/panelmenu/#basic)
+
+```jsx dark
+const items = [
+  {
+    label: 'Documents',
+    icon: 'ti ti-file',
+    items: [
+      {
+        label: 'New',
+        icon: 'ti ti-plus',
+      },
+      {
+        label: 'Search',
+        icon: 'ti ti-search',
+      }
+    ]
+  }
+];
+
+<PanelMenu :model="items" multiple />
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+## Особенности стилизации
+
+### Design Tokens
+Основные стили определены в `src/plugins/prime/theme3.0/components/index.ts`:
+- Цвета (background, color, border)
+- Отступы (padding, gap)
+- Состояния (hover, focus, active, disabled)
+
+### Дополнительные CSS
+Дополнительные стили в `src/plugins/prime/theme3.0/components/css/panelmenu.ts`:
+- Caption стили (цвет, размер шрифта)
+- Улучшенная структура label с flex-direction: column
+- Active state для caption с opacity
+
+## Состояния
+
+- **Default** - обычное состояние (по умолчанию все пункты не выбраны)
+- **Hover** - при наведении (светлый фон)
+- **Selected** - активный элемент (темный фон), класс `p-menuitem-checked` добавляется при клике
+- **Disabled** - неактивный элемент

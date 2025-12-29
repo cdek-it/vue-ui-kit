@@ -1,19 +1,204 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Menu.template';
+import { BasicTemplate, GroupTemplate, PopupTemplate, TemplateWithCaption, TemplateWithBadge } from './Menu.template';
 
 <Meta title="Prime/Menu/Menu" />
 
 # Menu
 
-[PrimeVue Menu](https://primevue.org/menu), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12826&m=dev>)
+[PrimeVue Menu](https://primevue.org/menu), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/%F0%9F%A7%A9-UI-kit-PrimeFace--1.0.0-beta-?node-id=16005-21803)
 
-### Basic
+Компонент Menu отображает навигационное меню с поддержкой иконок, состояний и различных вариантов отображения.
+
+## Basic
+
+Базовое меню с простыми элементами. Каждый элемент содержит иконку и текст. По умолчанию все пункты не выбраны. При клике на пункт меню ему присваивается класс `p-menuitem-checked`.
+
+[PrimeVue Basic Example](https://primevue.org/menu/#basic)
 
 ```jsx dark
-const selectedClass = 'p-menuitem-checked';
+const items = [
+  {
+    label: 'MenuItem',
+    icon: 'ti ti-user',
+    command: () => handleItemClick() // При клике добавляется класс p-menuitem-checked
+  }
+];
 
-<PrimeMenu :model="items" />
+<Menu :model="items" />
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+## Group
+
+Меню с группировкой элементов. Используются submenu labels (заголовки групп) через вложенные `items` и separators (разделители).
+
+[PrimeVue Group Example](https://primevue.org/menu/#group)
+
+```jsx dark
+const items = [
+  {
+    label: 'Documents', // submenu label
+    items: [
+      {
+        label: 'New',
+        icon: 'ti ti-user',
+      },
+      {
+        label: 'Search',
+        icon: 'ti ti-user',
+      }
+    ]
+  },
+  {
+    separator: true // разделитель
+  },
+  {
+    label: 'Profile', // submenu label
+    items: [
+      {
+        label: 'Settings',
+        icon: 'ti ti-settings',
+      }
+    ]
+  }
+];
+
+<Menu :model="items" />
+```
+
+<Story name="Group">{GroupTemplate.bind({})}</Story>
+
+## Popup
+
+Меню в режиме popup (overlay). Открывается по клику на кнопку.
+
+[PrimeVue Popup Example](https://primevue.org/menu/#popup)
+
+```jsx dark
+const menu = ref();
+const items = [
+  {
+    label: 'MenuItem',
+    icon: 'ti ti-user',
+  }
+];
+
+const toggle = (event) => {
+  menu.value.toggle(event);
+};
+
+<Button label="Show Menu" @click="toggle" />
+<Menu ref="menu" :model="items" :popup="true" />
+```
+
+<Story name="Popup">{PopupTemplate.bind({})}</Story>
+
+## Template
+
+Расширенные варианты элементов меню с использованием template для кастомизации.
+
+[PrimeVue Template Example](https://primevue.org/menu/#template)
+
+[Макет Menu.ItemTemplate](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/%F0%9F%A7%A9-UI-kit-PrimeFace--1.0.0-beta-?node-id=16005-24612)
+
+### С Caption
+
+Элементы меню с дополнительным текстом (caption) под основным label. Структура включает иконки chevron слева и справа согласно дизайну Figma.
+
+```jsx dark
+{
+  label: 'MenuItem',
+  icon: 'ti ti-user',
+  template: () => {
+    return {
+      template: \`
+        <div class="p-menu-item-link" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+          <i class="ti ti-chevron-right" style="font-size: 17.5px; flex-shrink: 0;"></i>
+          <div style="display: flex; align-items: center; gap: 7px; flex: 1;">
+            <i class="p-menu-item-icon ti ti-user"></i>
+            <div class="p-menu-item-label">
+              <span>MenuItem</span>
+              <span class="p-menu-item-caption">Caption</span>
+            </div>
+          </div>
+          <i class="ti ti-chevron-right" style="font-size: 17.5px; flex-shrink: 0;"></i>
+        </div>
+      \`
+    };
+  }
+}
+```
+
+<Story name="Template - Caption">{TemplateWithCaption.bind({})}</Story>
+
+### С Badge
+
+Элементы меню с badge (значком) справа от текста. Структура включает иконки chevron слева и справа согласно дизайну Figma.
+
+```jsx dark
+{
+  label: 'MenuItem',
+  icon: 'ti ti-user',
+  badge: '2',
+  template: (item) => {
+    return {
+      components: { Badge },
+      setup() {
+        return { item };
+      },
+      template: \`
+        <div class="p-menu-item-link" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+          <i class="ti ti-chevron-right" style="font-size: 17.5px; flex-shrink: 0;"></i>
+          <div style="display: flex; align-items: center; gap: 7px; flex: 1;">
+            <i class="p-menu-item-icon ti ti-user"></i>
+            <div class="p-menu-item-label">
+              <span>MenuItem</span>
+              <span class="p-menu-item-caption">Caption</span>
+            </div>
+            <Badge :value="item.badge" severity="success" />
+          </div>
+          <i class="ti ti-chevron-right" style="font-size: 17.5px; flex-shrink: 0;"></i>
+        </div>
+      \`
+    };
+  }
+}
+```
+
+<Story name="Template - Badge">{TemplateWithBadge.bind({})}</Story>
+
+## Особенности стилизации
+
+### Design Tokens
+Основные стили определены в `src/plugins/prime/theme3.0/components/index.ts`:
+- Цвета (background, color, border)
+- Отступы (padding, gap)
+- Состояния (hover, focus, active, disabled)
+- Submenu label стили
+- Separator стили
+
+### Дополнительные CSS
+Дополнительные стили в `src/plugins/prime/theme3.0/components/css/menu.ts`:
+- Border для menu container
+- Caption стили (цвет, размер шрифта)
+- Submenu label (uppercase, font-family)
+- Улучшенная структура label с flex-direction: column
+- Active state для caption с opacity
+
+## Состояния
+
+- **Default** - обычное состояние (по умолчанию все пункты не выбраны)
+- **Hover** - при наведении (светлый фон)
+- **Selected** - активный элемент (темный фон), класс `p-menuitem-checked` добавляется при клике
+- **Disabled** - неактивный элемент
+
+### CSS для выбранного состояния
+
+```css
+.p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content {
+  background: var(--p-menu-ext-item-active-background);
+  color: var(--p-menu-ext-item-active-color);
+}
+```
