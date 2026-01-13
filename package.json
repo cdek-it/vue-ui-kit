@@ -1,6 +1,6 @@
 {
-  "name": "@cdek-ui-kit/vue",
-  "version": "1.1.0-alpha.site8884",
+  "name": "@cdek-it/vue-ui-kit",
+  "version": "1.1.1",
   "type": "module",
   "files": [
     "dist"
@@ -21,7 +21,7 @@
     }
   },
   "publishConfig": {
-    "@cdek-ui-kit:registry": "https://gitlab.cdek.ru/api/v4/projects/2094/packages/npm/"
+    "access": "public"
   },
   "scripts": {
     "build": "run-p type-check build-only",
@@ -33,7 +33,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint:cli": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore --max-warnings 0",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "STORYBOOK_BASE_HREF=cdek-vue-ui-kit build-storybook",
+    "build-storybook": "STORYBOOK_BASE_HREF=vue-ui-kit build-storybook",
     "gen:component": "bash ./scripts/generate-component.sh"
   },
   "dependencies": {
@@ -78,5 +78,10 @@
     "vitest": "^0.25.6",
     "vue-loader": "^16.8.3",
     "vue-tsc": "^1.6.4"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cdek-it/vue-ui-kit.git"
   }
 }
