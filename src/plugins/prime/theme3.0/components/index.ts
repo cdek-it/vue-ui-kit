@@ -1,3366 +1,3431 @@
 export default {
   accordion: {
     header: {
-      color: '{text.color}',
-      hoverColor: '{text.hoverColor}',
-      activeColor: '{text.color}',
-      activeHoverColor: '{text.hoverColor}',
-      borderColor: '{transparent}',
-      padding: '1rem 0 1rem 0',
-      fontWeight: '{fonts.fontWeight.bold}',
-      borderRadius: '0',
-      borderWidth: '0 0 0 0',
+      color: "{text.color}",
+      hoverColor: "{text.hoverColor}",
+      activeColor: "{text.color}",
+      activeHoverColor: "{text.hoverColor}",
+      borderColor: "{transparent}",
+      padding: "{navigation.padding.4} 0 {navigation.padding.4} 0",
+      fontWeight: "{fonts.fontWeight.bold}",
+      borderRadius: "0",
+      borderWidth: "0 0 0 0",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: 'inset {focus.ring.shadow}',
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "inset {focus.ring.shadow}"
       },
       toggleIcon: {
-        color: '{text.color}',
-        hoverColor: '{text.hoverColor}',
-        activeColor: '{text.color}',
-        activeHoverColor: '{text.hoverColor}',
+        color: "{text.color}",
+        hoverColor: "{text.hoverColor}",
+        activeColor: "{text.color}",
+        activeHoverColor: "{text.hoverColor}"
       },
       last: {
-        bottomBorderRadius: '{content.borderRadius}',
-        activeBottomBorderRadius: '0',
+        bottomBorderRadius: "{content.borderRadius}",
+        activeBottomBorderRadius: "0"
       },
       first: {
-        borderWidth: '0',
-        topBorderRadius: '{content.borderRadius}',
-      },
+        borderWidth: "0",
+        topBorderRadius: "{content.borderRadius}"
+      }
     },
     root: {
-      transitionDuration: '{formField.transitionDuration}',
+      transitionDuration: "{controls.transitionDuration}"
     },
     panel: {
-      borderWidth: '0 0 0.07142857142857142rem 0',
-      borderColor: '{formField.borderColor}',
+      borderWidth: "{navigation.width.xs}",
+      borderColor: "{form.borderColor}"
     },
     colorScheme: {
       light: {
         header: {
-          background: '{transparent}',
-          hoverBackground: '{transparent}',
-          activeBackground: '{transparent}',
-          activeHoverBackground: '{transparent}',
-        },
-      },
+          background: "{transparent}",
+          hoverBackground: "{transparent}",
+          activeBackground: "{transparent}",
+          activeHoverBackground: "{transparent}"
+        }
+      }
     },
     content: {
-      borderWidth: '1px 0 0 0',
-      borderColor: '{transparent}',
-      background: '{transparent}',
-      color: '{text.color}',
-      padding: '0 0 1rem 1.75rem',
-    },
+      borderWidth: "{content.borderWidth} 0 0 0",
+      borderColor: "{transparent}",
+      background: "{transparent}",
+      color: "{text.color}",
+      padding: "0 0 {content.padding.sm} {content.padding.md}"
+    }
   },
   autocomplete: {
+    extend: {
+      extOption: {
+        gap: "{form.gap.xs}"
+      },
+      extOptionGroup: {
+        gap: "{form.gap.xs}"
+      }
+    },
     colorScheme: {
       light: {
         chip: {
-          focusBackground: '{chip.colorScheme.light.root.background}',
-          focusColor: '{chip.colorScheme.light.root.color}',
+          focusBackground: "{chip.colorScheme.light.root.background}",
+          focusColor: "{chip.colorScheme.light.root.color}"
         },
         dropdown: {
-          background: '{formField.background}',
-          hoverBackground: '{formField.background}',
-          activeBackground: '{formField.background}',
-          color: '{formField.color}',
-          hoverColor: '{formField.color}',
-          activeColor: '{formField.color}',
-        },
-      },
-    },
-    extend: {
-      extOption: {
-        gap: '0.5rem',
-      },
-      extOptionGroup: {
-        gap: '0.5rem',
-      },
+          background: "{form.background}",
+          hoverBackground: "{form.background}",
+          activeBackground: "{form.background}",
+          color: "{form.color}",
+          hoverColor: "{form.color}",
+          activeColor: "{form.color}"
+        }
+      }
     },
     root: {
-      background: '{formField.background}',
-      disabledBackground: '{formField.disabledBackground}',
-      filledBackground: '{formField.filledBackground}',
-      filledHoverBackground: '{formField.filledHoverBackground}',
-      filledFocusBackground: '{formField.filledFocusBackground}',
-      borderColor: '{formField.borderColor}',
-      hoverBorderColor: '{formField.hoverBorderSecondaryColor}',
-      focusBorderColor: '{formField.focusBorderSecondaryColor}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
-      color: '{formField.color}',
-      disabledColor: '{formField.disabledColor}',
-      placeholderColor: '{formField.placeholderColor}',
-      invalidPlaceholderColor: '{formField.invalidPlaceholderColor}',
-      shadow: '{formField.shadow}',
-      paddingX: '{formField.paddingX}',
-      paddingY: '{formField.paddingY}',
-      borderRadius: '{formField.borderRadius}',
-      transitionDuration: '{formField.transitionDuration}',
+      background: "{form.background}",
+      disabledBackground: "{form.disabledBackground}",
+      filledBackground: "{form.filledBackground}",
+      filledHoverBackground: "{form.filledHoverBackground}",
+      filledFocusBackground: "{form.filledFocusBackground}",
+      borderColor: "{form.borderColor}",
+      hoverBorderColor: "{form.hoverBorderSecondaryColor}",
+      focusBorderColor: "{form.focusBorderSecondaryColor}",
+      invalidBorderColor: "{form.invalidBorderColor}",
+      color: "{form.color}",
+      disabledColor: "{form.disabledColor}",
+      placeholderColor: "{form.placeholderColor}",
+      invalidPlaceholderColor: "{form.invalidPlaceholderColor}",
+      shadow: "{form.shadow}",
+      paddingX: "{form.padding.sm}",
+      paddingY: "{form.padding.sm}",
+      borderRadius: "{form.borderRadius.md}",
+      transitionDuration: "{form.transitionDuration}"
     },
     overlay: {
-      background: '{overlay.select.background}',
-      borderColor: '{overlay.select.borderColor}',
-      borderRadius: '{overlay.select.borderRadius}',
-      color: '{overlay.select.color}',
-      shadow: '{overlay.select.shadow}',
+      background: "{overlay.select.background}",
+      borderColor: "{overlay.select.borderColor}",
+      borderRadius: "{overlay.select.borderRadius}",
+      color: "{overlay.select.color}",
+      shadow: "{form.shadow}"
     },
     list: {
-      padding: '{list.padding}',
-      gap: '{list.gap}',
+      padding: "{list.padding}",
+      gap: "{list.gap.sm}"
     },
     option: {
-      focusBackground: '{list.option.focusBackground}',
-      selectedBackground: '{list.option.selectedBackground}',
-      selectedFocusBackground: '{list.option.selectedFocusBackground}',
-      color: '{list.option.color}',
-      focusColor: '{list.option.focusColor}',
-      selectedColor: '{list.option.selectedColor}',
-      selectedFocusColor: '{list.option.selectedFocusColor}',
-      padding: '{list.option.padding}',
-      borderRadius: '{list.option.borderRadius}',
+      focusBackground: "{list.option.focusBackground}",
+      selectedBackground: "{list.option.selectedBackground}",
+      selectedFocusBackground: "{list.option.selectedFocusBackground}",
+      color: "{list.option.color}",
+      focusColor: "{list.option.focusColor}",
+      selectedColor: "{list.option.selectedColor}",
+      selectedFocusColor: "{list.option.selectedFocusColor}",
+      padding: "{list.option.padding}",
+      borderRadius: "{list.option.borderRadius}"
     },
     optionGroup: {
-      background: '{list.optionGroup.background}',
-      color: '{list.optionGroup.color}',
-      fontWeight: '{fonts.fontWeight.demibold}',
-      padding: '{list.optionGroup.padding}',
+      background: "{list.optionGroup.background}",
+      color: "{list.optionGroup.color}",
+      fontWeight: "{fonts.fontWeight.demibold}",
+      padding: "{list.optionGroup.padding}"
     },
     dropdown: {
-      width: '100%',
-      borderColor: '{formField.borderColor}',
-      hoverBorderColor: '{formField.hoverBorderSecondaryColor}',
-      activeBorderColor: '{formField.focusBorderSecondaryColor}',
-      borderRadius: '{formField.borderRadius}',
+      width: "{form.width.full}",
+      borderColor: "{form.borderColor}",
+      hoverBorderColor: "{form.hoverBorderSecondaryColor}",
+      activeBorderColor: "{form.focusBorderSecondaryColor}",
+      borderRadius: "{form.borderRadius.md}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.focusRing.shadow}',
+        width: "{focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
       },
       sm: {
-        width: '2rem',
+        width: "{form.width.sm}"
       },
       lg: {
-        width: '3rem',
-      },
+        width: "{form.width.lg}"
+      }
     },
     chip: {
-      borderRadius: '{chip.root.borderRadius}',
+      borderRadius: "{chip.root.borderRadius}"
     },
     emptyMessage: {
-      padding: '{list.option.padding}',
-    },
+      padding: "{list.option.padding}"
+    }
   },
   avatar: {
     extend: {
-      borderColor: '{formField.borderColor}',
+      borderColor: "{form.borderColor}"
     },
     root: {
-      width: '2rem',
-      height: '2rem',
-      fontSize: '{fonts.fontSize.base}',
-      color: '{text.extend.colorPrimaryStatic}',
-      background: '{primary.color}',
-      borderRadius: '{borderRadius.md}',
+      width: "{media.size.sm}",
+      height: "{media.size.sm}",
+      fontSize: "{fonts.fontSize.base}",
+      color: "{text.extend.colorPrimaryStatic}",
+      background: "{primary.color}",
+      borderRadius: "{media.borderRadius.sm}"
     },
     icon: {
-      size: '1rem',
+      size: "{media.icon.size.sm}"
     },
     group: {
-      borderColor: '{content.background}',
-      offset: '-0.75rem',
+      borderColor: "{content.background}",
+      offset: "-{media.padding.md}"
     },
     lg: {
-      width: '2.5rem',
-      height: '2.5rem',
-      fontSize: '{fonts.fontSize.base}',
+      width: "{media.size.md}",
+      height: "{media.size.md}",
+      fontSize: "{fonts.fontSize.base}",
       icon: {
-        size: '1rem',
+        size: "{media.icon.size.sm}"
       },
       group: {
-        offset: '-1rem',
-      },
+        offset: "-{media.padding.md}"
+      }
     },
     xl: {
-      width: '3.5rem',
-      height: '3.5rem',
+      width: "{media.size.lg}",
+      height: "{media.size.lg}",
       icon: {
-        size: '1.5rem',
+        size: "{media.icon.size.md}"
       },
       group: {
-        offset: '-1.5rem',
+        offset: "-{media.padding.3xlg}"
       },
-      fontSize: '{fonts.fontSize.base}',
-    },
+      fontSize: "{fonts.fontSize.base}"
+    }
   },
   badge: {
-    colorScheme: {
-      light: {
-        primary: {
-          color: '{text.extend.colorPrimaryStatic}',
-          background: '{primary.color}',
-        },
-        secondary: {
-          color: '{text.extend.colorInverted}',
-          background: '{surface.900}',
-        },
-        success: {
-          color: '{success.900}',
-          background: '{success.300}',
-        },
-        info: {
-          color: '{info.900}',
-          background: '{info.300}',
-        },
-        warn: {
-          color: '{warn.900}',
-          background: '{warn.300}',
-        },
-        danger: {
-          color: '{error.900}',
-          background: '{error.300}',
-        },
-      },
-    },
     extend: {
       extDot: {
         success: {
-          background: '{colors.solid.green.400}',
+          background: "{colors.solid.green.400}"
         },
         info: {
-          background: '{info.400}',
+          background: "{info.400}"
         },
         warn: {
-          background: '{warn.400}',
+          background: "{warn.400}"
         },
         danger: {
-          background: '{error.400}',
+          background: "{error.400}"
         },
         lg: {
-          size: '0.75rem',
+          size: "{feedback.width.md}"
         },
         xlg: {
-          size: '1rem',
-        },
+          size: "{feedback.width.lg}"
+        }
       },
+      ext: {
+        padding: "0"
+      }
+    },
+    colorScheme: {
+      light: {
+        primary: {
+          color: "{text.extend.colorPrimaryStatic}",
+          background: "{primary.color}"
+        },
+        secondary: {
+          color: "{text.extend.colorInverted}",
+          background: "{surface.900}"
+        },
+        success: {
+          color: "{success.900}",
+          background: "{success.300}"
+        },
+        info: {
+          color: "{info.900}",
+          background: "{info.300}"
+        },
+        warn: {
+          color: "{warn.900}",
+          background: "{warn.300}"
+        },
+        danger: {
+          color: "{error.900}",
+          background: "{error.300}"
+        }
+      }
     },
     root: {
-      borderRadius: '{borderRadius.xl}',
-      padding: '0.5357142857142857rem',
-      fontSize: '{fonts.fontSize.xs}',
-      fontWeight: '{fonts.fontWeight.regular}',
-      minWidth: '1.5rem',
-      height: '1.5rem',
+      borderRadius: "{feedback.width.sm}",
+      padding: "{feedback.padding.md}",
+      fontSize: "{fonts.fontSize.xs}",
+      fontWeight: "{fonts.fontWeight.regular}",
+      minWidth: "{feedback.width.2xlg}",
+      height: "{feedback.height.2xlg}"
     },
     dot: {
-      size: '0.5rem',
+      size: "{feedback.width.sm}"
     },
     sm: {
-      fontSize: '{fonts.fontSize.xs}',
-      minWidth: '0',
-      height: '0',
+      fontSize: "{fonts.fontSize.xs}",
+      minWidth: "0",
+      height: "0"
     },
     lg: {
-      fontSize: '{fonts.fontSize.xs}',
-      minWidth: '1.75rem',
-      height: '1.75rem',
+      fontSize: "{fonts.fontSize.xs}",
+      minWidth: "{feedback.width.3xlg}",
+      height: "{feedback.height.3xlg}"
     },
     xl: {
-      fontSize: '{fonts.fontSize.xs}',
-      minWidth: '2rem',
-      height: '2rem',
-    },
+      fontSize: "{fonts.fontSize.xs}",
+      minWidth: "{feedback.width.4xlg}",
+      height: "{feedback.height.4xlg}"
+    }
   },
   breadcrumb: {
     extend: {
-      hoverBackground: '{surface.100}',
+      hoverBackground: "{surface.100}",
+      iconSize: "{form.size.xlg}"
     },
     root: {
-      padding: '0.25rem',
-      background: '{transparent}',
-      gap: '0',
-      transitionDuration: '{formField.transitionDuration}',
+      padding: "0",
+      background: "{transparent}",
+      gap: "0",
+      transitionDuration: "{form.transitionDuration}"
     },
     focusRing: {
-      width: '{focusRing.width}',
-      style: '{focusRing.style}',
-      color: '{focusRing.color}',
-      offset: '{focusRing.offset}',
-      shadow: '{focusRing.shadow}',
+      width: "{focusRing.width}",
+      style: "{focusRing.style}",
+      color: "{focusRing.color}",
+      offset: "{focusRing.offset}",
+      shadow: "{focusRing.shadow}"
     },
     item: {
-      color: '{text.color}',
-      hoverColor: '{text.hoverColor}',
-      borderRadius: '{borderRadius.xs}',
-      gap: '{navigation.item.gap}',
+      color: "{text.color}",
+      hoverColor: "{text.hoverColor}",
+      borderRadius: "{navigation.borderRadius}",
+      gap: "{navigation.item.gap}",
       icon: {
-        color: '{text.color}',
-        hoverColor: '{text.hoverColor}',
-      },
+        color: "{text.color}",
+        hoverColor: "{text.hoverColor}"
+      }
     },
     separator: {
-      color: '{text.color}',
-    },
+      color: "{text.color}"
+    }
   },
   button: {
     extend: {
+      disabledBackground: "{form.disabledBackground}",
       extOutlined: {
         danger: {
-          focusBackground: '{transparent}',
+          focusBackground: "{transparent}"
         },
         warn: {
-          focusBackground: '{transparent}',
+          focusBackground: "{transparent}"
         },
         info: {
-          focusBackground: '{transparent}',
+          focusBackground: "{transparent}"
         },
         help: {
-          focusBackground: '{transparent}',
+          focusBackground: "{transparent}"
         },
         success: {
-          focusBackground: '{transparent}',
-        },
+          focusBackground: "{transparent}"
+        }
       },
-      disabledBackground: '{formField.disabledBackground}',
-      disabledColor: '{formField.disabledColor}',
+      disabledColor: "{form.disabledColor}",
       extText: {
         danger: {
-          focusBackground: '{transparent}',
+          focusBackground: "{transparent}"
         },
         warn: {
-          focusBackground: '{transparent}',
+          focusBackground: "{transparent}"
         },
         info: {
-          focusBackground: '{transparent}',
+          focusBackground: "{transparent}"
         },
         help: {
-          focusBackground: '{transparent}',
+          focusBackground: "{transparent}"
         },
         success: {
-          focusBackground: '{transparent}',
-        },
+          focusBackground: "{transparent}"
+        }
       },
       extLink: {
-        background: '{transparent}',
-        colorHover: '{text.hoverColor}',
-        paddingX: '0',
-        paddingY: '0.25rem',
+        background: "{transparent}",
+        colorHover: "{text.hoverColor}",
+        paddingX: "0",
+        paddingY: "{controls.padding.xs}",
         sm: {
-          iconOnlyWidth: '1rem',
+          iconOnlyWidth: "{controls.iconOnly.xs}"
         },
         base: {
-          iconOnlyWidth: '1.5357142857142858rem',
+          iconOnlyWidth: "{controls.iconOnly.md}"
         },
         lg: {
-          iconOnlyWidth: '1.75rem',
+          iconOnlyWidth: "{controls.iconOnly.lg}"
         },
         xlg: {
-          iconOnlyWidth: '2rem',
-        },
+          iconOnlyWidth: "{controls.iconOnly.xlg}"
+        }
       },
       extSm: {
-        borderRadius: '{borderRadius.md}',
-        gap: '0.5rem',
+        borderRadius: "{controls.borderRadius.sm}",
+        gap: "{controls.gap.sm}"
       },
       extLg: {
-        borderRadius: '{borderRadius.lg}',
-        gap: '0.75rem',
+        borderRadius: "{controls.borderRadius.md}",
+        gap: "{controls.gap.md}"
       },
       extXlg: {
-        borderRadius: '{borderRadius.lg}',
-        gap: '0.75rem',
-        iconOnlyWidth: '4.071428571428571rem',
-        paddingX: '1.5rem',
-        paddingY: '1.25rem',
+        borderRadius: "{controls.borderRadius.md}",
+        gap: "{controls.gap.md}",
+        iconOnlyWidth: "{controls.iconOnly.4xlg}",
+        paddingX: "{controls.padding.2xlg}",
+        paddingY: "{controls.padding.xlg}"
       },
-      borderWidth: '0.07142857142857142rem',
+      borderWidth: "{controls.width.tn}",
+      iconSize: {
+        sm: "{controls.iconOnly.xs}",
+        md: "{controls.iconOnly.sm}",
+        lg: "{controls.iconOnly.md}"
+      }
     },
     colorScheme: {
       light: {
         root: {
           primary: {
-            background: '{primary.color}',
-            hoverBackground: '{primary.hoverColor}',
-            activeBackground: '{primary.color}',
-            borderColor: '{transparent}',
-            hoverBorderColor: '{transparent}',
-            activeBorderColor: '{transparent}',
-            color: '{text.extend.colorPrimaryStatic}',
-            hoverColor: '{text.extend.colorPrimaryStatic}',
-            activeColor: '{text.extend.colorPrimaryStatic}',
+            background: "{primary.color}",
+            hoverBackground: "{primary.hoverColor}",
+            activeBackground: "{primary.activeColor}",
+            borderColor: "{transparent}",
+            hoverBorderColor: "{transparent}",
+            activeBorderColor: "{transparent}",
+            color: "{text.extend.colorPrimaryStatic}",
+            hoverColor: "{text.extend.colorPrimaryStatic}",
+            activeColor: "{text.extend.colorPrimaryStatic}",
             focusRing: {
-              color: '{primary.200}',
-              shadow: '{focusRing.shadow}',
-            },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
           },
           secondary: {
-            background: '{surface.900}',
-            hoverBackground: '{surface.800}',
-            activeBackground: '{surface.900}',
-            borderColor: '{transparent}',
-            hoverBorderColor: '{transparent}',
-            activeBorderColor: '{transparent}',
-            color: '{text.extend.colorInverted}',
-            hoverColor: '{text.extend.colorInverted}',
-            activeColor: '{text.extend.colorInverted}',
+            background: "{surface.900}",
+            hoverBackground: "{surface.800}",
+            activeBackground: "{surface.700}",
+            borderColor: "{transparent}",
+            hoverBorderColor: "{transparent}",
+            activeBorderColor: "{transparent}",
+            color: "{text.extend.colorInverted}",
+            hoverColor: "{text.extend.colorInverted}",
+            activeColor: "{text.extend.colorInverted}",
             focusRing: {
-              color: '{primary.200}',
-              shadow: '{focusRing.shadow}',
-            },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
           },
           contrast: {
-            background: '{surface.200}',
-            hoverBackground: '{surface.300}',
-            activeBackground: '{surface.200}',
-            borderColor: '{transparent}',
-            hoverBorderColor: '{transparent}',
-            activeBorderColor: '{transparent}',
-            color: '{text.color}',
-            hoverColor: '{text.color}',
-            activeColor: '{text.color}',
+            background: "{surface.200}",
+            hoverBackground: "{surface.300}",
+            activeBackground: "{surface.400}",
+            borderColor: "{transparent}",
+            hoverBorderColor: "{transparent}",
+            activeBorderColor: "{transparent}",
+            color: "{text.color}",
+            hoverColor: "{text.color}",
+            activeColor: "{text.color}",
             focusRing: {
-              color: '{primary.200}',
-              shadow: '{focusRing.shadow}',
-            },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
           },
           info: {
-            background: '{info.300}',
-            hoverBackground: '{info.400}',
-            activeBackground: '{info.300}',
-            borderColor: '{transparent}',
-            hoverBorderColor: '{transparent}',
-            activeBorderColor: '{transparent}',
-            color: '{info.900}',
-            hoverColor: '{info.950}',
-            activeColor: '{info.900}',
+            background: "{info.300}",
+            hoverBackground: "{info.400}",
+            activeBackground: "{info.500}",
+            borderColor: "{transparent}",
+            hoverBorderColor: "{transparent}",
+            activeBorderColor: "{transparent}",
+            color: "{info.900}",
+            hoverColor: "{info.950}",
+            activeColor: "{info.900}"
           },
           success: {
-            background: '{success.300}',
-            hoverBackground: '{success.400}',
-            activeBackground: '{success.300}',
-            borderColor: '{transparent}',
-            hoverBorderColor: '{transparent}',
-            activeBorderColor: '{transparent}',
-            color: '{success.900}',
-            hoverColor: '{success.950}',
-            activeColor: '{success.900}',
+            background: "{success.300}",
+            hoverBackground: "{success.400}",
+            activeBackground: "{success.500}",
+            borderColor: "{transparent}",
+            hoverBorderColor: "{transparent}",
+            activeBorderColor: "{transparent}",
+            color: "{success.900}",
+            hoverColor: "{success.950}",
+            activeColor: "{success.900}"
           },
           warn: {
-            background: '{warn.300}',
-            hoverBackground: '{warn.400}',
-            activeBackground: '{warn.300}',
-            borderColor: '{transparent}',
-            hoverBorderColor: '{transparent}',
-            activeBorderColor: '{transparent}',
-            color: '{warn.900}',
-            hoverColor: '{warn.950}',
-            activeColor: '{warn.900}',
+            background: "{warn.300}",
+            hoverBackground: "{warn.400}",
+            activeBackground: "{warn.500}",
+            borderColor: "{transparent}",
+            hoverBorderColor: "{transparent}",
+            activeBorderColor: "{transparent}",
+            color: "{warn.900}",
+            hoverColor: "{warn.950}",
+            activeColor: "{warn.900}"
           },
           help: {
-            background: '{help.300}',
-            hoverBackground: '{help.400}',
-            activeBackground: '{help.300}',
-            borderColor: '{transparent}',
-            hoverBorderColor: '{transparent}',
-            activeBorderColor: '{transparent}',
-            color: '{help.900}',
-            hoverColor: '{help.950}',
-            activeColor: '{help.900}',
+            background: "{help.300}",
+            hoverBackground: "{help.400}",
+            activeBackground: "{help.500}",
+            borderColor: "{transparent}",
+            hoverBorderColor: "{transparent}",
+            activeBorderColor: "{transparent}",
+            color: "{help.900}",
+            hoverColor: "{help.950}",
+            activeColor: "{help.900}"
           },
           danger: {
-            background: '{error.300}',
-            hoverBackground: '{error.400}',
-            activeBackground: '{error.300}',
-            borderColor: '{transparent}',
-            hoverBorderColor: '{transparent}',
-            activeBorderColor: '{transparent}',
-            color: '{error.900}',
-            hoverColor: '{error.950}',
-            activeColor: '{error.900}',
-          },
+            background: "{error.300}",
+            hoverBackground: "{error.400}",
+            activeBackground: "{error.500}",
+            borderColor: "{transparent}",
+            hoverBorderColor: "{transparent}",
+            activeBorderColor: "{transparent}",
+            color: "{error.900}",
+            hoverColor: "{error.950}",
+            activeColor: "{error.900}"
+          }
         },
         outlined: {
           primary: {
-            hoverBackground: '{primary.50}',
-            activeBackground: '{primary.100}',
-            borderColor: '{primary.200}',
-            color: '{colors.solid.green.500}',
+            hoverBackground: "{primary.hoverBackground}",
+            activeBackground: "{primary.activeBackground}",
+            borderColor: "{primary.borderColor}",
+            color: "{primary.color}"
           },
           success: {
-            hoverBackground: '{success.100}',
-            activeBackground: '{transparent}',
-            borderColor: '{success.600}',
-            color: '{success.600}',
+            hoverBackground: "{success.100}",
+            activeBackground: "{success.200}",
+            borderColor: "{success.600}",
+            color: "{success.600}"
           },
           info: {
-            hoverBackground: '{info.100}',
-            activeBackground: '{transparent}',
-            borderColor: '{info.600}',
-            color: '{info.600}',
+            hoverBackground: "{info.100}",
+            activeBackground: "{info.200}",
+            borderColor: "{info.600}",
+            color: "{info.600}"
           },
           warn: {
-            hoverBackground: '{warn.100}',
-            activeBackground: '{transparent}',
-            borderColor: '{warn.600}',
-            color: '{warn.600}',
+            hoverBackground: "{warn.100}",
+            activeBackground: "{warn.200}",
+            borderColor: "{warn.600}",
+            color: "{warn.600}"
           },
           help: {
-            hoverBackground: '{help.100}',
-            activeBackground: '{transparent}',
-            borderColor: '{help.600}',
-            color: '{help.600}',
+            hoverBackground: "{help.100}",
+            activeBackground: "{help.200}",
+            borderColor: "{help.600}",
+            color: "{help.600}"
           },
           danger: {
-            hoverBackground: '{error.100}',
-            activeBackground: '{transparent}',
-            borderColor: '{error.600}',
-            color: '{error.600}',
-          },
+            hoverBackground: "{error.100}",
+            activeBackground: "{error.200}",
+            borderColor: "{error.600}",
+            color: "{error.600}"
+          }
         },
         text: {
           primary: {
-            hoverBackground: '{surface.100}',
-            activeBackground: '{transparent}',
-            color: '{text.color}',
+            hoverBackground: "{surface.100}",
+            activeBackground: "{surface.200}",
+            color: "{text.color}"
           },
           success: {
-            hoverBackground: '{success.100}',
-            activeBackground: '{transparent}',
-            color: '{success.600}',
+            hoverBackground: "{success.100}",
+            activeBackground: "{success.200}",
+            color: "{success.600}"
           },
           info: {
-            hoverBackground: '{info.100}',
-            activeBackground: '{transparent}',
-            color: '{info.600}',
+            hoverBackground: "{info.100}",
+            activeBackground: "{info.200}",
+            color: "{info.600}"
           },
           warn: {
-            hoverBackground: '{warn.100}',
-            activeBackground: '{transparent}',
-            color: '{warn.600}',
+            hoverBackground: "{warn.100}",
+            activeBackground: "{warn.200}",
+            color: "{warn.600}"
           },
           help: {
-            hoverBackground: '{help.100}',
-            activeBackground: '{transparent}',
-            color: '{help.600}',
+            hoverBackground: "{help.100}",
+            activeBackground: "{help.200}",
+            color: "{help.600}"
           },
           danger: {
-            hoverBackground: '{error.100}',
-            activeBackground: '{transparent}',
-            color: '{error.600}',
-          },
+            hoverBackground: "{error.100}",
+            activeBackground: "{error.200}",
+            color: "{error.600}"
+          }
         },
         link: {
-          color: '{text.color}',
-          hoverColor: '{text.hoverColor}',
-          activeColor: '{text.color}',
-        },
-      },
+          color: "{text.color}",
+          hoverColor: "{text.hoverColor}",
+          activeColor: "{text.mutedColor}"
+        }
+      }
     },
     root: {
-      borderRadius: '{borderRadius.md}',
-      roundedBorderRadius: '2rem',
-      gap: '0.5rem',
-      paddingX: '1rem',
-      paddingY: '0.5rem',
-      iconOnlyWidth: '2.5rem',
-      raisedShadow:
-        '0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12)',
-      badgeSize: '1rem',
-      transitionDuration: '{formField.transitionDuration}',
+      borderRadius: "{controls.borderRadius.sm}",
+      roundedBorderRadius: "{controls.borderRadius.max}",
+      gap: "{controls.gap.sm}",
+      paddingX: "{controls.padding.lg}",
+      paddingY: "{controls.padding.sm}",
+      iconOnlyWidth: "{controls.iconOnly.2xlg}",
+      raisedShadow: "none",
+      badgeSize: "{feedback.width.lg}",
+      transitionDuration: "{controls.transitionDuration}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        offset: '{focusRing.offset}',
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        offset: "{focusRing.offset}"
       },
       sm: {
-        iconOnlyWidth: '2rem',
-        paddingX: '0.75rem',
-        paddingY: '0.5rem',
-        fontSize: '{fonts.fontSize.sm}',
+        fontSize: "{fonts.fontSize.sm}",
+        iconOnlyWidth: "{controls.iconOnly.xlg}",
+        paddingX: "{controls.padding.md}",
+        paddingY: "{controls.padding.sm}"
       },
       lg: {
-        iconOnlyWidth: '3.5714285714285716rem',
-        paddingX: '1.5rem',
-        paddingY: '1rem',
-        fontSize: '{fonts.fontSize.xl}',
+        fontSize: "{fonts.fontSize.xl}",
+        iconOnlyWidth: "{controls.iconOnly.3xlg}",
+        paddingX: "{controls.padding.2xlg}",
+        paddingY: "{controls.padding.lg}"
       },
       label: {
-        fontWeight: '{fonts.fontWeight.demibold}',
-      },
-    },
+        fontWeight: "{fonts.fontWeight.demibold}"
+      }
+    }
   },
   card: {
     extend: {
-      borderColor: '{content.borderColor}',
+      borderColor: "{content.borderColor}"
     },
     root: {
-      background: '{content.background}',
-      borderRadius: '{borderRadius.lg}',
-      color: '{content.color}',
-      shadow: '0 .125rem .25rem rgba(0,0,0,.075)',
+      background: "{content.background}",
+      borderRadius: "{content.gap.lg}",
+      color: "{content.color}"
     },
     body: {
-      padding: '1rem',
-      gap: '1rem',
+      padding: "{content.padding.sm}",
+      gap: "{content.gap.lg}"
     },
     caption: {
-      gap: '0.25rem',
+      gap: "{content.gap.xs}"
     },
     title: {
-      fontSize: '{fonts.fontSize.lg}',
-      fontWeight: '{fonts.fontWeight.demibold}',
+      fontSize: "{fonts.fontSize.lg}",
+      fontWeight: "{fonts.fontWeight.demibold}"
     },
     subtitle: {
-      color: '{text.mutedColor}',
-    },
+      color: "{text.mutedColor}"
+    }
   },
   carousel: {
     colorScheme: {
       light: {
         indicator: {
-          background: '{surface.300}',
-          hoverBackground: '{surface.400}',
-          activeBackground: '{surface.900}',
-        },
-      },
+          background: "{surface.300}",
+          hoverBackground: "{surface.400}",
+          activeBackground: "{surface.900}"
+        }
+      }
     },
     root: {
-      transitionDuration: '{transitionDuration}',
+      transitionDuration: "{media.transitionDuration}"
     },
     content: {
-      gap: '0.5rem',
+      gap: "{media.gap.sm}"
     },
     indicatorList: {
-      padding: '1rem',
-      gap: '0.5rem',
+      padding: "{media.padding.lg}",
+      gap: "{media.gap.sm}"
     },
     indicator: {
-      width: '0.5rem',
-      height: '0.5rem',
-      borderRadius: '{borderRadius.xl}',
+      width: "{controls.iconOnly.tn}",
+      height: "{controls.iconOnly.tn}",
+      borderRadius: "{media.borderRadius.lg}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{rating.focusRing.shadow}',
-      },
-    },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
+    }
   },
   checkbox: {
     root: {
-      borderRadius: '{borderRadius.sm}',
+      borderRadius: "{form.borderRadius.sm}",
       extend: {
-        borderWidth: '0.07142857142857142rem',
+        borderWidth: "{form.borderWidth}"
       },
-      width: '1.5rem',
-      height: '1.5rem',
-      background: '{formField.background}',
-      checkedBackground: '{surface.900}',
-      checkedHoverBackground: '{surface.800}',
-      disabledBackground: '{formField.disabledBackground}',
-      filledBackground: '{formField.filledBackground}',
-      borderColor: '{formField.borderColor}',
-      hoverBorderColor: '{formField.hoverBorderPrimaryColor}',
-      focusBorderColor: '{formField.focusBorderPrimaryColor}',
-      checkedBorderColor: '{surface.900}',
-      checkedHoverBorderColor: '{surface.800}',
-      checkedFocusBorderColor: '{primary.color}',
-      checkedDisabledBorderColor: '{formField.borderColor}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
-      shadow: '{formField.shadow}',
+      width: "{form.size.2xlg}",
+      height: "{form.size.2xlg}",
+      background: "{form.background}",
+      checkedBackground: "{surface.900}",
+      checkedHoverBackground: "{surface.800}",
+      disabledBackground: "{form.disabledBackground}",
+      filledBackground: "{form.filledBackground}",
+      borderColor: "{form.borderColor}",
+      hoverBorderColor: "{form.hoverBorderPrimaryColor}",
+      focusBorderColor: "{form.focusBorderPrimaryColor}",
+      checkedBorderColor: "{surface.900}",
+      checkedHoverBorderColor: "{surface.800}",
+      checkedFocusBorderColor: "{primary.color}",
+      checkedDisabledBorderColor: "{form.borderColor}",
+      invalidBorderColor: "{form.invalidBorderColor}",
+      shadow: "{form.shadow}",
       focusRing: {
-        focusRing: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
+        focusRing: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
       },
       sm: {
-        width: '1rem',
-        height: '1rem',
+        width: "{form.size.sm}",
+        height: "{form.size.sm}"
       },
       lg: {
-        width: '1.25rem',
-        height: '1.25rem',
+        width: "{form.size.xlg}",
+        height: "{form.size.xlg}"
       },
-      transitionDuration: '{formField.transitionDuration}',
+      transitionDuration: "{form.transitionDuration}"
     },
     icon: {
-      size: '1rem',
-      color: '{formField.color}',
-      checkedColor: '{primary.contrastColor}',
-      checkedHoverColor: '{primary.contrastColor}',
-      disabledColor: '{formField.disabledColor}',
+      size: "{form.icon.md}",
+      color: "{form.color}",
+      checkedColor: "{primary.contrastColor}",
+      checkedHoverColor: "{primary.contrastColor}",
+      disabledColor: "{form.disabledColor}",
       sm: {
-        size: '0.75rem',
+        size: "{form.icon.sm}"
       },
       lg: {
-        size: '1.25rem',
-      },
-    },
+        size: "{form.icon.lg}"
+      }
+    }
   },
   chip: {
     extend: {
-      borderColor: '{transparent}',
+      borderColor: "{transparent}"
     },
     root: {
-      borderRadius: '{borderRadius.sm}',
-      paddingX: '0.5rem',
-      paddingY: '0.25rem',
-      gap: '0.5rem',
-      transitionDuration: '{formField.transitionDuration}',
+      borderRadius: "{media.borderRadius.xs}",
+      paddingX: "{media.padding.sm}",
+      paddingY: "{media.padding.xs}",
+      gap: "{media.gap.sm}",
+      transitionDuration: "{media.transitionDuration}"
     },
     colorScheme: {
       light: {
         root: {
-          background: '{surface.200}',
-          color: '{text.color}',
+          background: "{surface.200}",
+          color: "{text.color}"
         },
         icon: {
-          color: '{text.color}',
+          color: "{text.color}"
         },
         removeIcon: {
-          color: '{text.color}',
-        },
-      },
+          color: "{text.color}"
+        }
+      }
     },
     image: {
-      width: '0',
-      height: '0',
+      width: "0",
+      height: "0"
     },
     icon: {
-      size: '1rem',
+      size: "{media.icon.size.sm}"
     },
     removeIcon: {
-      size: '1rem',
+      size: "{media.icon.size.sm}",
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{primary.200}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.focusRing.shadow}',
-      },
-    },
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
+    }
   },
   confirmdialog: {
     extend: {
       extIcon: {
-        success: '{success.500}',
-        info: '{info.500}',
-        help: '{help.500}',
-        warn: '{warn.500}',
-        danger: '{error.500}',
-      },
+        success: "{success.500}",
+        info: "{info.500}",
+        help: "{help.500}",
+        warn: "{warn.500}",
+        danger: "{error.500}"
+      }
     },
     icon: {
-      size: '1.5rem',
-      color: '{overlay.modal.color}',
+      size: "{overlay.icon.size.md}",
+      color: "{overlay.modal.color}"
     },
     content: {
-      gap: '0',
-    },
+      gap: "0"
+    }
   },
   confirmpopup: {
     root: {
-      background: '{overlay.popover.background}',
-      color: '{overlay.popover.color}',
-      shadow: '{overlay.popover.shadow}',
-      gutter: '10px',
-      arrowOffset: '1.25rem',
+      background: "{overlay.popover.background}",
+      color: "{overlay.popover.color}",
+      shadow: "{overlay.popover.shadow}",
+      gutter: "{overlay.gap.md}",
+      arrowOffset: "{overlay.modal.padding.sm}"
     },
     content: {
-      padding: '{overlay.popover.padding}',
-      gap: '1rem',
+      padding: "{overlay.popover.padding.sm}",
+      gap: "{overlay.gap.lg}"
     },
     icon: {
-      size: '1.5rem',
-      color: '{overlay.popover.color}',
+      size: "{overlay.icon.size.md}",
+      color: "{overlay.popover.color}"
     },
     footer: {
-      gap: '0.5rem',
-      padding:
-        '0 {overlay.popover.padding} {overlay.popover.padding} {overlay.popover.padding}',
-    },
+      gap: "{overlay.gap.sm}",
+      padding: "0 {overlay.popover.padding} {overlay.popover.padding} {overlay.popover.padding}"
+    }
   },
   contextmenu: {
     root: {
-      background: '{content.background}',
-      color: '{content.color}',
-      shadow: '{overlay.navigation.shadow}',
+      background: "{content.background}",
+      color: "{content.color}",
+      shadow: "{navigation.shadow}"
     },
     list: {
-      padding: '{navigation.list.padding}',
-      gap: '{navigation.list.gap}',
+      padding: "{navigation.list.padding.md} 0",
+      gap: "{navigation.list.gap}"
     },
     item: {
-      padding: '{navigation.item.padding}',
-      gap: '{navigation.item.gap}',
+      padding: "{navigation.item.padding}",
+      gap: "{navigation.item.gap}"
     },
     submenu: {
-      mobileIndent: '1.25rem',
-    },
+      mobileIndent: "{navigation.submenu.padding}"
+    }
   },
   datatable: {
     colorScheme: {
       light: {
         root: {
-          color: '{text.color}',
-          borderColor: '{content.borderColor}',
+          color: "{text.color}",
+          borderColor: "{content.borderColor}"
         },
         header: {
-          background: '{surface.50}',
-          color: '{text.color}',
+          background: "{surface.50}",
+          color: "{text.color}"
         },
         headerCell: {
-          background: '{surface.50}',
-          hoverBackground: '{surface.100}',
-          color: '{text.color}',
+          background: "{surface.50}",
+          hoverBackground: "{surface.100}",
+          color: "{text.color}"
         },
         footer: {
-          background: '{surface.100}',
-          color: '{text.color}',
+          background: "{surface.100}",
+          color: "{text.color}"
         },
         footerCell: {
-          background: '{content.hoverBackground}',
-          color: '{text.color}',
+          background: "{content.hoverBackground}",
+          color: "{text.color}"
         },
         row: {
-          stripedBackground: '{content.hoverBackground}',
+          stripedBackground: "{content.hoverBackground}"
         },
         bodyCell: {
-          selectedBorderColor: '{content.borderColor}',
-        },
-      },
+          selectedBorderColor: "{content.borderColor}"
+        }
+      }
     },
     extended: {
       extHeaderCell: {
-        selectedHoverBackground: '{surface.800}',
+        selectedHoverBackground: "{surface.800}"
       },
       extRow: {
-        selectedHoverBackground: '{surface.800}',
-        stripedHoverBackground: '{surface.100}',
-      },
+        selectedHoverBackground: "{surface.800}",
+        stripedHoverBackground: "{surface.100}"
+      }
     },
     root: {
-      transitionDuration: '{transitionDuration}',
+      transitionDuration: "{data.transitionDuration}"
     },
     header: {
-      borderColor: '{content.borderColor}',
-      borderWidth: '1px 0 1px 0',
-      padding: '1rem',
+      borderColor: "{content.borderColor}",
+      borderWidth: "{data.width.0pt3} 0 {data.width.0pt3} 0",
+      padding: "{data.padding.lg}",
       sm: {
-        padding: '0.5rem',
+        padding: "{data.padding.sm}"
       },
       lg: {
-        padding: '1.25rem',
-      },
+        padding: "{data.padding.xlg}"
+      }
     },
     headerCell: {
-      selectedBackground: '{highlight.background}',
-      borderColor: '{content.borderColor}',
-      hoverColor: '{text.hoverColor}',
-      selectedColor: '{highlight.color}',
-      gap: '0.5rem',
-      padding: '1rem',
+      selectedBackground: "{highlight.background}",
+      borderColor: "{content.borderColor}",
+      hoverColor: "{text.hoverColor}",
+      selectedColor: "{highlight.color}",
+      gap: "{data.gap.sm}",
+      padding: "{data.padding.lg}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: 'inset {focus.ring.shadow}',
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "inset {focus.ring.shadow}"
       },
       sm: {
-        padding: '0.5rem',
+        padding: "{data.padding.sm}"
       },
       lg: {
-        padding: '1.25rem',
-      },
+        padding: "{data.padding.xlg}"
+      }
     },
     columnTitle: {
-      fontWeight: '{fonts.fontWeight.bold}',
+      fontWeight: "{fonts.fontWeight.bold}"
     },
     row: {
-      background: '{content.background}',
-      hoverBackground: '{content.hoverBackground}',
-      selectedBackground: '{highlight.background}',
-      color: '{content.color}',
-      hoverColor: '{content.hoverColor}',
-      selectedColor: '{highlight.color}',
+      background: "{content.background}",
+      hoverBackground: "{content.hoverBackground}",
+      selectedBackground: "{highlight.background}",
+      color: "{content.color}",
+      hoverColor: "{content.hoverColor}",
+      selectedColor: "{highlight.color}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: 'inset {focus.ring.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "inset {focus.ring.shadow}"
+      }
     },
     bodyCell: {
-      borderColor: '{content.borderColor}',
-      padding: '1rem',
+      borderColor: "{content.borderColor}",
+      padding: "{data.padding.lg}",
       sm: {
-        padding: '0.5rem',
+        padding: "{data.padding.sm}"
       },
       lg: {
-        padding: '1.25rem',
-      },
+        padding: "{data.padding.xlg}"
+      }
     },
     footerCell: {
-      borderColor: '{content.borderColor}',
-      padding: '1rem',
+      borderColor: "{content.borderColor}",
+      padding: "{data.padding.lg}",
       sm: {
-        padding: '0.5rem',
+        padding: "{data.padding.sm}"
       },
       lg: {
-        padding: '1.25rem',
-      },
+        padding: "{data.padding.xlg}"
+      }
     },
     columnFooter: {
-      fontWeight: '{fonts.fontWeight.bold}',
+      fontWeight: "{fonts.fontWeight.bold}"
     },
     dropPoint: {
-      color: '{highlight.background}',
+      color: "{highlight.background}"
     },
     footer: {
-      borderColor: '{content.borderColor}',
-      borderWidth: '0 0 1px 0',
-      padding: '1rem',
+      borderColor: "{content.borderColor}",
+      borderWidth: "0 0 {data.width.0pt3} 0",
+      padding: "{data.padding.lg}",
       sm: {
-        padding: '0.5rem',
+        padding: "{data.padding.sm}"
       },
       lg: {
-        padding: '1.25rem',
-      },
+        padding: "{data.padding.xlg}"
+      }
     },
     columnResizer: {
-      width: '0.5rem',
+      width: "{data.width.sm}"
     },
     resizeIndicator: {
-      width: '1px',
-      color: '{highlight.background}',
+      width: "{data.width.tn}",
+      color: "{highlight.background}"
     },
     sortIcon: {
-      color: '{text.color}',
-      hoverColor: '{text.hoverColor}',
-      size: '1rem',
+      color: "{text.color}",
+      hoverColor: "{text.hoverColor}",
+      size: "{data.icon.size.md}"
     },
     loadingIcon: {
-      size: '2rem',
+      size: "{data.icon.size.3xlg}"
     },
     rowToggleButton: {
-      hoverBackground: '{content.hoverBackground}',
-      selectedHoverBackground: '{content.hoverBackground}',
-      color: '{text.color}',
-      hoverColor: '{text.color}',
-      selectedHoverColor: '{text.color}',
-      size: '2rem',
-      borderRadius: '{content.borderRadius}',
+      hoverBackground: "{content.hoverBackground}",
+      selectedHoverBackground: "{content.hoverBackground}",
+      color: "{text.color}",
+      hoverColor: "{text.color}",
+      selectedHoverColor: "{text.color}",
+      size: "{data.icon.size.3xlg}",
+      borderRadius: "{content.borderRadius}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     filter: {
-      inlineGap: '0.5rem',
+      inlineGap: "{data.gap.sm}",
       rule: {
-        borderColor: '{content.borderColor}',
+        borderColor: "{content.borderColor}"
       },
       constraintList: {
-        padding: '{list.padding}',
-        gap: '{list.gap}',
+        padding: "{list.padding}",
+        gap: "{list.gap.sm}"
       },
       constraint: {
-        focusBackground: '{list.option.focusBackground}',
-        selectedBackground: '{list.option.selectedBackground}',
-        selectedFocusBackground: '{list.option.selectedFocusBackground}',
-        color: '{list.option.color}',
-        focusColor: '{list.option.focusColor}',
-        selectedColor: '{list.option.selectedColor}',
-        selectedFocusColor: '{list.option.selectedFocusColor}',
-        padding: '{list.option.padding}',
-        borderRadius: '{list.option.borderRadius}',
+        focusBackground: "{list.option.focusBackground}",
+        selectedBackground: "{list.option.selectedBackground}",
+        selectedFocusBackground: "{list.option.selectedFocusBackground}",
+        color: "{list.option.color}",
+        focusColor: "{list.option.focusColor}",
+        selectedColor: "{list.option.selectedColor}",
+        selectedFocusColor: "{list.option.selectedFocusColor}",
+        padding: "{list.option.padding}",
+        borderRadius: "{list.option.borderRadius}",
         separator: {
-          borderColor: '{content.borderColor}',
-        },
+          borderColor: "{content.borderColor}"
+        }
       },
       overlaySelect: {
-        background: '{overlay.select.background}',
-        color: '{overlay.select.color}',
-        borderColor: '{overlay.select.borderColor}',
-        borderRadius: '{overlay.select.borderRadius}',
-        shadow: '{overlay.select.shadow}',
+        background: "{overlay.select.background}",
+        color: "{overlay.select.color}",
+        borderColor: "{overlay.select.borderColor}",
+        borderRadius: "{overlay.select.borderRadius}",
+        shadow: "{overlay.select.shadow}"
       },
       overlayPopover: {
-        background: '{overlay.popover.background}',
-        color: '{overlay.popover.color}',
-        borderColor: '{overlay.select.borderColor}',
-        borderRadius: '{overlay.select.borderRadius}',
-        shadow: '{overlay.popover.shadow}',
-        padding: '{overlay.popover.padding}',
-        gap: '{list.gap}',
-      },
+        background: "{overlay.popover.background}",
+        color: "{overlay.popover.color}",
+        borderColor: "{overlay.select.borderColor}",
+        borderRadius: "{overlay.select.borderRadius}",
+        shadow: "{overlay.popover.shadow}",
+        padding: "{overlay.popover.padding.sm}",
+        gap: "{list.gap.sm}"
+      }
     },
     paginatorTop: {
-      borderColor: '{formField.borderColor}',
-      borderWidth: '0 0 1px 0',
+      borderColor: "{form.borderColor}",
+      borderWidth: "0 0 {data.width.0pt3} 0"
     },
     paginatorBottom: {
-      borderWidth: '0 0 1px 0',
-      borderColor: '{content.borderColor}',
-    },
+      borderWidth: "0 0 {data.width.0pt3} 0",
+      borderColor: "{content.borderColor}"
+    }
   },
   dataview: {
     root: {
-      borderWidth: '1px',
-      borderRadius: '4px',
-      padding: '0',
-      borderColor: '#ffffff',
+      borderWidth: "{data.width.tn}",
+      borderRadius: "{data.borderRadius}",
+      padding: "0",
+      borderColor: "{content.borderColor}"
     },
     header: {
-      borderWidth: '0 0 1px 0',
-      padding: '0.875rem 1.125rem',
-      borderRadius: '5px 5px 0 0',
-      color: '{text.color}',
+      borderWidth: "0 0 {data.width.0pt3} 0",
+      padding: "{data.padding.sm} {data.padding.md}",
+      borderRadius: "0 0 0 0",
+      color: "{text.color}"
     },
     content: {
-      background: '{content.background}',
-      color: '{content.color}',
-      borderColor: '#ffffff',
-      borderWidth: '0',
-      padding: '0',
-      borderRadius: '5px',
+      background: "{content.background}",
+      color: "{content.color}",
+      borderColor: "{content.borderColor}",
+      borderWidth: "0",
+      padding: "0",
+      borderRadius: "0"
     },
     footer: {
-      background: '{content.background}',
-      color: '{content.color}',
-      borderWidth: '1px 0 0 0',
-      padding: '0.875rem 1.125rem',
-      borderRadius: '0 0 5px 5px',
+      background: "{surface.100}",
+      color: "{text.color}",
+      borderWidth: "{data.width.0pt3} 0 0 0",
+      padding: "{data.padding.sm} {data.padding.md}",
+      borderRadius: "0 0 0 0"
     },
     paginatorTop: {
-      borderWidth: '0 0 1px 0',
+      borderWidth: "0 0 {data.width.0pt3} 0"
     },
     paginatorBottom: {
-      borderWidth: '1px 0 0 0',
-    },
+      borderWidth: "{data.width.0pt3} 0 0 0"
+    }
   },
   datepicker: {
+    extend: {
+      extDate: {
+        selectedHoverBackground: "{primary.selectedHoverBackground}"
+      },
+      extToday: {
+        borderColor: "{content.borderColor}",
+        hoverBackground: "{content.hoverBackground}"
+      },
+      extTitle: {
+        width: "{form.width.10xlg}"
+      },
+      extTimePicker: {
+        minWidth: "{form.width.lg}",
+        color: "{content.color}"
+      }
+    },
     colorScheme: {
       light: {
         dropdown: {
-          background: '{content.background}',
-          hoverBackground: '{navigation.item.focusBackground}',
-          activeBackground: '{navigation.item.activeBackground}',
-          color: '{navigation.item.color}',
-          hoverColor: '{navigation.item.focusColor}',
-          activeColor: '{navigation.item.activeColor}',
+          background: "{content.background}",
+          hoverBackground: "{navigation.item.focusBackground}",
+          activeBackground: "{navigation.item.activeBackground}",
+          color: "{navigation.item.color}",
+          hoverColor: "{navigation.item.focusColor}",
+          activeColor: "{navigation.item.activeColor}"
         },
         today: {
-          background: '{content.background}',
-          color: '{text.color}',
-        },
-      },
-    },
-    extend: {
-      extDate: {
-        selectedHoverBackground: '{primary.600}',
-      },
-      extToday: {
-        borderColor: '{content.borderColor}',
-        hoverBackground: '{content.hoverBackground}',
-      },
-      extTimePicker: {
-        minWidth: '2.857142857142857rem',
-        color: '{content.color}',
-      },
-      extTitle: {
-        width: '15rem',
-      },
+          background: "{content.background}",
+          color: "{text.color}"
+        }
+      }
     },
     panel: {
-      background: '{content.background}',
-      borderColor: '{content.borderColor}',
-      color: '{content.color}',
-      borderRadius: '{content.borderRadius}',
-      shadow: '{overlay.popover.shadow}',
-      padding: '{overlay.popover.padding}',
+      background: "{content.background}",
+      borderColor: "{content.borderColor}",
+      color: "{content.color}",
+      borderRadius: "{content.borderRadius}",
+      shadow: "{overlay.popover.shadow}",
+      padding: "{overlay.popover.padding.sm}"
     },
     header: {
-      background: '{content.background}',
-      borderColor: '{content.borderColor}',
-      color: '{content.color}',
-      padding: '0 0 0.5rem 0',
+      background: "{content.background}",
+      borderColor: "{content.borderColor}",
+      color: "{content.color}",
+      padding: "0 0 {formField.padding.xs} 0"
     },
     title: {
-      gap: '0.5rem',
-      fontWeight: '{fonts.fontWeight.bold}',
-    },
-    inputIcon: {
-      color: '{formField.iconColor}',
+      gap: "{form.gap.xs}",
+      fontWeight: "{fonts.fontWeight.bold}"
     },
     selectMonth: {
-      hoverBackground: '{content.hoverBackground}',
-      color: '{content.color}',
-      hoverColor: '{content.hoverColor}',
-      borderRadius: '{content.borderRadius}',
-      padding: '0.375rem 0.625rem',
+      hoverBackground: "{content.hoverBackground}",
+      color: "{content.color}",
+      hoverColor: "{content.hoverColor}",
+      borderRadius: "{content.borderRadius}",
+      padding: "{form.padding.xs}"
+    },
+    inputIcon: {
+      color: "{form.iconColor}"
     },
     dropdown: {
-      width: '2.5rem',
-      borderColor: '{formField.borderColor}',
-      hoverBorderColor: '{formField.borderColor}',
-      activeBorderColor: '{formField.borderColor}',
-      borderRadius: '{formField.borderRadius}',
+      width: "{form.width.md}",
+      borderColor: "{form.borderColor}",
+      hoverBorderColor: "{form.borderColor}",
+      activeBorderColor: "{form.borderColor}",
+      borderRadius: "{form.borderRadius.md}",
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
       },
       sm: {
-        width: '0',
+        width: "0"
       },
       lg: {
-        width: '0',
-      },
+        width: "0"
+      }
     },
     group: {
-      borderColor: '{content.borderColor}',
-      gap: '{overlay.popover.padding}',
+      borderColor: "{content.borderColor}",
+      gap: "{overlay.popover.padding.sm}"
     },
     selectYear: {
-      hoverBackground: '{content.hoverBackground}',
-      color: '{content.color}',
-      hoverColor: '{content.hoverColor}',
-      borderRadius: '{content.borderRadius}',
-      padding: '0.375rem 0.625rem',
+      hoverBackground: "{content.hoverBackground}",
+      color: "{content.color}",
+      hoverColor: "{content.hoverColor}",
+      borderRadius: "{content.borderRadius}",
+      padding: "{overlay.select.padding}"
     },
     dayView: {
-      margin: '0 0 0 0',
+      margin: "0 0 0 0"
     },
     weekDay: {
-      padding: '0.25rem',
-      fontWeight: '{fonts.fontWeight.bold}',
-      color: '{content.color}',
+      padding: "{form.padding.tn}",
+      fontWeight: "{fonts.fontWeight.bold}",
+      color: "{content.color}"
     },
     date: {
-      hoverBackground: '{content.hoverBackground}',
-      selectedBackground: '{primary.500}',
-      rangeSelectedBackground: '{highlight.background}',
-      color: '{content.color}',
-      hoverColor: '{content.color}',
-      selectedColor: '{text.extend.colorPrimaryStatic}',
-      rangeSelectedColor: '{text.extend.colorSecondaryStatic}',
-      width: '2rem',
-      height: '2rem',
-      borderRadius: '0.375rem',
-      padding: '0.25rem',
+      hoverBackground: "{content.hoverBackground}",
+      selectedBackground: "{primary.selectedBackground}",
+      rangeSelectedBackground: "{highlight.background}",
+      color: "{content.color}",
+      hoverColor: "{content.color}",
+      selectedColor: "{text.extend.colorPrimaryStatic}",
+      rangeSelectedColor: "{text.extend.colorSecondaryStatic}",
+      width: "{form.size.3xlg}",
+      height: "{form.size.3xlg}",
+      borderRadius: "{form.borderRadius.sm}",
+      padding: "{form.padding.tn}",
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
-      },
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     monthView: {
-      margin: '0 0 0 0',
+      margin: "0 0 0 0"
     },
     month: {
-      padding: '0',
-      borderRadius: '0',
+      padding: "0",
+      borderRadius: "0"
     },
     yearView: {
-      margin: '0 0 0 0',
+      margin: "0 0 0 0"
     },
     year: {
-      padding: '0',
-      borderRadius: '0',
+      padding: "0",
+      borderRadius: "0"
     },
     buttonbar: {
-      padding: '0 0 0 0',
-      borderColor: '{content.borderColor}',
+      padding: "0 0 0 0",
+      borderColor: "{content.borderColor}"
     },
     timePicker: {
-      padding: '1.5rem 0.75rem 0.75rem 0.75rem',
-      borderColor: '{content.borderColor}',
-      gap: '0.5rem',
-      buttonGap: '0.25rem',
+      padding: "{form.padding.sm}",
+      borderColor: "{content.borderColor}",
+      gap: "{form.gap.xs}",
+      buttonGap: "{form.gap.tn}"
     },
     root: {
-      transitionDuration: '{transitionDuration}',
-    },
+      transitionDuration: "{form.transitionDuration}"
+    }
   },
   dialog: {
+    extend: {
+      borderWidth: "{overlay.borderWidth}"
+    },
     root: {
-      background: '{overlay.modal.background}',
-      borderColor: '{overlay.modal.borderColor}',
-      color: '{overlay.modal.color}',
-      borderRadius: '{overlay.modal.borderRadius}',
-      shadow: '{overlay.popover.shadow}',
+      background: "{overlay.modal.background}",
+      borderColor: "{overlay.modal.borderColor}",
+      color: "{overlay.modal.color}",
+      borderRadius: "{overlay.modal.borderRadius}",
+      shadow: "{overlay.popover.shadow}"
     },
     header: {
-      padding:
-        '{overlay.modal.padding} {overlay.modal.padding} 1rem {overlay.modal.padding}',
-      gap: '0',
+      padding: "{overlay.modal.padding.md} {overlay.modal.padding.md} 1rem {overlay.modal.padding.md}",
+      gap: "0"
     },
     title: {
-      fontSize: '{fonts.fontSize.xl}',
-      fontWeight: '{fonts.fontWeight.demibold}',
+      fontSize: "{fonts.fontSize.xl}",
+      fontWeight: "{fonts.fontWeight.demibold}"
     },
     content: {
-      padding: '1.5rem',
+      padding: "{content.padding.md}"
     },
     footer: {
-      padding:
-        '0 {overlay.modal.padding} {overlay.modal.padding} {overlay.modal.padding}',
-      gap: '0.5rem',
-    },
+      padding: "0 {overlay.modal.padding.md} {overlay.modal.padding.md} {overlay.modal.padding.md}",
+      gap: "{content.gap.sm}"
+    }
   },
   divider: {
     root: {
-      borderColor: '{content.borderColor}',
+      borderColor: "{content.borderColor}"
     },
     content: {
-      background: '{content.background}',
-      color: '{text.mutedColor}',
+      background: "{content.background}",
+      color: "{text.mutedColor}"
     },
     horizontal: {
-      margin: '1rem 0',
-      padding: '0 1rem',
+      margin: "{content.padding.sm} 0",
+      padding: "0 {content.padding.sm}",
       content: {
-        padding: '0 0.5rem',
-      },
+        padding: "0 {content.padding.xs}"
+      }
     },
     vertical: {
-      margin: '0 1rem',
-      padding: '1rem 0',
+      margin: "0 {content.padding.sm}",
+      padding: "{content.padding.sm} 0",
       content: {
-        padding: '0.5rem 0',
-      },
-    },
+        padding: "{content.padding.xs} 0"
+      }
+    }
   },
   drawer: {
     extend: {
-      borderRadius: '{overlay.popover.borderRadius}',
-      width: '{sizingDrawer.width}',
+      borderRadius: "{overlay.popover.borderRadius}",
+      borderWidth: "{overlay.borderWidth}",
+      width: "{overlay.drawer.width}",
       extHeader: {
-        gap: '0.5rem',
-        borderColor: '{drawer.root.borderColor}',
-      },
+        gap: "{overlay.gap.sm}",
+        borderColor: "{drawer.root.borderColor}"
+      }
     },
     root: {
-      background: '{overlay.modal.background}',
-      borderColor: '{overlay.modal.borderColor}',
-      color: '{overlay.modal.color}',
-      shadow: '{overlay.modal.shadow}',
+      background: "{overlay.modal.background}",
+      borderColor: "{overlay.modal.borderColor}",
+      color: "{overlay.modal.color}",
+      shadow: "{overlay.modal.shadow}"
     },
     header: {
-      padding:
-        '{overlay.modal.padding} {overlay.modal.padding} 14 {overlay.modal.padding} ',
+      padding: "{overlay.modal.padding.md} {overlay.modal.padding.md} {overlay.modal.padding.xs} {overlay.modal.padding.md} "
     },
     title: {
-      fontSize: '{fonts.fontSize.xl}',
-      fontWeight: '{fonts.fontWeight.demibold}',
+      fontSize: "{fonts.fontSize.xl}",
+      fontWeight: "{fonts.fontWeight.demibold}"
     },
     content: {
-      padding: '{overlay.modal.padding}',
+      padding: "{overlay.modal.padding.md}"
     },
     footer: {
-      padding:
-        '0 {overlay.modal.padding} {overlay.modal.padding} {overlay.modal.padding} ',
-    },
+      padding: "0 {overlay.modal.padding.md} {overlay.modal.padding.md} {overlay.modal.padding.md} "
+    }
   },
   fileupload: {
+    extend: {
+      extDragNdrop: {
+        background: "{surface.0}",
+        borderRadius: "{form.borderRadius.md}",
+        info: {
+          gap: "{form.gap.tn}"
+        }
+      },
+      extContent: {
+        borderRadius: "{content.borderRadius}",
+        highlightBorderDefault: "{form.borderColor}"
+      }
+    },
     colorScheme: {
       light: {
         header: {
-          background: '{surface.0}',
-          color: '{text.color}',
-        },
-      },
-    },
-    extend: {
-      extDragNdrop: {
-        background: '{surface.0}',
-        padding: '1rem',
-        borderRadius: '{formField.borderRadius}',
-        gap: '0.5rem',
-        info: {
-          gap: '0.25rem',
-        },
-      },
-      extContent: {
-        borderRadius: '{borderRadius.md}',
-        highlightBorderDefault: '{formField.borderColor}',
-      },
+          background: "{surface.0}",
+          color: "{text.color}"
+        }
+      }
     },
     root: {
-      background: '{content.background}',
-      borderColor: '{content.borderColor}',
-      color: '{content.color}',
-      borderRadius: '{content.borderRadius}',
-      transitionDuration: '{transitionDuration}',
+      background: "{content.background}",
+      borderColor: "{content.borderColor}",
+      color: "{content.color}",
+      borderRadius: "{content.borderRadius}",
+      transitionDuration: "{form.transitionDuration}"
     },
     header: {
-      borderColor: '{content.borderColor}',
-      borderWidth: '0',
-      padding: '0',
-      borderRadius: '0',
-      gap: '0.5rem',
+      borderColor: "{content.borderColor}",
+      borderWidth: "0",
+      padding: "0",
+      borderRadius: "0",
+      gap: "{content.gap.sm}"
     },
     content: {
-      highlightBorderColor: '{surface.900}',
-      padding: '0',
-      gap: '0.5rem',
+      highlightBorderColor: "{surface.900}",
+      padding: "0",
+      gap: "{content.gap.sm}"
     },
     file: {
-      padding: '0.5rem',
-      gap: '0.5rem',
-      borderColor: '{formField.borderColor}',
+      padding: "{content.padding.xs}",
+      gap: "{content.gap.sm}",
+      borderColor: "{form.borderColor}",
       info: {
-        gap: '0.25rem',
-      },
+        gap: "{content.gap.xs}"
+      }
     },
     fileList: {
-      gap: '0.5rem',
+      gap: "{content.gap.sm}"
     },
     progressbar: {
-      height: '0.5rem',
+      height: "{feedback.height.sm}"
     },
     basic: {
-      gap: '0.5rem',
-    },
+      gap: "{content.gap.sm}"
+    }
   },
   floatlabel: {
     extend: {
-      height: '4rem',
-      iconSize: '{iconSizeLarge}',
+      height: "{form.size.6xlg}",
+      iconSize: "{form.icon.lg}"
     },
     root: {
-      color: '{formField.floatLabelColor}',
-      focusColor: '{formField.floatLabelFocusColor}',
-      activeColor: '{formField.floatLabelActiveColor}',
-      invalidColor: '{formField.floatLabelInvalidColor}',
-      transitionDuration: '{formField.transitionDuration}',
-      positionX: '{formField.paddingX}',
-      positionY: '{formField.paddingY}',
-      fontWeight: '{fonts.fontWeight.regular}',
+      color: "{form.floatLabelColor}",
+      focusColor: "{form.floatLabelFocusColor}",
+      activeColor: "{form.floatLabelActiveColor}",
+      invalidColor: "{form.floatLabelInvalidColor}",
+      transitionDuration: "{form.transitionDuration}",
+      positionX: "{form.padding.sm}",
+      positionY: "{form.padding.sm}",
+      fontWeight: "{fonts.fontWeight.regular}",
       active: {
-        fontSize: '{fonts.fontSize.sm}',
-        fontWeight: '{fonts.fontWeight.regular}',
-      },
+        fontSize: "{fonts.fontSize.sm}",
+        fontWeight: "{fonts.fontWeight.regular}"
+      }
     },
     over: {
       active: {
-        top: '0.5rem',
-      },
+        top: "{form.padding.xs}"
+      }
     },
     inside: {
       input: {
-        paddingTop: '1.875rem',
-        paddingBottom: '{formField.paddingY}',
+        paddingTop: "{form.padding.md}",
+        paddingBottom: "{form.padding.sm}"
       },
       active: {
-        top: '{formField.paddingY}',
-      },
+        top: "{form.padding.sm}"
+      }
     },
     on: {
-      borderRadius: '0',
+      borderRadius: "0",
       active: {
-        padding: '0 0.125rem',
-        background: '#ffffff',
-      },
-    },
+        padding: "0 {formField.padding.tn}",
+        background: "{form.background}"
+      }
+    }
   },
   galleria: {
     colorScheme: {
       light: {
         thumbnailContent: {
-          background: '{surface.100}',
+          background: "{surface.100}"
         },
         thumbnailNavButton: {
-          hoverBackground: '{colors.alpha.white.20}',
-          color: '{text.color}',
-          hoverColor: '{text.hoverColor}',
+          hoverBackground: "{colors.alpha.white.20}",
+          color: "{text.color}",
+          hoverColor: "{text.hoverColor}"
         },
         indicatorButton: {
-          background: '{surface.300}',
-          hoverBackground: '{surface.400}',
-        },
-      },
+          background: "{surface.300}",
+          hoverBackground: "{surface.400}"
+        }
+      }
     },
     root: {
-      borderWidth: '1px',
-      borderColor: '{content.borderColor}',
-      borderRadius: '{content.borderRadius}',
-      transitionDuration: '{transitionDuration}',
+      borderWidth: "{content.borderWidth}",
+      borderColor: "{content.borderColor}",
+      borderRadius: "{content.borderRadius}",
+      transitionDuration: "{media.transitionDuration}"
     },
     navButton: {
-      background: '{transparent}',
-      hoverBackground: '{colors.alpha.white.20}',
-      color: '{text.extend.colorInverted}',
-      hoverColor: '{text.extend.colorInverted}',
-      size: '4rem',
-      gutter: '0.5rem',
+      background: "{transparent}",
+      hoverBackground: "{colors.alpha.white.20}",
+      color: "{text.extend.colorInverted}",
+      hoverColor: "{text.extend.colorInverted}",
+      size: "{media.size.xlg}",
+      gutter: "{media.gap.sm}",
       prev: {
-        borderRadius: '{navigation.item.borderRadius}',
+        borderRadius: "{navigation.item.borderRadius}"
       },
       next: {
-        borderRadius: '{navigation.item.borderRadius}',
+        borderRadius: "{navigation.item.borderRadius}"
       },
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     navIcon: {
-      size: '2rem',
+      size: "{media.icon.size.lg}"
     },
     thumbnailsContent: {
-      padding: '0.25rem',
+      padding: "{media.padding.xs}"
     },
     thumbnailNavButton: {
-      size: '2rem',
-      borderRadius: '{content.borderRadius}',
-      gutter: '0.5rem',
+      size: "{media.size.sm}",
+      borderRadius: "{content.borderRadius}",
+      gutter: "{media.gap.sm}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     thumbnailNavButtonIcon: {
-      size: '1rem',
+      size: "{media.icon.size.sm}"
     },
     caption: {
-      background: '{colors.alpha.white.50}',
-      color: '{text.color}',
-      padding: '0.5rem',
+      background: "{colors.alpha.white.50}",
+      color: "{text.color}",
+      padding: "{media.gap.sm}"
     },
     indicatorList: {
-      gap: '0.5rem',
-      padding: '1rem',
+      gap: "{media.gap.sm}",
+      padding: "{media.padding.lg}"
     },
     indicatorButton: {
-      width: '0.5rem',
-      height: '0.5rem',
-      activeBackground: '{surface.900}',
-      borderRadius: '{content.borderRadius}',
+      width: "{media.size.xs}",
+      height: "{media.size.xs}",
+      activeBackground: "{surface.900}",
+      borderRadius: "{content.borderRadius}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     insetIndicatorList: {
-      background: '{colors.alpha.black.50}',
+      background: "{colors.alpha.black.50}"
     },
     insetIndicatorButton: {
-      background: '{colors.alpha.white.10}',
-      hoverBackground: '{colors.alpha.white.20}',
-      activeBackground: '{colors.alpha.white.50}',
+      background: "{colors.alpha.white.10}",
+      hoverBackground: "{colors.alpha.white.20}",
+      activeBackground: "{colors.alpha.white.50}"
     },
     closeButton: {
-      size: '4rem',
-      gutter: '0.5rem',
-      background: '{colors.alpha.white.10}',
-      hoverBackground: '{colors.alpha.white.20}',
-      color: '{text.extend.colorInverted}',
-      hoverColor: '{text.extend.colorInverted}',
-      borderRadius: '{borderRadius.lg}',
+      size: "{media.size.xlg}",
+      gutter: "{media.gap.sm}",
+      background: "{colors.alpha.white.10}",
+      hoverBackground: "{colors.alpha.white.20}",
+      color: "{text.extend.colorInverted}",
+      hoverColor: "{text.extend.colorInverted}",
+      borderRadius: "{controls.borderRadius.md}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     closeButtonIcon: {
-      size: '2rem',
-    },
+      size: "{media.icon.size.lg}"
+    }
   },
   message: {
+    extend: {
+      width: "{messages.message.width}",
+      extText: {
+        gap: "{feedback.gap.xs}"
+      },
+      extInfo: {
+        color: "{info.500}",
+        closeButton: {
+          color: "{info.500}",
+          borderColor: "{info.500}"
+        },
+        caption: {
+          color: "{text.color}"
+        }
+      },
+      extAccentLine: {
+        width: "{feedback.width.xs}"
+      },
+      extCloseButton: {
+        width: "{feedback.width.tn}"
+      },
+      extSuccess: {
+        color: "{success.500}",
+        closeButton: {
+          color: "{success.500}",
+          borderColor: "{success.500}"
+        },
+        caption: {
+          color: "{text.color}"
+        }
+      },
+      extWarn: {
+        color: "{warn.500}",
+        closeButton: {
+          color: "{warn.500}",
+          borderColor: "{warn.500}"
+        },
+        caption: {
+          color: "{text.color}"
+        }
+      },
+      extError: {
+        color: "{error.500}",
+        closeButton: {
+          color: "{error.500}",
+          borderColor: "{error.500}"
+        },
+        caption: {
+          color: "{text.color}"
+        }
+      }
+    },
     colorScheme: {
       light: {
         success: {
-          background: '{success.50}',
-          borderColor: '{success.500}',
-          color: '{text.color}',
-          shadow: 'none',
+          background: "{success.50}",
+          borderColor: "{success.500}",
+          color: "{text.color}",
+          shadow: "none",
           outlined: {
-            color: '{text.color}',
-            borderColor: '{success.500}',
+            color: "{text.color}",
+            borderColor: "{success.500}"
           },
           closeButton: {
-            hoverBackground: '{success.200}',
+            hoverBackground: "{success.200}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
           },
           simple: {
-            color: '{text.color}',
-          },
+            color: "{text.color}"
+          }
         },
         outlined: {
           root: {
-            borderWidth: '0',
+            borderWidth: "0"
           },
           closeButton: {
-            hoverBackground: '#ffffff',
+            hoverBackground: "{transparent}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
           },
           outlined: {
-            color: '#ffffff',
-            borderColor: '#ffffff',
+            color: "{transparent}",
+            borderColor: "{transparent}"
           },
           simple: {
-            color: '#ffffff',
-          },
+            color: "{transparent}"
+          }
         },
         simple: {
           content: {
-            padding: '0',
-          },
+            padding: "0"
+          }
         },
         warn: {
-          background: '{warn.50}',
-          borderColor: '{warn.500}',
-          color: '{text.color}',
-          shadow: 'none',
+          background: "{warn.50}",
+          borderColor: "{warn.500}",
+          color: "{text.color}",
+          shadow: "none",
           outlined: {
-            color: '{text.color}',
-            borderColor: '{warn.500}',
+            color: "{text.color}",
+            borderColor: "{warn.500}"
           },
           closeButton: {
-            hoverBackground: '{warn.200}',
+            hoverBackground: "{warn.200}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
           },
           simple: {
-            color: '{text.color}',
-          },
+            color: "{text.color}"
+          }
         },
         error: {
-          background: '{error.50}',
-          borderColor: '{error.500}',
-          color: '{text.color}',
-          shadow: 'none',
+          background: "{error.50}",
+          borderColor: "{error.500}",
+          color: "{text.color}",
+          shadow: "none",
           outlined: {
-            color: '{text.color}',
-            borderColor: '{error.500}',
+            color: "{text.color}",
+            borderColor: "{error.500}"
           },
           closeButton: {
-            hoverBackground: '{error.200}',
+            hoverBackground: "{error.200}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
           },
           simple: {
-            color: '{text.color}',
-          },
+            color: "{text.color}"
+          }
         },
         secondary: {
-          borderColor: '#ffffff',
-          shadow: 'none',
+          borderColor: "{transparent}",
+          shadow: "none",
           closeButton: {
-            hoverBackground: '#ffffff',
+            hoverBackground: "{transparent}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
           },
           simple: {
-            color: '#ffffff',
+            color: "{transparent}"
           },
           outlined: {
-            color: '#ffffff',
-            borderColor: '#ffffff',
-          },
+            color: "{transparent}",
+            borderColor: "{transparent}"
+          }
         },
         contrast: {
-          borderColor: '#ffffff',
-          shadow: 'none',
+          borderColor: "{transparent}",
+          shadow: "none",
           closeButton: {
-            hoverBackground: '#ffffff',
+            hoverBackground: "{transparent}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
           },
           simple: {
-            color: '#ffffff',
+            color: "{transparent}"
           },
           outlined: {
-            color: '#ffffff',
-            borderColor: '#ffffff',
-          },
+            color: "{transparent}",
+            borderColor: "{transparent}"
+          }
         },
         info: {
-          background: '{info.50}',
-          borderColor: '{info.500}',
-          color: '{text.color}',
-          shadow: 'none',
+          background: "{info.50}",
+          borderColor: "{info.500}",
+          color: "{text.color}",
+          shadow: "none",
           outlined: {
-            color: '{text.color}',
-            borderColor: '{info.500}',
+            color: "{text.color}",
+            borderColor: "{info.500}"
           },
           closeButton: {
-            hoverBackground: '{info.200}',
+            hoverBackground: "{info.200}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
           },
           simple: {
-            color: '{text.color}',
-          },
-        },
-      },
-    },
-    extend: {
-      width: '{sizingMessage.width}',
-      extText: {
-        gap: '0.25rem',
-      },
-      extInfo: {
-        color: '{info.500}',
-        closeButton: {
-          color: '{info.500}',
-          borderColor: '{info.500}',
-        },
-        caption: {
-          color: '{text.color}',
-        },
-      },
-      extAccentLine: {
-        width: '0.25rem',
-      },
-      extCloseButton: {
-        width: '0.07142857142857142rem',
-      },
-      extSuccess: {
-        color: '{success.500}',
-        closeButton: {
-          color: '{success.500}',
-          borderColor: '{success.500}',
-        },
-        caption: {
-          color: '{text.color}',
-        },
-      },
-      extWarn: {
-        color: '{warn.500}',
-        closeButton: {
-          color: '{warn.500}',
-          borderColor: '{warn.500}',
-        },
-        caption: {
-          color: '{text.color}',
-        },
-      },
-      extError: {
-        color: '{error.500}',
-        closeButton: {
-          color: '{error.500}',
-          borderColor: '{error.500}',
-        },
-        caption: {
-          color: '{text.color}',
-        },
-      },
+            color: "{text.color}"
+          }
+        }
+      }
     },
     root: {
-      borderRadius: '{content.borderRadius}',
-      borderWidth: '0.07142857142857142rem',
-      transitionDuration: '{transitionDuration}',
+      borderRadius: "{content.borderRadius}",
+      borderWidth: "{feedback.width.tn}",
+      transitionDuration: "{feedback.transitionDuration}"
     },
     content: {
-      padding: '1rem',
-      gap: '1rem',
+      padding: "{feedback.padding.lg}",
+      gap: "{feedback.gap.lg}",
       sm: {
-        padding: '1rem',
+        padding: "{feedback.padding.lg}"
       },
       lg: {
-        padding: '1rem',
-      },
+        padding: "{feedback.padding.lg}"
+      }
     },
     text: {
-      fontSize: '{fonts.fontSize.base}',
-      fontWeight: '{fonts.fontWeight.bold}',
+      fontSize: "{fonts.fontSize.base}",
+      fontWeight: "{fonts.fontWeight.bold}",
       sm: {
-        fontSize: '{fonts.fontSize.base}',
+        fontSize: "{fonts.fontSize.base}"
       },
       lg: {
-        fontSize: '{fonts.fontSize.base}',
-      },
+        fontSize: "{fonts.fontSize.base}"
+      }
     },
     icon: {
-      size: '2.25rem',
+      size: "{feedback.icon.size.2xlg}",
       sm: {
-        size: '2.25rem',
+        size: "{feedback.icon.size.2xlg}"
       },
       lg: {
-        size: '2.25rem',
-      },
+        size: "{feedback.icon.size.2xlg}"
+      }
     },
     closeButton: {
-      width: '2rem',
-      height: '2rem',
-      borderRadius: '0.75rem',
+      width: "{controls.iconOnly.xlg}",
+      height: "{controls.iconOnly.xlg}",
+      borderRadius: "{controls.borderRadius.sm}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        offset: '{focusRing.offset}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        offset: "{focusRing.offset}"
+      }
     },
     closeIcon: {
-      size: '1rem',
+      size: "{feedback.icon.size.sm}",
       sm: {
-        size: '1rem',
+        size: "{feedback.icon.size.sm}"
       },
       lg: {
-        size: '1rem',
-      },
-    },
+        size: "{feedback.icon.size.sm}"
+      }
+    }
   },
   inputgroup: {
+    extend: {
+      borderWidth: "{form.borderWidth}",
+      iconSize: "{form.icon.md}"
+    },
     colorScheme: {
       light: {
         addon: {
-          background: '{transparent}',
-          borderColor: '{formField.borderColor}',
-          color: '{text.mutedColor}',
-        },
-      },
+          background: "{form.background}",
+          borderColor: "{form.borderColor}",
+          color: "{text.mutedColor}"
+        }
+      }
     },
     addon: {
-      borderRadius: '{formField.borderRadius}',
-      padding: '0.75rem',
-      minWidth: '2.5rem',
-    },
+      borderRadius: "{form.borderRadius.md}",
+      padding: "{form.padding.sm}",
+      minWidth: "{form.width.md}"
+    }
   },
   inputnumber: {
+    extend: {
+      borderWidth: "{form.borderWidth}",
+      extButton: {
+        height: "{form.size.4xlg}"
+      }
+    },
     colorScheme: {
       light: {
         button: {
-          background: '{transparent}',
-          hoverBackground: '{content.hoverBackground}',
-          activeBackground: '{transparent}',
-          borderColor: '{formField.borderColor}',
-          hoverBorderColor: '{formField.borderColor}',
-          activeBorderColor: '{formField.borderColor}',
-          color: '{text.color}',
-          hoverColor: '{text.hoverColor}',
-          activeColor: '{text.color}',
-        },
-      },
-    },
-    extend: {
-      extButton: {
-        height: '2.5rem',
-      },
+          background: "{transparent}",
+          hoverBackground: "{content.hoverBackground}",
+          activeBackground: "{transparent}",
+          borderColor: "{form.borderColor}",
+          hoverBorderColor: "{form.borderColor}",
+          activeBorderColor: "{form.borderColor}",
+          color: "{text.color}",
+          hoverColor: "{text.hoverColor}",
+          activeColor: "{text.color}"
+        }
+      }
     },
     transitionDuration: {
-      transitionDuration: '{formField.transitionDuration}',
+      transitionDuration: "{form.transitionDuration}"
     },
     button: {
-      width: '2.5rem',
-      borderRadius: '{formField.borderRadius}',
-      verticalPadding: '{formField.paddingY}',
-    },
+      width: "{form.width.md}",
+      borderRadius: "{form.borderRadius.md}",
+      verticalPadding: "{form.padding.sm}"
+    }
   },
   inputotp: {
     extend: {
-      height: '2.5rem',
+      height: "{form.size.4xlg}",
+      borderWidth: "{form.borderWidth}"
     },
     root: {
-      gap: '0.5rem',
+      gap: "{form.gap.xs}"
     },
     input: {
-      width: '2.5rem',
+      width: "{form.width.md}"
     },
     sm: {
-      width: '0',
+      width: "0"
     },
     lg: {
-      width: '0',
-    },
+      width: "0"
+    }
   },
   inputtext: {
     extend: {
-      readonlyBackground: '{formField.readonlyBackground}',
-      iconSize: '{iconSizeMedium}',
+      readonlyBackground: "{form.readonlyBackground}",
+      iconSize: "{form.icon.md}",
+      borderWidth: "{form.borderWidth}",
       extXlg: {
-        fontSize: '{sizingInputtext.root.fontSize}',
-        paddingX: '{sizingInputtext.root.paddingX}',
-        paddingY: '{sizingInputtext.root.paddingY}',
-      },
+        fontSize: "{form.inputtext.fontSize}",
+        paddingX: "{form.inputtext.paddingX}",
+        paddingY: "{form.inputtext.paddingY}"
+      }
     },
     root: {
-      background: '{formField.background}',
-      disabledBackground: '{formField.disabledBackground}',
-      filledBackground: '{formField.filledBackground}',
-      filledHoverBackground: '{formField.filledHoverBackground}',
-      filledFocusBackground: '{formField.filledFocusBackground}',
-      borderColor: '{formField.borderColor}',
-      hoverBorderColor: '{formField.hoverBorderSecondaryColor}',
-      focusBorderColor: '{formField.focusBorderSecondaryColor}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
-      color: '{text.color}',
-      disabledColor: '{formField.disabledColor}',
-      placeholderColor: '{formField.placeholderColor}',
-      invalidPlaceholderColor: '{formField.invalidPlaceholderColor}',
-      shadow: '{formField.shadow}',
-      paddingX: '{sizingInputtext.root.paddingX}',
-      paddingY: '{sizingInputtext.root.paddingY}',
-      borderRadius: '{formField.borderRadius}',
-      transitionDuration: '{formField.transitionDuration}',
+      background: "{form.background}",
+      disabledBackground: "{form.disabledBackground}",
+      filledBackground: "{form.filledBackground}",
+      filledHoverBackground: "{form.filledHoverBackground}",
+      filledFocusBackground: "{form.filledFocusBackground}",
+      borderColor: "{form.borderColor}",
+      hoverBorderColor: "{form.hoverBorderSecondaryColor}",
+      focusBorderColor: "{form.focusBorderSecondaryColor}",
+      invalidBorderColor: "{form.invalidBorderColor}",
+      color: "{text.color}",
+      disabledColor: "{form.disabledColor}",
+      placeholderColor: "{form.placeholderColor}",
+      invalidPlaceholderColor: "{form.invalidPlaceholderColor}",
+      shadow: "{form.shadow}",
+      paddingX: "{form.inputtext.paddingX}",
+      paddingY: "{form.inputtext.paddingY}",
+      borderRadius: "{form.borderRadius.md}",
+      transitionDuration: "{form.transitionDuration}",
       sm: {
-        fontSize: '{sizingInputtext.root.fontSize}',
-        paddingX: '{sizingInputtext.root.paddingX}',
-        paddingY: '{sizingInputtext.root.paddingY}',
+        fontSize: "{form.inputtext.fontSize}",
+        paddingX: "{form.inputtext.paddingX}",
+        paddingY: "{form.inputtext.paddingY}"
       },
       lg: {
-        fontSize: '{sizingInputtext.root.fontSize}',
-        paddingX: '{sizingInputtext.root.paddingX}',
-        paddingY: '{sizingInputtext.root.paddingY}',
+        fontSize: "{form.inputtext.fontSize}",
+        paddingX: "{form.inputtext.paddingX}",
+        paddingY: "{form.inputtext.paddingY}"
       },
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
-      },
-    },
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
+    }
   },
   listbox: {
-    colorScheme: {
-      light: {
-        option: {
-          stripedBackground: '{surface.50}',
-        },
-      },
-    },
     extend: {
       extOption: {
         label: {
-          gap: '0.25rem',
+          gap: "{list.gap.sm}"
         },
         caption: {
-          color: '{text.mutedColor}',
-          stripedColor: '{text.mutedColor}',
-        },
-      },
+          color: "{text.mutedColor}",
+          stripedColor: "{text.mutedColor}"
+        }
+      }
     },
-    root: {
-      background: '{formField.background}',
-      disabledBackground: '{formField.disabledBackground}',
-      borderColor: '{formField.borderColor}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
-      color: '{formField.color}',
-      disabledColor: '{formField.disabledColor}',
-      shadow: '{formField.shadow}',
-      borderRadius: '{formField.borderRadius}',
-      transitionDuration: '{formField.transitionDuration}',
-    },
-    list: {
-      padding: '{list.padding}',
-      gap: '{list.gap}',
-      header: {
-        padding: '{list.header.padding}',
-      },
-    },
-    option: {
-      focusBackground: '{list.option.focusBackground}',
-      selectedBackground: '{list.option.selectedBackground}',
-      selectedFocusBackground: '{list.option.selectedFocusBackground}',
-      color: '{list.option.color}',
-      focusColor: '{list.option.focusColor}',
-      selectedColor: '{list.option.selectedColor}',
-      selectedFocusColor: '{list.option.selectedFocusColor}',
-      padding: '{list.option.padding}',
-      borderRadius: '{list.option.borderRadius}',
-    },
-    optionGroup: {
-      background: '{list.optionGroup.background}',
-      color: '{list.optionGroup.color}',
-      fontWeight: '{fonts.fontWeight.demibold}',
-      padding: '{list.option.padding}',
-    },
-    checkmark: {
-      color: '{list.option.color}',
-      gutterStart: '-0.5rem',
-      gutterEnd: '0.5rem',
-    },
-    emptyMessage: {
-      padding: '{list.option.padding}',
-    },
-  },
-  megamenu: {
     colorScheme: {
       light: {
-        root: {
-          background: '{transparent}',
-        },
-      },
+        option: {
+          stripedBackground: "{surface.50}"
+        }
+      }
     },
+    root: {
+      background: "{form.background}",
+      disabledBackground: "{form.disabledBackground}",
+      borderColor: "{form.borderColor}",
+      invalidBorderColor: "{form.invalidBorderColor}",
+      color: "{form.color}",
+      disabledColor: "{form.disabledColor}",
+      shadow: "{form.shadow}",
+      borderRadius: "{form.borderRadius.md}",
+      transitionDuration: "{form.transitionDuration}"
+    },
+    list: {
+      padding: "{list.padding}",
+      gap: "{list.gap.sm}",
+      header: {
+        padding: "{list.header.padding}"
+      }
+    },
+    option: {
+      focusBackground: "{list.option.focusBackground}",
+      selectedBackground: "{list.option.selectedBackground}",
+      selectedFocusBackground: "{list.option.selectedFocusBackground}",
+      color: "{list.option.color}",
+      focusColor: "{list.option.focusColor}",
+      selectedColor: "{list.option.selectedColor}",
+      selectedFocusColor: "{list.option.selectedFocusColor}",
+      padding: "{list.option.padding}",
+      borderRadius: "{list.option.borderRadius}"
+    },
+    optionGroup: {
+      background: "{list.optionGroup.background}",
+      color: "{list.optionGroup.color}",
+      fontWeight: "{fonts.fontWeight.demibold}",
+      padding: "{list.option.padding}"
+    },
+    checkmark: {
+      color: "{list.option.color}",
+      gutterStart: "-{list.gap.md}",
+      gutterEnd: "{list.gap.md}"
+    },
+    emptyMessage: {
+      padding: "{list.option.padding}"
+    }
+  },
+  megamenu: {
     extend: {
       extItem: {
         caption: {
-          color: '{text.mutedColor}',
-          gap: '0.25rem',
-        },
+          color: "{text.mutedColor}",
+          gap: "{content.gap.xs}"
+        }
       },
+      iconSize: "{navigation.submenuIcon.size}"
+    },
+    colorScheme: {
+      light: {
+        root: {
+          background: "{transparent}"
+        }
+      }
     },
     root: {
-      borderColor: '{transparent}',
-      borderRadius: '{content.borderRadius}',
-      color: '{content.color}',
-      gap: '0.25rem',
-      transitionDuration: '{transitionDuration}',
+      borderColor: "{transparent}",
+      borderRadius: "{content.borderRadius}",
+      color: "{content.color}",
+      gap: "{content.gap.xs}",
+      transitionDuration: "{form.transitionDuration}",
       verticalOrientation: {
-        padding: '{navigation.list.padding}',
-        gap: '{navigation.list.gap}',
+        padding: "{navigation.list.padding.sm}",
+        gap: "{navigation.list.gap}"
       },
       horizontalOrientation: {
-        padding: '{navigation.list.padding}',
-        gap: '{navigation.list.gap}',
-      },
+        padding: "{navigation.list.padding.sm}",
+        gap: "{navigation.list.gap}"
+      }
     },
     baseItem: {
-      borderRadius: '{content.borderRadius}',
-      padding: '{navigation.item.padding}',
+      borderRadius: "{content.borderRadius}",
+      padding: "{navigation.item.padding}"
     },
     item: {
-      focusBackground: '{navigation.item.focusBackground}',
-      activeBackground: '{navigation.item.activeBackground}',
-      color: '{navigation.item.color}',
-      focusColor: '{navigation.item.focusColor}',
-      activeColor: '{navigation.item.activeColor}',
-      padding: '{navigation.item.padding}',
-      borderRadius: '{navigation.item.borderRadius}',
-      gap: '{navigation.item.gap}',
+      focusBackground: "{navigation.item.focusBackground}",
+      activeBackground: "{navigation.item.activeBackground}",
+      color: "{navigation.item.color}",
+      focusColor: "{navigation.item.focusColor}",
+      activeColor: "{navigation.item.activeColor}",
+      padding: "{navigation.item.padding}",
+      borderRadius: "{navigation.item.borderRadius}",
+      gap: "{navigation.item.gap}",
       icon: {
-        color: '{navigation.item.icon.color}',
-        focusColor: '{navigation.item.icon.focusColor}',
-        activeColor: '{navigation.item.icon.activeColor}',
-      },
+        color: "{navigation.item.icon.color}",
+        focusColor: "{navigation.item.icon.focusColor}",
+        activeColor: "{navigation.item.icon.activeColor}"
+      }
     },
     overlay: {
-      padding: '0.25rem',
-      background: '{content.background}',
-      borderColor: '{content.borderColor}',
-      borderRadius: '{content.borderRadius}',
-      color: '{content.color}',
-      shadow: '{overlay.navigation.shadow}',
-      gap: '0',
+      padding: "{content.padding.tn}",
+      background: "{content.background}",
+      borderColor: "{content.borderColor}",
+      borderRadius: "{content.borderRadius}",
+      color: "{content.color}",
+      shadow: "{navigation.shadow}",
+      gap: "0"
     },
     submenu: {
-      padding: '{navigation.list.padding}',
-      gap: '{navigation.list.gap}',
+      padding: "{navigation.list.padding.sm}",
+      gap: "{navigation.list.gap}"
     },
     submenuLabel: {
-      padding: '{navigation.submenuLabel.padding}',
-      fontWeight: '{navigation.submenuLabel.fontWeight}',
-      background: '{navigation.submenuLabel.background}',
-      color: '{navigation.submenuLabel.color}',
+      padding: "{navigation.submenuLabel.padding}",
+      background: "{navigation.submenuLabel.background}",
+      color: "{navigation.submenuLabel.color}",
+      Number: "{fonts.fontWeight.demibold}"
     },
     submenuIcon: {
-      size: '{navigation.submenuIcon.size}',
-      color: '{navigation.submenuIcon.color}',
-      focusColor: '{navigation.submenuIcon.focusColor}',
-      activeColor: '{navigation.submenuIcon.activeColor}',
+      size: "{navigation.submenuIcon.size}",
+      color: "{navigation.submenuIcon.color}",
+      focusColor: "{navigation.submenuIcon.focusColor}",
+      activeColor: "{navigation.submenuIcon.activeColor}"
     },
     separator: {
-      borderColor: '{content.borderColor}',
+      borderColor: "{content.borderColor}"
     },
     mobileButton: {
-      borderRadius: '{navigation.item.borderRadius}',
-      size: '2rem',
-      color: '{text.color}',
-      hoverColor: '{text.hoverColor}',
-      hoverBackground: '{content.hoverBackground}',
+      borderRadius: "{navigation.item.borderRadius}",
+      size: "{controls.iconOnly.xlg}",
+      color: "{text.color}",
+      hoverColor: "{text.hoverColor}",
+      hoverBackground: "{content.hoverBackground}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
-    },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
+    }
   },
   menu: {
     extend: {
-      paddingX: '0.25rem',
-      paddingY: '0.25rem',
+      paddingX: "0.25rem",
+      iconSize: "{navigation.submenuIcon.size}",
+      paddingY: "0.25rem",
       extItem: {
         caption: {
-          color: '{text.mutedColor}',
-          gap: '0.25rem',
+          gap: "{content.gap.xs}"
         },
-      },
+        activeBackground: "{navigation.item.activeBackground}",
+        activeColor: "{navigation.item.activeColor}"
+      }
+    },
+    colorScheme: {
+      light: {
+        extend: {
+          extItem: {
+            caption: {
+              color: "{text.mutedColor}"
+            },
+            icon: {
+              activeColor: "{navigation.item.icon.activeColor}"
+            }
+          }
+        },
+        root: {
+          background: "{content.background}",
+          borderColor: "{content.borderColor}",
+          color: "{content.color}"
+        },
+        item: {
+          focusBackground: "{navigation.item.focusBackground}",
+          color: "{navigation.item.color}",
+          focusColor: "{navigation.item.focusColor}",
+          icon: {
+            color: "{navigation.item.icon.color}",
+            focusColor: "{navigation.item.icon.focusColor}"
+          }
+        }
+      }
     },
     root: {
-      background: '{content.background}',
-      borderColor: '{content.borderColor}',
-      color: '{content.color}',
-      borderRadius: '{content.borderRadius}',
-      shadow: '{overlay.navigation.shadow}',
-      transitionDuration: '{transitionDuration}',
+      borderRadius: "{content.borderRadius}",
+      shadow: "{navigation.shadow}",
+      transitionDuration: "{form.transitionDuration}"
     },
     list: {
-      padding: '{navigation.list.padding}',
-      gap: '{navigation.list.gap}',
-    },
-    item: {
-      focusBackground: '{navigation.item.focusBackground}',
-      color: '{navigation.item.color}',
-      focusColor: '{navigation.item.focusColor}',
-      padding: '{navigation.item.padding}',
-      borderRadius: '{navigation.item.borderRadius}',
-      gap: '{navigation.item.gap}',
-      icon: {
-        color: '{navigation.item.icon.color}',
-        focusColor: '{navigation.item.icon.focusColor}',
-      },
+      padding: "{navigation.list.padding.sm}",
+      gap: "{navigation.list.gap}"
     },
     submenuLabel: {
-      padding: '{navigation.submenuLabel.padding}',
-      fontWeight: '{fonts.fontWeight.demibold}',
-      background: '{navigation.submenuLabel.background}',
-      color: '{navigation.submenuLabel.color}',
+      padding: "{navigation.submenuLabel.padding}",
+      fontWeight: "{fonts.fontWeight.demibold}",
+      background: "{navigation.submenuLabel.background}",
+      color: "{navigation.submenuLabel.color}"
     },
     separator: {
-      borderColor: '{content.borderColor}',
+      borderColor: "{content.borderColor}"
     },
+    item: {
+      padding: "{navigation.item.padding}",
+      borderRadius: "{navigation.item.borderRadius}",
+      gap: "{navigation.item.gap}"
+    }
   },
   menubar: {
     extend: {
+      iconSize: "{navigation.submenuIcon.size}",
       extItem: {
         caption: {
-          color: '{text.mutedColor}',
-          gap: '0.25rem',
-        },
+          color: "{text.mutedColor}",
+          gap: "{content.padding.tn}"
+        }
       },
       extSubmenuLabel: {
-        padding: '{navigation.submenuLabel.padding}',
-        fontWeight: '{fonts.fontWeight.demibold}',
-        background: '{navigation.submenuLabel.background}',
-        color: '{navigation.submenuLabel.color}',
-      },
+        padding: "{navigation.submenuLabel.padding}",
+        fontWeight: "{fonts.fontWeight.demibold}",
+        background: "{navigation.submenuLabel.background}",
+        color: "{navigation.submenuLabel.color}"
+      }
     },
     colorScheme: {
       light: {
         root: {
-          background: '{transparent}',
-        },
-      },
+          background: "{transparent}"
+        }
+      }
     },
     root: {
-      borderColor: '{transparent}',
-      borderRadius: '{navigation.item.borderRadius}',
-      color: '{content.color}',
-      gap: '0.25rem',
-      padding: '{navigation.list.padding}',
-      transitionDuration: '{transitionDuration}',
+      borderColor: "{transparent}",
+      borderRadius: "{navigation.item.borderRadius}",
+      color: "{content.color}",
+      gap: "{content.padding.tn}",
+      padding: "{navigation.list.padding.sm}",
+      transitionDuration: "{form.transitionDuration}"
     },
     baseItem: {
-      borderRadius: '{navigation.item.borderRadius}',
-      padding: '0.5rem 0.75rem',
+      borderRadius: "{navigation.item.borderRadius}",
+      padding: "{navigation.item.padding}"
     },
     item: {
-      focusBackground: '{navigation.item.focusBackground}',
-      activeBackground: '{navigation.item.activeBackground}',
-      color: '{navigation.item.color}',
-      focusColor: '{navigation.item.focusColor}',
-      activeColor: '{navigation.item.activeColor}',
-      padding: '{navigation.item.padding}',
-      borderRadius: '{navigation.item.borderRadius}',
-      gap: '{navigation.item.gap}',
+      focusBackground: "{navigation.item.focusBackground}",
+      activeBackground: "{navigation.item.activeBackground}",
+      color: "{navigation.item.color}",
+      focusColor: "{navigation.item.focusColor}",
+      activeColor: "{navigation.item.activeColor}",
+      padding: "{navigation.item.padding}",
+      borderRadius: "{navigation.item.borderRadius}",
+      gap: "{navigation.item.gap}",
       icon: {
-        color: '{navigation.item.icon.color}',
-        focusColor: '{navigation.item.icon.focusColor}',
-        activeColor: '{navigation.item.icon.activeColor}',
-      },
+        color: "{navigation.item.icon.color}",
+        focusColor: "{navigation.item.icon.focusColor}",
+        activeColor: "{navigation.item.icon.activeColor}"
+      }
     },
     submenu: {
-      padding: '{navigation.list.padding}',
-      gap: '{navigation.list.gap}',
-      background: '{content.background}',
-      borderColor: '{content.borderColor}',
-      borderRadius: '{content.borderRadius}',
-      shadow: '{overlay.navigation.shadow}',
-      mobileIndent: '0.75rem',
+      padding: "{navigation.list.padding.sm}",
+      gap: "{navigation.list.gap}",
+      background: "{content.background}",
+      borderColor: "{content.borderColor}",
+      borderRadius: "{content.borderRadius}",
+      shadow: "{navigation.shadow}",
+      mobileIndent: "{navigation.padding.xs}",
       icon: {
-        size: '{navigation.submenuIcon.size}',
-        color: '{navigation.submenuIcon.color}',
-        focusColor: '{navigation.submenuIcon.focusColor}',
-        activeColor: '{navigation.submenuIcon.activeColor}',
-      },
+        size: "{navigation.submenuIcon.size}",
+        color: "{navigation.submenuIcon.color}",
+        focusColor: "{navigation.submenuIcon.focusColor}",
+        activeColor: "{navigation.submenuIcon.activeColor}"
+      }
     },
     separator: {
-      borderColor: '{content.borderColor}',
+      borderColor: "{content.borderColor}"
     },
     mobileButton: {
-      borderRadius: '{navigation.item.borderRadius}',
-      size: '2rem',
-      color: '{text.color}',
-      hoverColor: '{text.hoverColor}',
-      hoverBackground: '{content.hoverBackground}',
+      borderRadius: "{navigation.item.borderRadius}",
+      size: "{controls.iconOnly.xlg}",
+      color: "{text.color}",
+      hoverColor: "{text.hoverColor}",
+      hoverBackground: "{content.hoverBackground}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
-    },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
+    }
   },
   metergroup: {
     extend: {
       extLabel: {
-        color: '{text.mutedColor}',
-      },
+        color: "{text.mutedColor}"
+      }
     },
     root: {
-      borderRadius: '{content.borderRadius}',
-      gap: '0.75rem',
+      borderRadius: "{content.borderRadius}",
+      gap: "{feedback.gap.md}"
     },
     meters: {
-      size: '0.5rem',
-      background: '{content.borderColor}',
+      size: "{feedback.height.sm}",
+      background: "{content.borderColor}"
     },
     label: {
-      gap: '0.5rem',
+      gap: "{feedback.gap.sm}"
     },
     labelMarker: {
-      size: '0.5rem',
+      size: "{feedback.icon.size.xs}"
     },
     labelIcon: {
-      size: '1rem',
+      size: "{feedback.icon.size.sm}"
     },
     labelList: {
-      verticalGap: '0.5rem',
-      horizontalGap: '0.75rem',
-    },
+      verticalGap: "{feedback.gap.sm}",
+      horizontalGap: "{feedback.gap.md}"
+    }
   },
   multiselect: {
     extend: {
-      paddingX: '0.35714285714285715rem',
-      paddingY: '0.35714285714285715rem',
+      paddingX: "0.35714285714285715rem",
+      paddingY: "0.35714285714285715rem",
+      borderWidth: "{form.borderWidth}",
+      iconSize: "{form.icon.md}"
     },
     root: {
-      background: '{formField.background}',
-      disabledBackground: '{formField.disabledBackground}',
-      filledBackground: '{formField.filledBackground}',
-      filledHoverBackground: '{formField.filledHoverBackground}',
-      filledFocusBackground: '{formField.filledFocusBackground}',
-      borderColor: '{formField.borderColor}',
-      hoverBorderColor: '{formField.hoverBorderSecondaryColor}',
-      focusBorderColor: '{formField.focusBorderSecondaryColor}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
-      color: '{formField.color}',
-      disabledColor: '{formField.disabledColor}',
-      placeholderColor: '{formField.placeholderColor}',
-      invalidPlaceholderColor: '{formField.invalidPlaceholderColor}',
-      shadow: '{formField.shadow}',
-      paddingX: '{formField.paddingX}',
-      paddingY: '{formField.paddingY}',
-      borderRadius: '{formField.borderRadius}',
-      transitionDuration: '{formField.transitionDuration}',
+      background: "{form.background}",
+      disabledBackground: "{form.disabledBackground}",
+      filledBackground: "{form.filledBackground}",
+      filledHoverBackground: "{form.filledHoverBackground}",
+      filledFocusBackground: "{form.filledFocusBackground}",
+      borderColor: "{form.borderColor}",
+      hoverBorderColor: "{form.hoverBorderSecondaryColor}",
+      focusBorderColor: "{form.focusBorderSecondaryColor}",
+      invalidBorderColor: "{form.invalidBorderColor}",
+      color: "{form.color}",
+      disabledColor: "{form.disabledColor}",
+      placeholderColor: "{form.placeholderColor}",
+      invalidPlaceholderColor: "{form.invalidPlaceholderColor}",
+      shadow: "{form.shadow}",
+      paddingX: "{form.padding.sm}",
+      paddingY: "{form.padding.sm}",
+      borderRadius: "{form.borderRadius.md}",
+      transitionDuration: "{form.transitionDuration}",
       sm: {
-        fontSize: '{formField.sm.fontSize}',
-        paddingX: '{formField.sm.paddingY}',
-        paddingY: '{formField.sm.paddingY}',
+        fontSize: "{form.sm.fontSize}",
+        paddingX: "{form.sm.paddingY}",
+        paddingY: "{form.sm.paddingY}"
       },
       lg: {
-        fontSize: '{formField.lg.fontSize}',
-        paddingX: '{formField.lg.paddingX}',
-        paddingY: '{formField.lg.paddingY}',
+        fontSize: "{form.lg.fontSize}",
+        paddingX: "{form.lg.paddingX}",
+        paddingY: "{form.lg.paddingY}"
       },
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
-      },
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     dropdown: {
-      width: '0.75rem',
-      color: '{formField.iconColor}',
+      width: "{form.width.md}",
+      color: "{form.iconColor}"
     },
     overlay: {
-      background: '{datatable.filter.overlaySelect.background}',
-      borderColor: '{overlay.select.borderColor}',
-      borderRadius: '{datatable.filter.overlaySelect.borderRadius}',
-      color: '{datatable.filter.overlaySelect.color}',
-      shadow: '{overlay.select.shadow}',
+      background: "{datatable.filter.overlaySelect.background}",
+      borderColor: "{overlay.select.borderColor}",
+      borderRadius: "{datatable.filter.overlaySelect.borderRadius}",
+      color: "{datatable.filter.overlaySelect.color}",
+      shadow: "{overlay.select.shadow}"
     },
-    readonlyBackground: '{formField.readonlyBackground}',
+    readonlyBackground: "{form.readonlyBackground}",
     list: {
-      padding: '{list.padding}',
+      padding: "{list.padding}",
       header: {
-        padding: '{list.header.padding}',
+        padding: "{list.header.padding}"
       },
-      gap: '{list.gap}',
+      gap: "{list.gap.sm}"
     },
     option: {
-      focusBackground: '{list.option.focusBackground}',
-      selectedBackground: '{list.option.selectedBackground}',
-      selectedFocusBackground: '{list.option.selectedFocusBackground}',
-      color: '{list.option.color}',
-      focusColor: '{list.option.focusColor}',
-      selectedColor: '{list.option.selectedColor}',
-      selectedFocusColor: '{list.option.selectedFocusColor}',
-      padding: '{list.option.padding}',
-      borderRadius: '{list.option.borderRadius}',
-      gap: '0.5rem',
+      focusBackground: "{list.option.focusBackground}",
+      selectedBackground: "{list.option.selectedBackground}",
+      selectedFocusBackground: "{list.option.selectedFocusBackground}",
+      color: "{list.option.color}",
+      focusColor: "{list.option.focusColor}",
+      selectedColor: "{list.option.selectedColor}",
+      selectedFocusColor: "{list.option.selectedFocusColor}",
+      padding: "{list.option.padding}",
+      borderRadius: "{list.option.borderRadius}",
+      gap: "{list.gap.md}"
     },
     optionGroup: {
-      background: '{list.optionGroup.background}',
-      color: '{list.optionGroup.color}',
-      fontWeight: '{fonts.fontWeight.demibold}',
-      padding: '{list.optionGroup.padding}',
+      background: "{list.optionGroup.background}",
+      color: "{list.optionGroup.color}",
+      fontWeight: "{fonts.fontWeight.demibold}",
+      padding: "{list.optionGroup.padding}"
     },
     clearIcon: {
-      color: '{formField.iconColor}',
+      color: "{form.iconColor}"
     },
     chip: {
-      borderRadius: '{borderRadius.sm}',
+      borderRadius: "{form.borderRadius.sm}"
     },
     emptyMessage: {
-      padding: '{list.option.padding}',
-    },
+      padding: "{list.option.padding}"
+    }
+  },
+  overlaybadge: {
+  root: {
+    outline: {
+      width: "0",
+      color: "{transparent}"
+    }
+  }
   },
   paginator: {
     root: {
-      padding: '0 0.5rem',
-      gap: '0.5rem',
-      borderRadius: '{content.borderRadius}',
-      background: '{transparent}',
-      color: '{content.color}',
-      transitionDuration: '{transitionDuration}',
+      padding: "0 {data.padding.sm}",
+      gap: "{data.gap.sm}",
+      borderRadius: "{content.borderRadius}",
+      background: "{transparent}",
+      color: "{content.color}",
+      transitionDuration: "{data.transitionDuration}"
     },
     currentPageReport: {
-      color: '{text.mutedColor}',
+      color: "{text.mutedColor}"
     },
     navButton: {
-      background: '{transparent}',
-      hoverBackground: '{content.hoverBackground}',
-      selectedBackground: '{highlight.background}',
-      color: '{text.color}',
-      hoverColor: '{text.hoverColor}',
-      selectedColor: '{text.extend.colorInverted}',
-      width: '2.5rem',
-      height: '2.5rem',
-      borderRadius: '{content.borderRadius}',
+      background: "{transparent}",
+      hoverBackground: "{content.hoverBackground}",
+      selectedBackground: "{highlight.background}",
+      color: "{text.color}",
+      hoverColor: "{text.hoverColor}",
+      selectedColor: "{text.extend.colorInverted}",
+      width: "{data.icon.size.5xlg}",
+      height: "{data.icon.size.5xlg}",
+      borderRadius: "{content.borderRadius}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        focus: '{focusRing.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        focus: "{focusRing.shadow}"
+      }
     },
     jumpToPageInput: {
-      maxWidth: '5rem',
-    },
+      maxWidth: "{data.width.13xlg}"
+    }
   },
   panelmenu: {
     extend: {
+      iconSize: "{navigation.submenuIcon.size}",
       extPanel: {
-        gap: '0.25rem',
+        gap: "{content.gap.xs}"
       },
       extItem: {
-        activeBackground: '{navigation.item.activeBackground}',
-        activeColor: '{navigation.item.activeColor}',
+        activeBackground: "{navigation.item.activeBackground}",
+        activeColor: "{navigation.item.activeColor}",
         caption: {
-          color: '{text.mutedColor}',
-          gap: '0.25rem',
-        },
-      },
+          color: "{text.mutedColor}",
+          gap: "{content.gap.xs}"
+        }
+      }
     },
     root: {
-      gap: '0.25rem',
-      transitionDuration: '{transitionDuration}',
+      gap: "{content.gap.xs}",
+      transitionDuration: "{form.transitionDuration}"
     },
     panel: {
-      background: '{transparent}',
-      borderColor: '{transparent}',
-      borderWidth: '0.07142857142857142rem',
-      color: '{content.color}',
-      padding: '0.25rem',
-      borderRadius: '{content.borderRadius}',
+      background: "{transparent}",
+      borderColor: "{transparent}",
+      borderWidth: "{navigation.width.xs}",
+      color: "{content.color}",
+      padding: "{content.padding.tn}",
+      borderRadius: "{content.borderRadius}",
       first: {
-        borderWidth: '1px 1px 0 1px',
-        topBorderRadius: '{content.borderRadius}',
+        borderWidth: "{navifation.width.xs} {navifation.width.xs} 0 {navifation.width.xs}",
+        Number: "{navigation.width.xs}",
+        topBorderRadius: "{content.borderRadius}"
       },
       last: {
-        borderWidth: '0 1px 1px 1px',
-        topBorderRadius: '{content.borderRadius}',
-      },
+        borderWidth: "0 {navifation.width.xs} {navifation.width.xs} {navifation.width.xs}",
+        topBorderRadius: "{content.borderRadius}"
+      }
     },
     item: {
-      focusBackground: '{navigation.item.focusBackground}',
-      color: '{navigation.item.color}',
-      focusColor: '{navigation.item.focusColor}',
-      gap: '0.5rem',
-      padding: '{navigation.item.padding}',
-      borderRadius: '{navigation.item.borderRadius}',
+      focusBackground: "{navigation.item.focusBackground}",
+      color: "{navigation.item.color}",
+      focusColor: "{navigation.item.focusColor}",
+      gap: "{navigation.item.gap}",
+      padding: "{navigation.item.padding}",
+      borderRadius: "{navigation.item.borderRadius}",
       icon: {
-        color: '{navigation.item.icon.color}',
-        focusColor: '{navigation.item.icon.focusColor}',
-      },
+        color: "{navigation.item.icon.color}",
+        focusColor: "{navigation.item.icon.focusColor}"
+      }
     },
     submenu: {
-      indent: '0.75rem',
+      indent: "{navigation.padding.xs}"
     },
     separator: {
-      borderColor: '{content.borderColor}',
+      borderColor: "{content.borderColor}"
     },
     submenuIcon: {
-      color: '{navigation.submenuIcon.color}',
-      focusColor: '{navigation.submenuIcon.focusColor}',
-    },
+      color: "{navigation.submenuIcon.color}",
+      focusColor: "{navigation.submenuIcon.focusColor}"
+    }
   },
   password: {
+    extend: {
+      borderWidth: "{form.borderWidth}"
+    },
     colorScheme: {
       light: {
         strength: {
-          weakBackground: '{error.500}',
-          mediumBackground: '{warn.500}',
-          strongBackground: '{success.600}',
-        },
-      },
+          weakBackground: "{error.500}",
+          mediumBackground: "{warn.500}",
+          strongBackground: "{success.600}"
+        }
+      }
     },
     meter: {
-      background: '{content.borderColor}',
-      borderRadius: '{content.borderRadius}',
-      height: '0.5rem',
+      background: "{content.borderColor}",
+      borderRadius: "{content.borderRadius}",
+      height: "{feedback.height.sm}"
     },
     icon: {
-      color: '{text.color}',
+      color: "{text.color}"
     },
     overlay: {
-      background: '{overlay.popover.background}',
-      borderColor: '{overlay.popover.borderColor}',
-      borderRadius: '{overlay.popover.borderRadius}',
-      color: '{overlay.popover.color}',
-      padding: '{overlay.popover.padding}',
-      shadow: '{overlay.popover.shadow}',
+      background: "{overlay.popover.background}",
+      borderColor: "{overlay.popover.borderColor}",
+      borderRadius: "{overlay.popover.borderRadius}",
+      color: "{overlay.popover.color}",
+      padding: "{overlay.popover.padding.sm}",
+      shadow: "{overlay.popover.shadow}"
     },
     content: {
-      gap: '0.5rem',
-    },
+      gap: "{content.gap.sm}"
+    }
   },
   popover: {
+    extend: {
+      borderWidth: "{overlay.borderWidth}"
+    },
     root: {
-      background: '{overlay.popover.background}',
-      borderColor: '{datatable.filter.overlayPopover.borderColor}',
-      color: '{overlay.popover.color}',
-      borderRadius: '{overlay.popover.borderRadius}',
-      shadow: '{overlay.popover.shadow}',
-      gutter: '0.25rem',
-      arrowOffset: '1.25rem',
+      background: "{overlay.popover.background}",
+      borderColor: "{datatable.filter.overlayPopover.borderColor}",
+      color: "{overlay.popover.color}",
+      borderRadius: "{overlay.popover.borderRadius}",
+      shadow: "{overlay.popover.shadow}",
+      gutter: "{overlay.gap.xs}",
+      arrowOffset: "{overlay.popover.padding.md}"
     },
     content: {
-      padding: '{overlay.popover.padding}',
-    },
+      padding: "{overlay.popover.padding.sm}"
+    }
   },
   progressbar: {
     label: {
-      color: '{text.extend.colorPrimaryStatic}',
-      fontSize: '{fonts.fontSize.xs}',
-      fontWeight: '{fonts.fontWeight.regular}',
+      color: "{text.extend.colorPrimaryStatic}",
+      fontSize: "{fonts.fontSize.xs}",
+      fontWeight: "{fonts.fontWeight.regular}"
     },
     root: {
-      background: '{content.borderColor}',
-      borderRadius: '{content.borderRadius}',
-      height: '1rem',
+      background: "{content.borderColor}",
+      borderRadius: "{content.borderRadius}",
+      height: "{feedback.height.lg}"
     },
     value: {
-      background: '{primary.color}',
-    },
+      background: "{primary.color}"
+    }
   },
   progressspinner: {
     colorScheme: {
       light: {
         root: {
-          colorOne: '{success.500}',
-          colorTwo: '{info.500}',
-          colorThree: '{error.500}',
-          colorFour: '{warn.500}',
-        },
-      },
-    },
+          colorOne: "{success.500}",
+          colorTwo: "{info.500}",
+          colorThree: "{error.500}",
+          colorFour: "{warn.500}"
+        }
+      }
+    }
   },
   radiobutton: {
     root: {
-      width: '1.5rem',
-      height: '1.5rem',
-      background: '{formField.background}',
-      checkedBackground: '{surface.900}',
-      checkedHoverBackground: '{surface.800}',
-      disabledBackground: '{formField.disabledBackground}',
-      filledBackground: '{formField.filledBackground}',
-      borderColor: '{formField.borderColor}',
-      hoverBorderColor: '{formField.hoverBorderPrimaryColor}',
-      focusBorderColor: '{formField.borderColor}',
-      checkedBorderColor: '{surface.900}',
-      checkedHoverBorderColor: '{formField.hoverBorderPrimaryColor}',
-      checkedFocusBorderColor: '{formField.focusBorderPrimaryColor}',
-      checkedDisabledBorderColor: '{formField.borderColor}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
-      shadow: '{formField.shadow}',
-      transitionDuration: '{formField.transitionDuration}',
+      width: "{form.size.2xlg}",
+      height: "{form.size.2xlg}",
+      background: "{form.background}",
+      checkedBackground: "{surface.900}",
+      checkedHoverBackground: "{surface.800}",
+      disabledBackground: "{form.disabledBackground}",
+      filledBackground: "{form.filledBackground}",
+      borderColor: "{form.borderColor}",
+      hoverBorderColor: "{form.hoverBorderPrimaryColor}",
+      focusBorderColor: "{form.borderColor}",
+      checkedBorderColor: "{surface.900}",
+      checkedHoverBorderColor: "{form.hoverBorderPrimaryColor}",
+      checkedFocusBorderColor: "{form.focusBorderPrimaryColor}",
+      checkedDisabledBorderColor: "{form.borderColor}",
+      invalidBorderColor: "{form.invalidBorderColor}",
+      shadow: "{form.shadow}",
+      transitionDuration: "{form.transitionDuration}"
     },
     focusRing: {
-      width: '0.25rem',
-      style: '{focusRing.style}',
-      color: '{focusRing.color}',
-      offset: '{focusRing.offset}',
-      shadow: '{formField.focusRing.shadow}',
+      width: "{focusRing.width}",
+      style: "{focusRing.style}",
+      color: "{focusRing.color}",
+      offset: "{focusRing.offset}",
+      shadow: "{focusRing.shadow}"
     },
     sm: {
-      width: '1rem',
-      height: '1rem',
+      width: "{form.size.lg}",
+      height: "{form.size.lg}"
     },
     lg: {
-      width: '1.25rem',
-      height: '1.25rem',
+      width: "{form.size.xlg}",
+      height: "{form.size.xlg}"
     },
     icon: {
-      size: '0.8571428571428571rem',
-      checkedColor: '{text.extend.colorInverted}',
-      checkedHoverColor: '{text.extend.colorInverted}',
-      disabledColor: '{text.mutedColor}',
+      size: "{form.icon.sm}",
+      checkedColor: "{text.extend.colorInverted}",
+      checkedHoverColor: "{text.extend.colorInverted}",
+      disabledColor: "{text.mutedColor}",
       sm: {
-        size: '0',
+        size: "0"
       },
       lg: {
-        size: '0',
-      },
-    },
+        size: "0"
+      }
+    }
   },
   rating: {
     root: {
-      gap: '0.5rem',
-      transitionDuration: '{formField.transitionDuration}',
+      gap: "{form.gap.xs}",
+      transitionDuration: "{form.transitionDuration}"
     },
     focusRing: {
-      width: '{formField.focusRing.width}',
-      style: '{formField.focusRing.style}',
-      color: '{formField.focusRing.color}',
-      offset: '{formField.focusRing.offset}',
-      shadow: '{formField.shadow}',
+      width: "{form.focusRing.width}",
+      style: "{form.focusRing.style}",
+      color: "{form.focusRing.color}",
+      offset: "{form.focusRing.offset}",
+      shadow: "{focusRing.shadow}"
     },
     icon: {
-      size: '1.5rem',
-      color: '{surface.500}',
-      hoverColor: '{warn.500}',
-      activeColor: '{warn.500}',
-    },
+      size: "{form.icon.xlg}",
+      color: "{surface.500}",
+      hoverColor: "{warn.500}",
+      activeColor: "{warn.500}"
+    }
   },
   ripple: {
     colorScheme: {
       light: {
         root: {
-          background: 'rgba(255, 255, 255, 0.0100)',
-        },
-      },
-    },
+          background: "rgba(255, 255, 255, 0.0100)"
+        }
+      }
+    }
   },
   scrollpanel: {
     colorScheme: {
       light: {
         bar: {
-          background: '{surface.300}',
-        },
-      },
+          background: "{surface.300}"
+        }
+      }
     },
     root: {
-      transitionDuration: '{transitionDuration}',
+      transitionDuration: "{media.transitionDuration}"
     },
     bar: {
-      size: '0.5rem',
-      borderRadius: '{borderRadius.sm}',
+      size: "{media.size.xs}",
+      borderRadius: "{media.borderRadius.xs}",
       focusRing: {
-        width: '0',
-        style: '{focusRing.style}',
-        color: '#ffffff',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
-    },
+        width: "0",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
+    }
   },
   select: {
     extend: {
       extOption: {
-        background: '{list.option.background}',
-        gap: '0.5rem',
+        background: "{list.option.background}",
+        gap: "{list.gap.md}"
       },
       extOptionGroup: {
-        gap: '0.5rem',
+        gap: "{list.gap.md}"
       },
-      readonlyBackground: '{formField.readonlyBackground}',
+      readonlyBackground: "{form.readonlyBackground}",
+      borderWidth: "{form.borderWidth}",
+      iconSize: "{form.icon.md}"
     },
     root: {
-      background: '{formField.background}',
-      disabledBackground: '{formField.disabledBackground}',
-      filledBackground: '{formField.filledBackground}',
-      filledHoverBackground: '{formField.filledHoverBackground}',
-      filledFocusBackground: '{formField.filledFocusBackground}',
-      borderColor: '{formField.borderColor}',
-      hoverBorderColor: '{formField.hoverBorderSecondaryColor}',
-      focusBorderColor: '{formField.focusBorderSecondaryColor}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
-      color: '{text.color}',
-      disabledColor: '{formField.disabledColor}',
-      placeholderColor: '{formField.placeholderColor}',
-      invalidPlaceholderColor: '{formField.invalidPlaceholderColor}',
-      shadow: '{formField.shadow}',
-      paddingX: '{sizingSelect.root.paddingX}',
-      paddingY: '{sizingSelect.root.paddingY}',
-      borderRadius: '{formField.borderRadius}',
-      transitionDuration: '{formField.transitionDuration}',
+      background: "{form.background}",
+      disabledBackground: "{form.disabledBackground}",
+      filledBackground: "{form.filledBackground}",
+      filledHoverBackground: "{form.filledHoverBackground}",
+      filledFocusBackground: "{form.filledFocusBackground}",
+      borderColor: "{form.borderColor}",
+      hoverBorderColor: "{form.hoverBorderSecondaryColor}",
+      focusBorderColor: "{form.focusBorderSecondaryColor}",
+      invalidBorderColor: "{form.invalidBorderColor}",
+      color: "{text.color}",
+      disabledColor: "{form.disabledColor}",
+      placeholderColor: "{form.placeholderColor}",
+      invalidPlaceholderColor: "{form.invalidPlaceholderColor}",
+      shadow: "{form.shadow}",
+      paddingX: "{form.select.paddingX}",
+      paddingY: "{form.select.paddingY}",
+      borderRadius: "{form.borderRadius.md}",
+      transitionDuration: "{form.transitionDuration}",
       sm: {
-        fontSize: '{sizingSelect.root.fontSize}',
-        paddingX: '{sizingSelect.root.paddingX}',
-        paddingY: '{sizingSelect.root.paddingY}',
+        fontSize: "{form.select.fontSize}",
+        paddingX: "{form.select.paddingX}",
+        paddingY: "{form.select.paddingY}"
       },
       lg: {
-        fontSize: '{sizingSelect.root.fontSize}',
-        paddingX: '{sizingSelect.root.paddingX}',
-        paddingY: '{sizingSelect.root.paddingY}',
+        fontSize: "{form.select.fontSize}",
+        paddingX: "{form.select.paddingX}",
+        paddingY: "{form.select.paddingY}"
       },
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
-      },
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     dropdown: {
-      width: '2.5rem',
-      color: '{formField.iconColor}',
+      width: "{form.width.md}",
+      color: "{form.iconColor}"
     },
     overlay: {
-      background: '{overlay.select.background}',
-      borderColor: '{overlay.select.borderColor}',
-      borderRadius: '{overlay.select.borderRadius}',
-      color: '{overlay.select.color}',
-      shadow: '{overlay.select.shadow}',
+      background: "{overlay.select.background}",
+      borderColor: "{overlay.select.borderColor}",
+      borderRadius: "{overlay.select.borderRadius}",
+      color: "{overlay.select.color}",
+      shadow: "{overlay.select.shadow}"
     },
     list: {
-      padding: '{list.padding}',
-      gap: '{list.gap}',
+      padding: "{list.padding}",
+      gap: "{list.gap.sm}",
       header: {
-        padding: '{list.header.padding}',
-      },
+        padding: "{list.header.padding}"
+      }
     },
     option: {
-      focusBackground: '{list.option.focusBackground}',
-      selectedBackground: '{list.option.selectedBackground}',
-      selectedFocusBackground: '{list.option.selectedFocusBackground}',
-      color: '{list.option.color}',
-      focusColor: '{list.option.focusColor}',
-      selectedColor: '{list.option.selectedColor}',
-      selectedFocusColor: '{list.option.selectedFocusColor}',
-      padding: '{list.option.padding}',
-      borderRadius: '{list.option.borderRadius}',
+      focusBackground: "{list.option.focusBackground}",
+      selectedBackground: "{list.option.selectedBackground}",
+      selectedFocusBackground: "{list.option.selectedFocusBackground}",
+      color: "{list.option.color}",
+      focusColor: "{list.option.focusColor}",
+      selectedColor: "{list.option.selectedColor}",
+      selectedFocusColor: "{list.option.selectedFocusColor}",
+      padding: "{list.option.padding}",
+      borderRadius: "{list.option.borderRadius}"
     },
     optionGroup: {
-      background: '{list.optionGroup.background}',
-      color: '{list.optionGroup.color}',
-      fontWeight: '{fonts.fontWeight.demibold}',
-      padding: '{list.option.padding}',
+      background: "{list.optionGroup.background}",
+      color: "{list.optionGroup.color}",
+      fontWeight: "{fonts.fontWeight.demibold}",
+      padding: "{list.option.padding}"
     },
     clearIcon: {
-      color: '{formField.iconColor}',
+      color: "{form.iconColor}"
     },
     checkmark: {
-      color: '{list.option.color}',
-      gutterStart: '-0.5rem',
-      gutterEnd: '0.5rem',
+      color: "{list.option.color}",
+      gutterStart: "-{formField.padding.xs}",
+      gutterEnd: "{formField.padding.xs}"
     },
     emptyMessage: {
-      padding: '{list.option.padding}',
-    },
+      padding: "{list.option.padding}"
+    }
   },
   selectbutton: {
+    extend: {
+      paddingX: "{controls.padding.xs}",
+      paddingY: "{controls.padding.xs}",
+      iconSize: {
+        sm: "{controls.iconOnly.xs}",
+        md: "{controls.iconOnly.sm}",
+        lg: "{controls.iconOnly.md}",
+        xlg: "{controls.iconOnly.xlg}"
+      }
+    },
     colorScheme: {
       light: {
         root: {
-          invalidBorderColor: '{formField.invalidBorderColor}',
+          invalidBorderColor: "{form.invalidBorderColor}"
         },
-      },
-    },
-    extend: {
-      background: '{surface.200}',
+        extend: {
+          background: "{surface.200}"
+        }
+      }
     },
     root: {
-      borderRadius: '{borderRadius.rounded}',
-    },
+      borderRadius: "{form.borderRadius.max}"
+    }
   },
   skeleton: {
     colorScheme: {
       light: {
         root: {
-          background: '{surface.200}',
-          animationBackground: '{surface.100}',
-        },
-      },
+          background: "{surface.200}",
+          animationBackground: "{surface.100}"
+        }
+      }
     },
     root: {
-      borderRadius: '{content.borderRadius}',
-    },
+      borderRadius: "{content.borderRadius}"
+    }
   },
   slider: {
     colorScheme: {
       handle: {
         content: {
-          background: '{surface.0}',
-        },
-      },
+          background: "{surface.0}"
+        }
+      }
     },
     root: {
-      transitionDuration: '{formField.transitionDuration}',
+      transitionDuration: "{form.transitionDuration}"
     },
     track: {
-      background: '{content.borderColor}',
-      borderRadius: '{content.borderRadius}',
-      size: '0.25rem',
+      background: "{content.borderColor}",
+      borderRadius: "{content.borderRadius}",
+      size: "{form.size.xs}"
     },
     range: {
-      background: '{surface.900}',
+      background: "{surface.900}"
     },
     handle: {
-      width: '1.25rem',
-      height: '1.25rem',
-      borderRadius: '{borderRadius.xl}',
-      background: '{surface.900}',
-      hoverBackground: '{surface.900}',
-      content: {
-        borderRadius: '{borderRadius.xl}',
-        hoverBackground: '{surface.900}',
-        width: '0.75rem',
-        height: '0.75rem',
-        shadow: 'none',
-      },
+      width: "{form.size.xlg}",
+      height: "{form.size.xlg}",
+      borderRadius: "{form.borderRadius.max}",
+      background: "{surface.900}",
+      hoverBackground: "{surface.900}",
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
       },
-    },
+      content: {
+        borderRadius: "{form.borderRadius.max}",
+        hoverBackground: "{surface.900}",
+        width: "{form.size.md}",
+        height: "{form.size.md}",
+        shadow: "none"
+      }
+    }
   },
   splitter: {
     colorScheme: {
       light: {
         handle: {
-          background: '{surface.900}',
-        },
-      },
+          background: "{surface.900}"
+        }
+      }
     },
     gutter: {
-      background: '{surface.100}',
+      background: "{surface.100}"
     },
     root: {
-      background: '{content.background}',
-      borderColor: '{content.borderColor}',
-      color: '{content.color}',
-      transitionDuration: '{transitionDuration}',
+      background: "{content.background}",
+      borderColor: "{content.borderColor}",
+      color: "{content.color}",
+      transitionDuration: "{controls.transitionDuration}"
     },
     handle: {
-      size: '0.25rem',
-      borderRadius: '{content.borderRadius}',
+      size: "{form.size.xs}",
+      borderRadius: "{content.borderRadius}",
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
-      },
-    },
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
+    }
   },
   stepper: {
     extend: {
       extCaption: {
-        gap: '0.25rem',
+        gap: "{feedback.gap.xs}"
       },
       extStepNumber: {
-        invalidBackground: '{error.400}',
-        invalidColor: '{error.900}',
-        invalidBorderColor: '{error.400}',
-      },
+        invalidBackground: "{error.400}",
+        invalidColor: "{error.900}",
+        invalidBorderColor: "{error.400}"
+      }
     },
     root: {
-      transitionDuration: '{transitionDuration}',
+      transitionDuration: "{feedback.transitionDuration}"
     },
     separator: {
-      background: '{content.borderColor}',
-      activeBackground: '{formField.focusBorderPrimaryColor}',
-      margin: '0 0 0 1.625rem',
-      size: '0.07142857142857142rem',
+      background: "{content.borderColor}",
+      activeBackground: "{form.focusBorderPrimaryColor}",
+      margin: "0 0 0 1.625rem",
+      size: "{form.size.tn}"
     },
     step: {
-      padding: '0.5rem',
-      gap: '0.5rem',
+      padding: "{feedback.padding.md}",
+      gap: "{feedback.gap.sm}"
     },
     stepHeader: {
-      padding: '0',
-      borderRadius: '0',
-      gap: '0.5rem',
+      padding: "0",
+      borderRadius: "0",
+      gap: "{feedback.gap.sm}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     stepTitle: {
-      color: '{text.color}',
-      activeColor: '{text.color}',
-      fontWeight: '{fonts.fontWeight.regular}',
+      color: "{text.color}",
+      activeColor: "{text.color}",
+      fontWeight: "{fonts.fontWeight.regular}"
     },
     stepNumber: {
-      background: '{content.background}',
-      activeBackground: '{primary.color}',
-      borderColor: '{content.borderColor}',
-      activeBorderColor: '{primary.color}',
-      color: '{text.color}',
-      activeColor: '{text.extend.colorPrimaryStatic}',
-      size: '1.5rem',
-      fontSize: '{fonts.fontSize.base}',
-      fontWeight: '{fonts.fontWeight.bold}',
-      borderRadius: '{content.borderRadius}',
-      shadow: 'none',
+      background: "{content.background}",
+      activeBackground: "{primary.color}",
+      borderColor: "{content.borderColor}",
+      activeBorderColor: "{primary.color}",
+      color: "{text.color}",
+      activeColor: "{text.extend.colorPrimaryStatic}",
+      size: "{form.size.2xlg}",
+      fontSize: "{fonts.fontSize.base}",
+      fontWeight: "{fonts.fontWeight.bold}",
+      borderRadius: "{form.borderRadius.max}",
+      shadow: "none"
     },
     steppanels: {
-      padding: '1rem',
+      padding: "{feedback.padding.lg}"
     },
     steppanel: {
-      background: '{content.background}',
-      color: '{content.color}',
-      padding: '0',
-      indent: '0',
-    },
+      background: "{content.background}",
+      color: "{content.color}",
+      padding: "0",
+      indent: "0"
+    }
   },
   steps: {
     itemLink: {
-      gap: '0.5rem',
+      gap: "{form.gap.xs}"
     },
     itemLabel: {
-      fontWeight: '{fonts.fontWeight.regular}',
+      fontWeight: "{fonts.fontWeight.regular}"
     },
     itemNumber: {
-      background: '{content.background}',
-      size: '2.25rem',
-      fontSize: '{fonts.fontSize.base}',
-      fontWeight: '{fonts.fontWeight.bold}',
-      borderRadius: '50%',
-      shadow: 'none',
-    },
+      background: "{content.background}",
+      size: "{form.size.3xlg}",
+      fontSize: "{fonts.fontSize.base}",
+      fontWeight: "{fonts.fontWeight.bold}",
+      borderRadius: "{form.borderRadius.max}",
+      shadow: "none"
+    }
   },
   tabs: {
     colorScheme: {
       light: {
         navButton: {
-          shadow: '0px 0px 10px 50px rgba(255, 255, 255, 0.6)',
+          shadow: "none"
         },
         tab: {
-          background: '{transparent}',
-          hoverBackground: '{transparent}',
-          activeBackground: '{transparent}',
-        },
-      },
+          background: "{transparent}",
+          hoverBackground: "{transparent}",
+          activeBackground: "{transparent}"
+        }
+      }
     },
     root: {
-      transitionDuration: '{transitionDuration}',
+      transitionDuration: "{data.transitionDuration}"
     },
     tablist: {
-      borderWidth: '0 0 2px 0',
-      background: '{transparent}',
-      borderColor: '{content.borderColor}',
+      borderWidth: "0 0 {data.width.tn} 0",
+      background: "{transparent}",
+      borderColor: "{content.borderColor}"
     },
     tab: {
-      borderWidth: '0',
-      borderColor: '{content.borderColor}',
-      hoverBorderColor: '{content.borderColor}',
-      activeBorderColor: '{formField.focusBorderPrimaryColor}',
-      color: '{text.mutedColor}',
-      hoverColor: '{text.color}',
-      activeColor: '{text.color}',
-      padding: '1rem',
-      fontWeight: '{fonts.fontWeight.demibold}',
-      margin: '0 0 -1px 0',
-      gap: '0.5rem',
+      borderWidth: "0",
+      borderColor: "{content.borderColor}",
+      hoverBorderColor: "{content.borderColor}",
+      activeBorderColor: "{content.activeBorderColor}",
+      color: "{text.mutedColor}",
+      hoverColor: "{text.color}",
+      activeColor: "{text.color}",
+      padding: "{content.padding.sm}",
+      fontWeight: "{fonts.fontWeight.demibold}",
+      margin: "0",
+      gap: "{content.gap.sm}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     tabpanel: {
-      background: '{transparent}',
-      color: '{text.color}',
-      padding: '1rem',
+      background: "{transparent}",
+      color: "{text.color}",
+      padding: "{spacing.4}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     navButton: {
-      background: '{content.background}',
-      color: '{content.color}',
-      hoverColor: '{content.hoverColor}',
-      width: '1.5rem',
+      background: "{content.background}",
+      color: "{content.color}",
+      hoverColor: "{content.hoverColor}",
+      width: "{controls.iconOnly.md}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        color: '{focusRing.color}',
-        offset: '{focusRing.offset}',
-        shadow: '{focusRing.shadow}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        color: "{focusRing.color}",
+        offset: "{focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     activeBar: {
-      height: '0.14285714285714285rem',
-      bottom: '-1',
-      background: '{content.color}',
-    },
+      height: "0.07142857142857142rem",
+      bottom: "-1",
+      background: "{content.color}"
+    }
   },
   toast: {
+    extend: {
+      extInfo: {
+        color: "{info.500}",
+        closeButton: {
+          color: "{info.500}",
+          borderColor: "{info.500}"
+        },
+        caption: {
+          color: "{text.color}"
+        }
+      },
+      extAccentLine: {
+        width: "{feedback.width.xs}"
+      },
+      extCloseButton: {
+        width: "{feedback.width.tn}"
+      },
+      extSuccess: {
+        color: "{success.500}",
+        closeButton: {
+          color: "{success.500}",
+          borderColor: "{success.500}"
+        },
+        caption: {
+          color: "{text.color}"
+        }
+      },
+      extWarn: {
+        color: "{warn.500}",
+        closeButton: {
+          color: "{warn.500}",
+          borderColor: "{warn.500}"
+        },
+        caption: {
+          color: "{text.color}"
+        }
+      },
+      extError: {
+        color: "{error.500}",
+        closeButton: {
+          color: "{error.500}",
+          borderColor: "{error.500}"
+        },
+        caption: {
+          color: "{text.color}"
+        }
+      }
+    },
     colorScheme: {
       light: {
         info: {
-          background: '{info.50}',
-          borderColor: '{info.500}',
-          color: '{text.color}',
-          detailColor: '{text.color}',
-          shadow: '{overlay.popover.shadow}',
+          background: "{info.50}",
+          borderColor: "{info.500}",
+          color: "{text.color}",
+          detailColor: "{text.color}",
+          shadow: "{overlay.popover.shadow}",
           closeButton: {
-            hoverBackground: '{info.200}',
+            hoverBackground: "{info.200}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
-          },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
+          }
         },
         success: {
-          background: '{success.50}',
-          borderColor: '{success.500}',
-          color: '{text.color}',
-          detailColor: '{text.color}',
-          shadow: '{overlay.popover.shadow}',
+          background: "{success.50}",
+          borderColor: "{success.500}",
+          color: "{text.color}",
+          detailColor: "{text.color}",
+          shadow: "{overlay.popover.shadow}",
           closeButton: {
-            hoverBackground: '{success.200}',
+            hoverBackground: "{success.200}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
-          },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
+          }
         },
         warn: {
-          background: '{warn.50}',
-          borderColor: '{warn.500}',
-          color: '{text.color}',
-          detailColor: '{text.color}',
-          shadow: '{overlay.popover.shadow}',
+          background: "{warn.50}",
+          borderColor: "{warn.500}",
+          color: "{text.color}",
+          detailColor: "{text.color}",
+          shadow: "{overlay.popover.shadow}",
           closeButton: {
-            hoverBackground: '{warn.200}',
+            hoverBackground: "{warn.200}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
-          },
+              color: "{focusRing.color}",
+              shadow: "none"
+            }
+          }
         },
         error: {
-          background: '{error.50}',
-          borderColor: '{error.500}',
-          color: '{text.color}',
-          detailColor: '{text.color}',
-          shadow: '{overlay.popover.shadow}',
+          background: "{error.50}",
+          borderColor: "{error.500}",
+          color: "{text.color}",
+          detailColor: "{text.color}",
+          shadow: "{overlay.popover.shadow}",
           closeButton: {
-            hoverBackground: '{error.200}',
+            hoverBackground: "{error.200}",
             focusRing: {
-              color: '{focusRing.color}',
-              shadow: 'none',
-            },
-          },
+              color: "{focusRing.color}",
+              shadow: "{focusRing.shadow}"
+            }
+          }
         },
         secondary: {
-          shadow: '{overlay.popover.shadow}',
+          shadow: "{overlay.popover.shadow}"
         },
         contrast: {
-          shadow: '{overlay.popover.shadow}',
-        },
-      },
-    },
-    extend: {
-      extInfo: {
-        color: '{info.500}',
-        closeButton: {
-          color: '{info.500}',
-          borderColor: '{info.500}',
-        },
-        caption: {
-          color: '{text.color}',
-        },
-      },
-      extAccentLine: {
-        width: '0.25rem',
-      },
-      extCloseButton: {
-        width: '0.07142857142857142rem',
-      },
-      extSuccess: {
-        color: '{success.500}',
-        closeButton: {
-          color: '{success.500}',
-          borderColor: '{success.500}',
-        },
-        caption: {
-          color: '{text.color}',
-        },
-      },
-      extWarn: {
-        color: '{warn.500}',
-        closeButton: {
-          color: '{warn.500}',
-          borderColor: '{warn.500}',
-        },
-        caption: {
-          color: '{text.color}',
-        },
-      },
-      extError: {
-        color: '{error.500}',
-        closeButton: {
-          color: '{error.500}',
-          borderColor: '{error.500}',
-        },
-        caption: {
-          color: '{text.color}',
-        },
-      },
+          shadow: "{overlay.popover.shadow}"
+        }
+      }
     },
     root: {
-      width: '{sizingToast.width}',
-      borderWidth: '0.07142857142857142rem',
-      borderRadius: '{content.borderRadius}',
-      transitionDuration: '{transitionDuration}',
+      width: "{messages.toast.width}",
+      borderWidth: "{feedback.width.tn}",
+      borderRadius: "{content.borderRadius}",
+      transitionDuration: "{feedback.transitionDuration}"
     },
     icon: {
-      size: '2.25rem',
+      size: "{feedback.icon.size.2xlg}"
     },
     content: {
-      padding: '1rem',
-      gap: '1rem',
+      padding: "{feedback.padding.lg}",
+      gap: "{feedback.gap.lg}"
     },
     text: {
-      gap: '0.25rem',
+      gap: "{feedback.gap.xs}"
     },
     summary: {
-      fontWeight: '{fonts.fontWeight.bold}',
-      fontSize: '{fonts.fontSize.base}',
+      fontWeight: "{fonts.fontWeight.bold}",
+      fontSize: "{fonts.fontSize.base}"
     },
     detail: {
-      fontWeight: '{fonts.fontWeight.regular}',
-      fontSize: '{fonts.fontSize.sm}',
+      fontWeight: "{fonts.fontWeight.regular}",
+      fontSize: "{fonts.fontSize.sm}"
     },
     closeButton: {
-      width: '2rem',
-      height: '2rem',
-      borderRadius: '{borderRadius.md}',
+      width: "{feedback.icon.size.xlg}",
+      height: "{feedback.icon.size.xlg}",
+      borderRadius: "{controls.borderRadius.sm}",
       focusRing: {
-        width: '{focusRing.width}',
-        style: '{focusRing.style}',
-        offset: '{focusRing.offset}',
-      },
+        width: "{focusRing.width}",
+        style: "{focusRing.style}",
+        offset: "{focusRing.offset}"
+      }
     },
     closeIcon: {
-      size: '1rem',
-    },
+      size: "{feedback.icon.size.sm}"
+    }
   },
   tag: {
     colorScheme: {
       light: {
         primary: {
-          background: '{primary.500}',
-          color: '{text.color}',
+          background: "{primary.selectedBackground}",
+          color: "{text.color}"
         },
         secondary: {
-          background: '{surface.200}',
-          color: '{text.color}',
+          background: "{surface.200}",
+          color: "{text.color}"
         },
         success: {
-          background: '{success.400}',
-          color: '{success.900}',
+          background: "{success.400}",
+          color: "{success.900}"
         },
         info: {
-          background: '{info.300}',
-          color: '{info.900}',
+          background: "{info.300}",
+          color: "{info.900}"
         },
         warn: {
-          background: '{warn.300}',
-          color: '{warn.900}',
+          background: "{warn.300}",
+          color: "{warn.900}"
         },
         danger: {
-          background: '{error.300}',
-          color: '{error.900}',
-        },
-      },
+          background: "{error.300}",
+          color: "{error.900}"
+        }
+      }
     },
     root: {
-      fontSize: '{fonts.fontSize.xs}',
-      fontWeight: '{fonts.fontWeight.regular}',
-      padding: '0.285rem 0.5rem',
-      gap: '0.25rem',
-      borderRadius: '{borderRadius.sm}',
-      roundedBorderRadius: '{borderRadius.xl}',
+      fontSize: "{fonts.fontSize.xs}",
+      fontWeight: "{fonts.fontWeight.regular}",
+      padding: "{media.padding.xs} {media.padding.sm}",
+      gap: "{media.gap.xs}",
+      borderRadius: "{media.size.xs}",
+      roundedBorderRadius: "{media.borderRadius.lg}"
     },
     icon: {
-      size: '0.875rem',
-    },
+      size: "{media.icon.size.sm}"
+    }
   },
   textarea: {
     extend: {
-      readonlyBackground: '{formField.readonlyBackground}',
+      readonlyBackground: "{form.readonlyBackground}",
+      borderWidth: "{form.borderWidth}",
+      iconSize: "{form.icon.md}"
     },
     root: {
-      background: '{formField.background}',
-      disabledBackground: '{formField.disabledBackground}',
-      filledBackground: '{formField.filledBackground}',
-      filledHoverBackground: '{formField.filledHoverBackground}',
-      filledFocusBackground: '{formField.filledFocusBackground}',
-      borderColor: '{formField.borderColor}',
-      hoverBorderColor: '{formField.hoverBorderSecondaryColor}',
-      focusBorderColor: '{formField.focusBorderSecondaryColor}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
-      color: '{formField.color}',
-      disabledColor: '{formField.disabledColor}',
-      placeholderColor: '{formField.placeholderColor}',
-      invalidPlaceholderColor: '{formField.invalidPlaceholderColor}',
-      shadow: '{formField.shadow}',
-      paddingX: '{formField.paddingX}',
-      paddingY: '{formField.paddingY}',
-      borderRadius: '{formField.borderRadius}',
-      transitionDuration: '{formField.transitionDuration}',
+      background: "{form.background}",
+      disabledBackground: "{form.disabledBackground}",
+      filledBackground: "{form.filledBackground}",
+      filledHoverBackground: "{form.filledHoverBackground}",
+      filledFocusBackground: "{form.filledFocusBackground}",
+      borderColor: "{form.borderColor}",
+      hoverBorderColor: "{form.hoverBorderSecondaryColor}",
+      focusBorderColor: "{form.focusBorderSecondaryColor}",
+      invalidBorderColor: "{form.invalidBorderColor}",
+      color: "{form.color}",
+      disabledColor: "{form.disabledColor}",
+      placeholderColor: "{form.placeholderColor}",
+      invalidPlaceholderColor: "{form.invalidPlaceholderColor}",
+      shadow: "{form.shadow}",
+      paddingX: "{form.padding.sm}",
+      paddingY: "{form.padding.sm}",
+      borderRadius: "{form.borderRadius.md}",
+      transitionDuration: "{form.transitionDuration}",
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
-      },
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
+      }
     },
     sm: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{formField.sm.paddingX}',
-      paddingY: '{formField.sm.paddingY}',
+      fontSize: "{fonts.fontSize.base}",
+      paddingX: "{form.sm.paddingX}",
+      paddingY: "{form.sm.paddingY}"
     },
     lg: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{formField.lg.paddingX}',
-      paddingY: '{formField.lg.paddingY}',
-    },
+      fontSize: "{fonts.fontSize.base}",
+      paddingX: "{form.lg.paddingX}",
+      paddingY: "{form.lg.paddingY}"
+    }
   },
   tieredmenu: {
     extend: {
+      iconSize: "{navigation.submenuIcon.size}",
       extSubmenu: {
-        borderColor: '{content.borderColor}',
-        background: '{content.background}',
+        borderColor: "{content.borderColor}",
+        background: "{content.background}"
       },
       extItem: {
         caption: {
-          gap: '0.25rem',
-          color: '{text.mutedColor}',
-        },
-      },
+          gap: "{content.gap.xs}",
+          color: "{text.mutedColor}"
+        }
+      }
     },
     root: {
-      background: '{transparent}',
-      borderColor: '{transparent}',
-      color: '{content.color}',
-      borderRadius: '{content.borderRadius}',
-      shadow: '{overlay.navigation.shadow}',
-      transitionDuration: '{transitionDuration}',
+      background: "{transparent}",
+      borderColor: "{transparent}",
+      color: "{content.color}",
+      borderRadius: "{content.borderRadius}",
+      shadow: "{navigation.shadow}",
+      transitionDuration: "{feedback.transitionDuration}"
     },
     list: {
-      padding: '{navigation.list.padding}',
-      gap: '{navigation.list.gap}',
+      padding: "{navigation.list.padding.sm}",
+      gap: "{navigation.list.gap}"
     },
     item: {
-      focusBackground: '{navigation.item.focusBackground}',
-      activeBackground: '{navigation.item.activeBackground}',
-      color: '{navigation.item.color}',
-      focusColor: '{navigation.item.focusColor}',
-      activeColor: '{navigation.item.activeColor}',
-      padding: '{navigation.item.padding}',
-      borderRadius: '{navigation.item.borderRadius}',
-      gap: '{navigation.item.gap}',
+      focusBackground: "{navigation.item.focusBackground}",
+      activeBackground: "{navigation.item.activeBackground}",
+      color: "{navigation.item.color}",
+      focusColor: "{navigation.item.focusColor}",
+      activeColor: "{navigation.item.activeColor}",
+      padding: "{navigation.item.padding}",
+      borderRadius: "{navigation.item.borderRadius}",
+      gap: "{navigation.item.gap}",
       icon: {
-        color: '{navigation.item.icon.color}',
-        focusColor: '{navigation.item.icon.focusColor}',
-        activeColor: '{navigation.item.icon.activeColor}',
-      },
+        color: "{navigation.item.icon.color}",
+        focusColor: "{navigation.item.icon.focusColor}",
+        activeColor: "{navigation.item.icon.activeColor}"
+      }
     },
     submenu: {
-      mobileIndent: '0.75rem',
+      mobileIndent: "{overlay.popover.padding.sm}"
     },
     separator: {
-      borderColor: '{content.borderColor}',
-    },
+      borderColor: "{content.borderColor}"
+    }
   },
   timeline: {
     event: {
-      minHeight: '3.0357142857142856rem',
+      minHeight: "{feedback.height.8xlg}"
     },
     vertical: {
       eventContent: {
-        padding: '0 1rem',
-      },
+        padding: "0 {feedback.padding.lg}"
+      }
     },
     horizontal: {
       eventContent: {
-        padding: '1rem 0',
-      },
+        padding: "{feedback.padding.lg} 0"
+      }
     },
     eventMarker: {
-      size: '1rem',
-      borderRadius: '{content.borderRadius}',
-      borderWidth: '0.25rem',
-      background: '{content.background}',
-      borderColor: '{primary.color}',
+      size: "{feedback.width.lg}",
+      borderRadius: "{content.borderRadius}",
+      borderWidth: "{feedback.width.xs}",
+      background: "{content.background}",
+      borderColor: "{primary.color}",
       content: {
-        borderRadius: '{content.borderRadius}',
-        size: '0.75rem',
-        background: '{transparent}',
-        insetShadow: 'none',
-      },
+        borderRadius: "{content.borderRadius}",
+        size: "{feedback.width.md}",
+        background: "{transparent}",
+        insetShadow: "none"
+      }
     },
     eventConnector: {
-      color: '{content.borderColor}',
-      size: '0.07142857142857142rem',
-    },
+      color: "{content.borderColor}",
+      size: "{feedback.width.tn}"
+    }
   },
   togglebutton: {
+    extend: {
+      gap: "{form.gap.sm}",
+      iconSize: {
+        sm: "{controls.iconOnly.xs}",
+        md: "{controls.iconOnly.sm}",
+        lg: "{controls.iconOnly.md}"
+      },
+      iconOnlyWidth: "{form.size.4xlg}",
+      hoverBorderColor: "{surface.300}",
+      checkedHoverColor: "{text.extend.colorInverted}",
+      checkedHoverBackground: "{surface.800}",
+      checkedHoverBorderColor: "{surface.800}",
+      extXlg: {
+        padding: "{form.padding.lg} {form.padding.xlg}",
+        iconOnlyWidth: "4.071428571428571rem"
+      },
+      extSm: {
+        iconOnlyWidth: "2.142857142857143rem"
+      },
+      extLg: {
+        iconOnlyWidth: "3.5714285714285716rem"
+      }
+    },
     colorScheme: {
       light: {
         root: {
-          background: '{surface.200}',
+          background: "{surface.200}",
+          hoverBackground: "{surface.300}",
+          borderColor: "{surface.200}",
+          color: "{text.color}",
+          hoverColor: "{text.color}",
+          checkedBackground: "{surface.900}",
+          checkedColor: "{text.extend.colorInverted}",
+          checkedBorderColor: "{surface.900}",
+          disabledBackground: "{form.disabledBackground}",
+          disabledBorderColor: "{form.disabledBackground}",
+          disabledColor: "{form.disabledColor}",
+          invalidBorderColor: "{form.invalidBorderColor}"
         },
-      },
-    },
-    extend: {
-      gap: '0.75rem',
-      extXlg: {
-        padding: '1.25rem 1.5rem',
-        iconOnlyWidth: '4.071428571428571rem',
-      },
-      iconOnlyWidth: '2.5rem',
-      extSm: {
-        iconOnlyWidth: '2.142857142857143rem',
-      },
-      hoverBorderColor: '{surface.300}',
-      checkedHoverColor: '{text.extend.colorInverted}',
-      checkedHoverBackground: '{surface.800}',
-      checkedHoverBorderColor: '{surface.800}',
-      extLg: {
-        iconOnlyWidth: '3.5714285714285716rem',
-      },
+        icon: {
+          color: "{text.color}",
+          hoverColor: "{text.color}",
+          checkedColor: "{text.extend.colorInverted}",
+          disabledColor: "{form.disabledColor}"
+        },
+        content: {
+          checkedBackground: "{transparent}"
+        }
+      }
     },
     root: {
-      padding: '0.5rem 1rem',
-      borderRadius: '{borderRadius.rounded}',
-      gap: '0.5rem',
-      fontWeight: '{fonts.fontWeight.demibold}',
-      hoverBackground: '{surface.300}',
-      borderColor: '{surface.200}',
-      color: '{text.color}',
-      hoverColor: '{text.color}',
-      checkedBackground: '{surface.900}',
-      checkedColor: '{text.extend.colorInverted}',
-      checkedBorderColor: '{surface.900}',
-      disabledBackground: '{formField.disabledBackground}',
-      disabledBorderColor: '{formField.disabledBackground}',
-      disabledColor: '{formField.disabledColor}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
+      padding: "{form.padding.xs} {form.padding.md}",
+      borderRadius: "{form.borderRadius.max}",
+      gap: "{form.gap.xs}",
+      fontWeight: "{fonts.fontWeight.demibold}",
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{formField.focusRing.color}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
       },
       sm: {
-        fontSize: '{formField.sm.fontSize}',
-        padding: '0.75rem 0.25rem',
+        fontSize: "{form.sm.fontSize}",
+        padding: "{form.padding.sm} {form.padding.tn}"
       },
       lg: {
-        fontSize: '{formField.sm.fontSize}',
-        padding: '1rem 1.5rem',
+        fontSize: "{form.sm.fontSize}",
+        padding: "{form.padding.md} {form.padding.xlg}"
       },
-      transitionDuration: '{formField.transitionDuration}',
-    },
-    icon: {
-      color: '{text.color}',
-      hoverColor: '{text.color}',
-      checkedColor: '{text.extend.colorInverted}',
-      disabledColor: '{formField.disabledColor}',
+      transitionDuration: "{form.transitionDuration}"
     },
     content: {
-      checkedBackground: '{transparent}',
-      checkedShadow: 'none',
-      padding: '0',
-      borderRadius: '0',
+      checkedShadow: "none",
+      padding: "0",
+      borderRadius: "0",
       sm: {
-        padding: '0',
+        padding: "0"
       },
       lg: {
-        padding: '0',
-      },
-    },
+        padding: "0"
+      }
+    }
   },
   toggleswitch: {
     colorScheme: {
       light: {
         root: {
-          background: '{surface.400}',
-          hoverBackground: '{surface.500}',
-          disabledBackground: '{formField.disabledBackground}',
-          checkedBackground: '{surface.900}',
-          checkedHoverBackground: '{surface.500}',
+          background: "{surface.400}",
+          hoverBackground: "{surface.500}",
+          disabledBackground: "{form.disabledBackground}",
+          checkedBackground: "{surface.900}",
+          checkedHoverBackground: "{surface.500}"
         },
         handle: {
-          background: '{formField.backgroundHandler}',
-          hoverBackground: '{formField.backgroundHandler}',
-          disabledBackground: '{formField.disabledColor}',
-          checkedBackground: '{surface.0}',
-          checkedHoverBackground: '{surface.0}',
-          color: '{text.color}',
-          hoverColor: '{text.color}',
-          checkedColor: '{text.color}',
-          checkedHoverColor: '{text.color}',
-        },
-      },
+          background: "{form.backgroundHandler}",
+          hoverBackground: "{form.backgroundHandler}",
+          disabledBackground: "{form.disabledColor}",
+          checkedBackground: "{surface.0}",
+          checkedHoverBackground: "{surface.0}",
+          color: "{text.color}",
+          hoverColor: "{text.color}",
+          checkedColor: "{text.color}",
+          checkedHoverColor: "{text.color}"
+        }
+      }
     },
     root: {
-      width: '2.5rem',
-      height: '1.5rem',
-      borderRadius: '{borderRadius.xl}',
-      gap: '0.14285714285714285rem',
-      borderWidth: '0',
-      shadow: 'none',
+      width: "{form.size.4xlg}",
+      height: "{form.size.2xlg}",
+      borderRadius: "{form.borderRadius.max}",
+      gap: "{form.gap.tn}",
+      borderWidth: "0",
+      shadow: "none",
       focusRing: {
-        width: '{formField.focusRing.width}',
-        style: '{formField.focusRing.style}',
-        color: '{primary.200}',
-        offset: '{formField.focusRing.offset}',
-        shadow: '{formField.shadow}',
+        width: "{form.focusRing.width}",
+        style: "{form.focusRing.style}",
+        color: "{form.focusRing.color}",
+        offset: "{form.focusRing.offset}",
+        shadow: "{focusRing.shadow}"
       },
-      borderColor: '{transparent}',
-      hoverBorderColor: '{transparent}',
-      checkedBorderColor: '{transparent}',
-      checkedHoverBorderColor: '{transparent}',
-      invalidBorderColor: '{formField.invalidBorderColor}',
-      transitionDuration: '{formField.transitionDuration}',
-      slideDuration: '0.2s',
+      borderColor: "{transparent}",
+      hoverBorderColor: "{transparent}",
+      checkedBorderColor: "{transparent}",
+      checkedHoverBorderColor: "{transparent}",
+      invalidBorderColor: "{form.invalidBorderColor}",
+      transitionDuration: "{form.transitionDuration}",
+      slideDuration: "{form.transitionDuration}"
     },
     handle: {
-      borderRadius: '7.142857142857143rem',
-      size: '1.25rem',
-    },
+      borderRadius: "{form.borderRadius.max}",
+      size: "{form.size.lg}"
+    }
   },
   tooltip: {
     colorScheme: {
       light: {
         root: {
-          background: '{surface.900}',
-          color: '{text.extend.colorInverted}',
-        },
-      },
+          background: "{surface.900}",
+          color: "{text.extend.colorInverted}"
+        }
+      }
     },
     root: {
-      maxWidth: '17rem',
-      gutter: '0.25rem',
-      shadow: '{overlay.popover.shadow}',
-      padding: '0.5rem 1rem',
-      borderRadius: '{overlay.popover.borderRadius}',
-    },
+      maxWidth: "{overlay.width}",
+      gutter: "{feedback.gap.xs}",
+      shadow: "{overlay.popover.shadow}",
+      padding: "{feedback.padding.md} {feedback.padding.lg} ",
+      borderRadius: "{overlay.popover.borderRadius}"
+    }
   },
   tree: {
     root: {
-      background: '{content.background}',
-      color: '{content.color}',
-      padding: '1rem',
-      gap: '2px',
-      indent: '1rem',
+      background: "{content.background}",
+      color: "{content.color}",
+      padding: "{data.padding.lg}",
+      gap: "{data.gap.xs}",
+      indent: "{data.padding.lg}"
     },
     node: {
-      padding: '0.375rem 0.625rem',
-      color: '{text.color}',
-      selectedColor: '{text.extend.colorInverted}',
-      gap: '0.25rem',
+      padding: "{data.padding.sm} {data.padding.md}",
+      color: "{text.color}",
+      selectedColor: "{text.extend.colorInverted}",
+      gap: "{data.gap.xs}"
     },
     nodeIcon: {
-      selectedColor: '{text.extend.colorInverted}',
+      selectedColor: "{text.extend.colorInverted}"
     },
     nodeToggleButton: {
-      borderRadius: '50%',
-      size: '1.75rem',
-      selectedHoverBackground: '{surface.900}',
+      borderRadius: "{data.borderRadius}",
+      size: "{data.icon.size.2xlg}",
+      selectedHoverBackground: "{surface.900}"
     },
     loadingIcon: {
-      size: '2rem',
+      size: "{data.icon.size.md}"
     },
     filter: {
-      margin: '0 0 0.5rem 0',
-    },
-  },
-  overlaybadge: {
-    root: {
-      outline: {
-        width: '0',
-        color: '{transparent}',
-      },
-    },
-  },
-};
+      margin: "0 0 {data.padding.sm} 0"
+    }
+  }
+}
