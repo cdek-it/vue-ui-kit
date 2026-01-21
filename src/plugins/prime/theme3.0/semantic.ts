@@ -312,8 +312,8 @@ export default {
       lg: '{sizing.7}',
       xlg: '{sizing.8}',
       '2xlg': '{sizing.10}',
-      '3xlg': '3.5714285714285716rem',
-      '4xlg': '4.071428571428571rem',
+      '3xlg': '{sizing.11}',
+      '4xlg': '{sizing.16}',
     },
     borderRadius: {
       sm: '{borderRadius.md}',

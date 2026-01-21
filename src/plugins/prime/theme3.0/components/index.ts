@@ -588,7 +588,7 @@ export default {
       },
       sm: {
         fontSize: '{fonts.fontSize.sm}',
-        iconOnlyWidth: '2.1428571429rem',
+        iconOnlyWidth: '{controls.iconOnly.xlg}',
         paddingX: '{controls.padding.md}',
         paddingY: '{controls.padding.sm}',
       },
