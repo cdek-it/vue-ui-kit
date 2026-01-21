@@ -1,643 +1,807 @@
 export default {
   list: {
-    padding: '0.25rem',
-    gap: '0.25rem',
+    padding: "{spacing.1}",
+    gap: {
+      sm: "{spacing.1}",
+      md: "{spacing.2}"
+    },
     header: {
-      padding: '1rem 1rem 0 1rem',
+      padding: "{spacing.4} {spacing.4} 0 {spacing.4}"
     },
     option: {
-      padding: '0.5rem 0.75rem',
-      borderRadius: '0.5rem',
+      padding: "{spacing.2} {spacing.3}",
+      borderRadius: "{borderRadius.sm}"
     },
     optionGroup: {
-      padding: '0.5rem 0.75rem',
-      fontWeight: '{fonts.fontWeight.demibold}',
-    },
+      padding: "{spacing.2} {spacing.3}",
+      fontWeight: "{fonts.fontWeight.demibold}"
+    }
   },
   focusRing: {
-    width: '0.25rem',
-    style: 'none',
-    color: '#ffffff',
-    offset: '0',
-    shadow: '0 0 0 0.25rem {primary.200}',
+    width: "{borderWidth.md}",
+    style: "none",
+    color: "{focusRing.extend.success}",
+    offset: "0"
   },
-  primary: {
-    '50': '{colors.solid.green.50}',
-    '100': '{colors.solid.green.100}',
-    '200': '{colors.solid.green.200}',
-    '300': '{colors.solid.green.300}',
-    '400': '{colors.solid.green.400}',
-    '500': '{colors.solid.green.500}',
-    '600': '{colors.solid.green.600}',
-    '700': '{colors.solid.green.700}',
-    '800': '{colors.solid.green.800}',
-    '900': '{colors.solid.green.900}',
-    '950': '{colors.solid.green.950}',
-  },
-  formField: {
-    paddingX: '0.75rem',
-    paddingY: '0.75rem',
-    borderRadius: '{borderRadius.md}',
-    transitionDuration: '{transitionDuration}',
-    sm: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '0.044642857142857144rem',
-      paddingY: '0.03571428571428571rem',
+  form: {
+    padding: {
+      tn: "{spacing.1}",
+      xs: "{spacing.2}",
+      sm: "{spacing.3}",
+      md: "{spacing.4}",
+      lg: "{spacing.5}",
+      xlg: "{spacing.6}"
     },
-    lg: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '0.0625rem',
-      paddingY: '0.05357142857142857rem',
+    borderRadius: {
+      sm: "{borderRadius.sm}",
+      md: "{borderRadius.md}",
+      max: "{borderRadius.max}"
+    },
+    borderWidth: "{borderWidth.xs}",
+    transitionDuration: "{transition.duration.200}",
+    size: {
+      tn: "{sizing.0pt3}",
+      xs: "{sizing.1}",
+      sm: "{sizing.2}",
+      md: "{sizing.3}",
+      lg: "{sizing.4}",
+      xlg: "{sizing.5}",
+      "2xlg": "{sizing.6}",
+      "3xlg": "{sizing.8}",
+      "4xlg": "{sizing.10}",
+      "5xlg": "{sizing.12}",
+      "6xlg": "{sizing.16}"
+    },
+    icon: {
+      sm: "{sizing.3}",
+      md: "{sizing.4}",
+      lg: "{sizing.5}",
+      xlg: "{sizing.6}"
+    },
+    width: {
+      xs: "{sizing.6}",
+      sm: "{sizing.8}",
+      md: "{sizing.10}",
+      lg: "{sizing.12}",
+      "10xlg": "{sizing.60}",
+      full: "{sizing.max}"
+    },
+    gap: {
+      tn: "{spacing.1}",
+      xs: "{spacing.2}",
+      sm: "{spacing.3}",
+      md: "{spacing.4}"
     },
     focusRing: {
-      width: '{focusRing.width}',
-      style: '{focusRing.style}',
-      color: '{focusRing.color}',
-      offset: '{focusRing.offset}',
-      shadow: '{focusRing.shadow}',
-    },
-  },
-  sizingInputtext: {
-    root: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{spacing.padding.p4}',
-      paddingY: '{spacing.padding.p4}',
+      width: "{focusRing.width}",
+      style: "{focusRing.style}",
+      color: "{focusRing.color}",
+      offset: "{focusRing.offset}"
     },
     sm: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{spacing.padding.p3}',
-      paddingY: '{spacing.padding.p3}',
+      fontSize: "{fonts.fontSize.base}",
+      paddingX: "{spacing.2}",
+      paddingY: "{spacing.2}"
     },
     lg: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{spacing.padding.p5}',
-      paddingY: '{spacing.padding.p5}',
-    },
-    xlg: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{spacing.padding.p6}',
-      paddingY: '{spacing.padding.p6}',
-    },
-  },
-  sizingSelect: {
-    root: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{spacing.padding.p4}',
-      paddingY: '{spacing.padding.p4}',
-    },
-    sm: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{spacing.padding.p3}',
-      paddingY: '{spacing.padding.p3}',
-    },
-    lg: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{spacing.padding.p5}',
-      paddingY: '{spacing.padding.p5}',
-    },
-    xlg: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{spacing.padding.p6}',
-      paddingY: '{spacing.padding.p6}',
-    },
-  },
-  sizingDialog: {
-    extra: {
-      minWidth: '{sizing.width.w25}',
-      maxWidth: '{sizing.width.w25}',
-    },
-    sm: {
-      extra: {
-        minWidth: '{sizing.width.w20}',
-        maxWidth: '{sizing.width.w20}',
-      },
-    },
-    lg: {
-      extra: {
-        minWidth: '{sizing.width.w30}',
-        maxWidth: '{sizing.width.w30}',
-      },
-    },
-    xlg: {
-      extra: {
-        minWidth: '{sizing.width.w45}',
-        maxWidth: '{sizing.width.w45}',
-      },
-    },
-  },
-  sizingMessage: {
-    width: '{sizing.width.w25}',
-    sm: {
-      width: '{sizing.width.w20}',
-    },
-    lg: {
-      width: '{sizing.width.w30}',
-    },
-    xlg: {
-      width: '{sizing.width.w45}',
-    },
-  },
-  sizingToast: {
-    width: '{sizing.width.w25}',
-    sm: {
-      width: '{sizing.width.w20}',
-    },
-    lg: {
-      width: '{sizing.width.w30}',
-    },
-    xlg: {
-      width: '{sizing.width.w45}',
-    },
-  },
-  sizingDrawer: {
-    width: '{sizing.width.w25}',
-    sm: {
-      width: '{sizing.width.w20}',
-    },
-    lg: {
-      width: '{sizing.width.w30}',
-    },
-    xlg: {
-      width: '{sizing.width.w45}',
-    },
+      fontSize: "{fonts.fontSize.base}",
+      paddingX: "{spacing.4}",
+      paddingY: "{spacing.4}"
+    }
   },
   content: {
-    borderRadius: '{borderRadius.md}',
-  },
-  mask: {
-    transitionDuration: '{transitionDuration}',
+    borderRadius: "{borderRadius.md}",
+    padding: {
+      tn: "{spacing.1}",
+      xs: "{spacing.2}",
+      sm: "{spacing.4}",
+      md: "{spacing.6}",
+      lg: "{spacing.7}"
+    },
+    borderWidth: "{sizing.0pt3}",
+    gap: {
+      xs: "{spacing.1}",
+      sm: "{spacing.2}",
+      md: "{spacing.3}",
+      lg: "{spacing.4}"
+    }
   },
   navigation: {
+    width: {
+      xs: "{borderWidth.xs}",
+      sm: "{borderWidth.md}"
+    },
+    borderRadius: "{borderRadius.xs}",
+    size: {
+      tn: "{sizing.1}",
+      xs: "{sizing.2}",
+      sm: "{sizing.8}",
+      md: "{sizing.16}"
+    },
+    padding: {
+      xs: "{spacing.3}",
+      sm: "{spacing.4}"
+    },
+    submenu: {
+      padding: "{spacing.5}"
+    },
     list: {
-      padding: '0.25rem',
-      gap: '0.25rem',
+      padding: {
+        sm: "{spacing.1}",
+        md: "{spacing.2}"
+      },
+      gap: "{spacing.1}"
     },
     item: {
-      padding: '0.625rem 1rem',
-      borderRadius: '{borderRadius.sm}',
-      gap: '0.5rem',
+      padding: "{spacing.2} {spacing.3}",
+      borderRadius: "{borderRadius.sm}",
+      gap: "{spacing.2}"
     },
     submenuLabel: {
-      padding: '0.625rem 1rem',
-      fontWeight: '{fonts.fontWeight.demibold}',
+      padding: "{spacing.2} {spacing.3}",
+      fontWeight: "{fonts.fontWeight.demibold}"
     },
     submenuIcon: {
-      size: '1.25rem',
+      size: "{fonts.fontSize.xl}"
+    }
+  },
+  overlay: {
+    mask: {
+      transitionDuration: "{transition.duration.200}"
     },
+    select: {
+      borderRadius: "{borderRadius.md}",
+      padding: "{spacing.1}"
+    },
+    borderWidth: "{borderWidth.xs}",
+    icon: {
+      size: {
+        sm: "{sizing.4}",
+        md: "{sizing.6}",
+        lg: "{sizing.7}",
+        xlg: "{sizing.8}",
+        "2xlg": "{sizing.9}"
+      }
+    },
+    popover: {
+      borderRadius: "{borderRadius.sm}",
+      padding: {
+        sm: "{spacing.3}",
+        md: "{spacing.5}"
+      }
+    },
+    modal: {
+      borderRadius: "{borderRadius.xl}",
+      padding: {
+        xs: "{spacing.4}",
+        sm: "{spacing.5}",
+        md: "{spacing.6}"
+      }
+    },
+    gap: {
+      xs: "{spacing.1}",
+      sm: "{spacing.2}",
+      md: "{spacing.3}",
+      lg: "{spacing.4}"
+    },
+    width: "{sizing.68}"
+  },
+  feedback: {
+    transitionDuration: "{transition.duration.200}",
+    width: {
+      tn: "{sizing.0pt3}",
+      xs: "{sizing.1}",
+      sm: "{sizing.2}",
+      md: "{sizing.3}",
+      lg: "{sizing.4}",
+      xlg: "{sizing.5}",
+      "2xlg": "{sizing.6}",
+      "3xlg": "{sizing.7}",
+      "4xlg": "{sizing.8}"
+    },
+    icon: {
+      size: {
+        xs: "{sizing.2}",
+        sm: "{sizing.4}",
+        md: "{sizing.6}",
+        lg: "{sizing.7}",
+        xlg: "{sizing.8}",
+        "2xlg": "{sizing.9}"
+      }
+    },
+    padding: {
+      md: "{spacing.2}",
+      lg: "{spacing.4}"
+    },
+    height: {
+      sm: "{sizing.2}",
+      md: "{sizing.3}",
+      lg: "{sizing.4}",
+      xlg: "{sizing.5}",
+      "2xlg": "{sizing.6}",
+      "3xlg": "{sizing.7}",
+      "4xlg": "{sizing.8}",
+      "5xlg": "{sizing.9}",
+      "6xlg": "{sizing.10}",
+      "7xlg": "{sizing.11}",
+      "8xlg": "{sizing.12}"
+    },
+    gap: {
+      xs: "{spacing.1}",
+      sm: "{spacing.2}",
+      md: "{spacing.3}",
+      lg: "{spacing.4}"
+    }
+  },
+  data: {
+    padding: {
+      xs: "{spacing.1}",
+      sm: "{spacing.2}",
+      md: "{spacing.3}",
+      lg: "{spacing.4}",
+      xlg: "{spacing.5}"
+    },
+    icon: {
+      size: {
+        md: "{sizing.4}",
+        lg: "{sizing.5}",
+        xlg: "{sizing.6}",
+        "2xlg": "{sizing.7}",
+        "3xlg": "{sizing.8}",
+        "4xlg": "{sizing.9}",
+        "5xlg": "{sizing.10}"
+      }
+    },
+    transitionDuration: "{transition.duration.200}",
+    borderWidth: "{borderWidth.none}",
+    borderRadius: "{borderRadius.xs}",
+    gap: {
+      xs: "{spacing.1}",
+      sm: "{spacing.2}",
+      md: "{spacing.3}"
+    },
+    width: {
+      tn: "{sizing.0pt3}",
+      xs: "{sizing.1}",
+      sm: "{sizing.2}",
+      "13xlg": "{sizing.20}"
+    }
+  },
+  media: {
+    size: {
+      tn: "{sizing.1}",
+      xs: "{sizing.2}",
+      sm: "{sizing.8}",
+      md: "{sizing.10}",
+      lg: "{sizing.14}",
+      xlg: "{sizing.16}"
+    },
+    borderRadius: {
+      xs: "{borderRadius.sm}",
+      sm: "{borderRadius.md}",
+      md: "{borderRadius.lg}",
+      lg: "{borderRadius.xl}"
+    },
+    icon: {
+      size: {
+        sm: "{sizing.4}",
+        md: "{sizing.6}",
+        lg: "{sizing.8}"
+      }
+    },
+    transitionDuration: "{transition.duration.200}",
+    padding: {
+      xs: "{spacing.1}",
+      sm: "{spacing.2}",
+      md: "{spacing.3}",
+      lg: "{spacing.4}",
+      "2xlg": "{spacing.5}",
+      "3xlg": "{spacing.6}"
+    },
+    gap: {
+      xs: "{spacing.1}",
+      sm: "{spacing.2}"
+    }
+  },
+  controls: {
+    iconOnly: {
+      tn: "{sizing.2}",
+      xs: "{sizing.4}",
+      sm: "{sizing.5}",
+      md: "{sizing.6}",
+      lg: "{sizing.7}",
+      xlg: "{sizing.8}",
+      "2xlg": "{sizing.10}",
+      "3xlg": "3.5714285714285716rem",
+      "4xlg": "4.071428571428571rem"
+    },
+    borderRadius: {
+      sm: "{borderRadius.md}",
+      md: "{borderRadius.lg}",
+      max: "{borderRadius.max}"
+    },
+    gap: {
+      sm: "{spacing.2}",
+      md: "{spacing.3}",
+      lg: "{spacing.4}"
+    },
+    transitionDuration: "{transition.duration.200}",
+    padding: {
+      xs: "{spacing.1}",
+      sm: "{spacing.2}",
+      md: "{spacing.3}",
+      lg: "{spacing.4}",
+      xlg: "{spacing.5}",
+      "2xlg": "{spacing.6}"
+    },
+    width: {
+      tn: "{sizing.0pt3}"
+    }
+  },
+  colorScheme: {
+    light: {
+  success: {
+    "50": "{colors.solid.green.50}",
+    "100": "{colors.solid.green.100}",
+    "200": "{colors.solid.green.200}",
+    "300": "{colors.solid.green.300}",
+    "400": "{colors.solid.green.400}",
+    "500": "{colors.solid.green.500}",
+    "600": "{colors.solid.green.600}",
+    "700": "{colors.solid.green.700}",
+    "800": "{colors.solid.green.800}",
+    "900": "{colors.solid.green.900}",
+    "950": "{colors.solid.green.950}"
+  },
+  info: {
+    "50": "{colors.solid.blue.50}",
+    "100": "{colors.solid.blue.100}",
+    "200": "{colors.solid.blue.200}",
+    "300": "{colors.solid.blue.300}",
+    "400": "{colors.solid.blue.400}",
+    "500": "{colors.solid.blue.500}",
+    "600": "{colors.solid.blue.600}",
+    "700": "{colors.solid.blue.700}",
+    "800": "{colors.solid.blue.800}",
+    "900": "{colors.solid.blue.900}",
+    "950": "{colors.solid.blue.950}"
+  },
+  warn: {
+    "50": "{colors.solid.yellow.50}",
+    "100": "{colors.solid.yellow.100}",
+    "200": "{colors.solid.yellow.200}",
+    "300": "{colors.solid.yellow.300}",
+    "400": "{colors.solid.yellow.400}",
+    "500": "{colors.solid.yellow.500}",
+    "600": "{colors.solid.yellow.600}",
+    "700": "{colors.solid.yellow.700}",
+    "800": "{colors.solid.yellow.800}",
+    "900": "{colors.solid.yellow.900}",
+    "950": "{colors.solid.yellow.950}"
+  },
+  transparent: "rgba(255, 255, 255, 0.0001)",
+  help: {
+    "50": "{colors.solid.purple.50}",
+    "100": "{colors.solid.purple.100}",
+    "200": "{colors.solid.purple.200}",
+    "300": "{colors.solid.purple.300}",
+    "400": "{colors.solid.purple.400}",
+    "500": "{colors.solid.purple.500}",
+    "600": "{colors.solid.purple.600}",
+    "700": "{colors.solid.purple.700}",
+    "800": "{colors.solid.purple.800}",
+    "900": "{colors.solid.purple.900}",
+    "950": "{colors.solid.purple.950}"
+  },
+  error: {
+    "50": "{colors.solid.red.50}",
+    "100": "{colors.solid.red.100}",
+    "200": "{colors.solid.red.200}",
+    "300": "{colors.solid.red.300}",
+    "400": "{colors.solid.red.400}",
+    "500": "{colors.solid.red.500}",
+    "600": "{colors.solid.red.600}",
+    "700": "{colors.solid.red.700}",
+    "800": "{colors.solid.red.800}",
+    "900": "{colors.solid.red.900}",
+    "950": "{colors.solid.red.950}"
+  },
+  surface: {
+    "0": "{colors.alpha.white.100}",
+    "50": "{colors.solid.zinc.50}",
+    "100": "{colors.solid.zinc.100}",
+    "200": "{colors.solid.zinc.200}",
+    "300": "{colors.solid.zinc.300}",
+    "400": "{colors.solid.zinc.400}",
+    "500": "{colors.solid.zinc.500}",
+    "600": "{colors.solid.zinc.600}",
+    "700": "{colors.solid.zinc.700}",
+    "800": "{colors.solid.zinc.800}",
+    "900": "{colors.solid.zinc.900}",
+    "950": "{colors.solid.zinc.950}"
+  },
+  primary: {
+    color: "{colors.solid.green.500}",
+    contrastColor: "{colors.alpha.white.100}",
+    hoverColor: "{colors.solid.green.600}",
+    activeColor: "{colors.solid.green.700}",
+    hoverBackground: "{colors.solid.green.50}",
+    activeBackground: "{colors.solid.green.100}",
+    borderColor: "{colors.solid.green.200}",
+    selectedBackground: "{colors.solid.green.500}",
+    selectedHoverBackground: "{colors.solid.green.600}"
+  },
+  highlight: {
+    background: "{colors.solid.zinc.900}",
+    focusBackground: "{colors.solid.zinc.800}",
+    color: "{colors.alpha.white.100}",
+    focusColor: "{colors.alpha.white.100}"
+  },
+  focusRing: {
+    shadow: "{shadows.xs}",
+    extend: {
+      invalid: "{colors.solid.red.200}",
+      success: "{colors.solid.green.200}",
+      warning: "{colors.solid.yellow.200}",
+      info: "{colors.solid.blue.200}"
+    }
+  },
+  mask: {
+    background: "{colors.alpha.black.40}",
+    color: "{surface.200}"
+  },
+  form: {
+    background: "{colors.alpha.white.100}",
+    disabledBackground: "{colors.solid.zinc.200}",
+    readonlyBackground: "{colors.solid.zinc.100}",
+    filledBackground: "{colors.alpha.white.100}",
+    filledHoverBackground: "{colors.alpha.white.100}",
+    filledFocusBackground: "{colors.alpha.white.100}",
+    borderColor: "{colors.solid.zinc.300}",
+    hoverBorderPrimaryColor: "{colors.solid.zinc.900}",
+    focusBorderPrimaryColor: "{colors.solid.zinc.900}",
+    hoverBorderSecondaryColor: "{colors.solid.green.600}",
+    focusBorderSecondaryColor: "{colors.solid.green.600}",
+    invalidBorderColor: "{colors.solid.red.400}",
+    color: "{colors.solid.zinc.950}",
+    disabledColor: "{colors.solid.zinc.500}",
+    placeholderColor: "{colors.solid.zinc.500}",
+    invalidPlaceholderColor: "{colors.solid.red.600}",
+    floatLabelColor: "{colors.solid.zinc.500}",
+    floatLabelFocusColor: "{colors.solid.zinc.500}",
+    floatLabelActiveColor: "{colors.solid.zinc.500}",
+    floatLabelInvalidColor: "{form.invalidPlaceholderColor}",
+    iconColor: "{colors.solid.zinc.950}",
+    backgroundHandler: "{colors.alpha.white.100}",
+    shadow: "{shadows.xs}"
+  },
+  text: {
+    color: "{colors.solid.zinc.900}",
+    extend: {
+      colorPrimaryStatic: "{colors.solid.zinc.900}",
+      colorSecondaryStatic: "{colors.alpha.white.100}",
+      colorInverted: "{colors.alpha.white.100}"
+    },
+    hoverColor: "{colors.solid.zinc.700}",
+    primaryColor: "{colors.solid.green.600}",
+    hoverPrimaryColor: "{colors.solid.green.700}",
+    secondaryColor: "{colors.solid.zinc.600}",
+    hoverSecondaryColor: "{colors.solid.zinc.400}",
+    mutedColor: "{colors.solid.zinc.500}",
+    hoverMutedColor: "{colors.solid.zinc.300}",
+    disabledColor: "{colors.solid.zinc.300}",
+    infoColor: "{info.600}",
+    successColor: "{success.700}",
+    dangerColor: "{error.600}",
+    warningColor: "{warn.600}",
+    helpColor: "{help.600}"
+  },
+  content: {
+    background: "{colors.alpha.white.100}",
+    hoverBackground: "{colors.solid.zinc.100}",
+    borderColor: "{colors.solid.zinc.200}",
+    activeBorderColor: "{colors.solid.zinc.800}",
+    color: "{text.color}",
+    hoverColor: "{text.hoverColor}",
+    shadow: "{shadows.md}"
   },
   overlay: {
     select: {
-      borderRadius: '{borderRadius.md}',
-      shadow: '0 3.5px 7px 0 rgba(0, 0, 0, 0.2)',
+      background: "{colors.alpha.white.100}",
+      borderColor: "{colors.solid.zinc.200}",
+      color: "{text.color}",
+      shadow: "{shadows.md}"
     },
     popover: {
-      borderRadius: '{borderRadius.sm}',
-      padding: '0.75rem',
-      shadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+      background: "{colors.alpha.white.100}",
+      borderColor: "{form.borderColor}",
+      color: "{text.color}",
+      shadow: "{shadows.md}"
     },
     modal: {
-      borderRadius: '{borderRadius.xl}',
-      padding: '1.5rem',
-      shadow: '0 1px 3px rgba(0, 0, 0, 0.3)',
-    },
-    navigation: {
-      shadow: '0 2px 12px 0 rgba(0, 0, 0, 0.1)',
-    },
+      background: "{colors.alpha.white.100}",
+      borderColor: "{colors.solid.zinc.200}",
+      color: "{text.color}",
+      shadow: "{shadows.xs}"
+    }
   },
-  opacity: {
-    default: '{opacity.100}',
-    muted: '{opacity.50}',
-    disabled: '{opacity.0}',
-  },
-  transitionDuration: '0.2s',
-  disabledOpacity: '0.5',
-  iconSizeMedium: '1rem',
-  iconSizeLarge: '1.25rem',
-  anchorGutter: '0.14285714285714285rem',
-  colorScheme: {
-    light: {
-      success: {
-        '50': '{colors.solid.green.50}',
-        '100': '{colors.solid.green.100}',
-        '200': '{colors.solid.green.200}',
-        '300': '{colors.solid.green.300}',
-        '400': '{colors.solid.green.400}',
-        '500': '{colors.solid.green.500}',
-        '600': '{colors.solid.green.600}',
-        '700': '{colors.solid.green.700}',
-        '800': '{colors.solid.green.800}',
-        '900': '{colors.solid.green.900}',
-        '950': '{colors.solid.green.950}',
-      },
-      info: {
-        '50': '{colors.solid.blue.50}',
-        '100': '{colors.solid.blue.100}',
-        '200': '{colors.solid.blue.200}',
-        '300': '{colors.solid.blue.300}',
-        '400': '{colors.solid.blue.400}',
-        '500': '{colors.solid.blue.500}',
-        '600': '{colors.solid.blue.600}',
-        '700': '{colors.solid.blue.700}',
-        '800': '{colors.solid.blue.800}',
-        '900': '{colors.solid.blue.900}',
-        '950': '{colors.solid.blue.950}',
-      },
-      warn: {
-        '50': '{colors.solid.yellow.50}',
-        '100': '{colors.solid.yellow.100}',
-        '200': '{colors.solid.yellow.200}',
-        '300': '{colors.solid.yellow.300}',
-        '400': '{colors.solid.yellow.400}',
-        '500': '{colors.solid.yellow.500}',
-        '600': '{colors.solid.yellow.600}',
-        '700': '{colors.solid.yellow.700}',
-        '800': '{colors.solid.yellow.800}',
-        '900': '{colors.solid.yellow.900}',
-        '950': '{colors.solid.yellow.950}',
-      },
-      transparent: 'rgba(255, 255, 255, 0.0001)',
-      help: {
-        '50': '{colors.solid.purple.50}',
-        '100': '{colors.solid.purple.100}',
-        '200': '{colors.solid.purple.200}',
-        '300': '{colors.solid.purple.300}',
-        '400': '{colors.solid.purple.400}',
-        '500': '{colors.solid.purple.500}',
-        '600': '{colors.solid.purple.600}',
-        '700': '{colors.solid.purple.700}',
-        '800': '{colors.solid.purple.800}',
-        '900': '{colors.solid.purple.900}',
-        '950': '{colors.solid.purple.950}',
-      },
-      error: {
-        '50': '{colors.solid.red.50}',
-        '100': '{colors.solid.red.100}',
-        '200': '{colors.solid.red.200}',
-        '300': '{colors.solid.red.300}',
-        '400': '{colors.solid.red.400}',
-        '500': '{colors.solid.red.500}',
-        '600': '{colors.solid.red.600}',
-        '700': '{colors.solid.red.700}',
-        '800': '{colors.solid.red.800}',
-        '900': '{colors.solid.red.900}',
-        '950': '{colors.solid.red.950}',
-      },
-      surface: {
-        '0': '{colors.alpha.white.100}',
-        '50': '{colors.solid.zinc.50}',
-        '100': '{colors.solid.zinc.100}',
-        '200': '{colors.solid.zinc.200}',
-        '300': '{colors.solid.zinc.300}',
-        '400': '{colors.solid.zinc.400}',
-        '500': '{colors.solid.zinc.500}',
-        '600': '{colors.solid.zinc.600}',
-        '700': '{colors.solid.zinc.700}',
-        '800': '{colors.solid.zinc.800}',
-        '900': '{colors.solid.zinc.900}',
-        '950': '{colors.solid.zinc.950}',
-      },
-      primary: {
-        color: '{primary.500}',
-        contrastColor: '{surface.0}',
-        hoverColor: '{primary.600}',
-        activeColor: '{primary.700}',
-      },
-      highlight: {
-        background: '{colors.solid.zinc.900}',
-        focusBackground: '{colors.solid.zinc.800}',
-        color: '{colors.alpha.white.100}',
-        focusColor: '{colors.alpha.white.100}',
-      },
-      focusRing: {
-        shadow: '0 0 0 0.2rem {primary.200}',
-        extend: {
-          invalid: '{colors.solid.red.200}',
-          success: '{colors.solid.green.200}',
-          warning: '{colors.solid.yellow.200}',
-          info: '{colors.solid.blue.200}',
-        },
-      },
-      mask: {
-        background: '{colors.alpha.black.40}',
-        color: '{surface.200}',
-      },
-      formField: {
-        background: '{colors.alpha.white.100}',
-        disabledBackground: '{colors.solid.zinc.200}',
-        readonlyBackground: '{colors.solid.zinc.100}',
-        filledBackground: '{colors.alpha.white.100}',
-        filledHoverBackground: '{colors.alpha.white.100}',
-        filledFocusBackground: '{colors.alpha.white.100}',
-        borderColor: '{colors.solid.zinc.300}',
-        hoverBorderPrimaryColor: '{colors.solid.zinc.900}',
-        focusBorderPrimaryColor: '{colors.solid.zinc.900}',
-        hoverBorderSecondaryColor: '{colors.solid.green.600}',
-        focusBorderSecondaryColor: '{colors.solid.green.600}',
-        invalidBorderColor: '{colors.solid.red.400}',
-        color: '{colors.solid.zinc.950}',
-        disabledColor: '{colors.solid.zinc.500}',
-        placeholderColor: '{colors.solid.zinc.500}',
-        invalidPlaceholderColor: '{colors.solid.red.600}',
-        floatLabelColor: '{colors.solid.zinc.500}',
-        floatLabelFocusColor: '{colors.solid.zinc.500}',
-        floatLabelActiveColor: '{colors.solid.zinc.500}',
-        floatLabelInvalidColor: '{formField.invalidPlaceholderColor}',
-        iconColor: '{colors.solid.zinc.950}',
-        shadow: 'rgba(0, 0, 0, 0.0000)',
-        backgroundHandler: '{colors.alpha.white.100}',
-      },
-      text: {
-        color: '{colors.solid.zinc.900}',
-        extend: {
-          colorPrimaryStatic: '{colors.solid.zinc.900}',
-          colorSecondaryStatic: '{colors.alpha.white.100}',
-          colorInverted: '{colors.alpha.white.100}',
-        },
-        hoverColor: '{colors.solid.zinc.700}',
-        mutedColor: '{colors.solid.zinc.500}',
-        hoverMutedColor: '{colors.solid.zinc.300}',
-      },
-      content: {
-        background: '{colors.alpha.white.100}',
-        hoverBackground: '{colors.solid.zinc.100}',
-        borderColor: '{colors.solid.zinc.200}',
-        color: '{text.color}',
-        hoverColor: '{text.hoverColor}',
-      },
-      list: {
-        option: {
-          background: '{colors.alpha.white.100}',
-          focusBackground: '{colors.solid.zinc.100}',
-          selectedBackground: '{colors.solid.zinc.900}',
-          selectedFocusBackground: '{colors.solid.zinc.700}',
-          color: '{text.color}',
-          focusColor: '{text.color}',
-          selectedColor: '{text.extend.colorInverted}',
-          selectedFocusColor: '{text.extend.colorInverted}',
-          icon: {
-            color: '{text.color}',
-            focusColor: '{text.color}',
-          },
-        },
-        surface: '#ffffff',
-        optionGroup: {
-          background: '{colors.alpha.white.100}',
-          color: '{text.mutedColor}',
-        },
-      },
-      overlay: {
-        select: {
-          background: '{colors.alpha.white.100}',
-          borderColor: '{colors.solid.zinc.200}',
-          color: '{text.color}',
-        },
-        popover: {
-          background: '{colors.alpha.white.100}',
-          borderColor: '{formField.borderColor}',
-          color: '{text.color}',
-          shadow: 'rgba(24, 26, 31, 0.2000)',
-        },
-        modal: {
-          background: '{colors.alpha.white.100}',
-          borderColor: '{colors.solid.zinc.200}',
-          color: '{text.color}',
-        },
-      },
-      navigation: {
-        submenuLabel: {
-          background: 'rgba(255, 255, 255, 0.0000)',
-          color: '{text.mutedColor}',
-        },
-        submenuIcon: {
-          color: '{colors.solid.zinc.900}',
-          focusColor: '{colors.solid.zinc.900}',
-          activeColor: '{colors.alpha.white.100}',
-        },
-        item: {
-          focusBackground: '{colors.solid.zinc.100}',
-          activeBackground: '{colors.solid.zinc.900}',
-          color: '{colors.solid.zinc.900}',
-          focusColor: '{colors.solid.zinc.900}',
-          icon: {
-            color: '{colors.solid.zinc.900}',
-            focusColor: '{colors.solid.zinc.900}',
-            activeColor: '{colors.alpha.white.100}',
-          },
-          activeColor: '{colors.alpha.white.100}',
-        },
-      },
+  list: {
+    option: {
+      background: "{colors.alpha.white.100}",
+      focusBackground: "{colors.solid.zinc.100}",
+      selectedBackground: "{colors.solid.zinc.900}",
+      selectedFocusBackground: "{colors.solid.zinc.700}",
+      color: "{text.color}",
+      focusColor: "{text.color}",
+      selectedColor: "{text.extend.colorInverted}",
+      selectedFocusColor: "{text.extend.colorInverted}",
+      icon: {
+        color: "{text.color}",
+        focusColor: "{text.color}"
+      }
     },
+    surface: "#ffffff",
+    optionGroup: {
+      background: "{colors.alpha.white.100}",
+      color: "{text.mutedColor}"
+    }
+  },
+  navigation: {
+    submenuLabel: {
+      background: "rgba(255, 255, 255, 0.0000)",
+      color: "{text.mutedColor}"
+    },
+    submenuIcon: {
+      color: "{colors.solid.zinc.900}",
+      focusColor: "{colors.solid.zinc.900}",
+      activeColor: "{colors.alpha.white.100}"
+    },
+    item: {
+      focusBackground: "{colors.solid.zinc.100}",
+      activeBackground: "{colors.solid.zinc.900}",
+      color: "{colors.solid.zinc.900}",
+      focusColor: "{colors.solid.zinc.900}",
+      activeColor: "{colors.alpha.white.100}",
+      icon: {
+        color: "{colors.solid.zinc.900}",
+        focusColor: "{colors.solid.zinc.900}",
+        activeColor: "{colors.alpha.white.100}"
+      }
+    },
+    shadow: "{shadows.md}"
+  }
+},
     dark: {
-      success: {
-        '50': '{colors.solid.green.950}',
-        '100': '{colors.solid.green.900}',
-        '200': '{colors.solid.green.800}',
-        '300': '{colors.solid.green.700}',
-        '400': '{colors.solid.green.600}',
-        '500': '{colors.solid.green.500}',
-        '600': '{colors.solid.green.400}',
-        '700': '{colors.solid.green.300}',
-        '800': '{colors.solid.green.200}',
-        '900': '{colors.solid.green.100}',
-        '950': '{colors.solid.green.50}',
-      },
-      info: {
-        '50': '{colors.solid.blue.950}',
-        '100': '{colors.solid.blue.900}',
-        '200': '{colors.solid.blue.800}',
-        '300': '{colors.solid.blue.700}',
-        '400': '{colors.solid.blue.600}',
-        '500': '{colors.solid.blue.500}',
-        '600': '{colors.solid.blue.400}',
-        '700': '{colors.solid.blue.300}',
-        '800': '{colors.solid.blue.200}',
-        '900': '{colors.solid.blue.100}',
-        '950': '{colors.solid.blue.50}',
-      },
-      warn: {
-        '50': '{colors.solid.yellow.950}',
-        '100': '{colors.solid.yellow.900}',
-        '200': '{colors.solid.yellow.800}',
-        '300': '{colors.solid.yellow.700}',
-        '400': '{colors.solid.yellow.600}',
-        '500': '{colors.solid.yellow.500}',
-        '600': '{colors.solid.yellow.400}',
-        '700': '{colors.solid.yellow.300}',
-        '800': '{colors.solid.yellow.200}',
-        '900': '{colors.solid.yellow.100}',
-        '950': '{colors.solid.yellow.50}',
-      },
-      transparent: 'rgba(0, 0, 0, 0.0001)',
-      help: {
-        '50': '{colors.solid.purple.950}',
-        '100': '{colors.solid.purple.900}',
-        '200': '{colors.solid.purple.800}',
-        '300': '{colors.solid.purple.700}',
-        '400': '{colors.solid.purple.600}',
-        '500': '{colors.solid.purple.500}',
-        '600': '{colors.solid.purple.400}',
-        '700': '{colors.solid.purple.300}',
-        '800': '{colors.solid.purple.200}',
-        '900': '{colors.solid.purple.100}',
-        '950': '{colors.solid.purple.50}',
-      },
-      error: {
-        '50': '{colors.solid.red.950}',
-        '100': '{colors.solid.red.900}',
-        '200': '{colors.solid.red.800}',
-        '300': '{colors.solid.red.700}',
-        '400': '{colors.solid.red.600}',
-        '500': '{colors.solid.red.500}',
-        '600': '{colors.solid.red.400}',
-        '700': '{colors.solid.red.300}',
-        '800': '{colors.solid.red.200}',
-        '900': '{colors.solid.red.100}',
-        '950': '{colors.solid.red.50}',
-      },
-      surface: {
-        '0': '{colors.alpha.black.100}',
-        '50': '{colors.solid.zinc.950}',
-        '100': '{colors.solid.zinc.900}',
-        '200': '{colors.solid.zinc.800}',
-        '300': '{colors.solid.zinc.700}',
-        '400': '{colors.solid.zinc.600}',
-        '500': '{colors.solid.zinc.500}',
-        '600': '{colors.solid.zinc.400}',
-        '700': '{colors.solid.zinc.300}',
-        '800': '{colors.solid.zinc.200}',
-        '900': '{colors.solid.zinc.100}',
-        '950': '{colors.solid.zinc.50}',
-      },
-      primary: {
-        color: '{primary.500}',
-        contrastColor: '{colors.solid.zinc.900}',
-        hoverColor: '{primary.400}',
-        activeColor: '{primary.300}',
-      },
-      highlight: {
-        background: '{colors.solid.zinc.100}',
-        focusBackground: '{colors.solid.zinc.200}',
-        color: '{colors.solid.zinc.900}',
-        focusColor: '{colors.solid.zinc.900}',
-      },
-      focusRing: {
-        shadow: '0 0 0 0.2rem {primary.800}',
-        extend: {
-          invalid: '{colors.solid.red.800}',
-          success: '{colors.solid.green.800}',
-          warning: '{colors.solid.yellow.800}',
-          info: '{colors.solid.blue.800}',
-        },
-      },
-      mask: {
-        background: '{colors.alpha.black.60}',
-        color: '{surface.800}',
-      },
-      formField: {
-        background: '{colors.solid.zinc.950}',
-        disabledBackground: '{colors.solid.zinc.800}',
-        readonlyBackground: '{colors.solid.zinc.900}',
-        filledBackground: '{colors.solid.zinc.950}',
-        filledHoverBackground: '{colors.solid.zinc.950}',
-        filledFocusBackground: '{colors.solid.zinc.950}',
-        borderColor: '{colors.solid.zinc.700}',
-        hoverBorderPrimaryColor: '{colors.solid.zinc.100}',
-        focusBorderPrimaryColor: '{colors.solid.zinc.100}',
-        hoverBorderSecondaryColor: '{colors.solid.green.400}',
-        focusBorderSecondaryColor: '{colors.solid.green.400}',
-        invalidBorderColor: '{colors.solid.red.600}',
-        color: '{colors.alpha.white.100}',
-        disabledColor: '{colors.solid.zinc.500}',
-        placeholderColor: '{colors.solid.zinc.500}',
-        invalidPlaceholderColor: '{colors.solid.red.400}',
-        floatLabelColor: '{colors.solid.zinc.500}',
-        floatLabelFocusColor: '{colors.solid.zinc.500}',
-        floatLabelActiveColor: '{colors.solid.zinc.500}',
-        floatLabelInvalidColor: '{formField.invalidPlaceholderColor}',
-        iconColor: '{colors.alpha.white.100}',
-        shadow: 'rgba(255, 255, 255, 0.0000)',
-        backgroundHandler: '{colors.alpha.white.100}',
-      },
-      text: {
-        color: '{colors.alpha.white.100}',
-        extend: {
-          colorPrimaryStatic: '{colors.solid.zinc.900}',
-          colorSecondaryStatic: '{colors.alpha.white.100}',
-          colorInverted: '{colors.solid.zinc.900}',
-        },
-        hoverColor: '{colors.solid.zinc.300}',
-        mutedColor: '{colors.solid.zinc.500}',
-        hoverMutedColor: '{colors.solid.zinc.700}',
-      },
-      content: {
-        background: '{colors.solid.zinc.900}',
-        hoverBackground: '{colors.solid.zinc.800}',
-        borderColor: '{colors.solid.zinc.800}',
-        color: '{text.color}',
-        hoverColor: '{text.hoverColor}',
-      },
-      list: {
-        option: {
-          background: '{colors.solid.zinc.900}',
-          focusBackground: '{colors.solid.zinc.800}',
-          selectedBackground: '{colors.solid.zinc.100}',
-          selectedFocusBackground: '{colors.solid.zinc.300}',
-          color: '{text.color}',
-          focusColor: '{text.color}',
-          selectedColor: '{text.extend.colorInverted}',
-          selectedFocusColor: '{text.extend.colorInverted}',
-          icon: {
-            color: '{text.color}',
-            focusColor: '{text.color}',
-          },
-        },
-        surface: '#ffffff',
-        optionGroup: {
-          background: '{colors.solid.zinc.900}',
-          color: '{text.mutedColor}',
-        },
-      },
-      overlay: {
-        select: {
-          background: '{colors.solid.zinc.900}',
-          borderColor: '{colors.solid.zinc.800}',
-          color: '{text.color}',
-        },
-        popover: {
-          background: '{colors.solid.zinc.900}',
-          borderColor: '{formField.borderColor}',
-          color: '{text.color}',
-          shadow: 'rgba(24, 26, 31, 0.2000)',
-        },
-        modal: {
-          background: '{colors.solid.zinc.900}',
-          borderColor: '{colors.solid.zinc.800}',
-          color: '{text.color}',
-        },
-      },
-      navigation: {
-        submenuLabel: {
-          background: 'rgba(255, 255, 255, 0.0000)',
-          color: '{text.mutedColor}',
-        },
-        submenuIcon: {
-          color: '{colors.solid.zinc.100}',
-          focusColor: '{colors.solid.zinc.100}',
-          activeColor: '{colors.solid.zinc.900}',
-        },
-        item: {
-          focusBackground: '{colors.solid.zinc.900}',
-          activeBackground: '{colors.solid.zinc.100}',
-          color: '{colors.alpha.white.100}',
-          focusColor: '{colors.alpha.white.100}',
-          icon: {
-            color: '{colors.alpha.white.100}',
-            focusColor: '{colors.alpha.white.100}',
-            activeColor: '{colors.solid.zinc.900}',
-          },
-          activeColor: '{colors.solid.zinc.900}',
-        },
-      },
-    },
+  success: {
+    "50": "{colors.solid.green.950}",
+    "100": "{colors.solid.green.900}",
+    "200": "{colors.solid.green.800}",
+    "300": "{colors.solid.green.700}",
+    "400": "{colors.solid.green.600}",
+    "500": "{colors.solid.green.500}",
+    "600": "{colors.solid.green.400}",
+    "700": "{colors.solid.green.300}",
+    "800": "{colors.solid.green.200}",
+    "900": "{colors.solid.green.100}",
+    "950": "{colors.solid.green.50}"
   },
-};
+  info: {
+    "50": "{colors.solid.blue.950}",
+    "100": "{colors.solid.blue.900}",
+    "200": "{colors.solid.blue.800}",
+    "300": "{colors.solid.blue.700}",
+    "400": "{colors.solid.blue.600}",
+    "500": "{colors.solid.blue.500}",
+    "600": "{colors.solid.blue.400}",
+    "700": "{colors.solid.blue.300}",
+    "800": "{colors.solid.blue.200}",
+    "900": "{colors.solid.blue.100}",
+    "950": "{colors.solid.blue.50}"
+  },
+  warn: {
+    "50": "{colors.solid.yellow.950}",
+    "100": "{colors.solid.yellow.900}",
+    "200": "{colors.solid.yellow.800}",
+    "300": "{colors.solid.yellow.700}",
+    "400": "{colors.solid.yellow.600}",
+    "500": "{colors.solid.yellow.500}",
+    "600": "{colors.solid.yellow.400}",
+    "700": "{colors.solid.yellow.300}",
+    "800": "{colors.solid.yellow.200}",
+    "900": "{colors.solid.yellow.100}",
+    "950": "{colors.solid.yellow.50}"
+  },
+  transparent: "rgba(0, 0, 0, 0.0001)",
+  help: {
+    "50": "{colors.solid.purple.950}",
+    "100": "{colors.solid.purple.900}",
+    "200": "{colors.solid.purple.800}",
+    "300": "{colors.solid.purple.700}",
+    "400": "{colors.solid.purple.600}",
+    "500": "{colors.solid.purple.500}",
+    "600": "{colors.solid.purple.400}",
+    "700": "{colors.solid.purple.300}",
+    "800": "{colors.solid.purple.200}",
+    "900": "{colors.solid.purple.100}",
+    "950": "{colors.solid.purple.50}"
+  },
+  error: {
+    "50": "{colors.solid.red.950}",
+    "100": "{colors.solid.red.900}",
+    "200": "{colors.solid.red.800}",
+    "300": "{colors.solid.red.700}",
+    "400": "{colors.solid.red.600}",
+    "500": "{colors.solid.red.500}",
+    "600": "{colors.solid.red.400}",
+    "700": "{colors.solid.red.300}",
+    "800": "{colors.solid.red.200}",
+    "900": "{colors.solid.red.100}",
+    "950": "{colors.solid.red.50}"
+  },
+  surface: {
+    "0": "{colors.alpha.black.100}",
+    "50": "{colors.solid.zinc.950}",
+    "100": "{colors.solid.zinc.900}",
+    "200": "{colors.solid.zinc.800}",
+    "300": "{colors.solid.zinc.700}",
+    "400": "{colors.solid.zinc.600}",
+    "500": "{colors.solid.zinc.500}",
+    "600": "{colors.solid.zinc.400}",
+    "700": "{colors.solid.zinc.300}",
+    "800": "{colors.solid.zinc.200}",
+    "900": "{colors.solid.zinc.100}",
+    "950": "{colors.solid.zinc.50}"
+  },
+  primary: {
+    color: "{colors.solid.green.500}",
+    contrastColor: "{colors.solid.zinc.900}",
+    hoverColor: "{colors.solid.green.400}",
+    activeColor: "{colors.solid.green.300}",
+    hoverBackground: "{colors.solid.green.950}",
+    activeBackground: "{colors.solid.green.900}",
+    borderColor: "{colors.solid.green.800}",
+    selectedBackground: "{colors.solid.green.500}",
+    selectedHoverBackground: "{colors.solid.green.600}"
+  },
+  highlight: {
+    background: "{colors.solid.zinc.100}",
+    focusBackground: "{colors.solid.zinc.200}",
+    color: "{colors.solid.zinc.900}",
+    focusColor: "{colors.solid.zinc.900}"
+  },
+  focusRing: {
+    shadow: "{shadows.xs}",
+    extend: {
+      invalid: "{colors.solid.red.800}",
+      success: "{colors.solid.green.800}",
+      warning: "{colors.solid.yellow.800}",
+      info: "{colors.solid.blue.800}"
+    }
+  },
+  mask: {
+    background: "{colors.alpha.black.60}",
+    color: "{surface.800}"
+  },
+  form: {
+    background: "{colors.solid.zinc.950}",
+    disabledBackground: "{colors.solid.zinc.800}",
+    readonlyBackground: "{colors.solid.zinc.900}",
+    filledBackground: "{colors.solid.zinc.950}",
+    filledHoverBackground: "{colors.solid.zinc.950}",
+    filledFocusBackground: "{colors.solid.zinc.950}",
+    borderColor: "{colors.solid.zinc.700}",
+    hoverBorderPrimaryColor: "{colors.solid.zinc.100}",
+    focusBorderPrimaryColor: "{colors.solid.zinc.100}",
+    hoverBorderSecondaryColor: "{colors.solid.green.400}",
+    focusBorderSecondaryColor: "{colors.solid.green.400}",
+    invalidBorderColor: "{colors.solid.red.600}",
+    color: "{colors.alpha.white.100}",
+    disabledColor: "{colors.solid.zinc.500}",
+    placeholderColor: "{colors.solid.zinc.500}",
+    invalidPlaceholderColor: "{colors.solid.red.400}",
+    floatLabelColor: "{colors.solid.zinc.500}",
+    floatLabelFocusColor: "{colors.solid.zinc.500}",
+    floatLabelActiveColor: "{colors.solid.zinc.500}",
+    floatLabelInvalidColor: "{form.invalidPlaceholderColor}",
+    iconColor: "{colors.alpha.white.100}",
+    backgroundHandler: "{colors.alpha.white.100}",
+    shadow: "{shadows.xs}"
+  },
+  text: {
+    color: "{colors.alpha.white.100}",
+    extend: {
+      colorPrimaryStatic: "{colors.solid.zinc.900}",
+      colorSecondaryStatic: "{colors.alpha.white.100}",
+      colorInverted: "{colors.solid.zinc.900}"
+    },
+    hoverColor: "{colors.solid.zinc.300}",
+    primaryColor: "{colors.solid.green.400}",
+    hoverPrimaryColor: "{colors.solid.green.300}",
+    secondaryColor: "{colors.solid.zinc.400}",
+    hoverSecondaryColor: "{colors.solid.zinc.600}",
+    mutedColor: "{colors.solid.zinc.500}",
+    hoverMutedColor: "{colors.solid.zinc.700}",
+    disabledColor: "{colors.solid.zinc.700}",
+    infoColor: "{info.400}",
+    successColor: "{success.300}",
+    dangerColor: "{error.400}",
+    warningColor: "{warn.400}",
+    helpColor: "{help.400}"
+  },
+  content: {
+    background: "{colors.solid.zinc.900}",
+    hoverBackground: "{colors.solid.zinc.800}",
+    borderColor: "{colors.solid.zinc.800}",
+    activeBorderColor: "{colors.solid.zinc.200}",
+    color: "{text.color}",
+    hoverColor: "{text.hoverColor}",
+    shadow: "{shadows.md}"
+  },
+  overlay: {
+    select: {
+      background: "{colors.solid.zinc.900}",
+      borderColor: "{colors.solid.zinc.800}",
+      color: "{text.color}",
+      shadow: "{shadows.md}"
+    },
+    popover: {
+      background: "{colors.solid.zinc.900}",
+      borderColor: "{form.borderColor}",
+      color: "{text.color}",
+      shadow: "{shadows.md}"
+    },
+    modal: {
+      background: "{colors.solid.zinc.900}",
+      borderColor: "{colors.solid.zinc.800}",
+      color: "{text.color}",
+      shadow: "{shadows.xs}"
+    }
+  },
+  list: {
+    option: {
+      background: "{colors.solid.zinc.900}",
+      focusBackground: "{colors.solid.zinc.800}",
+      selectedBackground: "{colors.solid.zinc.100}",
+      selectedFocusBackground: "{colors.solid.zinc.300}",
+      color: "{text.color}",
+      focusColor: "{text.color}",
+      selectedColor: "{text.extend.colorInverted}",
+      selectedFocusColor: "{text.extend.colorInverted}",
+      icon: {
+        color: "{text.color}",
+        focusColor: "{text.color}"
+      }
+    },
+    surface: "#ffffff",
+    optionGroup: {
+      background: "{colors.solid.zinc.900}",
+      color: "{text.mutedColor}"
+    }
+  },
+  navigation: {
+    submenuLabel: {
+      background: "rgba(255, 255, 255, 0.0000)",
+      color: "{text.mutedColor}"
+    },
+    submenuIcon: {
+      color: "{colors.solid.zinc.100}",
+      focusColor: "{colors.solid.zinc.100}",
+      activeColor: "{colors.solid.zinc.900}"
+    },
+    item: {
+      focusBackground: "{colors.solid.zinc.900}",
+      activeBackground: "{colors.solid.zinc.100}",
+      color: "{colors.alpha.white.100}",
+      focusColor: "{colors.alpha.white.100}",
+      activeColor: "{colors.solid.zinc.900}",
+      icon: {
+        color: "{colors.alpha.white.100}",
+        focusColor: "{colors.alpha.white.100}",
+        activeColor: "{colors.solid.zinc.900}"
+      }
+    },
+    shadow: "{shadows.md}"
+  }
+},
+  },
+}
