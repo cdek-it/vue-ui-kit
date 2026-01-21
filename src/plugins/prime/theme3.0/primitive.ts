@@ -322,7 +322,7 @@ export default {
     md: "0.75rem",
     lg: "1rem",
     xl: "1.5rem",
-    max: "71.35714285714286rem"
+    max: "999rem"
   },
   borderWidth: {
     none: "0",
@@ -336,10 +336,10 @@ export default {
       base: "PT Sans"
     },
     fontWeight: {
-      regular: "28.571428571428573rem",
-      medium: "35.714285714285715rem",
-      demibold: "42.857142857142854rem",
-      bold: "50rem"
+      regular: "400",
+      medium: "500",
+      demibold: "600",
+      bold: "700"
     },
     fontSize: {
       xs: "0.75rem",
