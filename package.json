@@ -32,8 +32,8 @@
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "lint:cli": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore --max-warnings 0",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "STORYBOOK_BASE_HREF=vue-ui-kit storybook build",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "STORYBOOK_BASE_HREF=vue-ui-kit build-storybook",
     "gen:component": "bash ./scripts/generate-component.sh",
     "prepare": "husky install"
   },
