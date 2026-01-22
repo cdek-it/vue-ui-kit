@@ -283,7 +283,10 @@ export default {
   breadcrumb: {
     extend: {
       hoverBackground: '{surface.100}',
-      iconSize: '{form.size.xlg}',
+      iconSize: '{navigation.size.xsm}',
+      extItem: {
+        padding: '{navigation.padding.2xs}',
+      },
     },
     root: {
       padding: '0',
@@ -1266,17 +1269,20 @@ export default {
     extend: {
       borderRadius: '{overlay.popover.borderRadius}',
       borderWidth: '{overlay.borderWidth}',
-      width: '{overlay.drawer.width}',
       extHeader: {
         gap: '{overlay.gap.sm}',
         borderColor: '{drawer.root.borderColor}',
+        paddingBottom: '{overlay.modal.padding.xs}',
       },
+      padding: '{overlay.drawer.padding}',
     },
     root: {
       background: '{overlay.modal.background}',
       borderColor: '{overlay.modal.borderColor}',
       color: '{overlay.modal.color}',
       shadow: '{overlay.modal.shadow}',
+      transitionDuration: '{overlay.transitionDuration}',
+      width: '{sizing.sizingDrawer.root.width}',
     },
     header: {
       padding:
@@ -1292,6 +1298,15 @@ export default {
     footer: {
       padding:
         '0 {overlay.modal.padding.md} {overlay.modal.padding.md} {overlay.modal.padding.md} ',
+    },
+    sm: {
+      width: '{sizing.sizingDrawer.sm.width}',
+    },
+    lg: {
+      width: '{sizing.sizingDrawer.lg.width}',
+    },
+    xlg: {
+      width: '{sizing.sizingDrawer.xlg.width}',
     },
   },
   fileupload: {

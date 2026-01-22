@@ -115,10 +115,12 @@ export default {
     size: {
       tn: '{sizing.1}',
       xs: '{sizing.2}',
+      xsm: '{sizing.5}',
       sm: '{sizing.8}',
       md: '{sizing.16}',
     },
     padding: {
+      '2xs': '{spacing.1}',
       xs: '{spacing.3}',
       sm: '{spacing.4}',
     },
@@ -149,6 +151,7 @@ export default {
     mask: {
       transitionDuration: '{transition.duration.200}',
     },
+    transitionDuration: '{transition.duration.200}',
     select: {
       borderRadius: '{borderRadius.md}',
       padding: '{spacing.1}',
@@ -177,6 +180,10 @@ export default {
         sm: '{spacing.5}',
         md: '{spacing.6}',
       },
+    },
+    drawer: {
+      width: '{sizing.100}',
+      padding: '{spacing.2}',
     },
     gap: {
       xs: '{spacing.1}',
@@ -802,6 +809,108 @@ export default {
           },
         },
         shadow: '{shadows.md}',
+      },
+    },
+  },
+  sizing: {
+    sizingInputtext: {
+      root: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.4}',
+        paddingY: '{spacing.4}',
+      },
+      sm: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.3}',
+        paddingY: '{spacing.3}',
+      },
+      lg: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.5}',
+        paddingY: '{spacing.5}',
+      },
+      xlg: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.6}',
+        paddingY: '{spacing.6}',
+      },
+    },
+    sizingSelect: {
+      root: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.4}',
+        paddingY: '{spacing.4}',
+      },
+      sm: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.3}',
+        paddingY: '{spacing.3}',
+      },
+      lg: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.5}',
+        paddingY: '{spacing.5}',
+      },
+      xlg: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.6}',
+        paddingY: '{spacing.6}',
+      },
+    },
+    sizingDialog: {
+      root: {
+        width: '{sizing.100}',
+      },
+      sm: {
+        width: '{sizing.80}',
+      },
+      lg: {
+        width: '{sizing.120}',
+      },
+      xlg: {
+        width: '{sizing.128}',
+      },
+    },
+    sizingMessage: {
+      root: {
+        width: '{sizing.100}',
+      },
+      sm: {
+        width: '{sizing.80}',
+      },
+      lg: {
+        width: '{sizing.120}',
+      },
+      xlg: {
+        width: '{sizing.128}',
+      },
+    },
+    sizingToast: {
+      root: {
+        width: '{sizing.100}',
+      },
+      sm: {
+        width: '{sizing.80}',
+      },
+      lg: {
+        width: '{sizing.120}',
+      },
+      xlg: {
+        width: '{sizing.128}',
+      },
+    },
+    sizingDrawer: {
+      root: {
+        width: '{sizing.100}',
+      },
+      sm: {
+        width: '{sizing.80}',
+      },
+      lg: {
+        width: '{sizing.120}',
+      },
+      xlg: {
+        width: '{sizing.128}',
       },
     },
   },
