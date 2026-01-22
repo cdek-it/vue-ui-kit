@@ -375,13 +375,15 @@ export default {
       extLg: {
         borderRadius: '{controls.borderRadius.md}',
         gap: '{controls.gap.md}',
+        height: '{controls.iconOnly.4xlg}',
       },
       extXlg: {
         borderRadius: '{controls.borderRadius.md}',
         gap: '{controls.gap.md}',
-        iconOnlyWidth: '{controls.iconOnly.4xlg}',
+        iconOnlyWidth: '{controls.iconOnly.5xlg}',
         paddingX: '{controls.padding.2xlg}',
         paddingY: '{controls.padding.xlg}',
+        height: '{controls.iconOnly.5xlg}',
       },
       borderWidth: '{controls.width.tn}',
       iconSize: {
