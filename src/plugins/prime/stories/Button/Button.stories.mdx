@@ -169,6 +169,73 @@ import { Template, TemplateBadge, TemplateVariants } from './Button.template';
   {Template.bind({})}
 </Story>
 
+### Disabled
+
+```html dark
+<PrimeButton label="Button" disabled />
+```
+
+<Story
+  name="Disabled"
+  args={{
+    label: 'Button',
+    disabled: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Disabled Outlined
+
+```html dark
+<PrimeButton label="Button" variant="outlined" disabled />
+```
+
+<Story
+  name="Disabled Outlined"
+  args={{
+    label: 'Button',
+    variant: 'outlined',
+    disabled: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Disabled Text
+
+```html dark
+<PrimeButton label="Button" variant="text" disabled />
+```
+
+<Story
+  name="Disabled Text"
+  args={{
+    label: 'Button',
+    variant: 'text',
+    disabled: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Disabled Link
+
+```html dark
+<PrimeButton label="Button" variant="link" disabled />
+```
+
+<Story
+  name="Disabled Link"
+  args={{
+    label: 'Button',
+    variant: 'link',
+    disabled: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
+
 ### Badge
 
 [PrimeVue OverlayBadge](https://primevue.org/badge/#overlay)

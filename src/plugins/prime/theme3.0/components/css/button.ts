@@ -28,23 +28,24 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* disabled outlined кнопки */
-.p-button.p-button-outlined:is(:disabled, .p-button-loading) {
+.p-button.p-button-outlined:is(.p-disabled, :disabled, .p-button-loading) {
     color: ${dt('button.extend.disabledColor')};
-    background: transparent;
-    border-color: ${dt('button.extend.disabledColor')};
+    background: ${dt('colorScheme.transparent')};
+    border-color: ${dt('colorScheme.transparent')};
 }
 
 /* disabled text кнопки */
-.p-button.p-button-text:is(:disabled, .p-button-loading) {
+.p-button.p-button-text:is(.p-disabled, :disabled, .p-button-loading) {
     color: ${dt('button.extend.disabledColor')};
-    background: transparent;
-    border-color: transparent;
+    background: ${dt('colorScheme.transparent')};
+    border-color: ${dt('colorScheme.transparent')};
 }
 
 /* disabled link кнопки */
-.p-button.p-button-link:is(:disabled, .p-button-loading) {
+.p-button.p-button-link:is(.p-disabled, :disabled, .p-button-loading) {
     color: ${dt('button.extend.disabledColor')};
-    background: transparent;
+    background: ${dt('colorScheme.transparent')};
+    border-color: ${dt('colorScheme.transparent')};
 }
 
 /* Отступы для link кнопок */
@@ -106,20 +107,30 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   border-radius: ${dt('button.extend.extXlg.borderRadius')};
 }
 
+/* Отступы и размер шрифта для lg кнопки */
+.p-button-lg.p-button:not(.p-button-icon-only):not(.p-button-link) {
+  padding: ${dt('button.root.lg.paddingY')} ${dt('button.root.lg.paddingX')};
+  font-size: ${dt('button.root.lg.fontSize')};
+  height: ${dt('controls.iconOnly.4xlg')};
+}
+
 /* Отступы и размер шрифта для xlg кнопки */
-.p-button-xlg.p-button {
+.p-button-xlg.p-button:not(.p-button-icon-only):not(.p-button-link) {
   padding: ${dt('button.extend.extXlg.paddingY')} ${dt(
   'button.extend.extXlg.paddingX'
 )};
   font-size: ${dt('fonts.fontSize.xl')};
+  height: ${dt('controls.iconOnly.5xlg')};
 }
 
 /* Размеры для icon-only кнопок */
 .p-button-icon-only {
+  width: ${dt('button.root.iconOnlyWidth')};
   height: ${dt('button.root.iconOnlyWidth')};
 }
 
 .p-button-sm.p-button-icon-only {
+  width: ${dt('button.root.sm.iconOnlyWidth')};
   height: ${dt('button.root.sm.iconOnlyWidth')};
 }
 

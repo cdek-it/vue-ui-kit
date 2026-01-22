@@ -239,6 +239,42 @@ export const TemplateVariants = () => ({
       <Button icon="ti ti-check" label="Button" size="small" rounded />
     </div>
   </div>
+
+  <!-- Disabled States -->
+  <div>
+    <h3 style="margin-bottom: 20px;">Disabled States</h3>
+    <div style="display: grid; grid-template-columns: repeat(5, max-content); gap: 15px; align-items: center;">
+      <span></span>
+      <span><code>default</code></span>
+      <span><code>outlined</code></span>
+      <span><code>text</code></span>
+      <span><code>link</code></span>
+
+      <span><code>xlarge</code></span>
+      <Button label="Button" class="p-button-xlg" disabled />
+      <Button label="Button" class="p-button-xlg" variant="outlined" disabled />
+      <Button label="Button" class="p-button-xlg" variant="text" disabled />
+      <Button label="Button" class="p-button-xlg" variant="link" disabled />
+
+      <span><code>large</code></span>
+      <Button label="Button" size="large" disabled />
+      <Button label="Button" size="large" variant="outlined" disabled />
+      <Button label="Button" size="large" variant="text" disabled />
+      <Button label="Button" size="large" variant="link" disabled />
+
+      <span><code>base</code></span>
+      <Button label="Button" disabled />
+      <Button label="Button" variant="outlined" disabled />
+      <Button label="Button" variant="text" disabled />
+      <Button label="Button" variant="link" disabled />
+
+      <span><code>small</code></span>
+      <Button label="Button" size="small" disabled />
+      <Button label="Button" size="small" variant="outlined" disabled />
+      <Button label="Button" size="small" variant="text" disabled />
+      <Button label="Button" size="small" variant="link" disabled />
+    </div>
+  </div>
 </div>
 `,
 });
