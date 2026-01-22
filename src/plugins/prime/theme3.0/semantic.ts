@@ -805,4 +805,106 @@ export default {
       },
     },
   },
+  sizing: {
+    sizingInputtext: {
+      root: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.4}',
+        paddingY: '{spacing.4}',
+      },
+      sm: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.3}',
+        paddingY: '{spacing.3}',
+      },
+      lg: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.5}',
+        paddingY: '{spacing.5}',
+      },
+      xlg: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.6}',
+        paddingY: '{spacing.6}',
+      },
+    },
+    sizingSelect: {
+      root: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.4}',
+        paddingY: '{spacing.4}',
+      },
+      sm: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.3}',
+        paddingY: '{spacing.3}',
+      },
+      lg: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.5}',
+        paddingY: '{spacing.5}',
+      },
+      xlg: {
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{spacing.6}',
+        paddingY: '{spacing.6}',
+      },
+    },
+    sizingDialog: {
+      root: {
+        width: '{sizing.100}',
+      },
+      sm: {
+        width: '{sizing.80}',
+      },
+      lg: {
+        width: '{sizing.120}',
+      },
+      xlg: {
+        width: '{sizing.128}',
+      },
+    },
+    sizingMessage: {
+      root: {
+        width: '{sizing.100}',
+      },
+      sm: {
+        width: '{sizing.80}',
+      },
+      lg: {
+        width: '{sizing.120}',
+      },
+      xlg: {
+        width: '{sizing.128}',
+      },
+    },
+    sizingToast: {
+      root: {
+        width: '{sizing.100}',
+      },
+      sm: {
+        width: '{sizing.80}',
+      },
+      lg: {
+        width: '{sizing.120}',
+      },
+      xlg: {
+        width: '{sizing.128}',
+      },
+    },
+    sizingDrawer: {
+      root: {
+        width: '{sizing.100}',
+      },
+      sm: {
+        width: '{sizing.80}',
+      },
+      lg: {
+        width: '{sizing.120}',
+      },
+      xlg: {
+        width: '{sizing.128}',
+      },
+    },
+  },
 };
