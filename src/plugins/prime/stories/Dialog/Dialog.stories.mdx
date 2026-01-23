@@ -1,25 +1,158 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Dialog.template';
+import { Template, TemplateVariants } from './Dialog.template';
 
 <Meta title="Prime/Dialog" />
 
 # Dialog
 
-[PrimeVue Dialog](https://primevue.org/dialog), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=562-2747&m=dev>)
+[PrimeVue Dialog](https://primevue.org/dialog), [Figma Design](<https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=520-6620>)
+
+## Описание
+
+Dialog - модальное окно для отображения контента поверх основного интерфейса.
+
+### Типографика
+
+Согласно дизайн-токенам:
+
+**Title:**
+- **Font Family**: TT Fellows (heading)
+- **Font Size**: 20px (1.25rem)
+- **Font Weight**: 600 (demibold)
+- **Line Height**: 1.5714285714285714rem
+
+**Content:**
+- **Font Family**: PT Sans (base)
+- **Font Size**: 16px (1rem)
+- **Font Weight**: 400 (regular)
+- **Line Height**: 1.5rem
+
+### Размеры
+
+- **Default**: min-width 24rem, max-width 30rem
+- **Small**: min-width 20rem, max-width 24rem
+- **Large**: min-width 30rem, max-width 58rem
+- **Extra Large**: min-width 58rem, max-width 90vw
+
+### All Variants
+
+Полная матрица всех вариантов dialog.
+
+<Story name="All Variants">
+  {TemplateVariants.bind({})}
+</Story>
 
 ### Default
 
 ```html dark
-<PrimeDialog modal />
+<PrimeDialog v-model:visible="visible" header="Dialog Header" modal>
+  <p>Dialog content</p>
+  <template #footer>
+    <PrimeButton label="Cancel" variant="text" />
+    <PrimeButton label="Save" severity="tertiary" />
+  </template>
+</PrimeDialog>
 ```
 
-<Story name="Default">{Template.bind({})}</Story>
+<Story
+  name="Default"
+  args={{
+    header: 'Dialog Header',
+    modal: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
 
+### Small
 
-### noModal
 ```html dark
-<PrimeDialog :modal="false" />
+<PrimeDialog v-model:visible="visible" header="Small Dialog" modal class="p-dialog-sm">
+  <p>Dialog content</p>
+</PrimeDialog>
 ```
 
-<Story name="noModal" args={{modal: false}}>{Template.bind({})}</Story>
+<Story
+  name="Small"
+  args={{
+    header: 'Small Dialog',
+    modal: true,
+    class: 'p-dialog-sm',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Large
+
+```html dark
+<PrimeDialog v-model:visible="visible" header="Large Dialog" modal class="p-dialog-lg">
+  <p>Dialog content</p>
+</PrimeDialog>
+```
+
+<Story
+  name="Large"
+  args={{
+    header: 'Large Dialog',
+    modal: true,
+    class: 'p-dialog-lg',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Extra Large
+
+```html dark
+<PrimeDialog v-model:visible="visible" header="Extra Large Dialog" modal class="p-dialog-xlg">
+  <p>Dialog content</p>
+</PrimeDialog>
+```
+
+<Story
+  name="Extra Large"
+  args={{
+    header: 'Extra Large Dialog',
+    modal: true,
+    class: 'p-dialog-xlg',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### No Modal
+
+```html dark
+<PrimeDialog v-model:visible="visible" header="No Modal Dialog" :modal="false">
+  <p>Dialog content</p>
+</PrimeDialog>
+```
+
+<Story
+  name="No Modal"
+  args={{
+    header: 'No Modal Dialog',
+    modal: false,
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### No Header
+
+```html dark
+<PrimeDialog v-model:visible="visible" modal>
+  <p>Dialog content without header</p>
+</PrimeDialog>
+```
+
+<Story
+  name="No Header"
+  args={{
+    modal: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
