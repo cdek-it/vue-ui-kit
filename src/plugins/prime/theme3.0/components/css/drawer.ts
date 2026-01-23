@@ -27,7 +27,9 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-drawer-right .p-drawer.p-component {
   margin: ${dt('drawer.extend.padding')};;
   width: ${dt('drawer.root.width')};
-  height: calc(100% - ${dt('drawer.extend.padding')} * ${dt('drawer.extend.scale')});
+  height: calc(100% - ${dt('drawer.extend.padding')} * ${dt(
+  'drawer.extend.scale'
+)});
 }
 
 .p-drawer-left .p-drawer.p-component.p-drawer-sm,
@@ -49,7 +51,9 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-drawer-top .p-drawer.p-component,
 .p-drawer-bottom .p-drawer.p-component {
   margin: ${dt('drawer.extend.padding')};;
-  width: calc(100% - ${dt('drawer.extend.padding')} * ${dt('drawer.extend.scale')});
+  width: calc(100% - ${dt('drawer.extend.padding')} * ${dt(
+  'drawer.extend.scale'
+)});
 }
 
 `;
