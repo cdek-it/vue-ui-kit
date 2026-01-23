@@ -1,10 +1,16 @@
-import { create } from 'storybook/theming';
+import { addons } from '@storybook/addons';
+import { create } from '@storybook/theming';
 import './newLabel.css';
 
-export const theme = create({
+const theme = create({
   base: 'light',
+  
   brandTitle: 'CDEK UI Kit',
   brandUrl: '',
-  brandImage: '/CDEK.svg',
+  brandImage: './assets/CDEK.svg',
   brandTarget: '_self',
+});
+
+addons.setConfig({
+  theme,
 });
