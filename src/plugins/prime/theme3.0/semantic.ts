@@ -115,10 +115,12 @@ export default {
     size: {
       tn: '{sizing.1}',
       xs: '{sizing.2}',
+      xsm: '{sizing.5}',
       sm: '{sizing.8}',
       md: '{sizing.16}',
     },
     padding: {
+      '2xs': '{spacing.1}',
       xs: '{spacing.3}',
       sm: '{spacing.4}',
     },
