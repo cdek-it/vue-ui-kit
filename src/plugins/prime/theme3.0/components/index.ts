@@ -283,7 +283,10 @@ export default {
   breadcrumb: {
     extend: {
       hoverBackground: '{surface.100}',
-      iconSize: '{form.size.xlg}',
+      iconSize: '{navigation.size.xsm}',
+      extItem: {
+        padding: '{navigation.padding.2xs}',
+      },
     },
     root: {
       padding: '0',
