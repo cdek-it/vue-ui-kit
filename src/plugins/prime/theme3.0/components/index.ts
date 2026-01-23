@@ -1275,6 +1275,7 @@ export default {
         paddingBottom: '{overlay.modal.padding.xs}',
       },
       padding: '{overlay.drawer.padding}',
+      scale: '1.75'
     },
     root: {
       background: '{overlay.modal.background}',
