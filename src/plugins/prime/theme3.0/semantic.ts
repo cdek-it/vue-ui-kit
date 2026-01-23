@@ -151,6 +151,7 @@ export default {
     mask: {
       transitionDuration: '{transition.duration.200}',
     },
+    transitionDuration: '{transition.duration.200}',
     select: {
       borderRadius: '{borderRadius.md}',
       padding: '{spacing.1}',
@@ -179,6 +180,10 @@ export default {
         sm: '{spacing.5}',
         md: '{spacing.6}',
       },
+    },
+    drawer: {
+      width: '{sizing.100}',
+      padding: '{spacing.2}',
     },
     gap: {
       xs: '{spacing.1}',
