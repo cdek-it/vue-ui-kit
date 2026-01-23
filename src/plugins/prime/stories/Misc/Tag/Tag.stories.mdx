@@ -1,34 +1,177 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Tag.template';
+import { Template, TemplateVariants } from './Tag.template';
 
 <Meta title="Prime/Misc/Tag" />
 
 # Tag
 
-[PrimeVue Tag](https://primevue.org/tag), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=484-4921&m=dev>)
+[PrimeVue Tag](https://primevue.org/tag), [Figma Design](<https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=21-1238>)
 
-### Default
+## Варианты тегов
+
+Компонент поддерживает следующие варианты согласно дизайну из Figma:
+
+- **Severity**: `primary`, `secondary`, `success`, `info`, `warn`, `danger`
+- **Форма**: обычная или `rounded`
+- **С иконкой**: `icon` (prefix) или только иконка (без value)
+
+### Стили текста
+
+Согласно дизайн-токенам:
+- **Font Family**: PT Sans (base)
+- **Font Size**: 12px (0.75rem)
+- **Font Weight**: 400 (regular)
+- **Line Height**: 1rem
+- **Icon Size**: 16px (1rem)
+
+### All Variants
+
+Полная матрица всех вариантов тегов из Figma дизайна.
+
+<Story name="All Variants">
+  {TemplateVariants.bind({})}
+</Story>
+
+### Primary
 
 ```html dark
-<PrimeTag value="Tag" />
+<PrimeTag value="Tag" severity="primary" />
 ```
 
-<Story name="Default" args={{value: "Tag"}}>{Template.bind({})}</Story>
+<Story
+  name="Primary"
+  args={{
+    value: 'Tag',
+    severity: 'primary',
+  }}
+>
+  {Template.bind({})}
+</Story>
 
-#Rounded
+### Secondary
+
+```html dark
+<PrimeTag value="Tag" severity="secondary" />
+```
+
+<Story
+  name="Secondary"
+  args={{
+    value: 'Tag',
+    severity: 'secondary',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Success
+
+```html dark
+<PrimeTag value="Tag" severity="success" />
+```
+
+<Story
+  name="Success"
+  args={{
+    value: 'Tag',
+    severity: 'success',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Info
+
+```html dark
+<PrimeTag value="Tag" severity="info" />
+```
+
+<Story
+  name="Info"
+  args={{
+    value: 'Tag',
+    severity: 'info',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Warning
+
+```html dark
+<PrimeTag value="Tag" severity="warn" />
+```
+
+<Story
+  name="Warning"
+  args={{
+    value: 'Tag',
+    severity: 'warn',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Danger
+
+```html dark
+<PrimeTag value="Tag" severity="danger" />
+```
+
+<Story
+  name="Danger"
+  args={{
+    value: 'Tag',
+    severity: 'danger',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Rounded
 
 ```html dark
 <PrimeTag value="Tag" rounded />
 ```
 
-<Story name="Rounded" args={{value: "Tag", rounded: true}}>{Template.bind({})}</Story>
+<Story
+  name="Rounded"
+  args={{
+    value: 'Tag',
+    rounded: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
 
-
-#With icon
+### With Icon
 
 ```html dark
-<PrimeTag value="Tag" icon="ti ti-info-circle" />
+<PrimeTag value="Tag" icon="ti ti-check" />
 ```
 
-<Story name="Icon" args={{value: "Tag", icon: "ti ti-info-circle"}}>{Template.bind({})}</Story>
+<Story
+  name="With Icon"
+  args={{
+    value: 'Tag',
+    icon: 'ti ti-check',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Icon Only
+
+```html dark
+<PrimeTag icon="ti ti-check" />
+```
+
+<Story
+  name="Icon Only"
+  args={{
+    icon: 'ti ti-check',
+  }}
+>
+  {Template.bind({})}
+</Story>

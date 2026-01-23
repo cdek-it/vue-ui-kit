@@ -2,12 +2,18 @@ import avatarCss from './components/css/avatar';
 import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
+import dialogCss from './components/css/dialog';
+import tagCss from './components/css/tag';
+import tooltipCss from './components/css/tooltip';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
    ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
+   ${dialogCss({ dt })}
+   ${tagCss({ dt })}
+   ${tooltipCss({ dt })}
 
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
