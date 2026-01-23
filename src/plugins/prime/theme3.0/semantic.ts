@@ -78,16 +78,6 @@ export default {
       color: '{focusRing.color}',
       offset: '{focusRing.offset}',
     },
-    sm: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{spacing.2}',
-      paddingY: '{spacing.2}',
-    },
-    lg: {
-      fontSize: '{fonts.fontSize.base}',
-      paddingX: '{spacing.4}',
-      paddingY: '{spacing.4}',
-    },
   },
   content: {
     borderRadius: '{borderRadius.md}',
@@ -548,7 +538,6 @@ export default {
             focusColor: '{text.color}',
           },
         },
-        surface: '#ffffff',
         optionGroup: {
           background: '{colors.alpha.white.100}',
           color: '{text.mutedColor}',

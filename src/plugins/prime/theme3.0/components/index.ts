@@ -2254,14 +2254,14 @@ export default {
       borderRadius: '{form.borderRadius.md}',
       transitionDuration: '{form.transitionDuration}',
       sm: {
-        fontSize: '{form.sm.fontSize}',
-        paddingX: '{form.sm.paddingY}',
-        paddingY: '{form.sm.paddingY}',
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{form.padding.xs}',
+        paddingY: '{form.padding.xs}',
       },
       lg: {
-        fontSize: '{form.lg.fontSize}',
-        paddingX: '{form.lg.paddingX}',
-        paddingY: '{form.lg.paddingY}',
+        fontSize: '{fonts.fontSize.base}',
+        paddingX: '{form.padding.md}',
+        paddingY: '{form.padding.md}',
       },
       focusRing: {
         width: '{form.focusRing.width}',
@@ -3183,13 +3183,13 @@ export default {
     },
     sm: {
       fontSize: '{fonts.fontSize.base}',
-      paddingX: '{form.sm.paddingX}',
-      paddingY: '{form.sm.paddingY}',
+      paddingX: '{form.padding.xs}',
+      paddingY: '{form.padding.xs}',
     },
     lg: {
       fontSize: '{fonts.fontSize.base}',
-      paddingX: '{form.lg.paddingX}',
-      paddingY: '{form.lg.paddingY}',
+      paddingX: '{form.padding.md}',
+      paddingY: '{form.padding.md}',
     },
   },
   tieredmenu: {
@@ -3336,11 +3336,11 @@ export default {
         shadow: '{focusRing.shadow}',
       },
       sm: {
-        fontSize: '{form.sm.fontSize}',
+        fontSize: '{fonts.fontSize.base}',
         padding: '{form.padding.sm} {form.padding.tn}',
       },
       lg: {
-        fontSize: '{form.sm.fontSize}',
+        fontSize: '{fonts.fontSize.base}',
         padding: '{form.padding.md} {form.padding.xlg}',
       },
       transitionDuration: '{form.transitionDuration}',
