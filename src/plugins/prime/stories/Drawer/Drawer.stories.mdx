@@ -1,0 +1,120 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Basic, Sizes, Position, WithFooter, CustomHeader, FullScreen, WithoutModal } from './Drawer.template';
+
+<Meta title="Prime/Overlay/Drawer" />
+
+# Drawer
+
+Drawer is a panel component displayed as an overlay at the edges of the screen.
+
+### Basic
+
+```html dark
+<Button label="Show Drawer" @click="visible = true" />
+<Drawer v-model:visible="visible" header="Drawer Header">
+  <p>Content here...</p>
+</Drawer>
+```
+
+<Story name="Basic">{Basic.bind({})}</Story>
+
+### Sizes
+
+Drawer supports different sizes: default (100), small (80), large (120), and extra large (128).
+
+```html dark
+<Drawer v-model:visible="visible" header="Small Drawer" class="p-drawer-sm">
+  <p>Small width drawer (sizing.80)</p>
+</Drawer>
+```
+
+<Story name="Sizes">{Sizes.bind({})}</Story>
+
+### Position
+
+Drawer can be positioned at different edges of the screen using the position prop.
+
+```html dark
+<Drawer v-model:visible="visible" header="Left Drawer" position="left">
+  <p>Content for left drawer</p>
+</Drawer>
+```
+
+<Story name="Position">{Position.bind({})}</Story>
+
+### With Footer
+
+Use the footer slot to add action buttons or additional content at the bottom.
+
+```html dark
+<Drawer v-model:visible="visible" header="Drawer with Footer">
+  <p>Content...</p>
+  <template #footer>
+    <Button label="Cancel" severity="secondary" />
+    <Button label="Save" />
+  </template>
+</Drawer>
+```
+
+<Story name="With Footer">{WithFooter.bind({})}</Story>
+
+### Custom Header
+
+Customize the header using the header slot.
+
+```html dark
+<Drawer v-model:visible="visible">
+  <template #header>
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <i class="pi pi-user"></i>
+      <span>User Profile</span>
+    </div>
+  </template>
+  <p>Custom header content</p>
+</Drawer>
+```
+
+<Story name="Custom Header">{CustomHeader.bind({})}</Story>
+
+### Full Screen
+
+Set position="full" to make the drawer take up the entire screen.
+
+```html dark
+<Drawer v-model:visible="visible" header="Full Screen Drawer" position="full">
+  <p>This drawer takes up the full screen.</p>
+</Drawer>
+```
+
+<Story name="Full Screen">{FullScreen.bind({})}</Story>
+
+### Without Modal
+
+Set modal to false to display the drawer without a backdrop.
+
+```html dark
+<Drawer v-model:visible="visible" header="Drawer without Modal" :modal="false">
+  <p>This drawer doesn't have a modal backdrop</p>
+</Drawer>
+```
+
+<Story name="Without Modal">{WithoutModal.bind({})}</Story>
+
+## Props
+
+- **visible** (boolean, default: false) - Specifies the visibility of the drawer
+- **position** (string, default: 'left') - Position: 'left', 'right', 'top', 'bottom', 'full'
+- **header** (string, default: null) - Title content of the drawer
+- **modal** (boolean, default: true) - Whether to show a modal backdrop
+- **dismissable** (boolean, default: true) - Whether clicking outside closes the drawer
+- **showCloseIcon** (boolean, default: true) - Whether to display the close icon
+
+## Sizes
+
+Apply size classes to control drawer width:
+- Default: sizing.100 (no class needed)
+- Small: `class="p-drawer-sm"` - sizing.80
+- Large: `class="p-drawer-lg"` - sizing.120
+- Extra Large: `class="p-drawer-xlg"` - sizing.128
+
