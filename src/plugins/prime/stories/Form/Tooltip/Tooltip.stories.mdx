@@ -1,14 +1,130 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Tooltip.template';
+import { Template, TemplateVariants } from './Tooltip.template';
 
 <Meta title="Prime/Form/Tooltip" />
 
 # Tooltip
 
-[PrimeVue Tooltip](https://primevue.org/tooltip), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=24-1369&t=SNTwtTnoE2SvjSdq-0>)
+[PrimeVue Tooltip](https://primevue.org/tooltip), [Figma Design](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=24-1369>)
 
-### Base
+## Описание
 
-<Story name="Primary">{Template.bind({})}</Story>
+Tooltip отображает информационный текст при наведении на элемент.
 
+### Типографика
+
+Согласно дизайн-токенам:
+- **Font Family**: PT Sans (base)
+- **Font Size**: 14px (0.875rem)
+- **Font Weight**: 400 (regular)
+- **Line Height**: 1.0714285714285714rem
+- **Background**: Dark (surface.900)
+- **Text Color**: White (inverted)
+- **Padding**: 0.5rem 1rem
+- **Border Radius**: 0.5rem
+- **Max Width**: 17rem
+
+### All Variants
+
+Полная матрица всех вариантов tooltip.
+
+<Story name="All Variants">
+  {TemplateVariants.bind({})}
+</Story>
+
+### Default
+
+```html dark
+<PrimeButton v-tooltip="'Tooltip text'" label="Hover me" />
+```
+
+<Story
+  name="Default"
+  args={{
+    text: 'This is a tooltip',
+    label: 'Hover me',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Top Position
+
+```html dark
+<PrimeButton v-tooltip.top="'Top tooltip'" label="Top" />
+```
+
+<Story
+  name="Top"
+  args={{
+    text: 'Top tooltip',
+    label: 'Top',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Bottom Position
+
+```html dark
+<PrimeButton v-tooltip.bottom="'Bottom tooltip'" label="Bottom" />
+```
+
+<Story
+  name="Bottom"
+  args={{
+    text: 'Bottom tooltip',
+    label: 'Bottom',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Left Position
+
+```html dark
+<PrimeButton v-tooltip.left="'Left tooltip'" label="Left" />
+```
+
+<Story
+  name="Left"
+  args={{
+    text: 'Left tooltip',
+    label: 'Left',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Right Position
+
+```html dark
+<PrimeButton v-tooltip.right="'Right tooltip'" label="Right" />
+```
+
+<Story
+  name="Right"
+  args={{
+    text: 'Right tooltip',
+    label: 'Right',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Long Text
+
+```html dark
+<PrimeButton v-tooltip="'Very long tooltip text that wraps to multiple lines'" label="Long text" />
+```
+
+<Story
+  name="Long Text"
+  args={{
+    text: 'This is a very long tooltip text that should wrap to multiple lines when it exceeds the maximum width of the tooltip container',
+    label: 'Long text',
+  }}
+>
+  {Template.bind({})}
+</Story>
