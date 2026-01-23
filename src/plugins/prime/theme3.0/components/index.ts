@@ -1283,7 +1283,7 @@ export default {
       color: '{overlay.modal.color}',
       shadow: '{overlay.modal.shadow}',
       transitionDuration: '{overlay.transitionDuration}',
-      width: '{sizing.sizingDrawer.root.width}',
+      width: '{sizing.overlay.root.width}',
     },
     header: {
       padding:
@@ -1301,13 +1301,13 @@ export default {
         '0 {overlay.modal.padding.md} {overlay.modal.padding.md} {overlay.modal.padding.md} ',
     },
     sm: {
-      width: '{sizing.sizingDrawer.sm.width}',
+      width: '{sizing.overlay.sm.width}',
     },
     lg: {
-      width: '{sizing.sizingDrawer.lg.width}',
+      width: '{sizing.overlay.lg.width}',
     },
     xlg: {
-      width: '{sizing.sizingDrawer.xlg.width}',
+      width: '{sizing.overlay.xlg.width}',
     },
   },
   fileupload: {
@@ -1851,9 +1851,9 @@ export default {
       iconSize: '{form.icon.md}',
       borderWidth: '{form.borderWidth}',
       extXlg: {
-        fontSize: '{form.inputtext.fontSize}',
-        paddingX: '{form.inputtext.paddingX}',
-        paddingY: '{form.inputtext.paddingY}',
+        fontSize: '{sizing.form.root.fontSize}',
+        paddingX: '{sizing.form.root.paddingX}',
+        paddingY: '{sizing.form.root.paddingY}',
       },
     },
     root: {
@@ -1871,19 +1871,19 @@ export default {
       placeholderColor: '{form.placeholderColor}',
       invalidPlaceholderColor: '{form.invalidPlaceholderColor}',
       shadow: '{form.shadow}',
-      paddingX: '{form.inputtext.paddingX}',
-      paddingY: '{form.inputtext.paddingY}',
+      paddingX: '{sizing.form.root.paddingX}',
+      paddingY: '{sizing.form.root.paddingY}',
       borderRadius: '{form.borderRadius.md}',
       transitionDuration: '{form.transitionDuration}',
       sm: {
-        fontSize: '{form.inputtext.fontSize}',
-        paddingX: '{form.inputtext.paddingX}',
-        paddingY: '{form.inputtext.paddingY}',
+        fontSize: '{sizing.form.sm.fontSize}',
+        paddingX: '{sizing.form.sm.paddingX}',
+        paddingY: '{sizing.form.sm.paddingY}',
       },
       lg: {
-        fontSize: '{form.inputtext.fontSize}',
-        paddingX: '{form.inputtext.paddingX}',
-        paddingY: '{form.inputtext.paddingY}',
+        fontSize: '{sizing.form.lg.fontSize}',
+        paddingX: '{sizing.form.lg.paddingX}',
+        paddingY: '{sizing.form.lg.paddingY}',
       },
       focusRing: {
         width: '{form.focusRing.width}',
@@ -2625,19 +2625,19 @@ export default {
       placeholderColor: '{form.placeholderColor}',
       invalidPlaceholderColor: '{form.invalidPlaceholderColor}',
       shadow: '{form.shadow}',
-      paddingX: '{form.select.paddingX}',
-      paddingY: '{form.select.paddingY}',
+      paddingX: '{sizing.form.root.paddingX}',
+      paddingY: '{sizing.form.root.paddingY}',
       borderRadius: '{form.borderRadius.md}',
       transitionDuration: '{form.transitionDuration}',
       sm: {
-        fontSize: '{form.select.fontSize}',
-        paddingX: '{form.select.paddingX}',
-        paddingY: '{form.select.paddingY}',
+        fontSize: '{sizing.form.sm.fontSize}',
+        paddingX: '{sizing.form.sm.paddingX}',
+        paddingY: '{sizing.form.sm.paddingY}',
       },
       lg: {
-        fontSize: '{form.select.fontSize}',
-        paddingX: '{form.select.paddingX}',
-        paddingY: '{form.select.paddingY}',
+        fontSize: '{sizing.form.lg.fontSize}',
+        paddingX: '{sizing.form.lg.paddingX}',
+        paddingY: '{sizing.form.lg.paddingY}',
       },
       focusRing: {
         width: '{form.focusRing.width}',
