@@ -6,10 +6,33 @@ import { Template } from './RadioButton.template';
 
 # RadioButton
 
-[PrimeVue RadioButton](https://primevue.org/radiobutton), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5367&node-type=section&t=1Q8VTt6Y4LnVAfrv-0>)
+[PrimeVue RadioButton](https://primevue.org/radiobutton), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=484-5367)
+
+## Использование
 
 ```html dark
 <PrimeRadioButton v-model="value" name="groupName" value="valueInGroup" />
 ```
 
+## Основные состояния
+
 <Story name="Primary">{Template.bind({})}</Story>
+
+## Описание
+
+RadioButton используется для выбора одного элемента из нескольких вариантов. Компонент поддерживает следующие состояния:
+
+- **Default** - обычное состояние
+- **Checked** - выбранное состояние
+- **Hover** - при наведении
+- **Focus** - при фокусе
+- **Invalid** - состояние ошибки (красная обводка)
+- **Disabled** - неактивное состояние
+
+## Размеры
+
+Компонент поддерживает три размера:
+- **Small** - маленький размер (добавьте класс `p-radiobutton-sm`)
+- **Medium** - стандартный размер (по умолчанию)
+- **Large** - большой размер (добавьте класс `p-radiobutton-lg`)
+

@@ -2515,7 +2515,7 @@ export default {
       checkedFocusBorderColor: '{form.focusBorderPrimaryColor}',
       checkedDisabledBorderColor: '{form.borderColor}',
       invalidBorderColor: '{form.invalidBorderColor}',
-      shadow: '{form.shadow}',
+      shadow: '0',
       transitionDuration: '{form.transitionDuration}',
     },
     focusRing: {
@@ -2534,15 +2534,15 @@ export default {
       height: '{form.size.xlg}',
     },
     icon: {
-      size: '{form.icon.sm}',
+      size: '10px',
       checkedColor: '{text.extend.colorInverted}',
       checkedHoverColor: '{text.extend.colorInverted}',
       disabledColor: '{text.mutedColor}',
       sm: {
-        size: '0',
+        size: '{form.icon.xs}',
       },
       lg: {
-        size: '0',
+        size: '{form.icon.md}',
       },
     },
   },
