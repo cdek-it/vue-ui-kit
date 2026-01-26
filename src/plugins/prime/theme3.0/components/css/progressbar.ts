@@ -3,7 +3,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-family: ${dt('fonts.fontFamily.body')};
   font-size: ${dt('progressbar.label.fontSize')};
   font-weight: ${dt('progressbar.label.fontWeight')};
-  line-height: 1;
   color: ${dt('progressbar.label.color')};
 }
 `;
