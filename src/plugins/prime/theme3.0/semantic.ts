@@ -78,7 +78,6 @@ export default {
       color: '{focusRing.color}',
       offset: '{focusRing.offset}',
     },
-
   },
   content: {
     borderRadius: '{borderRadius.md}',
