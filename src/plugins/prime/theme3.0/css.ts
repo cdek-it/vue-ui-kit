@@ -1,4 +1,5 @@
 import avatarCss from './components/css/avatar';
+import badgeCss from './components/css/badge';
 import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
@@ -10,6 +11,7 @@ import tooltipCss from './components/css/tooltip';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
+   ${badgeCss({ dt })}
    ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
