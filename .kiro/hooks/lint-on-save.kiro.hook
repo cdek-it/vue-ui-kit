@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Lint on Save",
+  "description": "Автоматически запускает линтер при сохранении .js, .ts или .vue файлов",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.js",
+      "*.ts",
+      "*.vue"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Запусти yarn lint для исправления ошибок линтера в измененном файле"
+  }
+}
