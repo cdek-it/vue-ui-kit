@@ -1,34 +1,77 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Card.template';
+import { Template, OverlayTemplate, WithoutHeaderTemplate, WithoutFooterTemplate, WithoutCaptionTemplate } from './Card.template';
 
 <Meta title="Prime/Panel/Card" />
 
 # Card
 
-[PrimeVue Card](https://primevue.org/card), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=1207-3471&m=dev>)
+[PrimeVue Card](https://primevue.org/card), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=1213-4134)
 
-### Default
+Card компонент используется для группировки контента с заголовком, подзаголовком и действиями.
+
+## Полная карточка
+
+Карточка со всеми элементами: header, title, subtitle, content и footer.
 
 ```html dark
-<PrimeCard>
-    <template #header>HEADER</template>
-
-    <template #title>
-      <div class="flex flex-col gap-1">
-        <p class="title-h4">Title</p>
-        <p class="caption">Caption</p>
-      </div>
-    </template>
-
-    <template #content>
-      CONTENT
-    </template>
-
-    <template #footer>
-      FOOTER
-    </template>
+<PrimeCard style="width: 240px">
+  <template #header>
+    <img src="image.jpg" alt="header" />
+  </template>
+  
+  <template #title>
+    Title
+  </template>
+  
+  <template #subtitle>
+    Caption
+  </template>
+  
+  <template #content>
+    Card content
+  </template>
+  
+  <template #footer>
+    <Button label="Action" />
+  </template>
 </PrimeCard>
 ```
 
-<Story name="Default" args={{title: "Title"}}>{Template.bind({})}</Story>
+<Story name="Default">{Template.bind({})}</Story>
+
+## Overlay варианты
+
+Карточка может отображаться с тенью (overlay: true) или без тени (overlay: false).
+
+```html dark
+<!-- С тенью -->
+<PrimeCard :pt="{ root: { class: 'shadow-md' } }">
+  <!-- content -->
+</PrimeCard>
+
+<!-- Без тени -->
+<PrimeCard :pt="{ root: { class: 'shadow-none' } }">
+  <!-- content -->
+</PrimeCard>
+```
+
+<Story name="Overlay">{OverlayTemplate.bind({})}</Story>
+
+## Без header
+
+Карточка без изображения в шапке.
+
+<Story name="Without Header">{WithoutHeaderTemplate.bind({})}</Story>
+
+## Без footer
+
+Карточка без футера с действиями.
+
+<Story name="Without Footer">{WithoutFooterTemplate.bind({})}</Story>
+
+## Без caption
+
+Карточка без подзаголовка (subtitle).
+
+<Story name="Without Caption">{WithoutCaptionTemplate.bind({})}</Story>
