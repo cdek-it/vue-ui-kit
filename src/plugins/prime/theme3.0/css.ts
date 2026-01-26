@@ -2,6 +2,7 @@ import avatarCss from './components/css/avatar';
 import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
+import chipCss from './components/css/chip';
 import dialogCss from './components/css/dialog';
 import drawerCss from './components/css/drawer';
 import ratingCss from './components/css/rating';
@@ -13,6 +14,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
+   ${chipCss({ dt })}
    ${dialogCss({ dt })}
    ${drawerCss({ dt })}
    ${ratingCss({ dt })}
