@@ -1,6 +1,7 @@
 import avatarCss from './components/css/avatar';
 import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
+import cardCss from './components/css/card';
 import checkboxCss from './components/css/checkbox';
 import dialogCss from './components/css/dialog';
 import drawerCss from './components/css/drawer';
@@ -12,6 +13,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
    ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
+   ${cardCss({ dt })}
    ${checkboxCss({ dt })}
    ${dialogCss({ dt })}
    ${drawerCss({ dt })}
