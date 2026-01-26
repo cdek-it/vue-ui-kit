@@ -1,14 +1,30 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Chip.template';
+import { Template, AllStatesTemplate } from './Chip.template';
 
-<Meta title="Prime/Misc/Chip" />
+<Meta 
+  title="Prime/Misc/Chip"
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=312-1298',
+    },
+  }}
+/>
 
 # Chip
 
-[PrimeVue Chip](https://primevue.org/chip), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=484-6199&p=f&m=dev>)
+[PrimeVue Chip](https://primevue.org/chip)
 
-### Default
+Chip компонент используется для отображения тегов, категорий или выбранных элементов.
+
+## Все состояния
+
+Показывает все возможные варианты chip: с иконкой, с кнопкой удаления, disabled.
+
+<Story name="All States">{AllStatesTemplate.bind({})}</Story>
+
+## Базовый chip
 
 ```html dark
 <PrimeChip label="Chip" />
@@ -16,7 +32,15 @@ import { Template } from './Chip.template';
 
 <Story name="Default" args={{label: "Chip"}}>{Template.bind({})}</Story>
 
-### Removable
+## С иконкой
+
+```html dark
+<PrimeChip label="Chip" icon="ti ti-check" />
+```
+
+<Story name="Icon" args={{label: "Chip", icon: "ti ti-check"}}>{Template.bind({})}</Story>
+
+## С кнопкой удаления
 
 ```html dark
 <PrimeChip label="Chip" removable />
@@ -24,65 +48,58 @@ import { Template } from './Chip.template';
 
 <Story name="Removable" args={{label: "Chip", removable: true}}>{Template.bind({})}</Story>
 
-
-### With icon
+## С иконкой и кнопкой удаления
 
 ```html dark
-<PrimeChip label="Chip" icon="ti ti-info-circle" />
+<PrimeChip label="Chip" icon="ti ti-check" removable />
 ```
 
-<Story name="Icon" args={{label: "Chip", icon: "ti ti-info-circle"}}>{Template.bind({})}</Story>
+<Story name="RemovableIcon" args={{label: "Chip", icon: "ti ti-check", removable: true}}>{Template.bind({})}</Story>
 
-
-### Removable with icon
+## Disabled
 
 ```html dark
-<PrimeChip label="Chip" removable icon="ti ti-info-circle" />
+<PrimeChip label="Chip" icon="ti ti-check" removable disabled />
 ```
 
-<Story name="RemovableIcon" args={{label: "Chip", icon: "ti ti-info-circle", removable: true}}>{Template.bind({})}</Story>
+<Story name="Disabled" args={{label: "Chip", icon: "ti ti-check", removable: true, disabled: true}}>{Template.bind({})}</Story>
 
+## Доступность (Accessibility)
 
-### Removable with icon and disabled
+Для управления chip с клавиатуры необходимо добавить `tabindex="0"` через Pass Through.
+
 ```html dark
-<PrimeChip label="Chip" removable icon="ti ti-info-circle" />
+<PrimeChip 
+  label="Chip" 
+  removable 
+  icon="ti ti-check" 
+  :pt="{removeIcon: {tabindex: '0'}}" 
+/>
 ```
 
-<Story name="disabled" args={{label: "Chip", icon: "ti ti-info-circle", removable: true, disabled: true}}>{Template.bind({})}</Story>
+<Story name="Accessibility" args={{label: "Chip", icon: "ti ti-check", removable: true, pt: {removeIcon: {tabindex: "0"}}}}>{Template.bind({})}</Story>
 
+### Управление tabindex для disabled
 
-## Accessability 
-По дизайну должна быть возможность управлять чипами с клавиатуры. Tab - может сфокурисроватьна чипе, enter или backspace удалить сфокусированный.
-Чтобы эта фича работала, надо руками подкидывать tabindex="0" В компонент.
-
-```html dark
-<PrimeChip label="Chip" removable icon="ti ti-info-circle" :pt="{removeIcon: {tabindex: "0"}}" />
-```
-
-<Story name="Accessability" args={{label: "Chip", icon: "ti ti-info-circle", removable: true, pt: {removeIcon: {tabindex: "0"}}}}>{Template.bind({})}</Story>
-
-При этом, если вы накидываете disabled, надо руками управлять tabindex. Ниже пример, без обработки дизаблед.
+При использовании `disabled` необходимо управлять `tabindex` вручную:
 
 ```html dark
-<PrimeChip label="Chip" removable icon="ti ti-info-circle" disabled :pt="{removeIcon: {tabindex: "0"}}" />
-```
+<script setup>
+import { ref, computed } from 'vue';
 
-<Story name="AccessabilityDisabledError" args={{label: "Chip", icon: "ti ti-info-circle", removable: true, disabled: true, pt: {removeIcon: {tabindex: "0"}}}}>{Template.bind({})}</Story>
-
-Нужно делать что-то типа
-
-
-```html dark
-<script  setup lang="ts">
-
-const myDisabled = ref(true)
-const myTabIndex = computed(() => {
-    return myDisabled.value ? "-1" : "0"
-})
-
+const disabled = ref(true);
+const tabIndex = computed(() => disabled.value ? '-1' : '0');
 </script>
 
-<PrimeChip label="Chip" removable icon="ti ti-info-circle" disabled :pt="{removeIcon: {tabindex: myTabIndex}}" />
+<template>
+  <PrimeChip 
+    label="Chip" 
+    removable 
+    icon="ti ti-check" 
+    :disabled="disabled"
+    :pt="{removeIcon: {tabindex: tabIndex}}" 
+  />
+</template>
 ```
 
-<Story name="AccessabilityDisabled" args={{label: "Chip", icon: "ti ti-info-circle", removable: true, disabled: true, pt: {removeIcon: {tabindex: "-1"}}}}>{Template.bind({})}</Story>
+<Story name="AccessibilityDisabled" args={{label: "Chip", icon: "ti ti-check", removable: true, disabled: true, pt: {removeIcon: {tabindex: "-1"}}}}>{Template.bind({})}</Story>
