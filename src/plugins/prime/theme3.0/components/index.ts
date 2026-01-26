@@ -1243,12 +1243,11 @@ export default {
     },
   },
   divider: {
-    root: {
-      borderColor: '{content.borderColor}',
-    },
-    content: {
-      background: '{content.background}',
-      color: '{text.mutedColor}',
+    extend: {
+      content: {
+        gap: '{content.gap.xs}',
+        iconSize: '{media.icon.size.sm}',
+      },
     },
     horizontal: {
       margin: '{content.padding.sm} 0',
@@ -1262,6 +1261,17 @@ export default {
       padding: '{content.padding.sm} 0',
       content: {
         padding: '{content.padding.xs} 0',
+      },
+    },
+    colorScheme: {
+      light: {
+        root: {
+          borderColor: '{content.borderColor}',
+        },
+        content: {
+          background: '{content.background}',
+          color: '{text.mutedColor}',
+        },
       },
     },
   },
