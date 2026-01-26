@@ -1,12 +1,82 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Skeleton.template';
+import { Template, ComprehensiveTemplate } from './Skeleton.template';
 
 <Meta title="Prime/Misc/Skeleton" />
 
 # Skeleton
 
-[PrimeVue Skeleton](https://primevue.org/skeleton), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=5241-3731&m=dev>)
+[PrimeVue Skeleton](https://primevue.org/skeleton), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=5241-3731)
+
+## Использование
+
+```html dark
+<PrimeSkeleton />
+<PrimeSkeleton shape="circle" size="4rem" />
+<PrimeSkeleton width="10rem" height="4rem" />
+```
+
+## Все примеры
+
+<Story name="Comprehensive">{ComprehensiveTemplate.bind({})}</Story>
+
+## Описание
+
+Skeleton используется для отображения заглушки контента во время загрузки данных. Компонент помогает улучшить восприятие производительности приложения.
+
+### Формы:
+
+- **Rectangle** (по умолчанию) - прямоугольная форма
+- **Circle** - круглая форма (используйте `shape="circle"`)
+- **Custom** - кастомная форма через `borderRadius`
+
+### Анимация:
+
+- **Wave** (по умолчанию) - волновая анимация
+- **None** - без анимации (используйте `animation="none"`)
+
+### Токены стилизации:
+
+- `skeleton.root.borderRadius` → `{content.borderRadius}` → `{borderRadius.md}` = `0.75rem`
+- `skeleton.colorScheme.light.root.background` → `{surface.200}` - основной цвет фона
+- `skeleton.colorScheme.light.root.animationBackground` → `{surface.100}` - цвет анимации
+
+### Примеры использования:
+
+#### Базовый скелетон
+```html
+<PrimeSkeleton width="10rem" height="4rem" />
+```
+
+#### Круглый скелетон (аватар)
+```html
+<PrimeSkeleton shape="circle" size="4rem" />
+```
+
+#### Без анимации
+```html
+<PrimeSkeleton width="10rem" height="4rem" animation="none" />
+```
+
+#### Карточка профиля
+```html
+<div class="card">
+  <div class="flex gap-3 mb-4">
+    <PrimeSkeleton shape="circle" size="4rem" />
+    <div class="flex-1">
+      <PrimeSkeleton width="70%" height="1.5rem" class="mb-2" />
+      <PrimeSkeleton width="50%" height="1rem" />
+    </div>
+  </div>
+  <PrimeSkeleton width="100%" height="1rem" class="mb-2" />
+  <PrimeSkeleton width="100%" height="1rem" class="mb-2" />
+  <PrimeSkeleton width="80%" height="1rem" />
+</div>
+```
+
+---
+
+## Отдельные примеры
 
 ### Default
 
@@ -16,7 +86,7 @@ import { Template } from './Skeleton.template';
 
 <Story name="Default">{Template.bind({})}</Story>
 
-# Circle
+### Circle
 
 ```html dark
 <PrimeSkeleton shape="circle" size="100px"/>
@@ -24,11 +94,10 @@ import { Template } from './Skeleton.template';
 
 <Story name="Circle" args={{shape: "circle", size: "100px"}}>{Template.bind({})}</Story>
 
-
-# Disable animations
+### Disable animations
 
 ```html dark
-<PrimeSkeleton size="100px"  animation="none" />
+<PrimeSkeleton size="100px" animation="none" />
 ```
 
 <Story name="NoAnimate" args={{animation: "none", size: "100px"}}>{Template.bind({})}</Story>
