@@ -1,0 +1,43 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './ScrollPanel.template';
+
+<Meta title="Prime/Panel/ScrollPanel" />
+
+# ScrollPanel
+
+[PrimeVue ScrollPanel](https://primevue.org/scrollpanel), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=562-2897)
+
+## Использование
+
+```html dark
+<PrimeScrollPanel :style="{ width: '100%', height: '200px' }">
+  <p>Контент с прокруткой...</p>
+</PrimeScrollPanel>
+```
+
+## Примеры
+
+<Story name="Primary">{Template.bind({})}</Story>
+
+## Описание
+
+ScrollPanel - это компонент для создания кастомной области прокрутки с стилизованными скроллбарами. 
+
+### Особенности:
+
+- **Вертикальная прокрутка** - для длинного контента
+- **Горизонтальная прокрутка** - для широкого контента
+- **Двунаправленная прокрутка** - для контента, который превышает размеры по обеим осям
+- **Кастомный дизайн скроллбаров** - стилизованные полосы прокрутки
+
+### Стилизация:
+
+- Размер скроллбара настраивается через токен `{media.size.xs}`
+- Скругление углов через `{media.borderRadius.xs}`
+- Цвет скроллбара через `{surface.300}` (светлая тема)
+- Плавная анимация через `{media.transitionDuration}`
+
+### Использование:
+
+Задайте фиксированные размеры контейнеру через `style` или `class`, и ScrollPanel автоматически добавит прокрутку, если контент превышает эти размеры.
