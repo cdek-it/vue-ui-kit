@@ -6,9 +6,11 @@ import { Template } from './ProgressSpinner.template';
 
 # ProgressSpinner
 
-[PrimeVue ProgressSpinner](https://primevue.org/progressspinner), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=1219-3086&m=dev>)
+[PrimeVue ProgressSpinner](https://primevue.org/progressspinner), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=1219-3101)
 
 ### Base
+
+Базовый спиннер (48px)
 
 ```html dark
 <PrimeProgressSpinner />
@@ -16,11 +18,36 @@ import { Template } from './ProgressSpinner.template';
 
 <Story name="Primary">{Template.bind({})}</Story>
 
-### Смена размера
-У компонента в прайме нет пропса "size", обертку делать не хочу, поэтому если что делаем вот так
+### Размеры
+
+Различные размеры спиннера согласно дизайн-системе
+
 ```html dark
-<PrimeProgressSpinner class="!w-[300px] !h-[300px]" />
+<!-- Large: 48px -->
+<PrimeProgressSpinner class="!w-12 !h-12" />
+
+<!-- Medium: 32px -->
+<PrimeProgressSpinner class="!w-8 !h-8" />
+
+<!-- Small: 24px -->
+<PrimeProgressSpinner class="!w-6 !h-6" />
+
+<!-- XSmall: 16px -->
+<PrimeProgressSpinner class="!w-4 !h-4" />
 ```
-<Story name="Size" args={{class: '!w-[300px] !h-[300px]', value: 'Custom Size' }}>
+
+<Story name="Large" args={{ class: '!w-12 !h-12' }}>
+  {Template.bind()}
+</Story>
+
+<Story name="Medium" args={{ class: '!w-8 !h-8' }}>
+  {Template.bind()}
+</Story>
+
+<Story name="Small" args={{ class: '!w-6 !h-6' }}>
+  {Template.bind()}
+</Story>
+
+<Story name="XSmall" args={{ class: '!w-4 !h-4' }}>
   {Template.bind()}
 </Story>

@@ -2487,6 +2487,9 @@ export default {
     },
   },
   progressspinner: {
+    root: {
+      borderWidth: '{feedback.width.xs}',
+    },
     colorScheme: {
       light: {
         root: {
