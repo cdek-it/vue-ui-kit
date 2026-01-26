@@ -38,7 +38,7 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.{js,ts,vue}": "eslint"
+    "*.{js,ts,vue}": "eslint --fix"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.12",
