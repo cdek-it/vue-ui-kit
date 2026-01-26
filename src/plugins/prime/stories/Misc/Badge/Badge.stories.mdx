@@ -1,26 +1,59 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Badge.template';
+import { Template, SizeTemplate, DotTemplate } from './Badge.template';
 
 <Meta title="Prime/Misc/Badge" />
 
 # Badge
 
-[PrimeVue Badge](https://primevue.org/badge), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=484-4871&m=dev>)
+[PrimeVue Badge](https://primevue.org/badge), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=21-1193)
 
-### Default
+Badge компонент используется для отображения статусов, уведомлений и меток.
+
+## Severity варианты
+
+Доступные варианты: `primary`, `secondary`, `success`, `info`, `warn`, `danger`
 
 ```html dark
-<PrimeBadge value="Badge" />
+<PrimeBadge value="Badge" severity="primary" />
+<PrimeBadge value="Badge" severity="info" />
+<PrimeBadge value="Badge" severity="success" />
+<PrimeBadge value="Badge" severity="warn" />
+<PrimeBadge value="Badge" severity="danger" />
 ```
 
 <Story name="Default" args={{value: "Badge"}}>{Template.bind({})}</Story>
 
+## Размеры
 
-#Dot
+Доступные размеры: `base` (по умолчанию), `large`, `xlarge`
 
 ```html dark
-<PrimeBadge />
+<PrimeBadge value="Badge" />
+<PrimeBadge value="Badge" size="large" />
+<PrimeBadge value="Badge" size="xlarge" />
 ```
 
-<Story name="Icon">{Template.bind({})}</Story>
+<Story name="Sizes">{SizeTemplate.bind({})}</Story>
+
+## Dot вариант
+
+Badge может отображаться как точка без текста. Используется для индикаторов статуса.
+
+```html dark
+<PrimeBadge severity="primary" />
+<PrimeBadge severity="info" />
+<PrimeBadge severity="success" />
+<PrimeBadge severity="warn" />
+<PrimeBadge severity="danger" />
+```
+
+<Story name="Dot">{DotTemplate.bind({})}</Story>
+
+## Размеры Dot
+
+```html dark
+<PrimeBadge severity="primary" />
+<PrimeBadge severity="primary" size="large" />
+<PrimeBadge severity="primary" size="xlarge" />
+```
