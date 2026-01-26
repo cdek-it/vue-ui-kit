@@ -53,6 +53,7 @@ export default {
       '6xlg': '{sizing.16}',
     },
     icon: {
+      xs: '{sizing.2}',
       sm: '{sizing.3}',
       md: '{sizing.4}',
       lg: '{sizing.5}',
