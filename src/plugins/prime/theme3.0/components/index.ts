@@ -1313,6 +1313,8 @@ export default {
   fileupload: {
     extend: {
       extDragNdrop: {
+        padding: '{form.padding.md}',
+        iconSize: '{form.size.3xlg}',
         background: '{surface.0}',
         borderRadius: '{form.borderRadius.md}',
         info: {
@@ -1322,6 +1324,9 @@ export default {
       extContent: {
         borderRadius: '{content.borderRadius}',
         highlightBorderDefault: '{form.borderColor}',
+      },
+      extFile: {
+        iconSize: '{form.size.xlg}',
       },
     },
     colorScheme: {
