@@ -1,3 +1,4 @@
+import accordionCss from './components/css/accordion';
 import avatarCss from './components/css/avatar';
 import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
@@ -9,6 +10,7 @@ import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
+   ${accordionCss({ dt })}
    ${avatarCss({ dt })}
    ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
