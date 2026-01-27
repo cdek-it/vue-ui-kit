@@ -5,6 +5,26 @@ export default ({ dt }: { dt: (token: string) => string }) => `
     gap: ${dt('dialog.header.gap')};
   }
 
+/* Размеры диалога */
+.p-confirmdialog.p-dialog {
+  width: ${dt('sizing.overlay.root.width')};
+}
+
+/* Размер SM (small) */
+.p-confirmdialog-sm.p-dialog {
+  width: ${dt('sizing.overlay.sm.width')};
+}
+
+/* Размер LG (large) */
+.p-confirmdialog-lg.p-dialog {
+  width: ${dt('sizing.overlay.lg.width')};
+}
+
+/* Размер XLG (extra large) */
+.p-confirmdialog-xlg.p-dialog {
+  width: ${dt('sizing.overlay.xlg.width')};
+}
+
   .p-confirmdialog[data-pc-severity="success"] .p-dialog-title .p-icon,
   .p-confirmdialog.p-confirm-dialog-accept .p-dialog-title .p-icon,
   .p-confirmdialog[data-pc-severity="info"] .p-dialog-title .p-icon,

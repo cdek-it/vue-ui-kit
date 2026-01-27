@@ -32,25 +32,22 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Размеры диалога */
 .p-dialog {
-  min-width: ${dt('sizing.96')};
-  max-width: ${dt('sizing.120')};
+  width: ${dt('sizing.overlay.root.width')};
 }
 
 /* Размер SM (small) */
 .p-dialog-sm {
-  min-width: ${dt('sizing.80')};
-  max-width: ${dt('sizing.96')};
+  width: ${dt('sizing.overlay.sm.width')};
 }
 
 /* Размер LG (large) */
 .p-dialog-lg {
-  min-width: ${dt('sizing.120')};
-  max-width: ${dt('sizing.140')};
+  width: ${dt('sizing.overlay.lg.width')};
 }
 
 /* Размер XLG (extra large) */
 .p-dialog-xlg {
-  width: ${dt('sizing.140')};
+  width: ${dt('sizing.overlay.xlg.width')};
 }
 `;
 

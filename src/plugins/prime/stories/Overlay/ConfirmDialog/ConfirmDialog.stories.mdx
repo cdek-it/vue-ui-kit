@@ -73,6 +73,33 @@ const showConfirm = () => {
   class: 'p-confirm-dialog-accept' 
 }}>{Template.bind({})}</Story>
 
+<Story name="Success Small" args={{ 
+  header: 'Успех', 
+  message: 'Готово!', 
+  icon: 'ti ti-circle-check', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'success', 
+  class: 'p-confirm-dialog-accept p-confirmdialog-sm' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Success Large" args={{ 
+  header: 'Успех', 
+  message: 'Операция выполнена успешно! Все данные были сохранены и обработаны корректно.', 
+  icon: 'ti ti-circle-check', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'success', 
+  class: 'p-confirm-dialog-accept p-confirmdialog-lg' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Success Extra Large" args={{ 
+  header: 'Успех', 
+  message: 'Операция выполнена успешно! Все данные были сохранены и обработаны корректно. Система готова к дальнейшей работе.', 
+  icon: 'ti ti-circle-check', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'success', 
+  class: 'p-confirm-dialog-accept p-confirmdialog-xlg' 
+}}>{Template.bind({})}</Story>
+
 ## Severity: Info
 
 Информационный диалог с синей иконкой.
@@ -84,6 +111,33 @@ const showConfirm = () => {
   acceptLabel: 'Понятно', 
   acceptSeverity: 'info', 
   class: 'p-confirm-dialog-info' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Info Small" args={{ 
+  header: 'Информация', 
+  message: 'Обновление доступно', 
+  icon: 'ti ti-info-circle', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'info', 
+  class: 'p-confirm-dialog-info p-confirmdialog-sm' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Info Large" args={{ 
+  header: 'Информация', 
+  message: 'Доступна новая версия приложения с улучшенной производительностью и новыми функциями.', 
+  icon: 'ti ti-info-circle', 
+  acceptLabel: 'Понятно', 
+  acceptSeverity: 'info', 
+  class: 'p-confirm-dialog-info p-confirmdialog-lg' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Info Extra Large" args={{ 
+  header: 'Информация', 
+  message: 'Доступна новая версия приложения с улучшенной производительностью, новыми функциями и исправлениями ошибок. Рекомендуем обновиться.', 
+  icon: 'ti ti-info-circle', 
+  acceptLabel: 'Понятно', 
+  acceptSeverity: 'info', 
+  class: 'p-confirm-dialog-info p-confirmdialog-xlg' 
 }}>{Template.bind({})}</Story>
 
 ## Severity: Warn
@@ -99,6 +153,33 @@ const showConfirm = () => {
   class: 'p-confirm-dialog-warn' 
 }}>{Template.bind({})}</Story>
 
+<Story name="Warn Small" args={{ 
+  header: 'Предупреждение', 
+  message: 'Несохраненные данные', 
+  icon: 'ti ti-alert-triangle', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'warn', 
+  class: 'p-confirm-dialog-warn p-confirmdialog-sm' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Warn Large" args={{ 
+  header: 'Предупреждение', 
+  message: 'Внимание! Это действие может привести к потере несохраненных данных. Убедитесь, что вы сохранили все изменения.', 
+  icon: 'ti ti-alert-triangle', 
+  acceptLabel: 'Продолжить', 
+  acceptSeverity: 'warn', 
+  class: 'p-confirm-dialog-warn p-confirmdialog-lg' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Warn Extra Large" args={{ 
+  header: 'Предупреждение', 
+  message: 'Внимание! Это действие может привести к потере несохраненных данных и изменений в системе. Убедитесь, что вы сохранили все важные изменения перед продолжением.', 
+  icon: 'ti ti-alert-triangle', 
+  acceptLabel: 'Продолжить', 
+  acceptSeverity: 'warn', 
+  class: 'p-confirm-dialog-warn p-confirmdialog-xlg' 
+}}>{Template.bind({})}</Story>
+
 ## Severity: Help
 
 Диалог справки с фиолетовой иконкой.
@@ -110,6 +191,33 @@ const showConfirm = () => {
   acceptLabel: 'Да', 
   acceptSeverity: 'help', 
   class: 'p-confirm-dialog-help' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Help Small" args={{ 
+  header: 'Справка', 
+  message: 'Нужна помощь?', 
+  icon: 'ti ti-help-circle', 
+  acceptLabel: 'Да', 
+  acceptSeverity: 'help', 
+  class: 'p-confirm-dialog-help p-confirmdialog-sm' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Help Large" args={{ 
+  header: 'Справка', 
+  message: 'Нужна помощь с этим действием? Мы можем предоставить дополнительную информацию и инструкции.', 
+  icon: 'ti ti-help-circle', 
+  acceptLabel: 'Да', 
+  acceptSeverity: 'help', 
+  class: 'p-confirm-dialog-help p-confirmdialog-lg' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Help Extra Large" args={{ 
+  header: 'Справка', 
+  message: 'Нужна помощь с этим действием? Мы можем предоставить дополнительную информацию, подробные инструкции и примеры использования.', 
+  icon: 'ti ti-help-circle', 
+  acceptLabel: 'Да', 
+  acceptSeverity: 'help', 
+  class: 'p-confirm-dialog-help p-confirmdialog-xlg' 
 }}>{Template.bind({})}</Story>
 
 ## Severity: Danger
@@ -125,7 +233,40 @@ const showConfirm = () => {
   class: 'p-confirm-dialog-error' 
 }}>{Template.bind({})}</Story>
 
+<Story name="Danger Small" args={{ 
+  header: 'Удалить?', 
+  message: 'Действие необратимо', 
+  icon: 'ti ti-circle-x', 
+  acceptLabel: 'Удалить', 
+  acceptSeverity: 'danger', 
+  class: 'p-confirm-dialog-error p-confirmdialog-sm' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Danger Large" args={{ 
+  header: 'Опасность', 
+  message: 'Это действие нельзя отменить. Все связанные данные будут удалены безвозвратно. Вы уверены?', 
+  icon: 'ti ti-circle-x', 
+  acceptLabel: 'Удалить', 
+  acceptSeverity: 'danger', 
+  class: 'p-confirm-dialog-error p-confirmdialog-lg' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Danger Extra Large" args={{ 
+  header: 'Опасность', 
+  message: 'Это действие нельзя отменить. Все связанные данные, файлы и настройки будут удалены безвозвратно. Восстановление будет невозможно. Вы уверены?', 
+  icon: 'ti ti-circle-x', 
+  acceptLabel: 'Удалить', 
+  acceptSeverity: 'danger', 
+  class: 'p-confirm-dialog-error p-confirmdialog-xlg' 
+}}>{Template.bind({})}</Story>
+
 ## Токены дизайна
+
+### Размеры
+- **Default**: min-width 24rem (384px), max-width 30rem (480px)
+- **Small**: min-width 20rem (320px), max-width 24rem (384px)
+- **Large**: min-width 30rem (480px), max-width 58rem (928px)
+- **Extra Large**: width 58rem (928px)
 
 ### Иконки в заголовке
 - `confirmdialog.icon.size` - размер иконки (21px)
