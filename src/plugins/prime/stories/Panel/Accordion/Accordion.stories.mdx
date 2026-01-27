@@ -1,11 +1,11 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template, TemplateWithDisabledPanel, TemplateWithMultiplePanels, TemplateWithHtmlInPanelHeader } from './Accordion.template';
+import { BasicTemplate, DynamicTemplate, MultipleTemplate, DisabledTemplate, CustomIconsTemplate } from './Accordion.template';
 
 <Meta title="Prime/Panel/Accordion" />
 
 # Accordion
-[PrimeVue Accordion](https://primevue.org/accordion/), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/%F0%9F%A7%A9-UI-kit-PrimeFace--1.0.0-beta-?node-id=1207-3420&m=dev)
+[PrimeVue Accordion](https://primevue.org/accordion/), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=1153-3084)
 
 ## Общая информация
 
@@ -17,142 +17,221 @@ import AccordionHeader from 'primevue/accordionheader';
 import AccordionContent from 'primevue/accordioncontent';
 ```
 
-`Accordion`**\*** - Общий контейнер.  В нём располагаются от 1-й до N панелей, который раскрываются/сворачиваются.
+`Accordion` - Общий контейнер. В нём располагаются от 1-й до N панелей, который раскрываются/сворачиваются.
 
-`AccordionPanel` - Раскрывающаяся/сворачивающаяся панель. Атрибут `value`**\*\*** - идентификатор панели.
+`AccordionPanel` - Раскрывающаяся/сворачивающаяся панель. Атрибут `value` - идентификатор панели.
 
-`AccordionHeader` - Заголовок/Название панели. В него можно "положить" как обычный текст, так и html (ниже есть пример).
+`AccordionHeader` - Заголовок/Название панели. В него можно "положить" как обычный текст, так и html.
 
 `AccordionContent` - Контент панели. В него можно "положить" как обычный текст, так и html.
 
 <br />
 
-> **\*** У `Accordion` можно указать атрибут `value` со значением id панели, которая будет раскрыта.
+## Токены
 
-> **Примечание!**<br />
-> Если у `Accordion` указать атрибут `multiple`, то можно открыть все панели сразу.
+Основные токены для кастомизации Accordion:
 
-> **\*\*** `value` - необходимо указывать, чтобы все панели были закрыты при первой отрисовке.<br />
-> Если этот атрибут не указывать, то все панели будут раскрыты.
-
-<br />
-
-## Аккордеон с 1-й панелью
-
-```html dark
-<Accordion>
-  <AccordionPanel value="1">
-    <AccordionHeader>Заголовок панели</AccordionHeader>
-    <AccordionContent>
-      Контент панели
-      <br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-      <br>
-      Delectus, saepe.
-    </AccordionContent>
-  </AccordionPanel>
-</Accordion>
-```
-
-#### Пример:
-<Story
-  name="Аккордеон с 1-й панелью"
->
-  {Template.bind({})}
-</Story>
+- `accordion.header.color` - цвет текста заголовка
+- `accordion.header.hoverColor` - цвет текста при наведении
+- `accordion.header.fontWeight` - толщина шрифта заголовка
+- `accordion.header.padding` - отступы заголовка
+- `accordion.header.toggleIcon.color` - цвет иконки переключения
+- `accordion.panel.borderWidth` - толщина границы панели
+- `accordion.panel.borderColor` - цвет границы панели
+- `accordion.content.padding` - отступы контента
+- `accordion.root.transitionDuration` - длительность анимации
 
 <br />
 
-## Аккордеон с несколькими панелями с режимом только 1-й открытой панели за раз
+## Basic
+
+Базовый пример с тремя панелями и иконками в начале:
 
 ```html dark
-<Accordion>
-  <AccordionPanel value="1">
-    <AccordionHeader>Заголовок панели #1</AccordionHeader>
-    <AccordionContent>
-      Контент панели
-      <br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe.
-    </AccordionContent>
-  </AccordionPanel>
-  <AccordionPanel value="2">
-    <AccordionHeader>Заголовок панели #2</AccordionHeader>
-    <AccordionContent>
-      Контент панели<br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe.
-    </AccordionContent>
-  </AccordionPanel>
-  <AccordionPanel value="3">
-    <AccordionHeader>Заголовок панели #3</AccordionHeader>
-    <AccordionContent>
-      Контент панели<br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe.
-    </AccordionContent>
-  </AccordionPanel>
-</Accordion>
-```
-
-#### Пример:
-<Story
-  name="Аккордеон с несколькими панелями с режимом только 1-й открытой панели за раз"
->
-  {TemplateWithMultiplePanels.bind({})}
-</Story>
-
-<br />
-
-## Аккордеон с одной выключенной панелью
-
-```html dark
-<Accordion>
-  <AccordionPanel value="1">
-    <AccordionHeader>Заголовок панели #1</AccordionHeader>
-    <AccordionContent>
-      Контент панели<br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe.
-    </AccordionContent>
-  </AccordionPanel>
-  <AccordionPanel value="2" disabled>
-    <AccordionHeader>Заголовок панели #2</AccordionHeader>
-    <AccordionContent>
-      Контент панели<br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe.
-    </AccordionContent>
-  </AccordionPanel>
-</Accordion>
-```
-
-> За выключение отвечает атрибут `disabled` у элемента панели `AccordionPanel`.
-
-#### Пример:
-<Story
-  name="Аккордеон с одной выключенной панелью"
->
-  {TemplateWithDisabledPanel.bind({})}
-</Story>
-
-
-## Заголовок панели с html
-```html dark
-<Accordion>
-  <AccordionPanel value="1">
+<Accordion value="0">
+  <AccordionPanel value="0">
     <AccordionHeader>
-      <div class="flex items-center gap-3">
-        <i class="ti ti-alert-triangle text-danger"></i>
-        <span>Заголовок панели  #1</span>
+      <div>
+        <i class="ti ti-user"></i>
+        <span>Header I</span>
       </div>
     </AccordionHeader>
     <AccordionContent>
-      Контент панели<br>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe.
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="1">
+    <AccordionHeader>
+      <div>
+        <i class="ti ti-settings"></i>
+        <span>Header II</span>
+      </div>
+    </AccordionHeader>
+    <AccordionContent>
+      <p>Sed ut perspiciatis unde omnis...</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="2">
+    <AccordionHeader>
+      <div>
+        <i class="ti ti-bell"></i>
+        <span>Header III</span>
+      </div>
+    </AccordionHeader>
+    <AccordionContent>
+      <p>At vero eos et accusamus...</p>
     </AccordionContent>
   </AccordionPanel>
 </Accordion>
 ```
 
-#### Пример:
-<Story
-  name="Заголовок панели с html"
->
-  {TemplateWithHtmlInPanelHeader.bind({})}
+> **Примечание:** Иконка размещается слева от текста, а стандартная иконка chevron автоматически остается справа.
+
+<Story name="Basic">
+  {BasicTemplate.bind({})}
 </Story>
+
+<br />
+
+## Dynamic
+
+Динамическое создание панелей из массива данных:
+
+```html dark
+<Accordion value="0">
+  <AccordionPanel v-for="tab in tabs" :key="tab.value" :value="tab.value">
+    <AccordionHeader>{{ tab.header }}</AccordionHeader>
+    <AccordionContent>
+      <p>{{ tab.content }}</p>
+    </AccordionContent>
+  </AccordionPanel>
+</Accordion>
+```
+
+<Story name="Dynamic">
+  {DynamicTemplate.bind({})}
+</Story>
+
+<br />
+
+## Multiple
+
+Режим множественного открытия панелей (атрибут `multiple`):
+
+```html dark
+<Accordion :value="['0']" multiple>
+  <AccordionPanel value="0">
+    <AccordionHeader>Header I</AccordionHeader>
+    <AccordionContent>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="1">
+    <AccordionHeader>Header II</AccordionHeader>
+    <AccordionContent>
+      <p>Sed ut perspiciatis unde omnis...</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="2">
+    <AccordionHeader>Header III</AccordionHeader>
+    <AccordionContent>
+      <p>At vero eos et accusamus...</p>
+    </AccordionContent>
+  </AccordionPanel>
+</Accordion>
+```
+
+<Story name="Multiple">
+  {MultipleTemplate.bind({})}
+</Story>
+
+<br />
+
+## Disabled
+
+Отключенная панель (атрибут `disabled`):
+
+```html dark
+<Accordion value="0">
+  <AccordionPanel value="0">
+    <AccordionHeader>Header I</AccordionHeader>
+    <AccordionContent>
+      <p>Lorem ipsum dolor sit amet...</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="1" disabled>
+    <AccordionHeader>Header II</AccordionHeader>
+    <AccordionContent>
+      <p>Sed ut perspiciatis unde omnis...</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="2">
+    <AccordionHeader>Header III</AccordionHeader>
+    <AccordionContent>
+      <p>At vero eos et accusamus...</p>
+    </AccordionContent>
+  </AccordionPanel>
+</Accordion>
+```
+
+<Story name="Disabled">
+  {DisabledTemplate.bind({})}
+</Story>
+
+<br />
+
+## Custom Icons
+
+Пример с кастомными иконками слева от текста (используя inline стили):
+
+```html dark
+<Accordion value="0">
+  <AccordionPanel value="0">
+    <AccordionHeader>
+      <div>
+        <i class="ti ti-circle-check" :style="{ color: '#1dc831' }"></i>
+        <span>Успешно выполнено</span>
+      </div>
+    </AccordionHeader>
+    <AccordionContent>
+      <p>Операция завершена успешно...</p>
+    </AccordionContent>
+  </AccordionPanel>
+  <AccordionPanel value="1">
+    <AccordionHeader>
+      <div>
+        <i class="ti ti-alert-triangle" :style="{ color: '#f59e0b' }"></i>
+        <span>Требуется внимание</span>
+      </div>
+    </AccordionHeader>
+    <AccordionContent>
+      <p>Обнаружены предупреждения...</p>
+    </AccordionContent>
+  </AccordionPanel>
+</Accordion>
+```
+
+> **Примечание:** Кастомная иконка размещается слева, а стандартная иконка chevron автоматически остается справа благодаря CSS стилизации.
+
+<Story name="Custom Icons">
+  {CustomIconsTemplate.bind({})}
+</Story>
+
+<br />
+
+## CSS стилизация
+
+Кастомные стили определены в `src/plugins/prime/theme3.0/components/css/accordion.ts`:
+
+```css dark
+/* Базовая стилизация панели */
+.p-accordionpanel {
+  border: 1px solid var(--p-accordion-panel-border-color);
+  border-radius: var(--p-content-border-radius);
+}
+
+/* Убираем двойную границу между панелями */
+.p-accordionpanel + .p-accordionpanel {
+  margin-top: -1px;
+}
+```
