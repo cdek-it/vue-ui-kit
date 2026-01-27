@@ -6,10 +6,33 @@ import { Template } from './InputSwitch.template';
 
 # InputSwitch
 
-[PrimeVue ToggleSwitch](https://primevue.org/toggleswitch), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5419&node-type=section&t=2PSg63p2UfJ4cUzB-0>)
+[PrimeVue ToggleSwitch](https://primevue.org/toggleswitch), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=19-13673)
 
 ```html dark
-<PrimeToggleSwitch v-model="value" />
+<ToggleSwitch v-model="value" />
 ```
 
+## Основные состояния
+
 <Story name="Primary">{Template.bind({})}</Story>
+
+## Токены дизайна
+
+### Размеры
+- `toggleswitch.root.width` - ширина переключателя (35px)
+- `toggleswitch.root.height` - высота переключателя (21px)
+- `toggleswitch.root.gap` - отступ между ручкой и краем (3.5px)
+- `toggleswitch.handle.size` - размер ручки (14px)
+- `toggleswitch.root.borderRadius` - скругление углов (999px)
+
+### Цвета
+- `toggleswitch.colorScheme.light.root.background` - фон по умолчанию
+- `toggleswitch.colorScheme.light.root.hoverBackground` - фон при наведении
+- `toggleswitch.colorScheme.light.root.checkedBackground` - фон в активном состоянии
+- `toggleswitch.colorScheme.light.root.disabledBackground` - фон в отключенном состоянии
+- `toggleswitch.colorScheme.light.handle.background` - цвет ручки
+- `toggleswitch.colorScheme.light.handle.checkedBackground` - цвет ручки в активном состоянии
+
+### Фокус
+- `focusRing.default` - тень фокуса для успешного состояния (зеленая)
+- `focusRing.danger` - тень фокуса для невалидного состояния (красная)
