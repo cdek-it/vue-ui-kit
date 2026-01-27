@@ -1,0 +1,291 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './ConfirmDialog.template';
+
+<Meta title="Prime/Overlay/ConfirmDialog" />
+
+# ConfirmDialog
+
+[PrimeVue ConfirmDialog](https://primevue.org/confirmdialog), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=520-6928)
+
+Компонент ConfirmDialog используется для подтверждения действий пользователя с иконкой в заголовке.
+
+```html dark
+<script setup>
+import { useConfirm } from 'primevue/useconfirm';
+
+const confirm = useConfirm();
+
+const showConfirm = () => {
+  confirm.require({
+    group: 'headless',
+    message: 'Вы уверены, что хотите продолжить?',
+    header: 'Подтверждение',
+    icon: 'ti ti-alert-triangle',
+    acceptLabel: 'Да',
+    rejectLabel: 'Нет'
+  });
+};
+</script>
+
+<template>
+  <Button @click="showConfirm">Показать диалог</Button>
+  <ConfirmDialog group="headless">
+    <template #container="{ message, acceptCallback, rejectCallback }">
+      <div class="p-dialog-header">
+        <div class="p-dialog-title">
+          <i class="ti ti-alert-triangle p-icon"></i>
+          <span>Подтверждение</span>
+        </div>
+        <button 
+          class="p-button p-component p-button-icon-only p-button-secondary p-button-rounded p-button-text p-dialog-close-button"
+          type="button"
+          aria-label="Close"
+          @click="rejectCallback"
+        >
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="p-icon p-button-icon" aria-hidden="true">
+            <path d="M8.01186 7.00933L12.27 2.75116C12.341 2.68501 12.398 2.60524 12.4375 2.51661C12.4769 2.42798 12.4982 2.3323 12.4999 2.23529C12.5016 2.13827 12.4838 2.0419 12.4474 1.95194C12.4111 1.86197 12.357 1.78024 12.2884 1.71163C12.2198 1.64302 12.138 1.58893 12.0481 1.55259C11.9581 1.51625 11.8617 1.4984 11.7647 1.50011C11.6677 1.50182 11.572 1.52306 11.4834 1.56255C11.3948 1.60204 11.315 1.65898 11.2488 1.72997L6.99067 5.98814L2.7325 1.72997C2.59553 1.60234 2.41437 1.53286 2.22718 1.53616C2.03999 1.53946 1.8614 1.61529 1.72901 1.74767C1.59663 1.88006 1.5208 2.05865 1.5175 2.24584C1.5142 2.43303 1.58368 2.61419 1.71131 2.75116L5.96948 7.00933L1.71131 11.2675C1.576 11.403 1.5 11.5866 1.5 11.7781C1.5 11.9696 1.576 12.1532 1.71131 12.2887C1.84679 12.424 2.03043 12.5 2.2219 12.5C2.41338 12.5 2.59702 12.424 2.7325 12.2887L6.99067 8.03052L11.2488 12.2887C11.3843 12.424 11.568 12.5 11.7594 12.5C11.9509 12.5 12.1346 12.424 12.27 12.2887C12.4053 12.1532 12.4813 11.9696 12.4813 11.7781C12.4813 11.5866 12.4053 11.403 12.27 11.2675L8.01186 7.00933Z" fill="currentColor"></path>
+          </svg>
+        </button>
+      </div>
+      <div class="p-dialog-content">
+        <p>{{ message.message }}</p>
+      </div>
+      <div class="p-dialog-footer">
+        <Button label="Нет" severity="secondary" text @click="rejectCallback" />
+        <Button label="Да" @click="acceptCallback" />
+      </div>
+    </template>
+  </ConfirmDialog>
+</template>
+```
+
+## Severity: Success
+
+Диалог подтверждения успешного действия с зеленой иконкой.
+
+<Story name="Success" args={{ 
+  header: 'Успех', 
+  message: 'Операция выполнена успешно!', 
+  icon: 'ti ti-circle-check', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'success', 
+  class: 'p-confirm-dialog-accept' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Success Small" args={{ 
+  header: 'Успех', 
+  message: 'Готово!', 
+  icon: 'ti ti-circle-check', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'success', 
+  class: 'p-confirm-dialog-accept p-confirmdialog-sm' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Success Large" args={{ 
+  header: 'Успех', 
+  message: 'Операция выполнена успешно! Все данные были сохранены и обработаны корректно.', 
+  icon: 'ti ti-circle-check', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'success', 
+  class: 'p-confirm-dialog-accept p-confirmdialog-lg' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Success Extra Large" args={{ 
+  header: 'Успех', 
+  message: 'Операция выполнена успешно! Все данные были сохранены и обработаны корректно. Система готова к дальнейшей работе.', 
+  icon: 'ti ti-circle-check', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'success', 
+  class: 'p-confirm-dialog-accept p-confirmdialog-xlg' 
+}}>{Template.bind({})}</Story>
+
+## Severity: Info
+
+Информационный диалог с синей иконкой.
+
+<Story name="Info" args={{ 
+  header: 'Информация', 
+  message: 'Это информационное сообщение', 
+  icon: 'ti ti-info-circle', 
+  acceptLabel: 'Понятно', 
+  acceptSeverity: 'info', 
+  class: 'p-confirm-dialog-info' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Info Small" args={{ 
+  header: 'Информация', 
+  message: 'Обновление доступно', 
+  icon: 'ti ti-info-circle', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'info', 
+  class: 'p-confirm-dialog-info p-confirmdialog-sm' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Info Large" args={{ 
+  header: 'Информация', 
+  message: 'Доступна новая версия приложения с улучшенной производительностью и новыми функциями.', 
+  icon: 'ti ti-info-circle', 
+  acceptLabel: 'Понятно', 
+  acceptSeverity: 'info', 
+  class: 'p-confirm-dialog-info p-confirmdialog-lg' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Info Extra Large" args={{ 
+  header: 'Информация', 
+  message: 'Доступна новая версия приложения с улучшенной производительностью, новыми функциями и исправлениями ошибок. Рекомендуем обновиться.', 
+  icon: 'ti ti-info-circle', 
+  acceptLabel: 'Понятно', 
+  acceptSeverity: 'info', 
+  class: 'p-confirm-dialog-info p-confirmdialog-xlg' 
+}}>{Template.bind({})}</Story>
+
+## Severity: Warn
+
+Диалог предупреждения с желтой иконкой.
+
+<Story name="Warn" args={{ 
+  header: 'Предупреждение', 
+  message: 'Внимание! Это действие может иметь последствия', 
+  icon: 'ti ti-alert-triangle', 
+  acceptLabel: 'Продолжить', 
+  acceptSeverity: 'warn', 
+  class: 'p-confirm-dialog-warn' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Warn Small" args={{ 
+  header: 'Предупреждение', 
+  message: 'Несохраненные данные', 
+  icon: 'ti ti-alert-triangle', 
+  acceptLabel: 'OK', 
+  acceptSeverity: 'warn', 
+  class: 'p-confirm-dialog-warn p-confirmdialog-sm' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Warn Large" args={{ 
+  header: 'Предупреждение', 
+  message: 'Внимание! Это действие может привести к потере несохраненных данных. Убедитесь, что вы сохранили все изменения.', 
+  icon: 'ti ti-alert-triangle', 
+  acceptLabel: 'Продолжить', 
+  acceptSeverity: 'warn', 
+  class: 'p-confirm-dialog-warn p-confirmdialog-lg' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Warn Extra Large" args={{ 
+  header: 'Предупреждение', 
+  message: 'Внимание! Это действие может привести к потере несохраненных данных и изменений в системе. Убедитесь, что вы сохранили все важные изменения перед продолжением.', 
+  icon: 'ti ti-alert-triangle', 
+  acceptLabel: 'Продолжить', 
+  acceptSeverity: 'warn', 
+  class: 'p-confirm-dialog-warn p-confirmdialog-xlg' 
+}}>{Template.bind({})}</Story>
+
+## Severity: Help
+
+Диалог справки с фиолетовой иконкой.
+
+<Story name="Help" args={{ 
+  header: 'Справка', 
+  message: 'Нужна помощь с этим действием?', 
+  icon: 'ti ti-help-circle', 
+  acceptLabel: 'Да', 
+  acceptSeverity: 'help', 
+  class: 'p-confirm-dialog-help' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Help Small" args={{ 
+  header: 'Справка', 
+  message: 'Нужна помощь?', 
+  icon: 'ti ti-help-circle', 
+  acceptLabel: 'Да', 
+  acceptSeverity: 'help', 
+  class: 'p-confirm-dialog-help p-confirmdialog-sm' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Help Large" args={{ 
+  header: 'Справка', 
+  message: 'Нужна помощь с этим действием? Мы можем предоставить дополнительную информацию и инструкции.', 
+  icon: 'ti ti-help-circle', 
+  acceptLabel: 'Да', 
+  acceptSeverity: 'help', 
+  class: 'p-confirm-dialog-help p-confirmdialog-lg' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Help Extra Large" args={{ 
+  header: 'Справка', 
+  message: 'Нужна помощь с этим действием? Мы можем предоставить дополнительную информацию, подробные инструкции и примеры использования.', 
+  icon: 'ti ti-help-circle', 
+  acceptLabel: 'Да', 
+  acceptSeverity: 'help', 
+  class: 'p-confirm-dialog-help p-confirmdialog-xlg' 
+}}>{Template.bind({})}</Story>
+
+## Severity: Danger
+
+Диалог критического действия с красной иконкой.
+
+<Story name="Danger" args={{ 
+  header: 'Опасность', 
+  message: 'Это действие нельзя отменить. Продолжить?', 
+  icon: 'ti ti-circle-x', 
+  acceptLabel: 'Удалить', 
+  acceptSeverity: 'danger', 
+  class: 'p-confirm-dialog-error' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Danger Small" args={{ 
+  header: 'Удалить?', 
+  message: 'Действие необратимо', 
+  icon: 'ti ti-circle-x', 
+  acceptLabel: 'Удалить', 
+  acceptSeverity: 'danger', 
+  class: 'p-confirm-dialog-error p-confirmdialog-sm' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Danger Large" args={{ 
+  header: 'Опасность', 
+  message: 'Это действие нельзя отменить. Все связанные данные будут удалены безвозвратно. Вы уверены?', 
+  icon: 'ti ti-circle-x', 
+  acceptLabel: 'Удалить', 
+  acceptSeverity: 'danger', 
+  class: 'p-confirm-dialog-error p-confirmdialog-lg' 
+}}>{Template.bind({})}</Story>
+
+<Story name="Danger Extra Large" args={{ 
+  header: 'Опасность', 
+  message: 'Это действие нельзя отменить. Все связанные данные, файлы и настройки будут удалены безвозвратно. Восстановление будет невозможно. Вы уверены?', 
+  icon: 'ti ti-circle-x', 
+  acceptLabel: 'Удалить', 
+  acceptSeverity: 'danger', 
+  class: 'p-confirm-dialog-error p-confirmdialog-xlg' 
+}}>{Template.bind({})}</Story>
+
+## Токены дизайна
+
+### Размеры
+- **Default**: min-width 24rem (384px), max-width 30rem (480px)
+- **Small**: min-width 20rem (320px), max-width 24rem (384px)
+- **Large**: min-width 30rem (480px), max-width 58rem (928px)
+- **Extra Large**: width 58rem (928px)
+
+### Иконки в заголовке
+- `confirmdialog.icon.size` - размер иконки (21px)
+- `confirmdialog.extend.extIcon.success` - цвет иконки успеха (зеленый)
+- `confirmdialog.extend.extIcon.info` - цвет иконки информации (синий)
+- `confirmdialog.extend.extIcon.warn` - цвет иконки предупреждения (желтый)
+- `confirmdialog.extend.extIcon.danger` - цвет иконки ошибки (красный)
+- `confirmdialog.extend.extIcon.help` - цвет иконки помощи (фиолетовый)
+
+### Отступы
+- `dialog.header.gap` - отступ между иконкой и текстом в заголовке
+
+### Футер
+- Кнопки расположены справа
+- Порядок кнопок: Accept (справа), Reject (слева)
+
+## Особенности стилизации
+
+- Иконка расположена в заголовке перед текстом
+- Цвет иконки зависит от severity или класса диалога
+- Кнопки в футере выровнены справа с обратным порядком (flex-direction: row-reverse)
+- Используется headless режим для полного контроля над структурой
