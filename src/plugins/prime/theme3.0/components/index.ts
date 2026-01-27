@@ -1227,7 +1227,7 @@ export default {
     header: {
       padding:
         '{overlay.modal.padding.md} {overlay.modal.padding.md} 1rem {overlay.modal.padding.md}',
-      gap: '0',
+      gap: '{overlay.gap.sm}',
     },
     title: {
       fontSize: '{fonts.fontSize.xl}',
