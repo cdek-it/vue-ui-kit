@@ -2812,6 +2812,7 @@ export default {
         invalidColor: '{error.900}',
         invalidBorderColor: '{error.400}',
         borderWidth: '{feedback.width.tn}',
+        iconSize: '{feedback.icon.size.md}',
       },
     },
     root: {

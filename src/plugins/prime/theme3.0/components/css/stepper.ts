@@ -6,6 +6,8 @@ export default ({ dt }: { dt: (token: string) => string }) => `
   flex-direction: column;
   gap: ${dt('stepper.extend.extCaption.gap')};
   line-height: ${dt('fonts.lineHeight.20')};
+  align-items: flex-start;
+  text-align: left;
 }
 
 /* Caption - text-sm/font-normal */
@@ -37,6 +39,22 @@ export default ({ dt }: { dt: (token: string) => string }) => `
   background: ${dt('stepper.extend.extStepNumber.invalidBackground')};
   color: ${dt('stepper.extend.extStepNumber.invalidColor')};
   border-color: ${dt('stepper.extend.extStepNumber.invalidBorderColor')};
+}
+
+/* Step-number с иконкой - убираем фон и обводку */
+.p-stepper .p-step-number:has(i) {
+  background: ${dt('colorScheme.light.transparent')};
+  border-color: ${dt('colorScheme.light.transparent')};
+}
+
+/* Размер иконок в step-number */
+.p-stepper .p-step-number i {
+  font-size: ${dt('stepper.extend.extStepNumber.iconSize')};
+}
+
+/* Активное состояние - иконка красится в цвет фона (зелёный) */
+.p-stepper .p-step-active .p-step-number i {
+  color: ${dt('stepper.stepNumber.activeBackground')};
 }
 
 /* Прозрачный фон для панелей */
