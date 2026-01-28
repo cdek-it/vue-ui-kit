@@ -2949,8 +2949,8 @@ export default {
       },
     },
     activeBar: {
-      height: '0.07142857142857142rem',
-      bottom: '-1',
+      height: '0.18rem',
+      bottom: '-0.18rem',
       background: '{content.color}',
     },
   },
