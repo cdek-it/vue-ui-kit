@@ -1,0 +1,39 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { BasicTemplate, VerticalTemplate, MinimalTemplate } from './MeterGroup.template';
+
+<Meta title="Prime/MeterGroup" />
+
+# MeterGroup
+
+[PrimeVue MeterGroup](https://primevue.org/metergroup), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=222-1489&t=j8q05RFyXpKxntpS-11)
+
+### Basic
+
+Базовый пример MeterGroup с горизонтальными метками.
+
+```html dark
+<MeterGroup :value="value" />
+```
+
+<Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+### Vertical
+
+Пример MeterGroup с вертикальными метками.
+
+```html dark
+<MeterGroup :value="value" labelOrientation="vertical" />
+```
+
+<Story name="Vertical">{VerticalTemplate.bind({})}</Story>
+
+### Minimal
+
+Минимальный пример MeterGroup без меток.
+
+```html dark
+<MeterGroup :value="value" />
+```
+
+<Story name="Minimal">{MinimalTemplate.bind({})}</Story>
