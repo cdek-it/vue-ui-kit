@@ -2214,7 +2214,7 @@ export default {
       background: '{content.borderColor}',
     },
     label: {
-      gap: '{feedback.gap.sm}',
+      gap: '{feedback.gap.xs}',
     },
     labelMarker: {
       size: '{feedback.icon.size.xs}',
