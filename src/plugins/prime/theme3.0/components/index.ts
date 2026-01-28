@@ -2457,7 +2457,7 @@ export default {
   popover: {
     extend: {
       arrow: {
-        width: '{overlay.popover.width.md}',
+        width: '{overlay.popover.width.sm}',
         height: '{overlay.popover.width.md}',
       },
       borderWidth: '{overlay.borderWidth}',
