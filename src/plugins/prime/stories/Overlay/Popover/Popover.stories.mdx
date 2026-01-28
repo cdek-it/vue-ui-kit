@@ -1,0 +1,234 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import { Template, TemplateMatrix, TemplateContent } from './Popover.template';
+
+<Meta title="Prime/Overlay/Popover" />
+
+# Popover
+
+[PrimeVue Popover](https://primevue.org/popover), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=920-1239)
+
+Компонент Popover отображает контент в виде всплывающего окна с указателем (стрелкой), привязанного к элементу.
+
+```html dark
+<script setup>
+import { ref } from 'vue';
+import Popover from 'primevue/popover';
+import Button from 'primevue/button';
+
+const op = ref();
+
+const toggle = (event) => {
+  op.value.toggle(event);
+};
+</script>
+
+<template>
+  <Button type="button" label="Toggle" @click="toggle" />
+  
+  <Popover ref="op">
+    <div style="padding: 1rem;">
+      <p>Popover content</p>
+    </div>
+  </Popover>
+</template>
+```
+
+## Position: Top
+
+### Top Start
+
+Popover с позицией сверху и выравниванием по левому краю.
+
+<Story name="Top Start" args={{ 
+  position: 'top',
+  align: 'start',
+  buttonLabel: 'Top Start',
+  content: 'Positioned at top, aligned to start'
+}}>{Template.bind({})}</Story>
+
+### Top Center
+
+Popover с позицией сверху и выравниванием по центру.
+
+<Story name="Top Center" args={{ 
+  position: 'top',
+  align: 'center',
+  buttonLabel: 'Top Center',
+  content: 'Positioned at top, aligned to center'
+}}>{Template.bind({})}</Story>
+
+### Top End
+
+Popover с позицией сверху и выравниванием по правому краю.
+
+<Story name="Top End" args={{ 
+  position: 'top',
+  align: 'end',
+  buttonLabel: 'Top End',
+  content: 'Positioned at top, aligned to end'
+}}>{Template.bind({})}</Story>
+
+## Position: Bottom
+
+### Bottom Start
+
+Popover с позицией снизу и выравниванием по левому краю.
+
+<Story name="Bottom Start" args={{ 
+  position: 'bottom',
+  align: 'start',
+  buttonLabel: 'Bottom Start',
+  content: 'Positioned at bottom, aligned to start'
+}}>{Template.bind({})}</Story>
+
+### Bottom Center
+
+Popover с позицией снизу и выравниванием по центру.
+
+<Story name="Bottom Center" args={{ 
+  position: 'bottom',
+  align: 'center',
+  buttonLabel: 'Bottom Center',
+  content: 'Positioned at bottom, aligned to center'
+}}>{Template.bind({})}</Story>
+
+### Bottom End
+
+Popover с позицией снизу и выравниванием по правому краю.
+
+<Story name="Bottom End" args={{ 
+  position: 'bottom',
+  align: 'end',
+  buttonLabel: 'Bottom End',
+  content: 'Positioned at bottom, aligned to end'
+}}>{Template.bind({})}</Story>
+
+## Position: Left
+
+### Left Start
+
+Popover с позицией слева и выравниванием по верхнему краю.
+
+<Story name="Left Start" args={{ 
+  position: 'left',
+  align: 'start',
+  buttonLabel: 'Left Start',
+  content: 'Positioned at left, aligned to start'
+}}>{Template.bind({})}</Story>
+
+### Left Center
+
+Popover с позицией слева и выравниванием по центру.
+
+<Story name="Left Center" args={{ 
+  position: 'left',
+  align: 'center',
+  buttonLabel: 'Left Center',
+  content: 'Positioned at left, aligned to center'
+}}>{Template.bind({})}</Story>
+
+### Left End
+
+Popover с позицией слева и выравниванием по нижнему краю.
+
+<Story name="Left End" args={{ 
+  position: 'left',
+  align: 'end',
+  buttonLabel: 'Left End',
+  content: 'Positioned at left, aligned to end'
+}}>{Template.bind({})}</Story>
+
+## Position: Right
+
+### Right Start
+
+Popover с позицией справа и выравниванием по верхнему краю.
+
+<Story name="Right Start" args={{ 
+  position: 'right',
+  align: 'start',
+  buttonLabel: 'Right Start',
+  content: 'Positioned at right, aligned to start'
+}}>{Template.bind({})}</Story>
+
+### Right Center
+
+Popover с позицией справа и выравниванием по центру.
+
+<Story name="Right Center" args={{ 
+  position: 'right',
+  align: 'center',
+  buttonLabel: 'Right Center',
+  content: 'Positioned at right, aligned to center'
+}}>{Template.bind({})}</Story>
+
+### Right End
+
+Popover с позицией справа и выравниванием по нижнему краю.
+
+<Story name="Right End" args={{ 
+  position: 'right',
+  align: 'end',
+  buttonLabel: 'Right End',
+  content: 'Positioned at right, aligned to end'
+}}>{Template.bind({})}</Story>
+
+## All Positions Matrix
+
+Интерактивная демонстрация всех комбинаций позиций и выравниваний.
+
+<Story name="All Positions">{TemplateMatrix.bind({})}</Story>
+
+## Content Variations
+
+Примеры различных вариантов контента в popover.
+
+<Story name="Content Variations">{TemplateContent.bind({})}</Story>
+
+## Токены дизайна
+
+### Основные параметры
+- `popover.root.background` - фон popover (#ffffff)
+- `popover.root.borderColor` - цвет границы (#e2e2e4)
+- `popover.root.borderRadius` - радиус скругления углов (7px)
+- `popover.extend.borderWidth` - толщина границы (1px)
+- `popover.content.padding` - внутренние отступы контента (10.5px)
+
+### Позиционирование стрелки
+- `popover.arrowOffset` - отступ стрелки от края (используется для start/end выравнивания)
+- `popover.root.gutter` - расстояние между popover и целевым элементом
+
+### Тень
+- `overlay.md` - тень для popover (DROP_SHADOW: offset (0, 3.5), radius 7, spread 0)
+- `dialog.root.shadow` - цвет тени (#181a1f33)
+
+## Особенности стилизации
+
+### Позиции (position)
+- **top** - popover отображается сверху от элемента
+- **bottom** - popover отображается снизу от элемента
+- **left** - popover отображается слева от элемента
+- **right** - popover отображается справа от элемента
+
+### Выравнивание (align)
+- **start** - выравнивание по началу (левый/верхний край)
+- **center** - выравнивание по центру
+- **end** - выравнивание по концу (правый/нижний край)
+
+### Стрелка
+- Стрелка автоматически позиционируется в зависимости от position и align
+- Для start/end используется `popover.arrowOffset` для отступа от края
+- Для center стрелка центрируется с помощью transform
+
+### Использование
+```vue
+<Popover 
+  ref="op" 
+  position="top"    <!-- top | bottom | left | right -->
+  align="center"    <!-- start | center | end -->
+>
+  <div style="padding: 1rem;">
+    Ваш контент
+  </div>
+</Popover>
+```

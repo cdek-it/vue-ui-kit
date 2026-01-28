@@ -157,6 +157,10 @@ export default {
       },
     },
     popover: {
+      width: {
+        sm: '{sizing.2}',
+        md: '{sizing.3}',
+      },
       borderRadius: '{borderRadius.sm}',
       padding: {
         sm: '{spacing.3}',
