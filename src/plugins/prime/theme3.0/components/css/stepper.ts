@@ -41,7 +41,7 @@ export default ({ dt }: { dt: (token: string) => string }) => `
   border-color: ${dt('stepper.extend.extStepNumber.invalidBorderColor')};
 }
 
-/* Step-number с иконкой - убираем фон и обводку */
+/* Step-number с иконкой */
 .p-stepper .p-step-number:has(i) {
   background: ${dt('colorScheme.light.transparent')};
   border-color: ${dt('colorScheme.light.transparent')};
@@ -52,7 +52,7 @@ export default ({ dt }: { dt: (token: string) => string }) => `
   font-size: ${dt('stepper.extend.extStepNumber.iconSize')};
 }
 
-/* Активное состояние - иконка красится в цвет фона (зелёный) */
+/* Активное состояние - иконка в цвет фона */
 .p-stepper .p-step-active .p-step-number i {
   color: ${dt('stepper.stepNumber.activeBackground')};
 }
