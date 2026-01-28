@@ -2456,12 +2456,22 @@ export default {
   },
   popover: {
     extend: {
+      arrow: {
+        width: '{overlay.popover.width.md}',
+        height: '{overlay.popover.width.md}',
+      },
       borderWidth: '{overlay.borderWidth}',
     },
+    colorScheme: {
+      light: {
+        root: {
+          background: '{overlay.popover.background}',
+          borderColor: '{overlay.popover.borderColor}',
+          color: '{overlay.popover.color}',
+        },
+      },
+    },
     root: {
-      background: '{overlay.popover.background}',
-      borderColor: '{datatable.filter.overlayPopover.borderColor}',
-      color: '{overlay.popover.color}',
       borderRadius: '{overlay.popover.borderRadius}',
       shadow: '{overlay.popover.shadow}',
       gutter: '{overlay.gap.xs}',
