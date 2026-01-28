@@ -30,4 +30,20 @@ export default ({ dt }: { dt: (token: string) => string }) => `
   font-size: ${dt('fonts.fontSize.xl')};
 }
 
+/* Горизонтальная ориентация - равная ширина для всех элементов */
+.p-timeline.p-timeline-horizontal {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  align-items: start;
+}
+
+/* Показать connector для последнего элемента через псевдоэлемент */
+.p-timeline.p-timeline-horizontal .p-timeline-event:last-child .p-timeline-event-separator::after {
+  content: '';
+  display: block;
+  flex: 1;
+  background-color: ${dt('timeline.eventConnector.color')};
+  height: ${dt('timeline.eventConnector.size')};
+}
 `;
