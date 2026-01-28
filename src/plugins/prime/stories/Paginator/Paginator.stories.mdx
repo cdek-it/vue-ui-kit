@@ -1,0 +1,58 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { BasicTemplate, TemplateTemplate, CustomTemplate } from './Paginator.template';
+
+<Meta title="Prime/Paginator" />
+
+# Paginator
+
+[PrimeVue Paginator](https://primevue.org/paginator), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=1284-1732&t=j8q05RFyXpKxntpS-11)
+
+### Basic
+
+Базовый пример Paginator с кнопками навигации и номерами страниц.
+
+```html dark
+<Paginator 
+  :first="first" 
+  :rows="rows" 
+  :totalRecords="totalRecords" 
+  @page="onPageChange"
+/>
+```
+
+<Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+### Template
+
+Пример Paginator с кастомным шаблоном и текущей страницей.
+
+```html dark
+<Paginator 
+  :first="first" 
+  :rows="rows" 
+  :totalRecords="totalRecords" 
+  @page="onPageChange"
+  template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+  currentPageReportTemplate="({currentPage} из {totalPages})"
+/>
+```
+
+<Story name="Template">{TemplateTemplate.bind({})}</Story>
+
+### Custom
+
+Полный пример Paginator с выбором количества строк и переходом к странице.
+
+```html dark
+<Paginator 
+  :first="first" 
+  :rows="rows" 
+  :totalRecords="totalRecords" 
+  @page="onPageChange"
+  template="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown JumpToPageInput"
+  :rowsPerPageOptions="[10, 20, 30]"
+/>
+```
+
+<Story name="Custom">{CustomTemplate.bind({})}</Story>
