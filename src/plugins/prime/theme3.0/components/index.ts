@@ -2811,6 +2811,7 @@ export default {
         invalidBackground: '{error.400}',
         invalidColor: '{error.900}',
         invalidBorderColor: '{error.400}',
+        borderWidth: '{feedback.width.tn}',
       },
     },
     root: {
