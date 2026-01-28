@@ -5,6 +5,7 @@ import checkboxCss from './components/css/checkbox';
 import dialogCss from './components/css/dialog';
 import drawerCss from './components/css/drawer';
 import ratingCss from './components/css/rating';
+import stepperCss from './components/css/stepper';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
 
@@ -16,6 +17,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${dialogCss({ dt })}
    ${drawerCss({ dt })}
    ${ratingCss({ dt })}
+   ${stepperCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
 
