@@ -32,6 +32,13 @@ export default ({ dt }: { dt: (token: string) => string }) => `
   border-width: ${dt('stepper.extend.extStepNumber.borderWidth')};
 }
 
+/* Invalid состояние для step-number - только когда активен */
+.p-stepper .step-invalid.p-step-active .p-step-number {
+  background: ${dt('stepper.extend.extStepNumber.invalidBackground')};
+  color: ${dt('stepper.extend.extStepNumber.invalidColor')};
+  border-color: ${dt('stepper.extend.extStepNumber.invalidBorderColor')};
+}
+
 /* Прозрачный фон для панелей */
 .p-stepper .p-steppanel {
   background: ${dt('colorScheme.light.transparent')};

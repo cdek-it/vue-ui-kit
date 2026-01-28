@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { BasicTemplate } from './Stepper.template';
+import { BasicTemplate, ErrorTemplate } from './Stepper.template';
 
 <Meta title="Prime/Stepper" />
 
@@ -59,3 +59,55 @@ import { BasicTemplate } from './Stepper.template';
 ```
 
 <Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+### Error
+
+Пример Stepper с ошибкой на втором шаге. Используйте класс `step-invalid` для отображения состояния ошибки. Все последующие шаги после ошибки должны быть disabled.
+
+```html dark
+<Stepper value="2">
+  <StepList>
+    <Step value="1">
+      Stepper
+      <div class="caption-secondary">caption</div>
+    </Step>
+    <Step value="2" class="step-invalid">
+      Stepper
+      <div class="caption-secondary">caption</div>
+    </Step>
+    <Step value="3" disabled>
+      Stepper
+      <div class="caption-secondary">caption</div>
+    </Step>
+  </StepList>
+  <StepPanels>
+    <StepPanel v-slot="{ activateCallback }" value="1">
+      <div class="flex flex-col gap-4">
+        <div>Step 1 Content</div>
+        <div class="flex justify-end">
+          <Button label="Next" @click="activateCallback('2')" />
+        </div>
+      </div>
+    </StepPanel>
+    <StepPanel v-slot="{ activateCallback }" value="2">
+      <div class="flex flex-col gap-4">
+        <div>Step 2 Content (Invalid)</div>
+        <div class="flex justify-between">
+          <Button label="Back" @click="activateCallback('1')" />
+          <Button label="Next" disabled />
+        </div>
+      </div>
+    </StepPanel>
+    <StepPanel v-slot="{ activateCallback }" value="3">
+      <div class="flex flex-col gap-4">
+        <div>Step 3 Content</div>
+        <div class="flex justify-start">
+          <Button label="Back" @click="activateCallback('2')" />
+        </div>
+      </div>
+    </StepPanel>
+  </StepPanels>
+</Stepper>
+```
+
+<Story name="Error">{ErrorTemplate.bind({})}</Story>
