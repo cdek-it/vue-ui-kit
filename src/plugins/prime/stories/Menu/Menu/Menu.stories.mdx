@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Menu.template';
+import { BasicTemplate, OptionWithIconTemplate, GroupedTemplate, CustomTemplate } from './Menu.template';
 
 <Meta title="Prime/Menu/Menu" />
 
@@ -10,10 +10,54 @@ import { Template } from './Menu.template';
 
 ### Basic
 
-```jsx dark
-const selectedClass = 'p-menuitem-checked';
+Базовый пример Menu без иконок.
 
-<PrimeMenu :model="items" />
+```html dark
+<Button type="button" label="Show Menu" @click="toggle" />
+<Menu ref="menu" :model="items" :popup="true" />
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+### Option With Icon
+
+Пример Menu с опциями и иконками.
+
+```html dark
+<Button type="button" label="Options" @click="toggle" />
+<Menu ref="menu" :model="items" :popup="true" />
+```
+
+<Story name="Option With Icon">{OptionWithIconTemplate.bind({})}</Story>
+
+### Grouped
+
+Menu supports single level of grouping by defining children with the items property.
+
+```html dark
+<Button type="button" label="Show Grouped Menu" @click="toggle" />
+<Menu ref="menu" :model="items" :popup="true" />
+```
+
+<Story name="Grouped">{GroupedTemplate.bind({})}</Story>
+
+### Custom
+
+Пример Menu с кастомным шаблоном (иконка + заголовок + описание).
+
+```html dark
+<Button type="button" label="Show Menu with Captions" @click="toggle" />
+<Menu ref="menu" :model="items" :popup="true">
+  <template #item="{ item, props }">
+    <a v-bind="props.action" class="p-menu-item-link">
+      <span v-if="item.icon" :class="['p-menu-item-icon', item.icon]"></span>
+      <div class="menu-item-label">
+        <span class="p-menu-item-label">{{ item.label }}</span>
+        <small v-if="item.caption" class="menu-item-caption">{{ item.caption }}</small>
+      </div>
+    </a>
+  </template>
+</Menu>
+```
+
+<Story name="Custom">{CustomTemplate.bind({})}</Story>

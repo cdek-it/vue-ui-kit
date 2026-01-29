@@ -4,6 +4,7 @@ import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
 import dialogCss from './components/css/dialog';
 import drawerCss from './components/css/drawer';
+import menuCss from './components/css/menu';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
@@ -15,16 +16,13 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${checkboxCss({ dt })}
    ${dialogCss({ dt })}
    ${drawerCss({ dt })}
+   ${menuCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
 
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
-  }
-  
-  [class*="menu"].p-component {
-    border: none;
   }
   
   [class*="menu"][class*="item"]:not(:has([class*="icon"])) [class*="item-content"] > [class*="item"] {
