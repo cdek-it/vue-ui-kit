@@ -95,14 +95,39 @@ export const TemplateCustom = (args) => ({
   template: `
 <Listbox :options="options" optionLabel="name" v-bind="args">
   <template #option="slotProps">
-    <div class="flex items-center">
+    <div class="listbox-option-custom">
       <i :class="slotProps.option.icon" />
-      <div class="ml-2">
+      <div class="listbox-option-label">
         <div>{{ slotProps.option.name }}</div>
-        <small>{{ slotProps.option.description }}</small>
+        <small class="listbox-option-caption">{{ slotProps.option.description }}</small>
       </div>
     </div>
   </template>
 </Listbox>
+`,
+});
+
+export const TemplateMultiple = (args) => ({
+  components: { Listbox },
+  setup() {
+    const options = [
+      { name: 'Option 1', code: 'O1' },
+      { name: 'Option 2', code: 'O2' },
+      { name: 'Option 3', code: 'O3' },
+      { name: 'Option 4', code: 'O4' },
+    ];
+    return { args, options };
+  },
+  template: `
+<div style="display: flex; gap: 20px;">
+  <div>
+    <div style="margin-bottom: 10px; font-weight: 600;">Multiple</div>
+    <Listbox :options="options" optionLabel="name" multiple v-bind="args" />
+  </div>
+  <div>
+    <div style="margin-bottom: 10px; font-weight: 600;">Multiple with metaKeySelection</div>
+    <Listbox :options="options" optionLabel="name" multiple metaKeySelection v-bind="args" />
+  </div>
+</div>
 `,
 });
