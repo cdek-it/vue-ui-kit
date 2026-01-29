@@ -1897,6 +1897,7 @@ export default {
   listbox: {
     extend: {
       extOption: {
+        gap: '{list.gap.md}',
         label: {
           gap: '{list.gap.sm}',
         },
@@ -1920,7 +1921,7 @@ export default {
       invalidBorderColor: '{form.invalidBorderColor}',
       color: '{form.color}',
       disabledColor: '{form.disabledColor}',
-      shadow: '{form.shadow}',
+      shadow: '0',
       borderRadius: '{form.borderRadius.md}',
       transitionDuration: '{form.transitionDuration}',
     },

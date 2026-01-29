@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template, TemplateGrouped, TemplateCustom } from './Listbox.template';
+import { Template, TemplateGrouped, TemplateCustom, TemplateMultiple } from './Listbox.template';
 
 <Meta title="Prime/Form/Listbox" />
 
@@ -74,3 +74,17 @@ import { Template, TemplateGrouped, TemplateCustom } from './Listbox.template';
 <Story name="Filter" args={{ filter: true }}>
   {Template.bind({})}
 </Story>
+
+### Multiple
+
+Listbox allows choosing a single item by default, enable multiple property to choose more than one. When the optional metaKeySelection is present, behavior is changed in a way that selecting a new item requires meta key to be present.
+
+```html dark
+<!-- Multiple selection -->
+<PrimeListbox v-model="value" :options="options" multiple />
+
+<!-- Multiple selection with meta key -->
+<PrimeListbox v-model="value" :options="options" multiple metaKeySelection />
+```
+
+<Story name="Multiple">{TemplateMultiple.bind({})}</Story>
