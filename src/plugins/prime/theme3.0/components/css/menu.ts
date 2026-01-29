@@ -4,7 +4,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   padding: ${dt('menu.extend.paddingY')} ${dt('menu.extend.paddingX')};
 }
 
-/* Menu item - стили для пунктов меню */
+/* Menu item link */
 .p-menu .p-menu-item-content .p-menu-item-link {
   font-family: ${dt('fonts.fontFamily')};
   font-size: ${dt('fonts.fontSize.base')};
@@ -12,54 +12,50 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   line-height: ${dt('fonts.lineHeight.25')};
 }
 
-/* When label contains caption, make it a column layout */
+/* Menu item with caption - column layout */
 .p-menu .p-menu-item-content .menu-item-label {
   display: flex;
   flex-direction: column;
   gap: ${dt('menu.extend.extItem.caption.gap')};
 }
 
-/* Menu item caption (additional text below label) */
+/* Menu item caption */
 .p-menu .p-menu-item-content .menu-item-caption {
   font-family: ${dt('fonts.fontFamily')};
   font-size: ${dt('fonts.fontSize.sm')};
   font-weight: ${dt('fonts.fontWeight.regular')};
-  line-height: normal;
   color: ${dt('menu.colorScheme.light.extend.extItem.caption.color')};
 }
 
 /* Hover state for regular menu items */
-.p-menu .p-menu-item:not(.p-disabled) .p-menu-item-content:hover {
-  color: ${dt('menu.colorScheme.light.item.color')};
-}
-
-.p-menu .p-menu-item:not(.p-disabled) .p-menu-item-content:hover .p-menu-item-link {
-  color: ${dt('menu.colorScheme.light.item.color')};
-}
-
+.p-menu .p-menu-item:not(.p-disabled) .p-menu-item-content:hover,
+.p-menu .p-menu-item:not(.p-disabled) .p-menu-item-content:hover .p-menu-item-link,
 .p-menu .p-menu-item:not(.p-disabled) .p-menu-item-content:hover .p-menu-item-label {
   color: ${dt('menu.colorScheme.light.item.color')};
 }
 
-/* Active/Checked state */
-.p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content {
+/* Active/Checked/Focus state - background and text color */
+.p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content,
+.p-menu .p-menu-item.p-focus > .p-menu-item-content {
   background: ${dt('menu.extend.extItem.activeBackground')};
   color: ${dt('menu.extend.extItem.activeColor')};
 }
 
-.p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content .p-menu-item-link {
+/* Active/Checked/Focus state - link and label color */
+.p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content .p-menu-item-link,
+.p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content .p-menu-item-label,
+.p-menu .p-menu-item.p-focus > .p-menu-item-content .p-menu-item-link,
+.p-menu .p-menu-item.p-focus > .p-menu-item-content .p-menu-item-label {
   color: ${dt('menu.extend.extItem.activeColor')};
 }
 
-.p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content .p-menu-item-icon {
+/* Active/Checked/Focus state - icon color */
+.p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content .p-menu-item-icon,
+.p-menu .p-menu-item.p-focus > .p-menu-item-content .p-menu-item-icon {
   color: ${dt('menu.colorScheme.light.extend.extItem.icon.activeColor')};
 }
 
-.p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content .p-menu-item-label {
-  color: ${dt('menu.extend.extItem.activeColor')};
-}
-
-/* Active hover state */
+/* Active/Checked hover state */
 .p-menu .p-menu-item.p-menuitem-checked:not(.p-disabled) > .p-menu-item-content:hover {
   background: ${dt('menu.extend.extItem.activeBackground')};
   color: ${dt('menu.extend.extItem.activeColor')};
@@ -67,24 +63,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-menu .p-menu-item.p-menuitem-checked:not(.p-disabled) > .p-menu-item-content:hover .p-menu-item-icon {
   color: ${dt('menu.colorScheme.light.extend.extItem.icon.activeColor')};
-}
-
-/* Focus state - override default focus styles with active styles */
-.p-menu .p-menu-item.p-focus > .p-menu-item-content {
-  background: ${dt('menu.extend.extItem.activeBackground')};
-  color: ${dt('menu.extend.extItem.activeColor')};
-}
-
-.p-menu .p-menu-item.p-focus > .p-menu-item-content .p-menu-item-link {
-  color: ${dt('menu.extend.extItem.activeColor')};
-}
-
-.p-menu .p-menu-item.p-focus > .p-menu-item-content .p-menu-item-icon {
-  color: ${dt('menu.colorScheme.light.extend.extItem.icon.activeColor')};
-}
-
-.p-menu .p-menu-item.p-focus > .p-menu-item-content .p-menu-item-label {
-  color: ${dt('menu.extend.extItem.activeColor')};
 }
 
 /* Submenu label */

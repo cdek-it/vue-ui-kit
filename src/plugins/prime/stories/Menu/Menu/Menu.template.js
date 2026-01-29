@@ -9,18 +9,15 @@ export const BasicTemplate = (args) => ({
     const items = ref([
       {
         label: 'New',
-        icon: 'ti ti-plus',
       },
       {
         label: 'Search',
-        icon: 'ti ti-search',
       },
       {
         separator: true,
       },
       {
         label: 'Export',
-        icon: 'ti ti-download',
       },
     ]);
 
