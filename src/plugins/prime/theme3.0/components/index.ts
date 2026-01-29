@@ -2114,6 +2114,10 @@ export default {
       padding: '{navigation.item.padding}',
       borderRadius: '{navigation.item.borderRadius}',
       gap: '{navigation.item.gap}',
+      menuitemActiveBg: '{navigation.item.activeBackground}',
+      menuitemActiveTextColor: '{navigation.item.activeColor}',
+      menuitemActiveHoverBg: '{navigation.item.activeBackground}',
+      menuitemActiveIconColor: '{navigation.item.icon.activeColor}',
     },
   },
   menubar: {
