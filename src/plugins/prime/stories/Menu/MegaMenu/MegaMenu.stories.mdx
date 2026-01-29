@@ -1,0 +1,29 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template, VerticalTemplate } from './MegaMenu.template';
+
+<Meta title="Prime/Menu/MegaMenu" />
+
+# MegaMenu
+
+[PrimeVue MegaMenu](https://primevue.org/megamenu), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=16194-4401&t=j8q05RFyXpKxntpS-11)
+
+### Horizontal
+
+Горизонтальная ориентация MegaMenu с выпадающими подменю.
+
+```jsx dark
+<MegaMenu :model="items" />
+```
+
+<Story name="Horizontal">{Template.bind({})}</Story>
+
+### Vertical
+
+Вертикальная ориентация MegaMenu.
+
+```jsx dark
+<MegaMenu :model="items" orientation="vertical" />
+```
+
+<Story name="Vertical">{VerticalTemplate.bind({})}</Story>
