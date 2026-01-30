@@ -6,7 +6,6 @@ import dialogCss from './components/css/dialog';
 import drawerCss from './components/css/drawer';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
-import tieredMenuCss from './components/css/tieredmenu';
 import toastCss from './components/css/toast';
 import tooltipCss from './components/css/tooltip';
 
@@ -19,7 +18,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${drawerCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
-   ${tieredMenuCss({ dt })}
    ${toastCss({ dt })}
    ${tooltipCss({ dt })}
 

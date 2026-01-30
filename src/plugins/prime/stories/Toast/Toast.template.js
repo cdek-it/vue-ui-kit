@@ -31,7 +31,7 @@ export const Template = (args) => ({
       },
       {
         severity: 'error',
-        icon: 'ti ti-bell',
+        icon: 'ti ti-alert-circle',
         summary: 'Message',
         detail: 'caption',
         id: 4,
@@ -52,7 +52,7 @@ export const Template = (args) => ({
       { type: 'info', icon: 'ti ti-info-circle' },
       { type: 'success', icon: 'ti ti-circle-check' },
       { type: 'warn', icon: 'ti ti-alert-triangle' },
-      { type: 'error', icon: 'ti ti-bell' },
+      { type: 'error', icon: 'ti ti-alert-circle' },
     ];
 
     return {
@@ -73,13 +73,13 @@ export const Template = (args) => ({
             v-for="message in inlineMessages"
             :key="message.id"
             :class="'p-toast-message p-toast-message-' + message.severity"
-            style="width: 280px; border-width: 1px; border-radius: 10.5px; box-shadow: 0 3.5px 7px rgba(24, 26, 31, 0.2);"
           >
-            <div class="p-toast-message-content" style="padding: 14px; gap: 14px; display: flex; align-items: flex-start;">
-              <i :class="message.icon + ' p-toast-message-icon'" style="font-size: 31.5px;"></i>
-              <div class="p-toast-message-text" style="flex: 1; display: flex; flex-direction: column; gap: 3.5px;">
-                <span class="p-toast-summary" style="font-weight: 700; font-size: 14px;">{{ message.summary }}</span>
-                <div class="p-toast-detail" style="font-size: 12.25px;">{{ message.detail }}</div>
+            <div class="p-toast-message-content">
+              <div class="p-toast-accent-line"></div>
+              <i :class="message.icon + ' p-toast-message-icon'"></i>
+              <div class="p-toast-message-text">
+                <span class="p-toast-summary">{{ message.summary }}</span>
+                <div class="p-toast-detail">{{ message.detail }}</div>
               </div>
             </div>
           </div>
@@ -129,7 +129,7 @@ export const CustomContainer = (args) => ({
       },
       {
         severity: 'error',
-        icon: 'ti ti-bell',
+        icon: 'ti ti-alert-circle',
         summary: 'Message',
         detail: 'caption',
         id: 4,
@@ -150,7 +150,7 @@ export const CustomContainer = (args) => ({
       { type: 'info', icon: 'ti ti-info-circle' },
       { type: 'success', icon: 'ti ti-circle-check' },
       { type: 'warn', icon: 'ti ti-alert-triangle' },
-      { type: 'error', icon: 'ti ti-bell' },
+      { type: 'error', icon: 'ti ti-alert-circle' },
     ];
 
     return {
@@ -169,13 +169,13 @@ export const CustomContainer = (args) => ({
             <i :class="message.icon + ' p-toast-message-icon'"></i>
             <div class="p-toast-message-text">
               <span class="p-toast-summary">{{ message.summary }}</span>
-              <div class="p-toast-message-caption">{{ message.detail }}</div>
+              <div class="p-toast-detail">{{ message.detail }}</div>
             </div>
             <Button
               class="p-toast-close-button"
               icon="ti ti-x"
               variant="text"
-              rounded
+              
               @click="closeCallback"
             />
           </div>
@@ -189,21 +189,19 @@ export const CustomContainer = (args) => ({
             v-for="message in inlineMessages"
             :key="message.id"
             :class="'p-toast-message p-toast-message-' + message.severity"
-            style="width: 280px; border-width: 1px; border-radius: 10.5px; box-shadow: 0 3.5px 7px rgba(24, 26, 31, 0.2); position: relative;"
           >
-            <div class="p-toast-message-content" style="padding: 14px; gap: 14px; display: flex; align-items: flex-start;">
+            <div class="p-toast-message-content">
               <div class="p-toast-accent-line"></div>
-              <i :class="message.icon + ' p-toast-message-icon'" style="font-size: 31.5px;"></i>
-              <div class="p-toast-message-text" style="flex: 1; display: flex; flex-direction: column; gap: 3.5px;">
-                <span class="p-toast-summary" style="font-weight: 700; font-size: 14px;">{{ message.summary }}</span>
-                <div class="p-toast-message-caption">{{ message.detail }}</div>
+              <i :class="message.icon + ' p-toast-message-icon'"></i>
+              <div class="p-toast-message-text">
+                <span class="p-toast-summary">{{ message.summary }}</span>
+                <div class="p-toast-detail">{{ message.detail }}</div>
               </div>
               <Button
                 class="p-toast-close-button"
                 icon="ti ti-x"
                 variant="text"
-                rounded
-                style="width: 28px; height: 28px;"
+                
               />
             </div>
           </div>
@@ -253,7 +251,7 @@ export const WithContent = (args) => ({
       },
       {
         severity: 'error',
-        icon: 'ti ti-bell',
+        icon: 'ti ti-alert-circle',
         summary: 'Message',
         detail: 'caption',
         id: 4,
@@ -274,7 +272,7 @@ export const WithContent = (args) => ({
       { type: 'info', icon: 'ti ti-info-circle' },
       { type: 'success', icon: 'ti ti-circle-check' },
       { type: 'warn', icon: 'ti ti-alert-triangle' },
-      { type: 'error', icon: 'ti ti-bell' },
+      { type: 'error', icon: 'ti ti-alert-circle' },
     ];
 
     return {
@@ -293,7 +291,7 @@ export const WithContent = (args) => ({
             <i :class="message.icon + ' p-toast-message-icon'"></i>
             <div class="p-toast-message-text">
               <span class="p-toast-summary">{{ message.summary }}</span>
-              <div class="p-toast-message-caption">{{ message.detail }}</div>
+              <div class="p-toast-detail">{{ message.detail }}</div>
               <div class="mt-4">
                 <div class="text-sm">CONTENT</div>
               </div>
@@ -306,7 +304,7 @@ export const WithContent = (args) => ({
               class="p-toast-close-button"
               icon="ti ti-x"
               variant="text"
-              rounded
+              
               @click="closeCallback"
             />
           </div>
@@ -320,14 +318,13 @@ export const WithContent = (args) => ({
             v-for="message in inlineMessages"
             :key="message.id"
             :class="'p-toast-message p-toast-message-' + message.severity"
-            style="width: 280px; border-width: 1px; border-radius: 10.5px; box-shadow: 0 3.5px 7px rgba(24, 26, 31, 0.2); position: relative;"
           >
-            <div class="p-toast-message-content" style="padding: 14px; gap: 14px; display: flex; align-items: flex-start;">
+            <div class="p-toast-message-content">
               <div class="p-toast-accent-line"></div>
-              <i :class="message.icon + ' p-toast-message-icon'" style="font-size: 31.5px;"></i>
-              <div class="p-toast-message-text" style="flex: 1; display: flex; flex-direction: column; gap: 3.5px;">
-                <span class="p-toast-summary" style="font-weight: 700; font-size: 14px;">{{ message.summary }}</span>
-                <div class="p-toast-message-caption">{{ message.detail }}</div>
+              <i :class="message.icon + ' p-toast-message-icon'"></i>
+              <div class="p-toast-message-text">
+                <span class="p-toast-summary">{{ message.summary }}</span>
+                <div class="p-toast-detail">{{ message.detail }}</div>
                 <div class="mt-4">
                   <div class="text-sm">CONTENT</div>
                 </div>
@@ -340,8 +337,7 @@ export const WithContent = (args) => ({
                 class="p-toast-close-button"
                 icon="ti ti-x"
                 variant="text"
-                rounded
-                style="width: 28px; height: 28px;"
+                
               />
             </div>
           </div>
