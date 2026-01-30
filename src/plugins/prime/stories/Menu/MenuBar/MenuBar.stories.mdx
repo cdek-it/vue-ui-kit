@@ -1,19 +1,85 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './MenuBar.template';
+import { Template, WithIconInOptionTemplate, CustomTemplate } from './MenuBar.template';
 
 <Meta title="Prime/Menu/MenuBar" />
 
 # MenuBar
 
-[PrimeVue MenuBar](https://primevue.org/menubar), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12875&m=dev>)
+[PrimeVue MenuBar](https://primevue.org/menubar), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12875&m=dev)
 
 ### Basic
 
-```jsx dark
-const selectedClass = 'p-menuitem-checked';
+Горизонтальное меню с выпадающими подменю.
 
-<PrimeMenubar :model="items" />
+```jsx dark
+<Menubar :model="items" />
 ```
 
 <Story name="Primary">{Template.bind({})}</Story>
+
+### With Icon In Option
+
+Menubar с иконками в каждом пункте меню, включая вложенные подменю.
+
+```jsx dark
+const items = [
+  {
+    label: 'Home',
+    icon: 'ti ti-home',
+  },
+  {
+    label: 'Features',
+    icon: 'ti ti-star',
+    items: [
+      {
+        label: 'Core',
+        icon: 'ti ti-cpu',
+      },
+      // ...
+    ],
+  },
+];
+
+<Menubar :model="items" />
+```
+
+<Story name="WithIconInOption">{WithIconInOptionTemplate.bind({})}</Story>
+
+### Custom
+
+Menubar с группировкой через submenu labels и кастомными options с caption и дополнительными элементами.
+
+```jsx dark
+const items = [
+  {
+    label: 'Contacts',
+    items: [
+      {
+        label: 'Team Members', // submenu label (группа)
+        items: [
+          {
+            template: () => ({
+              template: `
+                <div class="p-menubar-item-content">
+                  <i class="ti ti-user"></i>
+                  <div>
+                    <span>John Doe</span>
+                    <span>Developer</span> <!-- caption -->
+                  </div>
+                  <button>Call</button>
+                  <i class="ti ti-chevron-right"></i>
+                </div>
+              `,
+            }),
+          },
+        ],
+      },
+    ],
+  },
+];
+
+<Menubar :model="items" />
+```
+
+<Story name="Custom">{CustomTemplate.bind({})}</Story>
