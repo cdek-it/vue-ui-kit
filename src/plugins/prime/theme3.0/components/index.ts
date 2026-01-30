@@ -3070,7 +3070,7 @@ export default {
       },
     },
     root: {
-      width: '{messages.toast.width}',
+      width: '{sizing.messages.width}',
       borderWidth: '{feedback.width.tn}',
       borderRadius: '{content.borderRadius}',
       transitionDuration: '{feedback.transitionDuration}',
