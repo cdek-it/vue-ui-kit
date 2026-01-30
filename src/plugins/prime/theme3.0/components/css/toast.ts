@@ -16,8 +16,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Кнопка закрытия toast-сообщения */
 .p-toast-message .p-toast-message-content .p-toast-close-button {
-  width: ${dt('toast.closeButton.width')};
-  height: ${dt('toast.closeButton.height')};
   margin: 0;
   padding: 0;
   right: 0;
