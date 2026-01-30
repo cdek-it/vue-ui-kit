@@ -1527,7 +1527,7 @@ export default {
   },
   message: {
     extend: {
-      width: '{messages.message.width}',
+      width: '{sizing.messages.root.width}',
       extText: {
         gap: '{feedback.gap.xs}',
       },

@@ -1,46 +1,87 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template, CustomContainer } from './Message.template';
+import { Template, WithCloseButton, WithContent } from './Message.template';
 
 <Meta title="Prime/Message" />
 
 # Message
 
-[PrimeVue Message](https://primevue.org/message), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=562-2947&m=dev)
+[PrimeVue Message](https://primevue.org/message), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=15963-3163)
 
-### Base
+Message is used to display inline messages with different severity levels.
 
-```html dark
-<PrimeMessage />
+### Basic
+
+Basic message with different severity levels (info, success, warn, error).
+
+```jsx dark
+<div class="p-message p-message-info">
+  <div class="p-message-content">
+    <div class="p-message-accent-line"></div>
+    <i class="ti ti-info-circle p-message-icon"></i>
+    <div class="p-message-text">
+      <span class="p-message-summary">Message</span>
+      <div class="p-message-detail">caption</div>
+    </div>
+  </div>
+</div>
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Basic">{Template.bind({})}</Story>
 
+### Custom Container
 
-### Custom
+Message with custom container including close button.
 
-```html dark
-<PrimeMessage>
- <template #container="{closeCallback}">
-   <div class="flex flex-col p-4 gap-4">
-     <div class="flex justify-between">
-       <div class="flex gap-4">
-         <i class="ti ti-info-circle text-4xl"/>
-         <div class="flex flex-col gap-1">
-           <div class="body-bold-base">Message</div>
-           <div class="caption-secondary">caption</div>
-         </div>
-       </div>
-       <Button variant="outlined" icon="ti ti-x" severity="info" @click="closeCallback"/>
-     </div>
-     <div>CONTENT</div>
-     <div class="flex gap-2">
-       <div>cell 1</div>
-       <div>cell 2</div>
-     </div>
-   </div>
-</template>
-</PrimeMessage>
+```jsx dark
+<div class="p-message p-message-info">
+  <div class="p-message-content">
+    <div class="p-message-accent-line"></div>
+    <i class="ti ti-info-circle p-message-icon"></i>
+    <div class="p-message-text">
+      <span class="p-message-summary">Message</span>
+      <div class="p-message-detail">caption</div>
+    </div>
+    <Button
+      class="p-message-close-button"
+      icon="ti ti-x"
+      variant="text"
+      
+    />
+  </div>
+</div>
 ```
 
-<Story name="Custom">{CustomContainer.bind({})}</Story>
+<Story name="WithCloseButton">{WithCloseButton.bind({})}</Story>
+
+### With Content
+
+Message with additional content cells below the caption.
+
+```jsx dark
+<div class="p-message p-message-info">
+  <div class="p-message-content">
+    <div class="p-message-accent-line"></div>
+    <i class="ti ti-info-circle p-message-icon"></i>
+    <div class="p-message-text">
+      <span class="p-message-summary">Message</span>
+      <div class="p-message-detail">caption</div>
+      <div class="mt-4">
+        <div class="text-sm">CONTENT</div>
+      </div>
+      <div class="flex gap-2 mt-2">
+        <div class="text-sm">Cell 1</div>
+        <div class="text-sm">Cell 2</div>
+      </div>
+    </div>
+    <Button
+      class="p-message-close-button"
+      icon="ti ti-x"
+      variant="text"
+      
+    />
+  </div>
+</div>
+```
+
+<Story name="WithContent">{WithContent.bind({})}</Story>
