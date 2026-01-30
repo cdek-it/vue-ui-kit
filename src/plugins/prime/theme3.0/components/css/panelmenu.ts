@@ -20,12 +20,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-size: ${dt('fonts.fontSize.base')};
 }
 
-.p-panelmenu-item:not(:has(.p-panelmenu-submenu-icon)).p-focus > .p-panelmenu-item-content {
-  background: ${dt('panelmenu.extend.extItem.activeBackground')};
-  color: ${dt('panelmenu.extend.extItem.activeColor')};
-}
-
-.p-panelmenu-item:not(:has(.p-panelmenu-submenu-icon)).p-focus > .p-panelmenu-item-content .p-panelmenu-item-icon {
+.p-panelmenu-item:not(:has(.p-panelmenu-submenu-icon)).p-menuitem-checked > .p-panelmenu-item-content .p-panelmenu-item-icon {
   color: ${dt('panelmenu.extend.extItem.icon.activeColor')};
 }
 

@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './PanelMenu.template';
+import { Template, IconItemsTemplate } from './PanelMenu.template';
 
 <Meta title="Prime/Menu/PanelMenu" />
 
@@ -11,7 +11,15 @@ import { Template } from './PanelMenu.template';
 ### Basic
 
 ```html dark
-<Menubar :model="items" />
+<PanelMenu :model="items" multiple />
 ```
 
 <Story name="Basic">{Template.bind({})}</Story>
+
+### Icon Items
+
+```html dark
+<PanelMenu :model="items" multiple />
+```
+
+<Story name="Icon Items">{IconItemsTemplate.bind({})}</Story>
