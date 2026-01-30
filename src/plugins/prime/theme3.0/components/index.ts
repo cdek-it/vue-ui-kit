@@ -2369,6 +2369,9 @@ export default {
       extItem: {
         activeBackground: '{navigation.item.activeBackground}',
         activeColor: '{navigation.item.activeColor}',
+        icon: {
+          activeColor: '{navigation.item.icon.activeColor}',
+        },
         caption: {
           color: '{text.mutedColor}',
           gap: '{content.gap.xs}',

@@ -4,6 +4,7 @@ import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
 import dialogCss from './components/css/dialog';
 import drawerCss from './components/css/drawer';
+import panelmenuCss from './components/css/panelmenu';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
@@ -15,6 +16,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${checkboxCss({ dt })}
    ${dialogCss({ dt })}
    ${drawerCss({ dt })}
+   ${panelmenuCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
@@ -43,18 +45,18 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
     padding-bottom: calc(0.5rem - 1px);
   }
    
-  [class*="menu"][class*="item"]:not(.p-disabled).p-menuitem-checked > [class*="item-content"] [class*="icon"] {
-     color: ${dt('menu.item.menuitemActiveIconColor')};
+  [class*="menu"][class*="item"]:not(.p-disabled).p-menuitem-checked:not(:has(.p-panelmenu-submenu-icon)) > [class*="item-content"] [class*="icon"] {
+     color: ${dt('navigation.item.icon.activeColor')};
   }
   
-  [class*="menu"][class*="item"].p-menuitem-checked > [class*="item-content"] {
-    background: ${dt('menuItemMenuitemActiveBg')};
-    color: ${dt('menuItemMenuitemActiveTextColor')};
+  [class*="menu"][class*="item"].p-menuitem-checked:not(:has(.p-panelmenu-submenu-icon)) > [class*="item-content"] {
+    background: ${dt('navigation.item.activeBackground')};
+    color: ${dt('navigation.item.activeColor')};
   }
   
-  [class*="menu"][class*="item"].p-menuitem-checked > [class*="item-content"]:hover {
-    background: ${dt('menuItemMenuitemActiveHoverBg')};
-    color: ${dt('menuItemMenuitemActiveTextColor')};
+  [class*="menu"][class*="item"].p-menuitem-checked:not(:has(.p-panelmenu-submenu-icon)) > [class*="item-content"]:hover {
+    background: ${dt('navigation.item.activeBackground')};
+    color: ${dt('navigation.item.activeColor')};
   }
   
   .p-disabled [class*="menu"][class*="icon"] {
