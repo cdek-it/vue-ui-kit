@@ -4,6 +4,7 @@ import PrimeVue from 'primevue/config';
 import { getPrimeVueConfig } from '@/plugins/prime';
 import Tooltip from 'primevue/tooltip';
 import ConfirmationService from 'primevue/confirmationservice';
+import ToastService from 'primevue/toastservice';
 
 import '../src/tailwind.css';
 import './themes/base.css';
@@ -25,6 +26,7 @@ const mergedConfig = getPrimeVueConfig(storyBookConfig);
 
 app.use(PrimeVue, mergedConfig);
 app.use(ConfirmationService);
+app.use(ToastService);
 app.directive('tooltip', Tooltip);
 
 export const parameters = {
