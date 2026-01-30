@@ -1,0 +1,96 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template, CustomContainer, WithContent } from './Toast.template';
+
+<Meta title="Prime/Toast" />
+
+# Toast
+
+[PrimeVue Toast](https://primevue.org/toast), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=15953-4478)
+
+Toast is used to display messages in an overlay.
+
+### Basic
+
+Basic toast with different severity levels (info, success, warn, error).
+
+```jsx dark
+import { useToast } from 'primevue/usetoast';
+
+const toast = useToast();
+
+toast.add({
+  severity: 'info',
+  summary: 'Message',
+  detail: 'caption',
+  life: 5000,
+  icon: 'ti ti-info-circle'
+});
+
+<Toast />
+```
+
+<Story name="Basic">{Template.bind({})}</Story>
+
+### Custom Container
+
+Toast with custom container template using accent line and styled close button.
+
+```jsx dark
+<Toast>
+  <template #container="{ message, closeCallback }">
+    <div class="p-toast-message-content">
+      <div class="p-toast-accent-line"></div>
+      <i :class="message.icon + ' p-toast-message-icon'"></i>
+      <div class="p-toast-message-text">
+        <span class="p-toast-summary">{{ message.summary }}</span>
+        <div class="p-toast-message-caption">{{ message.detail }}</div>
+      </div>
+      <Button
+        class="p-toast-close-button"
+        icon="ti ti-x"
+        variant="text"
+        rounded
+        @click="closeCallback"
+      />
+    </div>
+  </template>
+</Toast>
+```
+
+<Story name="CustomContainer">{CustomContainer.bind({})}</Story>
+
+### With Content
+
+Toast with additional content cells below the caption.
+
+```jsx dark
+<Toast>
+  <template #container="{ message, closeCallback }">
+    <div class="p-toast-message-content">
+      <div class="p-toast-accent-line"></div>
+      <i :class="message.icon + ' p-toast-message-icon'"></i>
+      <div class="p-toast-message-text">
+        <span class="p-toast-summary">{{ message.summary }}</span>
+        <div class="p-toast-message-caption">{{ message.detail }}</div>
+        <div class="mt-4">
+          <div class="text-sm">CONTENT</div>
+        </div>
+        <div class="flex gap-2 mt-2">
+          <div class="text-sm">Cell 1</div>
+          <div class="text-sm">Cell 2</div>
+        </div>
+      </div>
+      <Button
+        class="p-toast-close-button"
+        icon="ti ti-x"
+        variant="text"
+        rounded
+        @click="closeCallback"
+      />
+    </div>
+  </template>
+</Toast>
+```
+
+<Story name="WithContent">{WithContent.bind({})}</Story>
