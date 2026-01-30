@@ -1,19 +1,65 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './TieredMenu.template';
+import { Template} from './TieredMenu.template';
 
 <Meta title="Prime/Menu/TieredMenu" />
 
 # TieredMenu
 
-[PrimeVue Menu](https://primevue.org/tieredmenu), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12975&m=dev>)
+[PrimeVue TieredMenu](https://primevue.org/tieredmenu), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12975&m=dev>)
+
+TieredMenu displays submenus in nested overlays.
 
 ### Basic
 
-```jsx dark
-const selectedClass = 'p-menuitem-checked';
+Basic usage with nested menu items without selected state.
 
-<PrimeTieredMenu :model="items" />
+```jsx dark
+const items = [
+  {
+    label: 'Home',
+    icon: 'ti ti-user',
+    items: [
+      { label: 'Components' },
+      { label: 'Blocks' },
+      { label: 'UI Kit' },
+      {
+        label: 'Templates',
+        items: [
+          { label: 'Apollo' },
+          { label: 'Ultima' }
+        ]
+      }
+    ]
+  },
+  { label: 'Features' },
+  {
+    label: 'Projects',
+    items: [
+      { label: 'Components' },
+      { label: 'Blocks' }
+    ]
+  }
+];
+
+<TieredMenu :model="items" />
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Basic">{Template.bind({})}</Story>
+
+### With Selected Item
+
+Menu with a selected item highlighted using the `p-menuitem-checked` class.
+
+```jsx dark
+const items = [
+  {
+    label: 'Home',
+    icon: 'ti ti-user',
+    class: 'p-menuitem-checked',
+    items: [...]
+  }
+];
+
+<TieredMenu :model="items" />
+```

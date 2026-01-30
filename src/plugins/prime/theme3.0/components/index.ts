@@ -3235,6 +3235,8 @@ export default {
     },
     submenu: {
       mobileIndent: '{overlay.popover.padding.sm}',
+      background: '{content.background}',
+      borderColor: '{content.borderColor}',
     },
     separator: {
       borderColor: '{content.borderColor}',
