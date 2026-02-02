@@ -1,56 +1,101 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './InputGroup.template';
+import { Template, TemplateStates, TemplateWithText, TemplateMultiple } from './InputGroup.template';
 
 <Meta title="Prime/Form/InputGroup" />
 
 # InputGroup
 
-[PrimeVue InputGroup](https://primevue.org/inputgroup), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5932&node-type=section&t=2PSg63p2UfJ4cUzB-0>)
+[PrimeVue InputGroup](https://primevue.org/inputgroup), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=437-3505)
 
-### Положение иконки
+InputGroup позволяет добавлять иконки или текст до и после поля ввода.
+
+## Базовые примеры
 
 ```html dark
-<!-- Слева -->
+<!-- Левый addon -->
 <PrimeInputGroup>
   <PrimeInputGroupAddon>
     <i class="ti ti-user"></i>
   </PrimeInputGroupAddon>
-  <PrimeInputText />
+  <PrimeInputText placeholder="Placeholder" />
 </PrimeInputGroup>
-```
 
-<Story name="LeftIcon" args={{ icon: 'left' }}>
-  {Template.bind({})}
-</Story>
-
-```html dark
-<!-- Справа -->
+<!-- Правый addon -->
 <PrimeInputGroup>
-  <PrimeInputText />
+  <PrimeInputText placeholder="Placeholder" />
   <PrimeInputGroupAddon>
     <i class="ti ti-user"></i>
   </PrimeInputGroupAddon>
 </PrimeInputGroup>
-```
 
-<Story name="RightIcon" args={{ icon: 'right' }}>
-  {Template.bind({})}
-</Story>
-
-```html dark
-<!-- Слева и справа -->
+<!-- Оба addon -->
 <PrimeInputGroup>
   <PrimeInputGroupAddon>
     <i class="ti ti-user"></i>
   </PrimeInputGroupAddon>
-  <PrimeInputText />
+  <PrimeInputText placeholder="Placeholder" />
   <PrimeInputGroupAddon>
     <i class="ti ti-user"></i>
   </PrimeInputGroupAddon>
 </PrimeInputGroup>
 ```
 
-<Story name="BothIcons" args={{ icon: 'both' }}>
-  {Template.bind({})}
-</Story>
+<Story name="Primary">{Template.bind({})}</Story>
+
+## Состояния
+
+Различные состояния InputGroup с разными позициями addon.
+
+```html dark
+<PrimeInputGroup>
+  <PrimeInputGroupAddon>
+    <i class="ti ti-user"></i>
+  </PrimeInputGroupAddon>
+  <PrimeInputText placeholder="Placeholder" invalid />
+</PrimeInputGroup>
+```
+
+<Story name="States">{TemplateStates.bind({})}</Story>
+
+## С текстом
+
+InputGroup может содержать текстовые addon вместо иконок.
+
+```html dark
+<PrimeInputGroup>
+  <PrimeInputGroupAddon>@</PrimeInputGroupAddon>
+  <PrimeInputText placeholder="Username" />
+</PrimeInputGroup>
+
+<PrimeInputGroup>
+  <PrimeInputText placeholder="Price" />
+  <PrimeInputGroupAddon>$</PrimeInputGroupAddon>
+</PrimeInputGroup>
+
+<PrimeInputGroup>
+  <PrimeInputGroupAddon>https://</PrimeInputGroupAddon>
+  <PrimeInputText placeholder="example.com" />
+  <PrimeInputGroupAddon>.com</PrimeInputGroupAddon>
+</PrimeInputGroup>
+```
+
+<Story name="WithText">{TemplateWithText.bind({})}</Story>
+
+## Множественные addon
+
+Можно добавить несколько addon с одной стороны.
+
+```html dark
+<PrimeInputGroup>
+  <PrimeInputGroupAddon>
+    <i class="ti ti-user"></i>
+  </PrimeInputGroupAddon>
+  <PrimeInputGroupAddon>
+    <i class="ti ti-mail"></i>
+  </PrimeInputGroupAddon>
+  <PrimeInputText placeholder="Placeholder" />
+</PrimeInputGroup>
+```
+
+<Story name="Multiple">{TemplateMultiple.bind({})}</Story>
