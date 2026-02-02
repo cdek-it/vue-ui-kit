@@ -31,6 +31,7 @@ export default {
       md: '{spacing.4}',
       lg: '{spacing.5}',
       xlg: '{spacing.6}',
+      '2xlg': '{spacing.7}',
     },
     borderRadius: {
       sm: '{borderRadius.sm}',

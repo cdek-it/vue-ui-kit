@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './FloatLabel.template';
+import { Template, TemplateWithIcon } from './FloatLabel.template';
 
 <Meta title="Prime/Form/FloatLabel" />
 
@@ -28,22 +28,22 @@ import { Template } from './FloatLabel.template';
   {Template.bind({})}
 </Story>
 
-### Textarea
+### With Icon
 
-Какие пропсы передавать в textarea см. [Textarea](/docs/prime-form-textarea--primary)
+FloatLabel с иконкой закрытия. Иконка появляется только когда введен хотя бы 1 символ.
 
 ```html dark
 <PrimeFloatLabel variant="in">
-  <PrimeTextarea id="textarea" />
-  <label for="textarea">FloatLabel</label>
+  <PrimeIconField>
+    <PrimeInputText id="username" v-model="inputValue" />
+    <PrimeInputIcon @click="onClickDelete">
+      <i class="ti ti-x" />
+    </PrimeInputIcon>
+  </PrimeIconField>
+  <label for="username">Username</label>
 </PrimeFloatLabel>
 ```
 
-<Story
-  name="Textarea"
-  args={{
-    component: 'Textarea',
-  }}
->
-  {Template.bind({})}
+<Story name="WithIcon">
+  {TemplateWithIcon.bind({})}
 </Story>

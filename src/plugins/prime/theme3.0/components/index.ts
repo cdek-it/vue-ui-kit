@@ -1380,8 +1380,8 @@ export default {
       activeColor: '{form.floatLabelActiveColor}',
       invalidColor: '{form.floatLabelInvalidColor}',
       transitionDuration: '{form.transitionDuration}',
-      positionX: '{form.padding.sm}',
-      positionY: '{form.padding.sm}',
+      positionX: '{form.padding.md}',
+      positionY: '{form.padding.md}',
       fontWeight: '{fonts.fontWeight.regular}',
       active: {
         fontSize: '{fonts.fontSize.sm}',
@@ -1395,11 +1395,11 @@ export default {
     },
     inside: {
       input: {
-        paddingTop: '{form.padding.md}',
+        paddingTop: '{form.padding.2xlg}',
         paddingBottom: '{form.padding.sm}',
       },
       active: {
-        top: '{form.padding.sm}',
+        top: '{form.padding.md}',
       },
     },
     on: {
@@ -1870,7 +1870,7 @@ export default {
       disabledColor: '{form.disabledColor}',
       placeholderColor: '{form.placeholderColor}',
       invalidPlaceholderColor: '{form.invalidPlaceholderColor}',
-      shadow: '{form.shadow}',
+      shadow: '0',
       paddingX: '{sizing.form.root.paddingX}',
       paddingY: '{sizing.form.root.paddingY}',
       borderRadius: '{form.borderRadius.md}',
@@ -1890,7 +1890,7 @@ export default {
         style: '{form.focusRing.style}',
         color: '{form.focusRing.color}',
         offset: '{form.focusRing.offset}',
-        shadow: '{focusRing.shadow}',
+        shadow: '0',
       },
     },
   },
