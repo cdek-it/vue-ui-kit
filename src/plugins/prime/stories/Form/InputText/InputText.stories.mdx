@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template, TemplateWithIcons } from './InputText.template';
+import { Template, TemplateWithIcons, TemplateSizes, TemplateFloatLabel } from './InputText.template';
 
 <Meta title="Prime/Form/InputText" />
 
@@ -14,6 +14,11 @@ import { Template, TemplateWithIcons } from './InputText.template';
 
 <Story name="Primary">{Template.bind({})}</Story>
 
+# Размеры
+<Story name="Sizes">{TemplateSizes.bind({})}</Story>
+
+# Float Label
+<Story name="Float Label">{TemplateFloatLabel.bind({})}</Story>
 
 # С иконками
 Логика на работу крестика не прописана в ui-ките, на данный момент должна быть прописана на стороне приложения

@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import FloatLabel from 'primevue/floatlabel';
 import InputText from 'primevue/inputtext';
-import Textarea from 'primevue/textarea';
+import { IconField, InputIcon } from 'primevue';
 
 export const Template = (args) => ({
-  components: { FloatLabel, InputText, Textarea },
+  components: { FloatLabel, InputText },
   setup() {
     const value1 = ref('text input');
     const value2 = ref('text input');
@@ -49,4 +49,28 @@ export const Template = (args) => ({
   </FloatLabel>
 </div>
 `,
+});
+
+export const TemplateWithIcon = (args) => ({
+  components: { FloatLabel, InputText, IconField, InputIcon },
+  setup() {
+    const inputValue = ref('');
+
+    const onClickDelete = () => {
+      inputValue.value = '';
+    };
+
+    return { args, inputValue, onClickDelete };
+  },
+  template: `
+    <FloatLabel variant="in">
+      <IconField>
+        <InputText id="username" v-model="inputValue" />
+        <InputIcon @click="onClickDelete">
+          <i class="ti ti-x" />
+        </InputIcon>
+      </IconField>
+      <label for="username">Username</label>
+    </FloatLabel>
+  `,
 });

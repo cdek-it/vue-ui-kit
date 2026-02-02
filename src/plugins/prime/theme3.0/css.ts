@@ -4,6 +4,8 @@ import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
 import dialogCss from './components/css/dialog';
 import drawerCss from './components/css/drawer';
+import floatLabelCss from './components/css/floatlabel';
+import inputTextCss from './components/css/inputtext';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
@@ -15,6 +17,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${checkboxCss({ dt })}
    ${dialogCss({ dt })}
    ${drawerCss({ dt })}
+   ${floatLabelCss({ dt })}
+   ${inputTextCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
