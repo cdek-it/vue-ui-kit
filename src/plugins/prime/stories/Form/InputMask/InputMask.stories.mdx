@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './InputMask.template';
+import { Template, TemplateSizes, TemplateFloatLabel, TemplateWithIcons, TemplateMasks } from './InputMask.template';
 
 <Meta title="Prime/Form/InputMask" />
 
@@ -8,8 +8,66 @@ import { Template } from './InputMask.template';
 
 [PrimeVue InputMask](https://primevue.org/inputmask), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5521&node-type=section&t=2PSg63p2UfJ4cUzB-0>)
 
+InputMask компонент для ввода данных с маской форматирования.
+
+## Базовые состояния
+
 ```html dark
-<PrimeInputMask v-model="value" mask="99-999999" placeholder="99-999999" />
+<PrimeInputMask mask="99-999999" placeholder="99-999999" />
+<PrimeInputMask mask="99-999999" placeholder="99-999999" invalid />
+<PrimeInputMask mask="99-999999" placeholder="99-999999" disabled />
+<PrimeInputMask mask="99-999999" placeholder="99-999999" readonly />
 ```
 
 <Story name="Primary">{Template.bind({})}</Story>
+
+## Размеры
+
+```html dark
+<PrimeInputMask mask="99-999999" placeholder="Small" size="small" />
+<PrimeInputMask mask="99-999999" placeholder="Normal" />
+<PrimeInputMask mask="99-999999" placeholder="Large" size="large" />
+<PrimeInputMask mask="99-999999" placeholder="XLarge" class="p-inputtext-xlg" />
+```
+
+<Story name="Sizes">{TemplateSizes.bind({})}</Story>
+
+## FloatLabel
+
+```html dark
+<PrimeFloatLabel variant="in">
+  <PrimeInputMask id="phone" v-model="value" mask="99-999999" />
+  <label for="phone">Phone Number</label>
+</PrimeFloatLabel>
+```
+
+<Story name="FloatLabel">{TemplateFloatLabel.bind({})}</Story>
+
+## С иконкой
+
+InputMask с иконкой закрытия. Иконка появляется только когда введен хотя бы 1 символ.
+
+```html dark
+<PrimeIconField>
+  <PrimeInputMask v-model="inputValue" mask="99-999999" placeholder="99-999999" />
+  <PrimeInputIcon @click="onClickDelete">
+    <i class="ti ti-x" />
+  </PrimeInputIcon>
+</PrimeIconField>
+```
+
+<Story name="WithIcons">{TemplateWithIcons.bind({})}</Story>
+
+## Примеры масок
+
+Различные форматы масок для разных типов данных.
+
+```html dark
+<PrimeInputMask mask="99-999999" placeholder="Phone: 99-999999" />
+<PrimeInputMask mask="99.99.9999" placeholder="Date: dd.mm.yyyy" />
+<PrimeInputMask mask="(999) 999-9999" placeholder="Phone US: (999) 999-9999" />
+<PrimeInputMask mask="99:99" placeholder="Time: 99:99" />
+<PrimeInputMask mask="a*-999-a999" placeholder="Serial: a*-999-a999" />
+```
+
+<Story name="Masks">{TemplateMasks.bind({})}</Story>
