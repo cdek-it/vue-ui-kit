@@ -1,60 +1,67 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './InputNumber.template';
+import { Template, TemplateSizes, TemplateFloatLabel, TemplateFormats, TemplateMinMax } from './InputNumber.template';
 
 <Meta title="Prime/Form/InputNumber" />
 
 # InputNumber
 
-[PrimeVue InputNumber](https://primevue.org/inputnumber), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5675&node-type=section&t=2PSg63p2UfJ4cUzB-0>)
+[PrimeVue InputNumber](https://primevue.org/inputnumber), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=379-1695)
 
-### Число
+InputNumber компонент для ввода числовых значений с кнопками увеличения/уменьшения.
+
+## Базовые состояния
 
 ```html dark
-<PrimeInputNumber v-model="value" />
+<PrimeInputNumber placeholder="0" showButtons buttonLayout="horizontal" />
+<PrimeInputNumber placeholder="0" showButtons buttonLayout="horizontal" invalid />
+<PrimeInputNumber placeholder="0" showButtons buttonLayout="horizontal" disabled />
+<PrimeInputNumber placeholder="0" showButtons buttonLayout="horizontal" readonly />
 ```
 
 <Story name="Primary">{Template.bind({})}</Story>
 
-### Валюта
+## Размеры
 
 ```html dark
-<PrimeInputNumber
-  v-model="value"
-  mode="currency"
-  currency="RUB"
-  locale="ru-RU"
-/>
+<PrimeInputNumber placeholder="Small" size="small" showButtons buttonLayout="horizontal" />
+<PrimeInputNumber placeholder="Normal" showButtons buttonLayout="horizontal" />
+<PrimeInputNumber placeholder="Large" size="large" showButtons buttonLayout="horizontal" />
 ```
 
-<Story
-  name="Currency"
-  args={{ mode: 'currency', currency: 'RUB', locale: 'ru-RU' }}
->
-  {Template.bind()}
-</Story>
+<Story name="Sizes">{TemplateSizes.bind({})}</Story>
 
-### Кнопки плюс/минус
+## FloatLabel
 
 ```html dark
-<PrimeInputNumber
-  v-model="value"
-  show-buttons
-  button-layout="horizontal"
-  increment-icon="ti ti-plus"
-  decrement-icon="ti ti-minus"
-/>
+<PrimeFloatLabel variant="in">
+  <PrimeInputNumber id="number" v-model="value" showButtons buttonLayout="horizontal" />
+  <label for="number">Number</label>
+</PrimeFloatLabel>
 ```
 
-<Story
-  name="Plus/Minus Buttons"
-  args={{
-    showButtons: true,
-    buttonLayout: 'horizontal',
-    story: 'Plus/Minus',
-    incrementIcon: 'ti ti-plus',
-    decrementIcon: 'ti ti-minus',
-  }}
->
-  {Template.bind()}
-</Story>
+<Story name="FloatLabel">{TemplateFloatLabel.bind({})}</Story>
+
+## Форматы
+
+Различные форматы отображения чисел.
+
+```html dark
+<PrimeInputNumber placeholder="Integer" showButtons buttonLayout="horizontal" />
+<PrimeInputNumber placeholder="Decimal" :min-fraction-digits="2" :max-fraction-digits="2" showButtons buttonLayout="horizontal" />
+<PrimeInputNumber placeholder="Currency" mode="currency" currency="USD" locale="en-US" showButtons buttonLayout="horizontal" />
+<PrimeInputNumber placeholder="Percent" suffix="%" showButtons buttonLayout="horizontal" />
+```
+
+<Story name="Formats">{TemplateFormats.bind({})}</Story>
+
+## Min/Max и Step
+
+Ограничения и шаг изменения значения.
+
+```html dark
+<PrimeInputNumber placeholder="Min: 0, Max: 100" :min="0" :max="100" showButtons buttonLayout="horizontal" />
+<PrimeInputNumber placeholder="Step: 5" :step="5" showButtons buttonLayout="horizontal" />
+```
+
+<Story name="MinMax">{TemplateMinMax.bind({})}</Story>

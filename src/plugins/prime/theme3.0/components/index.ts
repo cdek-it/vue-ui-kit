@@ -1801,12 +1801,13 @@ export default {
       borderWidth: '{form.borderWidth}',
       extButton: {
         height: '{form.size.4xlg}',
+        iconSize: '{form.icon.md}',
       },
     },
     colorScheme: {
       light: {
         button: {
-          background: '{transparent}',
+          background: '{content.background}',
           hoverBackground: '{content.hoverBackground}',
           activeBackground: '{transparent}',
           borderColor: '{form.borderColor}',
