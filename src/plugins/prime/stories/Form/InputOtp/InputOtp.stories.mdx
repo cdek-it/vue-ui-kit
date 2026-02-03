@@ -1,15 +1,51 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './InputOtp.template';
+import { Template, TemplateLength, TemplateIntegerOnly, TemplateMask } from './InputOtp.template';
 
 <Meta title="Prime/Form/InputOtp" />
 
 # InputOtp
 
-[PrimeVue InputOtp](https://primevue.org/inputotp), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-6034&node-type=section&t=2PSg63p2UfJ4cUzB-0>)
+[PrimeVue InputOtp](https://primevue.org/inputotp), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=318-1315)
+
+InputOtp используется для ввода одноразовых паролей (OTP). Каждый символ вводится в отдельное поле.
+
+## Базовый пример
 
 ```html dark
 <PrimeInputOtp v-model="value" />
 ```
 
 <Story name="Primary">{Template.bind({})}</Story>
+
+## Длина кода
+
+Используйте prop `length` для указания количества символов в коде.
+
+```html dark
+<PrimeInputOtp v-model="value" :length="4" />
+<PrimeInputOtp v-model="value" :length="6" />
+```
+
+<Story name="Length">{TemplateLength.bind({})}</Story>
+
+## Только цифры
+
+Используйте prop `integerOnly` для ограничения ввода только цифрами.
+
+```html dark
+<PrimeInputOtp v-model="value" integerOnly />
+```
+
+<Story name="Integer Only">{TemplateIntegerOnly.bind({})}</Story>
+
+## Маскированный ввод
+
+Используйте prop `mask` для скрытия введенных символов (режим пароля).
+
+```html dark
+<PrimeInputOtp v-model="value" mask />
+```
+
+<Story name="Mask">{TemplateMask.bind({})}</Story>
+

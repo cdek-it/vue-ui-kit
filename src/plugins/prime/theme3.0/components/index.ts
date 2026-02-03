@@ -1836,7 +1836,7 @@ export default {
       gap: '{form.gap.xs}',
     },
     input: {
-      width: '{form.width.md}',
+      width: '{form.width.lg}',
     },
     sm: {
       width: '0',
