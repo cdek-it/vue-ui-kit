@@ -9,6 +9,7 @@ import inputTextCss from './components/css/inputtext';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
+import selectCss from './components/css/select';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
@@ -20,6 +21,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${floatLabelCss({ dt })}
    ${inputTextCss({ dt })}
    ${ratingCss({ dt })}
+   ${selectCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
 

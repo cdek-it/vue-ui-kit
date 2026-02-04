@@ -13,9 +13,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 /* Размер XLarge для InputText */
 .p-inputtext-xlg {
   font-size: ${dt('inputtext.extend.extXlg.fontSize')};
-  padding: ${dt('inputtext.extend.extXlg.paddingY')} ${dt(
-  'inputtext.extend.extXlg.paddingX'
-)};
+  padding-inline: ${dt('inputtext.extend.extXlg.paddingX')};
+  padding-block: ${dt('inputtext.extend.extXlg.paddingY')};
 }
 
 /* Ширина контейнера IconField */
@@ -32,8 +31,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Скрытие иконки когда input пустой */
-.p-iconfield:has(.p-inputtext:placeholder-shown) .p-inputicon,
-.p-iconfield:has(.p-inputtext:not(.p-filled)) .p-inputicon {
+.p-iconfield:has(.p-inputtext:is(:placeholder-shown, :not(.p-filled))) .p-inputicon {
   display: none;
 }
 `;
