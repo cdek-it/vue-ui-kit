@@ -1,6 +1,7 @@
 import { ref } from 'vue';
 import Password from 'primevue/password';
 import FloatLabel from 'primevue/floatlabel';
+import Divider from 'primevue/divider';
 
 export const Template = (args) => ({
   components: { Password },
@@ -71,7 +72,7 @@ export const TemplateFloatLabel = (args) => ({
 });
 
 export const TemplateCustom = (args) => ({
-  components: { Password },
+  components: { Password, Divider },
   setup() {
     const password = ref('');
 
@@ -103,25 +104,15 @@ export const TemplateCustom = (args) => ({
       });
     };
 
-    const getColor = (icon) => {
-      switch (icon) {
-        case 'ti-circle-check':
-          return 'green';
-        case 'ti-circle-x':
-          return 'red';
-        default:
-          return 'grey';
-      }
-    };
-
-    return { password, rules, checkRules, getColor, args };
+    return { password, rules, checkRules, args };
   },
   template: `
 <Password placeholder="Password" v-model="password" @input="checkRules" toggleMask v-bind="args">
   <template #footer>
-    <div :style="{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }">
-      <div v-for="rule in rules" :key="rule.label" :style="{ display: 'flex', alignItems: 'center', gap: '0.5rem' }">
-        <i class="ti" :class="rule.icon" :style="{ color: getColor(rule.icon) }" />
+    <Divider />
+    <div class="p-password-rules">
+      <div v-for="rule in rules" :key="rule.label" class="p-password-rule">
+        <i class="ti" :class="rule.icon" />
         <span>{{ rule.label }}</span>
       </div>
     </div>
