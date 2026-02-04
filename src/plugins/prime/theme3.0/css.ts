@@ -9,6 +9,7 @@ import inputTextCss from './components/css/inputtext';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
+import multiSelectCss from './components/css/multiselect';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
@@ -22,6 +23,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
+   ${multiSelectCss({ dt })}
 
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
