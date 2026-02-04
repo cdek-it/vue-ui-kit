@@ -2432,15 +2432,15 @@ export default {
           mediumBackground: '{warn.500}',
           strongBackground: '{success.600}',
         },
+        icon: {
+          color: '{text.color}',
+        },
       },
     },
     meter: {
       background: '{content.borderColor}',
       borderRadius: '{content.borderRadius}',
       height: '{feedback.height.sm}',
-    },
-    icon: {
-      color: '{text.color}',
     },
     overlay: {
       background: '{overlay.popover.background}',

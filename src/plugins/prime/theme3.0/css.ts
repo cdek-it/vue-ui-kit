@@ -6,6 +6,7 @@ import dialogCss from './components/css/dialog';
 import drawerCss from './components/css/drawer';
 import floatLabelCss from './components/css/floatlabel';
 import inputTextCss from './components/css/inputtext';
+import passwordCss from './components/css/password';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
@@ -19,6 +20,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${drawerCss({ dt })}
    ${floatLabelCss({ dt })}
    ${inputTextCss({ dt })}
+   ${passwordCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
