@@ -6,30 +6,13 @@ import { Template } from './MultiSelect.template';
 
 # MultiSelect
 
-[PrimeVue MultiSelect](https://primevue.org/multiselect), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5726&node-type=section&t=1Q8VTt6Y4LnVAfrv-0>)
+[PrimeVue MultiSelect](https://primevue.org/multiselect), [Макет](<https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=369-1548&t=j8q05RFyXpKxntpS-11>)
 
-### Comma Separated
+### Default (Comma Separated)
 
-```html dark
-<PrimeMultiSelect
-  v-model="value"
-  :options="options"
-  placeholder="MultiSelect"
-/>
-```
-
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Primary" args={{ display: 'comma' }}>{Template.bind({})}</Story>
 
 ### Chips
-
-```html dark
-<PrimeMultiSelect
-  v-model="value"
-  :options="options"
-  placeholder="MultiSelect"
-  display="chip"
-/>
-```
 
 <Story name="Chips" args={{ display: 'chip' }}>
   {Template.bind({})}

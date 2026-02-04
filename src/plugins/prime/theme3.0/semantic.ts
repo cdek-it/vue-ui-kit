@@ -65,6 +65,7 @@ export default {
       md: '{sizing.10}',
       lg: '{sizing.12}',
       '10xlg': '{sizing.60}',
+      '11xlg': '{sizing.68}',
       full: '{sizing.max}',
     },
     gap: {
@@ -805,6 +806,7 @@ export default {
   sizing: {
     form: {
       root: {
+        width: '{sizing.68}',
         fontSize: '{fonts.fontSize.base}',
         paddingX: '{spacing.4}',
         paddingY: '{spacing.4}',
