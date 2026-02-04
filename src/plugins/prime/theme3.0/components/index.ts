@@ -2651,7 +2651,7 @@ export default {
         style: '{form.focusRing.style}',
         color: '{form.focusRing.color}',
         offset: '{form.focusRing.offset}',
-        shadow: '{focusRing.shadow}',
+        shadow: '0',
       },
     },
     dropdown: {
