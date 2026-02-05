@@ -3153,6 +3153,7 @@ export default {
       readonlyBackground: '{form.readonlyBackground}',
       borderWidth: '{form.borderWidth}',
       iconSize: '{form.icon.md}',
+      minHeight: '{form.size.7xlg}',
     },
     root: {
       background: '{form.background}',
@@ -3168,9 +3169,9 @@ export default {
       disabledColor: '{form.disabledColor}',
       placeholderColor: '{form.placeholderColor}',
       invalidPlaceholderColor: '{form.invalidPlaceholderColor}',
-      shadow: '{form.shadow}',
-      paddingX: '{form.padding.sm}',
-      paddingY: '{form.padding.sm}',
+      shadow: '0',
+      paddingX: '{sizing.form.paddingX}',
+      paddingY: '{sizing.form.paddingY}',
       borderRadius: '{form.borderRadius.md}',
       transitionDuration: '{form.transitionDuration}',
       focusRing: {
@@ -3178,7 +3179,7 @@ export default {
         style: '{form.focusRing.style}',
         color: '{form.focusRing.color}',
         offset: '{form.focusRing.offset}',
-        shadow: '{focusRing.shadow}',
+        shadow: '0',
       },
     },
     sm: {

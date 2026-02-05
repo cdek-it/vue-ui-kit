@@ -1,15 +1,131 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Textarea.template';
+import { 
+  Template, 
+  TemplateSizes, 
+  TemplateReadonly,
+  TemplateFloatLabel,
+  TemplateFloatLabelSizes,
+  TemplateFloatLabelStates,
+  TemplateWithClearIcon
+} from './Textarea.template';
 
 <Meta title="Prime/Form/Textarea" />
 
 # Textarea
 
-[PrimeVue Textarea](https://primevue.org/textarea), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-5624&t=SXHhPDfEhr0q0Ofq-4>)
+[PrimeVue Textarea](https://primevue.org/textarea), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=309-1582&t=j8q05RFyXpKxntpS-11)
+
+## Basic States
 
 ```html dark
-<PrimeTextarea v-model="value" placeholder="InputTextarea" rows="6" />
+<Textarea v-model="value" placeholder="Placeholder" rows="6" />
 ```
 
 <Story name="Primary">{Template.bind({})}</Story>
+
+## Sizes
+
+Textarea поддерживает три размера: `small`, default (medium), и `large`.
+
+```html dark
+<Textarea v-model="value" placeholder="Placeholder" rows="6" size="small" />
+<Textarea v-model="value" placeholder="Placeholder" rows="6" />
+<Textarea v-model="value" placeholder="Placeholder" rows="6" size="large" />
+```
+
+<Story name="Sizes">{TemplateSizes.bind({})}</Story>
+
+## Readonly
+
+Состояние `readonly` позволяет отображать текст без возможности редактирования.
+
+```html dark
+<Textarea v-model="value" placeholder="Placeholder" rows="6" readonly />
+```
+
+<Story name="Readonly">{TemplateReadonly.bind({})}</Story>
+
+## Float Label
+
+FloatLabel поддерживает три варианта: `over`, `in`, и `on`.
+
+```html dark
+<FloatLabel variant="over">
+  <Textarea v-model="value" inputId="textarea_over" rows="6" />
+  <label for="textarea_over">FloatLabel</label>
+</FloatLabel>
+
+<FloatLabel variant="in">
+  <Textarea v-model="value" inputId="textarea_in" rows="6" />
+  <label for="textarea_in">FloatLabel</label>
+</FloatLabel>
+
+<FloatLabel variant="on">
+  <Textarea v-model="value" inputId="textarea_on" rows="6" />
+  <label for="textarea_on">FloatLabel</label>
+</FloatLabel>
+```
+
+<Story name="Float Label">{TemplateFloatLabel.bind({})}</Story>
+
+## Float Label Sizes
+
+FloatLabel с различными размерами Textarea.
+
+```html dark
+<FloatLabel variant="in">
+  <Textarea v-model="value" inputId="textarea_sm" rows="6" size="small" />
+  <label for="textarea_sm">FloatLabel</label>
+</FloatLabel>
+
+<FloatLabel variant="in">
+  <Textarea v-model="value" inputId="textarea_md" rows="6" />
+  <label for="textarea_md">FloatLabel</label>
+</FloatLabel>
+
+<FloatLabel variant="in">
+  <Textarea v-model="value" inputId="textarea_lg" rows="6" size="large" />
+  <label for="textarea_lg">FloatLabel</label>
+</FloatLabel>
+```
+
+<Story name="Float Label Sizes">{TemplateFloatLabelSizes.bind({})}</Story>
+
+## Float Label States
+
+FloatLabel с различными состояниями (default, invalid, disabled).
+
+```html dark
+<FloatLabel variant="in">
+  <Textarea v-model="value" inputId="textarea_default" rows="6" />
+  <label for="textarea_default">FloatLabel</label>
+</FloatLabel>
+
+<FloatLabel variant="in">
+  <Textarea v-model="value" inputId="textarea_invalid" rows="6" invalid />
+  <label for="textarea_invalid">FloatLabel</label>
+</FloatLabel>
+
+<FloatLabel variant="in">
+  <Textarea v-model="value" inputId="textarea_disabled" rows="6" disabled />
+  <label for="textarea_disabled">FloatLabel</label>
+</FloatLabel>
+```
+
+<Story name="Float Label States">{TemplateFloatLabelStates.bind({})}</Story>
+
+## With Clear Icon
+
+Textarea с кнопкой удаления текста. Иконка автоматически скрывается, когда поле пустое.
+
+```html dark
+<IconField>
+  <Textarea v-model="value" placeholder="Placeholder" rows="6" />
+  <InputIcon @click="clearValue">
+    <i class="ti ti-x" />
+  </InputIcon>
+</IconField>
+```
+
+<Story name="With Clear Icon">{TemplateWithClearIcon.bind({})}</Story>
