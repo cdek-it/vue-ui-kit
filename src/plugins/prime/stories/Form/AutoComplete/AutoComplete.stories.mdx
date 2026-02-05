@@ -1,0 +1,24 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { Template, TemplateMultiple, TemplateFloatLabel } from './AutoComplete.template';
+
+<Meta title="Prime/Form/AutoComplete" />
+
+# AutoComplete
+
+[PrimeVue AutoComplete](https://primevue.org/autocomplete/)
+
+```html dark
+<PrimeAutoComplete v-model="value" :suggestions="filteredItems" @complete="search" placeholder="AutoComplete" />
+```
+
+## Single Selection
+
+<Story name="Primary">{Template.bind({})}</Story>
+
+## Multiple Selection
+
+<Story name="Multiple">{TemplateMultiple.bind({})}</Story>
+
+## Float Label
+
+<Story name="Float Label">{TemplateFloatLabel.bind({})}</Story>

@@ -96,10 +96,17 @@ export default {
       disabledColor: '{form.disabledColor}',
       placeholderColor: '{form.placeholderColor}',
       invalidPlaceholderColor: '{form.invalidPlaceholderColor}',
-      shadow: '{form.shadow}',
+      shadow: '0',
       paddingX: '{form.padding.sm}',
       paddingY: '{form.padding.sm}',
       borderRadius: '{form.borderRadius.md}',
+      focusRing: {
+        width: '{focusRing.width}',
+        style: '{focusRing.style}',
+        color: '{focusRing.color}',
+        offset: '{focusRing.offset}',
+        shadow: '0',
+      },
       transitionDuration: '{form.transitionDuration}',
     },
     overlay: {
@@ -141,7 +148,7 @@ export default {
         style: '{form.focusRing.style}',
         color: '{form.focusRing.color}',
         offset: '{form.focusRing.offset}',
-        shadow: '{focusRing.shadow}',
+        shadow: '0',
       },
       sm: {
         width: '{form.width.sm}',
