@@ -8,6 +8,7 @@ import floatLabelCss from './components/css/floatlabel';
 import inputTextCss from './components/css/inputtext';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
+import textareaCss from './components/css/textarea';
 import tooltipCss from './components/css/tooltip';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
@@ -21,6 +22,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${inputTextCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
+   ${textareaCss({ dt })}
    ${tooltipCss({ dt })}
 
   .p-disabled, .p-component:disabled {

@@ -52,6 +52,7 @@ export default {
       '4xlg': '{sizing.10}',
       '5xlg': '{sizing.12}',
       '6xlg': '{sizing.16}',
+      '7xlg': '{sizing.20}',
     },
     icon: {
       sm: '{sizing.3}',
