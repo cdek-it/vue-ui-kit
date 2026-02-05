@@ -3274,7 +3274,9 @@ export default {
   },
   togglebutton: {
     extend: {
-      gap: '{form.gap.sm}',
+      ext: {
+        gap: '{form.gap.sm}',
+      },
       iconSize: {
         sm: '{controls.iconOnly.xs}',
         md: '{controls.iconOnly.sm}',
@@ -3336,11 +3338,11 @@ export default {
         shadow: '{focusRing.shadow}',
       },
       sm: {
-        fontSize: '{fonts.fontSize.base}',
-        padding: '{form.padding.sm} {form.padding.tn}',
+        fontSize: '{fonts.fontSize.sm}',
+        padding: '{form.padding.xs} {form.padding.sm} ',
       },
       lg: {
-        fontSize: '{fonts.fontSize.base}',
+        fontSize: '{fonts.fontSize.xl}',
         padding: '{form.padding.md} {form.padding.xlg}',
       },
       transitionDuration: '{form.transitionDuration}',
