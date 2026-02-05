@@ -2696,13 +2696,20 @@ export default {
   },
   selectbutton: {
     extend: {
+      gap: '{form.gap.tn}',
+      checkedBackground: '{form.background}',
+      checkedBorderColor: '{form.background}',
+      checkedColor: '{form.color}',
+      ext: {
+        borderRadius: '{form.borderRadius.sm}',
+      },
       paddingX: '{controls.padding.xs}',
       paddingY: '{controls.padding.xs}',
       iconSize: {
         sm: '{controls.iconOnly.xs}',
         md: '{controls.iconOnly.sm}',
         lg: '{controls.iconOnly.md}',
-        xlg: '{controls.iconOnly.xlg}',
+        xlg: '{controls.iconOnly.lg}',
       },
     },
     colorScheme: {
@@ -2716,7 +2723,7 @@ export default {
       },
     },
     root: {
-      borderRadius: '{form.borderRadius.max}',
+      borderRadius: '{form.borderRadius.md}',
     },
   },
   skeleton: {
