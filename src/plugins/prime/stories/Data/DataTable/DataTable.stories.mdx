@@ -1,0 +1,27 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { Template, TemplateStriped, TemplateSelectable } from './DataTable.template';
+
+<Meta title="Prime/Data/DataTable" />
+
+# DataTable
+
+[PrimeVue DataTable](https://primevue.org/datatable/)
+
+```html dark
+<PrimeDataTable :value="products">
+  <Column field="code" header="Код" sortable></Column>
+  <Column field="name" header="Название" sortable></Column>
+</PrimeDataTable>
+```
+
+## Basic
+
+<Story name="Primary">{Template.bind({})}</Story>
+
+## Striped Rows
+
+<Story name="Striped">{TemplateStriped.bind({})}</Story>
+
+## Selectable
+
+<Story name="Selectable">{TemplateSelectable.bind({})}</Story>
