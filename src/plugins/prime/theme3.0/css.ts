@@ -7,6 +7,7 @@ import drawerCss from './components/css/drawer';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
+import galleriaCss from './components/css/galleria';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
@@ -18,6 +19,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
+   ${galleriaCss({ dt })}
 
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
