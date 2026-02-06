@@ -1,0 +1,94 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import {
+  BasicTemplate,
+  CustomHeaderTemplate,
+  StatesTemplate,
+} from './DatePicker.template';
+
+<Meta title="Prime/Form/DatePicker" />
+
+# DatePicker
+
+[PrimeVue DatePicker](https://primevue.org/datepicker/) — компонент для выбора даты и времени.
+
+## Custom Header (Month/Year Selects)
+
+Пример полной замены заголовка с использованием слота `#header`. 
+
+В PrimeVue 4.x слот `#header` является первым дочерним элементом контейнера хедера, но не заменяет остальные элементы (кнопки навигации и стандартный текстовый заголовок). Для достижения "чистой" замены всей структуры необходимо:
+1. Описать весь новый заголовок в слоте `#header`.
+2. Скрыть нативные элементы через PassThrough свойства `pcPrevButton`, `pcNextButton` и `title`.
+
+Такой подход гарантирует, что в DOM будет присутствовать только один набор органов управления в нужном порядке.
+
+### Реализация
+
+```javascript
+<DatePicker 
+    ref="dp"
+    v-model="date"
+    :pt="{
+        pcPrevButton: { class: 'hidden' },
+        pcNextButton: { class: 'hidden' },
+        title: { class: 'hidden' }
+    }"
+>
+    <!-- Новый заголовок -->
+    <template #header>
+        <Button 
+            class="p-datepicker-prev-button" 
+            severity="secondary" 
+            rounded text 
+            @click="dp?.onPrevButtonClick($event)"
+        >
+            <svg... /> 
+        </Button>
+        
+        <div class="p-datepicker-title">
+            <Select 
+                :options="months" 
+                :modelValue="dp?.currentMonth" 
+                @update:modelValue="onMonthSelect"
+                size="small"
+                class="p-datepicker-month-select"
+            />
+            <Select 
+                :options="years" 
+                :modelValue="dp?.currentYear"
+                @update:modelValue="onYearSelect"
+                size="small"
+                class="p-datepicker-year-select"
+            />
+        </div>
+        
+        <Button 
+            class="p-datepicker-next-button" 
+            severity="secondary" 
+            rounded text 
+            @click="dp?.onNextButtonClick($event)"
+        >
+            <svg... />
+        </Button>
+    </template>
+</DatePicker>
+```
+
+<Story name="CustomHeader">{CustomHeaderTemplate.bind({})}</Story>
+
+## Basic
+
+```html dark
+<DatePicker v-model="date" dateFormat="dd.mm.yy" />
+```
+
+<Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+## States
+
+```html dark
+<DatePicker v-model="date" placeholder="Default" />
+<DatePicker v-model="date" invalid placeholder="Invalid" />
+<DatePicker v-model="date" disabled placeholder="Disabled" />
+```
+
+<Story name="States">{StatesTemplate.bind({})}</Story>

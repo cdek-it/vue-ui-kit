@@ -1081,6 +1081,12 @@ export default {
         minWidth: '{form.width.lg}',
         color: '{content.color}',
       },
+      extSelectMonth: {
+        minWidth: '{form.width.xlg}',
+      },
+      extSelectYear: {
+        minWidth: '{form.width.xlg}',
+      },
     },
     colorScheme: {
       light: {
@@ -1104,17 +1110,17 @@ export default {
       color: '{content.color}',
       borderRadius: '{content.borderRadius}',
       shadow: '{overlay.popover.shadow}',
-      padding: '{overlay.popover.padding.sm}',
+      padding: '0',
     },
     header: {
       background: '{content.background}',
       borderColor: '{content.borderColor}',
       color: '{content.color}',
-      padding: '0 0 {formField.padding.xs} 0',
+      padding: '{overlay.popover.padding.sm}',
     },
     title: {
       gap: '{form.gap.xs}',
-      fontWeight: '{fonts.fontWeight.bold}',
+      fontWeight: '{fonts.fontWeight.regular}',
     },
     selectMonth: {
       hoverBackground: '{content.hoverBackground}',
@@ -1158,7 +1164,7 @@ export default {
       padding: '{overlay.select.padding}',
     },
     dayView: {
-      margin: '0 0 0 0',
+      margin: '{overlay.popover.padding.sm}',
     },
     weekDay: {
       padding: '{form.padding.tn}',
@@ -2638,7 +2644,7 @@ export default {
       transitionDuration: '{form.transitionDuration}',
       sm: {
         fontSize: '{sizing.form.sm.fontSize}',
-        paddingX: '{sizing.form.sm.paddingX}',
+        paddingX: '{sizing.form.sm.paddingX} {sizing.form.xs.paddingX}',
         paddingY: '{sizing.form.sm.paddingY}',
       },
       lg: {
