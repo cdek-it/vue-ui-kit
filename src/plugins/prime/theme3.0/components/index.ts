@@ -686,7 +686,7 @@ export default {
       checkedFocusBorderColor: '{primary.color}',
       checkedDisabledBorderColor: '{form.borderColor}',
       invalidBorderColor: '{form.invalidBorderColor}',
-      shadow: '{form.shadow}',
+      shadow: '0',
       focusRing: {
         focusRing: '{focusRing.width}',
         style: '{focusRing.style}',

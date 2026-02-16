@@ -1,15 +1,74 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Checkbox.template';
+import { Template, InteractiveTemplate } from './Checkbox.template';
 
 <Meta title="Prime/Form/Checkbox" />
 
 # Checkbox
 
-[PrimeVue](https://primevue.org/checkbox/), [Макет](<https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/%F0%9F%A7%A9-UI-kit-PrimeFace--1.0.0-beta-?node-id=484-5316&m=dev>)
+[PrimeVue Checkbox](https://primevue.org/checkbox/), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=16-13529)
+
+Checkbox компонент используется для выбора булевых значений.
+
+## Все состояния
+
+Показывает все возможные состояния checkbox: unchecked, checked, indeterminate с вариантами default, invalid и disabled.
 
 ```html dark
+<!-- Unchecked -->
 <PrimeCheckbox v-model="checked" binary />
+
+<!-- Checked -->
+<PrimeCheckbox v-model="checked" binary />
+
+<!-- Indeterminate -->
+<PrimeCheckbox binary indeterminate />
+
+<!-- Invalid -->
+<PrimeCheckbox v-model="checked" binary invalid />
+
+<!-- Disabled -->
+<PrimeCheckbox v-model="checked" binary disabled />
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="All States">{Template.bind({})}</Story>
+
+## Интерактивные примеры
+
+Примеры использования checkbox с labels и различными состояниями.
+
+<Story name="Interactive">{InteractiveTemplate.bind({})}</Story>
+
+## Использование
+
+### Базовый пример
+
+```html dark
+<script setup>
+import { ref } from 'vue';
+const checked = ref(false);
+</script>
+
+<template>
+  <div class="flex items-center gap-3">
+    <Checkbox v-model="checked" binary inputId="checkbox1" />
+    <label for="checkbox1">Accept terms</label>
+  </div>
+</template>
+```
+
+### Indeterminate состояние
+
+Используется для "select all" функциональности, когда выбраны не все элементы.
+
+```html dark
+<Checkbox binary indeterminate />
+```
+
+### Invalid состояние
+
+Для отображения ошибок валидации.
+
+```html dark
+<Checkbox v-model="checked" binary invalid />
+```
