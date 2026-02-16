@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './ScrollPanel.template';
+import { VerticalTemplate, HorizontalTemplate, BothDirectionsTemplate } from './ScrollPanel.template';
 
 <Meta title="Prime/Panel/ScrollPanel" />
 
@@ -8,36 +8,55 @@ import { Template } from './ScrollPanel.template';
 
 [PrimeVue ScrollPanel](https://primevue.org/scrollpanel), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=562-2897)
 
-## Использование
+ScrollPanel - это компонент для создания кастомной области прокрутки с стилизованными скроллбарами.
+
+## Вертикальный
+
+Вертикальная прокрутка для длинного контента.
 
 ```html dark
 <PrimeScrollPanel :style="{ width: '100%', height: '200px' }">
-  <p>Контент с прокруткой...</p>
+  <p>Длинный контент...</p>
 </PrimeScrollPanel>
 ```
 
-## Примеры
+<Story name="Vertical">{VerticalTemplate.bind({})}</Story>
 
-<Story name="Primary">{Template.bind({})}</Story>
+## Горизонтальный
 
-## Описание
+Горизонтальная прокрутка для широкого контента.
 
-ScrollPanel - это компонент для создания кастомной области прокрутки с стилизованными скроллбарами. 
+```html dark
+<PrimeScrollPanel :style="{ width: '100%', height: '100px' }">
+  <div :style="{ width: '1200px' }">
+    Широкий контент...
+  </div>
+</PrimeScrollPanel>
+```
 
-### Особенности:
+<Story name="Horizontal">{HorizontalTemplate.bind({})}</Story>
 
-- **Вертикальная прокрутка** - для длинного контента
-- **Горизонтальная прокрутка** - для широкого контента
-- **Двунаправленная прокрутка** - для контента, который превышает размеры по обеим осям
-- **Кастомный дизайн скроллбаров** - стилизованные полосы прокрутки
+## Вертикальный и горизонтальный скролл
 
-### Стилизация:
+Двунаправленная прокрутка для контента, который превышает размеры по обеим осям.
+
+```html dark
+<PrimeScrollPanel :style="{ width: '100%', height: '200px' }">
+  <div :style="{ width: '1200px' }">
+    Длинный и широкий контент...
+  </div>
+</PrimeScrollPanel>
+```
+
+<Story name="Both Directions">{BothDirectionsTemplate.bind({})}</Story>
+
+## Стилизация
 
 - Размер скроллбара настраивается через токен `{media.size.xs}`
 - Скругление углов через `{media.borderRadius.xs}`
 - Цвет скроллбара через `{surface.300}` (светлая тема)
 - Плавная анимация через `{media.transitionDuration}`
 
-### Использование:
+## Использование
 
 Задайте фиксированные размеры контейнеру через `style` или `class`, и ScrollPanel автоматически добавит прокрутку, если контент превышает эти размеры.
