@@ -19,13 +19,13 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-datepicker-calendar-container.p-datepicker-calendar-container { 
   display: block; 
-  width: 100%; 
+  width: ${dt('sizing.max')}; 
 }
 
 .p-datepicker-calendar.p-datepicker-calendar { 
   display: flex; 
   flex-direction: column; 
-  width: 100%; 
+  width: ${dt('sizing.max')}; 
 }
 
 .p-datepicker-header.p-datepicker-header {
@@ -44,7 +44,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-datepicker-header.p-datepicker-header .p-button-text {
   width: ${dt('datepicker.dropdown.width')}; 
   height: ${dt('datepicker.dropdown.width')};
-  padding: 0; 
+  padding: ${dt('spacing.0')}; 
   display: flex; 
   align-items: center; 
   justify-content: center;
@@ -74,6 +74,31 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-datepicker-time-picker.p-datepicker-time-picker {
   min-width: ${dt('datepicker.extend.extTimePicker.minWidth')};
   color: ${dt('datepicker.extend.extTimePicker.color')};
+}
+
+.p-datepicker-buttonbar.p-datepicker-buttonbar {
+  .p-button.p-button {
+    background: transparent;
+    color: ${dt('button.colorScheme.light.text.primary.color')};
+    border: 0 none;
+    font-family: ${dt('fonts.fontFamily.heading')};
+    font-weight: ${dt('button.root.label.fontWeight')};
+    transition: background-color ${dt('button.root.transitionDuration')};
+
+    &:not(:disabled):hover {
+      background: ${dt(
+        'button.colorScheme.light.text.primary.hoverBackground'
+      )};
+      color: ${dt('button.colorScheme.light.text.primary.color')};
+    }
+
+    &:not(:disabled):active {
+      background: ${dt(
+        'button.colorScheme.light.text.primary.activeBackground'
+      )};
+      color: ${dt('button.colorScheme.light.text.primary.color')};
+    }
+  }
 }
 `;
 

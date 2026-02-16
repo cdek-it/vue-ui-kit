@@ -1206,7 +1206,7 @@ export default {
       borderRadius: '0',
     },
     buttonbar: {
-      padding: '0 0 0 0',
+      padding: '{form.padding.sm}',
       borderColor: '{content.borderColor}',
     },
     timePicker: {
