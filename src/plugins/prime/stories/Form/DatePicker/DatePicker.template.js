@@ -2,7 +2,7 @@ import { DatePicker } from 'primevue';
 import Select from 'primevue/select';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 const months = [
   { name: 'Январь', value: 0 },
@@ -32,8 +32,10 @@ const years = generateYears();
 export const CustomHeaderTemplate = (args) => ({
   components: { DatePicker, Select, Button, InputText },
   setup() {
-    const date = ref(new Date());
+    const date = ref(null);
     const dp = ref(null);
+    const dp2 = ref(null);
+    const dp3 = ref(null);
 
     const onMonthSelect = (val) => {
       if (dp.value) {
@@ -55,7 +57,17 @@ export const CustomHeaderTemplate = (args) => ({
       }
     };
 
-    return { args, date, months, years, dp, onMonthSelect, onYearSelect };
+    return {
+      args,
+      date,
+      months,
+      years,
+      dp,
+      dp2,
+      dp3,
+      onMonthSelect,
+      onYearSelect,
+    };
   },
   template: `
 <div class="flex flex-col gap-8">
@@ -162,6 +174,146 @@ export const CustomHeaderTemplate = (args) => ({
   <div class="mt-5">
     <span>Выбранная дата (v-model):</span>
     <InputText :value="date?.toLocaleString ? date.toLocaleString() : date" readonly placeholder="Выберите дату" />
+  </div>
+</div>
+`,
+});
+
+export const RangeTemplate = (args) => ({
+  components: { DatePicker, Select, Button, InputText },
+  setup() {
+    const dates = ref(null);
+    const dp = ref(null);
+    const hoveredDate = ref(null);
+
+    const onMonthSelect = (val) => {
+      if (dp.value) {
+        dp.value.currentMonth = val;
+        dp.value.$emit('month-change', {
+          month: val + 1,
+          year: dp.value.currentYear,
+        });
+      }
+    };
+
+    const onYearSelect = (val) => {
+      if (dp.value) {
+        dp.value.currentYear = val;
+        dp.value.$emit('year-change', {
+          month: dp.value.currentMonth + 1,
+          year: val,
+        });
+      }
+    };
+
+    const onDateMouseEnter = (date) => {
+      if (Array.isArray(dates.value) && dates.value[0] && !dates.value[1]) {
+        hoveredDate.value = date;
+      }
+    };
+
+    const isDayInRangePreview = (date) => {
+      if (
+        !hoveredDate.value ||
+        !Array.isArray(dates.value) ||
+        !dates.value[0]
+      ) {
+        return false;
+      }
+
+      const d = new Date(date.year, date.month, date.day);
+      const start = dates.value[0];
+      const end = new Date(
+        hoveredDate.value.year,
+        hoveredDate.value.month,
+        hoveredDate.value.day
+      );
+
+      const [min, max] = start < end ? [start, end] : [end, start];
+      return d >= min && d <= max;
+    };
+
+    const formatDate = (d) => {
+      if (!d) {
+        return '';
+      }
+      return d.toLocaleDateString('ru-RU', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      });
+    };
+
+    const formattedRange = computed(() => {
+      if (!Array.isArray(dates.value) || !dates.value[0]) {
+        return '';
+      }
+      if (!dates.value[1]) {
+        return formatDate(dates.value[0]);
+      }
+      return `${formatDate(dates.value[0])} — ${formatDate(dates.value[1])}`;
+    });
+
+    return {
+      args,
+      dates,
+      months,
+      years,
+      dp,
+      onMonthSelect,
+      onYearSelect,
+      onDateMouseEnter,
+      hoveredDate,
+      isDayInRangePreview,
+      formattedRange,
+    };
+  },
+  template: `
+<div class="flex flex-col gap-8">
+  <div class="flex flex-wrap gap-8 items-start">
+    <div class="flex flex-col gap-2">
+      <span class="font-bold">Range Selection with Preview On Hover</span>
+      <DatePicker 
+        ref="dp"
+        v-model="dates"
+        selectionMode="range"
+        inline
+        dateFormat="dd.mm.yy"
+        v-bind="args"
+        :pt="{
+            title: { 
+              onVnodeMounted: (vnode) => vnode.el?.remove() 
+            },
+            day: ({ context }) => ({
+              class: {
+                'p-datepicker-day-preview': isDayInRangePreview(context.date)
+              },
+              onMouseenter: () => onDateMouseEnter(context.date),
+              onMouseleave: () => hoveredDate = null
+            })
+        }"
+      >
+        <template #prevbutton="{ actionCallback }">
+          <Button class="p-datepicker-prev-button" severity="secondary" rounded text @click="actionCallback">
+            <i class="ti ti-chevron-left p-button-icon" aria-hidden="true"></i>
+          </Button>
+          <div class="p-datepicker-title">
+            <Select :options="months" optionLabel="name" optionValue="value" :modelValue="dp?.currentMonth" @update:modelValue="onMonthSelect" size="small" class="p-datepicker-month-select" />
+            <Select :options="years" optionLabel="name" optionValue="value" :modelValue="dp?.currentYear" @update:modelValue="onYearSelect" size="small" class="p-datepicker-year-select" />
+          </div>
+        </template>
+        <template #nextbutton="{ actionCallback }">
+          <Button class="p-datepicker-next-button" severity="secondary" rounded text @click="actionCallback">
+            <i class="ti ti-chevron-right p-button-icon" aria-hidden="true"></i>
+          </Button>
+        </template>
+      </DatePicker>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <span>Выбранный диапазон (v-model):</span>
+    <InputText :value="formattedRange" readonly placeholder="Выберите диапазон" style="width: 320px" />
   </div>
 </div>
 `,

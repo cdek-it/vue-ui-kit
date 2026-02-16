@@ -1,6 +1,7 @@
 import { Meta, Story } from '@storybook/addon-docs';
 import {
   CustomHeaderTemplate,
+  RangeTemplate,
 } from './DatePicker.template';
 
 <Meta title="Prime/Form/DatePicker" />
@@ -75,3 +76,9 @@ import {
 ```
 
 <Story name="CustomHeader">{CustomHeaderTemplate.bind({})}</Story>
+
+## Range
+
+Range of dates can be selected by defining `selectionMode` as `range`, in this case the bound value would be an array with two values where first date is the start of the range and second date is the end.
+
+<Story name="Range">{RangeTemplate.bind({})}</Story>

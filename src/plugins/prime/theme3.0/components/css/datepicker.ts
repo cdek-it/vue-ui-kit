@@ -60,8 +60,9 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   background: ${dt('datepicker.extend.extToday.hoverBackground')};
 }
 
-.p-datepicker-day-selected.p-datepicker-day-selected:hover {
-  background: ${dt('datepicker.extend.extDate.selectedHoverBackground')};
+.p-datepicker-day-preview.p-datepicker-day-preview:not(.p-datepicker-day-selected) {
+  background: ${dt('datepicker.extend.extToday.hoverBackground')};
+  color: ${dt('datepicker.date.color')};
 }
 
 .p-datepicker-day-view.p-datepicker-day-view {
