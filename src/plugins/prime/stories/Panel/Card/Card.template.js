@@ -8,7 +8,7 @@ export const Template = (args) => ({
   },
   template: `
     <div class="flex gap-4">
-      <Card v-bind="args" style="width: 240px">
+      <Card v-bind="args">
         <template #header>
           <div class="bg-gray-200 h-32 flex items-center justify-center text-gray-500">
             Header Image
@@ -47,8 +47,7 @@ export const OverlayTemplate = (args) => ({
       <div class="flex flex-col gap-2">
         <span class="text-sm font-semibold">With Shadow (overlay: true)</span>
         <Card 
-          v-bind="args" 
-          style="width: 240px"
+          v-bind="args"
           :pt="{ root: { class: 'shadow-md' } }"
         >
           <template #header>
@@ -80,8 +79,7 @@ export const OverlayTemplate = (args) => ({
       <div class="flex flex-col gap-2">
         <span class="text-sm font-semibold">Without Shadow (overlay: false)</span>
         <Card 
-          v-bind="args" 
-          style="width: 240px"
+          v-bind="args"
           :pt="{ root: { class: 'shadow-none' } }"
         >
           <template #header>
@@ -120,7 +118,7 @@ export const WithoutHeaderTemplate = (args) => ({
   },
   template: `
     <div class="flex gap-4">
-      <Card v-bind="args" style="width: 240px">
+      <Card v-bind="args">
         <template #title>
           Title
         </template>
@@ -150,7 +148,7 @@ export const WithoutFooterTemplate = (args) => ({
   },
   template: `
     <div class="flex gap-4">
-      <Card v-bind="args" style="width: 240px">
+      <Card v-bind="args">
         <template #header>
           <div class="bg-gray-200 h-32 flex items-center justify-center text-gray-500">
             Header Image
@@ -182,7 +180,7 @@ export const WithoutCaptionTemplate = (args) => ({
   },
   template: `
     <div class="flex gap-4">
-      <Card v-bind="args" style="width: 240px">
+      <Card v-bind="args">
         <template #header>
           <div class="bg-gray-200 h-32 flex items-center justify-center text-gray-500">
             Header Image

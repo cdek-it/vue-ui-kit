@@ -1,5 +1,5 @@
 const css = ({ dt }: { dt: (token: string) => string }) => `
-.p-card {
+.p-card.p-component {
   border: ${dt('card.extend.borderWidth')} solid ${dt(
   'card.extend.borderColor'
 )};
