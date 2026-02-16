@@ -4,6 +4,7 @@ import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
 import dialogCss from './components/css/dialog';
+import dividerCss from './components/css/divider';
 import drawerCss from './components/css/drawer';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
@@ -16,6 +17,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
    ${dialogCss({ dt })}
+   ${dividerCss({ dt })}
    ${drawerCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}

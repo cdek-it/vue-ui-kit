@@ -2,13 +2,25 @@ import { Meta, Story } from '@storybook/addon-docs';
 
 import { Template, ContentTemplate } from './Divider.template';
 
-<Meta title="Prime/Panel/Divider" />
+<Meta 
+  title="Prime/Panel/Divider"
+  parameters={{
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=33-1543',
+    },
+  }}
+/>
 
 # Divider
 
-[PrimeVue Divider](https://primevue.org/divider), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=5241-3731&m=dev>)
+[PrimeVue Divider](https://primevue.org/divider)
 
-### Default
+Divider используется для разделения контента на странице.
+
+## Типы линий
+
+### Solid (по умолчанию)
 
 ```html dark
 <PrimeDivider />
@@ -16,13 +28,7 @@ import { Template, ContentTemplate } from './Divider.template';
 
 <Story name="Default">{Template.bind({})}</Story>
 
-### Type
-
-```html dark
-<PrimeDivider type="dotted"/>
-```
-
-<Story name="Dotted" args={{type: "dotted"}}>{Template.bind({})}</Story>
+### Dashed
 
 ```html dark
 <PrimeDivider type="dashed"/>
@@ -30,87 +36,91 @@ import { Template, ContentTemplate } from './Divider.template';
 
 <Story name="Dashed" args={{type: "dashed"}}>{Template.bind({})}</Story>
 
+### Dotted
 
-## With content
+```html dark
+<PrimeDivider type="dotted"/>
+```
 
-### Default
+<Story name="Dotted" args={{type: "dotted"}}>{Template.bind({})}</Story>
+
+## Горизонтальный с контентом
+
+### По центру (по умолчанию)
+
 ```html dark
 <PrimeDivider>
-    <div class="text-sm font-semibold text-gray-500">
-      <i class="ti ti-info-circle mr-2"></i>
-      Content
-    </div>
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
 </PrimeDivider>
 ```
 
-<Story name="ContentDefault" >{ContentTemplate.bind({})}</Story>
+<Story name="ContentDefault">{ContentTemplate.bind({})}</Story>
 
+### Слева
 
-
-### Left
 ```html dark
 <PrimeDivider align="left">
-    <div class="text-sm font-semibold text-gray-500">
-      <i class="ti ti-info-circle mr-2"></i>
-      Content
-    </div>
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
 </PrimeDivider>
 ```
 
 <Story name="ContentLeft" args={{align:"left"}}>{ContentTemplate.bind({})}</Story>
 
+### Справа
 
-
-### Right
 ```html dark
 <PrimeDivider align="right">
-    <div class="text-sm font-semibold text-gray-500">
-      <i class="ti ti-info-circle mr-2"></i>
-      Content
-    </div>
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
 </PrimeDivider>
 ```
 
-<Story name="ContentRight" args={{align:"left"}}>{ContentTemplate.bind({})}</Story>
+<Story name="ContentRight" args={{align:"right"}}>{ContentTemplate.bind({})}</Story>
 
+## Вертикальный с контентом
 
-## With content vertical
+### По центру (по умолчанию)
 
-### Default
 ```html dark
 <PrimeDivider layout="vertical">
-    <div class="text-sm font-semibold text-gray-500">
-      <i class="ti ti-info-circle mr-2"></i>
-      Content
-    </div>
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
 </PrimeDivider>
 ```
 
 <Story name="VerticalContentDefault" args={{layout: "vertical", class: "h-[100px]"}}>{ContentTemplate.bind({})}</Story>
 
+### Сверху
 
-
-### Top
 ```html dark
 <PrimeDivider align="top" layout="vertical">
-    <div class="text-sm font-semibold text-gray-500">
-      <i class="ti ti-info-circle mr-2"></i>
-      Content
-    </div>
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
 </PrimeDivider>
 ```
 
 <Story name="ContentTop" args={{align:"top", layout: "vertical", class: "h-[100px]"}}>{ContentTemplate.bind({})}</Story>
 
+### Снизу
 
-
-### Bottom
 ```html dark
 <PrimeDivider align="bottom" layout="vertical">
-    <div class="text-sm font-semibold text-gray-500">
-      <i class="ti ti-info-circle mr-2"></i>
-      Content
-    </div>
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
 </PrimeDivider>
 ```
 
