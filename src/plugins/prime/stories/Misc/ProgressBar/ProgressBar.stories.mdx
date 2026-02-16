@@ -1,0 +1,72 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { Template } from './ProgressBar.template';
+
+<Meta title="Prime/Misc/ProgressBar" />
+
+# ProgressBar
+
+[PrimeVue ProgressBar](https://primevue.org/progressbar), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=113-1004)
+
+### Base
+
+Базовый прогресс-бар с процентами
+
+```html dark
+<PrimeProgressBar :value="50" />
+```
+
+<Story name="Primary" args={{ value: 50 }}>
+  {Template.bind({})}
+</Story>
+
+### Без значения (Indeterminate)
+
+Прогресс-бар без конкретного значения для неопределенных процессов
+
+```html dark
+<PrimeProgressBar mode="indeterminate" />
+```
+
+<Story name="Indeterminate" args={{ mode: 'indeterminate' }}>
+  {Template.bind({})}
+</Story>
+
+### Разные значения
+
+Примеры с различными процентами выполнения
+
+```html dark
+<PrimeProgressBar :value="25" />
+<PrimeProgressBar :value="50" />
+<PrimeProgressBar :value="75" />
+<PrimeProgressBar :value="100" />
+```
+
+<Story name="Values 25" args={{ value: 25 }}>
+  {Template.bind({})}
+</Story>
+
+<Story name="Values 50" args={{ value: 50 }}>
+  {Template.bind({})}
+</Story>
+
+<Story name="Values 75" args={{ value: 75 }}>
+  {Template.bind({})}
+</Story>
+
+<Story name="Values 100" args={{ value: 100 }}>
+  {Template.bind({})}
+</Story>
+
+### Без отображения значения
+
+Прогресс-бар без текстовой метки
+
+```html dark
+<PrimeProgressBar :value="60" :showValue="false" />
+```
+
+<Story name="No Label" args={{ value: 60, showValue: false }}>
+  {Template.bind({})}
+</Story>
