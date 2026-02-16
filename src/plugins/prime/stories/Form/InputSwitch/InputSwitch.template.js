@@ -41,7 +41,7 @@ export const Template = (args) => ({
 
 <div :style="{ marginTop: '40px' }">
   <h3>Состояния с фокусом</h3>
-  <p :style="{ color: '#666', fontSize: '14px', marginBottom: '20px' }">Кликните на переключатель, чтобы увидеть кольцо фокуса</p>
+  <p :style="{ color: '#666', fontSize: '14px', marginBottom: '20px' }"></p>
   
   <div :style="{ display: 'grid', gridTemplateColumns: 'repeat(2, max-content)', gap: '20px', alignItems: 'center', justifyItems: 'start' }">
     <span></span>
