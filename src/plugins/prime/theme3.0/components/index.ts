@@ -2487,6 +2487,12 @@ export default {
     },
   },
   progressspinner: {
+    extend: {
+      small: '{feedback.width.lg}',
+      medium: '{feedback.width.4xlg}',
+      large: '{feedback.width.5xlg}',
+      xlarge: '{feedback.width.6xlg}',
+    },
     root: {
       borderWidth: '{feedback.width.xs}',
     },

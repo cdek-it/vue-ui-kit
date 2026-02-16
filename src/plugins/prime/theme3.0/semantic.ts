@@ -195,6 +195,8 @@ export default {
       '2xlg': '{sizing.6}',
       '3xlg': '{sizing.7}',
       '4xlg': '{sizing.8}',
+      '5xlg': '{sizing.12}',
+      '6xlg': '{sizing.16}',
     },
     icon: {
       size: {

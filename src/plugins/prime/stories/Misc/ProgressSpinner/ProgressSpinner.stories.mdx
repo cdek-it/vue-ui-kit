@@ -15,39 +15,36 @@ import { Template } from './ProgressSpinner.template';
 ```html dark
 <PrimeProgressSpinner />
 ```
-
-<Story name="Primary">{Template.bind({})}</Story>
-
 ### Размеры
 
 Различные размеры спиннера согласно дизайн-системе
 
 ```html dark
+<!-- XLarge: 64px -->
+<PrimeProgressSpinner class="p-progressspinner-xlarge" />
+
 <!-- Large: 48px -->
-<PrimeProgressSpinner class="!w-12 !h-12" />
+<PrimeProgressSpinner class="p-progressspinner-large" />
 
 <!-- Medium: 32px -->
-<PrimeProgressSpinner class="!w-8 !h-8" />
+<PrimeProgressSpinner class="p-progressspinner-medium" />
 
 <!-- Small: 24px -->
-<PrimeProgressSpinner class="!w-6 !h-6" />
-
-<!-- XSmall: 16px -->
-<PrimeProgressSpinner class="!w-4 !h-4" />
+<PrimeProgressSpinner class="p-progressspinner-small" />
 ```
 
-<Story name="Large" args={{ class: '!w-12 !h-12' }}>
+<Story name="XLarge" args={{ class: 'p-progressspinner-xlarge' }}>
   {Template.bind()}
 </Story>
 
-<Story name="Medium" args={{ class: '!w-8 !h-8' }}>
+<Story name="Large" args={{ class: 'p-progressspinner-large' }}>
   {Template.bind()}
 </Story>
 
-<Story name="Small" args={{ class: '!w-6 !h-6' }}>
+<Story name="Medium" args={{ class: 'p-progressspinner-medium' }}>
   {Template.bind()}
 </Story>
 
-<Story name="XSmall" args={{ class: '!w-4 !h-4' }}>
+<Story name="Small" args={{ class: 'p-progressspinner-small' }}>
   {Template.bind()}
 </Story>
