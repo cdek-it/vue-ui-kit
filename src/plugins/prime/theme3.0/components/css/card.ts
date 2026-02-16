@@ -1,6 +1,14 @@
 const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-card {
-  border: 1px solid ${dt('card.extend.borderColor')};
+  border: ${dt('card.extend.borderWidth')} solid ${dt(
+  'card.extend.borderColor'
+)};
+  overflow: hidden;
+  box-shadow: none;
+}
+
+.p-card.shadow-md {
+  box-shadow: ${dt('content.shadow')};
 }
 
 .p-card-title {
