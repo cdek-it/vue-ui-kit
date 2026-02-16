@@ -1,8 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 import {
-  BasicTemplate,
   CustomHeaderTemplate,
-  StatesTemplate,
 } from './DatePicker.template';
 
 <Meta title="Prime/Form/DatePicker" />
@@ -28,20 +26,21 @@ import {
     ref="dp"
     v-model="date"
     :pt="{
-        pcPrevButton: { class: 'hidden' },
-        pcNextButton: { class: 'hidden' },
-        title: { class: 'hidden' }
+        title: { 
+          // Полное удаление нативного узла из DOM
+          onVnodeMounted: (vnode) => vnode.el?.remove() 
+        }
     }"
 >
     <!-- Новый заголовок -->
-    <template #header>
+    <template #prevbutton="{ actionCallback }">
         <Button 
             class="p-datepicker-prev-button" 
             severity="secondary" 
             rounded text 
-            @click="dp?.onPrevButtonClick($event)"
+            @click="actionCallback"
         >
-            <svg... /> 
+            <i class="ti ti-chevron-left p-button-icon" aria-hidden="true"></i>
         </Button>
         
         <div class="p-datepicker-title">
@@ -60,35 +59,19 @@ import {
                 class="p-datepicker-year-select"
             />
         </div>
+    </template>
         
+    <template #nextbutton="{ actionCallback }">
         <Button 
             class="p-datepicker-next-button" 
             severity="secondary" 
             rounded text 
-            @click="dp?.onNextButtonClick($event)"
+            @click="actionCallback"
         >
-            <svg... />
+            <i class="ti ti-chevron-right p-button-icon" aria-hidden="true"></i>
         </Button>
     </template>
 </DatePicker>
 ```
 
 <Story name="CustomHeader">{CustomHeaderTemplate.bind({})}</Story>
-
-## Basic
-
-```html dark
-<DatePicker v-model="date" dateFormat="dd.mm.yy" />
-```
-
-<Story name="Basic">{BasicTemplate.bind({})}</Story>
-
-## States
-
-```html dark
-<DatePicker v-model="date" placeholder="Default" />
-<DatePicker v-model="date" invalid placeholder="Invalid" />
-<DatePicker v-model="date" disabled placeholder="Disabled" />
-```
-
-<Story name="States">{StatesTemplate.bind({})}</Story>
