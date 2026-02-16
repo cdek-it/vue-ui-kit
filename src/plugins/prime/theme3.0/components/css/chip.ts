@@ -1,7 +1,9 @@
 const css = ({ dt }: { dt: (token: string) => string }) => `
 /* Переопределение border для chip */
 .p-chip {
-  border: 1px solid ${dt('chip.extend.borderColor')};
+  border: ${dt('chip.extend.borderWidth')} solid ${dt(
+  'chip.extend.borderColor'
+)};
 }
 
 /* Типографика для chip label */
