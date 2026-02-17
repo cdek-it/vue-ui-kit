@@ -1852,8 +1852,8 @@ export default {
       borderWidth: '{form.borderWidth}',
       extXlg: {
         fontSize: '{sizing.form.root.fontSize}',
-        paddingX: '{sizing.form.root.paddingX}',
-        paddingY: '{sizing.form.root.paddingY}',
+        paddingX: '{sizing.form.xlg.paddingX}',
+        paddingY: '{sizing.form.xlg.paddingY}',
       },
     },
     root: {

@@ -10,8 +10,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   background: ${dt('inputtext.extend.readonlyBackground')};
 }
 
-/* Размер XLarge для InputText */
-.p-inputtext-xlg {
+/* Размер XLarge для InputText (приоритизация) */
+.p-inputtext.p-inputtext-xlg {
   font-size: ${dt('inputtext.extend.extXlg.fontSize')};
   padding: ${dt('inputtext.extend.extXlg.paddingY')} ${dt(
   'inputtext.extend.extXlg.paddingX'
