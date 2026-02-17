@@ -10,8 +10,8 @@ export const Template = (args) => ({
     <div class="flex gap-4">
       <Card v-bind="args">
         <template #header>
-          <div class="bg-gray-200 h-32 flex items-center justify-center text-gray-500">
-            Header Image
+          <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
+            <i class="ti ti-photo text-3xl"></i>
           </div>
         </template>
         
@@ -51,8 +51,8 @@ export const OverlayTemplate = (args) => ({
           :pt="{ root: { class: 'shadow-md' } }"
         >
           <template #header>
-            <div class="bg-gray-200 h-32 flex items-center justify-center text-gray-500">
-              Header
+            <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
+              <i class="ti ti-photo text-3xl"></i>
             </div>
           </template>
           
@@ -83,8 +83,8 @@ export const OverlayTemplate = (args) => ({
           :pt="{ root: { class: 'shadow-none' } }"
         >
           <template #header>
-            <div class="bg-gray-200 h-32 flex items-center justify-center text-gray-500">
-              Header
+            <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
+              <i class="ti ti-photo text-3xl"></i>
             </div>
           </template>
           
@@ -150,8 +150,8 @@ export const WithoutFooterTemplate = (args) => ({
     <div class="flex gap-4">
       <Card v-bind="args">
         <template #header>
-          <div class="bg-gray-200 h-32 flex items-center justify-center text-gray-500">
-            Header Image
+          <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
+            <i class="ti ti-photo text-3xl"></i>
           </div>
         </template>
         
@@ -182,8 +182,8 @@ export const WithoutCaptionTemplate = (args) => ({
     <div class="flex gap-4">
       <Card v-bind="args">
         <template #header>
-          <div class="bg-gray-200 h-32 flex items-center justify-center text-gray-500">
-            Header Image
+          <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
+            <i class="ti ti-photo text-3xl"></i>
           </div>
         </template>
         
