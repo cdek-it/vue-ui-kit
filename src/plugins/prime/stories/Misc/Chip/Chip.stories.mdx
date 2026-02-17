@@ -10,67 +10,69 @@ import { Template } from './Chip.template';
 
 ### Default
 
+<Story name="Default" args={{label: "Chip"}}>{Template.bind({})}</Story>
+
 ```html dark
 <PrimeChip label="Chip" />
 ```
 
-<Story name="Default" args={{label: "Chip"}}>{Template.bind({})}</Story>
-
 ### Removable
+
+<Story name="Removable" args={{label: "Chip", removable: true}}>{Template.bind({})}</Story>
 
 ```html dark
 <PrimeChip label="Chip" removable />
 ```
 
-<Story name="Removable" args={{label: "Chip", removable: true}}>{Template.bind({})}</Story>
-
 
 ### With icon
+
+<Story name="Icon" args={{label: "Chip", icon: "ti ti-info-circle"}}>{Template.bind({})}</Story>
 
 ```html dark
 <PrimeChip label="Chip" icon="ti ti-info-circle" />
 ```
 
-<Story name="Icon" args={{label: "Chip", icon: "ti ti-info-circle"}}>{Template.bind({})}</Story>
-
 
 ### Removable with icon
 
+<Story name="RemovableIcon" args={{label: "Chip", icon: "ti ti-info-circle", removable: true}}>{Template.bind({})}</Story>
+
 ```html dark
 <PrimeChip label="Chip" removable icon="ti ti-info-circle" />
 ```
-
-<Story name="RemovableIcon" args={{label: "Chip", icon: "ti ti-info-circle", removable: true}}>{Template.bind({})}</Story>
 
 
 ### Removable with icon and disabled
-```html dark
-<PrimeChip label="Chip" removable icon="ti ti-info-circle" />
-```
 
 <Story name="disabled" args={{label: "Chip", icon: "ti ti-info-circle", removable: true, disabled: true}}>{Template.bind({})}</Story>
+
+```html dark
+<PrimeChip label="Chip" removable icon="ti ti-info-circle" disabled />
+```
 
 
 ## Accessability 
 По дизайну должна быть возможность управлять чипами с клавиатуры. Tab - может сфокурисроватьна чипе, enter или backspace удалить сфокусированный.
 Чтобы эта фича работала, надо руками подкидывать tabindex="0" В компонент.
 
-```html dark
-<PrimeChip label="Chip" removable icon="ti ti-info-circle" :pt="{removeIcon: {tabindex: "0"}}" />
-```
-
 <Story name="Accessability" args={{label: "Chip", icon: "ti ti-info-circle", removable: true, pt: {removeIcon: {tabindex: "0"}}}}>{Template.bind({})}</Story>
+
+```html dark
+<PrimeChip label="Chip" removable icon="ti ti-info-circle" :pt="{removeIcon: {tabindex: '0'}}" />
+```
 
 При этом, если вы накидываете disabled, надо руками управлять tabindex. Ниже пример, без обработки дизаблед.
 
-```html dark
-<PrimeChip label="Chip" removable icon="ti ti-info-circle" disabled :pt="{removeIcon: {tabindex: "0"}}" />
-```
-
 <Story name="AccessabilityDisabledError" args={{label: "Chip", icon: "ti ti-info-circle", removable: true, disabled: true, pt: {removeIcon: {tabindex: "0"}}}}>{Template.bind({})}</Story>
+
+```html dark
+<PrimeChip label="Chip" removable icon="ti ti-info-circle" disabled :pt="{removeIcon: {tabindex: '0'}}" />
+```
 
 Нужно делать что-то типа
 
+<Story name="AccessabilityDisabled" args={{label: "Chip", icon: "ti ti-info-circle", removable: true, disabled: true, pt: {removeIcon: {tabindex: "-1"}}}}>{Template.bind({})}</Story>
 
 ```html dark
 <script  setup lang="ts">
@@ -84,5 +86,3 @@ const myTabIndex = computed(() => {
 
 <PrimeChip label="Chip" removable icon="ti ti-info-circle" disabled :pt="{removeIcon: {tabindex: myTabIndex}}" />
 ```
-
-<Story name="AccessabilityDisabled" args={{label: "Chip", icon: "ti ti-info-circle", removable: true, disabled: true, pt: {removeIcon: {tabindex: "-1"}}}}>{Template.bind({})}</Story>
