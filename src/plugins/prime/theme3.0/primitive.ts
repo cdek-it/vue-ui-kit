@@ -458,14 +458,16 @@ export default {
   transition: {
     timing: {
       linear: 'linear',
-      in: 'cubic-bezier(0.4, 0, 1, 1)',
-      out: 'cubic-bezier(0, 0, 0.2, 1)',
-      inOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      in: 'cubic-bezier(0.55, 0.06, 0.7, 0.2)',
+      out: 'cubic-bezier(0.2, 0.6, 0.4, 1)',
+      inOut: 'cubic-bezier(0.65, 0.05, 0.35, 1)',
     },
     duration: {
-      '150': '150ms',
-      '200': '200ms',
-      '250': '250ms',
+      '100': '140ms',
+      '200': '180ms',
+      '300': '240ms',
+      '400': '320ms',
+      '500': '400ms',
     },
   },
   opacity: {
