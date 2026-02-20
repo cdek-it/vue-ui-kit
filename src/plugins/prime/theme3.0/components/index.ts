@@ -3365,7 +3365,7 @@ export default {
           hoverBackground: '{surface.500}',
           disabledBackground: '{form.disabledBackground}',
           checkedBackground: '{surface.900}',
-          checkedHoverBackground: '{surface.500}',
+          checkedHoverBackground: '{surface.800}',
         },
         handle: {
           background: '{form.backgroundHandler}',
