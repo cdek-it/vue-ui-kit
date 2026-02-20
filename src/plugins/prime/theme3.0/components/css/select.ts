@@ -19,6 +19,10 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   }
 }
 
+.p-select-sm.p-select-sm .p-select-label.p-select-label {
+  padding-inline: ${dt('select.root.sm.paddingY')} 0px;
+}
+
 /* Размер XLarge для Select */
 .p-select-xlg {
   font-size: ${dt('select.extend.extXlg.fontSize')};

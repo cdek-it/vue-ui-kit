@@ -1071,7 +1071,7 @@ export default {
         selectedHoverBackground: '{primary.selectedHoverBackground}',
       },
       extToday: {
-        borderColor: '{content.borderColor}',
+        borderColor: '{content.activeBorderColor}',
         hoverBackground: '{content.hoverBackground}',
       },
       extTitle: {
@@ -1080,6 +1080,12 @@ export default {
       extTimePicker: {
         minWidth: '{form.width.lg}',
         color: '{content.color}',
+      },
+      extSelectMonth: {
+        minWidth: '{form.width.xlg}',
+      },
+      extSelectYear: {
+        minWidth: '{form.width.xlg}',
       },
     },
     colorScheme: {
@@ -1093,8 +1099,8 @@ export default {
           activeColor: '{navigation.item.activeColor}',
         },
         today: {
-          background: '{content.background}',
-          color: '{text.color}',
+          background: '{transparent}',
+          color: '{text.extend.colorPrimaryStatic}',
         },
       },
     },
@@ -1104,17 +1110,17 @@ export default {
       color: '{content.color}',
       borderRadius: '{content.borderRadius}',
       shadow: '{overlay.popover.shadow}',
-      padding: '{overlay.popover.padding.sm}',
+      padding: '0',
     },
     header: {
       background: '{content.background}',
       borderColor: '{content.borderColor}',
       color: '{content.color}',
-      padding: '0 0 {formField.padding.xs} 0',
+      padding: '{overlay.popover.padding.sm}',
     },
     title: {
       gap: '{form.gap.xs}',
-      fontWeight: '{fonts.fontWeight.bold}',
+      fontWeight: '{fonts.fontWeight.regular}',
     },
     selectMonth: {
       hoverBackground: '{content.hoverBackground}',
@@ -1158,7 +1164,7 @@ export default {
       padding: '{overlay.select.padding}',
     },
     dayView: {
-      margin: '0 0 0 0',
+      margin: '{overlay.popover.padding.sm}',
     },
     weekDay: {
       padding: '{form.padding.tn}',
@@ -1167,12 +1173,12 @@ export default {
     },
     date: {
       hoverBackground: '{content.hoverBackground}',
-      selectedBackground: '{primary.selectedBackground}',
-      rangeSelectedBackground: '{highlight.background}',
+      selectedBackground: '{highlight.background}',
+      rangeSelectedBackground: '{list.option.focusBackground}',
       color: '{content.color}',
       hoverColor: '{content.color}',
-      selectedColor: '{text.extend.colorPrimaryStatic}',
-      rangeSelectedColor: '{text.extend.colorSecondaryStatic}',
+      selectedColor: '{text.extend.colorInverted}',
+      rangeSelectedColor: '{text.color}',
       width: '{form.size.3xlg}',
       height: '{form.size.3xlg}',
       borderRadius: '{form.borderRadius.sm}',
@@ -1200,7 +1206,7 @@ export default {
       borderRadius: '0',
     },
     buttonbar: {
-      padding: '0 0 0 0',
+      padding: '{form.padding.sm}',
       borderColor: '{content.borderColor}',
     },
     timePicker: {
@@ -2638,7 +2644,7 @@ export default {
       transitionDuration: '{form.transitionDuration}',
       sm: {
         fontSize: '{sizing.form.sm.fontSize}',
-        paddingX: '{sizing.form.sm.paddingX}',
+        paddingX: '{sizing.form.sm.paddingX} {sizing.form.xs.paddingX}',
         paddingY: '{sizing.form.sm.paddingY}',
       },
       lg: {

@@ -64,6 +64,7 @@ export default {
       sm: '{sizing.8}',
       md: '{sizing.10}',
       lg: '{sizing.12}',
+      xlg: '{sizing.32}',
       '10xlg': '{sizing.60}',
       full: '{sizing.max}',
     },

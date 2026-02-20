@@ -1,0 +1,84 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import {
+  CustomHeaderTemplate,
+  RangeTemplate,
+} from './DatePicker.template';
+
+<Meta title="Prime/Form/DatePicker" />
+
+# DatePicker
+
+[PrimeVue DatePicker](https://primevue.org/datepicker/) — компонент для выбора даты и времени.
+
+## Custom Header (Month/Year Selects)
+
+Пример полной замены заголовка с использованием слота `#header`. 
+
+В PrimeVue 4.x слот `#header` является первым дочерним элементом контейнера хедера, но не заменяет остальные элементы (кнопки навигации и стандартный текстовый заголовок). Для достижения "чистой" замены всей структуры необходимо:
+1. Описать весь новый заголовок в слоте `#header`.
+2. Скрыть нативные элементы через PassThrough свойства `pcPrevButton`, `pcNextButton` и `title`.
+
+Такой подход гарантирует, что в DOM будет присутствовать только один набор органов управления в нужном порядке.
+
+### Реализация
+
+```javascript
+<DatePicker 
+    ref="dp"
+    v-model="date"
+    :pt="{
+        title: { 
+          // Полное удаление нативного узла из DOM
+          onVnodeMounted: (vnode) => vnode.el?.remove() 
+        }
+    }"
+>
+    <!-- Новый заголовок -->
+    <template #prevbutton="{ actionCallback }">
+        <Button 
+            class="p-datepicker-prev-button" 
+            severity="secondary" 
+            rounded text 
+            @click="actionCallback"
+        >
+            <i class="ti ti-chevron-left p-button-icon" aria-hidden="true"></i>
+        </Button>
+        
+        <div class="p-datepicker-title">
+            <Select 
+                :options="months" 
+                :modelValue="dp?.currentMonth" 
+                @update:modelValue="onMonthSelect"
+                size="small"
+                class="p-datepicker-month-select"
+            />
+            <Select 
+                :options="years" 
+                :modelValue="dp?.currentYear"
+                @update:modelValue="onYearSelect"
+                size="small"
+                class="p-datepicker-year-select"
+            />
+        </div>
+    </template>
+        
+    <template #nextbutton="{ actionCallback }">
+        <Button 
+            class="p-datepicker-next-button" 
+            severity="secondary" 
+            rounded text 
+            @click="actionCallback"
+        >
+            <i class="ti ti-chevron-right p-button-icon" aria-hidden="true"></i>
+        </Button>
+    </template>
+</DatePicker>
+```
+
+<Story name="CustomHeader">{CustomHeaderTemplate.bind({})}</Story>
+
+## Range
+
+Range of dates can be selected by defining `selectionMode` as `range`, in this case the bound value would be an array with two values where first date is the start of the range and second date is the end.
+
+<Story name="Range">{RangeTemplate.bind({})}</Story>
