@@ -1071,7 +1071,7 @@ export default {
         selectedHoverBackground: '{primary.selectedHoverBackground}',
       },
       extToday: {
-        borderColor: '{content.borderColor}',
+        borderColor: '{content.activeBorderColor}',
         hoverBackground: '{content.hoverBackground}',
       },
       extTitle: {
@@ -1099,7 +1099,7 @@ export default {
           activeColor: '{navigation.item.activeColor}',
         },
         today: {
-          background: '{primary.color}',
+          background: '{transparent}',
           color: '{text.extend.colorPrimaryStatic}',
         },
       },

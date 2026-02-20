@@ -50,13 +50,13 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   justify-content: center;
 }
 
-.p-datepicker-day.p-datepicker-today.p-datepicker-today:not(.p-datepicker-day-selected) {
+.p-datepicker-today.p-datepicker-today > .p-datepicker-day:not(.p-datepicker-day-selected) {
   border: ${dt('form.borderWidth')} solid ${dt(
   'datepicker.extend.extToday.borderColor'
 )};
 }
 
-.p-datepicker-day.p-datepicker-today.p-datepicker-today:not(.p-datepicker-day-selected):hover {
+.p-datepicker-today.p-datepicker-today:hover > .p-datepicker-day:not(.p-datepicker-day-selected) {
   background: ${dt('datepicker.extend.extToday.hoverBackground')};
 }
 
