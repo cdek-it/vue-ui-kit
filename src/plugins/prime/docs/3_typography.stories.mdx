@@ -30,31 +30,9 @@ import { Meta } from '@storybook/addon-docs';
 
 ### Типографика
 
-`typography.min.css` — это стили для типографики. Он подключает шрифты Roboto (400, 500, 700) а
-также задает базовые свойства для `html`, `body` и заводит переменные в `:root`.
+`typography.min.css` — это стили для типографики. Заводит переменные в `:root` на основе токенов DS, с фоллбэком на примитивные значения.
 
-```css dark
-html {
-  font-size: 14px;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-}
-
-:root {
-  --text-color: var(--black-80, rgba(0, 0, 0, 0.8));
-  --text-color-secondary: var(--black-60, rgba(0, 0, 0, 0.6));
-  --text-color-primary: var(--emerald-700, #188700);
-  --text-color-danger: var(--red-400, #e26e63);
-  --text-color-warning: var(--orange-400, #ffb330);
-  --text-color-success: var(--green-400, #68c170);
-  --text-color-info: var(--blue-400, #49a2ef);
-  --text-color-help: var(--purple-400, #ab77df);
-}
-```
-
-Также он заводит классы для каждого вида текста по [дизайну](<https://www.figma.com/design/2ZnL6XPKEpxAHvrlbRvnMu/Template-Tailwind-CSS-(DS)?node-id=3-1739&m=dev>).
+Также он заводит классы для каждого вида текста по [дизайну](https://www.figma.com/design/2ZnL6XPKEpxAHvrlbRvnMu/Templates--DS--v1.0?node-id=3-1739&m=dev).
 
 Название нужного класса вы также можете взять напрямую из дизайна. Важно нажимать именно на компонент `<Typography.*>`,
 а не на сам текст, иначе вы не увидите пометку с названием класса.
