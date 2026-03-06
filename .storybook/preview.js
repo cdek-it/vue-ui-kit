@@ -1,4 +1,4 @@
-import { setup } from '@storybook/vue3';
+import { setup } from '@storybook/vue3-vite';
 import { registerToastification } from '@/plugins/toastification';
 import PrimeVue from 'primevue/config';
 import { getPrimeVueConfig } from '@/plugins/prime';
@@ -52,11 +52,33 @@ export const parameters = {
   interactions: { disable: true },
   backgrounds: {
     options: {
-      white:  { name: 'white', value: '#ffffff' },
-      grey:   { name: 'grey',  value: '#F5F6F8' },
-      green:  { name: 'green', value: '#1AB248' },
-      dark:   { name: 'dark',  value: '#2b2e33' },
-    },
+      white: {
+        name: 'white',
+        value: '#ffffff',
+      },
+
+      grey: {
+        name: 'grey',
+        value: '#F5F6F8',
+      },
+
+      green: {
+        name: 'green',
+        value: '#1AB248',
+      },
+
+      dark: {
+        name: 'dark',
+        value: '#1C1B22',
+      }
+    }
+  },
+  themes: {
+    default: 'green',
+    list: [
+      { name: 'green', class: 'theme-green', color: '#1ab248' },
+      { name: 'violet', class: 'theme-violet', color: '#4b3c87' },
+    ],
   },
 };
 
@@ -80,3 +102,9 @@ export const decorators = [
   },
 ];
 export const tags = ['autodocs'];
+
+export const initialGlobals = {
+  backgrounds: {
+    value: 'grey'
+  }
+};
