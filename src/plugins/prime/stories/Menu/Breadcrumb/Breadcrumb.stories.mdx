@@ -6,7 +6,9 @@ import { Template } from './Breadcrumb.template';
 
 # Breadcrumb
 
-[PrimeVue Breadcrumb](https://primevue.org/Breadcrumb), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12778&m=dev>)
+[PrimeVue Breadcrumb](https://primevue.org/Breadcrumb), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=734-7859)
+
+Компонент навигации, показывающий текущее местоположение пользователя в иерархии страниц.
 
 ### Basic
 
@@ -16,15 +18,23 @@ const home = ref({
   icon: 'ti ti-home',
 });
 const items = ref([
-  { label: 'Electronics', icon: 'ti ti-user'   },
-  { label: 'Computer' },
-  { label: 'Accessories' },
-  { label: 'Keyboard' },
-  { label: 'Wireless' },
+  { label: 'Breadcrumb', icon: 'ti ti-user' },
+  { label: 'Breadcrumb', icon: 'ti ti-user' },
+  { label: 'Breadcrumb' },
 ]);
 </script>
 
 <PrimeBreadcrumb :home="home" :model="items" />
+```
+
+### Without Home Icon
+
+```html dark
+<PrimeBreadcrumb :model="[
+  { label: 'Breadcrumb', icon: 'ti ti-user' },
+  { label: 'Breadcrumb', icon: 'ti ti-user' },
+  { label: 'Breadcrumb' }
+]" />
 ```
 
 <Story name="Primary">{Template.bind({})}</Story>

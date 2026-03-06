@@ -8,18 +8,22 @@ export const Template = (args) => ({
       icon: 'ti ti-home',
     });
     const items = ref([
-      { label: 'Electronics', icon: 'ti ti-user' },
-      { label: 'Computer' },
-      { label: 'Accessories' },
-      { label: 'Keyboard' },
-      { label: 'Wireless' },
+      { label: 'Breadcrumb', icon: 'ti ti-user' },
+      { label: 'Breadcrumb', icon: 'ti ti-user' },
+      { label: 'Breadcrumb' },
     ]);
 
     return { args, items, home };
   },
   template: `
-    <div>
+    <div style="display: flex; flex-direction: column; gap: 16px;">
       <Breadcrumb :home="home" :model="items"/>
+      
+      <Breadcrumb :model="[
+        { label: 'Breadcrumb', icon: 'ti ti-user' },
+        { label: 'Breadcrumb', icon: 'ti ti-user' },
+        { label: 'Breadcrumb' }
+      ]"/>
     </div>
 `,
 });

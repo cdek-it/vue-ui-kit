@@ -14,11 +14,11 @@ export const Template = (args) => ({
 
   <span :style="{ justifySelf: 'flex-start' }"></span>
   <Rating v-bind="args" />
-  <Rating default-value="3" v-bind="args" />
+  <Rating :model-value="3" v-bind="args" />
 
   <span :style="{ justifySelf: 'flex-start' }"><code>disabled</code></span>
   <Rating disabled v-bind="args" />
-  <Rating :default-value="3" disabled v-bind="args" />
+  <Rating :model-value="3" disabled v-bind="args" />
 </div>
 `,
 });
@@ -39,21 +39,21 @@ export const TemplateClear = (args) => ({
   <span><code>v-model="3"</code></span>
 
   <span :style="{ justifySelf: 'flex-start' }"></span>
-  <div :style="{ display: 'flex', alignItems: 'center', gap: '0.5rem' }">
+  <div class="p-rating-wrapper">
     <i class="ti ti-ban" style="cursor: pointer" @click="value1 = 0" />
     <Rating v-model="value1" v-bind="args" />
   </div>
-  <div :style="{ display: 'flex', alignItems: 'center', gap: '0.5rem' }">
+  <div class="p-rating-wrapper">
     <i class="ti ti-ban" style="cursor: pointer" @click="value2 = 0" />
     <Rating v-model="value2" v-bind="args" />
   </div>
 
   <span :style="{ justifySelf: 'flex-start' }"><code>disabled</code></span>
-  <div :style="{ display: 'flex', alignItems: 'center', gap: '0.5rem' }">
+  <div class="p-rating-wrapper">
     <i class="ti ti-ban" style="cursor: not-allowed; opacity: 0.6" />
     <Rating v-model="value3" disabled v-bind="args" />
   </div>
-  <div :style="{ display: 'flex', alignItems: 'center', gap: '0.5rem' }">
+  <div class="p-rating-wrapper">
     <i class="ti ti-ban" style="cursor: not-allowed; opacity: 0.6" />
     <Rating v-model="value4" disabled v-bind="args" />
   </div>

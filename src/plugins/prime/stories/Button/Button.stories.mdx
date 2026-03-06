@@ -1,36 +1,39 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template, TemplateBadge } from './Button.template';
+import { Template, TemplateBadge, TemplateVariants } from './Button.template';
 
 <Meta title="Prime/Button" />
 
 # Button
 
-[PrimeVue Button](https://primevue.org/button), [Макет](<https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/%F0%9F%A7%A9-UI-kit-PrimeFace--1.0.0-beta-?node-id=480-4174&m=dev>)
+[PrimeVue Button](https://primevue.org/button), [Figma Design](<https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=160-5223>)
 
-### Icon
+## Варианты кнопок
 
-```html dark
-<PrimeButton icon="ti ti-arrow-down-right" />
-```
+Компонент поддерживает следующие варианты согласно дизайну из Figma:
 
-<Story
-  name="Icon"
-  args={{
-    icon: 'ti ti-arrow-down-right',
-  }}
->
-  {Template.bind({})}
+- **Варианты (severity)**: `primary` (default), `secondary`, `contrast`, `text`, `link`
+- **Размеры (size)**: `small`, `base` (default), `large`, `xlarge`
+- **Состояния**: `default`, `hover`, `focus`, `active`, `disabled`, `loading`
+- **Форма**: обычная или `rounded`
+- **С иконкой**: `icon-only`, `prefix`, `postfix`
+
+### All Variants
+
+Полная матрица всех вариантов кнопок из Figma дизайна.
+
+<Story name="All Variants">
+  {TemplateVariants.bind({})}
 </Story>
 
-### Label
+### Primary (Default)
 
 ```html dark
 <PrimeButton label="Button" />
 ```
 
 <Story
-  name="Label"
+  name="Primary"
   args={{
     label: 'Button',
   }}
@@ -38,34 +41,196 @@ import { Template, TemplateBadge } from './Button.template';
   {Template.bind({})}
 </Story>
 
-### Icon + Label
+### Secondary
 
 ```html dark
-<PrimeButton icon="ti ti-arrow-down-right" label="Button" />
+<PrimeButton label="Button" severity="secondary" />
 ```
 
 <Story
-  name="Icon With Label"
+  name="Secondary"
   args={{
-    icon: 'ti ti-arrow-down-right',
+    label: 'Button',
+    severity: 'secondary',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Tertiary
+
+```html dark
+<PrimeButton label="Button" severity="contrast" />
+```
+
+<Story
+  name="Tertiary"
+  args={{
+    label: 'Button',
+    severity: 'contrast',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Text Variant
+
+```html dark
+<PrimeButton label="Button" variant="text" />
+```
+
+<Story
+  name="Text"
+  args={{
+    label: 'Button',
+    variant: 'text',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Link Variant
+
+```html dark
+<PrimeButton label="Button" variant="link" />
+```
+
+<Story
+  name="Link"
+  args={{
+    label: 'Button',
+    variant: 'link',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Icon Only
+
+```html dark
+<PrimeButton icon="ti ti-check" />
+```
+
+<Story
+  name="Icon Only"
+  args={{
+    icon: 'ti ti-check',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Icon + Label (Prefix)
+
+```html dark
+<PrimeButton icon="ti ti-check" label="Button" />
+```
+
+<Story
+  name="Icon Prefix"
+  args={{
+    icon: 'ti ti-check',
     label: 'Button',
   }}
 >
   {Template.bind({})}
 </Story>
 
-### Label + Icon
+### Label + Icon (Postfix)
 
 ```html dark
-<PrimeButton label="Button" icon="ti ti-arrow-down-right" iconPos="right" />
+<PrimeButton label="Button" icon="ti ti-arrow-right" iconPos="right" />
 ```
 
 <Story
-  name="Label With Icon"
+  name="Icon Postfix"
   args={{
     label: 'Button',
-    icon: 'ti ti-arrow-down-right',
+    icon: 'ti ti-arrow-right',
     iconPos: 'right',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Rounded
+
+```html dark
+<PrimeButton label="Button" rounded />
+```
+
+<Story
+  name="Rounded"
+  args={{
+    label: 'Button',
+    rounded: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Disabled
+
+```html dark
+<PrimeButton label="Button" disabled />
+```
+
+<Story
+  name="Disabled"
+  args={{
+    label: 'Button',
+    disabled: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Disabled Outlined
+
+```html dark
+<PrimeButton label="Button" variant="outlined" disabled />
+```
+
+<Story
+  name="Disabled Outlined"
+  args={{
+    label: 'Button',
+    variant: 'outlined',
+    disabled: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Disabled Text
+
+```html dark
+<PrimeButton label="Button" variant="text" disabled />
+```
+
+<Story
+  name="Disabled Text"
+  args={{
+    label: 'Button',
+    variant: 'text',
+    disabled: true,
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+### Disabled Link
+
+```html dark
+<PrimeButton label="Button" variant="link" disabled />
+```
+
+<Story
+  name="Disabled Link"
+  args={{
+    label: 'Button',
+    variant: 'link',
+    disabled: true,
   }}
 >
   {Template.bind({})}
@@ -73,11 +238,11 @@ import { Template, TemplateBadge } from './Button.template';
 
 ### Badge
 
-[PrimeVue OverlayBadge](https://primevue.org/badge/#overlay), [Figma](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=489-4069&node-type=section&t=96Rf4vdhhmN5WlPT-0>)
+[PrimeVue OverlayBadge](https://primevue.org/badge/#overlay)
 
 ```html dark
 <PrimeOverlayBadge value="Badge" severity="danger">
-  <PrimeButton label="Button" :size="size" />
+  <PrimeButton label="Button" />
 </PrimeOverlayBadge>
 ```
 
