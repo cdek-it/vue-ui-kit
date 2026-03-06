@@ -30,7 +30,11 @@ module.exports = {
 
   framework: {
     name: '@storybook/vue3-vite',
-    options: {},
+    options: {}
+  },
+
+  features: {
+    storyStoreV7: true,
   },
 
   async viteFinal(config, { configType }) {
@@ -63,5 +67,7 @@ module.exports = {
     });
   },
 
-  docs: {},
+  docs: {
+    autodocs: true
+  }
 };
