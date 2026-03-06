@@ -1,32 +1,59 @@
-import { Meta, Canvas, ArgTypes, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import { Meta, Story } from '@storybook/blocks';
 import * as ProgressBarStories from './ProgressBar.stories';
+
+import { Template } from './ProgressBar.template';
 
 <Meta of={ProgressBarStories} />
 
-<Title />
-<Description />
+# ProgressBar
 
-## Варианты использования
+[PrimeVue ProgressBar](https://primevue.org/progressbar), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=113-1004)
 
-### По умолчанию
-Базовый вариант прогресс-бара. Используйте таблицу ниже для настройки параметров в реальном времени.
+### Base
 
-<Canvas of={ProgressBarStories.Default} />
+Базовый прогресс-бар с процентами
 
-#### Аргументы и события
-<Controls of={ProgressBarStories.Default} />
+```html dark
+<PrimeProgressBar :value="50" />
+```
 
-### Неопределенный режим (Indeterminate)
-Используется, когда точное время завершения процесса неизвестно.
+<Story of={ProgressBarStories.Primary} />
 
-<Canvas of={ProgressBarStories.Indeterminate} />
+### Без значения (Indeterminate)
 
-### Различные значения
-Примеры прогресса на разных этапах выполнения.
+Прогресс-бар без конкретного значения для неопределенных процессов
 
-<Canvas of={ProgressBarStories.Values} />
+```html dark
+<PrimeProgressBar mode="indeterminate" />
+```
+
+<Story of={ProgressBarStories.Indeterminate} />
+
+### Разные значения
+
+Примеры с различными процентами выполнения
+
+```html dark
+<PrimeProgressBar :value="25" />
+<PrimeProgressBar :value="50" />
+<PrimeProgressBar :value="75" />
+<PrimeProgressBar :value="100" />
+```
+
+<Story of={ProgressBarStories.Values25} />
+
+<Story of={ProgressBarStories.Values50} />
+
+<Story of={ProgressBarStories.Values75} />
+
+<Story of={ProgressBarStories.Values100} />
 
 ### Без отображения значения
-Вариант без текстовой метки внутри индикатора.
 
-<Canvas of={ProgressBarStories.NoLabel} />
+Прогресс-бар без текстовой метки
+
+```html dark
+<PrimeProgressBar :value="60" :showValue="false" />
+```
+
+<Story of={ProgressBarStories.NoLabel} />

@@ -1,58 +1,142 @@
-import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
+import { Meta, Story } from '@storybook/blocks';
 import * as ButtonStories from './Button.stories';
+
+import { Template, TemplateBadge, TemplateVariants } from './Button.template';
 
 <Meta of={ButtonStories} />
 
-<Title />
-<Description />
+# Button
 
----
+[PrimeVue Button](https://primevue.org/button), [Figma Design](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=160-5223)
 
-## Варианты использования
+## Варианты кнопок
 
-### Default
-Базовый вариант кнопки.
-<Canvas of={ButtonStories.ButtonDefault} />
+Компонент поддерживает следующие варианты согласно дизайну из Figma:
 
-#### Полный список аргументов и событий компонента.
-<Controls of={ButtonStories.ButtonDefault} />
+* **Варианты (severity)**: `primary` (default), `secondary`, `contrast`, `text`, `link`
+* **Размеры (size)**: `small`, `base` (default), `large`, `xlarge`
+* **Состояния**: `default`, `hover`, `focus`, `active`, `disabled`, `loading`
+* **Форма**: обычная или `rounded`
+* **С иконкой**: `icon-only`, `prefix`, `postfix`
 
-### Sizes
-Кнопка поддерживает три размера: `small`, `base`, `large`.
-<Canvas of={ButtonStories.Sizes} />
+### All Variants
 
-### Icons
-Кнопки могут содержать иконки слева, справа или с обеих сторон.
-<Canvas of={ButtonStories.Icons} />
+Полная матрица всех вариантов кнопок из Figma дизайна.
+
+<Story of={ButtonStories.AllVariants} />
+
+### Primary (Default)
+
+```html dark
+<PrimeButton label="Button" />
+```
+
+<Story of={ButtonStories.Primary} />
+
+### Secondary
+
+```html dark
+<PrimeButton label="Button" severity="secondary" />
+```
+
+<Story of={ButtonStories.Secondary} />
+
+### Tertiary
+
+```html dark
+<PrimeButton label="Button" severity="contrast" />
+```
+
+<Story of={ButtonStories.Tertiary} />
+
+### Text Variant
+
+```html dark
+<PrimeButton label="Button" variant="text" />
+```
+
+<Story of={ButtonStories.Text} />
+
+### Link Variant
+
+```html dark
+<PrimeButton label="Button" variant="link" />
+```
+
+<Story of={ButtonStories.Link} />
 
 ### Icon Only
-В случаях, когда текст не требуется, можно использовать только иконку.
-<Canvas of={ButtonStories.IconOnly} />
 
-### Severity
-Цветовые схемы для различных контекстов: `success`, `info`, `warn`, `danger`.
-<Canvas of={ButtonStories.Severity} />
+```html dark
+<PrimeButton icon="ti ti-check" />
+```
 
-### Text
-Кнопка без заливки и границ, часто используется в тулбарах или списках.
-<Canvas of={ButtonStories.Text} />
+<Story of={ButtonStories.IconOnly} />
 
-### Link
-Кнопка, стилизованная под ссылку.
-<Canvas of={ButtonStories.Link} />
+### Icon + Label (Prefix)
+
+```html dark
+<PrimeButton icon="ti ti-check" label="Button" />
+```
+
+<Story of={ButtonStories.IconPrefix} />
+
+### Label + Icon (Postfix)
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-arrow-right" iconPos="right" />
+```
+
+<Story of={ButtonStories.IconPostfix} />
 
 ### Rounded
-Полностью скруглённая форма кнопки.
-<Canvas of={ButtonStories.Rounded} />
+
+```html dark
+<PrimeButton label="Button" rounded />
+```
+
+<Story of={ButtonStories.Rounded} />
 
 ### Disabled
-Состояние кнопки, при котором взаимодействие с ней заблокировано.
-<Canvas of={ButtonStories.Disabled} />
 
-### Loading
-Кнопка с индикатором загрузки. Полезно для асинхронных действий.
-<Canvas of={ButtonStories.Loading} />
+```html dark
+<PrimeButton label="Button" disabled />
+```
+
+<Story of={ButtonStories.Disabled} />
+
+### Disabled Outlined
+
+```html dark
+<PrimeButton label="Button" variant="outlined" disabled />
+```
+
+<Story of={ButtonStories.DisabledOutlined} />
+
+### Disabled Text
+
+```html dark
+<PrimeButton label="Button" variant="text" disabled />
+```
+
+<Story of={ButtonStories.DisabledText} />
+
+### Disabled Link
+
+```html dark
+<PrimeButton label="Button" variant="link" disabled />
+```
+
+<Story of={ButtonStories.DisabledLink} />
 
 ### Badge
-Кнопка с уведомлением или числовым индикатором (OverlayBadge).
-<Canvas of={ButtonStories.Badge} />
+
+[PrimeVue OverlayBadge](https://primevue.org/badge/#overlay)
+
+```html dark
+<PrimeOverlayBadge value="Badge" severity="danger">
+  <PrimeButton label="Button" />
+</PrimeOverlayBadge>
+```
+
+<Story of={ButtonStories.Badge} />

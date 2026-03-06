@@ -1,67 +1,70 @@
-import Button from 'primevue/button';
-import {
-  Template,
-  TemplatePositions,
-  TemplateDelay,
-  TemplateEvent,
-} from './Tooltip.template';
+import { Template, TemplateVariants } from './Tooltip.template';
 
-const meta = {
+export default {
   title: 'Prime/Form/Tooltip',
-  component: Button,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `Tooltip — это компонент, который отображает информационный текст при наведении на элемент. \n\n \`\`\`js \n import Tooltip from 'primevue/tooltip'; \n \`\`\` `,
-      },
-    },
-    designToken: { disable: false },
-    designTokens: { prefix: '--p-tooltip' },
-  },
-  argTypes: {
-    text: {
-      control: 'text',
-      description: 'Текст внутри подсказки.',
-      table: { category: 'Props', type: { summary: 'string' } },
-    },
-    label: {
-      control: 'text',
-      description: 'Текст на кнопке, к которой привязан тултип.',
-      table: { category: 'Props', type: { summary: 'string' } },
-    },
-    position: {
-      control: 'select',
-      options: ['top', 'bottom', 'left', 'right'],
-      description: 'Позиция подсказки относительно элемента.',
-      table: {
-        category: 'Props',
-        defaultValue: { summary: 'right' },
-        type: { summary: "'top' | 'bottom' | 'left' | 'right'" },
-      },
-    },
-  },
 };
 
-export default meta;
+export const AllVariants = {
+  render: TemplateVariants.bind({}),
+  name: 'All Variants',
+};
 
 export const Default = {
-  render: Template,
+  render: Template.bind({}),
+  name: 'Default',
+
   args: {
-    text: 'Это текст подсказки',
-    label: 'Наведи на меня',
-    position: 'right',
+    text: 'This is a tooltip',
+    label: 'Hover me',
   },
 };
 
-export const Positions = {
-  render: TemplatePositions,
+export const Top = {
+  render: Template.bind({}),
+  name: 'Top',
+
+  args: {
+    text: 'Top tooltip',
+    label: 'Top',
+  },
 };
 
-export const Delay = {
-  render: TemplateDelay,
+export const Bottom = {
+  render: Template.bind({}),
+  name: 'Bottom',
+
+  args: {
+    text: 'Bottom tooltip',
+    label: 'Bottom',
+  },
 };
 
-export const Event = {
-  render: TemplateEvent,
+export const Left = {
+  render: Template.bind({}),
+  name: 'Left',
+
+  args: {
+    text: 'Left tooltip',
+    label: 'Left',
+  },
+};
+
+export const Right = {
+  render: Template.bind({}),
+  name: 'Right',
+
+  args: {
+    text: 'Right tooltip',
+    label: 'Right',
+  },
+};
+
+export const LongText = {
+  render: Template.bind({}),
+  name: 'Long Text',
+
+  args: {
+    text: 'This is a very long tooltip text that should wrap to multiple lines when it exceeds the maximum width of the tooltip container',
+    label: 'Long text',
+  },
 };

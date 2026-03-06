@@ -6,10 +6,12 @@ export default {
 
 export const Primary = {
   render: Template.bind({}),
+  name: 'Primary',
 };
 
 export const Currency = {
   render: Template.bind(),
+  name: 'Currency',
 
   args: {
     mode: 'currency',

@@ -1,152 +1,109 @@
-import Chip from 'primevue/chip';
 import { Template } from './Chip.template';
 
-const meta = {
+export default {
   title: 'Prime/Misc/Chip',
-  component: Chip,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'Chip представляет небольшой интерактивный элемент с текстом, иконкой и опциональной кнопкой удаления.',
-      },
-    },
-    designToken: { disable: false },
-    designTokens: { prefix: '--p-chip' },
-  },
-  argTypes: {
-    label: {
-      control: 'text',
-      description: 'Текст внутри чипа',
-      table: {
-        category: 'Props',
-        type: { summary: 'string' },
-      },
-    },
-    icon: {
-      control: 'text',
-      description: 'Иконка чипа',
-      table: {
-        category: 'Props',
-        type: { summary: 'string' },
-      },
-    },
-    removable: {
-      control: 'boolean',
-      description: 'Отображает кнопку удаления',
-      table: {
-        category: 'Props',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Отключает чип',
-      table: {
-        category: 'Props',
-        type: { summary: 'boolean' },
-        defaultValue: { summary: 'false' },
-      },
-    },
-  },
 };
-
-export default meta;
 
 export const Default = {
-  render: Template,
-  args: {
-    label: 'Chip',
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Chip label="Chip" />
-</template>
-        `,
-      },
-    },
-  },
-};
+  render: Template.bind({}),
+  name: 'Default',
 
-export const WithIcon = {
-  render: Template,
   args: {
     label: 'Chip',
-    icon: 'ti ti-info-circle',
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Chip label="Chip" icon="ti ti-info-circle" />
-</template>
-        `,
-      },
-    },
   },
 };
 
 export const Removable = {
-  render: Template,
+  render: Template.bind({}),
+  name: 'Removable',
+
   args: {
     label: 'Chip',
     removable: true,
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Chip label="Chip" removable />
-</template>
-        `,
-      },
-    },
+};
+
+export const Icon = {
+  render: Template.bind({}),
+  name: 'Icon',
+
+  args: {
+    label: 'Chip',
+    icon: 'ti ti-info-circle',
   },
 };
 
-export const RemovableWithIcon = {
-  render: Template,
+export const RemovableIcon = {
+  render: Template.bind({}),
+  name: 'RemovableIcon',
+
   args: {
     label: 'Chip',
     icon: 'ti ti-info-circle',
     removable: true,
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Chip label="Chip" icon="ti ti-info-circle" removable />
-</template>
-        `,
-      },
-    },
-  },
 };
 
 export const Disabled = {
-  render: Template,
+  render: Template.bind({}),
+  name: 'disabled',
+
   args: {
     label: 'Chip',
     icon: 'ti ti-info-circle',
     removable: true,
     disabled: true,
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Chip label="Chip" icon="ti ti-info-circle" removable disabled />
-</template>
-        `,
+};
+
+export const Accessability = {
+  render: Template.bind({}),
+  name: 'Accessability',
+
+  args: {
+    label: 'Chip',
+    icon: 'ti ti-info-circle',
+    removable: true,
+
+    pt: {
+      removeIcon: {
+        tabindex: '0',
+      },
+    },
+  },
+};
+
+export const AccessabilityDisabledError = {
+  render: Template.bind({}),
+  name: 'AccessabilityDisabledError',
+
+  args: {
+    label: 'Chip',
+    icon: 'ti ti-info-circle',
+    removable: true,
+    disabled: true,
+
+    pt: {
+      removeIcon: {
+        tabindex: '0',
+      },
+    },
+  },
+};
+
+export const AccessabilityDisabled = {
+  render: Template.bind({}),
+  name: 'AccessabilityDisabled',
+
+  args: {
+    label: 'Chip',
+    icon: 'ti ti-info-circle',
+    removable: true,
+    disabled: true,
+
+    pt: {
+      removeIcon: {
+        tabindex: '-1',
       },
     },
   },

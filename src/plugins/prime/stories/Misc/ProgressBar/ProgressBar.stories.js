@@ -1,69 +1,67 @@
-import ProgressBar from 'primevue/progressbar';
-import { Template, TemplateValues } from './ProgressBar.template';
+import { Template } from './ProgressBar.template';
 
-/**
- * ProgressBar — компонент для визуализации прогресса выполнения задачи.
- */
-const meta = {
+export default {
   title: 'Prime/Misc/ProgressBar',
-  component: ProgressBar,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `ProgressBar используется для информирования пользователя о статусе длительного процесса.
-        
-### Import
-\`\`\`js
-import ProgressBar from 'primevue/progressbar';
-\`\`\``,
-      },
-    },
-    designToken: { disable: false },
-    designTokens: { prefix: '--p-progressbar' },
-  },
-  argTypes: {
-    value: {
-      control: { type: 'number', min: 0, max: 100 },
-      description: 'Значение прогресса (0-100)',
-      table: { category: 'Props', defaultValue: { summary: '0' } },
-    },
-    mode: {
-      control: 'select',
-      options: ['determinate', 'indeterminate'],
-      description: 'Режим отображения',
-      table: { category: 'Props', defaultValue: { summary: 'determinate' } },
-    },
-    showValue: {
-      control: 'boolean',
-      description: 'Отображать ли числовое значение',
-      table: { category: 'Props', defaultValue: { summary: 'true' } },
-    },
-  },
 };
 
-export default meta;
+export const Primary = {
+  render: Template.bind({}),
+  name: 'Primary',
 
-export const Default = {
-  render: Template,
   args: {
     value: 50,
   },
 };
 
 export const Indeterminate = {
-  render: Template,
+  render: Template.bind({}),
+  name: 'Indeterminate',
+
   args: {
     mode: 'indeterminate',
   },
 };
 
-export const Values = {
-  render: TemplateValues,
+export const Values25 = {
+  render: Template.bind({}),
+  name: 'Values 25',
+
+  args: {
+    value: 25,
+  },
+};
+
+export const Values50 = {
+  render: Template.bind({}),
+  name: 'Values 50',
+
+  args: {
+    value: 50,
+  },
+};
+
+export const Values75 = {
+  render: Template.bind({}),
+  name: 'Values 75',
+
+  args: {
+    value: 75,
+  },
+};
+
+export const Values100 = {
+  render: Template.bind({}),
+  name: 'Values 100',
+
+  args: {
+    value: 100,
+  },
 };
 
 export const NoLabel = {
-  render: Template,
+  render: Template.bind({}),
+  name: 'No Label',
+
   args: {
     value: 60,
     showValue: false,

@@ -6,10 +6,12 @@ export default {
 
 export const Primary = {
   render: Template.bind({}),
+  name: 'Primary',
 };
 
 export const Slot = {
   render: Slots.bind({}),
+  name: 'Slot',
 
   args: {
     name: 'default',
@@ -18,6 +20,7 @@ export const Slot = {
 
 export const IconSlot = {
   render: Slots.bind({}),
+  name: 'Icon Slot',
 
   args: {
     name: 'icon',

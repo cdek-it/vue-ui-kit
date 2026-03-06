@@ -4,28 +4,16 @@ const path = require('path');
 const designTokensAddon = path.resolve(__dirname, 'addons/design-tokens');
 
 module.exports = {
-  stories: [
-    '../src/plugins/prime/**/*.mdx',
-    '../src/plugins/prime/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-    '../src/primeBlocks/**/*.stories.@(js|jsx|mjs|ts|tsx)',
-  ],
+  stories: ['../src/docs/1_installation.mdx', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
 
   staticDirs: [{ from: './assets', to: '/assets' }],
 
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-themes',
-    designTokensAddon,
-    {
-      name: '@storybook/addon-docs',
-      options: {
-        mdxPluginOptions: {
-          mdxCompileOptions: {
-            providerImportSource: require.resolve('@storybook/addon-docs/mdx-react-shim'),
-          },
-        },
-      },
-    },
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    'storybook-addon-themes',
+    '@chromatic-com/storybook'
   ],
 
   framework: {
@@ -33,9 +21,6 @@ module.exports = {
     options: {}
   },
 
-  features: {
-    storyStoreV7: true,
-  },
 
   async viteFinal(config, { configType }) {
     if (configType === 'PRODUCTION') {
@@ -67,7 +52,5 @@ module.exports = {
     });
   },
 
-  docs: {
-    autodocs: true
-  }
+  docs: {}
 };

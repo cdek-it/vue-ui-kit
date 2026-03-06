@@ -1,32 +1,26 @@
-import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import { Meta, Story } from '@storybook/blocks';
 import * as SliderStories from './Slider.stories';
+
+import { Template } from './Slider.template';
 
 <Meta of={SliderStories} />
 
-<Title />
-<Description />
+# Slider
 
-## Варианты использования
+[PrimeVue Slider](https://primevue.org/slider), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-6137\&node-type=section\&m=dev)
 
-### Default
-Базовый слайдер для выбора одного значения. Используйте таблицу ниже для настройки пропсов в реальном времени.
-<Canvas of={SliderStories.SliderDefault} />
+### Base
 
-#### Полный список аргументов и событий компонента.
-<Controls of={SliderStories.SliderDefault} />
+```html dark
+<PrimeSlider v-model="value" />
+```
+
+<Story of={SliderStories.Primary} />
 
 ### Range
-Выбор диапазона значений с двумя ползунками.
-<Canvas of={SliderStories.Range} />
 
-### Step
-Слайдер с заданным шагом изменения значения.
-<Canvas of={SliderStories.Step} />
+```html dark
+<PrimeSlider v-model="value" range />
+```
 
-### Vertical
-Слайдер с вертикальной ориентацией.
-<Canvas of={SliderStories.Vertical} />
-
-### Disabled
-Неактивное состояние слайдера.
-<Canvas of={SliderStories.Disabled} />
+<Story of={SliderStories.Range} />

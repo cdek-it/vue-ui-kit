@@ -79,12 +79,4 @@ export const decorators = [
     return storyFn();
   },
 ];
-
 export const tags = ['autodocs'];
-
-export const initialGlobals = {
-  theme: '',  // инициализирует global 'theme' для тулбара
-  backgrounds: {
-    value: '#ffffff',
-  },
-};

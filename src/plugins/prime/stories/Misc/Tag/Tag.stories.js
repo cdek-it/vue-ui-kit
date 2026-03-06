@@ -1,145 +1,99 @@
-import Tag from 'primevue/tag';
-import { Template, TemplateSeverities } from './Tag.template';
+import { Template, TemplateVariants } from './Tag.template';
 
-const meta = {
+export default {
   title: 'Prime/Misc/Tag',
-  component: Tag,
-  tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `Tag — это компонент для цветового выделения и классификации элементов интерфейса. \n\n ### Import \n \`\`\`js \n import Tag from 'primevue/tag'; \n \`\`\` `,
-      },
-    },
-    designToken: { disable: false },
-    designTokens: { prefix: '--p-tag' },
-  },
-  argTypes: {
-    value: {
-      control: 'text',
-      description: 'Текст тега.',
-      table: {
-        category: 'Props',
-        type: { summary: 'string' },
-      },
-    },
-    severity: {
-      control: 'select',
-      options: ['primary', 'secondary', 'success', 'info', 'warn', 'danger'],
-      description: 'Вариант важности (цвета) тега.',
-      table: {
-        category: 'Props',
-        defaultValue: { summary: 'primary' },
-        type: {
-          summary:
-            "'primary' | 'secondary' | 'success' | 'info' | 'warn' | 'danger'",
-        },
-      },
-    },
-    rounded: {
-      control: 'boolean',
-      description: 'Скругленный вариант тега.',
-      table: {
-        category: 'Props',
-        defaultValue: { summary: false },
-        type: { summary: 'boolean' },
-      },
-    },
-    icon: {
-      control: 'text',
-      description: 'Иконка тега.',
-      table: {
-        category: 'Props',
-        type: { summary: 'string' },
-      },
-    },
-  },
 };
 
-export default meta;
+export const AllVariants = {
+  render: TemplateVariants.bind({}),
+  name: 'All Variants',
+};
 
-// ── Default ──────────────────────────────────────────────────────────────────
+export const Primary = {
+  render: Template.bind({}),
+  name: 'Primary',
 
-export const Default = {
-  name: 'Tag',
-  render: Template,
   args: {
     value: 'Tag',
     severity: 'primary',
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Tag value="Tag" severity="primary" />
-</template>
-        `,
-      },
-    },
+};
+
+export const Secondary = {
+  render: Template.bind({}),
+  name: 'Secondary',
+
+  args: {
+    value: 'Tag',
+    severity: 'secondary',
   },
 };
 
-// ── Stories ──────────────────────────────────────────────────────────────────
+export const Success = {
+  render: Template.bind({}),
+  name: 'Success',
 
-export const Severities = {
-  render: TemplateSeverities,
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <div class="flex flex-wrap items-center gap-4">
-    <Tag value="Primary" severity="primary" />
-    <Tag value="Secondary" severity="secondary" />
-    <Tag value="Success" severity="success" />
-    <Tag value="Info" severity="info" />
-    <Tag value="Warn" severity="warn" />
-    <Tag value="Danger" severity="danger" />
-  </div>
-</template>
-        `,
-      },
-    },
+  args: {
+    value: 'Tag',
+    severity: 'success',
+  },
+};
+
+export const Info = {
+  render: Template.bind({}),
+  name: 'Info',
+
+  args: {
+    value: 'Tag',
+    severity: 'info',
+  },
+};
+
+export const Warning = {
+  render: Template.bind({}),
+  name: 'Warning',
+
+  args: {
+    value: 'Tag',
+    severity: 'warn',
+  },
+};
+
+export const Danger = {
+  render: Template.bind({}),
+  name: 'Danger',
+
+  args: {
+    value: 'Tag',
+    severity: 'danger',
   },
 };
 
 export const Rounded = {
-  render: Template,
+  render: Template.bind({}),
+  name: 'Rounded',
+
   args: {
-    value: 'Rounded',
-    severity: 'success',
+    value: 'Tag',
     rounded: true,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Tag value="Rounded" severity="success" :rounded="true" />
-</template>
-        `,
-      },
-    },
   },
 };
 
 export const WithIcon = {
-  render: Template,
+  render: Template.bind({}),
+  name: 'With Icon',
+
   args: {
-    value: 'Verified',
-    severity: 'info',
+    value: 'Tag',
     icon: 'ti ti-check',
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Tag value="Verified" severity="info" icon="ti ti-check" />
-</template>
-        `,
-      },
-    },
+};
+
+export const IconOnly = {
+  render: Template.bind({}),
+  name: 'Icon Only',
+
+  args: {
+    icon: 'ti ti-check',
   },
 };

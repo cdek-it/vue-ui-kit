@@ -6,6 +6,7 @@ export default {
 
 export const Primary = {
   render: Template.bind({}),
+  name: 'Primary',
 
   args: {
     feedback: false,
@@ -14,8 +15,10 @@ export const Primary = {
 
 export const Meter = {
   render: Template.bind({}),
+  name: 'Meter',
 };
 
 export const Custom = {
   render: TemplateCustom.bind({}),
+  name: 'Custom',
 };

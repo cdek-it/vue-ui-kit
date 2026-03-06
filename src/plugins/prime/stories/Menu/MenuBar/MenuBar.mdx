@@ -1,75 +1,20 @@
-import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
+import { Meta, Story } from '@storybook/blocks';
 import * as MenuBarStories from './MenuBar.stories';
+
+import { Template } from './MenuBar.template';
 
 <Meta of={MenuBarStories} />
 
-<Title />
-<Description />
+# MenuBar
 
-```javascript
-import { PBlockMenubar, PBlockMenuItem } from '@cdek-it/vue-ui-kit';
-```
-
-## Варианты использования
+[PrimeVue MenuBar](https://primevue.org/menubar), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12875\&m=dev)
 
 ### Basic
 
-Горизонтальное меню с выпадающими подменю.
+```jsx dark
+const selectedClass = 'p-menuitem-checked';
 
-<Canvas of={MenuBarStories.Basic} />
+<PrimeMenubar :model="items" />
+```
 
-### With Icon
-
-Menubar с иконками в пунктах меню и вложенных подменю.
-
-<Canvas of={MenuBarStories.WithIcon} />
-
-### Кастомный шаблон
-
-Menubar с кастомным отображением пунктов: иконка, подпись и описание.
-
-<Canvas of={MenuBarStories.Custom} />
-
-### Кастомный тег (itemAs)
-
-Menubar с рендером пунктов через `<button>` вместо `<a>` с помощью пропа `itemAs`.
-
-<Canvas of={MenuBarStories.WithItemAs} />
-
-## Слоты
-
-### start, item, end
-
-Логотип в `start`, кастомная стрелка в `submenuicon` и кнопка в `end`.
-
-<Canvas of={MenuBarStories.WithSlots} />
-
-### itemicon
-
-Кастомный рендер иконки пункта меню. Слот получает `{ item }`.
-
-<Canvas of={MenuBarStories.WithItemIconSlot} />
-
-### submenuicon
-
-Кастомная иконка стрелки подменю. Слот получает `{ item, root }`, где `root: true` — верхний уровень, `root: false` — вложенное подменю.
-
-<Canvas of={MenuBarStories.WithSubmenuIconSlot} />
-
-### submenuicon (active state)
-
-Иконка подменю с вращением при открытии через `data-p-active`. Откройте `Features → Core`, чтобы увидеть nested-состояние.
-
-<Canvas of={MenuBarStories.WithSubmenuIconActiveState} />
-
-### button
-
-Кастомная кнопка раскрытия мобильного меню (видна при узком viewport). Слот получает `{ toggleCallback }`.
-
-<Canvas of={MenuBarStories.WithButtonSlot} />
-
-### buttonicon
-
-Кастомная иконка внутри кнопки мобильного меню.
-
-<Canvas of={MenuBarStories.WithButtonIconSlot} />
+<Story of={MenuBarStories.Primary} />

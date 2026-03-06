@@ -1,43 +1,76 @@
-import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import { Meta, Story } from '@storybook/blocks';
 import * as CarouselStories from './Carousel.stories';
+
+import { Template } from './Carousel.template';
 
 <Meta of={CarouselStories} />
 
-<Title />
-<Description />
+# Carousel
 
-```javascript
-import Carousel from 'primevue/carousel';
+[PrimeVue Carousel](https://primevue.org/carousel/), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=1207-3811)
+
+### Карусель с 5-ю видимыми (из 8-ми) слайдами
+
+```html dark
+<PrimeCarousel
+  :value="carouselItems"
+  :numVisible="5"
+  :numScroll="1"
+  :responsiveOptions="responsiveOptions"
+>
+  <template #item="{ data }">
+    <!-- Тут ваш html для каждого элемента карусели. -->
+    <!-- В data лежит объект из коллекции carouselItems. -->
+    <!-- Пример шаблона для слайда: -->
+    <div class="flex flex-col gap-3 mx-1 px-3 py-3 border rounded">
+      <span v-html="data.title" />
+      <span v-html="data.subtitle" />
+    </div>
+  </template>
+</PrimeCarousel>
 ```
 
-## Варианты использования
+`carouselItems` - коллекция объектов с данными для каждого элемента карусели.
 
-### Basic
+```ts dark
+// Пример коллекции слайдов для карусели:
 
-<details>
-<summary>Важно: обёртка карточки</summary>
+const carouselSlides: Array<{ [key: string]: any }> = [
+  {
+    title: 'Lorem Ipsum 1',
+    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe.'
+  },
+  // ...
+  {
+    title: 'Lorem Ipsum 8',
+    subtitle: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe.'
+  },
+];
+```
 
-На элементе-обёртке внутри `#item` **обязательно** задавать `min-w-0 overflow-hidden`.
+`numVisible` - кол-во элементов, отображаемое за 1 прокрутку.
 
-PrimeVue по умолчанию скрывает неактивные слайды через `visibility: hidden`. Тема переопределяет это значение на `visibility: visible`, чтобы сохранить плавность анимации. В результате отсечение слайдов за пределами viewport берёт на себя `overflow: hidden` на самом контейнере карточки.
+`numScroll (number)` - кол-во элементов, которое будет сдвигаться за 1 прокрутку.
 
-</details>
+`responsiveOptions` - настройка поведения для адаптивности.
 
-Базовая карусель с горизонтальной прокруткой. Используйте таблицу ниже для настройки пропсов в реальном времени.
+```ts dark
+// Пример опций для настройки адаптивности карусели:
 
-<Canvas of={CarouselStories.Basic} />
+import type { CarouselResponsiveOptions } from 'primevue/carousel';
 
-#### Полный список аргументов и событий компонента.
-<Controls of={CarouselStories.Basic} />
+const responsiveOptions: CarouselResponsiveOptions[] = [
+  {
+    breakpoint: '1120px',
+    numVisible: 5,
+    numScroll: 1,
+  },
+  // ...
+];
+```
 
-### Vertical
+**Рабочий пример:**
 
-Карусель с вертикальной ориентацией.
+<Story of={CarouselStories.$карусельС5ЮВидимымиИз8МиСлайдами} />
 
-<Canvas of={CarouselStories.Vertical} />
-
-### Autoplay
-
-Карусель с автоматической прокруткой слайдов (`autoplayInterval`, `circular`).
-
-<Canvas of={CarouselStories.Autoplay} />
+> Отступы между слайдами задается через margin слайда.

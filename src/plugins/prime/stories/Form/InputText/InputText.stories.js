@@ -6,6 +6,7 @@ export default {
 
 export const Primary = {
   render: Template.bind({}),
+  name: 'Primary',
 };
 
 export const WithIcons = {
