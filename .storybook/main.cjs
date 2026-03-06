@@ -8,20 +8,25 @@ module.exports = {
     '../src/**/*.stories.mdx',
     '../src/**/*.stories.@(js|jsx|ts|tsx)',
   ],
+
   staticDirs: [{ from: './assets', to: '/assets' }],
+
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     'storybook-addon-themes',
   ],
-  framework: '@storybook/vue3',
-  core: {
-    builder: '@storybook/builder-vite',
+
+  framework: {
+    name: '@storybook/vue3-vite',
+    options: {}
   },
+
   features: {
     storyStoreV7: true,
   },
+
   async viteFinal(config, { configType }) {
     if (configType === 'PRODUCTION') {
       config.base = '/vue-ui-kit/';
@@ -46,4 +51,8 @@ module.exports = {
       },
     });
   },
+
+  docs: {
+    autodocs: true
+  }
 };

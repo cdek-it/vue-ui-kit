@@ -1,4 +1,4 @@
-import { app } from '@storybook/vue3';
+import { setup } from '@storybook/vue3';
 import { registerToastification } from '@/plugins/toastification';
 import PrimeVue from 'primevue/config';
 import { getPrimeVueConfig } from '@/plugins/prime';
@@ -11,8 +11,6 @@ import './themes/violet.css';
 import StoryWrapper from './common/StoryWrapper/StoryWrapper.vue';
 import { onMounted } from 'vue';
 
-registerToastification(app);
-
 const storyBookConfig = {
   theme: {
     options: {
@@ -23,9 +21,12 @@ const storyBookConfig = {
 
 const mergedConfig = getPrimeVueConfig(storyBookConfig);
 
-app.use(PrimeVue, mergedConfig);
-app.use(ConfirmationService);
-app.directive('tooltip', Tooltip);
+setup((app) => {
+  registerToastification(app);
+  app.use(PrimeVue, mergedConfig);
+  app.use(ConfirmationService);
+  app.directive('tooltip', Tooltip);
+});
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
