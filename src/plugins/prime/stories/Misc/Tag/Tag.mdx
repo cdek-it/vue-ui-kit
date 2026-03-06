@@ -1,0 +1,106 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as TagStories from './Tag.stories';
+
+import { Template, TemplateVariants } from './Tag.template';
+
+<Meta of={TagStories} />
+
+# Tag
+
+[PrimeVue Tag](https://primevue.org/tag), [Figma Design](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=21-1238)
+
+## Варианты тегов
+
+Компонент поддерживает следующие варианты согласно дизайну из Figma:
+
+* **Severity**: `primary`, `secondary`, `success`, `info`, `warn`, `danger`
+* **Форма**: обычная или `rounded`
+* **С иконкой**: `icon` (prefix) или только иконка (без value)
+
+### Стили текста
+
+Согласно дизайн-токенам:
+
+* **Font Family**: PT Sans (base)
+* **Font Size**: 12px (0.75rem)
+* **Font Weight**: 400 (regular)
+* **Line Height**: 1rem
+* **Icon Size**: 16px (1rem)
+
+### All Variants
+
+Полная матрица всех вариантов тегов из Figma дизайна.
+
+<Story of={TagStories.AllVariants} />
+
+### Primary
+
+```html dark
+<PrimeTag value="Tag" severity="primary" />
+```
+
+<Story of={TagStories.Primary} />
+
+### Secondary
+
+```html dark
+<PrimeTag value="Tag" severity="secondary" />
+```
+
+<Story of={TagStories.Secondary} />
+
+### Success
+
+```html dark
+<PrimeTag value="Tag" severity="success" />
+```
+
+<Story of={TagStories.Success} />
+
+### Info
+
+```html dark
+<PrimeTag value="Tag" severity="info" />
+```
+
+<Story of={TagStories.Info} />
+
+### Warning
+
+```html dark
+<PrimeTag value="Tag" severity="warn" />
+```
+
+<Story of={TagStories.Warning} />
+
+### Danger
+
+```html dark
+<PrimeTag value="Tag" severity="danger" />
+```
+
+<Story of={TagStories.Danger} />
+
+### Rounded
+
+```html dark
+<PrimeTag value="Tag" rounded />
+```
+
+<Story of={TagStories.Rounded} />
+
+### With Icon
+
+```html dark
+<PrimeTag value="Tag" icon="ti ti-check" />
+```
+
+<Story of={TagStories.WithIcon} />
+
+### Icon Only
+
+```html dark
+<PrimeTag icon="ti ti-check" />
+```
+
+<Story of={TagStories.IconOnly} />

@@ -1,0 +1,20 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as MenuStories from './Menu.stories';
+
+import { Template } from './Menu.template';
+
+<Meta of={MenuStories} />
+
+# Menu
+
+[PrimeVue Menu](https://primevue.org/menu), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12826\&m=dev)
+
+### Basic
+
+```jsx dark
+const selectedClass = 'p-menuitem-checked';
+
+<PrimeMenu :model="items" />
+```
+
+<Story of={MenuStories.Primary} />

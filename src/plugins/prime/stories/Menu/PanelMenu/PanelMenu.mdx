@@ -1,0 +1,18 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as PanelMenuStories from './PanelMenu.stories';
+
+import { Template } from './PanelMenu.template';
+
+<Meta of={PanelMenuStories} />
+
+# PanelMenu
+
+[PrimeVue PanelMenu](https://primevue.org/PanelMenu), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12975\&m=dev)
+
+### Basic
+
+```html dark
+<Menubar :model="items" />
+```
+
+<Story of={PanelMenuStories.Primary} />

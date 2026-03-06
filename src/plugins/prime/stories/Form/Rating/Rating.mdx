@@ -1,0 +1,29 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as RatingStories from './Rating.stories';
+
+import { Template, TemplateClear } from './Rating.template';
+
+<Meta of={RatingStories} />
+
+# Rating
+
+[PrimeVue Rating](https://primevue.org/rating), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=2119-3782)
+
+### Basic
+
+```html dark
+<PrimeRating v-model="value" />
+```
+
+<Story of={RatingStories.Primary} />
+
+### With Clear Button
+
+```html dark
+<div>
+  <i class="ti ti-ban" @click="value = 0" />
+  <PrimeRating v-model="value" />
+</div>
+```
+
+<Story of={RatingStories.Clear} />

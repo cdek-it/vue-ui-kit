@@ -1,0 +1,16 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as SelectButtonStories from './SelectButton.stories';
+
+import { Template } from './SelectButton.template';
+
+<Meta of={SelectButtonStories} />
+
+# SelectButton
+
+[PrimeVue SelectButton](https://primevue.org/selectbutton), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=481-4393\&node-type=section\&m=dev)
+
+```html dark
+<PrimeSelectButton v-model="value" :options="options" />
+```
+
+<Story of={SelectButtonStories.Primary} />

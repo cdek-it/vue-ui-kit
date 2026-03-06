@@ -1,0 +1,73 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as ListboxStories from './Listbox.stories';
+
+import { Template, TemplateGrouped, TemplateCustom } from './Listbox.template';
+
+<Meta of={ListboxStories} />
+
+# Listbox
+
+[PrimeVue Listbox](https://primevue.org/listbox), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5829\&node-type=section\&t=2PSg63p2UfJ4cUzB-0)
+
+### Базовый
+
+```html dark
+<PrimeListbox v-model="value" :options="options" />
+```
+
+<Story of={ListboxStories.Primary} />
+
+### C галочкой при выборе
+
+```html dark
+<PrimeListbox v-model="value" :options="options" checkmark />
+```
+
+<Story of={ListboxStories.Checkmark} />
+
+### С группами
+
+Смотри подробнее в [документации](https://primevue.org/listbox/#group)
+
+```html dark
+<!-- options - кастомная структура, это пример реализации -->
+<PrimeListbox v-model="value" :options="options">
+  <template #optiongroup="{ option }">
+    <div>
+      <i class="ti ti-brand-tabler" />
+      <div>{{ option.label }}</div>
+    </div>
+  </template>
+</PrimeListbox>
+```
+
+<Story of={ListboxStories.Grouped} />
+
+### C иконкой и описанием
+
+Смотри подробнее в [документации](https://primevue.org/listbox/#template)
+
+```html dark
+<!-- options - кастомная структура, это пример реализации -->
+<PrimeListbox v-model="value" :options="options">
+  <template #option="{ option }">
+    <div>
+      <i :class="option.icon" />
+      <div>
+        <div>{{ option.name }}</div>
+        <small>{{ option.description }}</small>
+      </div>
+    </div>
+  </template>
+</PrimeListbox>
+```
+
+<Story of={ListboxStories.Custom} />
+
+### Filter
+
+```html dark
+<PrimeListbox v-model="value" :options="options" filter />
+```
+
+<Story of={ListboxStories.Filter} />

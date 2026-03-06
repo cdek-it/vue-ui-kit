@@ -1,0 +1,142 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as ButtonStories from './Button.stories';
+
+import { Template, TemplateBadge, TemplateVariants } from './Button.template';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+[PrimeVue Button](https://primevue.org/button), [Figma Design](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=160-5223)
+
+## Варианты кнопок
+
+Компонент поддерживает следующие варианты согласно дизайну из Figma:
+
+* **Варианты (severity)**: `primary` (default), `secondary`, `contrast`, `text`, `link`
+* **Размеры (size)**: `small`, `base` (default), `large`, `xlarge`
+* **Состояния**: `default`, `hover`, `focus`, `active`, `disabled`, `loading`
+* **Форма**: обычная или `rounded`
+* **С иконкой**: `icon-only`, `prefix`, `postfix`
+
+### All Variants
+
+Полная матрица всех вариантов кнопок из Figma дизайна.
+
+<Story of={ButtonStories.AllVariants} />
+
+### Primary (Default)
+
+```html dark
+<PrimeButton label="Button" />
+```
+
+<Story of={ButtonStories.Primary} />
+
+### Secondary
+
+```html dark
+<PrimeButton label="Button" severity="secondary" />
+```
+
+<Story of={ButtonStories.Secondary} />
+
+### Tertiary
+
+```html dark
+<PrimeButton label="Button" severity="contrast" />
+```
+
+<Story of={ButtonStories.Tertiary} />
+
+### Text Variant
+
+```html dark
+<PrimeButton label="Button" variant="text" />
+```
+
+<Story of={ButtonStories.Text} />
+
+### Link Variant
+
+```html dark
+<PrimeButton label="Button" variant="link" />
+```
+
+<Story of={ButtonStories.Link} />
+
+### Icon Only
+
+```html dark
+<PrimeButton icon="ti ti-check" />
+```
+
+<Story of={ButtonStories.IconOnly} />
+
+### Icon + Label (Prefix)
+
+```html dark
+<PrimeButton icon="ti ti-check" label="Button" />
+```
+
+<Story of={ButtonStories.IconPrefix} />
+
+### Label + Icon (Postfix)
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-arrow-right" iconPos="right" />
+```
+
+<Story of={ButtonStories.IconPostfix} />
+
+### Rounded
+
+```html dark
+<PrimeButton label="Button" rounded />
+```
+
+<Story of={ButtonStories.Rounded} />
+
+### Disabled
+
+```html dark
+<PrimeButton label="Button" disabled />
+```
+
+<Story of={ButtonStories.Disabled} />
+
+### Disabled Outlined
+
+```html dark
+<PrimeButton label="Button" variant="outlined" disabled />
+```
+
+<Story of={ButtonStories.DisabledOutlined} />
+
+### Disabled Text
+
+```html dark
+<PrimeButton label="Button" variant="text" disabled />
+```
+
+<Story of={ButtonStories.DisabledText} />
+
+### Disabled Link
+
+```html dark
+<PrimeButton label="Button" variant="link" disabled />
+```
+
+<Story of={ButtonStories.DisabledLink} />
+
+### Badge
+
+[PrimeVue OverlayBadge](https://primevue.org/badge/#overlay)
+
+```html dark
+<PrimeOverlayBadge value="Badge" severity="danger">
+  <PrimeButton label="Button" />
+</PrimeOverlayBadge>
+```
+
+<Story of={ButtonStories.Badge} />

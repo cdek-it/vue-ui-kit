@@ -1,0 +1,71 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as ChipsStories from './Chips.stories';
+
+<Meta of={ChipsStories} />
+
+# Chips
+
+[PrimeVue](https://primevue.org/autocomplete/#multiple), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5572\&node-type=section\&t=4j1yOYM0tyTZeYYu-0)
+
+Отдельного компонента `Chips` в v4 нет, используем [Autocomplete](https://primevue.org/autocomplete/#multiple) с флагом `multiple`.
+
+### Любое значение
+
+```html dark
+<!-- Не показывает дропдаун с вариантами, нужно нажать на Enter -->
+<PrimeAutoComplete v-model="value" multiple :typeahead="false" />
+```
+
+<Story of={ChipsStories.AnyValue} />
+
+### Выбор из списка
+
+```html dark
+<!-- Функцию в complete нужно передать обязательно, и она должна обязательно изменить значение items, иначе зависнет -->
+<PrimeAutoComplete
+  v-model="value"
+  multiple
+  :suggestions="items"
+  @complete="complete"
+/>
+```
+
+<Story of={ChipsStories.Suggestions} />
+
+### Заменить иконку удаления
+
+```html dark
+<PrimeAutoComplete
+  v-model="value"
+  multiple
+  :suggestions="items"
+  @complete="complete"
+  removeTokenIcon="ti ti-x"
+/>
+```
+
+<Story of={ChipsStories.ChangeRemoveIcon} />
+
+### CustomChip
+
+```html dark
+<!-- Не забыть передать класс p-autocomplete-chip для получения дефолтной стилизации -->
+<PrimeAutoComplete
+    v-model="value"
+    multiple
+    :suggestions="items"
+    @complete="complete"
+>
+    <template #chip="chipsProps">
+      <PrimeChip
+        class="p-autocomplete-chip"
+        :label="chipsProps.value"
+        icon="ti ti-check"
+        removeIcon="ti ti-x"
+        removable
+      />
+    </template>
+</PrimeAutoComplete>
+```
+
+<Story of={ChipsStories.CustomChip} />

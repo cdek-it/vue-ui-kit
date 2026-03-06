@@ -1,0 +1,59 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as ProgressBarStories from './ProgressBar.stories';
+
+import { Template } from './ProgressBar.template';
+
+<Meta of={ProgressBarStories} />
+
+# ProgressBar
+
+[PrimeVue ProgressBar](https://primevue.org/progressbar), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=113-1004)
+
+### Base
+
+Базовый прогресс-бар с процентами
+
+```html dark
+<PrimeProgressBar :value="50" />
+```
+
+<Story of={ProgressBarStories.Primary} />
+
+### Без значения (Indeterminate)
+
+Прогресс-бар без конкретного значения для неопределенных процессов
+
+```html dark
+<PrimeProgressBar mode="indeterminate" />
+```
+
+<Story of={ProgressBarStories.Indeterminate} />
+
+### Разные значения
+
+Примеры с различными процентами выполнения
+
+```html dark
+<PrimeProgressBar :value="25" />
+<PrimeProgressBar :value="50" />
+<PrimeProgressBar :value="75" />
+<PrimeProgressBar :value="100" />
+```
+
+<Story of={ProgressBarStories.Values25} />
+
+<Story of={ProgressBarStories.Values50} />
+
+<Story of={ProgressBarStories.Values75} />
+
+<Story of={ProgressBarStories.Values100} />
+
+### Без отображения значения
+
+Прогресс-бар без текстовой метки
+
+```html dark
+<PrimeProgressBar :value="60" :showValue="false" />
+```
+
+<Story of={ProgressBarStories.NoLabel} />

@@ -1,0 +1,120 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as DividerStories from './Divider.stories';
+
+import { Template, ContentTemplate } from './Divider.template';
+
+<Meta of={DividerStories} />
+
+# Divider
+
+[PrimeVue Divider](https://primevue.org/divider)
+
+Divider используется для разделения контента на странице.
+
+## Типы линий
+
+### Solid (по умолчанию)
+
+```html dark
+<PrimeDivider />
+```
+
+<Story of={DividerStories.Default} />
+
+### Dashed
+
+```html dark
+<PrimeDivider type="dashed"/>
+```
+
+<Story of={DividerStories.Dashed} />
+
+### Dotted
+
+```html dark
+<PrimeDivider type="dotted"/>
+```
+
+<Story of={DividerStories.Dotted} />
+
+## Горизонтальный с контентом
+
+### По центру (по умолчанию)
+
+```html dark
+<PrimeDivider>
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
+</PrimeDivider>
+```
+
+<Story of={DividerStories.ContentDefault} />
+
+### Слева
+
+```html dark
+<PrimeDivider align="left">
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
+</PrimeDivider>
+```
+
+<Story of={DividerStories.ContentLeft} />
+
+### Справа
+
+```html dark
+<PrimeDivider align="right">
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
+</PrimeDivider>
+```
+
+<Story of={DividerStories.ContentRight} />
+
+## Вертикальный с контентом
+
+### По центру (по умолчанию)
+
+```html dark
+<PrimeDivider layout="vertical">
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
+</PrimeDivider>
+```
+
+<Story of={DividerStories.VerticalContentDefault} />
+
+### Сверху
+
+```html dark
+<PrimeDivider align="top" layout="vertical">
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
+</PrimeDivider>
+```
+
+<Story of={DividerStories.ContentTop} />
+
+### Снизу
+
+```html dark
+<PrimeDivider align="bottom" layout="vertical">
+  <div>
+    <i class="ti ti-info-circle"></i>
+    SUBTITLE
+  </div>
+</PrimeDivider>
+```
+
+<Story of={DividerStories.ContentBottom} />

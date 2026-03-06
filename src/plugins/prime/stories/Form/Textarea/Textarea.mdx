@@ -1,0 +1,16 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as TextareaStories from './Textarea.stories';
+
+import { Template } from './Textarea.template';
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+[PrimeVue Textarea](https://primevue.org/textarea), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5624\&t=SXHhPDfEhr0q0Ofq-4)
+
+```html dark
+<PrimeTextarea v-model="value" placeholder="InputTextarea" rows="6" />
+```
+
+<Story of={TextareaStories.Primary} />

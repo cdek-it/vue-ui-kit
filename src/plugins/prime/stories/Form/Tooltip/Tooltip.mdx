@@ -1,0 +1,82 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as TooltipStories from './Tooltip.stories';
+
+import { Template, TemplateVariants } from './Tooltip.template';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+[PrimeVue Tooltip](https://primevue.org/tooltip), [Figma Design](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=24-1369)
+
+## Описание
+
+Tooltip отображает информационный текст при наведении на элемент.
+
+### Типографика
+
+Согласно дизайн-токенам:
+
+* **Font Family**: PT Sans (base)
+* **Font Size**: 14px (0.875rem)
+* **Font Weight**: 400 (regular)
+* **Line Height**: 1.0714285714285714rem
+* **Background**: Dark (surface.900)
+* **Text Color**: White (inverted)
+* **Padding**: 0.5rem 1rem
+* **Border Radius**: 0.5rem
+* **Max Width**: 17rem
+
+### All Variants
+
+Полная матрица всех вариантов tooltip.
+
+<Story of={TooltipStories.AllVariants} />
+
+### Default
+
+```html dark
+<PrimeButton v-tooltip="'Tooltip text'" label="Hover me" />
+```
+
+<Story of={TooltipStories.Default} />
+
+### Top Position
+
+```html dark
+<PrimeButton v-tooltip.top="'Top tooltip'" label="Top" />
+```
+
+<Story of={TooltipStories.Top} />
+
+### Bottom Position
+
+```html dark
+<PrimeButton v-tooltip.bottom="'Bottom tooltip'" label="Bottom" />
+```
+
+<Story of={TooltipStories.Bottom} />
+
+### Left Position
+
+```html dark
+<PrimeButton v-tooltip.left="'Left tooltip'" label="Left" />
+```
+
+<Story of={TooltipStories.Left} />
+
+### Right Position
+
+```html dark
+<PrimeButton v-tooltip.right="'Right tooltip'" label="Right" />
+```
+
+<Story of={TooltipStories.Right} />
+
+### Long Text
+
+```html dark
+<PrimeButton v-tooltip="'Very long tooltip text that wraps to multiple lines'" label="Long text" />
+```
+
+<Story of={TooltipStories.LongText} />

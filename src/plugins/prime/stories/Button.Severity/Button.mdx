@@ -1,0 +1,41 @@
+import { Meta, Story } from '@storybook/blocks';
+import { Template } from '../Button/Button.template';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+### Severity
+
+[Figma](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=4894122)
+
+#### Danger
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-arrow-down-right" severity="danger" />
+```
+
+<Story of={ButtonStories.Danger} />
+
+#### Warn
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-alert-triangle" severity="warn" />
+```
+
+<Story of={ButtonStories.Warn} />
+
+#### Success
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-check" severity="success" />
+```
+
+<Story of={ButtonStories.Success} />
+
+#### Info
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-info-circle" severity="info" />
+```
+
+<Story of={ButtonStories.Info} />

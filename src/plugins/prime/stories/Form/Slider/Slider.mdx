@@ -1,0 +1,26 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as SliderStories from './Slider.stories';
+
+import { Template } from './Slider.template';
+
+<Meta of={SliderStories} />
+
+# Slider
+
+[PrimeVue Slider](https://primevue.org/slider), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-6137\&node-type=section\&m=dev)
+
+### Base
+
+```html dark
+<PrimeSlider v-model="value" />
+```
+
+<Story of={SliderStories.Primary} />
+
+### Range
+
+```html dark
+<PrimeSlider v-model="value" range />
+```
+
+<Story of={SliderStories.Range} />

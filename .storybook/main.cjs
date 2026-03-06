@@ -3,11 +3,7 @@ const svgLoader = require('vite-svg-loader');
 const path = require('path');
 
 module.exports = {
-  stories: [
-    '../src/docs/1_installation.stories.mdx',
-    '../src/**/*.stories.mdx',
-    '../src/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  stories: ['../src/docs/1_installation.mdx', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
 
   staticDirs: [{ from: './assets', to: '/assets' }],
 
@@ -16,6 +12,7 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     'storybook-addon-themes',
+    '@chromatic-com/storybook'
   ],
 
   framework: {
@@ -23,9 +20,6 @@ module.exports = {
     options: {}
   },
 
-  features: {
-    storyStoreV7: true,
-  },
 
   async viteFinal(config, { configType }) {
     if (configType === 'PRODUCTION') {
@@ -52,7 +46,5 @@ module.exports = {
     });
   },
 
-  docs: {
-    autodocs: true
-  }
+  docs: {}
 };

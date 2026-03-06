@@ -21,7 +21,7 @@ export const Template = (args) => ({
 `,
 });
 
-export const Languages = (args) => ({
+export const LanguagesTemplate = (args) => ({
   components: { DatePicker },
   setup() {
     const primeVue = usePrimeVue();

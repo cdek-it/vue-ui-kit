@@ -1,0 +1,41 @@
+import { Meta, Story } from '@storybook/blocks';
+import * as BreadcrumbStories from './Breadcrumb.stories';
+
+import { Template } from './Breadcrumb.template';
+
+<Meta of={BreadcrumbStories} />
+
+# Breadcrumb
+
+[PrimeVue Breadcrumb](https://primevue.org/Breadcrumb), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=734-7859)
+
+Компонент навигации, показывающий текущее местоположение пользователя в иерархии страниц.
+
+### Basic
+
+```html dark
+<script setup>
+const home = ref({
+  icon: 'ti ti-home',
+});
+const items = ref([
+  { label: 'Breadcrumb', icon: 'ti ti-user' },
+  { label: 'Breadcrumb', icon: 'ti ti-user' },
+  { label: 'Breadcrumb' },
+]);
+</script>
+
+<PrimeBreadcrumb :home="home" :model="items" />
+```
+
+### Without Home Icon
+
+```html dark
+<PrimeBreadcrumb :model="[
+  { label: 'Breadcrumb', icon: 'ti ti-user' },
+  { label: 'Breadcrumb', icon: 'ti ti-user' },
+  { label: 'Breadcrumb' }
+]" />
+```
+
+<Story of={BreadcrumbStories.Primary} />
