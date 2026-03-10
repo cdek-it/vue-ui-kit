@@ -6,12 +6,10 @@ export default {
 
 export const Default = {
   render: Template.bind({}),
-  name: 'Default',
 };
 
 export const Circle = {
   render: Template.bind({}),
-  name: 'Circle',
 
   args: {
     shape: 'circle',

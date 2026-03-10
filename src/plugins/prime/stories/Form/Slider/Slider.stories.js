@@ -6,12 +6,10 @@ export default {
 
 export const Primary = {
   render: Template.bind({}),
-  name: 'Primary',
 };
 
 export const Range = {
   render: Template.bind({}),
-  name: 'Range',
 
   args: {
     range: true,

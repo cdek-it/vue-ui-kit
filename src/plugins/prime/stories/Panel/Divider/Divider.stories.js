@@ -13,12 +13,10 @@ export default {
 
 export const Default = {
   render: Template.bind({}),
-  name: 'Default',
 };
 
 export const Dashed = {
   render: Template.bind({}),
-  name: 'Dashed',
 
   args: {
     type: 'dashed',
@@ -27,7 +25,6 @@ export const Dashed = {
 
 export const Dotted = {
   render: Template.bind({}),
-  name: 'Dotted',
 
   args: {
     type: 'dotted',

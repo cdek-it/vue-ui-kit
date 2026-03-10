@@ -6,7 +6,6 @@ export default {
 
 export const Default = {
   render: Template.bind({}),
-  name: 'Default',
 
   args: {
     value: 'Badge',
@@ -15,10 +14,8 @@ export const Default = {
 
 export const Sizes = {
   render: SizeTemplate.bind({}),
-  name: 'Sizes',
 };
 
 export const Dot = {
   render: DotTemplate.bind({}),
-  name: 'Dot',
 };

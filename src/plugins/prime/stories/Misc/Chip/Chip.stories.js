@@ -6,7 +6,6 @@ export default {
 
 export const Default = {
   render: Template.bind({}),
-  name: 'Default',
 
   args: {
     label: 'Chip',
@@ -15,7 +14,6 @@ export const Default = {
 
 export const Removable = {
   render: Template.bind({}),
-  name: 'Removable',
 
   args: {
     label: 'Chip',
@@ -25,7 +23,6 @@ export const Removable = {
 
 export const Icon = {
   render: Template.bind({}),
-  name: 'Icon',
 
   args: {
     label: 'Chip',
@@ -58,7 +55,6 @@ export const Disabled = {
 
 export const Accessability = {
   render: Template.bind({}),
-  name: 'Accessability',
 
   args: {
     label: 'Chip',

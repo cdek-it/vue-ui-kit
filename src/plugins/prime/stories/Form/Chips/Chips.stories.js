@@ -6,7 +6,6 @@ export default {
 
 export const AnyValue = {
   render: Template.bind({}),
-  name: 'Any Value',
 
   args: {
     multiple: true,
@@ -16,7 +15,6 @@ export const AnyValue = {
 
 export const Suggestions = {
   render: Template.bind({}),
-  name: 'Suggestions',
 
   args: {
     multiple: true,

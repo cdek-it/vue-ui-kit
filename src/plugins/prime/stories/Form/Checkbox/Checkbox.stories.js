@@ -6,10 +6,8 @@ export default {
 
 export const AllStates = {
   render: Template.bind({}),
-  name: 'All States',
 };
 
 export const Interactive = {
   render: InteractiveTemplate.bind({}),
-  name: 'Interactive',
 };
