@@ -13,6 +13,7 @@ module.exports = {
 
   addons: [
     '@storybook/addon-links',
+    '@storybook/addon-themes',
     {
       name: '@storybook/addon-docs',
       options: {
