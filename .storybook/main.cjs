@@ -3,22 +3,19 @@ const svgLoader = require('vite-svg-loader');
 const path = require('path');
 
 module.exports = {
-  stories: ['../src/docs/1_installation.mdx', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 
   staticDirs: [{ from: './assets', to: '/assets' }],
 
   addons: [
     '@storybook/addon-links',
-    'storybook-addon-themes',
-    '@chromatic-com/storybook',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
   ],
 
   framework: {
     name: '@storybook/vue3-vite',
-    options: {}
+    options: {},
   },
-
 
   async viteFinal(config, { configType }) {
     if (configType === 'PRODUCTION') {
@@ -30,6 +27,12 @@ module.exports = {
       resolve: {
         alias: {
           '@': path.resolve(__dirname, '../src'),
+          // FIX ДЛЯ СТОРИБУК 10
+          'file://./node_modules/@storybook/addon-docs/dist/mdx-react-shim.js':
+            path.resolve(
+              __dirname,
+              '../node_modules/@storybook/addon-docs/dist/shims/mdx-react-shim.js'
+            ),
         },
       },
       css: {
@@ -45,5 +48,5 @@ module.exports = {
     });
   },
 
-  docs: {}
+  docs: {},
 };
