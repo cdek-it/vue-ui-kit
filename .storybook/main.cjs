@@ -4,13 +4,26 @@ const path = require('path');
 const designTokensAddon = path.resolve(__dirname, 'addons/design-tokens');
 
 module.exports = {
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  stories: [
+    '../src/plugins/prime/**/*.mdx',
+    '../src/plugins/prime/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/primeBlocks/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+  ],
 
   staticDirs: [{ from: './assets', to: '/assets' }],
 
   addons: [
     '@storybook/addon-links',
-    '@storybook/addon-docs',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            providerImportSource: require.resolve('@storybook/addon-docs/mdx-react-shim'),
+          },
+        },
+      },
+    },
   ],
 
   framework: {
@@ -26,15 +39,14 @@ module.exports = {
     return mergeConfig(config, {
       plugins: [svgLoader()],
       resolve: {
-        alias: {
-          '@': path.resolve(__dirname, '../src'),
+        alias: [
+          { find: '@', replacement: path.resolve(__dirname, '../src') },
           // FIX ДЛЯ СТОРИБУК 10
-          'file://./node_modules/@storybook/addon-docs/dist/mdx-react-shim.js':
-            path.resolve(
-              __dirname,
-              '../node_modules/@storybook/addon-docs/dist/shims/mdx-react-shim.js'
-            ),
-        },
+          {
+            find: /file:\/\/.*mdx-react-shim\.js/,
+            replacement: require.resolve('@storybook/addon-docs/mdx-react-shim'),
+          },
+        ],
       },
       css: {
         preprocessorOptions: {
