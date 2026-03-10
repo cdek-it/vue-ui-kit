@@ -1,4 +1,5 @@
 import { setup } from '@storybook/vue3-vite';
+import { DecoratorHelpers } from '@storybook/addon-themes';
 import { registerToastification } from '@/plugins/toastification';
 import PrimeVue from 'primevue/config';
 import { getPrimeVueConfig } from '@/plugins/prime';
@@ -8,6 +9,27 @@ import ConfirmationService from 'primevue/confirmationservice';
 import '../src/tailwind.css';
 import './themes/base.css';
 import './themes/violet.css';
+
+const { initializeThemeState, pluckThemeFromContext } = DecoratorHelpers;
+
+const THEMES = {
+  'Light': '',
+  'Dark':  'theme-prime-dark',
+};
+
+const DEFAULT_THEME = 'Light';
+
+// Pre-compute all theme classes for cleanup
+const ALL_THEME_CLASSES = [...new Set(
+  Object.values(THEMES).flatMap((c) => c.split(' ')).filter(Boolean),
+)];
+
+function applyTheme(themeName) {
+  const html = document.documentElement;
+  ALL_THEME_CLASSES.forEach((c) => html.classList.remove(c));
+  const classes = (THEMES[themeName] || '').split(' ').filter(Boolean);
+  classes.forEach((c) => html.classList.add(c));
+}
 
 const storyBookConfig = {
   theme: {
@@ -52,33 +74,11 @@ export const parameters = {
   interactions: { disable: true },
   backgrounds: {
     options: {
-      white: {
-        name: 'white',
-        value: '#ffffff',
-      },
-
-      grey: {
-        name: 'grey',
-        value: '#F5F6F8',
-      },
-
-      green: {
-        name: 'green',
-        value: '#1AB248',
-      },
-
-      dark: {
-        name: 'dark',
-        value: '#1C1B22',
-      }
-    }
-  },
-  themes: {
-    default: 'green',
-    list: [
-      { name: 'green', class: 'theme-green', color: '#1ab248' },
-      { name: 'violet', class: 'theme-violet', color: '#4b3c87' },
-    ],
+      white:  { name: 'white', value: '#ffffff' },
+      grey:   { name: 'grey',  value: '#F5F6F8' },
+      green:  { name: 'green', value: '#1AB248' },
+      dark:   { name: 'dark',  value: '#1C1B22' },
+    },
   },
 };
 
@@ -101,10 +101,12 @@ export const decorators = [
     return storyFn();
   },
 ];
+
 export const tags = ['autodocs'];
 
 export const initialGlobals = {
+  theme: '',  // инициализирует global 'theme' для тулбара
   backgrounds: {
-    value: 'grey'
-  }
+    value: 'grey',
+  },
 };

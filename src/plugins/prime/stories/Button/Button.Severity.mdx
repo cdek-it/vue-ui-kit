@@ -1,0 +1,26 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as SeverityStories from './Button.Severity.stories';
+
+<Meta of={SeverityStories} />
+
+# Button / Severity
+
+[Figma](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=4894122)
+
+Семантические варианты кнопки: `danger`, `warn`, `success`, `info`.
+
+### Button
+
+<Story of={SeverityStories.ButtonDefault} />
+
+### All Severities
+
+<Story of={SeverityStories.AllSeverities} />
+
+### With Icons
+
+<Story of={SeverityStories.WithIcons} />
+
+### Disabled
+
+<Story of={SeverityStories.Disabled} />
