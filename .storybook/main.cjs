@@ -4,22 +4,19 @@ const path = require('path');
 const designTokensAddon = path.resolve(__dirname, 'addons/design-tokens');
 
 module.exports = {
-  stories: ['../src/docs/1_installation.mdx', '../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
 
   staticDirs: [{ from: './assets', to: '/assets' }],
 
   addons: [
     '@storybook/addon-links',
-    'storybook-addon-themes',
-    '@chromatic-com/storybook',
-    '@storybook/addon-docs'
+    '@storybook/addon-docs',
   ],
 
   framework: {
     name: '@storybook/vue3-vite',
-    options: {}
+    options: {},
   },
-
 
   async viteFinal(config, { configType }) {
     if (configType === 'PRODUCTION') {
@@ -29,14 +26,15 @@ module.exports = {
     return mergeConfig(config, {
       plugins: [svgLoader()],
       resolve: {
-        alias: [
-          { find: '@', replacement: path.resolve(__dirname, '../src') },
+        alias: {
+          '@': path.resolve(__dirname, '../src'),
           // FIX ДЛЯ СТОРИБУК 10
-          {
-            find: /file:\/\/.*mdx-react-shim\.js/,
-            replacement: require.resolve('@storybook/addon-docs/mdx-react-shim'),
-          },
-        ],
+          'file://./node_modules/@storybook/addon-docs/dist/mdx-react-shim.js':
+            path.resolve(
+              __dirname,
+              '../node_modules/@storybook/addon-docs/dist/shims/mdx-react-shim.js'
+            ),
+        },
       },
       css: {
         preprocessorOptions: {
@@ -51,5 +49,5 @@ module.exports = {
     });
   },
 
-  docs: {}
+  docs: {},
 };
