@@ -15,6 +15,7 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-themes',
+    designTokensAddon,
     {
       name: '@storybook/addon-docs',
       options: {
