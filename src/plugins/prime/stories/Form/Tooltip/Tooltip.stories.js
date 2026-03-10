@@ -6,12 +6,10 @@ export default {
 
 export const AllVariants = {
   render: TemplateVariants.bind({}),
-  name: 'All Variants',
 };
 
 export const Default = {
   render: Template.bind({}),
-  name: 'Default',
 
   args: {
     text: 'This is a tooltip',
@@ -21,7 +19,6 @@ export const Default = {
 
 export const Top = {
   render: Template.bind({}),
-  name: 'Top',
 
   args: {
     text: 'Top tooltip',
@@ -31,7 +28,6 @@ export const Top = {
 
 export const Bottom = {
   render: Template.bind({}),
-  name: 'Bottom',
 
   args: {
     text: 'Bottom tooltip',
@@ -41,7 +37,6 @@ export const Bottom = {
 
 export const Left = {
   render: Template.bind({}),
-  name: 'Left',
 
   args: {
     text: 'Left tooltip',
@@ -51,7 +46,6 @@ export const Left = {
 
 export const Right = {
   render: Template.bind({}),
-  name: 'Right',
 
   args: {
     text: 'Right tooltip',
@@ -61,7 +55,6 @@ export const Right = {
 
 export const LongText = {
   render: Template.bind({}),
-  name: 'Long Text',
 
   args: {
     text: 'This is a very long tooltip text that should wrap to multiple lines when it exceeds the maximum width of the tooltip container',

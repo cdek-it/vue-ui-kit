@@ -6,17 +6,14 @@ export default {
 
 export const Primary = {
   render: Template.bind({}),
-  name: 'Primary',
 };
 
 export const Languages = {
   render: LanguagesTemplate.bind({}),
-  name: 'Languages',
 };
 
 export const Disabled = {
   render: Template.bind({}),
-  name: 'Disabled',
 
   args: {
     inline: true,

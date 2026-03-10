@@ -6,7 +6,6 @@ export default {
 
 export const Input = {
   render: Template.bind({}),
-  name: 'Input',
 
   args: {
     component: 'InputText',
@@ -15,7 +14,6 @@ export const Input = {
 
 export const Textarea = {
   render: Template.bind({}),
-  name: 'Textarea',
 
   args: {
     component: 'Textarea',

@@ -6,7 +6,6 @@ export default {
 
 export const Default = {
   render: Template.bind({}),
-  name: 'Default',
 
   args: {
     title: 'Title',

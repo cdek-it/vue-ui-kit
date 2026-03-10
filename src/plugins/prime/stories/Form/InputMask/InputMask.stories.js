@@ -6,5 +6,4 @@ export default {
 
 export const Primary = {
   render: Template.bind({}),
-  name: 'Primary',
 };

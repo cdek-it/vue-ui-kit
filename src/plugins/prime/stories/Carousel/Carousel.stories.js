@@ -4,7 +4,6 @@ export default {
   title: 'Prime/Carousel',
 };
 
-export const $карусельС5ЮВидимымиИз8МиСлайдами = {
+export const CarouselPartVisible = {
   render: Template.bind({}),
-  name: 'Карусель с 5-ю видимыми (из 8-ми) слайдами',
 };

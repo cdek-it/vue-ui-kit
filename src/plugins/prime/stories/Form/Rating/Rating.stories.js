@@ -6,10 +6,8 @@ export default {
 
 export const Primary = {
   render: Template.bind({}),
-  name: 'Primary',
 };
 
 export const Clear = {
   render: TemplateClear.bind({}),
-  name: 'Clear',
 };

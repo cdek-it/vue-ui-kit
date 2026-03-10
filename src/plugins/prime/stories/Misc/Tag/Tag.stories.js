@@ -6,12 +6,10 @@ export default {
 
 export const AllVariants = {
   render: TemplateVariants.bind({}),
-  name: 'All Variants',
 };
 
 export const Primary = {
   render: Template.bind({}),
-  name: 'Primary',
 
   args: {
     value: 'Tag',
@@ -21,7 +19,6 @@ export const Primary = {
 
 export const Secondary = {
   render: Template.bind({}),
-  name: 'Secondary',
 
   args: {
     value: 'Tag',
@@ -31,7 +28,6 @@ export const Secondary = {
 
 export const Success = {
   render: Template.bind({}),
-  name: 'Success',
 
   args: {
     value: 'Tag',
@@ -41,7 +37,6 @@ export const Success = {
 
 export const Info = {
   render: Template.bind({}),
-  name: 'Info',
 
   args: {
     value: 'Tag',
@@ -51,7 +46,6 @@ export const Info = {
 
 export const Warning = {
   render: Template.bind({}),
-  name: 'Warning',
 
   args: {
     value: 'Tag',
@@ -61,7 +55,6 @@ export const Warning = {
 
 export const Danger = {
   render: Template.bind({}),
-  name: 'Danger',
 
   args: {
     value: 'Tag',
@@ -71,7 +64,6 @@ export const Danger = {
 
 export const Rounded = {
   render: Template.bind({}),
-  name: 'Rounded',
 
   args: {
     value: 'Tag',
@@ -81,7 +73,6 @@ export const Rounded = {
 
 export const WithIcon = {
   render: Template.bind({}),
-  name: 'With Icon',
 
   args: {
     value: 'Tag',
@@ -91,7 +82,6 @@ export const WithIcon = {
 
 export const IconOnly = {
   render: Template.bind({}),
-  name: 'Icon Only',
 
   args: {
     icon: 'ti ti-check',

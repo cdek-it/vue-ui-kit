@@ -6,12 +6,10 @@ export default {
 
 export const AllVariants = {
   render: TemplateVariants.bind({}),
-  name: 'All Variants',
 };
 
 export const Default = {
   render: Template.bind({}),
-  name: 'Default',
 
   args: {
     header: 'Dialog Header',
@@ -21,7 +19,6 @@ export const Default = {
 
 export const Small = {
   render: Template.bind({}),
-  name: 'Small',
 
   args: {
     header: 'Small Dialog',
@@ -32,7 +29,6 @@ export const Small = {
 
 export const Large = {
   render: Template.bind({}),
-  name: 'Large',
 
   args: {
     header: 'Large Dialog',
@@ -43,7 +39,6 @@ export const Large = {
 
 export const ExtraLarge = {
   render: Template.bind({}),
-  name: 'Extra Large',
 
   args: {
     header: 'Extra Large Dialog',
@@ -54,7 +49,6 @@ export const ExtraLarge = {
 
 export const NoModal = {
   render: Template.bind({}),
-  name: 'No Modal',
 
   args: {
     header: 'No Modal Dialog',
@@ -64,7 +58,6 @@ export const NoModal = {
 
 export const NoHeader = {
   render: Template.bind({}),
-  name: 'No Header',
 
   args: {
     modal: true,

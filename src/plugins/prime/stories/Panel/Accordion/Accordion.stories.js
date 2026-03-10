@@ -9,23 +9,22 @@ export default {
   title: 'Prime/Panel/Accordion',
 };
 
-export const $аккордеонС1ЙПанелью = {
+export const AccordionOnePanel = {
   render: Template.bind({}),
   name: 'Аккордеон с 1-й панелью',
 };
 
-export const $аккордеонСНесколькимиПанелямиСРежимомТолько1ЙОткрытойПанелиЗаРаз =
-  {
-    render: TemplateWithMultiplePanels.bind({}),
-    name: 'Аккордеон с несколькими панелями с режимом только 1-й открытой панели за раз',
-  };
+export const AccordionWithMultiplePanelsSingleOpenMode = {
+  render: TemplateWithMultiplePanels.bind({}),
+  name: 'Аккордеон с несколькими панелями с режимом только 1-й открытой панели за раз',
+};
 
-export const $аккордеонСОднойВыключеннойПанелью = {
+export const AccordionWithOneDisabledPanel = {
   render: TemplateWithDisabledPanel.bind({}),
   name: 'Аккордеон с одной выключенной панелью',
 };
 
-export const $заголовокПанелиСHtml = {
+export const PanelHeaderWithHtml = {
   render: TemplateWithHtmlInPanelHeader.bind({}),
   name: 'Заголовок панели с html',
 };

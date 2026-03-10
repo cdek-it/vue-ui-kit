@@ -6,7 +6,6 @@ export default {
 
 export const Danger = {
   render: Template.bind({}),
-  name: 'Danger',
 
   args: {
     label: 'Button',
@@ -17,7 +16,6 @@ export const Danger = {
 
 export const Warn = {
   render: Template.bind({}),
-  name: 'Warn',
 
   args: {
     label: 'Button',
@@ -28,7 +26,6 @@ export const Warn = {
 
 export const Success = {
   render: Template.bind({}),
-  name: 'Success',
 
   args: {
     label: 'Button',
@@ -39,7 +36,6 @@ export const Success = {
 
 export const Info = {
   render: Template.bind({}),
-  name: 'Info',
 
   args: {
     label: 'Button',

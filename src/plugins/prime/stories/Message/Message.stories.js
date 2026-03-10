@@ -6,10 +6,8 @@ export default {
 
 export const Primary = {
   render: Template.bind({}),
-  name: 'Primary',
 };
 
 export const Custom = {
   render: CustomContainer.bind({}),
-  name: 'Custom',
 };
