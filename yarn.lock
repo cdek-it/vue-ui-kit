@@ -1228,15 +1228,15 @@
     argparse "~1.0.9"
     string-argv "~0.3.1"
 
-"@storybook/addon-docs@9.0.1":
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-9.0.1.tgz#14830499db95f3608798cb60f44d07edf3c74b4d"
-  integrity sha512-sRU18E4auHY0F7JEvyCxO+yt3C3L+7k3l9YIIW3oy1SEQNAZzPkOgQz6Tl74L1UGBk5+Q505PGaQbXAaIHGlzw==
+"@storybook/addon-docs@10.2.17":
+  version "10.2.17"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-10.2.17.tgz#845ee497dfaedac37703bc090aa013e542e88ddb"
+  integrity sha512-c414xi7rxlaHn92qWOxtEkcOMm0/+cvBui0gUsgiWOZOM8dHChGZ/RjMuf1pPDyOrSsybLsPjZhP0WthsMDkdQ==
   dependencies:
     "@mdx-js/react" "^3.0.0"
-    "@storybook/csf-plugin" "9.0.1"
-    "@storybook/icons" "^1.2.12"
-    "@storybook/react-dom-shim" "9.0.1"
+    "@storybook/csf-plugin" "10.2.17"
+    "@storybook/icons" "^2.0.1"
+    "@storybook/react-dom-shim" "10.2.17"
     react "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
     react-dom "^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0"
     ts-dedent "^2.0.0"
@@ -1247,6 +1247,14 @@
   integrity sha512-KY2usxhPpt9AAzD22uBEfdPj1NZyCNyaYXgKkr8r/UeCNt7E7OdVBLNA1QMYZZ5dtIWj9EtY8c55OPuBM7aUkQ==
   dependencies:
     "@storybook/global" "^5.0.0"
+
+"@storybook/blocks@8.6.18":
+  version "8.6.18"
+  resolved "https://registry.yarnpkg.com/@storybook/blocks/-/blocks-8.6.18.tgz#d1bf7e9639a86cdf690bea1c53028be725afb1e8"
+  integrity sha512-esZv4msPQ9LxgTb8YUIZhhxVMuI6BPi5bkXtk8c7w7sWuAsqsCe/RnVInn7ooUry2gjnD4hd9+8Eqj0b8oTVoA==
+  dependencies:
+    "@storybook/icons" "^1.2.12"
+    ts-dedent "^2.0.0"
 
 "@storybook/builder-vite@10.2.17":
   version "10.2.17"
@@ -1263,13 +1271,6 @@
   dependencies:
     unplugin "^2.3.5"
 
-"@storybook/csf-plugin@9.0.1":
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/@storybook/csf-plugin/-/csf-plugin-9.0.1.tgz#3f0c8f6722a3e50204f72d29e0590a1b27cfedf2"
-  integrity sha512-DRAyU1CKMDJpEOEn70gQtPQielI0gxu55unM4CpK6qWAAPAPVmz3+e+VHbh0AnvBZVgwsaB+g7EI8DD4l2d4PQ==
-  dependencies:
-    unplugin "^1.3.1"
-
 "@storybook/global@^5.0.0":
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/@storybook/global/-/global-5.0.0.tgz#b793d34b94f572c1d7d9e0f44fac4e0dbc9572ed"
@@ -1285,10 +1286,10 @@
   resolved "https://registry.yarnpkg.com/@storybook/icons/-/icons-2.0.1.tgz#1bd351db1d33bfccbbafa7b64fb413168f1a6616"
   integrity sha512-/smVjw88yK3CKsiuR71vNgWQ9+NuY2L+e8X7IMrFjexjm6ZR8ULrV2DRkTA61aV6ryefslzHEGDInGpnNeIocg==
 
-"@storybook/react-dom-shim@9.0.1":
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/@storybook/react-dom-shim/-/react-dom-shim-9.0.1.tgz#38f75b5066b1d9238a0ba4d8f7babcfdae968a12"
-  integrity sha512-MtowY/NS+v/UsHJDZDvsAaXRZERw3diQgWSldEtdlwQxypZQ9CWwvgIuIzRuP4i+/m58TyCEeMEG9gZB1b5pBQ==
+"@storybook/react-dom-shim@10.2.17":
+  version "10.2.17"
+  resolved "https://registry.yarnpkg.com/@storybook/react-dom-shim/-/react-dom-shim-10.2.17.tgz#9d7b3e600c190fa643b8d0ad92422df6bd26fc2c"
+  integrity sha512-x9Kb7eUSZ1zGsEw/TtWrvs1LwWIdNp8qoOQCgPEjdB07reSJcE8R3+ASWHJThmd4eZf66ZALPJyerejake4Osw==
 
 "@storybook/vue3-vite@10.2.17":
   version "10.2.17"
@@ -1962,7 +1963,7 @@ acorn@^8.1.0, acorn@^8.10.0, acorn@^8.11.0, acorn@^8.8.1, acorn@^8.9.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.15.0.tgz#a360898bc415edaac46c8241f6383975b930b816"
   integrity sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==
 
-acorn@^8.14.0, acorn@^8.15.0:
+acorn@^8.15.0:
   version "8.16.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.16.0.tgz#4ce79c89be40afe7afe8f3adb902a1f1ce9ac08a"
   integrity sha512-UVJyE9MttOsBQIDKw1skb9nAwQuR5wuGD3+82K6JgJlm/Y+KI92oNsMNGZCYdDsVtRHSak0pcV5Dno5+4jh9sw==
@@ -6131,14 +6132,6 @@ universalify@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.1.tgz#168efc2180964e6386d061e094df61afe239b18d"
   integrity sha512-gptHNQghINnc/vTGIk0SOFGFNXw7JVrlRUtConJRlvaw6DuX0wO5Jeko9sWrMBhh+PsYAZ7oXAiOnf/UKogyiw==
-
-unplugin@^1.3.1:
-  version "1.16.1"
-  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-1.16.1.tgz#a844d2e3c3b14a4ac2945c42be80409321b61199"
-  integrity sha512-4/u/j4FrCKdi17jaxuJA0jClGxB1AvU2hw/IuayPc4ay1XGaJs/rbb4v5WKwAjNifjmXK9PIFyuPiaK8azyR9w==
-  dependencies:
-    acorn "^8.14.0"
-    webpack-virtual-modules "^0.6.2"
 
 unplugin@^2.3.5:
   version "2.3.11"
