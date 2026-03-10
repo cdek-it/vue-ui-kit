@@ -1,6 +1,7 @@
 const { mergeConfig } = require('vite');
 const svgLoader = require('vite-svg-loader');
 const path = require('path');
+const designTokensAddon = path.resolve(__dirname, 'addons/design-tokens');
 
 module.exports = {
   stories: [
@@ -14,6 +15,7 @@ module.exports = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-themes',
+    designTokensAddon,
     {
       name: '@storybook/addon-docs',
       options: {

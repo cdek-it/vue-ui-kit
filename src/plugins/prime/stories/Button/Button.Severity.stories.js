@@ -14,6 +14,7 @@ const meta = {
       },
     },
     designToken: { disable: false },
+    designTokens: { prefix: '--p-button' },
   },
   argTypes: {
     // ── Props ────────────────────────────────────────────────
