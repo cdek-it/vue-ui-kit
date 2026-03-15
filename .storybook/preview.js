@@ -77,7 +77,7 @@ export const parameters = {
       white:  { name: 'white', value: '#ffffff' },
       grey:   { name: 'grey',  value: '#F5F6F8' },
       green:  { name: 'green', value: '#1AB248' },
-      dark:   { name: 'dark',  value: '#1C1B22' },
+      dark:   { name: 'dark',  value: '#2b2e33' },
     },
   },
 };
@@ -107,6 +107,6 @@ export const tags = ['autodocs'];
 export const initialGlobals = {
   theme: '',  // инициализирует global 'theme' для тулбара
   backgrounds: {
-    value: 'grey',
+    value: '#ffffff',
   },
 };
