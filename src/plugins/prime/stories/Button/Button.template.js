@@ -30,22 +30,22 @@ export const TemplateBadge = (args) => ({
   },
   template: `
 <div style="display: grid; grid-template-columns: repeat(4, max-content); gap: 40px; row-gap: 20px; align-items: center; justify-items: center;">
-  <span><code>class="p-button-xlg"</code></span>
-  <span><code>size="large"</code></span>
-  <span></span>
   <span><code>size="small"</code></span>
+  <span><code>size="base"</code></span>
+  <span><code>size="large"</code></span>
+  <span><code>class="p-button-xlg"</code></span>
 
   <OverlayBadge v-bind="args">
-    <Button label="Button" class="p-button-xlg" />
-  </OverlayBadge>
-  <OverlayBadge v-bind="args">
-    <Button label="Button" size="large" />
+    <Button label="Button" size="small" />
   </OverlayBadge>
   <OverlayBadge v-bind="args">
     <Button label="Button" />
   </OverlayBadge>
   <OverlayBadge v-bind="args">
-    <Button label="Button" size="small" />
+    <Button label="Button" size="large" />
+  </OverlayBadge>
+  <OverlayBadge v-bind="args">
+    <Button label="Button" class="p-button-xlg" />
   </OverlayBadge>
 </div>
 `,
@@ -60,34 +60,34 @@ export const TemplateSeverity = (args) => ({
   template: `
 <div style="display: grid; grid-template-columns: repeat(5, max-content); gap: 20px; align-items: center;">
   <span></span>
-  <span><code>danger</code></span>
-  <span><code>warn</code></span>
   <span><code>success</code></span>
   <span><code>info</code></span>
+  <span><code>warn</code></span>
+  <span><code>danger</code></span>
 
   <span><code>small</code></span>
-  <Button size="small" v-bind="args" severity="danger" label="Button" />
-  <Button size="small" v-bind="args" severity="warn" label="Button" />
   <Button size="small" v-bind="args" severity="success" label="Button" />
   <Button size="small" v-bind="args" severity="info" label="Button" />
+  <Button size="small" v-bind="args" severity="warn" label="Button" />
+  <Button size="small" v-bind="args" severity="danger" label="Button" />
 
   <span><code>base</code></span>
-  <Button v-bind="args" severity="danger" label="Button" />
-  <Button v-bind="args" severity="warn" label="Button" />
   <Button v-bind="args" severity="success" label="Button" />
   <Button v-bind="args" severity="info" label="Button" />
+  <Button v-bind="args" severity="warn" label="Button" />
+  <Button v-bind="args" severity="danger" label="Button" />
 
   <span><code>large</code></span>
-  <Button size="large" v-bind="args" severity="danger" label="Button" />
-  <Button size="large" v-bind="args" severity="warn" label="Button" />
   <Button size="large" v-bind="args" severity="success" label="Button" />
   <Button size="large" v-bind="args" severity="info" label="Button" />
+  <Button size="large" v-bind="args" severity="warn" label="Button" />
+  <Button size="large" v-bind="args" severity="danger" label="Button" />
 
   <span><code>xlarge</code></span>
-  <Button class="p-button-xlg" v-bind="args" severity="danger" label="Button" />
-  <Button class="p-button-xlg" v-bind="args" severity="warn" label="Button" />
   <Button class="p-button-xlg" v-bind="args" severity="success" label="Button" />
   <Button class="p-button-xlg" v-bind="args" severity="info" label="Button" />
+  <Button class="p-button-xlg" v-bind="args" severity="warn" label="Button" />
+  <Button class="p-button-xlg" v-bind="args" severity="danger" label="Button" />
 </div>
 `,
 });
@@ -133,28 +133,28 @@ export const TemplateSeverityDisabled = () => ({
   template: `
 <div style="display: grid; grid-template-columns: repeat(5, max-content); gap: 20px; align-items: center;">
   <span></span>
-  <span><code>danger</code></span>
-  <span><code>warn</code></span>
   <span><code>success</code></span>
   <span><code>info</code></span>
+  <span><code>warn</code></span>
+  <span><code>danger</code></span>
 
   <span><code>default</code></span>
-  <Button severity="danger" label="Button" disabled />
-  <Button severity="warn" label="Button" disabled />
   <Button severity="success" label="Button" disabled />
   <Button severity="info" label="Button" disabled />
+  <Button severity="warn" label="Button" disabled />
+  <Button severity="danger" label="Button" disabled />
 
   <span><code>outlined</code></span>
-  <Button severity="danger" label="Button" variant="outlined" disabled />
-  <Button severity="warn" label="Button" variant="outlined" disabled />
   <Button severity="success" label="Button" variant="outlined" disabled />
   <Button severity="info" label="Button" variant="outlined" disabled />
+  <Button severity="warn" label="Button" variant="outlined" disabled />
+  <Button severity="danger" label="Button" variant="outlined" disabled />
 
   <span><code>text</code></span>
-  <Button severity="danger" label="Button" variant="text" disabled />
-  <Button severity="warn" label="Button" variant="text" disabled />
   <Button severity="success" label="Button" variant="text" disabled />
   <Button severity="info" label="Button" variant="text" disabled />
+  <Button severity="warn" label="Button" variant="text" disabled />
+  <Button severity="danger" label="Button" variant="text" disabled />
 </div>
 `,
 });
@@ -366,19 +366,16 @@ export const TemplateVariants = () => ({
 
       <span><code>large</code></span>
       <Button label="Button" size="large" disabled />
-      <Button label="Button" size="large" variant="outlined" disabled />
       <Button label="Button" size="large" variant="text" disabled />
       <Button label="Button" size="large" variant="link" disabled />
 
       <span><code>base</code></span>
       <Button label="Button" disabled />
-      <Button label="Button" variant="outlined" disabled />
       <Button label="Button" variant="text" disabled />
       <Button label="Button" variant="link" disabled />
 
       <span><code>small</code></span>
       <Button label="Button" size="small" disabled />
-      <Button label="Button" size="small" variant="outlined" disabled />
       <Button label="Button" size="small" variant="text" disabled />
       <Button label="Button" size="small" variant="link" disabled />
     </div>

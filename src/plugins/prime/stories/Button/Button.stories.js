@@ -1,8 +1,13 @@
 import Button from 'primevue/button';
-import OverlayBadge from 'primevue/overlaybadge';
+import {
+  Template,
+  TemplateBadge,
+  TemplateSeverity,
+  TemplateSeverityDisabled,
+} from './Button.template';
 
 const meta = {
-  title: 'Prime/Buttons/Button',
+  title: 'Prime/Button',
   component: Button,
   tags: ['autodocs'],
   parameters: {
@@ -160,197 +165,25 @@ export const ButtonDefault = {
   },
 };
 
-// ── Variations ────────────────────────────────────────────────────────────────
+// ── Stories ──────────────────────────────────────────────────────────────────
 
-export const Sizes = {
-  name: 'Sizes',
-  render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
-    },
-    template: `
-<div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-  <Button v-bind="args" size="small" />
-  <Button v-bind="args" />
-  <Button v-bind="args" size="large" />
-  <Button v-bind="args" class="p-button-xlg" />
-</div>
-`,
-  }),
+export const Icons = {
+  render: Template,
   args: {
     label: 'Button',
+    icon: 'ti ti-check',
   },
   parameters: {
     docs: {
       description: {
-        story:
-          'Все доступные размеры: `small`, `base` (default), `large`, `xlarge`.',
+        story: 'Кнопки с иконками (префикс по умолчанию).',
       },
-    },
-    designToken: { disable: false },
-    codeV2: {
-      language: 'html',
-      code: `<PrimeButton size="small" label="Button" />
-<PrimeButton label="Button" />
-<PrimeButton size="large" label="Button" />
-<PrimeButton class="p-button-xlg" label="Button" />`,
-    },
-  },
-};
-
-export const Variant = {
-  name: 'Variant',
-  render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
-    },
-    template: `
-<div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-  <Button v-bind="args" />
-  <Button v-bind="args" variant="outlined" />
-  <Button v-bind="args" variant="text" />
-  <Button v-bind="args" variant="link" />
-</div>
-`,
-  }),
-  args: {
-    label: 'Button',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Варианты отображения: `filled` (default), `outlined`, `text`, `link`.',
-      },
-    },
-    designToken: { disable: false },
-    codeV2: {
-      language: 'html',
-      code: `<PrimeButton label="Button" />
-<PrimeButton label="Button" variant="outlined" />
-<PrimeButton label="Button" variant="text" />
-<PrimeButton label="Button" variant="link" />`,
-    },
-  },
-};
-
-export const WithIcons = {
-  name: 'With Icons',
-  render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
-    },
-    template: `
-<div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-  <Button v-bind="args" icon="ti ti-check" />
-  <Button v-bind="args" icon="ti ti-check" label="Button" />
-  <Button v-bind="args" label="Button" icon="ti ti-arrow-right" iconPos="right" />
-</div>
-`,
-  }),
-  args: {},
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Кнопки с иконками: `icon-only`, `prefix` (слева), `postfix` (справа).',
-      },
-    },
-    designToken: { disable: false },
-    codeV2: {
-      language: 'html',
-      code: `<PrimeButton icon="ti ti-check" />
-<PrimeButton icon="ti ti-check" label="Button" />
-<PrimeButton label="Button" icon="ti ti-arrow-right" iconPos="right" />`,
-    },
-  },
-};
-
-export const Rounded = {
-  name: 'Rounded',
-  render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
-    },
-    template: `
-<div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-  <Button v-bind="args" size="small" />
-  <Button v-bind="args" />
-  <Button v-bind="args" size="large" />
-  <Button v-bind="args" class="p-button-xlg" />
-</div>
-`,
-  }),
-  args: {
-    label: 'Button',
-    rounded: true,
-  },
-  parameters: {
-    docs: {
-      description: { story: 'Скруглённая форма кнопки во всех размерах.' },
-    },
-    designToken: { disable: false },
-    codeV2: {
-      language: 'html',
-      code: '<PrimeButton label="Button" rounded />',
-    },
-  },
-};
-
-export const Disabled = {
-  name: 'Disabled',
-  render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
-    },
-    template: `
-<div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-  <Button v-bind="args" />
-  <Button v-bind="args" variant="outlined" />
-  <Button v-bind="args" variant="text" />
-  <Button v-bind="args" variant="link" />
-</div>
-`,
-  }),
-  args: {
-    label: 'Button',
-    disabled: true,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Отключённое состояние для всех вариантов отображения.',
-      },
-    },
-    designToken: { disable: false },
-    codeV2: {
-      language: 'html',
-      code: '<PrimeButton label="Button" disabled />',
     },
   },
 };
 
 export const Loading = {
-  name: 'Loading',
-  render: (args) => ({
-    components: { Button },
-    setup() {
-      return { args };
-    },
-    template: `
-<div style="display: flex; gap: 16px; align-items: center; flex-wrap: wrap;">
-  <Button v-bind="args" size="small" />
-  <Button v-bind="args" />
-  <Button v-bind="args" size="large" />
-  <Button v-bind="args" class="p-button-xlg" />
-</div>
-`,
-  }),
+  render: Template,
   args: {
     label: 'Button',
     loading: true,
@@ -358,73 +191,97 @@ export const Loading = {
   parameters: {
     docs: {
       description: {
-        story: 'Состояние загрузки с индикатором во всех размерах.',
+        story: 'Состояние загрузки с индикатором.',
       },
     },
-    designToken: { disable: false },
-    codeV2: {
-      language: 'html',
-      code: '<PrimeButton label="Button" loading />',
+  },
+};
+
+export const Link = {
+  render: Template,
+  args: {
+    label: 'Link Button',
+    variant: 'link',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Кнопка в виде ссылки.',
+      },
+    },
+  },
+};
+
+export const Severity = {
+  render: TemplateSeverity,
+};
+
+export const Disabled = {
+  render: TemplateSeverityDisabled,
+};
+
+export const Rounded = {
+  render: Template,
+  args: {
+    label: 'Button',
+    rounded: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Скруглённая форма кнопок.',
+      },
+    },
+  },
+};
+
+export const Text = {
+  render: Template,
+  args: {
+    label: 'Button',
+    variant: 'text',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Текстовый вариант кнопки (без заливки и границ).',
+      },
+    },
+  },
+};
+
+export const IconOnly = {
+  render: Template,
+  args: {
+    icon: 'ti ti-check',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Кнопки без текста, только с иконкой.',
+      },
     },
   },
 };
 
 export const Badge = {
-  name: 'Badge',
-  render: (args) => ({
-    components: { Button, OverlayBadge },
-    setup() {
-      return { args };
-    },
-    template: `
-<div style="display: flex; gap: 40px; align-items: center; flex-wrap: wrap;">
-  <OverlayBadge v-bind="args">
-    <Button label="Button" size="small" />
-  </OverlayBadge>
-  <OverlayBadge v-bind="args">
-    <Button label="Button" />
-  </OverlayBadge>
-  <OverlayBadge v-bind="args">
-    <Button label="Button" size="large" />
-  </OverlayBadge>
-  <OverlayBadge v-bind="args">
-    <Button label="Button" class="p-button-xlg" />
-  </OverlayBadge>
-</div>
-`,
-  }),
+  render: TemplateBadge,
   args: {
-    value: 'Badge',
+    value: '8',
     severity: 'danger',
   },
-  argTypes: {
-    value: { control: 'text' },
-    severity: {
-      control: 'inline-radio',
-      options: [null, 'info', 'success', 'warn', 'danger'],
-    },
+};
+
+export const Sizes = {
+  render: Template,
+  args: {
+    label: 'Button',
   },
   parameters: {
-    controls: { include: ['value', 'severity'] },
     docs: {
       description: {
-        story:
-          'Кнопка с бейджем. [PrimeVue OverlayBadge](https://primevue.org/badge/#overlay)',
+        story: 'Все доступные размеры: small, base, large, xlg.',
       },
-    },
-    designToken: { disable: false },
-    codeV2: {
-      language: 'html',
-      code: `<PrimeOverlayBadge value="Badge" severity="danger">
-  <PrimeButton label="Button" />
-</PrimeOverlayBadge>`,
-      tabs: [
-        {
-          label: 'Импорт',
-          language: 'js',
-          code: "import Button from 'primevue/button';\nimport OverlayBadge from 'primevue/overlaybadge';",
-        },
-      ],
     },
   },
 };

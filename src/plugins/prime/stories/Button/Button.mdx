@@ -1,50 +1,58 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as ButtonStories from './Button.stories';
 
 <Meta of={ButtonStories} />
 
-# Button
+<Title />
+<Description />
 
-[PrimeVue Button](https://primevue.org/button), [Figma Design](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=160-5223)
+---
 
-Кнопка — базовый интерактивный элемент. Поддерживает варианты severity, размеры, иконки и состояния.
+## Варианты использования
 
-### Button
+### Default
+Базовый вариант кнопки.
+<Canvas of={ButtonStories.ButtonDefault} />
 
-<Story of={ButtonStories.ButtonDefault} />
+#### Полный список аргументов и событий компонента.
+<Controls of={ButtonStories.ButtonDefault} />
 
 ### Sizes
+Кнопка поддерживает три размера: `small`, `base`, `large`.
+<Canvas of={ButtonStories.Sizes} />
 
-`small` · `base` · `large` · `xlarge`
+### Icons
+Кнопки могут содержать иконки слева, справа или с обеих сторон.
+<Canvas of={ButtonStories.Icons} />
 
-<Story of={ButtonStories.Sizes} />
+### Icon Only
+В случаях, когда текст не требуется, можно использовать только иконку.
+<Canvas of={ButtonStories.IconOnly} />
 
-### Variant
+### Severity
+Цветовые схемы для различных контекстов: `success`, `info`, `warn`, `danger`.
+<Canvas of={ButtonStories.Severity} />
 
-`filled` · `outlined` · `text` · `link`
+### Text
+Кнопка без заливки и границ, часто используется в тулбарах или списках.
+<Canvas of={ButtonStories.Text} />
 
-<Story of={ButtonStories.Variant} />
-
-### With Icons
-
-`icon-only` · `prefix` · `postfix`
-
-<Story of={ButtonStories.WithIcons} />
+### Link
+Кнопка, стилизованная под ссылку.
+<Canvas of={ButtonStories.Link} />
 
 ### Rounded
-
-<Story of={ButtonStories.Rounded} />
+Полностью скруглённая форма кнопки.
+<Canvas of={ButtonStories.Rounded} />
 
 ### Disabled
-
-<Story of={ButtonStories.Disabled} />
+Состояние кнопки, при котором взаимодействие с ней заблокировано.
+<Canvas of={ButtonStories.Disabled} />
 
 ### Loading
-
-<Story of={ButtonStories.Loading} />
+Кнопка с индикатором загрузки. Полезно для асинхронных действий.
+<Canvas of={ButtonStories.Loading} />
 
 ### Badge
-
-[PrimeVue OverlayBadge](https://primevue.org/badge/#overlay)
-
-<Story of={ButtonStories.Badge} />
+Кнопка с уведомлением или числовым индикатором (OverlayBadge).
+<Canvas of={ButtonStories.Badge} />

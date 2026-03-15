@@ -19,3 +19,18 @@ pre.prismjs {
 pre.prismjs * {
   font-family: 'Roboto Mono', monospace;
 }
+
+/* Автоматическое переключение фона при выборе темной темы в аддоне */
+html.theme-prime-dark {
+  background-color: #2b2e33;
+}
+
+/* Обеспечиваем, что body или другие контейнеры не перекрывают фон */
+html.theme-prime-dark body {
+  background-color: transparent !important;
+}
+
+/* Стилизация фона контейнера в Docs по запросу пользователя */
+.css-3rewwu {
+  background-color: #F5F6F8 !important;
+}
