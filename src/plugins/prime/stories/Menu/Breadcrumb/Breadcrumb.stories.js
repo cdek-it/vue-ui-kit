@@ -60,22 +60,22 @@ export const Basic = {
     docs: {
       source: {
         code: `
-<script lang="ts" setup>
-const home = {"icon":"ti ti-home","url":"#"};
+<script setup lang="ts">
+const home = { icon: 'ti ti-home', url: '#' };
 
 const model = [
   {
-    "label": "Электроника",
-    "icon": "ti ti-device-laptop",
-    "url": "#"
+    label: 'Электроника',
+    icon: 'ti ti-device-laptop',
+    url: '#'
   },
   {
-    "label": "Компьютеры",
-    "icon": "ti ti-cpu",
-    "url": "#"
+    label: 'Компьютеры',
+    icon: 'ti ti-cpu',
+    url: '#'
   },
   {
-    "label": "Ноутбуки"
+    label: 'Ноутбуки'
   }
 ];
 </script>
@@ -100,13 +100,13 @@ export const IconsOnly = {
     docs: {
       source: {
         code: `
-<script lang="ts" setup>
-const home = {"icon":"ti ti-home","url":"#"};
+<script setup lang="ts">
+const home = { icon: 'ti ti-home', url: '#' };
 
 const model = [
-  { "icon": "ti ti-device-laptop", "url": "#" },
-  { "icon": "ti ti-cpu", "url": "#" },
-  { "icon": "ti ti-book" }
+  { icon: 'ti ti-device-laptop', url: '#' },
+  { icon: 'ti ti-cpu', url: '#' },
+  { icon: 'ti ti-book' }
 ];
 </script>
 
