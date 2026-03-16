@@ -370,9 +370,23 @@ export const Badge = {
       source: {
         code: `
 <template>
-  <OverlayBadge value="8" severity="danger">
-    <Button label="Button" />
-  </OverlayBadge>
+  <div class="flex items-center gap-8">
+    <OverlayBadge value="8" severity="danger">
+      <Button label="Button" size="small" />
+    </OverlayBadge>
+
+    <OverlayBadge value="8" severity="danger">
+      <Button label="Button" />
+    </OverlayBadge>
+
+    <OverlayBadge value="8" severity="danger">
+      <Button label="Button" size="large" />
+    </OverlayBadge>
+
+    <OverlayBadge value="8" severity="danger">
+      <Button label="Button" class="p-button-xlg" />
+    </OverlayBadge>
+  </div>
 </template>
         `,
       },
