@@ -183,7 +183,7 @@ export default {
     root: {
       width: '{media.size.300}',
       height: '{media.size.300}',
-      fontSize: '{fonts.fontSize.300}',
+      fontSize: '{fonts.fontSize.200}',
       color: '{text.extend.colorPrimaryStatic}',
       background: '{primary.color}',
       borderRadius: '{media.borderRadius.200}',
@@ -193,7 +193,7 @@ export default {
     },
     group: {
       borderColor: '{content.background}',
-      offset: '-{media.padding.300}',
+      offset: '{media.padding.300}',
     },
     lg: {
       width: '{media.size.400}',
@@ -203,7 +203,7 @@ export default {
         size: '{media.icon.size.100}',
       },
       group: {
-        offset: '-{media.padding.300}',
+        offset: '{media.padding.300}',
       },
     },
     xl: {
@@ -213,9 +213,9 @@ export default {
         size: '{media.icon.size.200}',
       },
       group: {
-        offset: '-{media.padding.600}',
+        offset: '{media.padding.600}',
       },
-      fontSize: '{fonts.fontSize.300}',
+      fontSize: '{fonts.fontSize.500}',
     },
   },
   badge: {
