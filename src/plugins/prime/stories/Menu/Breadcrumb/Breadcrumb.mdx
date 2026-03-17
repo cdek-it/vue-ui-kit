@@ -1,41 +1,22 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as BreadcrumbStories from './Breadcrumb.stories';
-
-import { Template } from './Breadcrumb.template';
 
 <Meta of={BreadcrumbStories} />
 
-# Breadcrumb
+<Title />
+<Description />
 
-[PrimeVue Breadcrumb](https://primevue.org/Breadcrumb), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=734-7859)
+---
 
-Компонент навигации, показывающий текущее местоположение пользователя в иерархии страниц.
+## Варианты использования
 
 ### Basic
+Простое использование с массивом ссылок и иконкой дома.
+<Canvas of={BreadcrumbStories.Basic} />
 
-```html dark
-<script setup>
-const home = ref({
-  icon: 'ti ti-home',
-});
-const items = ref([
-  { label: 'Breadcrumb', icon: 'ti ti-user' },
-  { label: 'Breadcrumb', icon: 'ti ti-user' },
-  { label: 'Breadcrumb' },
-]);
-</script>
+#### Полный список аргументов и событий компонента.
+<Controls of={BreadcrumbStories.Basic} />
 
-<PrimeBreadcrumb :home="home" :model="items" />
-```
-
-### Without Home Icon
-
-```html dark
-<PrimeBreadcrumb :model="[
-  { label: 'Breadcrumb', icon: 'ti ti-user' },
-  { label: 'Breadcrumb', icon: 'ti ti-user' },
-  { label: 'Breadcrumb' }
-]" />
-```
-
-<Story of={BreadcrumbStories.Primary} />
+### Only Icons
+Вариант отображения навигации, состоящий только из иконок.
+<Canvas of={BreadcrumbStories.IconsOnly} />

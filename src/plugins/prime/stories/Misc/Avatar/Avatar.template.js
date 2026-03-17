@@ -56,6 +56,7 @@ export const TemplateImageBadge = (args) => ({
       </OverlayBadge>
       <OverlayBadge severity="danger">
         <Avatar image="https://i.pravatar.cc/300?u=b" size="large" />
+
       </OverlayBadge>
     </div>
   `,
