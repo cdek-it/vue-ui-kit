@@ -1,54 +1,148 @@
-import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import {
+  AvatarTemplate,
+  AvatarIconTemplate,
+  AvatarImageTemplate,
+  AvatarBadgeTemplate,
+  AvatarIconBadgeTemplate,
+  AvatarImageBadgeTemplate,
+} from './Avatar.template.js';
 import * as AvatarStories from './Avatar.stories';
 
 <Meta of={AvatarStories} />
 
-<Title />
-<Description />
+# Avatar
 
----
+[PrimeVue Avatar](https://primevue.org/avatar), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/%F0%9F%A7%A9-UI-kit-PrimeFace--1.0.0-beta-?node-id=484-4972\&m=dev)
 
-## Варианты использования
+## Label
 
-### Default
-Базовый вариант аватара. Используйте таблицу ниже для настройки пропсов в реальном времени.
-<Canvas of={AvatarStories.AvatarDefault} />
+```html dark
+<PrimeAvatar label="U" size="xlarge" />
+<PrimeAvatar label="U" size="large" />
+<PrimeAvatar label="U" />
 
-#### Полный список аргументов и событий компонента.
-<Controls of={AvatarStories.AvatarDefault} />
+<!-- rounded -->
+<PrimeAvatar label="U" size="xlarge" shape="circle" />
+<PrimeAvatar label="U" size="large" shape="circle" />
+<PrimeAvatar label="U" shape="circle" />
+```
 
-### Label
-Аватар с текстовым содержимым.
-<Canvas of={AvatarStories.Label} />
+<Story of={AvatarStories.Label} />
 
-### Icon
-Аватар с использованием иконок.
-<Canvas of={AvatarStories.Icon} />
+## Icon
 
-### Image
-Аватар с изображением профиля.
-<Canvas of={AvatarStories.Image} />
+```html dark
+<PrimeAvatar icon="pi pi-user" size="xlarge" />
+<PrimeAvatar icon="pi pi-user" size="large" />
+<PrimeAvatar icon="pi pi-user" />
 
-### Badge
-Аватары с уведомлениями (используется через OverlayBadge).
+<!-- rounded -->
+<PrimeAvatar icon="pi pi-user" size="xlarge" shape="circle" />
+<PrimeAvatar icon="pi pi-user" size="large" shape="circle" />
+<PrimeAvatar icon="pi pi-user" shape="circle" />
+```
 
-#### Label с бейджем
-<Canvas of={AvatarStories.LabelWithBadge} />
+<Story of={AvatarStories.Icon} />
 
-#### Icon с бейджем
-<Canvas of={AvatarStories.IconWithBadge} />
+## Image
 
-#### Image с бейджем
-<Canvas of={AvatarStories.ImageWithBadge} />
+```html dark
+<PrimeAvatar image="assets/avatar.png" size="xlarge" />
+<PrimeAvatar image="assets/avatar.png" size="large" />
+<PrimeAvatar image="assets/avatar.png" />
 
-### AvatarGroup
-Группировка нескольких аватаров.
-<Canvas of={AvatarStories.AvatarGroup} />
+<!-- rounded -->
+<PrimeAvatar image="assets/avatar.png" size="xlarge" shape="circle" />
+<PrimeAvatar image="assets/avatar.png" size="large" shape="circle" />
+<PrimeAvatar image="assets/avatar.png" shape="circle" />
+```
 
-### Size
-Различные размеры аватаров: `small`, `normal`, `large`, `xlarge`.
-<Canvas of={AvatarStories.Size} />
+<Story of={AvatarStories.Image} />
 
-### Shape
-Формы аватара: `square` (по умолчанию) и `circle`.
-<Canvas of={AvatarStories.Shape} />
+## Label With Badge
+
+[Badge](/docs/prime-misc-badge--default-story)
+
+```html dark
+<PrimeOverlayBadge value="Badge" severity="primary">
+  <PrimeAvatar label="U" size="xlarge" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="secondary">
+  <PrimeAvatar label="U" size="large" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="success">
+  <PrimeAvatar label="U" />
+</PrimeOverlayBadge>
+
+<!-- rounded -->
+<PrimeOverlayBadge value="Badge" severity="info">
+  <PrimeAvatar label="U" size="xlarge" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="warn">
+  <PrimeAvatar label="U" size="large" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="danger">
+  <PrimeAvatar label="U" shape="circle" />
+</PrimeOverlayBadge>
+```
+
+<Story of={AvatarStories.LabelWithBadge} />
+
+## Icon With Badge
+
+[Badge](/docs/prime-misc-badge--default-story)
+
+```html dark
+<PrimeOverlayBadge value="Badge" severity="primary">
+  <PrimeAvatar icon="ti ti-user" size="xlarge" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="secondary">
+  <PrimeAvatar icon="ti ti-user" size="large" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="success">
+  <PrimeAvatar icon="ti ti-user" />
+</PrimeOverlayBadge>
+
+<!-- rounded -->
+<PrimeOverlayBadge value="Badge" severity="info">
+  <PrimeAvatar icon="ti ti-user" size="xlarge" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="warn">
+  <PrimeAvatar icon="ti ti-user" size="large" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="danger">
+  <PrimeAvatar icon="ti ti-user" shape="circle" />
+</PrimeOverlayBadge>
+```
+
+<Story of={AvatarStories.IconWithBadge} />
+
+## Image With Badge
+
+[Badge](/docs/prime-misc-badge--default-story)
+
+```html dark
+<PrimeOverlayBadge value="Badge" severity="primary">
+  <PrimeAvatar image="assets/avatar.png" size="xlarge" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="secondary">
+  <PrimeAvatar image="assets/avatar.png" size="large" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="success">
+  <PrimeAvatar image="assets/avatar.png" />
+</PrimeOverlayBadge>
+
+<!-- rounded -->
+<PrimeOverlayBadge value="Badge" severity="info">
+  <PrimeAvatar image="assets/avatar.png" size="xlarge" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="warn">
+  <PrimeAvatar image="assets/avatar.png" size="large" shape="circle" />
+</PrimeOverlayBadge>
+<PrimeOverlayBadge value="Badge" severity="danger">
+  <PrimeAvatar image="assets/avatar.png" shape="circle" />
+</PrimeOverlayBadge>
+```
+
+<Story of={AvatarStories.ImageWithBadge} />
