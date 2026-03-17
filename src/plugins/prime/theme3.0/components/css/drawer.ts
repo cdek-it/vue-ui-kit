@@ -25,7 +25,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 /* Боковые drawer (слева/справа) - базовые размеры и отступы от краев экрана */
 .p-drawer-left .p-drawer.p-component,
 .p-drawer-right .p-drawer.p-component {
-  margin: ${dt('drawer.extend.padding')};;
+  margin: ${dt('drawer.extend.padding')};
   width: ${dt('drawer.root.width')};
   height: calc(100% - ${dt('drawer.extend.padding')} * ${dt(
   'drawer.extend.scale'
@@ -50,7 +50,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 /* Горизонтальные drawer (сверху/снизу) - базовые размеры и отступы от краев экрана */
 .p-drawer-top .p-drawer.p-component,
 .p-drawer-bottom .p-drawer.p-component {
-  margin: ${dt('drawer.extend.padding')};;
+  margin: ${dt('drawer.extend.padding')};
   width: calc(100% - ${dt('drawer.extend.padding')} * ${dt(
   'drawer.extend.scale'
 )});

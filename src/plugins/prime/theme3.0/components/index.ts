@@ -1484,7 +1484,7 @@ export default {
         borderColor: '{drawer.root.borderColor}',
       },
       padding: '{overlay.drawer.padding}',
-      scale: '0.125rem',
+      scale: '2',
       backdrop: '{overlay.modal.backdrop}',
     },
     root: {
