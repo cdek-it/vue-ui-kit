@@ -84,7 +84,6 @@ export const Default = {
 
 export const WithContent = {
   render: TemplateContent,
-  name: 'With Content',
   parameters: {
     docs: {
       source: {
@@ -102,7 +101,6 @@ export const WithContent = {
 
 export const Vertical = {
   render: TemplateVertical,
-  name: 'Vertical',
   parameters: {
     docs: {
       description: {
@@ -165,7 +163,6 @@ export const VerticalWithContent = {
 
 export const Type = {
   render: TemplateType,
-  name: 'Type',
   parameters: {
     docs: {
       source: {
