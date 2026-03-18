@@ -3310,7 +3310,7 @@ export default {
       },
     },
     root: {
-      width: '{messages.width}',
+      width: '{sizing.messages.width.base}',
       borderWidth: '{feedback.width.100}',
       borderRadius: '{content.borderRadius}',
       transitionDuration: '{feedback.transitionDuration}',

@@ -1,0 +1,44 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as ToastStories from './Toast.stories';
+
+<Meta of={ToastStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Базовый вариант тоста. Используйте таблицу ниже для настройки пропсов. Кнопки внизу позволяют показать живые тосты.
+<Canvas of={ToastStories.Default} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={ToastStories.Default} />
+
+### WithCloseButton
+Тост с кастомным контейнером и кнопкой закрытия.
+<Canvas of={ToastStories.WithCloseButton} />
+
+#### Аргументы и события
+<Controls of={ToastStories.WithCloseButton} />
+
+### WithContent
+Тост с дополнительным контентом под заголовком.
+<Canvas of={ToastStories.WithContent} />
+
+#### Аргументы и события
+<Controls of={ToastStories.WithContent} />
+
+### Width
+Доступные размеры ширины тоста: sm (20rem), base (25rem), lg (30rem), xlg (45rem).
+<Canvas of={ToastStories.Width} />
+
+#### Аргументы и события
+<Controls of={ToastStories.Width} />
+
+### Position
+Демонстрация всех доступных позиций тоста. Каждая кнопка показывает уведомление в соответствующей позиции.
+<Canvas of={ToastStories.Position} />
+
+#### Аргументы и события
+<Controls of={ToastStories.Position} />

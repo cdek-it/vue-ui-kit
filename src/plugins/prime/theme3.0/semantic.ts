@@ -835,4 +835,48 @@ export default {
       },
     },
   },
+  sizing: {
+    form: {
+      width: {
+        sm: '{primitive.sizing.60}',
+        base: '{primitive.sizing.68}',
+        lg: '{primitive.sizing.76}',
+        xlg: '{primitive.sizing.84}',
+      },
+      fontSize: {
+        sm: '{primitive.fonts.fontSize.base}',
+        base: '{primitive.fonts.fontSize.base}',
+        lg: '{primitive.fonts.fontSize.base}',
+        xlg: '{primitive.fonts.fontSize.base}',
+      },
+      paddingX: {
+        sm: '{primitive.spacing.3}',
+        base: '{primitive.spacing.4}',
+        lg: '{primitive.spacing.5}',
+        xlg: '{primitive.spacing.6}',
+      },
+      paddingY: {
+        sm: '{primitive.spacing.3}',
+        base: '{primitive.spacing.4}',
+        lg: '{primitive.spacing.5}',
+        xlg: '{primitive.spacing.6}',
+      },
+    },
+    overlay: {
+      width: {
+        sm: '{primitive.sizing.80}',
+        base: '{primitive.sizing.100}',
+        lg: '{primitive.sizing.120}',
+        xlg: '{primitive.sizing.128}',
+      },
+    },
+    messages: {
+      width: {
+        sm: '{sizing.80x}',
+        base: '{sizing.100x}',
+        lg: '{sizing.120x}',
+        xlg: '{sizing.128x}',
+      },
+    },
+  },
 };
