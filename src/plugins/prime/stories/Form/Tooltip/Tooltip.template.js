@@ -1,67 +1,53 @@
 import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
 
-// Template for individual tooltip variants
 export const Template = (args) => ({
   components: { Button },
   setup() {
     return { args };
   },
   template: `
-<div style="display: flex; gap: 20px; align-items: center; justify-content: center; padding: 40px;">
-  <Button v-tooltip="args.text || 'Tooltip text'" :label="args.label || 'Hover me'" />
-</div>
-`,
+    <div class="flex items-center justify-center p-10">
+      <Button v-tooltip="{ value: args.text, position: args.position }" :label="args.label" />
+    </div>
+  `,
 });
 
-// Complete variants matrix
-export const TemplateVariants = () => ({
+export const TemplatePositions = () => ({
   components: { Button },
   template: `
-<div style="display: flex; flex-direction: column; gap: 60px; padding: 40px;">
-  <!-- Default Tooltip -->
-  <div>
-    <h3 style="margin-bottom: 20px;">Default</h3>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-      <Button v-tooltip="'Short tooltip'" label="Short text" />
-      <Button v-tooltip="'This is a longer tooltip with more information'" label="Long text" />
-      <Button v-tooltip="'Tooltip with very long text that should wrap to multiple lines when it exceeds the maximum width'" label="Very long text" />
+    <div class="grid grid-cols-3 gap-8 justify-items-center p-10">
+      <div />
+      <Button v-tooltip.top="'Подсказка сверху'" label="Сверху" />
+      <div />
+      <Button v-tooltip.left="'Подсказка слева'" label="Слева" />
+      <div />
+      <Button v-tooltip.right="'Подсказка справа'" label="Справа" />
+      <div />
+      <Button v-tooltip.bottom="'Подсказка снизу'" label="Снизу" />
+      <div />
     </div>
-  </div>
+  `,
+});
 
-  <!-- Tooltip Positions -->
-  <div>
-    <h3 style="margin-bottom: 20px;">Positions</h3>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; place-items: center;">
-      <Button v-tooltip.top="'Top tooltip'" label="Top" />
-      <Button v-tooltip.bottom="'Bottom tooltip'" label="Bottom" />
-      <Button v-tooltip.left="'Left tooltip'" label="Left" />
-      <Button v-tooltip.right="'Right tooltip'" label="Right" />
+export const TemplateDelay = () => ({
+  components: { Button },
+  template: `
+    <div class="flex flex-col items-center gap-4 p-10 justify-center">
+      <Button v-tooltip="{ value: 'Подсказка с задержкой 1с', showDelay: 1000 }" label="Задержка появления (1с)" />
+      <Button v-tooltip="{ value: 'Подсказка с задержкой скрытия 0.5с', hideDelay: 500 }" label="Задержка скрытия (0.5с)" severity="contrast" />
     </div>
-  </div>
 
-  <!-- Tooltip with Different Severities -->
-  <div>
-    <h3 style="margin-bottom: 20px;">With Different Button Severities</h3>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-      <Button v-tooltip="'Primary button tooltip'" label="Primary" severity="primary" />
-      <Button v-tooltip="'Secondary button tooltip'" label="Secondary" severity="secondary" />
-      <Button v-tooltip="'Success button tooltip'" label="Success" severity="success" />
-      <Button v-tooltip="'Info button tooltip'" label="Info" severity="info" />
-      <Button v-tooltip="'Warning button tooltip'" label="Warning" severity="warn" />
-      <Button v-tooltip="'Danger button tooltip'" label="Danger" severity="danger" />
-    </div>
-  </div>
+  `,
+});
 
-  <!-- Tooltip on Icon Buttons -->
-  <div>
-    <h3 style="margin-bottom: 20px;">On Icon Buttons</h3>
-    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
-      <Button v-tooltip="'Edit'" icon="ti ti-pencil" />
-      <Button v-tooltip="'Delete'" icon="ti ti-trash" severity="danger" />
-      <Button v-tooltip="'Settings'" icon="ti ti-settings" severity="secondary" />
-      <Button v-tooltip="'Download'" icon="ti ti-download" severity="success" />
+export const TemplateEvent = () => ({
+  components: { InputText, Button },
+  template: `
+    <div class="flex flex-col items-center gap-8 p-10">
+      <div class="flex flex-col gap-2">
+        <InputText v-tooltip.focus="'Введите ваше имя'" placeholder="Кликни для фокуса" />
+      </div>
     </div>
-  </div>
-</div>
-`,
+  `,
 });
