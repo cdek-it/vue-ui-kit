@@ -7,7 +7,6 @@ import dialogCss from './components/css/dialog';
 import dividerCss from './components/css/divider';
 import drawerCss from './components/css/drawer';
 import progressbarCss from './components/css/progressbar';
-import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
 
@@ -21,7 +20,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${dividerCss({ dt })}
    ${drawerCss({ dt })}
    ${progressbarCss({ dt })}
-   ${ratingCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
 
