@@ -1,89 +1,68 @@
-import { Template, TemplateVariants } from './Tag.template';
+import Tag from 'primevue/tag';
+import { Template } from './Tag.template';
 
-export default {
+const meta = {
   title: 'Prime/Misc/Tag',
+  component: Tag,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `Tag — это компонент для цветового выделения и классификации элементов интерфейса. \n\n \`\`\`js \n import Tag from 'primevue/tag'; \n \`\`\` `,
+      },
+    },
+    designToken: { disable: false },
+    designTokens: { prefix: '--p-tag' },
+  },
+  argTypes: {
+    value: {
+      control: 'text',
+      description: 'Текст тега.',
+      table: { category: 'Props' },
+    },
+    severity: {
+      control: 'select',
+      options: ['primary', 'secondary', 'success', 'info', 'warn', 'danger'],
+      description: 'Вариант важности (цвета) тега.',
+      table: { category: 'Props', defaultValue: { summary: 'primary' } },
+    },
+    rounded: {
+      control: 'boolean',
+      description: 'Скругленный вариант тега.',
+      table: { category: 'Props', defaultValue: { summary: false } },
+    },
+    icon: {
+      control: 'text',
+      description: 'Иконка тега.',
+      table: { category: 'Props' },
+    },
+  },
 };
 
-export const AllVariants = {
-  render: TemplateVariants.bind({}),
-};
+export default meta;
 
-export const Primary = {
-  render: Template.bind({}),
-
+export const Default = {
+  render: Template,
   args: {
     value: 'Tag',
     severity: 'primary',
   },
 };
 
-export const Secondary = {
-  render: Template.bind({}),
-
-  args: {
-    value: 'Tag',
-    severity: 'secondary',
-  },
-};
-
-export const Success = {
-  render: Template.bind({}),
-
-  args: {
-    value: 'Tag',
-    severity: 'success',
-  },
-};
-
-export const Info = {
-  render: Template.bind({}),
-
-  args: {
-    value: 'Tag',
-    severity: 'info',
-  },
-};
-
-export const Warning = {
-  render: Template.bind({}),
-
-  args: {
-    value: 'Tag',
-    severity: 'warn',
-  },
-};
-
-export const Danger = {
-  render: Template.bind({}),
-
-  args: {
-    value: 'Tag',
-    severity: 'danger',
-  },
-};
-
 export const Rounded = {
-  render: Template.bind({}),
-
+  render: Template,
   args: {
-    value: 'Tag',
+    value: 'Rounded',
+    severity: 'success',
     rounded: true,
   },
 };
 
 export const WithIcon = {
-  render: Template.bind({}),
-
+  render: Template,
   args: {
-    value: 'Tag',
-    icon: 'ti ti-check',
-  },
-};
-
-export const IconOnly = {
-  render: Template.bind({}),
-
-  args: {
+    value: 'Verified',
+    severity: 'info',
     icon: 'ti ti-check',
   },
 };
