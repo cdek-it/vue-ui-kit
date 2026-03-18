@@ -6,17 +6,29 @@ import * as TagStories from './Tag.stories';
 <Title />
 <Description />
 
-## Использование
+## Варианты использования
 
-### По умолчанию
-Стандартный компонент тега. Используйте элементы управления ниже, чтобы поэкспериментировать с различными свойствами.
+### Default
+Базовый вариант тега. Используйте таблицу ниже для настройки пропсов в реальном времени.
 <Canvas of={TagStories.Default} />
 
-#### Аргументы и события
+#### Полный список аргументов и событий компонента.
 <Controls of={TagStories.Default} />
 
-### Скругленный тег (Rounded)
+### Severities
+Все доступные варианты важности: `primary`, `secondary`, `success`, `info`, `warn`, `danger`.
+<Canvas of={TagStories.Severities} />
+
+### Rounded
+Тег со скругленными углами.
 <Canvas of={TagStories.Rounded} />
 
-### С иконкой
+#### Аргументы и события
+<Controls of={TagStories.Rounded} />
+
+### WithIcon
+Тег с иконкой.
 <Canvas of={TagStories.WithIcon} />
+
+#### Аргументы и события
+<Controls of={TagStories.WithIcon} />
