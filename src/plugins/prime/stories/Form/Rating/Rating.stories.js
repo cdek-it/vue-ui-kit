@@ -1,13 +1,71 @@
-import { Template, TemplateClear } from './Rating.template';
+import Rating from 'primevue/rating';
+import { Template } from './Rating.template';
 
-export default {
+const meta = {
   title: 'Prime/Form/Rating',
+  component: Rating,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `Rating — это расширение стандартного элемента ввода с поддержкой тем оформления и управления с клавиатуры. \n\n \`\`\`js \n import Rating from 'primevue/rating'; \n \`\`\` `,
+      },
+    },
+    designToken: { disable: false },
+    designTokens: { prefix: '--p-rating' },
+  },
+  argTypes: {
+    modelValue: {
+      control: 'number',
+      description: 'Значение рейтинга.',
+      table: { category: 'Props' },
+    },
+    stars: {
+      control: 'number',
+      description: 'Количество отображаемых звезд.',
+      table: { category: 'Props', defaultValue: { summary: 5 } },
+    },
+    readonly: {
+      control: 'boolean',
+      description:
+        'Если установлено, компонент становится недоступным для редактирования.',
+      table: { category: 'Props', defaultValue: { summary: false } },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Если установлено, компонент становится неактивным.',
+      table: { category: 'Props', defaultValue: { summary: false } },
+    },
+    cancel: {
+      control: 'boolean',
+      description:
+        'Если включено, отображается иконка отмены для сброса значения.',
+      table: { category: 'Props', defaultValue: { summary: true } },
+    },
+  },
 };
 
-export const Primary = {
-  render: Template.bind({}),
+export default meta;
+
+export const Default = {
+  render: Template,
+  args: {
+    modelValue: 3,
+  },
 };
 
-export const Clear = {
-  render: TemplateClear.bind({}),
+export const ReadOnly = {
+  render: Template,
+  args: {
+    modelValue: 4,
+    readonly: true,
+  },
+};
+
+export const Disabled = {
+  render: Template,
+  args: {
+    modelValue: 2,
+    disabled: true,
+  },
 };

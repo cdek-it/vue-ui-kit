@@ -1,29 +1,26 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as RatingStories from './Rating.stories';
-
-import { Template, TemplateClear } from './Rating.template';
 
 <Meta of={RatingStories} />
 
-# Rating
+<Title />
+<Description />
 
-[PrimeVue Rating](https://primevue.org/rating), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=2119-3782)
+## Использование
 
-### Basic
+### По умолчанию
+Стандартный компонент рейтинга. Используйте элементы управления ниже, чтобы поэкспериментировать с различными свойствами.
+<Canvas of={RatingStories.Default} />
 
-```html dark
-<PrimeRating v-model="value" />
-```
+#### Аргументы и события
+<Controls of={RatingStories.Default} />
 
-<Story of={RatingStories.Primary} />
+### Только для чтения (ReadOnly)
+<Canvas of={RatingStories.ReadOnly} />
 
-### With Clear Button
+### Отключен (Disabled)
+<Canvas of={RatingStories.Disabled} />
 
-```html dark
-<div>
-  <i class="ti ti-ban" @click="value = 0" />
-  <PrimeRating v-model="value" />
-</div>
-```
 
-<Story of={RatingStories.Clear} />
+
+
