@@ -2761,7 +2761,7 @@ export default {
       height: '{form.size.350}',
     },
     icon: {
-      size: '{form.icon.200}',
+      size: '0.7rem',
       checkedColor: '{text.extend.colorInverted}',
       checkedHoverColor: '{text.extend.colorInverted}',
       disabledColor: '{text.mutedColor}',
