@@ -1,14 +1,14 @@
 import Tabs from 'primevue/tabs';
-import { Template, TemplateBadge, TemplateDisabled } from './Tab.template';
+import { Template, TemplateBadge, TemplateDisabled } from './Tabs.template';
 
 const meta = {
-  title: 'Prime/Menu/Tab',
+  title: 'Prime/Menu/Tabs',
   component: Tabs,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
-        component: `Tabs организует контент по вкладкам с возможностью переключения между ними. \n\n \`\`\`js \n import Tabs from 'primevue/tabs'; \n import TabList from 'primevue/tablist'; \n import Tab from 'primevue/tab'; \n import TabPanels from 'primevue/tabpanels'; \n import TabPanel from 'primevue/tabpanel'; \n \`\`\` `,
+        component: `Организует контент по вкладкам с возможностью переключения между ними. \n\n \`\`\`js \n import Tabs from 'primevue/tabs'; \n import TabList from 'primevue/tablist'; \n import Tab from 'primevue/tab'; \n import TabPanels from 'primevue/tabpanels'; \n import TabPanel from 'primevue/tabpanel'; \n \`\`\` `,
       },
     },
     designToken: { disable: false },
