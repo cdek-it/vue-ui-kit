@@ -8,6 +8,7 @@ import dividerCss from './components/css/divider';
 import drawerCss from './components/css/drawer';
 import progressbarCss from './components/css/progressbar';
 import ratingCss from './components/css/rating';
+import selectbuttonCss from './components/css/selectbutton';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
 
@@ -22,6 +23,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${drawerCss({ dt })}
    ${progressbarCss({ dt })}
    ${ratingCss({ dt })}
+   ${selectbuttonCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
 
