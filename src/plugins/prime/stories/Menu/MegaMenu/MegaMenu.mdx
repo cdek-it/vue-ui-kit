@@ -1,0 +1,25 @@
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
+import * as MegaMenuStories from './MegaMenu.stories';
+
+<Meta of={MegaMenuStories} />
+
+<Title />
+<Description />
+
+```javascript
+import { MegaMenu } from 'primevue';
+```
+
+## Варианты использования
+
+### Horizontal
+
+Горизонтальная ориентация MegaMenu с выпадающими многоколоночными подменю.
+
+<Canvas of={MegaMenuStories.Horizontal} />
+
+### Vertical
+
+Вертикальная ориентация MegaMenu.
+
+<Canvas of={MegaMenuStories.Vertical} />

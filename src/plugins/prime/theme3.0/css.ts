@@ -4,6 +4,7 @@ import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
 import dialogCss from './components/css/dialog';
+import megamenuCss from './components/css/megamenu';
 import dividerCss from './components/css/divider';
 import drawerCss from './components/css/drawer';
 import progressbarCss from './components/css/progressbar';
@@ -18,6 +19,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
    ${dialogCss({ dt })}
+   ${megamenuCss({ dt })}
    ${dividerCss({ dt })}
    ${drawerCss({ dt })}
    ${progressbarCss({ dt })}
