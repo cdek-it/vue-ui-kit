@@ -1,4 +1,5 @@
-import { Menubar } from 'primevue';
+import { Menubar, Badge } from 'primevue';
+import { ref } from 'vue';
 
 export const BasicTemplate = () => ({
   components: { Menubar },
@@ -85,5 +86,57 @@ export const WithIconTemplate = () => ({
   },
   template: `
     <Menubar :model="items" />
+  `,
+});
+
+export const CustomTemplate = (args) => ({
+  components: { Menubar, Badge },
+  setup() {
+    const items = ref([
+      {
+        label: 'Home',
+        icon: 'ti ti-home',
+        description: 'Перейти на главную',
+      },
+      {
+        label: 'Features',
+        icon: 'ti ti-star',
+        description: 'Explore features',
+        badge: 'New',
+        items: [
+          {
+            label: 'Core',
+            icon: 'ti ti-cpu',
+            description: 'Основные возможности',
+          },
+          {
+            label: 'UI Kit',
+            icon: 'ti ti-palette',
+            description: 'UI компоненты',
+          },
+        ],
+      },
+      {
+        label: 'Settings',
+        icon: 'ti ti-settings',
+        description: 'Настройки приложения',
+      },
+    ]);
+
+    return { args, items };
+  },
+  template: `
+    <Menubar :model="items" v-bind="args">
+      <template #item="{ item, props }">
+        <a v-bind="props.action" class="p-menubar-item-link">
+          <span v-if="item.icon" :class="['p-menubar-item-icon', item.icon]" />
+          <div class="menubar-item-label">
+            <span class="p-menubar-item-label">{{ item.label }}</span>
+            <small v-if="item.description" class="menubar-item-caption">{{ item.description }}</small>
+          </div>
+          <Badge v-if="item.badge" :value="item.badge" />
+        </a>
+      </template>
+    </Menubar>
   `,
 });

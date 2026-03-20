@@ -21,7 +21,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${menubarCss({ dt })}
    ${dialogCss({ dt })}
    ${dividerCss({ dt })}
-   ${drawerCss({ dt })}
+   ${drawerCss({ dt })} 
    ${progressbarCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}

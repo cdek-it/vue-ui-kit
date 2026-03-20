@@ -1,4 +1,8 @@
-import { BasicTemplate, WithIconTemplate } from './MenuBar.template';
+import {
+  BasicTemplate,
+  WithIconTemplate,
+  CustomTemplate,
+} from './MenuBar.template';
 
 export default {
   title: 'Prime/Menu/MenuBar',
@@ -94,6 +98,60 @@ const items = ref([
     ],
   },
   { label: 'Settings', icon: 'ti ti-settings' },
+]);
+</script>
+        `.trim(),
+      },
+    },
+  },
+};
+
+export const Custom = {
+  render: CustomTemplate,
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<template>
+  <Menubar :model="items">
+    <template #item="{ item, props }">
+      <a v-bind="props.action" class="p-menubar-item-link">
+        <span v-if="item.icon" :class="['p-menubar-item-icon', item.icon]" />
+        <div class="menubar-item-label">
+          <span class="p-menubar-item-label">{{ item.label }}</span>
+          <small v-if="item.description" class="menubar-item-caption">{{ item.description }}</small>
+        </div>
+        <Badge v-if="item.badge" :value="item.badge" />
+      </a>
+    </template>
+  </Menubar>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { Badge } from 'primevue';
+
+const items = ref([
+  {
+    label: 'Home',
+    icon: 'ti ti-home',
+    description: 'Перейти на главную',
+  },
+  {
+    label: 'Features',
+    icon: 'ti ti-star',
+    description: 'Explore features',
+    badge: 'New',
+    items: [
+      { label: 'Core', icon: 'ti ti-cpu', description: 'Основные возможности' },
+      { label: 'UI Kit', icon: 'ti ti-palette', description: 'UI компоненты' },
+    ],
+  },
+  {
+    label: 'Settings',
+    icon: 'ti ti-settings',
+    description: 'Настройки приложения',
+  },
 ]);
 </script>
         `.trim(),
