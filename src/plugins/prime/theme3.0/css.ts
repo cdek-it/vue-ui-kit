@@ -2,6 +2,7 @@ import avatarCss from './components/css/avatar';
 import badgeCss from './components/css/badge';
 import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
+import carouselCss from './components/css/carousel';
 import checkboxCss from './components/css/checkbox';
 import dialogCss from './components/css/dialog';
 import dividerCss from './components/css/divider';
@@ -16,6 +17,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${badgeCss({ dt })}
    ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
+   ${carouselCss({ dt })}
    ${checkboxCss({ dt })}
    ${dialogCss({ dt })}
    ${dividerCss({ dt })}
