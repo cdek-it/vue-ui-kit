@@ -1,20 +1,25 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
 import * as MenuBarStories from './MenuBar.stories';
-
-import { Template } from './MenuBar.template';
 
 <Meta of={MenuBarStories} />
 
-# MenuBar
+<Title />
+<Description />
 
-[PrimeVue MenuBar](https://primevue.org/menubar), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12875\&m=dev)
+```javascript
+import { Menubar } from 'primevue';
+```
+
+## Варианты использования
 
 ### Basic
 
-```jsx dark
-const selectedClass = 'p-menuitem-checked';
+Горизонтальное меню с выпадающими подменю.
 
-<PrimeMenubar :model="items" />
-```
+<Canvas of={MenuBarStories.Basic} />
 
-<Story of={MenuBarStories.Primary} />
+### With Icon
+
+Menubar с иконками в пунктах меню и вложенных подменю.
+
+<Canvas of={MenuBarStories.WithIcon} />
