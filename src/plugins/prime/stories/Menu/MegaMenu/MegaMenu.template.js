@@ -1,57 +1,166 @@
-import { MegaMenu } from 'primevue';
+import { MegaMenu, Badge } from 'primevue';
+import { ref } from 'vue';
 
-const items = [
+const baseItems = [
   {
-    label: 'MenuItem',
-    icon: 'ti ti-user',
+    label: 'Products',
+    icon: 'ti ti-box',
     items: [
       [
         {
-          label: 'Submenu 1',
-          items: [{ label: 'Item 1.1' }, { label: 'Item 1.2' }],
+          label: 'UI Components',
+          items: [
+            { label: 'Form', icon: 'ti ti-forms' },
+            { label: 'Button', icon: 'ti ti-hand-click' },
+            { label: 'Table', icon: 'ti ti-table' },
+          ],
         },
       ],
       [
         {
-          label: 'Submenu 2',
+          label: 'Charts',
           items: [
-            { label: 'Item 2.1', icon: 'ti ti-file' },
-            { label: 'Item 2.2', icon: 'ti ti-file' },
+            { label: 'Bar Chart', icon: 'ti ti-chart-bar' },
+            { label: 'Line Chart', icon: 'ti ti-chart-line' },
           ],
         },
       ],
     ],
   },
   {
-    label: 'MenuItem',
-    icon: 'ti ti-user',
+    label: 'Solutions',
+    icon: 'ti ti-bulb',
     items: [
       [
         {
-          label: 'Submenu 1',
-          items: [{ label: 'Item 1.1' }, { label: 'Item 1.2' }],
+          label: 'Business',
+          items: [
+            { label: 'Analytics', icon: 'ti ti-chart-dots' },
+            { label: 'CRM', icon: 'ti ti-users' },
+          ],
         },
       ],
     ],
   },
+  {
+    label: 'Contact',
+    icon: 'ti ti-mail',
+    disabled: true,
+  },
 ];
 
-export const HorizontalTemplate = () => ({
+export const HorizontalTemplate = (args) => ({
   components: { MegaMenu },
   setup() {
-    return { items };
+    const items = ref(baseItems);
+
+    return { args, items };
   },
-  template: `
-    <MegaMenu :model="items" />
-  `,
+  template: `<MegaMenu :model="items" v-bind="args" />`,
 });
 
-export const VerticalTemplate = () => ({
+export const VerticalTemplate = (args) => ({
   components: { MegaMenu },
   setup() {
-    return { items };
+    const items = ref(baseItems);
+
+    return { args, items };
+  },
+  template: `<MegaMenu :model="items" orientation="vertical" v-bind="args" />`,
+});
+
+export const CustomTemplate = (args) => ({
+  components: { MegaMenu, Badge },
+  setup() {
+    const items = ref([
+      {
+        label: 'Products',
+        icon: 'ti ti-box',
+        items: [
+          [
+            {
+              label: 'Components',
+              items: [
+                {
+                  label: 'Form',
+                  description: 'Input, Select, Checkbox',
+                  icon: 'ti ti-forms',
+                  badge: 'New',
+                },
+                {
+                  label: 'Button',
+                  description: 'Actions and triggers',
+                  icon: 'ti ti-hand-click',
+                },
+                {
+                  label: 'Table',
+                  description: 'Data grid and sorting',
+                  icon: 'ti ti-table',
+                  badge: '12',
+                },
+              ],
+            },
+          ],
+          [
+            {
+              label: 'Charts',
+              items: [
+                {
+                  label: 'Bar Chart',
+                  description: 'Categorical comparison',
+                  icon: 'ti ti-chart-bar',
+                },
+                {
+                  label: 'Line Chart',
+                  description: 'Trends over time',
+                  icon: 'ti ti-chart-line',
+                  badge: 'Beta',
+                },
+              ],
+            },
+          ],
+        ],
+      },
+      {
+        label: 'Solutions',
+        icon: 'ti ti-bulb',
+        items: [
+          [
+            {
+              label: 'Business',
+              items: [
+                {
+                  label: 'Analytics',
+                  description: 'Reports and dashboards',
+                  icon: 'ti ti-chart-dots',
+                },
+                {
+                  label: 'CRM',
+                  description: 'Customer management',
+                  icon: 'ti ti-users',
+                  badge: 'Pro',
+                },
+              ],
+            },
+          ],
+        ],
+      },
+    ]);
+
+    return { args, items };
   },
   template: `
-    <MegaMenu :model="items" orientation="vertical" />
+    <MegaMenu :model="items" v-bind="args">
+      <template #item="{ item, props }">
+        <a v-bind="props.action" class="p-megamenu-item-link">
+          <span v-if="item.icon" :class="['p-megamenu-item-icon', item.icon]" />
+          <div class="megamenu-item-label">
+            <span class="p-megamenu-item-label">{{ item.label }}</span>
+            <small v-if="item.description" class="megamenu-item-caption">{{ item.description }}</small>
+          </div>
+          <Badge v-if="item.badge" :value="item.badge" />
+        </a>
+      </template>
+    </MegaMenu>
   `,
 });

@@ -1,4 +1,8 @@
-import { HorizontalTemplate, VerticalTemplate } from './MegaMenu.template';
+import {
+  HorizontalTemplate,
+  VerticalTemplate,
+  CustomTemplate,
+} from './MegaMenu.template';
 
 export default {
   title: 'Prime/Menu/MegaMenu',
@@ -6,86 +10,136 @@ export default {
     docs: {
       description: {
         component:
-          'Компонент для создания многоколоночного меню с группировкой пунктов в подменю, поддерживает горизонтальную и вертикальную ориентацию.',
+          'Расширенное меню с поддержкой многоколоночных подменю. Поддерживает горизонтальную и вертикальную ориентацию.',
       },
     },
-    designTokens: { prefix: '--p-megamenu' },
+    designTokens: {
+      prefix: '--p-megamenu',
+    },
   },
 };
 
-const sourceItems = `[
+export const Horizontal = {
+  render: HorizontalTemplate.bind({}),
+  parameters: {
+    docs: {
+      source: {
+        code: `<script setup>
+import { ref } from 'vue';
+
+const items = ref([
   {
-    label: 'MenuItem',
-    icon: 'ti ti-user',
+    label: 'Products',
+    icon: 'ti ti-box',
     items: [
       [
         {
-          label: 'Submenu 1',
-          items: [{ label: 'Item 1.1' }, { label: 'Item 1.2' }],
-        },
-      ],
-      [
-        {
-          label: 'Submenu 2',
+          label: 'UI Components',
           items: [
-            { label: 'Item 2.1', icon: 'ti ti-file' },
-            { label: 'Item 2.2', icon: 'ti ti-file' },
+            { label: 'Form', icon: 'ti ti-forms' },
+            { label: 'Button', icon: 'ti ti-hand-click' },
           ],
         },
       ],
     ],
   },
-  {
-    label: 'MenuItem',
-    icon: 'ti ti-user',
-    items: [
-      [
-        {
-          label: 'Submenu 1',
-          items: [{ label: 'Item 1.1' }, { label: 'Item 1.2' }],
-        },
-      ],
-    ],
-  },
-]`;
+  { label: 'Contact', icon: 'ti ti-mail', disabled: true },
+]);
+</script>
 
-export const Horizontal = {
-  render: HorizontalTemplate,
-  parameters: {
-    docs: {
-      source: {
-        code: `
 <template>
   <MegaMenu :model="items" />
-</template>
-
-<script setup>
-import { ref } from 'vue';
-
-const items = ref(${sourceItems});
-</script>
-        `.trim(),
+</template>`,
       },
     },
   },
 };
 
 export const Vertical = {
-  render: VerticalTemplate,
+  render: VerticalTemplate.bind({}),
   parameters: {
     docs: {
       source: {
-        code: `
-<template>
-  <MegaMenu :model="items" orientation="vertical" />
-</template>
-
-<script setup>
+        code: `<script setup>
 import { ref } from 'vue';
 
-const items = ref(${sourceItems});
+const items = ref([
+  {
+    label: 'Products',
+    icon: 'ti ti-box',
+    items: [
+      [
+        {
+          label: 'UI Components',
+          items: [
+            { label: 'Form', icon: 'ti ti-forms' },
+            { label: 'Button', icon: 'ti ti-hand-click' },
+          ],
+        },
+      ],
+    ],
+  },
+]);
 </script>
-        `.trim(),
+
+<template>
+  <MegaMenu :model="items" orientation="vertical" />
+</template>`,
+      },
+    },
+  },
+};
+
+export const Custom = {
+  render: CustomTemplate.bind({}),
+  parameters: {
+    docs: {
+      source: {
+        code: `<script setup>
+import { ref } from 'vue';
+
+const items = ref([
+  {
+    label: 'Products',
+    icon: 'ti ti-box',
+    items: [
+      [
+        {
+          label: 'Components',
+          items: [
+            {
+              label: 'Form',
+              description: 'Input, Select, Checkbox',
+              icon: 'ti ti-forms',
+              badge: 'New',
+            },
+            {
+              label: 'Button',
+              description: 'Actions and triggers',
+              icon: 'ti ti-hand-click',
+            },
+          ],
+        },
+      ],
+    ],
+  },
+]);
+</script>
+
+<template>
+  <MegaMenu :model="items">
+    <template #item="{ item, props }">
+      <a v-bind="props.action" class="p-megamenu-item-link">
+        <span v-if="item.icon" :class="['p-megamenu-item-icon', item.icon]" />
+        <div class="megamenu-item-label">
+          <span class="p-megamenu-item-label">{{ item.label }}</span>
+          <small v-if="item.description" class="megamenu-item-caption">{{ item.description }}</small>
+        </div>
+        <Badge v-if="item.badge" :value="item.badge" />
+      </a>
+    </template>
+  </MegaMenu>
+</template>`,
       },
     },
   },

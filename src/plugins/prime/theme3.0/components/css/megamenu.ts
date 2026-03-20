@@ -10,13 +10,13 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-weight: ${dt('fonts.fontWeight.regular')};
 }
 
-.p-megamenu-submenu-label {
+.p-megamenu .megamenu-item-label {
   display: flex;
   flex-direction: column;
   gap: ${dt('megamenu.extend.extItem.caption.gap')};
 }
 
-.p-megamenu-item-caption {
+.p-megamenu .megamenu-item-caption {
   font-size: ${dt('fonts.fontSize.sm')};
   color: ${dt('megamenu.extend.extItem.caption.color')};
 }
