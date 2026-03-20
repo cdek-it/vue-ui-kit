@@ -1,21 +1,34 @@
 import { TieredMenu } from 'primevue';
-import CodeSnippet from '@/plugins/prime/stories/_common/CodeSnippet.vue';
 import { useMenu } from '@/plugins/prime/stories/Menu/_common/composables/useMenu';
 
-export const Template = (args) => ({
-  components: { TieredMenu, CodeSnippet },
+export const BasicTemplate = () => ({
+  components: { TieredMenu },
   setup() {
     const { items } = useMenu();
 
-    return { args, items };
+    if (items.value[0]) {
+      delete items.value[0].class;
+    }
+
+    return { items };
   },
   template: `
-    <div>
-      <div class="card flex justify-center">
-        <TieredMenu :model="items"/>
-      </div>
-      <br>
-      <CodeSnippet :code="items"/>
+    <div class="card flex justify-center">
+      <TieredMenu :model="items" />
+    </div>
+  `,
+});
+
+export const WithSelectedTemplate = () => ({
+  components: { TieredMenu },
+  setup() {
+    const { items } = useMenu();
+
+    return { items };
+  },
+  template: `
+    <div class="card flex justify-center">
+      <TieredMenu :model="items" />
     </div>
   `,
 });

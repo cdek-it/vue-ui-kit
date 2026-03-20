@@ -1,20 +1,25 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as TieredMenuStories from './TieredMenu.stories';
-
-import { Template } from './TieredMenu.template';
 
 <Meta of={TieredMenuStories} />
 
-# TieredMenu
+<Title />
+<Description />
 
-[PrimeVue Menu](https://primevue.org/tieredmenu), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12975\&m=dev)
+```javascript
+import { TieredMenu } from 'primevue';
+```
+
+## Варианты использования
 
 ### Basic
 
-```jsx dark
-const selectedClass = 'p-menuitem-checked';
+Базовый вариант меню с вложенными подменю без выделенного пункта.
 
-<PrimeTieredMenu :model="items" />
-```
+<Canvas of={TieredMenuStories.Basic} />
 
-<Story of={TieredMenuStories.Primary} />
+### With Selected Item
+
+Меню с выделенным активным пунктом через класс `p-menuitem-checked`.
+
+<Canvas of={TieredMenuStories.WithSelected} />
