@@ -1,60 +1,25 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as BadgeStories from './Badge.stories';
-
-import { Template, SizeTemplate, DotTemplate } from './Badge.template';
 
 <Meta of={BadgeStories} />
 
-# Badge
+<Title />
+<Description />
 
-[PrimeVue Badge](https://primevue.org/badge), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=21-1193)
-
-Badge компонент используется для отображения статусов, уведомлений и меток.
-
-## Severity варианты
-
-Доступные варианты: `primary`, `secondary`, `success`, `info`, `warn`, `danger`
-
-```html dark
-<PrimeBadge value="Badge" severity="primary" />
-<PrimeBadge value="Badge" severity="info" />
-<PrimeBadge value="Badge" severity="success" />
-<PrimeBadge value="Badge" severity="warn" />
-<PrimeBadge value="Badge" severity="danger" />
+```js
+import Badge from 'primevue/badge';
 ```
 
-<Story of={BadgeStories.Default} />
+## Варианты использования
 
-## Размеры
+### Severity
+<Canvas of={BadgeStories.Severity} />
 
-Доступные размеры: `base` (по умолчанию), `large`, `xlarge`
+### Размеры
+<Canvas of={BadgeStories.Sizes} />
 
-```html dark
-<PrimeBadge value="Badge" />
-<PrimeBadge value="Badge" size="large" />
-<PrimeBadge value="Badge" size="xlarge" />
-```
+### Dot
+<Canvas of={BadgeStories.Dot} />
 
-<Story of={BadgeStories.Sizes} />
-
-## Dot вариант
-
-Badge может отображаться как точка без текста. Используется для индикаторов статуса.
-
-```html dark
-<PrimeBadge severity="primary" />
-<PrimeBadge severity="info" />
-<PrimeBadge severity="success" />
-<PrimeBadge severity="warn" />
-<PrimeBadge severity="danger" />
-```
-
-<Story of={BadgeStories.Dot} />
-
-## Размеры Dot
-
-```html dark
-<PrimeBadge severity="primary" />
-<PrimeBadge severity="primary" size="large" />
-<PrimeBadge severity="primary" size="xlarge" />
-```
+#### Полный список аргументов и событий компонента.
+<Controls of={BadgeStories.Severity} />
