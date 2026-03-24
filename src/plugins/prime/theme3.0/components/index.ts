@@ -1439,7 +1439,7 @@ export default {
     },
     footer: {
       padding:
-        '0 {overlay.modal.padding.md} {overlay.modal.padding.md} {overlay.modal.padding.md}',
+        '0 {overlay.modal.padding.300} {overlay.modal.padding.300} {overlay.modal.padding.300}',
       gap: '{content.gap.200}',
     },
   },

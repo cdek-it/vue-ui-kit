@@ -1,109 +1,42 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as DialogStories from './Dialog.stories';
-
-import { Template, TemplateVariants } from './Dialog.template';
 
 <Meta of={DialogStories} />
 
-# Dialog
+<Title />
+<Description />
 
-[PrimeVue Dialog](https://primevue.org/dialog), [Figma Design](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=520-6620)
-
-## Описание
-
-Dialog - модальное окно для отображения контента поверх основного интерфейса.
-
-### Типографика
-
-Согласно дизайн-токенам:
-
-**Title:**
-
-* **Font Family**: TT Fellows (heading)
-* **Font Size**: 20px (1.25rem)
-* **Font Weight**: 600 (demibold)
-* **Line Height**: 1.5714285714285714rem
-
-**Content:**
-
-* **Font Family**: PT Sans (base)
-* **Font Size**: 16px (1rem)
-* **Font Weight**: 400 (regular)
-* **Line Height**: 1.5rem
-
-### Размеры
-
-* **Default**: min-width 24rem, max-width 30rem
-* **Small**: min-width 20rem, max-width 24rem
-* **Large**: min-width 30rem, max-width 58rem
-* **Extra Large**: min-width 58rem, max-width 90vw
-
-### All Variants
-
-Полная матрица всех вариантов dialog.
-
-<Story of={DialogStories.AllVariants} />
-
-### Default
-
-```html dark
-<PrimeDialog v-model:visible="visible" header="Dialog Header" modal>
-  <p>Dialog content</p>
-  <template #footer>
-    <PrimeButton label="Cancel" variant="text" />
-    <PrimeButton label="Save" severity="tertiary" />
-  </template>
-</PrimeDialog>
+```javascript
+import Dialog from 'primevue/dialog';
 ```
 
-<Story of={DialogStories.Default} />
+## Варианты использования
 
-### Small
+### Basic
+Базовый вариант модального окна с заголовком и кнопками действия.
+<Canvas of={DialogStories.Basic} />
 
-```html dark
-<PrimeDialog v-model:visible="visible" header="Small Dialog" modal class="p-dialog-sm">
-  <p>Dialog content</p>
-</PrimeDialog>
-```
+#### Параметры компонента
+<Controls of={DialogStories.Basic} />
 
-<Story of={DialogStories.Small} />
+### Sizes
+Различные предустановленные размеры окна: `p-dialog-sm` (Small), `p-dialog-lg` (Large), `p-dialog-xlg` (Extra Large).
 
-### Large
+#### Small
+<Canvas of={DialogStories.Small} />
 
-```html dark
-<PrimeDialog v-model:visible="visible" header="Large Dialog" modal class="p-dialog-lg">
-  <p>Dialog content</p>
-</PrimeDialog>
-```
+#### Large
+<Canvas of={DialogStories.Large} />
 
-<Story of={DialogStories.Large} />
+#### Extra Large
+<Canvas of={DialogStories.ExtraLarge} />
 
-### Extra Large
+### Modal vs Non-Modal
+По умолчанию окно является модальным (`modal: true`), блокируя взаимодействие с фоном.
 
-```html dark
-<PrimeDialog v-model:visible="visible" header="Extra Large Dialog" modal class="p-dialog-xlg">
-  <p>Dialog content</p>
-</PrimeDialog>
-```
+#### No Modal
+<Canvas of={DialogStories.NoModal} />
 
-<Story of={DialogStories.ExtraLarge} />
-
-### No Modal
-
-```html dark
-<PrimeDialog v-model:visible="visible" header="No Modal Dialog" :modal="false">
-  <p>Dialog content</p>
-</PrimeDialog>
-```
-
-<Story of={DialogStories.NoModal} />
-
-### No Header
-
-```html dark
-<PrimeDialog v-model:visible="visible" modal>
-  <p>Dialog content without header</p>
-</PrimeDialog>
-```
-
-<Story of={DialogStories.NoHeader} />
+### Show Header
+Заголовок можно скрыть с помощью пропса `showHeader: false`.
+<Canvas of={DialogStories.NoHeader} />
