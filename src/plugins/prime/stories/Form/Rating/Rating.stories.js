@@ -36,12 +36,6 @@ const meta = {
       description: 'Если установлено, компонент становится неактивным.',
       table: { category: 'Props', defaultValue: { summary: false } },
     },
-    cancel: {
-      control: 'boolean',
-      description:
-        'Если включено, отображается иконка отмены для сброса значения.',
-      table: { category: 'Props', defaultValue: { summary: true } },
-    },
   },
 };
 
