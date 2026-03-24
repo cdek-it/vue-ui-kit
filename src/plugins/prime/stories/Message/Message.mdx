@@ -1,46 +1,34 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as MessageStories from './Message.stories';
-
-import { Template, CustomContainer } from './Message.template';
 
 <Meta of={MessageStories} />
 
-# Message
+<Title />
+<Description />
 
-[PrimeVue Message](https://primevue.org/message), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=562-2947\&m=dev)
+## Варианты использования
 
-### Base
+### Default
+Базовый вариант сообщения. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={MessageStories.Default} />
 
-```html dark
-<PrimeMessage />
-```
+#### Полный список аргументов и событий компонента.
+<Controls of={MessageStories.Default} />
 
-<Story of={MessageStories.Primary} />
+### Severities
+Все доступные уровни важности: `info`, `success`, `warn`, `error`.
+<Canvas of={MessageStories.Severities} />
 
-### Custom
+### WithCloseButton
+Сообщение с кнопкой закрытия.
+<Canvas of={MessageStories.WithCloseButton} />
 
-```html dark
-<PrimeMessage>
- <template #container="{closeCallback}">
-   <div class="flex flex-col p-4 gap-4">
-     <div class="flex justify-between">
-       <div class="flex gap-4">
-         <i class="ti ti-info-circle text-4xl"/>
-         <div class="flex flex-col gap-1">
-           <div class="body-bold-base">Message</div>
-           <div class="caption-secondary">caption</div>
-         </div>
-       </div>
-       <Button variant="outlined" icon="ti ti-x" severity="info" @click="closeCallback"/>
-     </div>
-     <div>CONTENT</div>
-     <div class="flex gap-2">
-       <div>cell 1</div>
-       <div>cell 2</div>
-     </div>
-   </div>
-</template>
-</PrimeMessage>
-```
+#### Аргументы и события
+<Controls of={MessageStories.WithCloseButton} />
 
-<Story of={MessageStories.Custom} />
+### WithContent
+Сообщение с дополнительным контентом под заголовком.
+<Canvas of={MessageStories.WithContent} />
+
+#### Аргументы и события
+<Controls of={MessageStories.WithContent} />
