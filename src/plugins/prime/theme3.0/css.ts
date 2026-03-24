@@ -8,6 +8,7 @@ import confirmdialogCss from './components/css/confirmdialog';
 import dialogCss from './components/css/dialog';
 import dividerCss from './components/css/divider';
 import drawerCss from './components/css/drawer';
+import messageCss from './components/css/message';
 import progressbarCss from './components/css/progressbar';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
@@ -24,6 +25,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${dialogCss({ dt })}
    ${dividerCss({ dt })}
    ${drawerCss({ dt })}
+   ${messageCss({ dt })}
    ${progressbarCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
