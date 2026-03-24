@@ -1,59 +1,32 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, ArgTypes, Title, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as ProgressBarStories from './ProgressBar.stories';
-
-import { Template } from './ProgressBar.template';
 
 <Meta of={ProgressBarStories} />
 
-# ProgressBar
+<Title />
+<Description />
 
-[PrimeVue ProgressBar](https://primevue.org/progressbar), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=113-1004)
+## Варианты использования
 
-### Base
+### По умолчанию
+Базовый вариант прогресс-бара. Используйте таблицу ниже для настройки параметров в реальном времени.
 
-Базовый прогресс-бар с процентами
+<Canvas of={ProgressBarStories.Default} />
 
-```html dark
-<PrimeProgressBar :value="50" />
-```
+#### Аргументы и события
+<Controls of={ProgressBarStories.Default} />
 
-<Story of={ProgressBarStories.Primary} />
+### Неопределенный режим (Indeterminate)
+Используется, когда точное время завершения процесса неизвестно.
 
-### Без значения (Indeterminate)
+<Canvas of={ProgressBarStories.Indeterminate} />
 
-Прогресс-бар без конкретного значения для неопределенных процессов
+### Различные значения
+Примеры прогресса на разных этапах выполнения.
 
-```html dark
-<PrimeProgressBar mode="indeterminate" />
-```
-
-<Story of={ProgressBarStories.Indeterminate} />
-
-### Разные значения
-
-Примеры с различными процентами выполнения
-
-```html dark
-<PrimeProgressBar :value="25" />
-<PrimeProgressBar :value="50" />
-<PrimeProgressBar :value="75" />
-<PrimeProgressBar :value="100" />
-```
-
-<Story of={ProgressBarStories.Values25} />
-
-<Story of={ProgressBarStories.Values50} />
-
-<Story of={ProgressBarStories.Values75} />
-
-<Story of={ProgressBarStories.Values100} />
+<Canvas of={ProgressBarStories.Values} />
 
 ### Без отображения значения
+Вариант без текстовой метки внутри индикатора.
 
-Прогресс-бар без текстовой метки
-
-```html dark
-<PrimeProgressBar :value="60" :showValue="false" />
-```
-
-<Story of={ProgressBarStories.NoLabel} />
+<Canvas of={ProgressBarStories.NoLabel} />
