@@ -1,35 +1,29 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as CardStories from './Card.stories';
-
-import { Template } from './Card.template';
 
 <Meta of={CardStories} />
 
-# Card
+<Title />
+<Description />
 
-[PrimeVue Card](https://primevue.org/card), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=1207-3471\&m=dev)
+## Варианты использования
 
 ### Default
+Карточка со всеми элементами: header, title, subtitle, content и footer.
+<Canvas of={CardStories.Default} />
 
-```html dark
-<PrimeCard>
-    <template #header>HEADER</template>
+### Overlay
+Карточка с тенью (`class="shadow-md"`) и без тени (по умолчанию).
+<Canvas of={CardStories.Overlay} />
 
-    <template #title>
-      <div class="flex flex-col gap-1">
-        <p class="title-h4">Title</p>
-        <p class="caption">Caption</p>
-      </div>
-    </template>
+### WithoutHeader
+Карточка без изображения в шапке.
+<Canvas of={CardStories.WithoutHeader} />
 
-    <template #content>
-      CONTENT
-    </template>
+### WithoutFooter
+Карточка без футера с действиями.
+<Canvas of={CardStories.WithoutFooter} />
 
-    <template #footer>
-      FOOTER
-    </template>
-</PrimeCard>
-```
-
-<Story of={CardStories.Default} />
+### WithoutSubtitle
+Карточка без подзаголовка.
+<Canvas of={CardStories.WithoutSubtitle} />
