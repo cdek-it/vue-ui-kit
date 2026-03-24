@@ -2954,15 +2954,17 @@ export default {
     },
   },
   skeleton: {
-    extend: {
-      minWidth: '{feedback.width.700}',
-      height: '{feedback.height.650}',
-    },
     colorScheme: {
       light: {
         root: {
           background: '{surface.200}',
           animationBackground: '{surface.100}',
+        },
+      },
+      dark: {
+        root: {
+          background: '{surface.700}',
+          animationBackground: '{surface.600}',
         },
       },
     },

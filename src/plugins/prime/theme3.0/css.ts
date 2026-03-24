@@ -13,6 +13,7 @@ import progressbarCss from './components/css/progressbar';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
+import skeletonCss from './components/css/skeleton';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${avatarCss({ dt })}
@@ -30,6 +31,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
+   ${skeletonCss({ dt })}
 
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
