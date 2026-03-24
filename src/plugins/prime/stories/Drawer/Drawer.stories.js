@@ -2,7 +2,7 @@ import Drawer from 'primevue/drawer';
 import { Template, TemplateVariants } from './Drawer.template';
 
 export default {
-  title: 'Prime/Drawer',
+  title: 'Prime/Form/Drawer',
   component: Drawer,
   tags: ['autodocs'],
   parameters: {
