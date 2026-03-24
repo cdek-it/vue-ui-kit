@@ -3,6 +3,7 @@ import badgeCss from './components/css/badge';
 import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
 import checkboxCss from './components/css/checkbox';
+import confirmdialogCss from './components/css/confirmdialog';
 import dialogCss from './components/css/dialog';
 import dividerCss from './components/css/divider';
 import drawerCss from './components/css/drawer';
@@ -17,6 +18,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
    ${checkboxCss({ dt })}
+   ${confirmdialogCss({ dt })}
    ${dialogCss({ dt })}
    ${dividerCss({ dt })}
    ${drawerCss({ dt })}
