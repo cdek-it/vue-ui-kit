@@ -8,7 +8,10 @@ export const Template = (args) => ({
   },
   template: `
     <div class="flex items-center justify-center p-10">
-      <Button v-tooltip="{ value: args.text, position: args.position }" :label="args.label" />
+      <Button v-if="args.position === 'top'"    v-tooltip.top="args.text"    :label="args.label" />
+      <Button v-else-if="args.position === 'bottom'" v-tooltip.bottom="args.text" :label="args.label" />
+      <Button v-else-if="args.position === 'left'"   v-tooltip.left="args.text"   :label="args.label" />
+      <Button v-else                             v-tooltip.right="args.text"  :label="args.label" />
     </div>
   `,
 });
