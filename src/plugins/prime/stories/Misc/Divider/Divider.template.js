@@ -5,7 +5,11 @@ export const Template = (args) => ({
   setup() {
     return { args };
   },
-  template: '<Divider v-bind="args" />',
+  template: `
+    <div style="height: 200px; display: flex; justify-content: center;">
+        <Divider v-bind="args"><b>Content</b></Divider>
+    </div>
+  `,
 });
 
 export const TemplateContent = (args) => ({

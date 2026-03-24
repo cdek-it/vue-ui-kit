@@ -13,9 +13,25 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   gap: ${dt('divider.extend.content.gap')};
 }
 
-.p-divider-content i {
   color: ${dt('divider.colorScheme.light.content.color')};
   font-size: ${dt('divider.extend.iconSize')};
+}
+
+/* Vertical Alignment */
+.p-divider-vertical.p-divider-top .p-divider-content {
+  top: 0;
+  transform: translateY(0);
+}
+
+.p-divider-vertical.p-divider-bottom .p-divider-content {
+  top: auto;
+  bottom: 0;
+  transform: translateY(0);
+}
+
+.p-divider-vertical.p-divider-center .p-divider-content {
+  top: 50%;
+  transform: translateY(-50%);
 }
 `;
 
