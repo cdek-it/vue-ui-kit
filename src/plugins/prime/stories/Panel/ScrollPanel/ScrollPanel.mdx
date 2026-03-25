@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as ScrollPanelStories from './ScrollPanel.stories';
+
+<Meta of={ScrollPanelStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Вертикальная прокрутка. Задайте фиксированную высоту контейнеру.
+<Canvas of={ScrollPanelStories.Default} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={ScrollPanelStories.Default} />
+
+### Horizontal
+Горизонтальная прокрутка. Контент без переносов (`white-space: nowrap`) выходит за ширину контейнера.
+<Canvas of={ScrollPanelStories.Horizontal} />
+
+### Both
+Прокрутка в обоих направлениях.
+<Canvas of={ScrollPanelStories.Both} />

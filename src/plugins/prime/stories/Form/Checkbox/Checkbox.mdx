@@ -1,75 +1,36 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as CheckboxStories from './Checkbox.stories';
-
-import { Template, InteractiveTemplate } from './Checkbox.template';
 
 <Meta of={CheckboxStories} />
 
-# Checkbox
+<Title />
+<Description />
 
-[PrimeVue Checkbox](https://primevue.org/checkbox/), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=16-13529)
-
-Checkbox компонент используется для выбора булевых значений.
-
-## Все состояния
-
-Показывает все возможные состояния checkbox: unchecked, checked, indeterminate с вариантами default, invalid и disabled.
-
-```html dark
-<!-- Unchecked -->
-<PrimeCheckbox v-model="checked" binary />
-
-<!-- Checked -->
-<PrimeCheckbox v-model="checked" binary />
-
-<!-- Indeterminate -->
-<PrimeCheckbox binary indeterminate />
-
-<!-- Invalid -->
-<PrimeCheckbox v-model="checked" binary invalid />
-
-<!-- Disabled -->
-<PrimeCheckbox v-model="checked" binary disabled />
+```javascript
+import Checkbox from 'primevue/checkbox';
 ```
 
-<Story of={CheckboxStories.AllStates} />
+## Варианты использования
 
-## Интерактивные примеры
+### Basic
+Базовый вариант чекбокса. Используйте `binary` проп для работы с одиночным булевым значением.
+<Canvas of={CheckboxStories.Basic} />
 
-Примеры использования checkbox с labels и различными состояниями.
+#### Параметры компонента
+<Controls of={CheckboxStories.Basic} />
 
-<Story of={CheckboxStories.Interactive} />
+### Invalid
+Отображение состояния ошибки валидации.
+<Canvas of={CheckboxStories.Invalid} />
 
-## Использование
+### Disabled
+Отключенное состояние чекбокса.
+<Canvas of={CheckboxStories.Disabled} />
 
-### Базовый пример
+### Indeterminate
+Неопределенное состояние (например, для частичного выбора в группе).
+<Canvas of={CheckboxStories.Indeterminate} />
 
-```html dark
-<script setup>
-import { ref } from 'vue';
-const checked = ref(false);
-</script>
-
-<template>
-  <div class="flex items-center gap-3">
-    <Checkbox v-model="checked" binary inputId="checkbox1" />
-    <label for="checkbox1">Accept terms</label>
-  </div>
-</template>
-```
-
-### Indeterminate состояние
-
-Используется для "select all" функциональности, когда выбраны не все элементы.
-
-```html dark
-<Checkbox binary indeterminate />
-```
-
-### Invalid состояние
-
-Для отображения ошибок валидации.
-
-```html dark
-<Checkbox v-model="checked" binary invalid />
-```
+### Group
+Пример использования чекбоксов в группе для выбора нескольких значений из списка.
+<Canvas of={CheckboxStories.Group} />
