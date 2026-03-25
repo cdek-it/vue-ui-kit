@@ -1,49 +1,62 @@
 import InputText from 'primevue/inputtext';
+import FloatLabel from 'primevue/floatlabel';
 import { IconField, InputIcon } from 'primevue';
 import { ref } from 'vue';
 
 export const Template = (args) => ({
-  components: { InputText },
-  setup() {
-    return { args };
-  },
-  template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(4, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
-  <span></span>
-  <span></span>
-  <span><code>invalid</code></span>
-  <span><code>disabled</code></span>
-
-  <span :style="{ justifySelf: 'flex-start' }"></span>
-  <InputText placeholder="InputText" v-bind="args" />
-  <InputText placeholder="InputText" invalid v-bind="args" />
-  <InputText placeholder="InputText" disabled v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>v-model="text input"</code></span>
-  <InputText :default-value="'text input'" placeholder="InputText" v-bind="args" />
-  <InputText :default-value="'text input'" placeholder="InputText" invalid v-bind="args" />
-  <InputText :default-value="'text input'" placeholder="InputText" disabled v-bind="args" />
-</div>
-`,
-});
-
-export const TemplateWithIcons = (args) => ({
   components: { InputText, IconField, InputIcon },
   setup() {
-    const inputValue = ref('');
+    const value = ref('');
 
-    const onClickDelete = () => {
-      inputValue.value = '';
+    const onClickClear = () => {
+      value.value = '';
     };
 
-    return { args, inputValue, onClickDelete };
+    return { args, value, onClickClear };
   },
   template: `
-    <IconField>
-      <InputText v-model="inputValue" placeholder="Normal" />
-      <InputIcon @click="onClickDelete">
+    <IconField v-if="args.showClear" style="width: 100%">
+      <InputText 
+        v-model="value"
+        v-bind="args"
+        style="width: 100%"
+        :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }" 
+        :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+      />
+      <InputIcon @click="onClickClear" style="cursor: pointer">
         <i class="ti ti-x" />
       </InputIcon>
     </IconField>
+    <InputText 
+      v-else
+      v-model="value"
+      v-bind="args"
+      style="width: 100%"
+      :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }" 
+      :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+    />
   `,
+});
+
+export const TemplateFloatLabel = (args) => ({
+  components: { InputText, FloatLabel, IconField, InputIcon },
+  setup() {
+    const value = ref('');
+    const onClickClear = () => {
+      value.value = '';
+    };
+    return { args, value, onClickClear };
+  },
+  template: `
+    <FloatLabel variant="in">
+        <IconField v-if="args.showClear" style="width: 100%">
+            <InputText id="username" v-model="value" style="width: 100%" v-bind="args" />
+            <InputIcon @click="onClickClear" style="cursor: pointer">
+                <i class="ti ti-x" />
+            </InputIcon>
+        </IconField>
+        <InputText v-else id="username" v-model="value" style="width: 100%" v-bind="args" />
+        <label for="username">Username</label>
+    </FloatLabel>
+`,
 });

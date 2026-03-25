@@ -1,42 +1,25 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as InputTextStories from './InputText.stories';
-
-import { Template, TemplateWithIcons } from './InputText.template';
 
 <Meta of={InputTextStories} />
 
-# InputText
+<Title />
+<Description />
 
-[PrimeVue InputText](https://primevue.org/inputtext), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5470\&node-type=section\&t=2PSg63p2UfJ4cUzB-0)
-
-```html dark
-<PrimeInputText v-model="value" placeholder="InputText" />
+## Импорт
+```js
+import InputText from 'primevue/inputtext';
 ```
 
-<Story of={InputTextStories.Primary} />
+## Варианты использования
 
-# С иконками
+### Default
+Стационарный текстовый ввод. Вы можете управлять всеми параметрами (размеры, состояния, наличие иконки очистки и текст подсказки) через таблицу аргументов ниже.
+<Canvas of={InputTextStories.Default} />
 
-Логика на работу крестика не прописана в ui-ките, на данный момент должна быть прописана на стороне приложения
+#### Список параметров
+<Controls of={InputTextStories.Default} />
 
-```html dark
-<script setup>
-  const inputValue = ref('');
-
-    const onClickDelete = () => {
-      inputValue.value = '';
-    };
-</script>
-
-<template>
-    <PrimeIconField>
-        <PrimeInputText v-model=inputValue placeholder="Normal" />
-        <PrimeInputIcon @click="onClickDelete">
-            <i class="ti ti-x" />
-        </PrimeInputIcon>
-    </PrimeIconField>
-</template>
-
-```
-
-<Story of={InputTextStories.WithIcons} />
+### Float Label
+Использование поля ввода внутри контейнера `FloatLabel`.
+<Canvas of={InputTextStories.FloatLabel} />
