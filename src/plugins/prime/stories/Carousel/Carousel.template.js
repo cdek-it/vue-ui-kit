@@ -28,8 +28,8 @@ export const BasicTemplate = (args) => ({
         v-bind="args"
       >
         <template #item="{ data }">
-          <div class="flex flex-col gap-3 mx-1 px-3 py-3 border rounded">
-            <span v-html="data.title" />
+          <div class="flex flex-col gap-3 px-3 py-3 border rounded min-w-0 overflow-hidden">
+            <span v-html="data.title" class="font-bold truncate" />
             <span v-html="data.subtitle" />
           </div>
         </template>
@@ -53,8 +53,8 @@ export const VerticalTemplate = (args) => ({
         v-bind="args"
       >
         <template #item="{ data }">
-          <div class="flex flex-col gap-3 mx-1 px-3 py-3 border rounded">
-            <span v-html="data.title" />
+          <div class="flex flex-col gap-3 px-3 py-3 border rounded min-w-0 overflow-hidden">
+            <span v-html="data.title" class="font-bold truncate" />
             <span v-html="data.subtitle" />
           </div>
         </template>
@@ -79,8 +79,8 @@ export const AutoplayTemplate = (args) => ({
         v-bind="args"
       >
         <template #item="{ data }">
-          <div class="flex flex-col gap-3 mx-1 px-3 py-3 border rounded">
-            <span v-html="data.title" />
+          <div class="flex flex-col gap-3 px-3 py-3 border rounded min-w-0 overflow-hidden">
+            <span v-html="data.title" class="font-bold truncate" />
             <span v-html="data.subtitle" />
           </div>
         </template>
