@@ -1,0 +1,30 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as ConfirmDialogStories from './ConfirmDialog.stories';
+
+<Meta of={ConfirmDialogStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Базовый вариант диалога подтверждения с иконкой предупреждения.
+<Canvas of={ConfirmDialogStories.Default} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={ConfirmDialogStories.Default} />
+
+### Severities
+Варианты диалога с иконками разных типов: success, info, warn, help, danger.
+<Canvas of={ConfirmDialogStories.Severities} />
+
+#### Аргументы и события
+<Controls of={ConfirmDialogStories.Severities} />
+
+### Sizes
+Доступные размеры диалога: sm, base, lg, xlg.
+<Canvas of={ConfirmDialogStories.Sizes} />
+
+#### Аргументы и события
+<Controls of={ConfirmDialogStories.Sizes} />
