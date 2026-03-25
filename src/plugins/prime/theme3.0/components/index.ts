@@ -1077,7 +1077,7 @@ export default {
     headerCell: {
       selectedBackground: '{highlight.background}',
       borderColor: '{content.borderColor}',
-      hoverColor: '{text.extend.colorInverted}',
+      hoverColor: '{text.hoverColor}',
       selectedColor: '{highlight.color}',
       gap: '{data.gap.200}',
       padding: '{data.padding.400}',

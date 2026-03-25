@@ -1,0 +1,54 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as DataTableStories from './DataTable.stories';
+
+<Meta of={DataTableStories} />
+
+# DataTable
+
+[PrimeVue DataTable](https://primevue.org/datatable/)
+
+---
+
+## Варианты использования
+
+### Default
+Базовая таблица с сортируемыми колонками. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={DataTableStories.DataTableDefault} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={DataTableStories.DataTableDefault} />
+
+### Striped Rows
+Таблица с чередующимися строками для улучшения читаемости.
+<Canvas of={DataTableStories.StripedRows} />
+
+### Selectable
+Таблица с возможностью выбора строки кликом (`selectionMode="single"`).
+<Canvas of={DataTableStories.Selectable} />
+
+### Grid Lines
+Таблицы с сеткой между всеми ячейками.
+<Canvas of={DataTableStories.GridLines} />
+
+### Pagination
+Пагинация для больших наборов данных.
+<Canvas of={DataTableStories.Pagination} />
+
+### Filter
+Фильтрация данных в строке заголовка.
+<Canvas of={DataTableStories.Filter} />
+
+### Row Selection
+Выбор строк с помощью RadioButton или Checkbox.
+<Canvas of={DataTableStories.SelectionRadio} />
+<Canvas of={DataTableStories.SelectionCheckbox} />
+
+### Editing
+Редактирование данных в режиме ячейки или строки.
+<Canvas of={DataTableStories.EditCell} />
+<Canvas of={DataTableStories.EditRow} />
+
+### Scrolling
+Прокрутка данных в вертикальном и горизонтальном направлениях.
+<Canvas of={DataTableStories.ScrollVertical} />
+<Canvas of={DataTableStories.ScrollHorizontal} />
