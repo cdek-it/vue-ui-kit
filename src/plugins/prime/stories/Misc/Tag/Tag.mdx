@@ -1,106 +1,34 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as TagStories from './Tag.stories';
-
-import { Template, TemplateVariants } from './Tag.template';
 
 <Meta of={TagStories} />
 
-# Tag
+<Title />
+<Description />
 
-[PrimeVue Tag](https://primevue.org/tag), [Figma Design](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=21-1238)
+## Варианты использования
 
-## Варианты тегов
+### Default
+Базовый вариант тега. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={TagStories.Default} />
 
-Компонент поддерживает следующие варианты согласно дизайну из Figma:
+#### Полный список аргументов и событий компонента.
+<Controls of={TagStories.Default} />
 
-* **Severity**: `primary`, `secondary`, `success`, `info`, `warn`, `danger`
-* **Форма**: обычная или `rounded`
-* **С иконкой**: `icon` (prefix) или только иконка (без value)
-
-### Стили текста
-
-Согласно дизайн-токенам:
-
-* **Font Family**: PT Sans (base)
-* **Font Size**: 12px (0.75rem)
-* **Font Weight**: 400 (regular)
-* **Line Height**: 1rem
-* **Icon Size**: 16px (1rem)
-
-### All Variants
-
-Полная матрица всех вариантов тегов из Figma дизайна.
-
-<Story of={TagStories.AllVariants} />
-
-### Primary
-
-```html dark
-<PrimeTag value="Tag" severity="primary" />
-```
-
-<Story of={TagStories.Primary} />
-
-### Secondary
-
-```html dark
-<PrimeTag value="Tag" severity="secondary" />
-```
-
-<Story of={TagStories.Secondary} />
-
-### Success
-
-```html dark
-<PrimeTag value="Tag" severity="success" />
-```
-
-<Story of={TagStories.Success} />
-
-### Info
-
-```html dark
-<PrimeTag value="Tag" severity="info" />
-```
-
-<Story of={TagStories.Info} />
-
-### Warning
-
-```html dark
-<PrimeTag value="Tag" severity="warn" />
-```
-
-<Story of={TagStories.Warning} />
-
-### Danger
-
-```html dark
-<PrimeTag value="Tag" severity="danger" />
-```
-
-<Story of={TagStories.Danger} />
+### Severities
+Все доступные варианты важности: `primary`, `secondary`, `success`, `info`, `warn`, `danger`.
+<Canvas of={TagStories.Severities} />
 
 ### Rounded
+Тег со скругленными углами.
+<Canvas of={TagStories.Rounded} />
 
-```html dark
-<PrimeTag value="Tag" rounded />
-```
+#### Аргументы и события
+<Controls of={TagStories.Rounded} />
 
-<Story of={TagStories.Rounded} />
+### WithIcon
+Тег с иконкой.
+<Canvas of={TagStories.WithIcon} />
 
-### With Icon
-
-```html dark
-<PrimeTag value="Tag" icon="ti ti-check" />
-```
-
-<Story of={TagStories.WithIcon} />
-
-### Icon Only
-
-```html dark
-<PrimeTag icon="ti ti-check" />
-```
-
-<Story of={TagStories.IconOnly} />
+#### Аргументы и события
+<Controls of={TagStories.WithIcon} />
