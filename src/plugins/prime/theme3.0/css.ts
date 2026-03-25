@@ -10,6 +10,7 @@ import dialogCss from './components/css/dialog';
 import dividerCss from './components/css/divider';
 import drawerCss from './components/css/drawer';
 import messageCss from './components/css/message';
+import paginatorCss from './components/css/paginator';
 import popoverCss from './components/css/popover';
 import progressbarCss from './components/css/progressbar';
 import ratingCss from './components/css/rating';
@@ -30,6 +31,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${dividerCss({ dt })}
    ${drawerCss({ dt })}
    ${messageCss({ dt })}
+   ${paginatorCss({ dt })}
    ${popoverCss({ dt })}
    ${progressbarCss({ dt })}
    ${ratingCss({ dt })}

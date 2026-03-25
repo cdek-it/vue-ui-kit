@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as PaginatorStories from './Paginator.stories';
+
+<Meta of={PaginatorStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Базовый пагинатор с кнопками навигации и номерами страниц. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={PaginatorStories.PaginatorDefault} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={PaginatorStories.PaginatorDefault} />
+
+### Current Page Report
+Пагинатор с отображением текущей страницы и общего числа страниц.
+<Canvas of={PaginatorStories.CurrentPageReport} />
+
+### Rows Per Page
+Пагинатор с выбором количества строк на странице и переходом на конкретную страницу.
+<Canvas of={PaginatorStories.RowsPerPage} />
