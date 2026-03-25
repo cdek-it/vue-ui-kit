@@ -1,16 +1,24 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as SelectButtonStories from './SelectButton.stories';
-
-import { Template } from './SelectButton.template';
 
 <Meta of={SelectButtonStories} />
 
-# SelectButton
+<Title />
+<Description />
 
-[PrimeVue SelectButton](https://primevue.org/selectbutton), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=481-4393\&node-type=section\&m=dev)
+## Варианты использования
 
-```html dark
-<PrimeSelectButton v-model="value" :options="options" />
-```
+### Default
+<Canvas of={SelectButtonStories.Default} />
 
-<Story of={SelectButtonStories.Primary} />
+#### Полный список аргументов и событий компонента.
+<Controls of={SelectButtonStories.Default} />
+
+### Selected
+<Canvas of={SelectButtonStories.Selected} />
+
+### Disabled
+<Canvas of={SelectButtonStories.Disabled} />
+
+### Semi-disabled
+<Canvas of={SelectButtonStories.SemiDisabled} />

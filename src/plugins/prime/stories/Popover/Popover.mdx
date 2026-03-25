@@ -1,0 +1,20 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as PopoverStories from './Popover.stories';
+
+<Meta of={PopoverStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Базовый popover с простым текстовым содержимым. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={PopoverStories.PopoverDefault} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={PopoverStories.PopoverDefault} />
+
+### Rich Content
+Popover с произвольным контентом: заголовок, описание и кнопки действий.
+<Canvas of={PopoverStories.RichContent} />
