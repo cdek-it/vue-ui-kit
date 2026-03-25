@@ -7,6 +7,7 @@ import cardCss from './components/css/card';
 import checkboxCss from './components/css/checkbox';
 import confirmdialogCss from './components/css/confirmdialog';
 import dialogCss from './components/css/dialog';
+import menuCss from './components/css/menu';
 import dividerCss from './components/css/divider';
 import drawerCss from './components/css/drawer';
 import messageCss from './components/css/message';
@@ -30,6 +31,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${checkboxCss({ dt })}
    ${confirmdialogCss({ dt })}
    ${dialogCss({ dt })}
+   ${menuCss({ dt })}
    ${dividerCss({ dt })}
    ${drawerCss({ dt })}
    ${messageCss({ dt })}
