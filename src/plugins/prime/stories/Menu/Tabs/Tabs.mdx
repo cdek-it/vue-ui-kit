@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as TabStories from './Tabs.stories';
+
+<Meta of={TabStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Базовые вкладки с иконкой и текстом. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={TabStories.TabsDefault} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={TabStories.TabsDefault} />
+
+### With Badge
+Вкладки с бейджами для отображения счётчиков.
+<Canvas of={TabStories.WithBadge} />
+
+### With Disabled
+Вкладки с отключённым элементом.
+<Canvas of={TabStories.WithDisabled} />
