@@ -1008,7 +1008,7 @@ export default {
       shadow: '{navigation.shadow}',
     },
     list: {
-      padding: '{navigation.list.padding.md} 0',
+      padding: '{navigation.list.padding.200} 0',
       gap: '{navigation.list.gap}',
     },
     item: {
