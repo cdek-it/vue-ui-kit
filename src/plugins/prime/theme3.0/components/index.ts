@@ -3627,6 +3627,26 @@ export default {
           checkedHoverColor: '{text.color}',
         },
       },
+      dark: {
+        root: {
+          background: '{surface.600}',
+          hoverBackground: '{surface.500}',
+          disabledBackground: '{form.disabledBackground}',
+          checkedBackground: '{surface.900}',
+          checkedHoverBackground: '{surface.800}',
+        },
+        handle: {
+          background: '{form.backgroundHandler}',
+          hoverBackground: '{form.backgroundHandler}',
+          disabledBackground: '{form.disabledColor}',
+          checkedBackground: '{surface.0}',
+          checkedHoverBackground: '{surface.0}',
+          color: '{text.color}',
+          hoverColor: '{text.color}',
+          checkedColor: '{text.color}',
+          checkedHoverColor: '{text.color}',
+        },
+      },
     },
     root: {
       width: '{form.size.600}',
