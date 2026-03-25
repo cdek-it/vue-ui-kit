@@ -53,7 +53,7 @@ export default {
     },
     panel: {
       borderWidth:
-        '{borderWidth.none} {borderWidth.none} {navigation.width.200} {borderWidth.none}',
+        '{borderWidth.none} {borderWidth.none} {navigation.width.100} {borderWidth.none}',
       borderColor: '{form.borderColor}',
     },
     content: {
@@ -1008,7 +1008,7 @@ export default {
       shadow: '{navigation.shadow}',
     },
     list: {
-      padding: '{navigation.list.padding.md} 0',
+      padding: '{navigation.list.padding.200} 0',
       gap: '{navigation.list.gap}',
     },
     item: {
@@ -1439,7 +1439,7 @@ export default {
     },
     footer: {
       padding:
-        '0 {overlay.modal.padding.md} {overlay.modal.padding.md} {overlay.modal.padding.md}',
+        '0 {overlay.modal.padding.300} {overlay.modal.padding.300} {overlay.modal.padding.300}',
       gap: '{content.gap.200}',
     },
   },
