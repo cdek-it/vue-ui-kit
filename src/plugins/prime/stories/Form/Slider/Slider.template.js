@@ -8,8 +8,8 @@ export const Template = (args) => ({
     return { args, value };
   },
   template: `
-    <div class="flex items-center gap-4">
-      <Slider v-model="value" style="width: 300px" v-bind="args" />
+    <div :class="args.orientation === 'vertical' ? 'flex items-end gap-4' : 'flex items-center gap-4'" :style="args.orientation === 'vertical' ? 'height: 220px' : ''">
+      <Slider v-model="value" :style="args.orientation === 'vertical' ? 'height: 200px' : 'width: 300px'" v-bind="args" />
       <span class="text-sm font-semibold">{{ value }}</span>
     </div>
   `,
@@ -22,8 +22,8 @@ export const TemplateRange = (args) => ({
     return { args, value };
   },
   template: `
-    <div class="flex items-center gap-4">
-      <Slider v-model="value" range style="width: 300px" v-bind="args" />
+    <div :class="args.orientation === 'vertical' ? 'flex items-end gap-4' : 'flex items-center gap-4'" :style="args.orientation === 'vertical' ? 'height: 220px' : ''">
+      <Slider v-model="value" range :style="args.orientation === 'vertical' ? 'height: 200px' : 'width: 300px'" v-bind="args" />
       <span class="text-sm font-semibold">{{ value[0] }} — {{ value[1] }}</span>
     </div>
   `,
@@ -36,8 +36,8 @@ export const TemplateStep = (args) => ({
     return { args, value };
   },
   template: `
-    <div class="flex items-center gap-4">
-      <Slider v-model="value" :step="10" style="width: 300px" v-bind="args" />
+    <div :class="args.orientation === 'vertical' ? 'flex items-end gap-4' : 'flex items-center gap-4'" :style="args.orientation === 'vertical' ? 'height: 220px' : ''">
+      <Slider v-model="value" :step="10" :style="args.orientation === 'vertical' ? 'height: 200px' : 'width: 300px'" v-bind="args" />
       <span class="text-sm font-semibold">{{ value }}</span>
     </div>
   `,
