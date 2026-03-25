@@ -13,6 +13,7 @@ import popoverCss from './components/css/popover';
 import progressbarCss from './components/css/progressbar';
 import popoverCss from './components/css/popover';
 import ratingCss from './components/css/rating';
+import tabsCss from './components/css/tabs';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
 
@@ -32,6 +33,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${progressbarCss({ dt })}
    ${popoverCss({ dt })}
    ${ratingCss({ dt })}
+   ${tabsCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
 
