@@ -1,68 +1,139 @@
 import Message from 'primevue/message';
 import Button from 'primevue/button';
 
+const SEVERITIES = [
+  { type: 'info', icon: 'ti ti-info-circle' },
+  { type: 'success', icon: 'ti ti-circle-check' },
+  { type: 'warn', icon: 'ti ti-alert-triangle' },
+  { type: 'error', icon: 'ti ti-alert-circle' },
+];
+
 export const Template = (args) => ({
-  components: { Message },
+  components: { Message, Button },
   setup() {
-    const severity = [
-      { type: 'success', icon: 'ti ti-circle-check' },
-      { type: 'info', icon: 'ti ti-info-circle' },
-      { type: 'warn', icon: 'ti ti-alert-triangle' },
-      { type: 'error', icon: 'ti ti-bell' },
-    ];
-    return {
-      args,
-      severity,
-    };
+    return { args };
   },
   template: `
-    <div class="grid grid-cols-2 gap-4">
-      <template v-for="({type, icon}, index) in severity" :key="index">
-        <span>
-        {{ type }}
-        </span>
+    <Message :severity="args.severity" :icon="args.icon" :closable="args.closable">
+      <template #container="{ closeCallback }">
+        <div class="p-message-content">
+          <div class="p-message-accent-line"></div>
+          <i :class="(args.icon || 'ti ti-info-circle') + ' p-message-icon'"></i>
+          <div class="p-message-text">
+            <span class="p-message-summary">Message</span>
+            <div class="p-message-detail">caption</div>
+          </div>
+          <Button
+            v-if="args.closable"
+            class="p-message-close-button"
+            icon="ti ti-x"
+            variant="text"
+            @click="closeCallback"
+          />
+        </div>
+      </template>
+    </Message>
+  `,
+});
 
-        <Message :icon="icon" :severity="type" v-bind="args">
-          <div class="flex flex-col">
-            <div class="flex flex-col gap-1">
-              <div class="body-bold-base">Message</div>
-              <div class="caption-secondary">caption</div>
+export const TemplateSeverities = () => ({
+  components: { Message },
+  setup() {
+    return { severities: SEVERITIES };
+  },
+  template: `
+    <div class="flex flex-col gap-4">
+      <Message
+        v-for="({ type, icon }, index) in severities"
+        :key="index"
+        :severity="type"
+      >
+        <template #container>
+          <div class="p-message-content">
+            <div class="p-message-accent-line"></div>
+            <i :class="icon + ' p-message-icon'"></i>
+            <div class="p-message-text">
+              <span class="p-message-summary">Message</span>
+              <div class="p-message-detail">caption</div>
             </div>
           </div>
-        </Message>
-      </template>
+        </template>
+      </Message>
     </div>
   `,
 });
 
-export const CustomContainer = (args) => ({
+export const TemplateWithCloseButton = () => ({
   components: { Message, Button },
   setup() {
-    return {
-      args,
-    };
+    return { severities: SEVERITIES };
   },
   template: `
-    <Message v-bind="args">
-      <template #container="{closeCallback}">
-        <div class="flex flex-col p-4 gap-4">
-          <div class="flex justify-between">
-            <div class="flex gap-4">
-              <i class="ti ti-info-circle text-4xl"/>
-              <div class="flex flex-col gap-1">
-                <div class="body-bold-base">Message</div>
-                <div class="caption-secondary">caption</div>
+    <div class="flex flex-col gap-4">
+      <Message
+        v-for="({ type, icon }, index) in severities"
+        :key="index"
+        :severity="type"
+        :closable="true"
+      >
+        <template #container="{ closeCallback }">
+          <div class="p-message-content">
+            <div class="p-message-accent-line"></div>
+            <i :class="icon + ' p-message-icon'"></i>
+            <div class="p-message-text">
+              <span class="p-message-summary">Message</span>
+              <div class="p-message-detail">caption</div>
+            </div>
+            <Button
+              class="p-message-close-button"
+              icon="ti ti-x"
+              variant="text"
+              @click="closeCallback"
+            />
+          </div>
+        </template>
+      </Message>
+    </div>
+  `,
+});
+
+export const TemplateWithContent = () => ({
+  components: { Message, Button },
+  setup() {
+    return { severities: SEVERITIES };
+  },
+  template: `
+    <div class="flex flex-col gap-4">
+      <Message
+        v-for="({ type, icon }, index) in severities"
+        :key="index"
+        :severity="type"
+        :closable="true"
+      >
+        <template #container="{ closeCallback }">
+          <div class="p-message-content">
+            <div class="p-message-accent-line"></div>
+            <i :class="icon + ' p-message-icon'"></i>
+            <div class="p-message-text">
+              <span class="p-message-summary">Message</span>
+              <div class="p-message-detail">caption</div>
+              <div class="mt-4">
+                <div class="text-sm">CONTENT</div>
+              </div>
+              <div class="flex gap-2 mt-2">
+                <div class="text-sm">Cell 1</div>
+                <div class="text-sm">Cell 2</div>
               </div>
             </div>
-            <Button variant="outlined" icon="ti ti-x" severity="info" @click="closeCallback"/>
+            <Button
+              class="p-message-close-button"
+              icon="ti ti-x"
+              variant="text"
+              @click="closeCallback"
+            />
           </div>
-          <div>CONTENT</div>
-          <div class="flex gap-2">
-            <div>cell 1</div>
-            <div>cell 2</div>
-          </div>
-        </div>
-      </template>
-    </Message>
+        </template>
+      </Message>
+    </div>
   `,
 });

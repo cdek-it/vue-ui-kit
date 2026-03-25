@@ -2,10 +2,14 @@ import avatarCss from './components/css/avatar';
 import badgeCss from './components/css/badge';
 import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
+import cardCss from './components/css/card';
 import checkboxCss from './components/css/checkbox';
+import confirmdialogCss from './components/css/confirmdialog';
 import dialogCss from './components/css/dialog';
 import dividerCss from './components/css/divider';
 import drawerCss from './components/css/drawer';
+import messageCss from './components/css/message';
+import popoverCss from './components/css/popover';
 import progressbarCss from './components/css/progressbar';
 import ratingCss from './components/css/rating';
 import tabsCss from './components/css/tabs';
@@ -17,10 +21,14 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${badgeCss({ dt })}
    ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
+   ${cardCss({ dt })}
    ${checkboxCss({ dt })}
+   ${confirmdialogCss({ dt })}
    ${dialogCss({ dt })}
    ${dividerCss({ dt })}
    ${drawerCss({ dt })}
+   ${messageCss({ dt })}
+   ${popoverCss({ dt })}
    ${progressbarCss({ dt })}
    ${ratingCss({ dt })}
    ${tabsCss({ dt })}
