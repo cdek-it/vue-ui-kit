@@ -1,28 +1,23 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as ProgressSpinnerStories from './ProgressSpinner.stories';
-
-import { Template } from './ProgressSpinner.template';
 
 <Meta of={ProgressSpinnerStories} />
 
-# ProgressSpinner
+<Title />
+<Description />
 
-[PrimeVue ProgressSpinner](https://primevue.org/progressspinner), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=1219-3086\&m=dev)
+## Импорт
 
-### Base
-
-```html dark
-<PrimeProgressSpinner />
+```js
+import ProgressSpinner from 'primevue/progressspinner';
 ```
 
-<Story of={ProgressSpinnerStories.Primary} />
+## Варианты использования
 
-### Смена размера
+### Default
+Поддерживает многоцветную анимацию (по умолчанию) или один цвет (зеленый). 
+Помимо этого, можно выбрать размер через `size` в таблице параметров.
+<Canvas of={ProgressSpinnerStories.Default} />
 
-У компонента в прайме нет пропса "size", обертку делать не хочу, поэтому если что делаем вот так
-
-```html dark
-<PrimeProgressSpinner class="!w-[300px] !h-[300px]" />
-```
-
-<Story of={ProgressSpinnerStories.Size} />
+#### Список аргументов компонента.
+<Controls of={ProgressSpinnerStories.Default} />

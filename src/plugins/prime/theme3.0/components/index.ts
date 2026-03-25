@@ -2711,6 +2711,9 @@ export default {
       large: '{feedback.width.800}',
       xlarge: '{feedback.width.900}',
     },
+    root: {
+      borderWidth: '{feedback.width.200}',
+    },
     colorScheme: {
       light: {
         root: {
@@ -2720,9 +2723,6 @@ export default {
           colorFour: '{warn.500}',
         },
       },
-    },
-    root: {
-      borderWidth: '{feedback.width.200}',
     },
   },
   radiobutton: {
