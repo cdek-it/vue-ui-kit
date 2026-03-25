@@ -53,7 +53,7 @@ export default {
     },
     panel: {
       borderWidth:
-        '{borderWidth.none} {borderWidth.none} {navigation.width.200} {borderWidth.none}',
+        '{borderWidth.none} {borderWidth.none} {navigation.width.100} {borderWidth.none}',
       borderColor: '{form.borderColor}',
     },
     content: {
