@@ -1584,7 +1584,7 @@ export default {
       activeColor: '{form.floatLabelActiveColor}',
       invalidColor: '{form.floatLabelInvalidColor}',
       transitionDuration: '{form.transitionDuration}',
-      positionX: '{form.padding.300}',
+      positionX: '{form.padding.400}',
       positionY: '{form.padding.300}',
       fontWeight: '{fonts.fontWeight.regular}',
       active: {
@@ -1597,7 +1597,7 @@ export default {
         top: '{form.padding.400}',
       },
     },
-    inside: {
+    in: {
       input: {
         paddingTop: '{form.padding.700}',
         paddingBottom: '{form.padding.300}',
@@ -1808,9 +1808,9 @@ export default {
       iconSize: '{form.icon.300}',
       borderWidth: '{form.borderWidth}',
       extXlg: {
-        fontSize: '{form.fontSize}',
+        fontSize: '{form.xlg.fontSize}',
         paddingX: '{form.paddingX}',
-        paddingY: '{form.paddingY}',
+        paddingY: '{form.xlg.paddingY}',
       },
     },
     root: {
@@ -1833,14 +1833,14 @@ export default {
       borderRadius: '{form.borderRadius.200}',
       transitionDuration: '{form.transitionDuration}',
       sm: {
-        fontSize: '{form.fontSize}',
+        fontSize: '{form.sm.fontSize}',
         paddingX: '{form.paddingX}',
-        paddingY: '{form.paddingY}',
+        paddingY: '{form.sm.paddingY}',
       },
       lg: {
-        fontSize: '{form.fontSize}',
+        fontSize: '{form.lg.fontSize}',
         paddingX: '{form.paddingX}',
-        paddingY: '{form.paddingY}',
+        paddingY: '{form.lg.paddingY}',
       },
       focusRing: {
         width: '{form.focusRing.width}',
