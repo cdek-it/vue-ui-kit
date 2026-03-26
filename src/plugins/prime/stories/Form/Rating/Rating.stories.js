@@ -8,7 +8,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `Rating — это расширение стандартного элемента ввода с поддержкой тем оформления и управления с клавиатуры. \n\n \`\`\`js \n import Rating from 'primevue/rating'; \n \`\`\` `,
+        component: `Компонент для отображения и/или выбора оценки в виде визуальных элементов. \n\n \`\`\`js \n import Rating from 'primevue/rating'; \n \`\`\` `,
       },
     },
     designToken: { disable: false },
