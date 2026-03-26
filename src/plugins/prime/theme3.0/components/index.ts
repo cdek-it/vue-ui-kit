@@ -1008,7 +1008,7 @@ export default {
       shadow: '{navigation.shadow}',
     },
     list: {
-      padding: '{navigation.list.padding.md} 0',
+      padding: '{navigation.list.padding.200} 0',
       gap: '{navigation.list.gap}',
     },
     item: {
@@ -2711,6 +2711,9 @@ export default {
       large: '{feedback.width.800}',
       xlarge: '{feedback.width.900}',
     },
+    root: {
+      borderWidth: '{feedback.width.200}',
+    },
     colorScheme: {
       light: {
         root: {
@@ -2720,9 +2723,6 @@ export default {
           colorFour: '{warn.500}',
         },
       },
-    },
-    root: {
-      borderWidth: '{feedback.width.200}',
     },
   },
   radiobutton: {
@@ -3610,6 +3610,26 @@ export default {
       light: {
         root: {
           background: '{surface.400}',
+          hoverBackground: '{surface.500}',
+          disabledBackground: '{form.disabledBackground}',
+          checkedBackground: '{surface.900}',
+          checkedHoverBackground: '{surface.800}',
+        },
+        handle: {
+          background: '{form.backgroundHandler}',
+          hoverBackground: '{form.backgroundHandler}',
+          disabledBackground: '{form.disabledColor}',
+          checkedBackground: '{surface.0}',
+          checkedHoverBackground: '{surface.0}',
+          color: '{text.color}',
+          hoverColor: '{text.color}',
+          checkedColor: '{text.color}',
+          checkedHoverColor: '{text.color}',
+        },
+      },
+      dark: {
+        root: {
+          background: '{surface.600}',
           hoverBackground: '{surface.500}',
           disabledBackground: '{form.disabledBackground}',
           checkedBackground: '{surface.900}',
