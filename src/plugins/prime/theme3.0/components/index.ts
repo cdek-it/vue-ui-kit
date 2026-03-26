@@ -1483,7 +1483,7 @@ export default {
         gap: '{overlay.gap.200}',
         borderColor: '{drawer.root.borderColor}',
       },
-      padding: '{overlay.drawer.padding}',
+      margin: '{overlay.drawer.padding}',
       scale: '2',
       backdrop: '{overlay.modal.backdrop}',
     },

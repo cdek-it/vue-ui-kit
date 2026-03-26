@@ -10,16 +10,20 @@ import * as DrawerStories from './Drawer.stories';
 import Drawer from 'primevue/drawer';
 ```
 
-## Варианты использования
-
-### По умолчанию
-Базовый вариант панели Drawer. Используйте таблицу ниже для настройки пропсов в реальном времени.
+## Usage
+### Default
+Default Drawer panel. Use the table below to adjust props in real time.
 
 <Canvas of={DrawerStories.Default} />
 
-#### Полный список аргументов и событий компонента.
-
+#### Arguments and Controls
 <Controls of={DrawerStories.Default} />
 
-### Все варианты позиционирования
-<Canvas of={DrawerStories.AllVariants} />
+### Positions
+<Canvas of={DrawerStories.Left} />
+<Canvas of={DrawerStories.Right} />
+<Canvas of={DrawerStories.Top} />
+<Canvas of={DrawerStories.Bottom} />
+
+### Full Screen
+<Canvas of={DrawerStories.Full} />

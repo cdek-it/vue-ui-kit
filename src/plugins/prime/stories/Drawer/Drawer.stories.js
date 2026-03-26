@@ -1,5 +1,5 @@
 import Drawer from 'primevue/drawer';
-import { Template, TemplateVariants } from './Drawer.template';
+import { Template } from './Drawer.template';
 
 export default {
   title: 'Prime/Overlay/Drawer',
@@ -29,60 +29,50 @@ export default {
   },
 };
 
-export const AllVariants = {
-  name: 'Все варианты',
-  render: () => TemplateVariants(),
-};
-
 export const Default = {
-  name: 'По умолчанию',
   render: (args) => Template(args),
   args: {
-    header: 'Заголовок Drawer',
+    header: 'Drawer Header',
   },
 };
 
 export const Left = {
-  name: 'Слева',
   render: (args) => Template(args),
   args: {
-    header: 'Drawer Слева',
+    header: 'Drawer Left',
     position: 'left',
   },
 };
 
 export const Right = {
-  name: 'Справа',
   render: (args) => Template(args),
   args: {
-    header: 'Drawer Справа',
+    header: 'Drawer Right',
     position: 'right',
   },
 };
 
 export const Top = {
-  name: 'Сверху',
   render: (args) => Template(args),
   args: {
-    header: 'Drawer Сверху',
+    header: 'Drawer Top',
     position: 'top',
   },
 };
 
 export const Bottom = {
-  name: 'Снизу',
   render: (args) => Template(args),
   args: {
-    header: 'Drawer Снизу',
+    header: 'Drawer Bottom',
     position: 'bottom',
   },
 };
 
 export const Full = {
-  name: 'На весь экран',
+  name: 'Full Screen',
   render: (args) => Template(args),
   args: {
-    header: 'Полноэкранный Drawer',
+    header: 'Full Screen Drawer',
     position: 'full',
   },
 };
