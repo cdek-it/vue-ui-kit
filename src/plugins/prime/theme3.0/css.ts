@@ -11,6 +11,7 @@ import drawerCss from './components/css/drawer';
 import messageCss from './components/css/message';
 import inputtextCss from './components/css/inputtext';
 import progressbarCss from './components/css/progressbar';
+import popoverCss from './components/css/popover';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
 import tooltipCss from './components/css/tooltip';
@@ -29,6 +30,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${messageCss({ dt })}
    ${inputtextCss({ dt })}
    ${progressbarCss({ dt })}
+   ${popoverCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
    ${tooltipCss({ dt })}
