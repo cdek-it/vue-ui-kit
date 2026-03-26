@@ -15,31 +15,31 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* --- Active & Focused States --- */
-.p-panelmenu .p-panelmenu-item:is(.p-menuitem-checked, .p-focus) > .p-panelmenu-item-content,
-.p-panelmenu .p-panelmenu-header.p-panelmenu-header-active .p-panelmenu-header-content {
+.p-panelmenu .p-panelmenu-item.p-focus > .p-panelmenu-item-content,
+.p-panelmenu .p-panelmenu-header.p-focus .p-panelmenu-header-content {
   background: ${dt('panelmenu.extend.extItem.activeBackground')};
   color: ${dt('panelmenu.extend.extItem.activeColor')};
 }
 
-.p-panelmenu .p-panelmenu-item:is(.p-menuitem-checked, .p-focus) > .p-panelmenu-item-content :is(.p-panelmenu-item-link, .p-panelmenu-item-label, .p-panelmenu-item-icon, .p-panelmenu-header-icon, .p-panelmenu-submenu-icon),
-.p-panelmenu .p-panelmenu-header.p-panelmenu-header-active .p-panelmenu-header-content :is(.p-panelmenu-header-link, .p-panelmenu-header-label, .p-panelmenu-submenu-icon, .p-panelmenu-item-icon, .p-panelmenu-header-icon) {
+.p-panelmenu .p-panelmenu-item.p-focus > .p-panelmenu-item-content :is(.p-panelmenu-item-link, .p-panelmenu-item-label, .p-panelmenu-item-icon, .p-panelmenu-header-icon, .p-panelmenu-submenu-icon),
+.p-panelmenu .p-panelmenu-header.p-focus .p-panelmenu-header-content :is(.p-panelmenu-header-link, .p-panelmenu-header-label, .p-panelmenu-submenu-icon, .p-panelmenu-item-icon, .p-panelmenu-header-icon) {
   color: ${dt('panelmenu.extend.extItem.activeColor')};
 }
 
 /* --- Hover on Active States --- */
-.p-panelmenu .p-panelmenu-item.p-menuitem-checked:not(.p-disabled) > .p-panelmenu-item-content:hover,
-.p-panelmenu .p-panelmenu-header.p-panelmenu-header-active .p-panelmenu-header-content:hover {
+.p-panelmenu .p-panelmenu-item.p-focus:not(.p-disabled) > .p-panelmenu-item-content:hover,
+.p-panelmenu .p-panelmenu-header.p-focus .p-panelmenu-header-content:hover {
   background: ${dt('panelmenu.item.focusBackground')};
   color: ${dt('panelmenu.item.focusColor')};
 }
 
-.p-panelmenu .p-panelmenu-item:is(.p-menuitem-checked:not(.p-disabled), .p-focus) > .p-panelmenu-item-content:hover :is(.p-panelmenu-item-link, .p-panelmenu-item-label),
-.p-panelmenu .p-panelmenu-header.p-panelmenu-header-active .p-panelmenu-header-content:hover :is(.p-panelmenu-header-link, .p-panelmenu-header-label) {
+.p-panelmenu .p-panelmenu-item.p-focus:not(.p-disabled) > .p-panelmenu-item-content:hover :is(.p-panelmenu-item-link, .p-panelmenu-item-label),
+.p-panelmenu .p-panelmenu-header.p-focus .p-panelmenu-header-content:hover :is(.p-panelmenu-header-link, .p-panelmenu-header-label) {
   color: ${dt('panelmenu.item.focusColor')};
 }
 
-.p-panelmenu .p-panelmenu-item.p-menuitem-checked:not(.p-disabled) > .p-panelmenu-item-content:hover :is(.p-panelmenu-item-icon, .p-panelmenu-submenu-icon),
-.p-panelmenu .p-panelmenu-header.p-panelmenu-header-active .p-panelmenu-header-content:hover :is(.p-panelmenu-submenu-icon, .p-panelmenu-item-icon) {
+.p-panelmenu .p-panelmenu-item.p-focus:not(.p-disabled) > .p-panelmenu-item-content:hover :is(.p-panelmenu-item-icon, .p-panelmenu-submenu-icon),
+.p-panelmenu .p-panelmenu-header.p-focus .p-panelmenu-header-content:hover :is(.p-panelmenu-submenu-icon, .p-panelmenu-item-icon) {
   color: ${dt('panelmenu.item.icon.focusColor')};
 }
 
