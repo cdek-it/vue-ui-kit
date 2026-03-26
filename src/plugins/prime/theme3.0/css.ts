@@ -15,7 +15,6 @@ import messageCss from './components/css/message';
 import inputtextCss from './components/css/inputtext';
 import popoverCss from './components/css/popover';
 import progressbarCss from './components/css/progressbar';
-import popoverCss from './components/css/popover';
 import ratingCss from './components/css/rating';
 import selectbuttonCss from './components/css/selectbutton';
 import stepperCss from './components/css/stepper';
