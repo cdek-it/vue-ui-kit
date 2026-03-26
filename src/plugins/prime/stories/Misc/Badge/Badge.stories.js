@@ -21,7 +21,7 @@ const meta = {
       description: 'Текст внутри бейджа',
       table: {
         category: 'Props',
-        type: { summary: 'string' },
+        type: { summary: 'string|number' },
       },
     },
     severity: {
@@ -52,16 +52,46 @@ const meta = {
 
 export default meta;
 
-export const Severity = {
+// ── Default ──────────────────────────────────────────────────────────────────
+
+/** Базовый пример компонента. Используйте Controls для интерактивного изменения пропсов. */
+export const Default = {
   render: Template,
   args: {
-    value: 'Badge',
-    severity: 'primary',
+    value: '8',
   },
   parameters: {
     docs: {
       source: {
-        code: `<Badge value="Badge" severity="primary" />`,
+        code: `
+<template>
+  <Badge value="8" />
+</template>
+        `,
+      },
+    },
+  },
+};
+
+// ── Variants ─────────────────────────────────────────────────────────────────
+
+export const Severity = {
+  render: Template,
+  args: {
+    value: '8',
+    severity: 'success',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Цветовые варианты бейджа для обозначения различных состояний.',
+      },
+      source: {
+        code: `
+<template>
+  <Badge value="8" severity="success" />
+</template>
+        `,
       },
     },
   },
@@ -70,14 +100,20 @@ export const Severity = {
 export const Sizes = {
   render: Template,
   args: {
-    value: 'Badge',
-    severity: 'primary',
-    size: 'base',
+    value: '8',
+    size: 'large',
   },
   parameters: {
     docs: {
+      description: {
+        story: 'Доступные размеры бейджа: base, large и xlarge.',
+      },
       source: {
-        code: `<Badge value="Badge" severity="primary" size="large" />`,
+        code: `
+<template>
+  <Badge value="8" size="large" />
+</template>
+        `,
       },
     },
   },
@@ -86,13 +122,19 @@ export const Sizes = {
 export const Dot = {
   render: Template,
   args: {
-    severity: 'primary',
-    size: 'base',
+    severity: 'danger',
   },
   parameters: {
     docs: {
+      description: {
+        story: 'Бейдж без значения отображается в виде точки.',
+      },
       source: {
-        code: `<Badge severity="primary" />`,
+        code: `
+<template>
+  <Badge severity="danger" />
+</template>
+        `,
       },
     },
   },
