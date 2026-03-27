@@ -76,6 +76,7 @@ export const Default = {
 export const FloatLabel = {
   args: {
     size: 'large',
+    placeholder: undefined,
   },
   render: (args) => ({
     components: { InputText, PrimeFloatLabel, IconField, InputIcon },
