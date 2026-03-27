@@ -1,5 +1,9 @@
 import InputText from 'primevue/inputtext';
-import { Template, TemplateFloatLabel } from './InputText.template';
+import PrimeFloatLabel from 'primevue/floatlabel';
+import IconField from 'primevue/iconfield';
+import InputIcon from 'primevue/inputicon';
+import { ref } from 'vue';
+import { Template } from './InputText.template';
 
 /**
  * Компонент текстового ввода.
@@ -44,14 +48,20 @@ const meta = {
       description: 'Текст подсказки внутри поля',
       table: { category: 'Props' },
     },
+    label: {
+      control: 'text',
+      description: 'Текст плавающего лейбла',
+      table: { category: 'Custom' },
+    },
   },
   args: {
     size: 'medium',
-    placeholder: 'Input text here...',
+    placeholder: '',
     invalid: false,
     disabled: false,
     readonly: false,
-    showClear: false,
+    showClear: true,
+    label: 'In Label',
   },
 };
 
@@ -64,8 +74,27 @@ export const Default = {
 };
 
 export const FloatLabel = {
-  render: TemplateFloatLabel,
-  argTypes: {
-    size: { table: { disable: true } },
-  },
+  name: 'Float Label',
+  render: (args) => ({
+    components: { InputText, PrimeFloatLabel, IconField, InputIcon },
+    setup() {
+      const value = ref('');
+      const onClickClear = () => {
+        value.value = '';
+      };
+      return { args, value, onClickClear };
+    },
+    template: `
+      <PrimeFloatLabel variant="in">
+        <IconField v-if="args.showClear" style="width: 100%">
+            <InputText id="in_label" v-model="value" v-bind="args" style="width: 100%" />
+            <InputIcon @click.stop="onClickClear" style="cursor: pointer; z-index: 1">
+                <i class="ti ti-x" />
+            </InputIcon>
+        </IconField>
+        <InputText v-else id="in_label" v-model="value" v-bind="args" style="width: 100%" />
+        <label for="in_label">{{ args.label }}</label>
+      </PrimeFloatLabel>
+    `,
+  }),
 };
