@@ -1,51 +1,29 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as InputGroupStories from './InputGroup.stories';
-
-import { Template } from './InputGroup.template';
 
 <Meta of={InputGroupStories} />
 
-# InputGroup
+<Title />
+<Description />
 
-[PrimeVue InputGroup](https://primevue.org/inputgroup), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5932\&node-type=section\&t=2PSg63p2UfJ4cUzB-0)
+## Импорт
 
-### Положение иконки
-
-```html dark
-<!-- Слева -->
-<PrimeInputGroup>
-  <PrimeInputGroupAddon>
-    <i class="ti ti-user"></i>
-  </PrimeInputGroupAddon>
-  <PrimeInputText />
-</PrimeInputGroup>
+```js
+import InputGroup from 'primevue/inputgroup';
+import InputGroupAddon from 'primevue/inputgroupaddon';
 ```
 
-<Story of={InputGroupStories.LeftIcon} />
+## Варианты использования
 
-```html dark
-<!-- Справа -->
-<PrimeInputGroup>
-  <PrimeInputText />
-  <PrimeInputGroupAddon>
-    <i class="ti ti-user"></i>
-  </PrimeInputGroupAddon>
-</PrimeInputGroup>
-```
+### Default
+Основной пример компонента. Используйте контролы в таблице (**Addons**, **InputProps**, **Custom**), чтобы изменять содержимое аддонов, размеры и состояния поля.
 
-<Story of={InputGroupStories.RightIcon} />
+<Canvas of={InputGroupStories.Default} />
 
-```html dark
-<!-- Слева и справа -->
-<PrimeInputGroup>
-  <PrimeInputGroupAddon>
-    <i class="ti ti-user"></i>
-  </PrimeInputGroupAddon>
-  <PrimeInputText />
-  <PrimeInputGroupAddon>
-    <i class="ti ti-user"></i>
-  </PrimeInputGroupAddon>
-</PrimeInputGroup>
-```
+#### Список параметров
+<Controls of={InputGroupStories.Default} />
 
-<Story of={InputGroupStories.BothIcons} />
+### С текстом
+В качестве наполнения `InputGroupAddon` можно использовать обычный текст.
+
+<Canvas of={InputGroupStories.WithText} />
