@@ -611,6 +611,7 @@ export default {
   card: {
     extend: {
       borderColor: '{content.borderColor}',
+      borderWidth: '{content.borderWidth}',
     },
     root: {
       background: '{content.background}',

@@ -1,34 +1,143 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Card.template';
+import { Template, OverlayTemplate, WithoutHeaderTemplate, WithoutFooterTemplate, WithoutCaptionTemplate } from './Card.template';
 
 <Meta title="Prime/Panel/Card" />
 
 # Card
 
-[PrimeVue Card](https://primevue.org/card), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=1207-3471&m=dev>)
+[PrimeVue Card](https://primevue.org/card), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=1213-4134)
 
-### Default
+Card компонент используется для группировки контента с заголовком, подзаголовком и действиями.
+
+## Полная карточка
+
+Карточка со всеми элементами: header, title, subtitle, content и footer.
+
+<Story name="Default">{Template.bind({})}</Story>
 
 ```html dark
 <PrimeCard>
-    <template #header>HEADER</template>
-
-    <template #title>
-      <div class="flex flex-col gap-1">
-        <p class="title-h4">Title</p>
-        <p class="caption">Caption</p>
-      </div>
-    </template>
-
-    <template #content>
-      CONTENT
-    </template>
-
-    <template #footer>
-      FOOTER
-    </template>
+  <template #header>
+    <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
+      <i class="ti ti-photo text-3xl"></i>
+    </div>
+  </template>
+  
+  <template #title>
+    Title
+  </template>
+  
+  <template #subtitle>
+    Caption
+  </template>
+  
+  <template #content>
+    <div class="text-sm">
+       Card content goes here. This is a flexible area for any content.
+    </div>
+  </template>
+  
+  <template #footer>
+    <Button label="Action" />
+  </template>
 </PrimeCard>
 ```
 
-<Story name="Default" args={{title: "Title"}}>{Template.bind({})}</Story>
+## Overlay варианты
+
+Карточка может отображаться с тенью (overlay: true) или без тени (overlay: false).
+
+<Story name="Overlay">{OverlayTemplate.bind({})}</Story>
+
+```html dark
+<!-- С тенью -->
+<PrimeCard :pt="{ root: { class: 'shadow-md' } }">
+  <!-- content -->
+</PrimeCard>
+
+<!-- Без тени -->
+<PrimeCard :pt="{ root: { class: 'shadow-none' } }">
+  <!-- content -->
+</PrimeCard>
+```
+
+## Без header
+
+Карточка без изображения в шапке.
+
+<Story name="Without Header">{WithoutHeaderTemplate.bind({})}</Story>
+
+```html dark
+<PrimeCard>
+  <template #title>
+    Title
+  </template>
+  
+  <template #subtitle>
+    Caption
+  </template>
+  
+  <template #content>
+    <div class="text-sm">
+      Card without header image.
+    </div>
+  </template>
+</PrimeCard>
+```
+
+## Без footer
+
+Карточка без футера с действиями.
+
+<Story name="Without Footer">{WithoutFooterTemplate.bind({})}</Story>
+
+```html dark
+<PrimeCard>
+  <template #header>
+    <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
+      <i class="ti ti-photo text-3xl"></i>
+    </div>
+  </template>
+  
+  <template #title>
+    Title
+  </template>
+  
+  <template #subtitle>
+    Caption
+  </template>
+  
+  <template #content>
+    <div class="text-sm">
+      Card without footer.
+    </div>
+  </template>
+</PrimeCard>
+```
+
+## Без caption
+
+Карточка без подзаголовка (subtitle).
+
+<Story name="Without Caption">{WithoutCaptionTemplate.bind({})}</Story>
+
+```html dark
+<PrimeCard>
+  <template #header>
+    <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
+      <i class="ti ti-photo text-3xl"></i>
+    </div>
+  </template>
+  
+  <template #title>
+    Title
+  </template>
+  
+  <template #content>
+    <div class="text-sm">
+      Card without caption/subtitle.
+    </div>
+  </template>
+</PrimeCard>
+```
