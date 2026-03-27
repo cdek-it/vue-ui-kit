@@ -2,7 +2,7 @@ import InputText from 'primevue/inputtext';
 import PrimeFloatLabel from 'primevue/floatlabel';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { Template } from './InputText.template';
 
 /**
@@ -74,7 +74,9 @@ export const Default = {
 };
 
 export const FloatLabel = {
-  name: 'Float Label',
+  args: {
+    size: 'large',
+  },
   render: (args) => ({
     components: { InputText, PrimeFloatLabel, IconField, InputIcon },
     setup() {
@@ -82,19 +84,44 @@ export const FloatLabel = {
       const onClickClear = () => {
         value.value = '';
       };
-      return { args, value, onClickClear };
+
+      // Отфильтровываем наши кастомные пропсы для стори, чтобы они не попали в InputText
+      const inputProps = computed(() => {
+        const rest = { ...args };
+        delete rest.label;
+        delete rest.showClear;
+        return rest;
+      });
+
+      return { args, value, onClickClear, inputProps };
     },
     template: `
       <PrimeFloatLabel variant="in">
         <IconField v-if="args.showClear" style="width: 100%">
-            <InputText id="in_label" v-model="value" v-bind="args" style="width: 100%" />
-            <InputIcon @click.stop="onClickClear" style="cursor: pointer; z-index: 1">
+            <InputText 
+              id="in_label" 
+              v-model="value" 
+              v-bind="inputProps" 
+              variant="filled"
+              style="width: 100%" 
+            />
+            <InputIcon v-if="value" @click.stop="onClickClear" style="cursor: pointer; z-index: 1">
                 <i class="ti ti-x" />
             </InputIcon>
         </IconField>
-        <InputText v-else id="in_label" v-model="value" v-bind="args" style="width: 100%" />
+        <InputText 
+          v-else 
+          id="in_label" 
+          v-model="value" 
+          v-bind="inputProps" 
+          variant="filled"
+          style="width: 100%" 
+        />
         <label for="in_label">{{ args.label }}</label>
       </PrimeFloatLabel>
     `,
   }),
+  argTypes: {
+    size: { table: { disable: true } },
+  },
 };
