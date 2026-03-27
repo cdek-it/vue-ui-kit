@@ -1,14 +1,18 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Tab.template';
+import { Template, WithBadges, WithDisabled } from './Tab.template';
 
 <Meta title="Prime/Menu/Tab" />
 
 # Tab
 
-[PrimeVue Tabs](https://primevue.org/tabs), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-13076&m=dev>)
+[PrimeVue Tabs](https://primevue.org/tabs), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=884-7324)
 
-### Basic
+Компонент Tab используется для организации контента в виде вкладок. Поддерживает иконки, бейджи и различные состояния.
+
+## Basic
+
+Базовый пример с иконками и текстом.
 
 ```html dark
 <script setup lang="ts">
@@ -40,7 +44,8 @@ import { Template } from './Tab.template';
         <TabList>
           <Tab v-for="tab in tabs" :key="tab.title" :value="tab.value">
               <i class="text-xl" :class="tab.icon"/>
-              <span>{{ tab.title }}</span></Tab>
+              <span>{{ tab.title }}</span>
+          </Tab>
         </TabList>
         <TabPanels>
           <TabPanel v-for="tab in tabs" :key="tab.content" :value="tab.value">
@@ -52,4 +57,119 @@ import { Template } from './Tab.template';
 </template>
 ```
 
-<Story name="Primary">{Template.bind({})}</Story>
+<Story name="Basic">{Template.bind({})}</Story>
+
+## With Badges
+
+Вкладки с бейджами для отображения количества уведомлений или элементов.
+
+```html dark
+<script setup lang="ts">
+ const tabs = ref([
+     {
+       title: 'Tab 1',
+       content: 'Tab 1 Content',
+       value: '0',
+       icon: 'ti ti-user',
+       badge: '99+',
+     },
+     {
+       title: 'Tab 2',
+       content: 'Tab 2 Content',
+       value: '1',
+       icon: 'ti ti-user',
+       badge: '5',
+     },
+     {
+       title: 'Tab 3',
+       content: 'Tab 3 Content',
+       value: '2',
+       icon: 'ti ti-user',
+       badge: '2',
+     },
+ ]);
+</script>
+
+<template>
+    <div class="card">
+      <Tabs value="0">
+        <TabList>
+          <Tab v-for="tab in tabs" :key="tab.title" :value="tab.value">
+              <i class="text-xl" :class="tab.icon"/>
+              <span>{{ tab.title }}</span>
+              <Badge :value="tab.badge" severity="success" />
+          </Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel v-for="tab in tabs" :key="tab.content" :value="tab.value">
+            <p class="m-0">{{ tab.content }}</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </div>
+</template>
+```
+
+<Story name="WithBadges">{WithBadges.bind({})}</Story>
+
+## With Disabled State
+
+Пример с различными состояниями: активный, обычный и отключенный таб.
+
+```html dark
+<script setup lang="ts">
+ const tabs = ref([
+     {
+       title: 'Active Tab',
+       content: 'Active Tab Content',
+       value: '0',
+       icon: 'ti ti-user',
+       badge: '99+',
+       disabled: false,
+     },
+     {
+       title: 'Default Tab',
+       content: 'Default Tab Content',
+       value: '1',
+       icon: 'ti ti-user',
+       badge: '99+',
+       disabled: false,
+     },
+     {
+       title: 'Disabled Tab',
+       content: 'Disabled Tab Content',
+       value: '2',
+       icon: 'ti ti-user',
+       badge: '99+',
+       disabled: true,
+     },
+ ]);
+</script>
+
+<template>
+    <div class="card">
+      <Tabs value="0">
+        <TabList>
+          <Tab 
+            v-for="tab in tabs" 
+            :key="tab.title" 
+            :value="tab.value"
+            :disabled="tab.disabled"
+          >
+              <i class="text-xl" :class="tab.icon"/>
+              <span>{{ tab.title }}</span>
+              <Badge :value="tab.badge" severity="success" />
+          </Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel v-for="tab in tabs" :key="tab.content" :value="tab.value">
+            <p class="m-0">{{ tab.content }}</p>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
+    </div>
+</template>
+```
+
+<Story name="WithDisabled">{WithDisabled.bind({})}</Story>
+
