@@ -1587,6 +1587,7 @@ export default {
       positionX: '{form.padding.400}',
       positionY: '{form.padding.300}',
       fontWeight: '{fonts.fontWeight.regular}',
+      fontSize: '{fonts.fontSize.300}',
       active: {
         fontSize: '{fonts.fontSize.100}',
         fontWeight: '{fonts.fontWeight.regular}',

@@ -1,5 +1,6 @@
 import accordionCss from './components/css/accordion';
 import avatarCss from './components/css/avatar';
+import floatlabelCss from './components/css/floatlabel';
 import badgeCss from './components/css/badge';
 import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
@@ -27,6 +28,7 @@ import progressspinnerCss from './components/css/progressspinner';
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${accordionCss({ dt })}
    ${avatarCss({ dt })}
+   ${floatlabelCss({ dt })}
    ${badgeCss({ dt })}
    ${breadcrumbCss({ dt })}
    ${buttonCss({ dt })}
