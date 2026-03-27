@@ -82,6 +82,9 @@ export const Default = {
 
 export const FloatLabel = {
   render: TemplateFloatLabel,
+  args: {
+    placeholder: undefined,
+  },
   argTypes: {
     size: { table: { disable: true } },
   },
