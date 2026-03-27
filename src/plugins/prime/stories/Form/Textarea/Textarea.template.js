@@ -1,32 +1,62 @@
-import { ref } from 'vue';
 import Textarea from 'primevue/textarea';
+import FloatLabel from 'primevue/floatlabel';
+import { IconField, InputIcon } from 'primevue';
+import { ref } from 'vue';
 
 export const Template = (args) => ({
-  components: { Textarea },
+  components: { Textarea, IconField, InputIcon },
   setup() {
-    const value1 = ref('text input');
-    const value2 = ref('text input');
-    const value3 = ref('text input');
+    const value = ref('');
 
-    return { args, value1, value2, value3 };
+    const onClickClear = () => {
+      value.value = '';
+    };
+
+    return { args, value, onClickClear };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(3, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
-  <span></span>
-  <span></span>
-  <span><code>v-model="text input"</code></span>
+    <IconField v-if="args.showClear" style="width: 100%">
+      <Textarea 
+        v-model="value"
+        v-bind="args"
+        style="width: 100%"
+        :class="{ 'p-textarea-xlg': args.size === 'xlarge' }" 
+        :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+      />
+      <InputIcon @click="onClickClear" style="cursor: pointer">
+        <i class="ti ti-x" />
+      </InputIcon>
+    </IconField>
+    <Textarea 
+      v-else
+      v-model="value"
+      v-bind="args"
+      style="width: 100%"
+      :class="{ 'p-textarea-xlg': args.size === 'xlarge' }" 
+      :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+    />
+  `,
+});
 
-  <span :style="{ justifySelf: 'flex-start' }"></span>
-  <Textarea placeholder="InputTextarea" v-bind="args" rows="6" />
-  <Textarea v-model="value1" placeholder="InputTextarea" rows="6" v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>invalid</code></span>
-  <Textarea placeholder="InputTextarea" rows="6" invalid v-bind="args" />
-  <Textarea v-model="value2" placeholder="InputTextarea" rows="6" invalid v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>disabled</code></span>
-  <Textarea placeholder="InputTextarea" rows="6" disabled v-bind="args" />
-  <Textarea v-model="value3" placeholder="InputTextarea" rows="6" disabled v-bind="args" />
-</div>
+export const TemplateFloatLabel = (args) => ({
+  components: { Textarea, FloatLabel, IconField, InputIcon },
+  setup() {
+    const value = ref('');
+    const onClickClear = () => {
+      value.value = '';
+    };
+    return { args, value, onClickClear };
+  },
+  template: `
+    <FloatLabel variant="in">
+        <IconField v-if="args.showClear" style="width: 100%">
+            <Textarea id="textarea" v-model="value" style="width: 100%" v-bind="args" />
+            <InputIcon @click="onClickClear" style="cursor: pointer">
+                <i class="ti ti-x" />
+            </InputIcon>
+        </IconField>
+        <Textarea v-else id="textarea" v-model="value" style="width: 100%" v-bind="args" />
+        <label for="textarea">Textarea</label>
+    </FloatLabel>
 `,
 });

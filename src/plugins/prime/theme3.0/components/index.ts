@@ -3394,6 +3394,11 @@ export default {
       borderWidth: '{form.borderWidth}',
       iconSize: '{form.icon.300}',
       minHeight: '{form.size.900}',
+      extXlg: {
+        fontSize: '{form.xlg.fontSize}',
+        paddingX: '{form.paddingX}',
+        paddingY: '{form.xlg.paddingY}',
+      },
     },
     root: {
       background: '{form.background}',

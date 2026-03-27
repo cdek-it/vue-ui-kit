@@ -23,6 +23,7 @@ import tagCss from './components/css/tag';
 import toggleswitchCss from './components/css/toggleswitch';
 import tooltipCss from './components/css/tooltip';
 import progressspinnerCss from './components/css/progressspinner';
+import textareaCss from './components/css/textarea';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${accordionCss({ dt })}
@@ -42,7 +43,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${inputtextCss({ dt })}
    ${popoverCss({ dt })}
    ${progressbarCss({ dt })}
-   ${popoverCss({ dt })}
    ${ratingCss({ dt })}
    ${selectbuttonCss({ dt })}
    ${stepperCss({ dt })}
@@ -51,6 +51,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${toggleswitchCss({ dt })}
    ${tooltipCss({ dt })}
    ${progressspinnerCss({ dt })}
+   ${textareaCss({ dt })}
 
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
