@@ -1,0 +1,186 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { 
+  GalleriaWithIndicatorsTemplate,
+  GalleriaWithThumbnailsTemplate,
+  GalleriaWithCaptionTemplate,
+  GalleriaFullScreenTemplate,
+  GalleriaAutoPlayTemplate
+} from './Galleria.template';
+
+<Meta title="Prime/Misc/Galleria" />
+
+# Galleria
+[PrimeVue Galleria](https://primevue.org/galleria/)
+
+Galleria - это расширенный компонент для отображения изображений в виде галереи с поддержкой миниатюр, индикаторов, навигации и полноэкранного режима.
+
+## Galleria с индикаторами
+
+Базовый пример галереи с индикаторами и навигационными кнопками.
+
+```html dark
+<Galleria 
+  :value="images" 
+  :numVisible="5"
+  containerStyle="max-width: 640px"
+  :showItemNavigators="true"
+  :showIndicators="true"
+>
+  <template #item="slotProps">
+    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;" />
+  </template>
+  <template #thumbnail="slotProps">
+    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block;" />
+  </template>
+</Galleria>
+```
+
+**Рабочий пример:**
+<Story name="С индикаторами">
+  {GalleriaWithIndicatorsTemplate.bind({})}
+</Story>
+
+## Galleria с миниатюрами
+
+Галерея с миниатюрами изображений для быстрой навигации.
+
+```html dark
+<Galleria 
+  :value="images" 
+  :numVisible="5"
+  containerStyle="max-width: 640px"
+  :showItemNavigators="true"
+  :showThumbnails="true"
+  :showIndicators="false"
+>
+  <template #item="slotProps">
+    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;" />
+  </template>
+  <template #thumbnail="slotProps">
+    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block;" />
+  </template>
+</Galleria>
+```
+
+**Рабочий пример:**
+<Story name="С миниатюрами">
+  {GalleriaWithThumbnailsTemplate.bind({})}
+</Story>
+
+## Galleria с подписями
+
+Галерея с подписями к изображениям.
+
+```html dark
+<Galleria 
+  :value="images" 
+  :numVisible="5"
+  containerStyle="max-width: 640px"
+  :showItemNavigators="true"
+  :showThumbnails="false"
+  :showIndicators="true"
+>
+  <template #item="slotProps">
+    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;" />
+  </template>
+  <template #caption="slotProps">
+    <div>
+      <h4>{{ slotProps.item.title }}</h4>
+      <p>{{ slotProps.item.alt }}</p>
+    </div>
+  </template>
+</Galleria>
+```
+
+**Рабочий пример:**
+<Story name="С подписями">
+  {GalleriaWithCaptionTemplate.bind({})}
+</Story>
+
+## Galleria в полноэкранном режиме
+
+Галерея с возможностью открытия в полноэкранном режиме.
+
+```html dark
+<Galleria 
+  :value="images" 
+  :numVisible="7"
+  containerStyle="max-width: 850px"
+  :showItemNavigators="true"
+  :showThumbnails="true"
+  :showIndicators="false"
+  :fullScreen="true"
+  v-model:visible="visible"
+>
+  <template #item="slotProps">
+    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;" />
+  </template>
+  <template #thumbnail="slotProps">
+    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block;" />
+  </template>
+</Galleria>
+```
+
+**Рабочий пример:**
+<Story 
+  name="Полноэкранный режим"
+  args={{ visible: false }}
+>
+  {GalleriaFullScreenTemplate.bind({})}
+</Story>
+
+## Galleria с автовоспроизведением
+
+Галерея с автоматической сменой изображений.
+
+```html dark
+<Galleria 
+  :value="images" 
+  :numVisible="5"
+  containerStyle="max-width: 640px"
+  :showItemNavigators="true"
+  :showIndicators="true"
+  :autoPlay="true"
+  :transitionInterval="3000"
+  :circular="true"
+>
+  <template #item="slotProps">
+    <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;" />
+  </template>
+  <template #thumbnail="slotProps">
+    <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" style="display: block;" />
+  </template>
+</Galleria>
+```
+
+**Рабочий пример:**
+<Story name="С автовоспроизведением">
+  {GalleriaAutoPlayTemplate.bind({})}
+</Story>
+
+## Структура данных
+
+```ts dark
+const images = [
+  {
+    itemImageSrc: 'path/to/image1.jpg',
+    thumbnailImageSrc: 'path/to/thumbnail1.jpg',
+    alt: 'Description for Image 1',
+    title: 'Title 1'
+  },
+  // ...
+];
+```
+
+## Основные свойства
+
+- **value** - массив объектов с данными изображений
+- **numVisible** - количество видимых миниатюр
+- **showItemNavigators** - показывать кнопки навигации
+- **showIndicators** - показывать индикаторы
+- **showThumbnails** - показывать миниатюры
+- **fullScreen** - режим полного экрана
+- **autoPlay** - автоматическое воспроизведение
+- **transitionInterval** - интервал смены изображений (мс)
+- **circular** - циклическая прокрутка
