@@ -721,6 +721,7 @@ export default {
   chip: {
     extend: {
       borderColor: '{transparent}',
+      borderWidth: '{controls.width.tn}',
     },
     root: {
       borderRadius: '{media.borderRadius.xs}',
