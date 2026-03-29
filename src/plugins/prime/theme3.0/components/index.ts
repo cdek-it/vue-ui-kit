@@ -1,12 +1,28 @@
 export default {
   accordion: {
+    extend: {
+      extHeader: {
+        iconSize: '{controls.iconOnly.sm}',
+        gap: '{controls.gap.sm}',
+      },
+    },
+    colorScheme: {
+      light: {
+        header: {
+          background: '{transparent}',
+          hoverBackground: '{transparent}',
+          activeBackground: '{transparent}',
+          activeHoverBackground: '{transparent}',
+        },
+      },
+    },
     header: {
       color: '{text.color}',
       hoverColor: '{text.hoverColor}',
       activeColor: '{text.color}',
       activeHoverColor: '{text.hoverColor}',
       borderColor: '{transparent}',
-      padding: '{navigation.padding.4} 0 {navigation.padding.4} 0',
+      padding: '{navigation.padding.sm} 0 {navigation.padding.sm} 0',
       fontWeight: '{fonts.fontWeight.bold}',
       borderRadius: '0',
       borderWidth: '0 0 0 0',
@@ -24,37 +40,28 @@ export default {
         activeHoverColor: '{text.hoverColor}',
       },
       last: {
-        bottomBorderRadius: '{content.borderRadius}',
+        bottomBorderRadius: '0',
         activeBottomBorderRadius: '0',
       },
       first: {
         borderWidth: '0',
-        topBorderRadius: '{content.borderRadius}',
+        topBorderRadius: '0',
       },
     },
     root: {
       transitionDuration: '{controls.transitionDuration}',
     },
     panel: {
-      borderWidth: '{navigation.width.xs}',
+      borderWidth: '0 0 {navigation.width.xs} 0',
       borderColor: '{form.borderColor}',
-    },
-    colorScheme: {
-      light: {
-        header: {
-          background: '{transparent}',
-          hoverBackground: '{transparent}',
-          activeBackground: '{transparent}',
-          activeHoverBackground: '{transparent}',
-        },
-      },
     },
     content: {
       borderWidth: '{content.borderWidth} 0 0 0',
       borderColor: '{transparent}',
       background: '{transparent}',
       color: '{text.color}',
-      padding: '0 0 {content.padding.sm} {content.padding.md}',
+      padding:
+        '0 {content.padding.md} {content.padding.sm} {content.padding.md}',
     },
   },
   autocomplete: {
