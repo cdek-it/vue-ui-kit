@@ -1,0 +1,38 @@
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
+import * as AutoCompleteStories from './AutoComplete.stories';
+
+<Meta of={AutoCompleteStories} />
+
+<Title />
+
+<Description />
+
+```javascript
+import { AutoComplete } from 'primevue';
+```
+
+## Варианты использования
+
+### Basic
+
+<Canvas of={AutoCompleteStories.Basic} />
+
+### Множественный выбор
+
+<Canvas of={AutoCompleteStories.Multiple} />
+
+### С группами
+
+<Canvas of={AutoCompleteStories.Grouped} />
+
+### Кастомный шаблон
+
+<Canvas of={AutoCompleteStories.Custom} />
+
+### С кнопкой открытия
+
+<Canvas of={AutoCompleteStories.Dropdown} />
+
+### Disabled
+
+<Canvas of={AutoCompleteStories.Disabled} />

@@ -512,7 +512,7 @@ export default {
         floatLabelInvalidColor: '{form.invalidPlaceholderColor}',
         iconColor: '{colors.solid.zinc.950}',
         backgroundHandler: '{colors.alpha.white.1000}',
-        shadow: '{shadows.200}',
+        shadow: '{shadows.400}',
       },
       text: {
         color: '{colors.solid.zinc.900}',
