@@ -1794,13 +1794,13 @@ export default {
       gap: '{form.gap.200}',
     },
     input: {
-      width: '{form.width.400}',
+      width: '{form.width.300}',
     },
     sm: {
-      width: '0rem',
+      width: '0',
     },
     lg: {
-      width: '0rem',
+      width: '0',
     },
   },
   inputtext: {
