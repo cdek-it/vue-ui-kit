@@ -53,23 +53,26 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 
 /* Multiple-режим, Чипсы и Опции */
-.p-autocomplete-multiple .p-autocomplete-input-multiple {
+.p-autocomplete .p-autocomplete-input-multiple {
   line-height: ${dt('fonts.lineHeight.250')};
-  /* По умолчанию как у InputText */
   padding: ${dt('autocomplete.root.paddingY')} ${dt(
   'autocomplete.root.paddingX'
 )};
 }
 
-.p-autocomplete-multiple .p-autocomplete-input-multiple:has(.p-autocomplete-chip) {
-  /* При наличии чипсов переходим на компактный вид */
-)};
-  padding-inline-start: calc(${dt('autocomplete.root.paddingY')} / 2);
-  padding-inline-end: calc(${dt('autocomplete.root.paddingY')} / 2);
+.p-autocomplete .p-autocomplete-input-multiple:has(.p-autocomplete-chip) {
+  /* Полностью симметричные отступы (высота = ширина) */
+  padding: calc(${dt('autocomplete.root.paddingY')} - 5px);
+}
+
+/* Убираем вертикальные отступы у контейнера инпута в multiple режиме */
+.p-autocomplete .p-autocomplete-input-chip {
+  padding-block-start: 0;
+  padding-block-end: 0;
 }
 
 /* Внутренний инпут внутри multiple режима */
-.p-autocomplete-multiple .p-autocomplete-input-multiple [data-pc-section="input"] {
+.p-autocomplete .p-autocomplete-input-multiple [data-pc-section="input"] {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
@@ -81,7 +84,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   line-height: inherit;
 }
 
-.p-autocomplete-multiple .p-autocomplete-chip,
+.p-autocomplete .p-autocomplete-chip,
 .p-autocomplete-option {
   gap: ${dt('autocomplete.extend.extOption.gap')};
 }
@@ -95,63 +98,40 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Поддержка размеров: sm, lg, xlg (как в InputText) */
-/* Перенесено в конец для приоритета над базовыми правилами multiple режима */
-.p-autocomplete .p-inputtext-sm.p-autocomplete-input,
-.p-autocomplete .p-inputtext-sm.p-autocomplete-input-multiple {
+/* Специфичность (0,3,0) гарантирует приоритет */
+.p-autocomplete.p-component .p-inputtext-sm.p-autocomplete-input,
+.p-autocomplete.p-component .p-inputtext-sm.p-autocomplete-input-multiple {
   font-size: ${dt('form.sm.fontSize')};
   padding: ${dt('form.sm.paddingY')} ${dt('form.paddingX')};
 }
 
-.p-autocomplete .p-inputtext-sm.p-autocomplete-input-multiple:has(.p-autocomplete-chip) {
-  /* Компактный режим для sm + чипсы */
-  padding: 0 ${dt('form.paddingX')};
-  padding-inline-start: calc(${dt('form.sm.paddingY')} / 2);
-  padding-inline-end: calc(${dt('form.sm.paddingY')} / 2);
+.p-autocomplete.p-component .p-inputtext-sm.p-autocomplete-input-multiple:has(.p-autocomplete-chip) {
+  padding: calc(${dt('form.sm.paddingY')} - 4.75px);
 }
 
-.p-autocomplete .p-inputtext-sm.p-autocomplete-chip {
-  padding-top: 0;
-  padding-bottom: 0;
-  font-size: ${dt('form.sm.fontSize')};
-}
-
-.p-autocomplete .p-inputtext-lg.p-autocomplete-input,
-.p-autocomplete .p-inputtext-lg.p-autocomplete-input-multiple {
+.p-autocomplete.p-component .p-inputtext-lg.p-autocomplete-input,
+.p-autocomplete.p-component .p-inputtext-lg.p-autocomplete-input-multiple {
   font-size: ${dt('form.lg.fontSize')};
   padding: ${dt('form.lg.paddingY')} ${dt('form.paddingX')};
 }
 
-.p-autocomplete .p-inputtext-lg.p-autocomplete-input-multiple:has(.p-autocomplete-chip) {
-  /* Компактный режим для lg + чипсы */
-  padding: ${dt('spacing.1x')} ${dt('form.paddingX')};
-  padding-inline-start: calc(${dt('form.lg.paddingY')} / 2);
-  padding-inline-end: calc(${dt('form.lg.paddingY')} / 2);
+.p-autocomplete.p-component .p-inputtext-lg.p-autocomplete-input-multiple:has(.p-autocomplete-chip) {
+  /* Симметричные отступы (-4.75px) для достижения итоговой высоты 55.5px */
+  padding: calc(${dt('form.lg.paddingY')} - 4.75px);
 }
 
-.p-autocomplete .p-inputtext-lg.p-autocomplete-chip {
-  padding-top: ${dt('spacing.1x')};
-  padding-bottom: ${dt('spacing.1x')};
-  font-size: ${dt('form.lg.fontSize')};
-}
-
-.p-autocomplete .p-inputtext-xlg {
+.p-autocomplete.p-component .p-inputtext-xlg.p-autocomplete-input,
+.p-autocomplete.p-component .p-inputtext-xlg.p-autocomplete-input-multiple {
   font-size: ${dt('form.xlg.fontSize')};
   padding: ${dt('form.xlg.paddingY')} ${dt('form.paddingX')};
 }
 
-.p-autocomplete .p-inputtext-xlg:has(.p-autocomplete-chip) {
-  /* Компактный режим для xlg + чипсы */
-  padding: ${dt('spacing.2x')} ${dt('form.xlg.paddingX')};
-  padding-inline-start: calc(${dt('form.xlg.paddingY')} / 2);
-  padding-inline-end: calc(${dt('form.xlg.paddingY')} / 2);
+.p-autocomplete.p-component .p-inputtext-xlg.p-autocomplete-input-multiple:has(.p-autocomplete-chip) {
+  /* Симметричные отступы (-4.75px) для достижения итоговой высоты 62.5px */
+  padding: calc(${dt('form.xlg.paddingY')} - 4.75px);
 }
 
-.p-autocomplete .p-inputtext-xlg [data-pc-section="input"] {
-  font-size: ${dt('form.xlg.fontSize')};
-  line-height: inherit;
-}
-
-.p-autocomplete .p-inputtext-xlg .p-autocomplete-chip {
+.p-autocomplete.p-component .p-inputtext-xlg .p-autocomplete-chip {
   padding-top: ${dt('spacing.2x')};
   padding-bottom: ${dt('spacing.2x')};
   font-size: ${dt('fonts.fontSize.300')};
