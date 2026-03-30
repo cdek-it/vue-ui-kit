@@ -13,6 +13,7 @@ import dividerCss from './components/css/divider';
 import drawerCss from './components/css/drawer';
 import messageCss from './components/css/message';
 import inputtextCss from './components/css/inputtext';
+import selectCss from './components/css/select';
 import popoverCss from './components/css/popover';
 import progressbarCss from './components/css/progressbar';
 import ratingCss from './components/css/rating';
@@ -40,6 +41,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${drawerCss({ dt })}
    ${messageCss({ dt })}
    ${inputtextCss({ dt })}
+   ${selectCss({ dt })}
    ${popoverCss({ dt })}
    ${progressbarCss({ dt })}
    ${popoverCss({ dt })}
