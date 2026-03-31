@@ -106,8 +106,8 @@ export default {
       placeholderColor: '{form.placeholderColor}',
       invalidPlaceholderColor: '{form.invalidPlaceholderColor}',
       shadow: '0',
-      paddingX: '{form.padding.300}',
-      paddingY: '{form.padding.300}',
+      paddingX: '{form.paddingX}',
+      paddingY: '{form.paddingY}',
       borderRadius: '{form.borderRadius.200}',
       transitionDuration: '{form.transitionDuration}',
       focusRing: {
@@ -123,7 +123,7 @@ export default {
       borderColor: '{overlay.select.borderColor}',
       borderRadius: '{overlay.select.borderRadius}',
       color: '{overlay.select.color}',
-      shadow: '{form.shadow}',
+      shadow: '{colorScheme.light.form.shadow}',
     },
     list: {
       padding: '{list.padding}',
@@ -147,7 +147,7 @@ export default {
       padding: '{list.optionGroup.padding}',
     },
     dropdown: {
-      width: '{form.width.full}',
+      width: '{form.width.300}',
       borderColor: '{form.borderColor}',
       hoverBorderColor: '{form.hoverBorderSecondaryColor}',
       activeBorderColor: '{form.focusBorderSecondaryColor}',
