@@ -14,7 +14,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `Slider позволяет выбрать числовое значение или диапазон путём перемещения ползунка. \n\n \`\`\`js \n import Slider from 'primevue/slider'; \n \`\`\` `,
+        component: `Компонент позволяет выбрать числовое значение или диапазон путём перемещения ползунка. \n\n \`\`\`js \n import Slider from 'primevue/slider'; \n \`\`\` `,
       },
     },
     designToken: { disable: false },
