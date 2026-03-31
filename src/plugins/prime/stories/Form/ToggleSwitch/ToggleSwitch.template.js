@@ -5,5 +5,5 @@ export const Template = (args) => ({
   setup() {
     return { args };
   },
-  template: `<ToggleSwitch :default-value="args.checked" :invalid="args.invalid" :disabled="args.disabled" />`,
+  template: `<ToggleSwitch v-bind="args" />`,
 });
