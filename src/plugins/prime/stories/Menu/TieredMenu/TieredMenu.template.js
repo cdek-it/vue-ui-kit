@@ -7,6 +7,11 @@ export const Template = (args) => ({
   setup() {
     const { items } = useMenu();
 
+    // Remove default checked class from first item for TieredMenu
+    if (items.value[0]) {
+      delete items.value[0].class;
+    }
+
     return { args, items };
   },
   template: `
