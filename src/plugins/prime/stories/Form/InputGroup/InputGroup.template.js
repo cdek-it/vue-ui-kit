@@ -1,37 +1,29 @@
+import InputText from 'primevue/inputtext';
 import InputGroup from 'primevue/inputgroup';
 import InputGroupAddon from 'primevue/inputgroupaddon';
-import InputText from 'primevue/inputtext';
 
 export const Template = (args) => ({
-  components: { InputGroup, InputGroupAddon, InputText },
+  components: { InputText, InputGroup, InputGroupAddon },
   setup() {
     return { args };
   },
   template: `
-<div>
-  <InputGroup v-if="args.icon === 'left'">
-    <InputGroupAddon>
-        <i class="ti ti-user"></i>
-    </InputGroupAddon>
-    <InputText placeholder="InputText" />
-  </InputGroup>
-
-  <InputGroup v-else-if="args.icon === 'right'">
-    <InputText placeholder="InputText" />
-    <InputGroupAddon>
-      <i class="ti ti-user"></i>
-    </InputGroupAddon>
-  </InputGroup>
-
-  <InputGroup v-else>
-    <InputGroupAddon>
-        <i class="ti ti-user"></i>
-    </InputGroupAddon>
-    <InputText placeholder="InputText" />
-    <InputGroupAddon>
-        <i class="ti ti-user"></i>
-    </InputGroupAddon>
-  </InputGroup>
-</div>
-`,
+    <InputGroup :class="{ 'p-inputgroup-xlg': args.size === 'xlarge' }">
+      <InputGroupAddon v-if="args.leftIcon || args.leftText">
+        <i v-if="args.leftIcon" :class="args.leftIcon"></i>
+        <span v-else>{{ args.leftText }}</span>
+      </InputGroupAddon>
+      
+      <InputText 
+        v-bind="args" 
+        :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
+        style="width: 100%"
+      />
+      
+      <InputGroupAddon v-if="args.rightIcon || args.rightText">
+        <i v-if="args.rightIcon" :class="args.rightIcon"></i>
+        <span v-else>{{ args.rightText }}</span>
+      </InputGroupAddon>
+    </InputGroup>
+  `,
 });
