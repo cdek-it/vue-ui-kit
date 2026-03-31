@@ -56,7 +56,7 @@ const meta = {
   },
   args: {
     size: 'medium',
-    placeholder: '',
+    placeholder: 'Placeholder...',
     invalid: false,
     disabled: false,
     readonly: false,
