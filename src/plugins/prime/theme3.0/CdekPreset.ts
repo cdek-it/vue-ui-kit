@@ -9,31 +9,6 @@ import { definePreset } from '@primevue/themes';
 import Lara from '@primevue/themes/lara';
 
 import baseTokens from './tokens.json';
-
-import accordion from './components/css/accordion';
-import avatar from './components/css/avatar';
-import badge from './components/css/badge';
-import breadcrumb from './components/css/breadcrumb';
-import button from './components/css/button';
-import card from './components/css/card';
-import checkbox from './components/css/checkbox';
-import confirmdialog from './components/css/confirmdialog';
-import dialog from './components/css/dialog';
-import divider from './components/css/divider';
-import drawer from './components/css/drawer';
-import listbox from './components/css/listbox';
-import menu from './components/css/menu';
-import message from './components/css/message';
-import metergroup from './components/css/metergroup';
-import popover from './components/css/popover';
-import progressbar from './components/css/progressbar';
-import progressspinner from './components/css/progressspinner';
-import selectbutton from './components/css/selectbutton';
-import stepper from './components/css/stepper';
-import tabs from './components/css/tabs';
-import tag from './components/css/tag';
-import toggleswitch from './components/css/toggleswitch';
-import tooltip from './components/css/tooltip';
 import globalCss from './css';
 
 // ─── Типы ────────────────────────────────────────────────────────────────────
@@ -45,34 +20,23 @@ type Tokens = typeof baseTokens & {
   components?: Record<string, Record<string, unknown>>;
 };
 
-// ─── Маппинг: имя компонента → CSS-функция ───────────────────────────────────
+// ─── Загружаем все файлы из components/css/ через Vite glob ──────────────────
+// Файлы в папке components/css/ должны называться так же, как ключи компонентов
+// в секции components файла tokens.json:
+//
+//   tokens.json                  components/css/
+//   ├── components
+//   │   ├── accordion      →     accordion.ts
+//   │   ├── button         →     button.ts
+//   │   └── dialog         →     dialog.ts
+//   └── ...
+//
+// Файл без совпадающего ключа в tokens.json будет проигнорирован.
 
-const componentCss: Record<string, CssFn> = {
-  accordion,
-  avatar,
-  badge,
-  breadcrumb,
-  button,
-  card,
-  checkbox,
-  confirmdialog,
-  dialog,
-  divider,
-  drawer,
-  listbox,
-  menu,
-  message,
-  metergroup,
-  popover,
-  progressbar,
-  progressspinner,
-  selectbutton,
-  stepper,
-  tabs,
-  tag,
-  toggleswitch,
-  tooltip,
-};
+const cssModules = import.meta.glob<{ default: CssFn }>(
+  './components/css/*.ts',
+  { eager: true }
+);
 
 // ─── Мёрджим css в токены ─────────────────────────────────────────────────────
 
@@ -81,9 +45,12 @@ const tokens = baseTokens as Tokens;
 tokens.css = globalCss;
 
 if (tokens.components) {
-  for (const [name, cssFn] of Object.entries(componentCss)) {
+  for (const [path, mod] of Object.entries(cssModules)) {
+    // './components/css/accordion.ts' → 'accordion'
+    const name = path.replace('./components/css/', '').replace('.ts', '');
+
     if (tokens.components[name]) {
-      tokens.components[name].css = cssFn;
+      tokens.components[name].css = mod.default;
     }
   }
 }
