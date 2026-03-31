@@ -51,6 +51,11 @@ if (tokens.components) {
 
     if (tokens.components[name]) {
       tokens.components[name].css = mod.default;
+    } else {
+      // eslint-disable-next-line no-console
+      console.warn(
+        `[theme] components/css/${name}.ts не имеет соответствующего компонента в tokens.json → components`
+      );
     }
   }
 }
