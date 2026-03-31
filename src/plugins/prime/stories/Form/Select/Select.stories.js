@@ -21,6 +21,63 @@ export default {
       prefix: '--p-select',
     },
   },
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large', 'xlarge'],
+      description: 'Размер поля выбора',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: 'medium' },
+        type: { summary: "'small' | 'medium' | 'large' | 'xlarge'" },
+      },
+    },
+    showClear: {
+      control: 'boolean',
+      description: 'Отображает иконку очистки содержимого поля',
+      table: { category: 'Props' },
+    },
+    filter: {
+      control: 'boolean',
+      description: 'Включает строку поиска в выпадающем списке',
+      table: { category: 'Props' },
+    },
+    invalid: {
+      control: 'boolean',
+      description: 'Флаг невалидности поля (меняет цвет границ)',
+      table: { category: 'Props' },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает возможность выбора в поле',
+      table: { category: 'Props' },
+    },
+    readonly: {
+      control: 'boolean',
+      description: 'Переводит поле в режим [только чтение]',
+      table: { category: 'Props' },
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Текст подсказки внутри поля',
+      table: { category: 'Props' },
+    },
+    label: {
+      control: 'text',
+      description: 'Текст плавающего лейбла',
+      table: { category: 'Custom' },
+    },
+  },
+  args: {
+    size: 'medium',
+    placeholder: 'Placeholder...',
+    invalid: false,
+    disabled: false,
+    readonly: false,
+    showClear: true,
+    filter: false,
+    label: 'In Label',
+  },
 };
 
 export const Basic = {
@@ -184,6 +241,9 @@ const options = [
 
 export const Disabled = {
   render: DisabledTemplate.bind({}),
+  args: {
+    disabled: true,
+  },
   parameters: {
     docs: {
       source: {
@@ -208,6 +268,12 @@ const options = [
 
 export const FloatLabel = {
   render: FloatLabelTemplate.bind({}),
+  args: {
+    placeholder: undefined,
+  },
+  argTypes: {
+    placeholder: { table: { disable: true } },
+  },
   parameters: {
     docs: {
       source: {

@@ -16,7 +16,16 @@ export const BasicTemplate = (args) => ({
 
     return { args, value, options: basicOptions };
   },
-  template: `<Select v-model="value" :options="options" optionLabel="name" placeholder="Select a city" v-bind="args" />`,
+  template: `
+    <Select 
+      v-model="value" 
+      :options="options" 
+      optionLabel="name" 
+      v-bind="args" 
+      :class="{ 'p-select-xlg': args.size === 'xlarge' }" 
+      :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+    />
+  `,
 });
 
 export const FilterTemplate = (args) => ({
@@ -26,7 +35,17 @@ export const FilterTemplate = (args) => ({
 
     return { args, value, options: basicOptions };
   },
-  template: `<Select v-model="value" :options="options" optionLabel="name" filter placeholder="Select a city" v-bind="args" />`,
+  template: `
+    <Select 
+      v-model="value" 
+      :options="options" 
+      optionLabel="name" 
+      filter 
+      v-bind="args" 
+      :class="{ 'p-select-xlg': args.size === 'xlarge' }" 
+      :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+    />
+  `,
 });
 
 export const GroupedTemplate = (args) => ({
@@ -61,8 +80,9 @@ export const GroupedTemplate = (args) => ({
       optionLabel="label"
       optionGroupLabel="label"
       optionGroupChildren="items"
-      placeholder="Select a city"
       v-bind="args"
+      :class="{ 'p-select-xlg': args.size === 'xlarge' }" 
+      :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
     >
       <template #optiongroup="slotProps">
         <div class="flex items-center gap-2">
@@ -95,7 +115,14 @@ export const CustomTemplate = (args) => ({
     return { args, value, options };
   },
   template: `
-    <Select v-model="value" :options="options" optionLabel="name" placeholder="Select an item" v-bind="args">
+    <Select 
+      v-model="value" 
+      :options="options" 
+      optionLabel="name" 
+      v-bind="args"
+      :class="{ 'p-select-xlg': args.size === 'xlarge' }" 
+      :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+    >
       <template #option="slotProps">
         <div class="flex items-center gap-2">
           <i :class="slotProps.option.icon" />
@@ -116,7 +143,17 @@ export const EditableTemplate = (args) => ({
 
     return { args, value, options: basicOptions };
   },
-  template: `<Select v-model="value" editable :options="options" optionLabel="name" placeholder="Select or type a city" v-bind="args" />`,
+  template: `
+    <Select 
+      v-model="value" 
+      editable 
+      :options="options" 
+      optionLabel="name" 
+      v-bind="args" 
+      :class="{ 'p-select-xlg': args.size === 'xlarge' }" 
+      :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+    />
+  `,
 });
 
 export const DisabledTemplate = (args) => ({
@@ -126,7 +163,17 @@ export const DisabledTemplate = (args) => ({
 
     return { args, value, options: basicOptions };
   },
-  template: `<Select v-model="value" disabled :options="options" optionLabel="name" placeholder="Select a city" v-bind="args" />`,
+  template: `
+    <Select 
+      v-model="value" 
+      disabled 
+      :options="options" 
+      optionLabel="name" 
+      v-bind="args"
+      :class="{ 'p-select-xlg': args.size === 'xlarge' }" 
+      :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+    />
+  `,
 });
 
 export const FloatLabelTemplate = (args) => ({
@@ -138,8 +185,15 @@ export const FloatLabelTemplate = (args) => ({
   },
   template: `
     <FloatLabel variant="in">
-      <Select id="in_label" v-model="value1" :options="options" optionLabel="name" v-bind="args" />
-      <label for="in_label">In Label</label>
+      <Select 
+        id="in_label" 
+        v-model="value1" 
+        :options="options" 
+        optionLabel="name" 
+        v-bind="args" 
+        :size="null"
+      />
+      <label for="in_label">{{ args.label }}</label>
     </FloatLabel>
   `,
 });

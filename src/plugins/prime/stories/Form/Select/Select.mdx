@@ -1,4 +1,4 @@
-import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as SelectStories from './Select.stories';
 
 <Meta of={SelectStories} />
@@ -14,8 +14,12 @@ import { Select } from 'primevue';
 ## Варианты использования
 
 ### Basic
+Стандартный выпадающий список для выбора одного значения. Всеми параметрами (размеры, состояния, фильтрация) можно управлять через таблицу ниже.
 
 <Canvas of={SelectStories.Basic} />
+
+#### Список параметров
+<Controls of={SelectStories.Basic} />
 
 ### С фильтром
 

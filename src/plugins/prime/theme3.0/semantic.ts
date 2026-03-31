@@ -82,27 +82,6 @@ export default {
       color: '{focusRing.color}',
       offset: '{focusRing.offset}',
     },
-    sm: {
-      width: '{sizing.60x}',
-      fontSize: '{fonts.fontSize.300}',
-      paddingX: '{spacing.3x}',
-      paddingY: '{spacing.3x}',
-    },
-    fontSize: '{fonts.fontSize.300}',
-    paddingX: '{spacing.4x}',
-    paddingY: '{spacing.4x}',
-    lg: {
-      width: '{sizing.76x}',
-      fontSize: '{fonts.fontSize.300}',
-      paddingX: '{spacing.5x}',
-      paddingY: '{spacing.5x}',
-    },
-    xlg: {
-      width: '{sizing.84x}',
-      fontSize: '{fonts.fontSize.300}',
-      paddingX: '{spacing.6x}',
-      paddingY: '{spacing.6x}',
-    },
   },
   content: {
     borderRadius: '{borderRadius.300}',
