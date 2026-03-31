@@ -5,6 +5,7 @@ import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
 import cardCss from './components/css/card';
 import checkboxCss from './components/css/checkbox';
+import chipCss from './components/css/chip';
 import listboxCss from './components/css/listbox';
 import confirmdialogCss from './components/css/confirmdialog';
 import dialogCss from './components/css/dialog';
@@ -31,6 +32,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${buttonCss({ dt })}
    ${cardCss({ dt })}
    ${checkboxCss({ dt })}
+   ${chipCss({ dt })}
    ${listboxCss({ dt })}
    ${confirmdialogCss({ dt })}
    ${dialogCss({ dt })}
