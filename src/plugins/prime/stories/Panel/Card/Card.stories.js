@@ -14,7 +14,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `Card используется для группировки контента с заголовком, подзаголовком и действиями. \n\n \`\`\`js \n import Card from 'primevue/card'; \n \`\`\` `,
+        component: `Используется для группировки контента с заголовком, подзаголовком и действиями. \n\n \`\`\`js \n import Card from 'primevue/card'; \n \`\`\` `,
       },
     },
     designToken: { disable: false },
