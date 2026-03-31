@@ -1,18 +1,31 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
 import * as PanelMenuStories from './PanelMenu.stories';
-
-import { Template } from './PanelMenu.template';
 
 <Meta of={PanelMenuStories} />
 
-# PanelMenu
+<Title />
+<Description />
 
-[PrimeVue PanelMenu](https://primevue.org/PanelMenu), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12975\&m=dev)
+```javascript
+import { PanelMenu } from 'primevue';
+```
+
+## Варианты использования
 
 ### Basic
 
-```html dark
-<Menubar :model="items" />
-```
+Аккордеон-меню — одновременно может быть раскрыта только одна панель.
 
-<Story of={PanelMenuStories.Primary} />
+<Canvas of={PanelMenuStories.Basic} />
+
+### Multiple
+
+Аккордеон-меню с возможностью одновременного раскрытия нескольких панелей.
+
+<Canvas of={PanelMenuStories.Multiple} />
+
+### Кастомный шаблон
+
+PanelMenu с кастомным отображением пунктов: иконка, подпись и описание.
+
+<Canvas of={PanelMenuStories.Custom} />

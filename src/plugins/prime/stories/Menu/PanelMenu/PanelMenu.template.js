@@ -1,5 +1,5 @@
+import { PanelMenu, Badge } from 'primevue';
 import { ref, computed } from 'vue';
-import { PBlockPanelMenu, PBlockMenuItem } from '@/primeBlocks';
 
 const createItems = (showIcons) => [
   {
@@ -40,31 +40,31 @@ const createItems = (showIcons) => [
 ];
 
 export const BasicTemplate = (args) => ({
-  components: { PBlockPanelMenu },
+  components: { PanelMenu },
   setup() {
     const items = computed(() => createItems(args.showIcons));
 
     return { args, items };
   },
   template: `
-    <PBlockPanelMenu :model="items" />
+    <PanelMenu :model="items" />
   `,
 });
 
 export const MultipleTemplate = (args) => ({
-  components: { PBlockPanelMenu },
+  components: { PanelMenu },
   setup() {
     const items = computed(() => createItems(args.showIcons));
 
     return { args, items };
   },
   template: `
-    <PBlockPanelMenu :model="items" multiple />
+    <PanelMenu :model="items" multiple />
   `,
 });
 
 export const CustomTemplate = (args) => ({
-  components: { PBlockPanelMenu, PBlockMenuItem },
+  components: { PanelMenu, Badge },
   setup() {
     const items = ref([
       {
@@ -119,10 +119,18 @@ export const CustomTemplate = (args) => ({
     return { args, items };
   },
   template: `
-    <PBlockPanelMenu :model="items" multiple v-bind="args">
-      <template #item="{ item, props, root }">
-        <PBlockMenuItem v-bind="{ ...item, ...props.action }" :root="root" />
+    <PanelMenu :model="items" multiple v-bind="args">
+      <template #item="{ item, props, hasSubmenu }">
+        <a v-bind="props.action" class="p-panelmenu-item-link">
+          <span v-if="item.icon" :class="['p-panelmenu-item-icon', item.icon]" />
+          <div class="panelmenu-item-label">
+            <span class="p-panelmenu-item-label">{{ item.label }}</span>
+            <small v-if="item.description" class="panelmenu-item-caption">{{ item.description }}</small>
+          </div>
+          <Badge v-if="item.badge" :value="item.badge" />
+          <span v-if="hasSubmenu" class="p-panelmenu-submenu-icon ti ti-chevron-right" />
+        </a>
       </template>
-    </PBlockPanelMenu>
+    </PanelMenu>
   `,
 });
