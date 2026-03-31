@@ -9,7 +9,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Checkbox — компонент управления формой для выбора одного или нескольких вариантов. [PrimeVue Checkbox](https://primevue.org/checkbox)',
+          'Компонент управления формой для выбора одного или нескольких вариантов.',
       },
     },
     designToken: { disable: false },
