@@ -7,14 +7,14 @@ import StepItem from 'primevue/stepitem';
 import Button from 'primevue/button';
 import { ref } from 'vue';
 
-export const HorizontalTemplate = () => ({
+export const HorizontalTemplate = (args) => ({
   components: { Stepper, StepList, Step, StepPanels, StepPanel, Button },
   setup() {
     const activeStep = ref('1');
-    return { activeStep };
+    return { args, activeStep };
   },
   template: `
-    <Stepper v-model:value="activeStep">
+    <Stepper v-model:value="activeStep" v-bind="args">
       <StepList>
         <Step value="1">
           Stepper
