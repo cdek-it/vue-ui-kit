@@ -1,20 +1,43 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
 import * as MenuStories from './Menu.stories';
-
-import { Template } from './Menu.template';
 
 <Meta of={MenuStories} />
 
-# Menu
+<Title />
+<Description />
 
-[PrimeVue Menu](https://primevue.org/menu), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12826\&m=dev)
+```javascript
+import Menu from 'primevue/menu';
+```
+
+## Варианты использования
+
+### Popup
+
+Меню вызывается по нажатию на кнопку.
+
+<Canvas of={MenuStories.Popup} />
 
 ### Basic
 
-```jsx dark
-const selectedClass = 'p-menuitem-checked';
+Базовый вариант без иконок.
 
-<PrimeMenu :model="items" />
-```
+<Canvas of={MenuStories.Basic} />
 
-<Story of={MenuStories.Primary} />
+### With Icon
+
+Пункты меню с иконками.
+
+<Canvas of={MenuStories.WithIcon} />
+
+### Grouped
+
+Группировка пунктов меню через `label` у родительского элемента.
+
+<Canvas of={MenuStories.Grouped} />
+
+### Custom
+
+Кастомный шаблон пункта меню с иконкой и описанием (caption).
+
+<Canvas of={MenuStories.Custom} />
