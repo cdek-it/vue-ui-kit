@@ -1,20 +1,44 @@
 {
+  // Список файлов (пусто — значит используется include/refs)
   "files": [],
+
+  // Project references — связывают несколько tsconfig'ов в один проект
   "references": [
     {
-      "path": "./tsconfig.config.json"
+      "path": "./tsconfig.config.json" // конфиг для сборки/инструментов (vite, etc.)
     },
     {
-      "path": "./tsconfig.app.json"
+      "path": "./tsconfig.app.json" // основной код приложения / компонентов
     },
     {
-      "path": "./tsconfig.vitest.json"
+      "path": "./tsconfig.vitest.json" // конфиг для тестов (Vitest)
     }
   ],
+
   "compilerOptions": {
+    // Позволяет импортировать JSON как модули
+    // import data from './file.json'
     "resolveJsonModule": true,
-    "target": "ES5",
+
+    // В какой JS компилируется код
+    // ES2020 — хороший баланс (современный, но совместимый)
+    "target": "ES2020",
+
+    // Формат модулей (важно для Vite / bundlers)
+    // ESNext = нативные ES модули (import/export)
+    "module": "ESNext",
+
+    // Пропускает проверку типов в node_modules
+    // Ускоряет сборку, почти всегда включают
     "skipLibCheck": true,
-    "esModuleInterop": true
+
+    // Делает import CommonJS модулей удобным
+    // import x from 'cjs-module'
+    "esModuleInterop": true,
+
+    // Как TypeScript ищет модули (vue, lodash и т.д.)
+    // Node = ищет в node_modules как Node.js
+    // КРИТИЧНО, иначе будут ошибки "Cannot find module"
+    "moduleResolution": "Node"
   }
 }
