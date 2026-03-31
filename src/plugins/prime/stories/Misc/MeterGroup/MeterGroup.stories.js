@@ -71,19 +71,7 @@ export const Basic = {
     labelOrientation: 'horizontal',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <MeterGroup :value="value" />
-</template>
-
-<script setup>
-const value = [{ label: 'Space used', color: '#44e858', value: 15 }];
-</script>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -95,24 +83,7 @@ export const Horizontal = {
     labelOrientation: 'horizontal',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <MeterGroup :value="value" />
-</template>
-
-<script setup>
-const value = [
-  { label: 'Apps', color: '#44e858', value: 40 },
-  { label: 'Messages', color: '#77baf4', value: 25 },
-  { label: 'Media', color: '#facb75', value: 20 },
-  { label: 'System', color: '#f47f77', value: 15 },
-];
-</script>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -124,17 +95,7 @@ export const Vertical = {
     labelOrientation: 'horizontal',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <div style="height: 300px; display: flex;">
-    <MeterGroup :value="value" orientation="vertical" style="height: 100%; flex: 1;" />
-  </div>
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -146,24 +107,7 @@ export const Icon = {
     labelOrientation: 'horizontal',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <MeterGroup :value="value" />
-</template>
-
-<script setup>
-const value = [
-  { label: 'Apps', color: '#44e858', value: 40, icon: 'ti ti-device-desktop' },
-  { label: 'Messages', color: '#77baf4', value: 25, icon: 'ti ti-mail' },
-  { label: 'Media', color: '#facb75', value: 20, icon: 'ti ti-photo' },
-  { label: 'System', color: '#f47f77', value: 15, icon: 'ti ti-settings' },
-];
-</script>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -176,15 +120,7 @@ export const LabelStart = {
     labelOrientation: 'horizontal',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <MeterGroup :value="value" labelPosition="start" />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -197,14 +133,6 @@ export const LabelVertical = {
     labelOrientation: 'vertical',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <MeterGroup :value="value" labelOrientation="vertical" />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
