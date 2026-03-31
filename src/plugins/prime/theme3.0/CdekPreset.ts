@@ -66,7 +66,6 @@ const componentCss: Record<string, CssFn> = {
   popover,
   progressbar,
   progressspinner,
-  rating,
   selectbutton,
   stepper,
   tabs,
