@@ -1,4 +1,5 @@
 import accordionCss from './components/css/accordion';
+import datepickerCss from './components/css/datepicker';
 import avatarCss from './components/css/avatar';
 import badgeCss from './components/css/badge';
 import breadcrumbCss from './components/css/breadcrumb';
@@ -27,6 +28,7 @@ import progressspinnerCss from './components/css/progressspinner';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${accordionCss({ dt })}
+   ${datepickerCss({ dt })}
    ${avatarCss({ dt })}
    ${badgeCss({ dt })}
    ${breadcrumbCss({ dt })}

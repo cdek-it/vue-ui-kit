@@ -1,0 +1,504 @@
+import { ref, computed } from 'vue';
+import DatePicker from 'primevue/datepicker';
+import Select from 'primevue/select';
+import Button from 'primevue/button';
+import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
+import FloatLabel from 'primevue/floatlabel';
+
+const months = [
+  { name: 'Январь', value: 0 },
+  { name: 'Февраль', value: 1 },
+  { name: 'Март', value: 2 },
+  { name: 'Апрель', value: 3 },
+  { name: 'Май', value: 4 },
+  { name: 'Июнь', value: 5 },
+  { name: 'Июль', value: 6 },
+  { name: 'Август', value: 7 },
+  { name: 'Сентябрь', value: 8 },
+  { name: 'Октябрь', value: 9 },
+  { name: 'Ноябрь', value: 10 },
+  { name: 'Декабрь', value: 11 },
+];
+
+const generateYears = (startYear = 1990, endYear = 2035) => {
+  const years = [];
+  for (let i = startYear; i <= endYear; i++) {
+    years.push({ name: String(i), value: i });
+  }
+  return years;
+};
+
+const years = generateYears();
+
+const sharedSetup = (args) => {
+  const value = ref(null);
+  const dp = ref(null);
+
+  const onMonthSelect = (val) => {
+    if (dp.value) {
+      dp.value.currentMonth = val;
+      dp.value.$emit('month-change', {
+        month: val + 1,
+        year: dp.value.currentYear,
+      });
+    }
+  };
+
+  const onYearSelect = (val) => {
+    if (dp.value) {
+      dp.value.currentYear = val;
+      dp.value.$emit('year-change', {
+        month: dp.value.currentMonth + 1,
+        year: val,
+      });
+    }
+  };
+
+  return { args, value, dp, months, years, onMonthSelect, onYearSelect };
+};
+
+export const BasicTemplate = (args) => ({
+  components: { DatePicker, Select, Button },
+  setup() {
+    return sharedSetup(args);
+  },
+  template: `
+<DatePicker
+  ref="dp"
+  dateFormat="dd.mm.yy"
+  v-model="value"
+  showIcon
+  iconDisplay="input"
+  v-bind="args"
+  :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
+>
+  <template #prevbutton="{ actionCallback }">
+    <Button class="p-datepicker-prev-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-left p-button-icon" aria-hidden="true"></i>
+    </Button>
+    <div class="p-datepicker-title">
+      <Select appendTo="self" :options="months" optionLabel="name" optionValue="value" :modelValue="dp?.currentMonth" @update:modelValue="onMonthSelect" class="p-datepicker-month-select" />
+      <Select appendTo="self" :options="years" optionLabel="name" optionValue="value" :modelValue="dp?.currentYear" @update:modelValue="onYearSelect" class="p-datepicker-year-select" />
+    </div>
+  </template>
+  <template #nextbutton="{ actionCallback }">
+    <Button class="p-datepicker-next-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-right p-button-icon" aria-hidden="true"></i>
+    </Button>
+  </template>
+  <template #inputicon="slotProps">
+    <i class="ti ti-calendar-month cursor-pointer" @click="slotProps.clickCallback" />
+  </template>
+  <template #dropdownicon>
+    <i class="ti ti-calendar-month" />
+  </template>
+</DatePicker>`,
+});
+
+export const RangeTemplate = (args) => ({
+  components: { DatePicker, Select, Button, InputText },
+  setup() {
+    const context = sharedSetup(args);
+    const dates = ref(null);
+    const hoveredDate = ref(null);
+
+    const onDateMouseEnter = (date) => {
+      if (Array.isArray(dates.value) && dates.value[0] && !dates.value[1]) {
+        hoveredDate.value = date;
+      }
+    };
+
+    const isDayInRangePreview = (date) => {
+      if (
+        !hoveredDate.value ||
+        !Array.isArray(dates.value) ||
+        !dates.value[0]
+      ) {
+        return false;
+      }
+      const d = new Date(date.year, date.month, date.day);
+      const start = dates.value[0];
+      const end = new Date(
+        hoveredDate.value.year,
+        hoveredDate.value.month,
+        hoveredDate.value.day
+      );
+      const [min, max] = start < end ? [start, end] : [end, start];
+      return d >= min && d <= max;
+    };
+
+    return {
+      ...context,
+      dates,
+      onDateMouseEnter,
+      hoveredDate,
+      isDayInRangePreview,
+    };
+  },
+  template: `
+<div class="flex flex-col gap-4">
+  <DatePicker
+    ref="dp"
+    dateFormat="dd.mm.yy"
+    v-model="dates"
+    selectionMode="range"
+    showIcon
+    iconDisplay="input"
+    v-bind="args"
+    :pt="{
+      title: { onVnodeMounted: (vnode) => vnode.el?.remove() },
+      day: ({ context }) => ({
+        class: {
+          'p-datepicker-day-preview': isDayInRangePreview(context.date)
+        },
+        onMouseenter: () => onDateMouseEnter(context.date),
+        onMouseleave: () => hoveredDate = null
+      })
+    }"
+  >
+  <template #prevbutton="{ actionCallback }">
+    <Button class="p-datepicker-prev-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-left p-button-icon" aria-hidden="true"></i>
+    </Button>
+    <div class="p-datepicker-title">
+      <Select appendTo="self" :options="months" optionLabel="name" optionValue="value" :modelValue="dp?.currentMonth" @update:modelValue="onMonthSelect" class="p-datepicker-month-select" />
+      <Select appendTo="self" :options="years" optionLabel="name" optionValue="value" :modelValue="dp?.currentYear" @update:modelValue="onYearSelect" class="p-datepicker-year-select" />
+    </div>
+  </template>
+  <template #nextbutton="{ actionCallback }">
+    <Button class="p-datepicker-next-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-right p-button-icon" aria-hidden="true"></i>
+    </Button>
+  </template>
+  <template #inputicon="slotProps">
+    <i class="ti ti-calendar-month cursor-pointer" @click="slotProps.clickCallback" />
+  </template>
+  <template #dropdownicon>
+    <i class="ti ti-calendar-month" />
+  </template>
+</DatePicker>
+</div>`,
+});
+
+export const TimeTemplate = (args) => ({
+  components: { DatePicker, Select, Button, InputNumber },
+  setup() {
+    const context = sharedSetup(args);
+    const dateValue = ref(new Date());
+
+    const hours = computed({
+      get: () => (dateValue.value ? dateValue.value.getHours() : 0),
+      set: (val) => {
+        if (!dateValue.value) {
+          dateValue.value = new Date();
+        }
+        const d = new Date(dateValue.value);
+        d.setHours(val);
+        dateValue.value = d;
+      },
+    });
+
+    const minutes = computed({
+      get: () => (dateValue.value ? dateValue.value.getMinutes() : 0),
+      set: (val) => {
+        if (!dateValue.value) {
+          dateValue.value = new Date();
+        }
+        const d = new Date(dateValue.value);
+        d.setMinutes(val);
+        dateValue.value = d;
+      },
+    });
+
+    const modelProxy = computed({
+      get: () => dateValue.value,
+      set: (val) => {
+        dateValue.value = val;
+      },
+    });
+
+    return { ...context, modelProxy, hours, minutes };
+  },
+  template: `
+<DatePicker
+  ref="dp"
+  dateFormat="dd.mm.yy"
+  v-model="modelProxy"
+  showIcon
+  iconDisplay="input"
+  v-bind="args"
+  :pt="{ 
+    title: { onVnodeMounted: (vnode) => vnode.el?.remove() },
+    timePicker: { style: { display: 'none' } }
+  }"
+>
+
+  <template #prevbutton="{ actionCallback }">
+    <Button class="p-datepicker-prev-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-left p-button-icon" aria-hidden="true"></i>
+    </Button>
+    <div class="p-datepicker-title">
+      <Select appendTo="self" :options="months" optionLabel="name" optionValue="value" :modelValue="dp?.currentMonth" @update:modelValue="onMonthSelect" class="p-datepicker-month-select" />
+      <Select appendTo="self" :options="years" optionLabel="name" optionValue="value" :modelValue="dp?.currentYear" @update:modelValue="onYearSelect" class="p-datepicker-year-select" />
+    </div>
+  </template>
+  <template #nextbutton="{ actionCallback }">
+    <Button class="p-datepicker-next-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-right p-button-icon" aria-hidden="true"></i>
+    </Button>
+  </template>
+  <template #inputicon="slotProps">
+    <i class="ti ti-calendar-month cursor-pointer" @click="slotProps.clickCallback" />
+  </template>
+  <template #dropdownicon>
+    <i class="ti ti-calendar-month" />
+  </template>
+
+
+  <template #footer>
+    <div class="grid grid-cols-[auto_max-content_auto] gap-x-4 gap-y-2 p-4 border-t border-surface-200 justify-center items-center">
+      <span class="text-sm font-medium text-center col-start-1 row-start-1">Часы</span>
+      <InputNumber 
+        v-model="hours" 
+        :min="0" 
+        :max="23" 
+        class="w-fit col-start-1 row-start-2" 
+        inputClass="text-center" 
+        inputStyle="width: calc(2ch + 2.5rem)" 
+        :pt="{
+          root: { 'data-p': 'large' },
+          input: {
+            'data-p': 'large',
+            root: { 'data-p': 'large' }
+          }
+        }"
+      />
+      
+      <span class="text-xl font-bold col-start-2 row-start-2">:</span>
+      
+      <span class="text-sm font-medium text-center col-start-3 row-start-1">Минуты</span>
+      <InputNumber 
+        v-model="minutes" 
+        :min="0" 
+        :max="59" 
+        class="w-fit col-start-3 row-start-2" 
+        inputClass="text-center" 
+        inputStyle="width: calc(2ch + 2.5rem)"
+        :pt="{
+          root: { 'data-p': 'large' },
+          input: {
+            'data-p': 'large',
+            root: { 'data-p': 'large' }
+          }
+        }" 
+      />
+    </div>
+  </template>
+
+</DatePicker>`,
+});
+
+export const ButtonBarTemplate = (args) => ({
+  components: { DatePicker, Select, Button },
+  setup() {
+    return sharedSetup(args);
+  },
+  template: `
+<DatePicker
+  ref="dp"
+  dateFormat="dd.mm.yy"
+  v-model="value"
+  showButtonBar
+  showIcon
+  iconDisplay="input"
+  todayButtonLabel="Сегодня"
+  clearButtonLabel="Очистить"
+  v-bind="args"
+  :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
+>
+  <template #prevbutton="{ actionCallback }">
+    <Button class="p-datepicker-prev-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-left p-button-icon" aria-hidden="true"></i>
+    </Button>
+    <div class="p-datepicker-title">
+      <Select appendTo="self" :options="months" optionLabel="name" optionValue="value" :modelValue="dp?.currentMonth" @update:modelValue="onMonthSelect" class="p-datepicker-month-select" />
+      <Select appendTo="self" :options="years" optionLabel="name" optionValue="value" :modelValue="dp?.currentYear" @update:modelValue="onYearSelect" class="p-datepicker-year-select" />
+    </div>
+  </template>
+  <template #nextbutton="{ actionCallback }">
+    <Button class="p-datepicker-next-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-right p-button-icon" aria-hidden="true"></i>
+    </Button>
+  </template>
+  <template #inputicon="slotProps">
+    <i class="ti ti-calendar-month cursor-pointer" @click="slotProps.clickCallback" />
+  </template>
+  <template #dropdownicon>
+    <i class="ti ti-calendar-month" />
+  </template>
+</DatePicker>`,
+});
+
+export const InlineTemplate = (args) => ({
+  components: { DatePicker, Select, Button },
+  setup() {
+    return sharedSetup(args);
+  },
+  template: `
+<DatePicker
+  ref="dp"
+  dateFormat="dd.mm.yy"
+  v-model="value"
+  inline
+  v-bind="args"
+  :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
+>
+  <template #prevbutton="{ actionCallback }">
+    <Button class="p-datepicker-prev-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-left p-button-icon" aria-hidden="true"></i>
+    </Button>
+    <div class="p-datepicker-title">
+      <Select appendTo="self" :options="months" optionLabel="name" optionValue="value" :modelValue="dp?.currentMonth" @update:modelValue="onMonthSelect" class="p-datepicker-month-select" />
+      <Select appendTo="self" :options="years" optionLabel="name" optionValue="value" :modelValue="dp?.currentYear" @update:modelValue="onYearSelect" class="p-datepicker-year-select" />
+    </div>
+  </template>
+  <template #nextbutton="{ actionCallback }">
+    <Button class="p-datepicker-next-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-right p-button-icon" aria-hidden="true"></i>
+    </Button>
+  </template>
+  <template #inputicon="slotProps">
+    <i class="ti ti-calendar-month cursor-pointer" @click="slotProps.clickCallback" />
+  </template>
+  <template #dropdownicon>
+    <i class="ti ti-calendar-month" />
+  </template>
+</DatePicker>`,
+});
+
+export const MonthPickerTemplate = (args) => ({
+  components: { Select },
+  setup() {
+    return sharedSetup(args);
+  },
+  template: `
+<Select
+  v-model="value"
+  :options="months"
+  optionLabel="name"
+  optionValue="value"
+  placeholder="Выберите месяц"
+  v-bind="args"
+>
+  <template #dropdownicon>
+    <i class="ti ti-calendar-month" />
+  </template>
+</Select>`,
+});
+
+export const YearPickerTemplate = (args) => ({
+  components: { Select },
+  setup() {
+    return sharedSetup(args);
+  },
+  template: `
+<Select
+  v-model="value"
+  :options="years"
+  optionLabel="name"
+  optionValue="value"
+  placeholder="Выберите год"
+  v-bind="args"
+>
+  <template #dropdownicon>
+    <i class="ti ti-calendar-month" />
+  </template>
+</Select>`,
+});
+
+export const FloatLabelTemplate = (args) => ({
+  components: { DatePicker, Select, Button, FloatLabel },
+  setup() {
+    return sharedSetup(args);
+  },
+  template: `
+<FloatLabel>
+  <DatePicker
+    inputId="float_date"
+    ref="dp"
+    dateFormat="dd.mm.yy"
+    v-model="value"
+    showIcon
+    iconDisplay="input"
+    v-bind="args"
+    :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
+  >
+  <template #prevbutton="{ actionCallback }">
+    <Button class="p-datepicker-prev-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-left p-button-icon" aria-hidden="true"></i>
+    </Button>
+    <div class="p-datepicker-title">
+      <Select appendTo="self" :options="months" optionLabel="name" optionValue="value" :modelValue="dp?.currentMonth" @update:modelValue="onMonthSelect" class="p-datepicker-month-select" />
+      <Select appendTo="self" :options="years" optionLabel="name" optionValue="value" :modelValue="dp?.currentYear" @update:modelValue="onYearSelect" class="p-datepicker-year-select" />
+    </div>
+  </template>
+  <template #nextbutton="{ actionCallback }">
+    <Button class="p-datepicker-next-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-right p-button-icon" aria-hidden="true"></i>
+    </Button>
+  </template>
+  <template #inputicon="slotProps">
+    <i class="ti ti-calendar-month cursor-pointer" @click="slotProps.clickCallback" />
+  </template>
+  <template #dropdownicon>
+    <i class="ti ti-calendar-month" />
+  </template>
+</DatePicker>
+  <label for="float_date">Выберите дату</label>
+</FloatLabel>`,
+});
+
+export const ClearIconTemplate = (args) => ({
+  components: { DatePicker, Select, Button },
+  setup() {
+    return sharedSetup(args);
+  },
+  template: `
+<DatePicker
+  ref="dp"
+  dateFormat="dd.mm.yy"
+  v-model="value"
+  showClear
+  showIcon
+  iconDisplay="input"
+  v-bind="args"
+  :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
+>
+
+  <template #prevbutton="{ actionCallback }">
+    <Button class="p-datepicker-prev-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-left p-button-icon" aria-hidden="true"></i>
+    </Button>
+    <div class="p-datepicker-title">
+      <Select appendTo="self" :options="months" optionLabel="name" optionValue="value" :modelValue="dp?.currentMonth" @update:modelValue="onMonthSelect" class="p-datepicker-month-select" />
+      <Select appendTo="self" :options="years" optionLabel="name" optionValue="value" :modelValue="dp?.currentYear" @update:modelValue="onYearSelect" class="p-datepicker-year-select" />
+    </div>
+  </template>
+  <template #nextbutton="{ actionCallback }">
+    <Button class="p-datepicker-next-button" severity="secondary" rounded text @click="actionCallback">
+      <i class="ti ti-chevron-right p-button-icon" aria-hidden="true"></i>
+    </Button>
+  </template>
+  <template #inputicon="slotProps">
+    <i class="ti ti-calendar-month cursor-pointer" @click="slotProps.clickCallback" />
+  </template>
+  <template #dropdownicon>
+    <i class="ti ti-calendar-month" />
+  </template>
+
+  <template #clearicon="slotProps">
+    <i class="ti ti-x cursor-pointer" @click="slotProps.clearCallback" />
+  </template>
+</DatePicker>`,
+});
