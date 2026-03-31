@@ -5,6 +5,7 @@ import breadcrumbCss from './components/css/breadcrumb';
 import buttonCss from './components/css/button';
 import cardCss from './components/css/card';
 import checkboxCss from './components/css/checkbox';
+import chipCss from './components/css/chip';
 import listboxCss from './components/css/listbox';
 import confirmdialogCss from './components/css/confirmdialog';
 import dialogCss from './components/css/dialog';
@@ -16,12 +17,13 @@ import metergroupCss from './components/css/metergroup';
 import popoverCss from './components/css/popover';
 import panelmenuCss from './components/css/panelmenu';
 import progressbarCss from './components/css/progressbar';
-import ratingCss from './components/css/rating';
 import selectbuttonCss from './components/css/selectbutton';
 import stepperCss from './components/css/stepper';
 import tabsCss from './components/css/tabs';
 import tagCss from './components/css/tag';
+import toggleswitchCss from './components/css/toggleswitch';
 import tooltipCss from './components/css/tooltip';
+import progressspinnerCss from './components/css/progressspinner';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${accordionCss({ dt })}
@@ -31,6 +33,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${buttonCss({ dt })}
    ${cardCss({ dt })}
    ${checkboxCss({ dt })}
+   ${chipCss({ dt })}
    ${listboxCss({ dt })}
    ${confirmdialogCss({ dt })}
    ${dialogCss({ dt })}
@@ -42,12 +45,13 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${popoverCss({ dt })}
    ${panelmenuCss({ dt })}
    ${progressbarCss({ dt })}
-   ${ratingCss({ dt })}
    ${selectbuttonCss({ dt })}
    ${stepperCss({ dt })}
    ${tabsCss({ dt })}
    ${tagCss({ dt })}
+   ${toggleswitchCss({ dt })}
    ${tooltipCss({ dt })}
+   ${progressspinnerCss({ dt })}
 
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
