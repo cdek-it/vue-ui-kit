@@ -1,4 +1,8 @@
 const css = ({ dt }: { dt: (token: string) => string }) => `
+.p-overlaybadge {
+  display: inline-flex;
+}
+
 .p-badge {
   font-family: ${dt('fonts.fontFamily.heading')};
   font-size: ${dt('badge.root.fontSize')};

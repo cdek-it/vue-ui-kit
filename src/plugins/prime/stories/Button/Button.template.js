@@ -7,19 +7,11 @@ export const Template = (args) => ({
   setup() {
     return { args };
   },
-  template: `
-<div style="display: grid; grid-template-columns: repeat(4, max-content); gap: 20px; align-items: center;">
-  <span><code>size="small"</code></span>
-  <span><code>size="base"</code></span>
-  <span><code>size="large"</code></span>
-  <span><code>class="p-button-xlg"</code></span>
-
-  <Button size="small" v-bind="args" />
-  <Button v-bind="args" />
-  <Button size="large" v-bind="args" />
-  <Button class="p-button-xlg" v-bind="args" />
-</div>
-`,
+  template: `<Button
+    v-bind="args"
+    :size="args.size === 'xlarge' ? undefined : args.size"
+    :class="args.size === 'xlarge' ? 'p-button-xlg' : ''"
+  />`,
 });
 
 // Template for badge overlay
@@ -29,68 +21,14 @@ export const TemplateBadge = (args) => ({
     return { args };
   },
   template: `
-<div style="display: grid; grid-template-columns: repeat(4, max-content); gap: 40px; row-gap: 20px; align-items: center; justify-items: center;">
-  <span><code>size="small"</code></span>
-  <span><code>size="base"</code></span>
-  <span><code>size="large"</code></span>
-  <span><code>class="p-button-xlg"</code></span>
-
-  <OverlayBadge v-bind="args">
-    <Button label="Button" size="small" />
-  </OverlayBadge>
-  <OverlayBadge v-bind="args">
-    <Button label="Button" />
-  </OverlayBadge>
-  <OverlayBadge v-bind="args">
-    <Button label="Button" size="large" />
-  </OverlayBadge>
-  <OverlayBadge v-bind="args">
-    <Button label="Button" class="p-button-xlg" />
-  </OverlayBadge>
-</div>
+<OverlayBadge :value="args.value" :severity="args.badgeSeverity || args.severity">
+  <Button v-bind="args" />
+</OverlayBadge>
 `,
 });
 
-// Template for severity buttons (all severity variants in a grid)
-export const TemplateSeverity = (args) => ({
-  components: { Button },
-  setup() {
-    return { args };
-  },
-  template: `
-<div style="display: grid; grid-template-columns: repeat(5, max-content); gap: 20px; align-items: center;">
-  <span></span>
-  <span><code>success</code></span>
-  <span><code>info</code></span>
-  <span><code>warn</code></span>
-  <span><code>danger</code></span>
-
-  <span><code>small</code></span>
-  <Button size="small" v-bind="args" severity="success" label="Button" />
-  <Button size="small" v-bind="args" severity="info" label="Button" />
-  <Button size="small" v-bind="args" severity="warn" label="Button" />
-  <Button size="small" v-bind="args" severity="danger" label="Button" />
-
-  <span><code>base</code></span>
-  <Button v-bind="args" severity="success" label="Button" />
-  <Button v-bind="args" severity="info" label="Button" />
-  <Button v-bind="args" severity="warn" label="Button" />
-  <Button v-bind="args" severity="danger" label="Button" />
-
-  <span><code>large</code></span>
-  <Button size="large" v-bind="args" severity="success" label="Button" />
-  <Button size="large" v-bind="args" severity="info" label="Button" />
-  <Button size="large" v-bind="args" severity="warn" label="Button" />
-  <Button size="large" v-bind="args" severity="danger" label="Button" />
-
-  <span><code>xlarge</code></span>
-  <Button class="p-button-xlg" v-bind="args" severity="success" label="Button" />
-  <Button class="p-button-xlg" v-bind="args" severity="info" label="Button" />
-  <Button class="p-button-xlg" v-bind="args" severity="warn" label="Button" />
-  <Button class="p-button-xlg" v-bind="args" severity="danger" label="Button" />
-</div>
-`,
-});
+// Template for severity buttons (handled by Controls in Storybook)
+export const TemplateSeverity = Template;
 
 // Template for severity buttons with icons
 export const TemplateSeverityWithIcons = (args) => ({
@@ -123,38 +61,6 @@ export const TemplateSeverityWithIcons = (args) => ({
   <Button v-bind="args" severity="warn" icon="ti ti-alert-triangle" />
   <Button v-bind="args" severity="success" icon="ti ti-check" />
   <Button v-bind="args" severity="info" icon="ti ti-info-circle" />
-</div>
-`,
-});
-
-// Template for severity disabled states
-export const TemplateSeverityDisabled = () => ({
-  components: { Button },
-  template: `
-<div style="display: grid; grid-template-columns: repeat(5, max-content); gap: 20px; align-items: center;">
-  <span></span>
-  <span><code>success</code></span>
-  <span><code>info</code></span>
-  <span><code>warn</code></span>
-  <span><code>danger</code></span>
-
-  <span><code>default</code></span>
-  <Button severity="success" label="Button" disabled />
-  <Button severity="info" label="Button" disabled />
-  <Button severity="warn" label="Button" disabled />
-  <Button severity="danger" label="Button" disabled />
-
-  <span><code>outlined</code></span>
-  <Button severity="success" label="Button" variant="outlined" disabled />
-  <Button severity="info" label="Button" variant="outlined" disabled />
-  <Button severity="warn" label="Button" variant="outlined" disabled />
-  <Button severity="danger" label="Button" variant="outlined" disabled />
-
-  <span><code>text</code></span>
-  <Button severity="success" label="Button" variant="text" disabled />
-  <Button severity="info" label="Button" variant="text" disabled />
-  <Button severity="warn" label="Button" variant="text" disabled />
-  <Button severity="danger" label="Button" variant="text" disabled />
 </div>
 `,
 });

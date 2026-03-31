@@ -1,10 +1,5 @@
 import Button from 'primevue/button';
-import {
-  Template,
-  TemplateBadge,
-  TemplateSeverity,
-  TemplateSeverityDisabled,
-} from './Button.template';
+import { Template, TemplateBadge, TemplateSeverity } from './Button.template';
 
 const meta = {
   title: 'Prime/Button',
@@ -14,7 +9,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Кнопка — базовый интерактивный элемент. [PrimeVue Button](https://primevue.org/button), [Figma Design](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=160-5223)',
+          'Интерактивный элемент интерфейса. Используется для инициации действий, отправки форм и навигации.',
       },
     },
     designToken: { disable: false },
@@ -54,22 +49,25 @@ const meta = {
     },
     variant: {
       control: 'select',
-      options: [null, 'outlined', 'text', 'link'],
+      options: [null, 'text', 'link'],
       description: 'Вариант отображения кнопки',
       table: {
         category: 'Props',
         defaultValue: { summary: 'null (filled)' },
-        type: { summary: "'outlined' | 'text' | 'link'" },
+        type: { summary: "'text' | 'link'" },
       },
     },
     size: {
       control: 'select',
-      options: ['small', null, 'large'],
+      options: ['small', 'base', 'large', 'xlarge'],
+      mapping: {
+        base: null,
+      },
       description: 'Размер кнопки',
       table: {
         category: 'Props',
-        defaultValue: { summary: 'null (base)' },
-        type: { summary: "'small' | 'large'" },
+        defaultValue: { summary: 'base' },
+        type: { summary: "'small' | 'base' | 'large' | 'xlarge'" },
       },
     },
     icon: {
@@ -116,6 +114,32 @@ const meta = {
         category: 'Props',
         defaultValue: { summary: 'false' },
         type: { summary: 'boolean' },
+      },
+    },
+    // ── Badge ────────────────────────────────────────────────
+    value: {
+      control: 'text',
+      description: 'Значение бэйджа',
+      table: {
+        category: 'Badge',
+        type: { summary: 'string' },
+      },
+    },
+    badgeSeverity: {
+      control: 'select',
+      options: [
+        null,
+        'secondary',
+        'contrast',
+        'danger',
+        'warn',
+        'success',
+        'info',
+      ],
+      description: 'Цвет бэйджа',
+      table: {
+        category: 'Badge',
+        type: { summary: 'string' },
       },
     },
     // ── Events ───────────────────────────────────────────────
@@ -171,17 +195,12 @@ export const Icons = {
   parameters: {
     docs: {
       description: {
-        story: 'Кнопки с иконками (префикс по умолчанию).',
+        story: 'Кнопка с иконкой.',
       },
       source: {
         code: `
 <template>
-  <div class="flex items-center gap-4">
-    <Button label="Button" icon="ti ti-check" size="small" />
-    <Button label="Button" icon="ti ti-check" />
-    <Button label="Button" icon="ti ti-check" size="large" />
-    <Button label="Button" icon="ti ti-check" class="p-button-xlg" />
-  </div>
+  <Button label="Button" icon="ti ti-check" />
 </template>
         `,
       },
@@ -198,17 +217,12 @@ export const Loading = {
   parameters: {
     docs: {
       description: {
-        story: 'Состояние загрузки с индикатором.',
+        story: 'Состояние загрузки.',
       },
       source: {
         code: `
 <template>
-  <div class="flex items-center gap-4">
-    <Button label="Button" loading size="small" />
-    <Button label="Button" loading />
-    <Button label="Button" loading size="large" />
-    <Button label="Button" loading class="p-button-xlg" />
-  </div>
+  <Button label="Button" loading />
 </template>
         `,
       },
@@ -230,12 +244,7 @@ export const Link = {
       source: {
         code: `
 <template>
-  <div class="flex items-center gap-4">
-    <Button label="Button" variant="link" size="small" />
-    <Button label="Button" variant="link" />
-    <Button label="Button" variant="link" size="large" />
-    <Button label="Button" variant="link" class="p-button-xlg" />
-  </div>
+  <Button label="Button" variant="link" />
 </template>
         `,
       },
@@ -245,33 +254,20 @@ export const Link = {
 
 export const Severity = {
   render: TemplateSeverity,
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <!-- Пример для Success. Аналогично для info, warn, danger -->
-  <div class="flex items-center gap-4">
-    <Button label="Button" severity="success" size="small" />
-    <Button label="Button" severity="success" />
-    <Button label="Button" severity="success" size="large" />
-    <Button label="Button" severity="success" class="p-button-xlg" />
-  </div>
-</template>
-        `,
-      },
-    },
+  args: {
+    label: 'Button',
+    severity: 'success',
   },
-};
-
-export const Disabled = {
-  render: TemplateSeverityDisabled,
   parameters: {
     docs: {
+      description: {
+        story:
+          'Кнопка с определённым семантическим вариантом. Используйте Controls для смены severity.',
+      },
       source: {
         code: `
 <template>
-  <Button label="Button" disabled />
+  <Button label="Button" severity="success" />
 </template>
         `,
       },
@@ -288,17 +284,12 @@ export const Rounded = {
   parameters: {
     docs: {
       description: {
-        story: 'Скруглённая форма кнопок.',
+        story: 'Кнопка со скруглением.',
       },
       source: {
         code: `
 <template>
-  <div class="flex items-center gap-4">
-    <Button label="Button" rounded size="small" />
-    <Button label="Button" rounded />
-    <Button label="Button" rounded size="large" />
-    <Button label="Button" rounded class="p-button-xlg" />
-  </div>
+  <Button label="Button" rounded />
 </template>
         `,
       },
@@ -315,17 +306,12 @@ export const Text = {
   parameters: {
     docs: {
       description: {
-        story: 'Текстовый вариант кнопки (без заливки и границ).',
+        story: 'Текстовый вариант кнопки.',
       },
       source: {
         code: `
 <template>
-  <div class="flex items-center gap-4">
-    <Button label="Button" variant="text" size="small" />
-    <Button label="Button" variant="text" />
-    <Button label="Button" variant="text" size="large" />
-    <Button label="Button" variant="text" class="p-button-xlg" />
-  </div>
+  <Button label="Button" variant="text" />
 </template>
         `,
       },
@@ -341,17 +327,12 @@ export const IconOnly = {
   parameters: {
     docs: {
       description: {
-        story: 'Кнопки без текста, только с иконкой.',
+        story: 'Кнопка с иконкой без текста.',
       },
       source: {
         code: `
 <template>
-  <div class="flex items-center gap-4">
-    <Button icon="ti ti-check" size="small" />
-    <Button icon="ti ti-check" />
-    <Button icon="ti ti-check" size="large" />
-    <Button icon="ti ti-check" class="p-button-xlg" />
-  </div>
+  <Button icon="ti ti-check" />
 </template>
         `,
       },
@@ -362,31 +343,18 @@ export const IconOnly = {
 export const Badge = {
   render: TemplateBadge,
   args: {
+    label: 'Button',
     value: '8',
-    severity: 'danger',
+    badgeSeverity: 'danger',
   },
   parameters: {
     docs: {
       source: {
         code: `
 <template>
-  <div class="flex items-center gap-8">
-    <OverlayBadge value="8" severity="danger">
-      <Button label="Button" size="small" />
-    </OverlayBadge>
-
-    <OverlayBadge value="8" severity="danger">
-      <Button label="Button" />
-    </OverlayBadge>
-
-    <OverlayBadge value="8" severity="danger">
-      <Button label="Button" size="large" />
-    </OverlayBadge>
-
-    <OverlayBadge value="8" severity="danger">
-      <Button label="Button" class="p-button-xlg" />
-    </OverlayBadge>
-  </div>
+  <OverlayBadge value="8" severity="danger">
+    <Button label="Button" />
+  </OverlayBadge>
 </template>
         `,
       },
@@ -398,21 +366,17 @@ export const Sizes = {
   render: Template,
   args: {
     label: 'Button',
+    size: 'large',
   },
   parameters: {
     docs: {
       description: {
-        story: 'Все доступные размеры: small, base, large, xlg.',
+        story: 'Демонстрация размеров. Используйте Controls для смены size.',
       },
       source: {
         code: `
 <template>
-  <div class="flex items-center gap-4">
-    <Button label="Button" size="small" />
-    <Button label="Button" />
-    <Button label="Button" size="large" />
-    <Button label="Button" class="p-button-xlg" />
-  </div>
+  <Button label="Button" size="large" />
 </template>
         `,
       },
