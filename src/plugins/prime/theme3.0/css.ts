@@ -15,7 +15,6 @@ import messageCss from './components/css/message';
 import metergroupCss from './components/css/metergroup';
 import popoverCss from './components/css/popover';
 import progressbarCss from './components/css/progressbar';
-import ratingCss from './components/css/rating';
 import selectbuttonCss from './components/css/selectbutton';
 import stepperCss from './components/css/stepper';
 import tabsCss from './components/css/tabs';
@@ -42,7 +41,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${metergroupCss({ dt })}
    ${popoverCss({ dt })}
    ${progressbarCss({ dt })}
-   ${ratingCss({ dt })}
    ${selectbuttonCss({ dt })}
    ${stepperCss({ dt })}
    ${tabsCss({ dt })}
