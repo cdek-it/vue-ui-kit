@@ -8,7 +8,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `Всплывающее наложение, привязанное к целевому элементу. \n\n \`\`\`js \n import Popover from 'primevue/popover'; \n \`\`\` `,
+        component: `Всплывающий контейнер, привязанный к элементу. Отображает дополнительную информацию или интерактивный контент по клику или наведению. \n\n \`\`\`js \n import Popover from 'primevue/popover'; \n \`\`\` `,
       },
     },
     designToken: { disable: false },
@@ -88,7 +88,7 @@ const toggle = (event) => op.value.toggle(event);
       <p class="m-0 font-semibold">Заголовок</p>
       <p class="m-0 text-sm">Дополнительное описание или любой произвольный контент.</p>
       <div class="flex gap-2">
-        <Button label="Действие" size="small" />
+        <Button label="Действие" size="small" severity="secondary" />
         <Button label="Отмена" size="small" severity="contrast" />
       </div>
     </div>

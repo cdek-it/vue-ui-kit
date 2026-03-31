@@ -36,7 +36,7 @@ export const TemplateRichContent = (args) => ({
           <p class="m-0 font-semibold">Заголовок</p>
           <p class="m-0 text-sm">Дополнительное описание или любой произвольный контент внутри popover.</p>
           <div class="flex gap-2">
-            <Button label="Действие" size="small" />
+            <Button label="Действие" size="small" severity="secondary" />
             <Button label="Отмена" size="small" severity="contrast" />
           </div>
         </div>
