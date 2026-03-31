@@ -9,7 +9,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Chip представляет небольшой интерактивный элемент с текстом, иконкой и опциональной кнопкой удаления.',
+          'Интерактивный элемент с текстом, иконкой и опциональной кнопкой удаления.',
       },
     },
     designToken: { disable: false },
@@ -61,15 +61,7 @@ export const Default = {
     label: 'Chip',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Chip label="Chip" />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -80,15 +72,7 @@ export const WithIcon = {
     icon: 'ti ti-info-circle',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Chip label="Chip" icon="ti ti-info-circle" />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -99,15 +83,7 @@ export const Removable = {
     removable: true,
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Chip label="Chip" removable />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -119,15 +95,7 @@ export const RemovableWithIcon = {
     removable: true,
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Chip label="Chip" icon="ti ti-info-circle" removable />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -140,14 +108,6 @@ export const Disabled = {
     disabled: true,
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Chip label="Chip" icon="ti ti-info-circle" removable disabled />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
