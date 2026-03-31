@@ -28,7 +28,6 @@ import metergroup from './components/css/metergroup';
 import popover from './components/css/popover';
 import progressbar from './components/css/progressbar';
 import progressspinner from './components/css/progressspinner';
-import rating from './components/css/rating';
 import selectbutton from './components/css/selectbutton';
 import stepper from './components/css/stepper';
 import tabs from './components/css/tabs';
