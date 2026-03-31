@@ -44,23 +44,23 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Размеры диалога */
-.p-dialog {
-  width: ${dt('sizing.80x')};
+.p-dialog.p-component {
+  width: ${dt('overlay.width')};
 }
 
 /* Размер SM (small) */
-.p-dialog-sm {
-  width: ${dt('sizing.100x')};
+.p-dialog.p-component.p-dialog-sm {
+  width: ${dt('overlay.sm.width')};
 }
 
 /* Размер LG (large) */
-.p-dialog-lg {
-  width: ${dt('sizing.120x')};
+.p-dialog.p-component.p-dialog-lg {
+  width: ${dt('overlay.lg.width')};
 }
 
 /* Размер XLG (extra large) */
-.p-dialog-xlg {
-  width: ${dt('sizing.128x')};
+.p-dialog.p-component.p-dialog-xlg {
+  width: ${dt('overlay.xlg.width')};
 }
 `;
 

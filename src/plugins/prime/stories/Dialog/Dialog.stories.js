@@ -9,7 +9,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Dialog (модальное окно) — это контейнер, который отображается поверх основного содержимого страницы.',
+          'Контейнер, который отображается поверх основного содержимого страницы.',
       },
     },
     designToken: { disable: false },
@@ -40,6 +40,22 @@ const meta = {
       control: 'boolean',
       description: 'Отображать ли заголовок',
     },
+    size: {
+      control: 'select',
+      options: ['small', 'base', 'large', 'xlarge'],
+      mapping: {
+        small: 'p-dialog-sm',
+        base: null,
+        large: 'p-dialog-lg',
+        xlarge: 'p-dialog-xlg',
+      },
+      description: 'Размер диалога',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: 'base' },
+        type: { summary: "'small' | 'base' | 'large' | 'xlarge'" },
+      },
+    },
   },
 };
 
@@ -63,8 +79,8 @@ export const Basic = {
       Ваш контент здесь...
     </p>
     <template #footer>
-      <Button label="Cancel" variant="text" @click="visible = false" />
-      <Button label="Save" severity="tertiary" @click="visible = false" />
+      <Button label="Нет" variant="text" @click="visible = false" />
+      <Button label="Продолжить" severity="contrast" @click="visible = false" />
     </template>
   </Dialog>
 </template>
@@ -79,64 +95,24 @@ const visible = ref(false);
   },
 };
 
-export const Small = {
+export const Size = {
   render: Template,
   args: {
-    header: 'Small Dialog',
+    header: 'Dialog Size Demo',
     modal: true,
-    class: 'p-dialog-sm',
+    size: 'large',
   },
   parameters: {
     docs: {
-      source: {
-        code: `
-<template>
-  <Dialog v-model:visible="visible" header="Small Dialog" modal class="p-dialog-sm">
-    <p>Это маленькое окно (min-width 320px, max-width 384px).</p>
-  </Dialog>
-</template>
-        `,
+      description: {
+        story:
+          'Используйте контрол size для переключения между размерами: small, base, large, xlarge.',
       },
-    },
-  },
-};
-
-export const Large = {
-  render: Template,
-  args: {
-    header: 'Large Dialog',
-    modal: true,
-    class: 'p-dialog-lg',
-  },
-  parameters: {
-    docs: {
       source: {
         code: `
 <template>
-  <Dialog v-model:visible="visible" header="Large Dialog" modal class="p-dialog-lg">
-    <p>Это большое окно (min-width 480px, max-width 928px).</p>
-  </Dialog>
-</template>
-        `,
-      },
-    },
-  },
-};
-
-export const ExtraLarge = {
-  render: Template,
-  args: {
-    header: 'Extra Large Dialog',
-    modal: true,
-    class: 'p-dialog-xlg',
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Dialog v-model:visible="visible" header="Extra Large Dialog" modal class="p-dialog-xlg">
-    <p>Это очень большое окно (min-width 928px, max-width 90vw).</p>
+  <Dialog v-model:visible="visible" header="Dialog Size Demo" size="large" modal>
+    <p>Это окно демонстрации размеров.</p>
   </Dialog>
 </template>
         `,

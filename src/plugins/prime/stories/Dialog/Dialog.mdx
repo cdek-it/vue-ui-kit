@@ -19,22 +19,13 @@ import Dialog from 'primevue/dialog';
 #### Параметры компонента
 <Controls of={DialogStories.Basic} />
 
-### Sizes
-Различные предустановленные размеры окна: `p-dialog-sm` (Small), `p-dialog-lg` (Large), `p-dialog-xlg` (Extra Large).
+### Size
+Различные предустановленные размеры окна: `small`, `base`, `large`, `xlarge`.
+<Canvas of={DialogStories.Size} />
 
-#### Small
-<Canvas of={DialogStories.Small} />
+### No Modal
+Отключение модального режима позволяет взаимодействовать с содержимым страницы, пока диалог открыт.
 
-#### Large
-<Canvas of={DialogStories.Large} />
-
-#### Extra Large
-<Canvas of={DialogStories.ExtraLarge} />
-
-### Modal vs Non-Modal
-По умолчанию окно является модальным (`modal: true`), блокируя взаимодействие с фоном.
-
-#### No Modal
 <Canvas of={DialogStories.NoModal} />
 
 ### Show Header

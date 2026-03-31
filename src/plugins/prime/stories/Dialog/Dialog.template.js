@@ -15,6 +15,7 @@ export const Template = (args) => ({
   <Dialog 
     v-model:visible="visible" 
     v-bind="args"
+    :class="args.size"
     :focusOnShow="false"
     :closeButtonProps="{ 
       autofocus: false, 
@@ -26,8 +27,8 @@ export const Template = (args) => ({
       Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
     </p>
     <template #footer v-if="args.header !== undefined || args.showHeader !== false">
-      <Button label="Cancel" variant="text" @click="visible = false" />
-      <Button label="Save" severity="tertiary" @click="visible = false" />
+      <Button label="Нет" variant="text" @click="visible = false" />
+      <Button label="Продолжить" severity="secondary" @click="visible = false" />
     </template>
     <template #footer v-else>
       <div class="flex justify-end">
