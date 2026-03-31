@@ -172,13 +172,6 @@ export const ButtonDefault = {
         story:
           'Базовый пример компонента. Используйте Controls для интерактивного изменения пропсов.',
       },
-      source: {
-        code: `
-<template>
-  <Button label="Button" />
-</template>
-        `,
-      },
     },
     designToken: { disable: false },
   },
@@ -197,13 +190,6 @@ export const Icons = {
       description: {
         story: 'Кнопка с иконкой.',
       },
-      source: {
-        code: `
-<template>
-  <Button label="Button" icon="ti ti-check" />
-</template>
-        `,
-      },
     },
   },
 };
@@ -219,13 +205,6 @@ export const Loading = {
       description: {
         story: 'Состояние загрузки.',
       },
-      source: {
-        code: `
-<template>
-  <Button label="Button" loading />
-</template>
-        `,
-      },
     },
   },
 };
@@ -240,13 +219,6 @@ export const Link = {
     docs: {
       description: {
         story: 'Кнопка в виде ссылки.',
-      },
-      source: {
-        code: `
-<template>
-  <Button label="Button" variant="link" />
-</template>
-        `,
       },
     },
   },
@@ -264,13 +236,6 @@ export const Severity = {
         story:
           'Кнопка с определённым семантическим вариантом. Используйте Controls для смены severity.',
       },
-      source: {
-        code: `
-<template>
-  <Button label="Button" severity="success" />
-</template>
-        `,
-      },
     },
   },
 };
@@ -285,13 +250,6 @@ export const Rounded = {
     docs: {
       description: {
         story: 'Кнопка со скруглением.',
-      },
-      source: {
-        code: `
-<template>
-  <Button label="Button" rounded />
-</template>
-        `,
       },
     },
   },
@@ -308,13 +266,6 @@ export const Text = {
       description: {
         story: 'Текстовый вариант кнопки.',
       },
-      source: {
-        code: `
-<template>
-  <Button label="Button" variant="text" />
-</template>
-        `,
-      },
     },
   },
 };
@@ -329,13 +280,6 @@ export const IconOnly = {
       description: {
         story: 'Кнопка с иконкой без текста.',
       },
-      source: {
-        code: `
-<template>
-  <Button icon="ti ti-check" />
-</template>
-        `,
-      },
     },
   },
 };
@@ -348,17 +292,7 @@ export const Badge = {
     badgeSeverity: 'danger',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <OverlayBadge value="8" severity="danger">
-    <Button label="Button" />
-  </OverlayBadge>
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -372,13 +306,6 @@ export const Sizes = {
     docs: {
       description: {
         story: 'Демонстрация размеров. Используйте Controls для смены size.',
-      },
-      source: {
-        code: `
-<template>
-  <Button label="Button" size="large" />
-</template>
-        `,
       },
     },
   },
