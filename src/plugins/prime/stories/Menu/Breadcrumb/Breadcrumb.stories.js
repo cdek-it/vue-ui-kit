@@ -8,8 +8,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component:
-          'Breadcrumb (хлебные крошки) — компонент навигации, показывающий путь к текущей странице. [PrimeVue Breadcrumb](https://primevue.org/breadcrumb), [Figma Design](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=734-7859)',
+        component: 'Компонент навигации, показывающий путь к текущей странице.',
       },
     },
     designToken: { disable: false },

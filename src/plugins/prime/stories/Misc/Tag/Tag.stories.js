@@ -8,7 +8,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `Tag — это компонент для цветового выделения и классификации элементов интерфейса. \n\n ### Import \n \`\`\`js \n import Tag from 'primevue/tag'; \n \`\`\` `,
+        component: `Метка для категоризации и маркировки контента. Не является интерактивным элементом управления — используется только для отображения. \n \`\`\`js \n import Tag from 'primevue/tag'; \n \`\`\` `,
       },
     },
     designToken: { disable: false },
@@ -68,15 +68,7 @@ export const Default = {
     severity: 'primary',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Tag value="Tag" severity="primary" />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -85,22 +77,7 @@ export const Default = {
 export const Severities = {
   render: TemplateSeverities,
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <div class="flex flex-wrap items-center gap-4">
-    <Tag value="Primary" severity="primary" />
-    <Tag value="Secondary" severity="secondary" />
-    <Tag value="Success" severity="success" />
-    <Tag value="Info" severity="info" />
-    <Tag value="Warn" severity="warn" />
-    <Tag value="Danger" severity="danger" />
-  </div>
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -112,15 +89,7 @@ export const Rounded = {
     rounded: true,
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Tag value="Rounded" severity="success" :rounded="true" />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -132,14 +101,6 @@ export const WithIcon = {
     icon: 'ti ti-check',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Tag value="Verified" severity="info" icon="ti ti-check" />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };

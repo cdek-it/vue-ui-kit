@@ -12,7 +12,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `ConfirmDialog используется для подтверждения действий пользователя. Требует подключения \`ConfirmationService\`. \n\n \n \`\`\`js \n import ConfirmDialog from 'primevue/confirmdialog'; \n import { useConfirm } from 'primevue/useconfirm'; \n \`\`\` `,
+        component: `Компонент используется для подтверждения действий пользователя. Требует подключения \`ConfirmationService\`. \n\n \n \`\`\`js \n import ConfirmDialog from 'primevue/confirmdialog'; \n import { useConfirm } from 'primevue/useconfirm'; \n \`\`\` `,
       },
     },
     designToken: { disable: false },
@@ -121,7 +121,7 @@ const show = () => {
         <p>{{ message.message }}</p>
       </div>
       <div class="p-dialog-footer">
-        <Button :label="message.rejectLabel" severity="secondary" variant="text" @click="rejectCallback" />
+        <Button :label="message.rejectLabel" variant="text" @click="rejectCallback" />
         <Button :label="message.acceptLabel" @click="acceptCallback" />
       </div>
     </template>

@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Avatar представляет пользователя или сущность. Может содержать текст, иконку или изображение. [PrimeVue Avatar](https://primevue.org/avatar)',
+          'Визуальное представление пользователя или сущности. Может содержать текст, иконку или изображение.',
       },
     },
     designToken: { disable: false },
@@ -85,15 +85,7 @@ export const AvatarDefault = {
     label: 'A',
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Avatar label="A" />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 

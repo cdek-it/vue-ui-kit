@@ -97,7 +97,7 @@ export const Template = (args) => ({
             <p>{{ message.message }}</p>
           </div>
           <div class="p-dialog-footer">
-            <Button :label="message.rejectLabel" severity="secondary" variant="text" @click="rejectCallback" />
+            <Button :label="message.rejectLabel" variant="text" @click="rejectCallback" />
             <Button :label="message.acceptLabel" @click="acceptCallback" />
           </div>
         </template>
@@ -146,7 +146,7 @@ export const TemplateSeverities = () => ({
             <p>{{ message.message }}</p>
           </div>
           <div class="p-dialog-footer">
-            <Button :label="message.rejectLabel" severity="secondary" variant="text" @click="rejectCallback" />
+            <Button :label="message.rejectLabel" variant="text" @click="rejectCallback" />
             <Button :label="message.acceptLabel" :severity="message.acceptProps?.severity" @click="acceptCallback" />
           </div>
         </template>
@@ -157,7 +157,6 @@ export const TemplateSeverities = () => ({
           :key="severity.type"
           :label="'Показать: ' + severity.label"
           :severity="severity.buttonSeverity"
-          variant="outlined"
           @click="showConfirm(severity)"
         />
       </div>
@@ -203,7 +202,7 @@ export const TemplateSizes = () => ({
             <p>{{ message.message }}</p>
           </div>
           <div class="p-dialog-footer">
-            <Button :label="message.rejectLabel" severity="secondary" variant="text" @click="rejectCallback" />
+            <Button :label="message.rejectLabel" variant="text" @click="rejectCallback" />
             <Button :label="message.acceptLabel" @click="acceptCallback" />
           </div>
         </template>

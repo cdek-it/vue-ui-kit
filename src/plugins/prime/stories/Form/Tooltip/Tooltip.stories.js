@@ -13,7 +13,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `Tooltip — это компонент, который отображает информационный текст при наведении на элемент. \n\n \`\`\`js \n import Tooltip from 'primevue/tooltip'; \n \`\`\` `,
+        component: `Компонент отображает информационный блок при наведении на элемент. \n\n \`\`\`js \n import Tooltip from 'primevue/tooltip'; \n \`\`\` `,
       },
     },
     designToken: { disable: false },

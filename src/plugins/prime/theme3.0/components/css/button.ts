@@ -17,8 +17,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-size: ${dt('button.extend.iconSize.lg')};
 }
 
-.p-button-xlg.p-button .p-button-icon,
-.p-button-link.p-button-xlg .p-button-icon {
+.p-button.p-component:is(.p-button-xlg, .p-button-xlarge) .p-button-icon,
+.p-button-link.p-button:is(.p-button-xlg, .p-button-xlarge) .p-button-icon {
   font-size: ${dt('button.extend.iconSize.lg')};
 }
 
@@ -53,7 +53,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Отступы для link кнопок */
-.p-button-link.p-button:is(.p-button, .p-button-xlg) {
+.p-button-link.p-button.p-component:is(.p-button, .p-button-xlg, .p-button-xlarge) {
   padding: ${dt('button.extend.extLink.paddingY')} ${dt(
   'button.extend.extLink.paddingX'
 )};
@@ -64,7 +64,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Размер шрифта для link кнопки xlg */
-.p-button-link.p-button.p-button-xlg {
+.p-button-link.p-button.p-component:is(.p-button-xlg, .p-button-xlarge) {
   font-size: ${dt('fonts.fontSize.600')};
 }
 
@@ -74,7 +74,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-button.p-button-link:not(:disabled):hover .p-button-label {
-  text-decoration: none;
+text-decoration: none;
 }
 
 /* Размеры для icon-only link кнопок */
@@ -94,37 +94,44 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Высота строки для кнопок */
-.p-button-sm {
+.p-button.p-component.p-button-sm {
   line-height: ${dt('fonts.lineHeight.250')};
 }
 
-.p-button:is(.p-button-lg, .p-button-xlg) {
+.p-button.p-component:is(.p-button-lg, .p-button-xlg, .p-button-xlarge) {
   line-height: ${dt('fonts.lineHeight.550')};
 }
 
 /* Скругление углов для кнопок large и xlg (кроме rounded) */
-.p-button:is(.p-button-lg, .p-button-xlg):not(.p-button-rounded) {
+.p-button.p-component:is(.p-button-lg, .p-button-xlg, .p-button-xlarge):not(.p-button-rounded) {
   border-radius: ${dt('button.extend.extLg.borderRadius')};
 }
 
-.p-button-xlg.p-button:not(.p-button-rounded) {
+.p-button.p-component:is(.p-button-xlg, .p-button-xlarge):not(.p-button-rounded) {
   border-radius: ${dt('button.extend.extXlg.borderRadius')};
 }
 
+/* Отступы и размер шрифта для sm кнопки */
+.p-button.p-component.p-button-sm:not(.p-button-icon-only):not(.p-button-link) {
+  padding: ${dt('button.root.sm.paddingY')} ${dt('button.root.sm.paddingX')};
+  font-size: ${dt('button.root.sm.fontSize')};
+}
+
 /* Отступы и размер шрифта для lg кнопки */
-.p-button-lg.p-button:not(.p-button-icon-only):not(.p-button-link) {
+.p-button.p-component.p-button-lg:not(.p-button-icon-only):not(.p-button-link) {
   padding: ${dt('button.root.lg.paddingY')} ${dt('button.root.lg.paddingX')};
   font-size: ${dt('button.root.lg.fontSize')};
-  height: ${dt('controls.iconOnly.850')};
+  height: ${dt('button.extend.extLg.height')};
 }
 
 /* Отступы и размер шрифта для xlg кнопки */
-.p-button-xlg.p-button:not(.p-button-icon-only):not(.p-button-link) {
+.p-button.p-component:is(.p-button-xlg, .p-button-xlarge):not(.p-button-icon-only):not(.p-button-link) {
   padding: ${dt('button.extend.extXlg.paddingY')} ${dt(
   'button.extend.extXlg.paddingX'
 )};
   font-size: ${dt('fonts.fontSize.500')};
-  height: ${dt('controls.iconOnly.900')};
+  height: ${dt('button.extend.extXlg.height')};
+  gap: ${dt('button.extend.extXlg.gap')};
 }
 
 /* Размеры для icon-only кнопок */
@@ -133,17 +140,17 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   height: ${dt('button.root.iconOnlyWidth')};
 }
 
-.p-button-sm.p-button-icon-only {
+.p-button.p-component.p-button-sm.p-button-icon-only {
   width: ${dt('button.root.sm.iconOnlyWidth')};
   height: ${dt('button.root.sm.iconOnlyWidth')};
 }
 
-.p-button-lg.p-button-icon-only {
+.p-button.p-component.p-button-lg.p-button-icon-only {
   width: ${dt('button.root.lg.iconOnlyWidth')};
   height: ${dt('button.root.lg.iconOnlyWidth')};
 }
 
-.p-button-xlg.p-button-icon-only {
+.p-button.p-component:is(.p-button-xlg, .p-button-xlarge).p-button-icon-only {
   width: ${dt('button.extend.extXlg.iconOnlyWidth')};
   height: ${dt('button.extend.extXlg.iconOnlyWidth')};
 }

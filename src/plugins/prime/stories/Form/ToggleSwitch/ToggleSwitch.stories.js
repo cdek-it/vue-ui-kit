@@ -15,9 +15,10 @@ const meta = {
     designTokens: { prefix: '--p-toggleswitch' },
   },
   argTypes: {
-    checked: {
+    modelValue: {
       control: 'boolean',
       description: 'Состояние переключателя',
+      name: 'checked',
       table: {
         category: 'Props',
         type: { summary: 'boolean' },
@@ -50,79 +51,47 @@ export default meta;
 export const Default = {
   render: Template,
   args: {
-    checked: false,
+    modelValue: false,
     invalid: false,
     disabled: false,
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <ToggleSwitch v-model="value" />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
 export const Checked = {
   render: Template,
   args: {
-    checked: true,
+    modelValue: true,
     invalid: false,
     disabled: false,
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <ToggleSwitch v-model="value" />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
 export const Invalid = {
   render: Template,
   args: {
-    checked: false,
+    modelValue: false,
     invalid: true,
     disabled: false,
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <ToggleSwitch v-model="value" invalid />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
 export const Disabled = {
   render: Template,
   args: {
-    checked: false,
+    modelValue: false,
     invalid: false,
     disabled: true,
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <ToggleSwitch v-model="value" disabled />
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };

@@ -12,7 +12,7 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `ScrollPanel — компонент с кастомной полосой прокрутки. \n\n \`\`\`js \n import ScrollPanel from 'primevue/scrollpanel'; \n \`\`\` `,
+        component: 'Компонент с кастомной полосой прокрутки.',
       },
     },
     designToken: { disable: false },
@@ -42,17 +42,7 @@ export const Default = {
     step: 5,
   },
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <ScrollPanel style="width: 100%; height: 200px">
-    <p>Ваш контент здесь...</p>
-  </ScrollPanel>
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
@@ -61,33 +51,13 @@ export const Default = {
 export const Horizontal = {
   render: TemplateHorizontal,
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <ScrollPanel style="width: 100%; height: 80px">
-    <p style="white-space: nowrap">Длинная строка без переносов...</p>
-  </ScrollPanel>
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
 export const Both = {
   render: TemplateBoth,
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <ScrollPanel style="width: 100%; height: 200px">
-    <p style="white-space: nowrap">Контент шире и выше контейнера...</p>
-  </ScrollPanel>
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };

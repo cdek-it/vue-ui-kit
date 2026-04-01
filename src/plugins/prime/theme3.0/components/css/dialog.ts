@@ -44,8 +44,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Размеры диалога */
-.p-dialog {
-  width: ${dt('sizing.80x')};
+.p-dialog.p-component {
+  width: ${dt('overlay.width')};
 }
 
 /* Размер SM (small) */

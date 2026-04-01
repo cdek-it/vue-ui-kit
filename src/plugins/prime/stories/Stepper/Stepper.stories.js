@@ -14,16 +14,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `Пошаговый навигационный компонент для отображения прогресса через последовательность шагов.
-
-\`\`\`js
-import Stepper from 'primevue/stepper';
-import StepList from 'primevue/steplist';
-import Step from 'primevue/step';
-import StepPanels from 'primevue/steppanels';
-import StepPanel from 'primevue/steppanel';
-import StepItem from 'primevue/stepitem';
-\`\`\``,
+        component:
+          'Пошаговый навигационный компонент для отображения прогресса через последовательность шагов.',
       },
     },
     designToken: { disable: false },
@@ -50,48 +42,7 @@ export default meta;
 export const Horizontal = {
   render: HorizontalTemplate,
   parameters: {
-    docs: {
-      source: {
-        code: `
-<template>
-  <Stepper v-model:value="activeStep">
-    <StepList>
-      <Step value="1">Stepper<div class="caption-secondary">caption</div></Step>
-      <Step value="2">Stepper<div class="caption-secondary">caption</div></Step>
-      <Step value="3">Stepper<div class="caption-secondary">caption</div></Step>
-    </StepList>
-    <StepPanels>
-      <StepPanel value="1">
-        <div class="flex flex-col gap-4">
-          <div>Step 1 Content</div>
-          <div class="flex justify-start">
-            <Button label="Next" severity="secondary" @click="activeStep = '2'" />
-          </div>
-        </div>
-      </StepPanel>
-      <StepPanel value="2">
-        <div class="flex flex-col gap-4">
-          <div>Step 2 Content</div>
-          <div class="flex justify-between">
-            <Button label="Back" severity="contrast" @click="activeStep = '1'" />
-            <Button label="Next" severity="secondary" @click="activeStep = '3'" />
-          </div>
-        </div>
-      </StepPanel>
-      <StepPanel value="3">
-        <div class="flex flex-col gap-4">
-          <div>Step 3 Content</div>
-          <div class="flex justify-start">
-            <Button label="Back" severity="contrast" @click="activeStep = '2'" />
-          </div>
-        </div>
-      </StepPanel>
-    </StepPanels>
-  </Stepper>
-</template>
-        `,
-      },
-    },
+    docs: {},
   },
 };
 
