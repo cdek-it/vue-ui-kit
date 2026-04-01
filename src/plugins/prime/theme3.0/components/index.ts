@@ -1584,7 +1584,7 @@ export default {
       activeColor: '{form.floatLabelActiveColor}',
       invalidColor: '{form.floatLabelInvalidColor}',
       transitionDuration: '{form.transitionDuration}',
-      positionX: '{form.padding.400}',
+      positionX: '{form.padding.300}',
       positionY: '{form.padding.300}',
       fontWeight: '{fonts.fontWeight.regular}',
       fontSize: '{fonts.fontSize.300}',
