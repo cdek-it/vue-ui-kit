@@ -1,16 +1,9 @@
 const css = ({ dt }: { dt: (token: string) => string }) => `
-.p-datepicker.p-datepicker,
-.p-datepicker-panel.p-datepicker-panel,
-.p-datepicker-calendar-container.p-datepicker-calendar-container,
-.p-datepicker-calendar.p-datepicker-calendar {
-  width: fit-content;
-  min-width: max-content;
-  max-width: none;
-}
 
 .p-datepicker.p-datepicker {
   display: inline-flex;
   position: relative;
+  max-width: fit-content;
 }
 
 .p-datepicker-panel.p-datepicker-panel {
@@ -18,24 +11,9 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   overflow: hidden;
 }
 
-.p-datepicker-calendar-container.p-datepicker-calendar-container {
-  display: block;
-  width: ${dt('sizing.max')};
-}
-
-.p-datepicker-calendar.p-datepicker-calendar {
-  display: flex;
-  flex-direction: column;
-  width: ${dt('sizing.max')};
-}
-
 .p-datepicker-header.p-datepicker-header {
   gap: ${dt('datepicker.title.gap')};
   padding: ${dt('datepicker.header.padding')};
-}
-
-.p-datepicker-month-select {
-  min-width: ${dt('datepicker.extend.extSelectMonth.minWidth')};
 }
 
 .p-datepicker-year-select {
@@ -57,17 +35,17 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 )};
 }
 
-.p-datepicker-today.p-datepicker-today:hover > .p-datepicker-day:not(.p-datepicker-day-selected) {
+.p-datepicker-today.p-datepicker-today:hover > .p-datepicker-day:not(.p-datepicker-day-selected),
+.p-datepicker-day-preview.p-datepicker-day-preview:not(.p-datepicker-day-selected) {
   background: ${dt('datepicker.extend.extToday.hoverBackground')};
 }
 
 .p-datepicker-day-preview.p-datepicker-day-preview:not(.p-datepicker-day-selected) {
-  background: ${dt('datepicker.extend.extToday.hoverBackground')};
   color: ${dt('datepicker.date.color')};
 }
 
 .p-datepicker-day-view.p-datepicker-day-view {
-  width: auto;
+  width: stretch;
   border-collapse: separate;
   table-layout: auto;
   margin: ${dt('datepicker.dayView.margin')};
@@ -98,7 +76,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-datepicker.p-datepicker:has(.p-datepicker-clear-icon) .p-datepicker-clear-icon {
-  position: absolute; 
+  position: absolute;
   right: ${dt('datepicker.dropdown.width')};
   cursor: pointer;
   z-index: 1;
@@ -107,6 +85,14 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-datepicker.p-datepicker:not(.p-inputwrapper-filled) .p-datepicker-clear-icon,
 .p-datepicker.p-datepicker:has(.p-datepicker-input:placeholder-shown) .p-datepicker-clear-icon {
   display: none;
+}
+
+:is(.p-datepicker-month-select, .p-datepicker-year-select) .p-select-dropdown {
+  color: ${dt('datepicker.inputIcon.color')};
+}
+
+:is(.p-datepicker-month-select, .p-datepicker-year-select) .p-select-label {
+  width: ${dt('sizing.24x')};
 }
 
 `;

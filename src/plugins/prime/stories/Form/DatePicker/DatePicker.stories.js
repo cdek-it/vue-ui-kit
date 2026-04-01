@@ -12,6 +12,57 @@ import {
 
 export default {
   title: 'Prime/Form/DatePicker',
+  argTypes: {
+    size: {
+      control: 'select',
+      options: ['small', 'medium', 'large', 'xlarge'],
+      description: 'Размер поля ввода',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: 'medium' },
+        type: { summary: "'small' | 'medium' | 'large' | 'xlarge'" },
+      },
+    },
+    showClear: {
+      control: 'boolean',
+      description: 'Отображает иконку очистки содержимого поля',
+      table: { category: 'Custom' },
+    },
+    invalid: {
+      control: 'boolean',
+      description: 'Флаг невалидности поля (меняет цвет границ)',
+      table: { category: 'Props' },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает возможность ввода в поле',
+      table: { category: 'Props' },
+    },
+    readonly: {
+      control: 'boolean',
+      description: 'Переводит поле в режим [только чтение]',
+      table: { category: 'Props' },
+    },
+    placeholder: {
+      control: 'text',
+      description: 'Текст подсказки внутри поля',
+      table: { category: 'Props' },
+    },
+    label: {
+      control: 'text',
+      description: 'Текст плавающего лейбла',
+      table: { category: 'Custom' },
+    },
+  },
+  args: {
+    size: 'medium',
+    placeholder: '',
+    invalid: false,
+    disabled: false,
+    readonly: false,
+    showClear: true,
+    label: 'Выберите дату',
+  },
   parameters: {
     docs: {
       description: {
@@ -55,6 +106,13 @@ export const YearPicker = {
 
 export const FloatLabel = {
   render: FloatLabelTemplate.bind({}),
+  args: {
+    size: 'large',
+    placeholder: undefined,
+  },
+  argTypes: {
+    size: { table: { disable: true } },
+  },
 };
 
 export const ClearIcon = {

@@ -1,4 +1,5 @@
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
+import { usePrimeVue } from 'primevue/config';
 import DatePicker from 'primevue/datepicker';
 import Select from 'primevue/select';
 import Button from 'primevue/button';
@@ -46,7 +47,24 @@ const formatDateDigits = (digits) => {
 };
 
 const useDateAutoFormat = (dpRef) => {
+  const isInvalid = ref(false);
   let inputEl = null;
+
+  const validateDate = (formatted) => {
+    if (formatted.length < 10) {
+      isInvalid.value = false;
+      return;
+    }
+    const [dd, mm, yyyy] = formatted.split('.');
+    const day = parseInt(dd, 10);
+    const month = parseInt(mm, 10);
+    const year = parseInt(yyyy, 10);
+    const date = new Date(year, month - 1, day);
+    isInvalid.value =
+      date.getFullYear() !== year ||
+      date.getMonth() !== month - 1 ||
+      date.getDate() !== day;
+  };
 
   const onInput = (e) => {
     const input = e.target;
@@ -55,6 +73,10 @@ const useDateAutoFormat = (dpRef) => {
     if (input.value !== formatted) {
       input.value = formatted;
       input.setSelectionRange(formatted.length, formatted.length);
+    }
+    validateDate(formatted);
+    if (isInvalid.value) {
+      e.stopImmediatePropagation();
     }
   };
 
@@ -72,6 +94,7 @@ const useDateAutoFormat = (dpRef) => {
       const formatted = formatDateDigits(raw);
       input.value = formatted;
       input.setSelectionRange(formatted.length, formatted.length);
+      validateDate(formatted);
     }
   };
 
@@ -89,6 +112,8 @@ const useDateAutoFormat = (dpRef) => {
       inputEl.removeEventListener('keydown', onKeydown, true);
     }
   });
+
+  return { isInvalid };
 };
 
 const sharedSetup = (args) => {
@@ -122,8 +147,8 @@ export const BasicTemplate = (args) => ({
   components: { DatePicker, Select, Button },
   setup() {
     const context = sharedSetup(args);
-    useDateAutoFormat(context.dp);
-    return context;
+    const { isInvalid } = useDateAutoFormat(context.dp);
+    return { ...context, isInvalid };
   },
   template: `
 <DatePicker
@@ -132,7 +157,11 @@ export const BasicTemplate = (args) => ({
   v-model="value"
   showIcon
   iconDisplay="input"
+  :invalid="isInvalid || args.invalid"
+  :panelStyle="{ minWidth: 'fit-content' }"
   v-bind="args"
+  :inputClass="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
+  :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
   :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
 >
   <template #prevbutton="{ actionCallback }">
@@ -190,12 +219,15 @@ export const RangeTemplate = (args) => ({
       return d >= min && d <= max;
     };
 
+    const { isInvalid } = useDateAutoFormat(context.dp);
+
     return {
       ...context,
       dates,
       onDateMouseEnter,
       hoveredDate,
       isDayInRangePreview,
+      isInvalid,
     };
   },
   template: `
@@ -207,7 +239,11 @@ export const RangeTemplate = (args) => ({
     selectionMode="range"
     showIcon
     iconDisplay="input"
+    :invalid="isInvalid || args.invalid"
+    :panelStyle="{ minWidth: 'fit-content' }"
     v-bind="args"
+    :inputClass="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
+    :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
     :pt="{
       title: { onVnodeMounted: (vnode) => vnode.el?.remove() },
       day: ({ context }) => ({
@@ -247,7 +283,7 @@ export const TimeTemplate = (args) => ({
   components: { DatePicker, Select, Button, InputNumber },
   setup() {
     const context = sharedSetup(args);
-    useDateAutoFormat(context.dp);
+    const { isInvalid } = useDateAutoFormat(context.dp);
     const dateValue = ref(new Date());
 
     const hours = computed({
@@ -281,7 +317,7 @@ export const TimeTemplate = (args) => ({
       },
     });
 
-    return { ...context, modelProxy, hours, minutes };
+    return { ...context, modelProxy, hours, minutes, isInvalid };
   },
   template: `
 <DatePicker
@@ -292,8 +328,12 @@ export const TimeTemplate = (args) => ({
   hourFormat="24"
   showIcon
   iconDisplay="input"
+  :invalid="isInvalid || args.invalid"
+  :panelStyle="{ minWidth: 'fit-content' }"
   v-bind="args"
-  :pt="{ 
+  :inputClass="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
+  :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+  :pt="{
     title: { onVnodeMounted: (vnode) => vnode.el?.remove() },
     timePicker: { style: { display: 'none' } }
   }"
@@ -324,13 +364,13 @@ export const TimeTemplate = (args) => ({
   <template #footer>
     <div class="grid grid-cols-[auto_max-content_auto] gap-x-4 gap-y-2 p-4 border-t border-surface-200 justify-center items-center">
       <span class="text-sm font-medium text-center col-start-1 row-start-1">Часы</span>
-      <InputNumber 
-        v-model="hours" 
-        :min="0" 
-        :max="23" 
-        class="w-fit col-start-1 row-start-2" 
-        inputClass="text-center" 
-        inputStyle="width: calc(2ch + 2.5rem)" 
+      <InputNumber
+        v-model="hours"
+        :min="0"
+        :max="23"
+        class="w-fit col-start-1 row-start-2"
+        inputClass="text-center"
+        inputStyle="width: calc(2ch + 2.5rem)"
         :pt="{
           root: { 'data-p': 'large' },
           input: {
@@ -339,16 +379,16 @@ export const TimeTemplate = (args) => ({
           }
         }"
       />
-      
+
       <span class="text-xl font-bold col-start-2 row-start-2">:</span>
-      
+
       <span class="text-sm font-medium text-center col-start-3 row-start-1">Минуты</span>
-      <InputNumber 
-        v-model="minutes" 
-        :min="0" 
-        :max="59" 
-        class="w-fit col-start-3 row-start-2" 
-        inputClass="text-center" 
+      <InputNumber
+        v-model="minutes"
+        :min="0"
+        :max="59"
+        class="w-fit col-start-3 row-start-2"
+        inputClass="text-center"
         inputStyle="width: calc(2ch + 2.5rem)"
         :pt="{
           root: { 'data-p': 'large' },
@@ -356,7 +396,7 @@ export const TimeTemplate = (args) => ({
             'data-p': 'large',
             root: { 'data-p': 'large' }
           }
-        }" 
+        }"
       />
     </div>
   </template>
@@ -368,8 +408,11 @@ export const ButtonBarTemplate = (args) => ({
   components: { DatePicker, Select, Button },
   setup() {
     const context = sharedSetup(args);
-    useDateAutoFormat(context.dp);
-    return context;
+    const { isInvalid } = useDateAutoFormat(context.dp);
+    const primevue = usePrimeVue();
+    primevue.config.locale.today = 'Сегодня';
+    primevue.config.locale.clear = 'Очистить';
+    return { ...context, isInvalid };
   },
   template: `
 <DatePicker
@@ -379,9 +422,13 @@ export const ButtonBarTemplate = (args) => ({
   showButtonBar
   showIcon
   iconDisplay="input"
-  todayButtonLabel="Сегодня"
-  clearButtonLabel="Очистить"
+  :invalid="isInvalid || args.invalid"
+  :panelStyle="{ minWidth: 'fit-content' }"
   v-bind="args"
+  :inputClass="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
+  :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+  :todayButtonProps="{ label: 'Сегодня' }"
+  :clearButtonProps="{ label: 'Очистить' }"
   :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
 >
   <template #prevbutton="{ actionCallback }">
@@ -419,6 +466,9 @@ export const InlineTemplate = (args) => ({
   v-model="value"
   inline
   v-bind="args"
+  :invalid="args.invalid"
+  :inputClass="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
+  :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
   :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
 >
   <template #prevbutton="{ actionCallback }">
@@ -447,7 +497,8 @@ export const InlineTemplate = (args) => ({
 export const MonthPickerTemplate = (args) => ({
   components: { Select },
   setup() {
-    return sharedSetup(args);
+    const context = sharedSetup(args);
+    return { ...context };
   },
   template: `
 <Select
@@ -457,6 +508,8 @@ export const MonthPickerTemplate = (args) => ({
   optionValue="value"
   placeholder="Выберите месяц"
   v-bind="args"
+  :class="{ 'p-select-xlg': args.size === 'xlarge' }"
+  :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
 >
   <template #dropdownicon>
     <i class="ti ti-calendar-month" />
@@ -467,7 +520,8 @@ export const MonthPickerTemplate = (args) => ({
 export const YearPickerTemplate = (args) => ({
   components: { Select },
   setup() {
-    return sharedSetup(args);
+    const context = sharedSetup(args);
+    return { ...context };
   },
   template: `
 <Select
@@ -477,6 +531,8 @@ export const YearPickerTemplate = (args) => ({
   optionValue="value"
   placeholder="Выберите год"
   v-bind="args"
+  :class="{ 'p-select-xlg': args.size === 'xlarge' }"
+  :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
 >
   <template #dropdownicon>
     <i class="ti ti-calendar-month" />
@@ -488,20 +544,29 @@ export const FloatLabelTemplate = (args) => ({
   components: { DatePicker, Select, Button, FloatLabel },
   setup() {
     const context = sharedSetup(args);
-    useDateAutoFormat(context.dp);
-    return context;
+    const { isInvalid } = useDateAutoFormat(context.dp);
+    const inputProps = computed(() => {
+      const rest = { ...args };
+      delete rest.label;
+      delete rest.showClear;
+      return rest;
+    });
+    return { ...context, inputProps, isInvalid };
   },
   template: `
 <FloatLabel variant="in">
   <DatePicker
-    inputId="float_date"
+    id="in_label"
+    inputId="in_label"
     ref="dp"
     dateFormat="dd.mm.yy"
     v-model="value"
     showIcon
     iconDisplay="input"
-    variant="filled"
-    v-bind="args"
+    :panelStyle="{ minWidth: 'fit-content' }"
+    v-bind="inputProps"
+    :inputClass="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
+    :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
     :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
   >
   <template #prevbutton="{ actionCallback }">
@@ -525,7 +590,7 @@ export const FloatLabelTemplate = (args) => ({
     <i class="ti ti-calendar-month" />
   </template>
 </DatePicker>
-  <label for="float_date">Выберите дату</label>
+  <label for="in_label">{{ args.label }}</label>
 </FloatLabel>`,
 });
 
@@ -533,8 +598,8 @@ export const ClearIconTemplate = (args) => ({
   components: { DatePicker, Select, Button },
   setup() {
     const context = sharedSetup(args);
-    useDateAutoFormat(context.dp);
-    return context;
+    const { isInvalid } = useDateAutoFormat(context.dp);
+    return { ...context, isInvalid };
   },
   template: `
 <DatePicker
@@ -544,7 +609,11 @@ export const ClearIconTemplate = (args) => ({
   showClear
   showIcon
   iconDisplay="input"
+  :invalid="isInvalid || args.invalid"
+  :panelStyle="{ minWidth: 'fit-content' }"
   v-bind="args"
+  :inputClass="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
+  :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
   :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
 >
 
