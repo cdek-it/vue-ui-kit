@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import DatePicker from 'primevue/datepicker';
 import Select from 'primevue/select';
 import Button from 'primevue/button';
@@ -31,6 +31,66 @@ const generateYears = (startYear = 1990, endYear = 2035) => {
 
 const years = generateYears();
 
+const formatDateDigits = (digits) => {
+  let result = '';
+  if (digits.length > 0) {
+    result = digits.slice(0, 2);
+  }
+  if (digits.length > 2) {
+    result += '.' + digits.slice(2, 4);
+  }
+  if (digits.length > 4) {
+    result += '.' + digits.slice(4, 8);
+  }
+  return result;
+};
+
+const useDateAutoFormat = (dpRef) => {
+  let inputEl = null;
+
+  const onInput = (e) => {
+    const input = e.target;
+    const raw = input.value.replace(/\D/g, '').slice(0, 8);
+    const formatted = formatDateDigits(raw);
+    if (input.value !== formatted) {
+      input.value = formatted;
+      input.setSelectionRange(formatted.length, formatted.length);
+    }
+  };
+
+  const onKeydown = (e) => {
+    if (e.key !== 'Backspace') {
+      return;
+    }
+    const input = e.target;
+    const pos = input.selectionStart;
+    if (pos > 0 && pos === input.selectionEnd && input.value[pos - 1] === '.') {
+      e.preventDefault();
+      const raw = (input.value.slice(0, pos - 1) + input.value.slice(pos))
+        .replace(/\D/g, '')
+        .slice(0, 8);
+      const formatted = formatDateDigits(raw);
+      input.value = formatted;
+      input.setSelectionRange(formatted.length, formatted.length);
+    }
+  };
+
+  onMounted(() => {
+    inputEl = dpRef.value?.$el?.querySelector('.p-datepicker-input');
+    if (inputEl) {
+      inputEl.addEventListener('input', onInput, true);
+      inputEl.addEventListener('keydown', onKeydown, true);
+    }
+  });
+
+  onBeforeUnmount(() => {
+    if (inputEl) {
+      inputEl.removeEventListener('input', onInput, true);
+      inputEl.removeEventListener('keydown', onKeydown, true);
+    }
+  });
+};
+
 const sharedSetup = (args) => {
   const value = ref(null);
   const dp = ref(null);
@@ -61,7 +121,9 @@ const sharedSetup = (args) => {
 export const BasicTemplate = (args) => ({
   components: { DatePicker, Select, Button },
   setup() {
-    return sharedSetup(args);
+    const context = sharedSetup(args);
+    useDateAutoFormat(context.dp);
+    return context;
   },
   template: `
 <DatePicker
@@ -185,6 +247,7 @@ export const TimeTemplate = (args) => ({
   components: { DatePicker, Select, Button, InputNumber },
   setup() {
     const context = sharedSetup(args);
+    useDateAutoFormat(context.dp);
     const dateValue = ref(new Date());
 
     const hours = computed({
@@ -225,6 +288,8 @@ export const TimeTemplate = (args) => ({
   ref="dp"
   dateFormat="dd.mm.yy"
   v-model="modelProxy"
+  showTime
+  hourFormat="24"
   showIcon
   iconDisplay="input"
   v-bind="args"
@@ -302,7 +367,9 @@ export const TimeTemplate = (args) => ({
 export const ButtonBarTemplate = (args) => ({
   components: { DatePicker, Select, Button },
   setup() {
-    return sharedSetup(args);
+    const context = sharedSetup(args);
+    useDateAutoFormat(context.dp);
+    return context;
   },
   template: `
 <DatePicker
@@ -420,10 +487,12 @@ export const YearPickerTemplate = (args) => ({
 export const FloatLabelTemplate = (args) => ({
   components: { DatePicker, Select, Button, FloatLabel },
   setup() {
-    return sharedSetup(args);
+    const context = sharedSetup(args);
+    useDateAutoFormat(context.dp);
+    return context;
   },
   template: `
-<FloatLabel>
+<FloatLabel variant="in">
   <DatePicker
     inputId="float_date"
     ref="dp"
@@ -431,6 +500,7 @@ export const FloatLabelTemplate = (args) => ({
     v-model="value"
     showIcon
     iconDisplay="input"
+    variant="filled"
     v-bind="args"
     :pt="{ title: { onVnodeMounted: (vnode) => vnode.el?.remove() } }"
   >
@@ -462,7 +532,9 @@ export const FloatLabelTemplate = (args) => ({
 export const ClearIconTemplate = (args) => ({
   components: { DatePicker, Select, Button },
   setup() {
-    return sharedSetup(args);
+    const context = sharedSetup(args);
+    useDateAutoFormat(context.dp);
+    return context;
   },
   template: `
 <DatePicker
@@ -498,7 +570,7 @@ export const ClearIconTemplate = (args) => ({
   </template>
 
   <template #clearicon="slotProps">
-    <i class="ti ti-x cursor-pointer" @click="slotProps.clearCallback" />
+    <i class="p-datepicker-clear-icon ti ti-x" @click="slotProps.clearCallback" />
   </template>
 </DatePicker>`,
 });

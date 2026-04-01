@@ -10,6 +10,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-datepicker.p-datepicker {
   display: inline-flex;
+  position: relative;
 }
 
 .p-datepicker-panel.p-datepicker-panel {
@@ -95,6 +96,19 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   background: ${dt('button.colorScheme.light.text.primary.activeBackground')};
   color: ${dt('button.colorScheme.light.text.primary.color')};
 }
+
+.p-datepicker.p-datepicker:has(.p-datepicker-clear-icon) .p-datepicker-clear-icon {
+  position: absolute; 
+  right: ${dt('datepicker.dropdown.width')};
+  cursor: pointer;
+  z-index: 1;
+}
+
+.p-datepicker.p-datepicker:not(.p-inputwrapper-filled) .p-datepicker-clear-icon,
+.p-datepicker.p-datepicker:has(.p-datepicker-input:placeholder-shown) .p-datepicker-clear-icon {
+  display: none;
+}
+
 `;
 
 export default css;
