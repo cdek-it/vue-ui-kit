@@ -2877,7 +2877,7 @@ export default {
     },
     dropdown: {
       width: '{form.width.300}',
-      color: '{form.iconColor}',
+      color: '{form.placeholderColor}',
     },
     overlay: {
       background: '{overlay.select.background}',
@@ -2911,7 +2911,7 @@ export default {
       padding: '{list.option.padding}',
     },
     clearIcon: {
-      color: '{form.iconColor}',
+      color: '{form.placeholderColor}',
     },
     checkmark: {
       color: '{list.option.color}',
