@@ -222,6 +222,7 @@ export default {
       '6xlg': '{sizing.10}',
       '7xlg': '{sizing.11}',
       '8xlg': '{sizing.12}',
+      '9xlg': '{sizing.16}',
     },
     gap: {
       xs: '{spacing.1}',

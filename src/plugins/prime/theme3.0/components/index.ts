@@ -3251,8 +3251,13 @@ export default {
     },
   },
   timeline: {
+    extend: {
+      extEvent: {
+        gap: '{feedback.gap.xs}',
+      },
+    },
     event: {
-      minHeight: '{feedback.height.8xlg}',
+      minHeight: '{feedback.height.9xlg}',
     },
     vertical: {
       eventContent: {

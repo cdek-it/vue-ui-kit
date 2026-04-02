@@ -1,0 +1,120 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+import { HorizontalTemplate, VerticalTemplate, VerticalAlternateTemplate, MarkersTemplate, ColorMarkersTemplate } from './Timeline.template';
+
+<Meta title="Prime/Timeline" />
+
+# Timeline
+
+[PrimeVue Timeline](https://primevue.org/timeline), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=1090-3325&t=j8q05RFyXpKxntpS-11)
+
+### Horizontal
+
+Горизонтальная ориентация Timeline с событиями, расположенными в ряд.
+
+```html dark
+<Timeline :value="events" layout="horizontal">
+  <template #content="slotProps">
+    <div class="body-bold-base">{{ slotProps.item.status }}</div>
+    <div class="caption-secondary">{{ slotProps.item.date }}</div>
+  </template>
+</Timeline>
+```
+
+<Story name="Horizontal">{HorizontalTemplate.bind({})}</Story>
+
+### Vertical
+
+Вертикальная ориентация Timeline с событиями, расположенными сверху вниз.
+
+```html dark
+<Timeline :value="events" layout="vertical">
+  <template #content="slotProps">
+    <div class="body-bold-lg">{{ slotProps.item.status }}</div>
+    <div class="caption-secondary">{{ slotProps.item.date }}</div>
+  </template>
+</Timeline>
+```
+
+<Story name="Vertical">{VerticalTemplate.bind({})}</Story>
+
+### Vertical Alternate
+
+Вертикальная ориентация с чередующимся расположением контента (слева-справа).
+
+```html dark
+<Timeline :value="events" layout="vertical" align="alternate">
+  <template #content="slotProps">
+    <div class="body-bold-lg">{{ slotProps.item.status }}</div>
+    <div class="caption-secondary">{{ slotProps.item.date }}</div>
+  </template>
+</Timeline>
+```
+
+<Story name="Vertical Alternate">{VerticalAlternateTemplate.bind({})}</Story>
+
+
+### Markers
+
+Различные варианты маркеров с цветами и иконками согласно дизайн-системе.
+
+```html dark
+<Timeline :value="events" layout="vertical">
+  <template #marker="slotProps">
+    <i 
+      v-if="slotProps.item.icon"
+      :class="[slotProps.item.icon, 'timeline-marker-icon']"
+      :style="{ 
+        color: slotProps.item.iconColor,
+        borderColor: slotProps.item.borderColor 
+      }"
+    ></i>
+    <div 
+      v-else
+      class="timeline-marker-dot"
+      :style="{ borderColor: slotProps.item.borderColor }"
+    ></div>
+  </template>
+  <template #content="slotProps">
+    <div class="body-bold-lg">{{ slotProps.item.status }}</div>
+    <div class="caption-secondary">{{ slotProps.item.date }}</div>
+  </template>
+</Timeline>
+```
+
+Доступные цвета маркеров:
+- **Primary (green)** - `#1dc831` - основной цвет успеха
+- **Green** - `#44e858` - альтернативный зеленый
+- **Orange** - `#f5b83d` - предупреждение
+- **Red** - `#e85244` - ошибка
+- **Purple** - `#a855f7` - помощь
+- **Blue** - `#4496e8` - информация
+- **Gray** - `#a2a5a9` - нейтральный
+
+Каждый цвет доступен в двух вариантах:
+- Без иконки - только цветная обводка
+- С иконкой - иконка внутри маркера
+
+<Story name="Markers">{MarkersTemplate.bind({})}</Story>
+
+
+### Color Markers
+
+Цветные маркеры без иконок - только с цветной обводкой.
+
+```html dark
+<Timeline :value="events" layout="vertical">
+  <template #marker="slotProps">
+    <div 
+      class="timeline-marker-dot"
+      :style="{ borderColor: slotProps.item.borderColor }"
+    ></div>
+  </template>
+  <template #content="slotProps">
+    <div class="body-bold-lg">{{ slotProps.item.status }}</div>
+    <div class="caption-secondary">{{ slotProps.item.date }}</div>
+  </template>
+</Timeline>
+```
+
+<Story name="Color Markers">{ColorMarkersTemplate.bind({})}</Story>

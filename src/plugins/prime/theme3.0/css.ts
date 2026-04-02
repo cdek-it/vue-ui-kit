@@ -9,6 +9,7 @@ import drawerCss from './components/css/drawer';
 import progressbarCss from './components/css/progressbar';
 import ratingCss from './components/css/rating';
 import tagCss from './components/css/tag';
+import timelineCss from './components/css/timeline';
 import tooltipCss from './components/css/tooltip';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
@@ -23,6 +24,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${progressbarCss({ dt })}
    ${ratingCss({ dt })}
    ${tagCss({ dt })}
+   ${timelineCss({ dt })}
    ${tooltipCss({ dt })}
 
   .p-disabled, .p-component:disabled {
