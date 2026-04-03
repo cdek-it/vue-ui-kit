@@ -12,6 +12,8 @@ export const TemplateTemplate = (args) => ({
     const totalSizePercent = ref(0);
     const uploadSuccess = ref(false);
     const isUploading = ref(false);
+    const uploadCb = ref(null);
+    const clearCb = ref(null);
 
     const formatSize = (bytes) => {
       if (bytes === 0) {
@@ -29,19 +31,35 @@ export const TemplateTemplate = (args) => ({
 
     const onSelectedFiles = (event) => {
       totalSize.value = event.files.reduce((acc, f) => acc + f.size, 0);
-      totalSizePercent.value = Math.min((totalSize.value / 1000000) * 100, 100);
       uploadSuccess.value = false;
       isUploading.value = event.files.length > 0;
+      totalSizePercent.value = 0;
+
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 10;
+        totalSizePercent.value = Math.min(progress, 100);
+        if (progress >= 100) {
+          clearInterval(interval);
+        }
+      }, 40);
     };
 
-    const onUploader = (event) => {
+    const onUploader = () => {
       setTimeout(() => {
-        event.callback();
+        if (clearCb.value) {
+          clearCb.value();
+        }
         totalSize.value = 0;
         totalSizePercent.value = 0;
         uploadSuccess.value = true;
         isUploading.value = false;
       }, 1500);
+    };
+
+    const storeCallbacks = (upload, clear) => {
+      uploadCb.value = upload;
+      clearCb.value = clear;
     };
 
     const onRemoveTemplatingFile = (file, removeFileCallback, index) => {
@@ -53,8 +71,10 @@ export const TemplateTemplate = (args) => ({
       }
     };
 
-    const onClearTemplatingUpload = (clearCallback) => {
-      clearCallback();
+    const onClearTemplatingUpload = () => {
+      if (clearCb.value) {
+        clearCb.value();
+      }
       totalSize.value = 0;
       totalSizePercent.value = 0;
       uploadSuccess.value = false;
@@ -73,6 +93,8 @@ export const TemplateTemplate = (args) => ({
       onUploader,
       onRemoveTemplatingFile,
       onClearTemplatingUpload,
+      storeCallbacks,
+      uploadCb,
     };
   },
   template: `
@@ -89,8 +111,8 @@ export const TemplateTemplate = (args) => ({
         v-bind="args"
         class="p-fileupload-advanced"
       >
-        <template #header="{ chooseCallback, files }">
-          <div style="display: flex; flex-direction: column; width: 100%;">
+        <template #header="{ chooseCallback, uploadCallback, clearCallback, files }">
+          <div style="display: flex; flex-direction: column; width: 100%;" :ref="() => storeCallbacks(uploadCallback, clearCallback)">
 
             <!-- Dropzone -->
             <div
@@ -112,7 +134,7 @@ export const TemplateTemplate = (args) => ({
           </div>
         </template>
 
-        <template #content="{ files, uploadedFiles, removeUploadedFileCallback, removeFileCallback, uploadCallback, clearCallback }">
+        <template #content="{ files, uploadedFiles, removeUploadedFileCallback, removeFileCallback }">
           <div style="display: flex; flex-direction: column; gap: var(--p-fileupload-content-gap);">
 
             <!-- Progress Bar -->
@@ -124,7 +146,7 @@ export const TemplateTemplate = (args) => ({
             />
 
             <!-- Message об успехе -->
-            <Message v-if="uploadSuccess" severity="success" closable @close="uploadSuccess = false">
+            <Message v-if="uploadSuccess" severity="success" icon="ti ti-circle-check" closable @close="uploadSuccess = false">
               Файлы успешно загружены
             </Message>
 
@@ -195,13 +217,13 @@ export const TemplateTemplate = (args) => ({
               class="p-fileupload-footer"
             >
               <Button
-                @click="uploadCallback()"
+                @click="uploadCb()"
                 label="Отправить"
                 severity="primary"
                 :disabled="!files.length"
               />
               <Button
-                @click="onClearTemplatingUpload(clearCallback)"
+                @click="onClearTemplatingUpload()"
                 label="Очистить"
                 severity="danger"
                 text
