@@ -201,6 +201,7 @@ export default {
     width: '{sizing.100x}',
     drawer: {
       padding: '{spacing.2x}',
+      margin: '{spacing.2x}',
     },
     sm: {
       width: '{sizing.80x}',
