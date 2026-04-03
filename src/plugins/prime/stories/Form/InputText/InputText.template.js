@@ -24,7 +24,7 @@ export const Template = (args) => ({
         :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }" 
         :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
       />
-      <InputIcon @click.stop="onClickClear" style="cursor: pointer; z-index: 1">
+      <InputIcon @click.stop="onClickClear" class="p-inputicon-clear" style="cursor: pointer; z-index: 1">
         <i class="ti ti-x" />
       </InputIcon>
     </IconField>
