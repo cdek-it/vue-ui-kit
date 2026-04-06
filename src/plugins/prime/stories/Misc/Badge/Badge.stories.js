@@ -63,11 +63,7 @@ export const Default = {
   parameters: {
     docs: {
       source: {
-        code: `
-<template>
-  <Badge value="8" />
-</template>
-        `,
+        type: 'dynamic',
       },
     },
   },
