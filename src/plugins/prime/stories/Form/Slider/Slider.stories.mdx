@@ -1,27 +1,130 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template } from './Slider.template';
+import { BasicTemplate, RangeTemplate, StepTemplate, MinMaxTemplate, VerticalTemplate, DisabledTemplate } from './Slider.template';
 
 <Meta title="Prime/Form/Slider" />
 
 # Slider
 
-[PrimeVue Slider](https://primevue.org/slider), [Макет](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=484-6137&node-type=section&m=dev>)
+[PrimeVue Slider](https://primevue.org/slider), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=484-6137)
 
-### Base
+Slider - это компонент для выбора числового значения или диапазона значений путем перемещения ползунка.
 
-```html dark
-<PrimeSlider v-model="value" />
-```
+## Базовый слайдер
 
-<Story name="Primary">{Template.bind({})}</Story>
-
-### Range
+Простой слайдер для выбора одного значения от 0 до 100.
 
 ```html dark
-<PrimeSlider v-model="value" range />
+<script setup>
+import { ref } from 'vue';
+const value = ref(50);
+</script>
+
+<template>
+  <PrimeSlider v-model="value" />
+</template>
 ```
 
-<Story name="Range" args={{ range: true, defaultValue: [20, 80] }}>
-  {Template.bind({})}
-</Story>
+<Story name="Basic">{BasicTemplate.bind({})}</Story>
+
+## Range слайдер
+
+Выбор диапазона значений с двумя ползунками.
+
+```html dark
+<script setup>
+import { ref } from 'vue';
+const rangeValue = ref([20, 80]);
+</script>
+
+<template>
+  <PrimeSlider v-model="rangeValue" range />
+</template>
+```
+
+<Story name="Range">{RangeTemplate.bind({})}</Story>
+
+## Слайдер с шагом
+
+Слайдер с заданным шагом изменения значения (например, шаг 10: 0, 10, 20, 30...).
+
+```html dark
+<script setup>
+import { ref } from 'vue';
+const value = ref(50);
+</script>
+
+<template>
+  <PrimeSlider v-model="value" :step="10" />
+</template>
+```
+
+<Story name="Step">{StepTemplate.bind({})}</Story>
+
+## Слайдер с min/max
+
+Ограничение диапазона значений (от 20 до 80).
+
+```html dark
+<script setup>
+import { ref } from 'vue';
+const value = ref(50);
+</script>
+
+<template>
+  <PrimeSlider v-model="value" :min="20" :max="80" />
+</template>
+```
+
+<Story name="MinMax">{MinMaxTemplate.bind({})}</Story>
+
+## Вертикальный слайдер
+
+Слайдер с вертикальной ориентацией.
+
+```html dark
+<script setup>
+import { ref } from 'vue';
+const value = ref(50);
+</script>
+
+<template>
+  <PrimeSlider v-model="value" orientation="vertical" style="height: 200px" />
+</template>
+```
+
+<Story name="Vertical">{VerticalTemplate.bind({})}</Story>
+
+## Disabled состояние
+
+Неактивный слайдер.
+
+```html dark
+<template>
+  <PrimeSlider :model-value="50" disabled />
+</template>
+```
+
+<Story name="Disabled">{DisabledTemplate.bind({})}</Story>
+
+## Токены стилизации
+
+### Track (дорожка)
+- `slider.track.background` → `{content.borderColor}` - цвет неактивной части
+- `slider.track.borderRadius` → `{content.borderRadius}` → `{borderRadius.md}` = `0.75rem`
+- `slider.track.size` → `{form.size.xs}` → `{sizing.1}` = `0.25rem`
+
+### Range (активная часть)
+- `slider.range.background` → `{surface.900}` - цвет активной части
+
+### Handle (ползунок)
+- `slider.handle.width` → `{form.size.xlg}` → `{sizing.6}` = `1.5rem`
+- `slider.handle.height` → `{form.size.xlg}` → `{sizing.6}` = `1.5rem`
+- `slider.handle.borderRadius` → `{form.borderRadius.max}` → `{borderRadius.max}` = `999rem`
+- `slider.handle.background` → `{surface.900}` - цвет ползунка
+- `slider.handle.content.width` → `{form.size.md}` → `{sizing.3}` = `0.75rem` - внутренний круг
+- `slider.handle.content.height` → `{form.size.md}` → `{sizing.3}` = `0.75rem`
+- `slider.handle.content.background` → `{surface.0}` - цвет внутреннего круга
+
+### Анимация
+- `slider.root.transitionDuration` → `{form.transitionDuration}` → `{transition.duration.200}` = `200ms`
