@@ -4,60 +4,61 @@ import { ref } from 'vue';
 import ChevronLeft from './icons/ChevronLeft.svg';
 import ChevronRight from './icons/ChevronRight.svg';
 
+import img1 from './images/1-nature.jpg';
+import img1Thumb from './images/1-nature-thumb.jpg';
+import img2 from './images/2-urban.jpg';
+import img2Thumb from './images/2-urban-thumb.jpg';
+import img3 from './images/3-architecture.jpg';
+import img3Thumb from './images/3-architecture-thumb.jpg';
+import img4 from './images/4-technology.jpg';
+import img4Thumb from './images/4-technology-thumb.jpg';
+import img5 from './images/5-scenery.jpg';
+import img5Thumb from './images/5-scenery-thumb.jpg';
+import img6 from './images/6-wildlife.jpg';
+import img6Thumb from './images/6-wildlife-thumb.jpg';
+import img7 from './images/7-lifestyle.jpg';
+import img7Thumb from './images/7-lifestyle-thumb.jpg';
+
 const images = [
   {
-    itemImageSrc:
-      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&h=450&q=80',
-    thumbnailImageSrc:
-      'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=160&h=90&q=80',
+    itemImageSrc: img1,
+    thumbnailImageSrc: img1Thumb,
     alt: 'Green forest with fog',
     title: 'Nature',
   },
   {
-    itemImageSrc:
-      'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=800&h=450&q=80',
-    thumbnailImageSrc:
-      'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=160&h=90&q=80',
+    itemImageSrc: img2,
+    thumbnailImageSrc: img2Thumb,
     alt: 'Busy city street with buildings',
     title: 'Urban Life',
   },
   {
-    itemImageSrc:
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&h=450&q=80',
-    thumbnailImageSrc:
-      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=160&h=90&q=80',
+    itemImageSrc: img3,
+    thumbnailImageSrc: img3Thumb,
     alt: 'Modern architecture building',
     title: 'Architecture',
   },
   {
-    itemImageSrc:
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&h=450&q=80',
-    thumbnailImageSrc:
-      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=160&h=90&q=80',
+    itemImageSrc: img4,
+    thumbnailImageSrc: img4Thumb,
     alt: 'Electronic circuit board close-up',
     title: 'Technology',
   },
   {
-    itemImageSrc:
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&h=450&q=80',
-    thumbnailImageSrc:
-      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=160&h=90&q=80',
+    itemImageSrc: img5,
+    thumbnailImageSrc: img5Thumb,
     alt: 'Beautiful landscape with mountains and lake',
     title: 'Scenery',
   },
   {
-    itemImageSrc:
-      'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800&h=450&q=80',
-    thumbnailImageSrc:
-      'https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=160&h=90&q=80',
+    itemImageSrc: img6,
+    thumbnailImageSrc: img6Thumb,
     alt: 'Wild deer in the forest',
     title: 'Wildlife',
   },
   {
-    itemImageSrc:
-      'https://images.unsplash.com/photo-1493770348161-369560ae357d?auto=format&fit=crop&w=800&h=450&q=80',
-    thumbnailImageSrc:
-      'https://images.unsplash.com/photo-1493770348161-369560ae357d?auto=format&fit=crop&w=160&h=90&q=80',
+    itemImageSrc: img7,
+    thumbnailImageSrc: img7Thumb,
     alt: 'Healthy breakfast with fruit and coffee',
     title: 'Lifestyle',
   },
