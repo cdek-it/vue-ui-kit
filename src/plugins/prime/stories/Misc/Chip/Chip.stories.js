@@ -1,105 +1,152 @@
+import Chip from 'primevue/chip';
 import { Template } from './Chip.template';
 
-export default {
+const meta = {
   title: 'Prime/Misc/Chip',
+  component: Chip,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Chip представляет небольшой интерактивный элемент с текстом, иконкой и опциональной кнопкой удаления.',
+      },
+    },
+    designToken: { disable: false },
+    designTokens: { prefix: '--p-chip' },
+  },
+  argTypes: {
+    label: {
+      control: 'text',
+      description: 'Текст внутри чипа',
+      table: {
+        category: 'Props',
+        type: { summary: 'string' },
+      },
+    },
+    icon: {
+      control: 'text',
+      description: 'Иконка чипа',
+      table: {
+        category: 'Props',
+        type: { summary: 'string' },
+      },
+    },
+    removable: {
+      control: 'boolean',
+      description: 'Отображает кнопку удаления',
+      table: {
+        category: 'Props',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает чип',
+      table: {
+        category: 'Props',
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
+  },
 };
 
-export const Default = {
-  render: Template.bind({}),
+export default meta;
 
+export const Default = {
+  render: Template,
   args: {
     label: 'Chip',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<template>
+  <Chip label="Chip" />
+</template>
+        `,
+      },
+    },
+  },
+};
+
+export const WithIcon = {
+  render: Template,
+  args: {
+    label: 'Chip',
+    icon: 'ti ti-info-circle',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<template>
+  <Chip label="Chip" icon="ti ti-info-circle" />
+</template>
+        `,
+      },
+    },
   },
 };
 
 export const Removable = {
-  render: Template.bind({}),
-
+  render: Template,
   args: {
     label: 'Chip',
     removable: true,
   },
-};
-
-export const Icon = {
-  render: Template.bind({}),
-
-  args: {
-    label: 'Chip',
-    icon: 'ti ti-info-circle',
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<template>
+  <Chip label="Chip" removable />
+</template>
+        `,
+      },
+    },
   },
 };
 
-export const RemovableIcon = {
-  render: Template.bind({}),
-  name: 'RemovableIcon',
-
+export const RemovableWithIcon = {
+  render: Template,
   args: {
     label: 'Chip',
     icon: 'ti ti-info-circle',
     removable: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<template>
+  <Chip label="Chip" icon="ti ti-info-circle" removable />
+</template>
+        `,
+      },
+    },
   },
 };
 
 export const Disabled = {
-  render: Template.bind({}),
-  name: 'disabled',
-
+  render: Template,
   args: {
     label: 'Chip',
     icon: 'ti ti-info-circle',
     removable: true,
     disabled: true,
   },
-};
-
-export const Accessability = {
-  render: Template.bind({}),
-
-  args: {
-    label: 'Chip',
-    icon: 'ti ti-info-circle',
-    removable: true,
-
-    pt: {
-      removeIcon: {
-        tabindex: '0',
-      },
-    },
-  },
-};
-
-export const AccessabilityDisabledError = {
-  render: Template.bind({}),
-  name: 'AccessabilityDisabledError',
-
-  args: {
-    label: 'Chip',
-    icon: 'ti ti-info-circle',
-    removable: true,
-    disabled: true,
-
-    pt: {
-      removeIcon: {
-        tabindex: '0',
-      },
-    },
-  },
-};
-
-export const AccessabilityDisabled = {
-  render: Template.bind({}),
-  name: 'AccessabilityDisabled',
-
-  args: {
-    label: 'Chip',
-    icon: 'ti ti-info-circle',
-    removable: true,
-    disabled: true,
-
-    pt: {
-      removeIcon: {
-        tabindex: '-1',
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<template>
+  <Chip label="Chip" icon="ti ti-info-circle" removable disabled />
+</template>
+        `,
       },
     },
   },
