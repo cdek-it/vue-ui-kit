@@ -31,11 +31,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   cursor: pointer;
 }
 
-/* Скрытие иконки закрытия когда input пустой */
-.p-iconfield:has(.p-inputtext:placeholder-shown) .p-inputicon.p-inputicon-clear,
-.p-iconfield:has(.p-inputtext:not(.p-filled)) .p-inputicon.p-inputicon-clear {
-  display: none;
-}
 `;
 
 export default css;

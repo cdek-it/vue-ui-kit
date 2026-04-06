@@ -1,39 +1,33 @@
 import InputText from 'primevue/inputtext';
+import InputTextClear from './InputTextClear.vue';
 import FloatLabel from 'primevue/floatlabel';
-import IconField from 'primevue/iconfield';
-import InputIcon from 'primevue/inputicon';
 import { ref } from 'vue';
 
 export const Template = (args) => ({
-  components: { InputText, IconField, InputIcon },
+  components: { InputText, InputTextClear },
   setup() {
     const value = ref('');
-
-    const onClickClear = () => {
-      value.value = '';
-    };
-
-    return { args, value, onClickClear };
+    return { args, value };
   },
   template: `
-    <IconField v-if="args.showClear" style="width: 100%">
-      <InputText 
-        v-model="value"
-        v-bind="args"
-        style="width: 100%"
-        :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }" 
-        :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
-      />
-      <InputIcon @click.stop="onClickClear" class="p-inputicon-clear" style="cursor: pointer; z-index: 1">
-        <i class="ti ti-x" />
-      </InputIcon>
-    </IconField>
-    <InputText 
+    <InputTextClear
+      v-if="args.showClear"
+      v-model="value"
+      :size="args.size"
+      :invalid="args.invalid"
+      :disabled="args.disabled"
+      :readonly="args.readonly"
+      :placeholder="args.placeholder"
+    />
+    <InputText
       v-else
       v-model="value"
-      v-bind="args"
+      :invalid="args.invalid"
+      :disabled="args.disabled"
+      :readonly="args.readonly"
+      :placeholder="args.placeholder"
       style="width: 100%"
-      :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }" 
+      :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
       :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
     />
   `,
