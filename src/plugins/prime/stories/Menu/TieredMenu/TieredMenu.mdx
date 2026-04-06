@@ -6,7 +6,7 @@ import * as TieredMenuStories from './TieredMenu.stories';
 <Title />
 <Description />
 
-```javascript
+```js
 import { TieredMenu } from 'primevue';
 ```
 
@@ -20,7 +20,25 @@ import { TieredMenu } from 'primevue';
 
 ### With Selected Item
 
-Меню с выделенным активным пунктом через класс `p-menuitem-checked`.
+Меню с выделенным активным пунктом.
+
+<details>
+<summary>Посмотреть пример кода выделенного пункта</summary>
+
+Для выделения пункта добавьте `class: 'p-menuitem-checked'` в объект модели:
+
+```js
+const items = ref([
+ {
+  label: 'Home',
+  class: 'p-menuitem-checked', // ← активный пункт
+ }
+]);
+```
+
+`p-menuitem-checked` — CSS-класс PrimeVue, который задаёт стиль выбранного состояния. Передаётся через поле `class` в элементе модели меню — PrimeVue автоматически применяет его к `<li>` пункта.
+
+</details>
 
 <Canvas of={TieredMenuStories.WithSelected} />
 

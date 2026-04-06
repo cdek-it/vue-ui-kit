@@ -106,7 +106,7 @@ import { ref } from 'vue';
 
 const items = ref(${baseItems.replace(
           "label: 'Home',",
-          "label: 'Home',\n    class: 'p-menuitem-checked',"
+          "label: 'Home',\n    class: 'p-menuitem-checked', // CSS-класс PrimeVue для выделения активного пункта"
         )});
 </script>
         `.trim(),
