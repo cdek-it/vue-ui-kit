@@ -55,7 +55,8 @@ const meta = {
     size: {
       control: 'select',
       options: ['small', 'medium', 'large', 'xlarge'],
-      description: 'Размер поля ввода',
+      description:
+        'Размер поля ввода.\n\n⚠️ Значение `xlarge` не поддерживается PrimeVue напрямую — используйте зарезервированный CSS-класс `p-inputtext-xlg` вместо пропса `size`.',
       table: {
         category: 'Props',
         defaultValue: { summary: 'medium' },
