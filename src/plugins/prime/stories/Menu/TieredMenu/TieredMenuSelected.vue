@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { TieredMenu } from 'primevue';
 import { useMenu } from '@/plugins/prime/stories/Menu/_common/composables/useMenu';
 
