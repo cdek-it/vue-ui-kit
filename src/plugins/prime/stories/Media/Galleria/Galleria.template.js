@@ -216,8 +216,8 @@ export const TemplateCaption = (args) => ({
         </template>
         <template #caption="slotProps">
           <div>
-            <h4>{{ slotProps.item.title }}</h4>
-            <p>{{ slotProps.item.alt }}</p>
+            <h4 class="text-base font-bold m-0">{{ slotProps.item.title }}</h4>
+            <p class="text-sm font-normal m-0">{{ slotProps.item.alt }}</p>
           </div>
         </template>
       </Galleria>

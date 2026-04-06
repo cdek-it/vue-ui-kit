@@ -5,21 +5,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   padding: ${dt('spacing.2x')};
 }
 
-.p-galleria .p-galleria-caption h4 {
-  font-size: ${dt('fonts.fontSize.200')};
-  line-height: ${dt('fonts.lineHeight.550')};
-  font-weight: ${dt('fonts.fontWeight.bold')};
-  color: ${dt('text.color')};
-  margin: 0;
-}
-
-.p-galleria .p-galleria-caption p {
-  font-size: ${dt('fonts.fontSize.100')};
-  line-height: ${dt('fonts.lineHeight.400')};
-  font-weight: ${dt('fonts.fontWeight.regular')};
-  color: ${dt('text.color')};
-  margin: 0;
-}
 
 .p-galleria-mask.p-overlay-mask .p-galleria-nav-button {
   top: 0%;
