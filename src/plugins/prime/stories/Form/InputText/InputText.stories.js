@@ -2,8 +2,47 @@ import InputText from 'primevue/inputtext';
 import PrimeFloatLabel from 'primevue/floatlabel';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
+import InputTextClear from './InputTextClear.vue';
 import { ref, computed } from 'vue';
 import { Template } from './InputText.template';
+
+const CLEAR_BUTTON_SOURCE =
+  `
+<script setup>
+import InputText from 'primevue/inputtext';
+import IconField from 'primevue/iconfield';
+import InputIcon from 'primevue/inputicon';
+
+const model = defineModel({ default: '' });
+
+defineProps({
+  size: String,       // 'small' | 'large' | 'xlarge'
+  invalid: Boolean,
+  disabled: Boolean,
+  readonly: Boolean,
+  placeholder: String,
+});
+</` +
+  `script>
+
+<template>
+  <IconField style="width: 100%">
+    <InputText
+      v-model="model"
+      :invalid="invalid"
+      :disabled="disabled"
+      :readonly="readonly"
+      :placeholder="placeholder"
+      style="width: 100%"
+      :class="{ 'p-inputtext-xlg': size === 'xlarge' }"
+      :size="size === 'xlarge' || !size ? undefined : size"
+    />
+    <InputIcon v-show="model" style="cursor: pointer; z-index: 1" @click.stop="model = ''">
+      <i class="ti ti-x" />
+    </InputIcon>
+  </IconField>
+</template>
+`;
 
 /**
  * Компонент текстового ввода.
@@ -71,6 +110,41 @@ export default meta;
 
 export const Default = {
   render: Template,
+};
+
+export const ClearButton = {
+  args: {
+    placeholder: 'Введите текст...',
+  },
+  render: (args) => ({
+    components: { InputTextClear },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `
+      <InputTextClear
+        v-model="value"
+        :placeholder="args.placeholder"
+      />
+    `,
+  }),
+  parameters: {
+    docs: {
+      source: {
+        code: CLEAR_BUTTON_SOURCE,
+        language: 'vue',
+      },
+    },
+  },
+  argTypes: {
+    size: { table: { disable: true } },
+    showClear: { table: { disable: true } },
+    label: { table: { disable: true } },
+    invalid: { table: { disable: true } },
+    disabled: { table: { disable: true } },
+    readonly: { table: { disable: true } },
+  },
 };
 
 export const FloatLabel = {
