@@ -1,6 +1,7 @@
 import Toast from 'primevue/toast';
 import Button from 'primevue/button';
 import { useToast } from 'primevue/usetoast';
+import { ref } from 'vue';
 
 const SEVERITIES = [
   { type: 'info', icon: 'ti ti-info-circle', label: 'Информация' },
@@ -245,10 +246,13 @@ export const TemplateWidth = () => ({
   components: { Toast, Button },
   setup() {
     const toast = useToast();
+    const currentWidth = ref('25rem');
 
-    const showToast = (group, width) => {
+    const showToast = (width) => {
+      toast.removeGroup('width-preview');
+      currentWidth.value = width;
       toast.add({
-        group,
+        group: 'width-preview',
         severity: 'info',
         summary: 'Сообщение',
         detail: 'Ширина: ' + width,
@@ -257,15 +261,13 @@ export const TemplateWidth = () => ({
       });
     };
 
-    return { showToast, sizes: SIZES };
+    return { showToast, sizes: SIZES, currentWidth };
   },
   template: `
     <div>
       <Toast
-        v-for="({ group, width }) in sizes"
-        :key="group"
-        :group="group"
-        :pt="{ root: { style: { '--p-toast-width': width } } }"
+        group="width-preview"
+        :pt="{ root: { style: { '--p-toast-width': currentWidth } } }"
       >
         <template #container="{ message }">
           <div class="p-toast-message-content">
@@ -297,11 +299,11 @@ export const TemplateWidth = () => ({
       </div>
       <div class="flex flex-wrap gap-2 mt-6">
         <Button
-          v-for="({ label, group, width }) in sizes"
-          :key="group"
+          v-for="({ label, width }) in sizes"
+          :key="label"
           :label="label"
           severity="contrast"
-          @click="showToast(group, width)"
+          @click="showToast(width)"
         />
       </div>
     </div>
