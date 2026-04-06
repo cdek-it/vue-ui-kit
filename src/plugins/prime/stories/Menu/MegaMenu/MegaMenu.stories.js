@@ -19,8 +19,13 @@ export default {
   },
 };
 
+const heightDecorator = () => ({
+  template: '<div style="min-height: 300px;"><story /></div>',
+});
+
 export const Horizontal = {
   render: HorizontalTemplate.bind({}),
+  decorators: [heightDecorator],
   parameters: {
     docs: {
       source: {
@@ -57,6 +62,7 @@ const items = ref([
 
 export const Vertical = {
   render: VerticalTemplate.bind({}),
+  decorators: [heightDecorator],
   parameters: {
     docs: {
       source: {
@@ -92,6 +98,7 @@ const items = ref([
 
 export const Custom = {
   render: CustomTemplate.bind({}),
+  decorators: [heightDecorator],
   parameters: {
     docs: {
       source: {
