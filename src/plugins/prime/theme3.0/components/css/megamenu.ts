@@ -32,6 +32,11 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   min-width: fit-content;
   left: unset;
 }
+
+/* Позиционирование оверлея от пункта для вертикального вида */
+.p-megamenu.p-megamenu-vertical .p-megamenu-root-list > .p-megamenu-item-active > .p-megamenu-overlay {
+  left: 100%;
+}
 `;
 
 export default css;
