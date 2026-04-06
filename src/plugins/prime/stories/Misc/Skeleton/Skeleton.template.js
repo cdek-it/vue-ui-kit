@@ -45,16 +45,13 @@ export const TemplateCard = (args) => ({
   `,
 });
 
-export const TemplateNoAnimation = (args) => ({
+export const TemplateNoAnimation = () => ({
   components: { Skeleton },
-  setup() {
-    return { args };
-  },
   template: `
     <div class="flex flex-col gap-3">
-      <Skeleton :animation="args.animation" height="1rem" />
-      <Skeleton :animation="args.animation" height="1rem" width="75%" />
-      <Skeleton :animation="args.animation" shape="circle" size="4rem" />
+      <Skeleton animation="none" height="1rem" />
+      <Skeleton animation="none" height="1rem" width="75%" />
+      <Skeleton animation="none" shape="circle" size="4rem" />
     </div>
   `,
 });
