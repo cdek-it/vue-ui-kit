@@ -1,6 +1,8 @@
 import { TieredMenu, Badge } from 'primevue';
 import { ref } from 'vue';
 import { useMenu } from '@/plugins/prime/stories/Menu/_common/composables/useMenu';
+import TieredMenuSelected from './TieredMenuSelected.vue';
+import CodeSnippet from '@/plugins/prime/stories/_common/CodeSnippet.vue';
 
 export const BasicTemplate = () => ({
   components: { TieredMenu },
@@ -21,15 +23,18 @@ export const BasicTemplate = () => ({
 });
 
 export const WithSelectedTemplate = () => ({
-  components: { TieredMenu },
+  components: { TieredMenuSelected, CodeSnippet },
   setup() {
     const { items } = useMenu();
-
     return { items };
   },
   template: `
-    <div class="card flex justify-center">
-      <TieredMenu :model="items" />
+    <div>
+      <div class="card flex justify-center">
+        <TieredMenuSelected />
+      </div>
+      <br>
+      <CodeSnippet :code="items" />
     </div>
   `,
 });

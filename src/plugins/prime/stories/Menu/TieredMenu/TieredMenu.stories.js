@@ -95,20 +95,53 @@ export const WithSelected = {
     docs: {
       source: {
         code: `
-<template>
-  <div class="card flex justify-center">
-    <TieredMenu :model="items" />
-  </div>
-</template>
-
+<!-- TieredMenuSelected.vue -->
 <script setup>
+import { TieredMenu } from 'primevue';
 import { ref } from 'vue';
+import { cloneDeep } from 'lodash';
 
-const items = ref(${baseItems.replace(
-          "label: 'Home',",
-          "label: 'Home',\n    class: 'p-menuitem-checked', // CSS-класс PrimeVue для выделения активного пункта"
-        )});
+const SELECTED_CLASS = 'p-menuitem-checked';
+
+const baseItems = [
+  { label: 'Home', icon: 'ti ti-user', class: SELECTED_CLASS },
+  { label: 'Features' },
+  { label: 'Projects' },
+];
+
+const items = ref(cloneDeep(baseItems));
+
+const clearSelectedClass = (menuItems) => {
+  menuItems.forEach((item) => {
+    if (item.class?.includes(SELECTED_CLASS)) {
+      item.class = item.class
+        .split(' ')
+        .filter((c) => c !== SELECTED_CLASS)
+        .join(' ')
+        .trim() || undefined;
+    }
+    if (item.items) clearSelectedClass(item.items);
+  });
+};
+
+const addCommandHandler = (menuItems) => {
+  menuItems.forEach((item) => {
+    item.command = () => {
+      clearSelectedClass(items.value);
+      item.class = item.class
+        ? item.class + ' ' + SELECTED_CLASS
+        : SELECTED_CLASS;
+    };
+    if (item.items) addCommandHandler(item.items);
+  });
+};
+
+addCommandHandler(items.value);
 </script>
+
+<template>
+  <TieredMenu :model="items" />
+</template>
         `.trim(),
       },
     },
