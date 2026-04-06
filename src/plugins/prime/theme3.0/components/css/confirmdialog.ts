@@ -18,11 +18,11 @@ export default ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-confirmdialog-lg.p-dialog {
-  width: ${dt('overlay.width')};
+  width: ${dt('overlay.lg.width')};
 }
 
 .p-confirmdialog-xlg.p-dialog {
-  width: ${dt('overlay.lg.width')};
+  width: ${dt('overlay.xlg.width')};
 }
 
 /* Цвета иконок по severity */

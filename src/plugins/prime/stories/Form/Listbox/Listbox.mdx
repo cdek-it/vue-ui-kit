@@ -1,73 +1,42 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
 import * as ListboxStories from './Listbox.stories';
-
-import { Template, TemplateGrouped, TemplateCustom } from './Listbox.template';
 
 <Meta of={ListboxStories} />
 
-# Listbox
+<Title />
 
-[PrimeVue Listbox](https://primevue.org/listbox), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5829\&node-type=section\&t=2PSg63p2UfJ4cUzB-0)
+<Description />
 
-### Базовый
-
-```html dark
-<PrimeListbox v-model="value" :options="options" />
+```javascript
+import { Listbox } from 'primevue';
 ```
 
-<Story of={ListboxStories.Primary} />
+## Варианты использования
 
-### C галочкой при выборе
+### Basic
 
-```html dark
-<PrimeListbox v-model="value" :options="options" checkmark />
-```
+<Canvas of={ListboxStories.Basic} />
 
-<Story of={ListboxStories.Checkmark} />
+### С галочкой при выборе
+
+<Canvas of={ListboxStories.Checkmark} />
 
 ### С группами
 
-Смотри подробнее в [документации](https://primevue.org/listbox/#group)
+<Canvas of={ListboxStories.Grouped} />
 
-```html dark
-<!-- options - кастомная структура, это пример реализации -->
-<PrimeListbox v-model="value" :options="options">
-  <template #optiongroup="{ option }">
-    <div>
-      <i class="ti ti-brand-tabler" />
-      <div>{{ option.label }}</div>
-    </div>
-  </template>
-</PrimeListbox>
-```
+### Кастомный шаблон
 
-<Story of={ListboxStories.Grouped} />
+<Canvas of={ListboxStories.Custom} />
 
-### C иконкой и описанием
+### С фильтром
 
-Смотри подробнее в [документации](https://primevue.org/listbox/#template)
+<Canvas of={ListboxStories.Filter} />
 
-```html dark
-<!-- options - кастомная структура, это пример реализации -->
-<PrimeListbox v-model="value" :options="options">
-  <template #option="{ option }">
-    <div>
-      <i :class="option.icon" />
-      <div>
-        <div>{{ option.name }}</div>
-        <small>{{ option.description }}</small>
-      </div>
-    </div>
-  </template>
-</PrimeListbox>
-```
+### Disabled
 
-<Story of={ListboxStories.Custom} />
+<Canvas of={ListboxStories.Disabled} />
 
-### Filter
+### Множественный выбор
 
-```html dark
-<PrimeListbox v-model="value" :options="options" filter />
-```
-
-<Story of={ListboxStories.Filter} />
+<Canvas of={ListboxStories.Multiple} />
