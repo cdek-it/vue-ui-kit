@@ -62,6 +62,9 @@ const baseItems = `[
 
 export const Basic = {
   render: BasicTemplate,
+  decorators: [
+    () => ({ template: '<div style="height: 280px;"><story /></div>' }),
+  ],
   parameters: {
     docs: {
       source: {
@@ -85,6 +88,9 @@ const items = ref(${baseItems});
 
 export const WithSelected = {
   render: WithSelectedTemplate,
+  decorators: [
+    () => ({ template: '<div style="height: 280px;"><story /></div>' }),
+  ],
   parameters: {
     docs: {
       source: {
@@ -111,6 +117,9 @@ const items = ref(${baseItems.replace(
 
 export const Custom = {
   render: CustomTemplate,
+  decorators: [
+    () => ({ template: '<div style="height: 280px;"><story /></div>' }),
+  ],
   parameters: {
     docs: {
       source: {
