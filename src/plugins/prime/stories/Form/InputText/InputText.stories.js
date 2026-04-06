@@ -93,6 +93,11 @@ const meta = {
       description: 'Текст плавающего лейбла',
       table: { category: 'Custom' },
     },
+    required: {
+      control: 'boolean',
+      description: 'Отображает знак обязательного поля (*) рядом с лейблом',
+      table: { category: 'Custom' },
+    },
   },
   args: {
     size: 'medium',
@@ -102,6 +107,7 @@ const meta = {
     readonly: false,
     showClear: true,
     label: 'In Label',
+    required: false,
   },
 };
 
@@ -152,6 +158,8 @@ export const FloatLabel = {
   args: {
     size: 'large',
     placeholder: undefined,
+    label: 'FloatLabel',
+    required: true,
   },
   render: (args) => ({
     components: { InputText, PrimeFloatLabel, IconField, InputIcon },
@@ -166,6 +174,7 @@ export const FloatLabel = {
         const rest = { ...args };
         delete rest.label;
         delete rest.showClear;
+        delete rest.required;
         return rest;
       });
 
@@ -174,26 +183,26 @@ export const FloatLabel = {
     template: `
       <PrimeFloatLabel variant="in">
         <IconField v-if="args.showClear" style="width: 100%">
-            <InputText 
-              id="in_label" 
-              v-model="value" 
-              v-bind="inputProps" 
+            <InputText
+              id="in_label"
+              v-model="value"
+              v-bind="inputProps"
               variant="filled"
-              style="width: 100%" 
+              style="width: 100%"
             />
             <InputIcon v-if="value" @click.stop="onClickClear" style="cursor: pointer; z-index: 1">
                 <i class="ti ti-x" />
             </InputIcon>
         </IconField>
-        <InputText 
-          v-else 
-          id="in_label" 
-          v-model="value" 
-          v-bind="inputProps" 
+        <InputText
+          v-else
+          id="in_label"
+          v-model="value"
+          v-bind="inputProps"
           variant="filled"
-          style="width: 100%" 
+          style="width: 100%"
         />
-        <label for="in_label">{{ args.label }}</label>
+        <label for="in_label">{{ args.label }}<span v-if="args.required" class="text-red-500 ml-0.5">*</span></label>
       </PrimeFloatLabel>
     `,
   }),
