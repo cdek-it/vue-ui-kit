@@ -29,6 +29,7 @@ export const Template = (args) => ({
 
     const showToast = (severity, icon) => {
       toast.add({
+        group: args.group,
         severity,
         summary: 'Сообщение',
         detail: 'Подпись',
@@ -41,7 +42,7 @@ export const Template = (args) => ({
   },
   template: `
     <div>
-      <Toast :position="args.position">
+      <Toast :position="args.position" :group="args.group">
         <template #container="{ message }">
           <div class="p-toast-message-content">
             <div class="p-toast-accent-line"></div>
@@ -83,13 +84,14 @@ export const Template = (args) => ({
   `,
 });
 
-export const TemplateWithCloseButton = () => ({
+export const TemplateWithCloseButton = (args) => ({
   components: { Toast, Button },
   setup() {
     const toast = useToast();
 
     const showToast = (severity, icon) => {
       toast.add({
+        group: args.group,
         severity,
         summary: 'Сообщение',
         detail: 'Подпись',
@@ -98,11 +100,11 @@ export const TemplateWithCloseButton = () => ({
       });
     };
 
-    return { showToast, severities: SEVERITIES };
+    return { args, showToast, severities: SEVERITIES };
   },
   template: `
     <div>
-      <Toast>
+      <Toast :group="args.group">
         <template #container="{ message, closeCallback }">
           <div class="p-toast-message-content">
             <div class="p-toast-accent-line"></div>
@@ -150,13 +152,14 @@ export const TemplateWithCloseButton = () => ({
   `,
 });
 
-export const TemplateWithContent = () => ({
+export const TemplateWithContent = (args) => ({
   components: { Toast, Button },
   setup() {
     const toast = useToast();
 
     const showToast = (severity, icon) => {
       toast.add({
+        group: args.group,
         severity,
         summary: 'Сообщение',
         detail: 'Подпись',
@@ -165,11 +168,11 @@ export const TemplateWithContent = () => ({
       });
     };
 
-    return { showToast, severities: SEVERITIES };
+    return { args, showToast, severities: SEVERITIES };
   },
   template: `
     <div>
-      <Toast>
+      <Toast :group="args.group">
         <template #container="{ message, closeCallback }">
           <div class="p-toast-message-content">
             <div class="p-toast-accent-line"></div>

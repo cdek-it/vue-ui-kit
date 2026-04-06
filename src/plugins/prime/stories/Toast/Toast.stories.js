@@ -71,6 +71,7 @@ export const Default = {
   name: 'Toast',
   render: Template,
   args: {
+    group: 'default',
     position: 'top-right',
     life: 5000,
   },
@@ -108,6 +109,9 @@ const show = () => {
 
 export const WithCloseButton = {
   render: TemplateWithCloseButton,
+  args: {
+    group: 'close-button',
+  },
   parameters: {
     docs: {
       source: {
@@ -137,6 +141,9 @@ export const WithCloseButton = {
 
 export const WithContent = {
   render: TemplateWithContent,
+  args: {
+    group: 'content',
+  },
   parameters: {
     docs: {
       source: {
