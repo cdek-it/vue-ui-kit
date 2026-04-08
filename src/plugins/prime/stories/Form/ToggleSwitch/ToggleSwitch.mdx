@@ -1,0 +1,24 @@
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as ToggleSwitchStories from './ToggleSwitch.stories';
+
+<Meta of={ToggleSwitchStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+<Canvas of={ToggleSwitchStories.Default} />
+
+### Checked
+<Canvas of={ToggleSwitchStories.Checked} />
+
+### Invalid
+<Canvas of={ToggleSwitchStories.Invalid} />
+
+### Disabled
+<Canvas of={ToggleSwitchStories.Disabled} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={ToggleSwitchStories.Default} />
