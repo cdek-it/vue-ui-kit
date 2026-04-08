@@ -1,16 +1,28 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as InputMaskStories from './InputMask.stories';
 
-import { Template } from './InputMask.template';
+<Meta of={InputMaskStories} title="Prime/Form/InputMask" />
 
-<Meta of={InputMaskStories} />
+<Title />
 
-# InputMask
+<Description />
 
-[PrimeVue InputMask](https://primevue.org/inputmask), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5521\&node-type=section\&t=2PSg63p2UfJ4cUzB-0)
-
-```html dark
-<PrimeInputMask v-model="value" mask="99-999999" placeholder="99-999999" />
+```javascript
+import InputMask from 'primevue/inputmask';
 ```
 
-<Story of={InputMaskStories.Primary} />
+## Варианты использования
+
+### Default
+
+Ввод данных по строго заданной маске. Поддерживает динамическую смену размера и кнопку очистки через панель свойств.
+
+<Canvas of={InputMaskStories.Default} />
+
+<Controls of={InputMaskStories.Default} />
+
+### Float Label
+
+Пример использования с плавающим лейблом внутри поля.
+
+<Canvas of={InputMaskStories.FloatLabel} />
