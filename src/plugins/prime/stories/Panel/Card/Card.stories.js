@@ -36,9 +36,7 @@ export const Default = {
 <template>
   <Card>
     <template #header>
-      <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
-        <i class="ti ti-photo text-3xl"></i>
-      </div>
+      <img alt="user header" src="assets/mascot.jpg" class="w-full" />
     </template>
     <template #title>Title</template>
     <template #subtitle>Caption</template>
@@ -67,9 +65,7 @@ export const Overlay = {
 <template>
   <Card class="shadow-md">
     <template #header>
-      <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
-        <i class="ti ti-photo text-3xl"></i>
-      </div>
+      <img alt="user header" src="assets/mascot.jpg" class="w-full" />
     </template>
     <template #title>Title</template>
     <template #subtitle>Caption</template>

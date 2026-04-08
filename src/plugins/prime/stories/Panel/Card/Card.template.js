@@ -6,9 +6,7 @@ export const Template = () => ({
   template: `
     <Card style="width: 20rem">
       <template #header>
-        <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
-          <i class="ti ti-photo text-3xl"></i>
-        </div>
+        <img alt="user header" src="assets/mascot.jpg" class="w-full" />
       </template>
       <template #title>Title</template>
       <template #subtitle>Caption</template>
@@ -27,9 +25,7 @@ export const TemplateOverlay = () => ({
   template: `
     <Card style="width: 20rem" class="shadow-md">
       <template #header>
-        <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
-          <i class="ti ti-photo text-3xl"></i>
-        </div>
+        <img alt="user header" src="assets/mascot.jpg" class="w-full" />
       </template>
       <template #title>Title</template>
       <template #subtitle>Caption</template>
@@ -64,9 +60,7 @@ export const TemplateWithoutFooter = () => ({
   template: `
     <Card style="width: 20rem">
       <template #header>
-        <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
-          <i class="ti ti-photo text-3xl"></i>
-        </div>
+        <img alt="user header" src="assets/mascot.jpg" class="w-full" />
       </template>
       <template #title>Title</template>
       <template #subtitle>Caption</template>
@@ -82,9 +76,7 @@ export const TemplateWithoutSubtitle = () => ({
   template: `
     <Card style="width: 20rem">
       <template #header>
-        <div class="bg-gray-100 h-32 flex items-center justify-center text-gray-400">
-          <i class="ti ti-photo text-3xl"></i>
-        </div>
+        <img alt="user header" src="assets/mascot.jpg" class="w-full" />
       </template>
       <template #title>Title</template>
       <template #content>
