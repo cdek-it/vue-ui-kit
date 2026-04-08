@@ -61,7 +61,15 @@ export default {
       '800': '{sizing.16x}',
       '900': '{sizing.20x}',
     },
-    width: '{sizing.68x}',
+    width: {
+      '100': '{sizing.6x}',
+      '200': '{sizing.8x}',
+      '300': '{sizing.10x}',
+      '350': '{sizing.11x}',
+      '400': '{sizing.12x}',
+      '500': '{sizing.60x}',
+      full: '{sizing.max}',
+    },
     gap: {
       '100': '{spacing.1x}',
       '200': '{spacing.2x}',

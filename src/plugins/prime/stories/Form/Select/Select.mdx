@@ -1,0 +1,46 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as SelectStories from './Select.stories';
+
+<Meta of={SelectStories} />
+
+<Title />
+
+<Description />
+
+```javascript
+import { Select } from 'primevue';
+```
+
+## Варианты использования
+
+### Basic
+Стандартный выпадающий список для выбора одного значения. Всеми параметрами (размеры, состояния, фильтрация) можно управлять через таблицу ниже.
+
+<Canvas of={SelectStories.Basic} />
+
+#### Список параметров
+<Controls of={SelectStories.Basic} />
+
+### С фильтром
+
+<Canvas of={SelectStories.Filter} />
+
+### С группами
+
+<Canvas of={SelectStories.Grouped} />
+
+### Кастомный шаблон
+
+<Canvas of={SelectStories.Custom} />
+
+### Редактируемый
+
+<Canvas of={SelectStories.Editable} />
+
+### Disabled
+
+<Canvas of={SelectStories.Disabled} />
+
+### FloatLabel
+
+<Canvas of={SelectStories.FloatLabel} />
