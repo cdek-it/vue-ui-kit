@@ -24,6 +24,7 @@ import tagCss from './components/css/tag';
 import toggleswitchCss from './components/css/toggleswitch';
 import tooltipCss from './components/css/tooltip';
 import progressspinnerCss from './components/css/progressspinner';
+import inputotpCss from './components/css/inputotp';
 
 const css = ({ dt }: { dt: (token: string) => string }) => `
    ${accordionCss({ dt })}
@@ -53,6 +54,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${toggleswitchCss({ dt })}
    ${tooltipCss({ dt })}
    ${progressspinnerCss({ dt })}
+   ${inputotpCss({ dt })}
 
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;

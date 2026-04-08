@@ -1,16 +1,30 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as InputOtpStories from './InputOtp.stories';
-
-import { Template } from './InputOtp.template';
 
 <Meta of={InputOtpStories} />
 
-# InputOtp
+<Title />
 
-[PrimeVue InputOtp](https://primevue.org/inputotp), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-6034\&node-type=section\&t=2PSg63p2UfJ4cUzB-0)
+<Description />
 
-```html dark
-<PrimeInputOtp v-model="value" />
+```javascript
+import { InputOtp } from 'primevue';
 ```
 
-<Story of={InputOtpStories.Primary} />
+## Варианты использования
+
+### Basic
+
+<Canvas of={InputOtpStories.Basic} />
+
+## Список параметров
+#### Полный список аргументов и событий компонента.
+<Controls of={InputOtpStories.Basic} />
+
+### Только цифры
+
+<Canvas of={InputOtpStories.IntegerOnly} />
+
+### Маскирование
+
+<Canvas of={InputOtpStories.Mask} />
