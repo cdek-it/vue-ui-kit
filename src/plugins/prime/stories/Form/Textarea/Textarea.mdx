@@ -1,16 +1,25 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as TextareaStories from './Textarea.stories';
-
-import { Template } from './Textarea.template';
 
 <Meta of={TextareaStories} />
 
-# Textarea
+<Title />
+<Description />
 
-[PrimeVue Textarea](https://primevue.org/textarea), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5624\&t=SXHhPDfEhr0q0Ofq-4)
-
-```html dark
-<PrimeTextarea v-model="value" placeholder="InputTextarea" rows="6" />
+## Импорт
+```js
+import Textarea from 'primevue/textarea';
 ```
 
-<Story of={TextareaStories.Primary} />
+## Варианты использования
+
+### Default
+Стационарный многострочный ввод. Вы можете управлять всеми параметрами (размеры, состояния, автоизменение высоты и количество строк) через таблицу аргументов ниже.
+<Canvas of={TextareaStories.Default} />
+
+#### Список параметров
+<Controls of={TextareaStories.Default} />
+
+### Float Label
+Использование текстовой области внутри контейнера `FloatLabel`.
+<Canvas of={TextareaStories.FloatLabel} />

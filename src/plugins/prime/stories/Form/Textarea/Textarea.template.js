@@ -1,32 +1,50 @@
-import { ref } from 'vue';
 import Textarea from 'primevue/textarea';
+import FloatLabel from 'primevue/floatlabel';
+import { ref, computed } from 'vue';
 
-export const Template = (args) => ({
-  components: { Textarea },
+export const Template = (args) => {
+  return {
+    components: { Textarea },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `
+      <Textarea 
+        v-model="value"
+        v-bind="args"
+        style="width: 100%"
+        :class="{ 'p-textarea-xlg': args.size === 'xlarge' }" 
+        :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+      />
+    `,
+  };
+};
+
+export const TemplateFloatLabel = (args) => ({
+  components: { Textarea, FloatLabel },
   setup() {
-    const value1 = ref('text input');
-    const value2 = ref('text input');
-    const value3 = ref('text input');
+    const value = ref('');
+    const inputProps = computed(() => {
+      const rest = { ...args };
+      delete rest.label;
+      delete rest.showClear;
+      return rest;
+    });
 
-    return { args, value1, value2, value3 };
+    return { args, value, inputProps };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(3, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
-  <span></span>
-  <span></span>
-  <span><code>v-model="text input"</code></span>
-
-  <span :style="{ justifySelf: 'flex-start' }"></span>
-  <Textarea placeholder="InputTextarea" v-bind="args" rows="6" />
-  <Textarea v-model="value1" placeholder="InputTextarea" rows="6" v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>invalid</code></span>
-  <Textarea placeholder="InputTextarea" rows="6" invalid v-bind="args" />
-  <Textarea v-model="value2" placeholder="InputTextarea" rows="6" invalid v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>disabled</code></span>
-  <Textarea placeholder="InputTextarea" rows="6" disabled v-bind="args" />
-  <Textarea v-model="value3" placeholder="InputTextarea" rows="6" disabled v-bind="args" />
-</div>
+    <FloatLabel variant="in">
+        <Textarea 
+          id="in_label" 
+          v-model="value" 
+          v-bind="inputProps" 
+          style="width: 100%; resize: none" 
+          rows="5"
+          cols="30"
+        />
+        <label for="in_label">{{ args.label || 'In Label' }}</label>
+    </FloatLabel>
 `,
 });
