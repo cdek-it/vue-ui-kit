@@ -1,87 +1,178 @@
-import { Template, ContentTemplate } from './Divider.template';
+import Divider from 'primevue/divider';
+import {
+  Template,
+  TemplateContent,
+  TemplateVertical,
+  TemplateVerticalContent,
+  TemplateType,
+} from './Divider.template';
 
-export default {
+const meta = {
   title: 'Prime/Panel/Divider',
-
+  component: Divider,
+  tags: ['autodocs'],
   parameters: {
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=33-1543',
+    docs: {
+      description: {
+        component: `
+Divider используется для разделения контента.
+
+### Import
+\`\`\`js
+import Divider from 'primevue/divider';
+\`\`\`
+        `,
+      },
+    },
+    designToken: { disable: false },
+    designTokens: { prefix: '--p-divider' },
+  },
+  argTypes: {
+    align: {
+      control: 'select',
+      options: ['left', 'center', 'right', 'top', 'bottom'],
+      description: 'Выравнивание контента внутри разделителя',
+      table: {
+        category: 'Props',
+        type: { summary: "'left' | 'center' | 'right' | 'top' | 'bottom'" },
+      },
+    },
+    layout: {
+      control: 'radio',
+      options: ['horizontal', 'vertical'],
+      description: 'Ориентация разделителя',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: 'horizontal' },
+        type: { summary: "'horizontal' | 'vertical'" },
+      },
+    },
+    type: {
+      control: 'select',
+      options: ['solid', 'dashed', 'dotted'],
+      description: 'Тип линии',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: 'solid' },
+        type: { summary: "'solid' | 'dashed' | 'dotted'" },
+      },
     },
   },
 };
 
+export default meta;
+
+// ── Default ──────────────────────────────────────────────────────────────────
+
 export const Default = {
-  render: Template.bind({}),
-};
-
-export const Dashed = {
-  render: Template.bind({}),
-
-  args: {
-    type: 'dashed',
+  render: Template,
+  args: {},
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<template>
+  <Divider />
+</template>
+        `,
+      },
+    },
   },
 };
 
-export const Dotted = {
-  render: Template.bind({}),
+// ── Stories ──────────────────────────────────────────────────────────────────
 
-  args: {
-    type: 'dotted',
+export const WithContent = {
+  render: TemplateContent,
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<template>
+  <Divider align="left"><b>Left</b></Divider>
+  <Divider align="center"><b>Center</b></Divider>
+  <Divider align="right"><b>Right</b></Divider>
+</template>
+        `,
+      },
+    },
   },
 };
 
-export const ContentDefault = {
-  render: ContentTemplate.bind({}),
-  name: 'ContentDefault',
-};
-
-export const ContentLeft = {
-  render: ContentTemplate.bind({}),
-  name: 'ContentLeft',
-
-  args: {
-    align: 'left',
+export const Vertical = {
+  render: TemplateVertical,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Вертикальный разделитель для разделения элементов в ряд. Требует высоты от родительского контейнера или явного задания высоты.',
+      },
+      source: {
+        code: `
+<template>
+  <div class="flex items-center h-[24px]">
+    <span>Component 1</span>
+    <Divider layout="vertical" />
+    <span>Component 2</span>
+  </div>
+</template>
+        `,
+      },
+    },
   },
 };
 
-export const ContentRight = {
-  render: ContentTemplate.bind({}),
-  name: 'ContentRight',
-
-  args: {
-    align: 'right',
+export const VerticalWithContent = {
+  render: TemplateVerticalContent,
+  name: 'Vertical with Content',
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Вертикальный разделитель с контентом и различными вариантами выравнивания (top, center, bottom).',
+      },
+      source: {
+        code: `
+<template>
+  <div class="flex h-[200px] justify-center text-center">
+    <Divider layout="vertical" align="top">
+        <div class="flex items-center">
+            <i class="ti ti-user"></i>
+            <b>Top</b>
+        </div>
+    </Divider>
+    <Divider layout="vertical" align="center">
+        <div class="flex items-center">
+            <i class="ti ti-search"></i>
+            <b>Center</b>
+        </div>
+    </Divider>
+    <Divider layout="vertical" align="bottom">
+        <div class="flex items-center">
+            <i class="ti ti-check"></i>
+            <b>Bottom</b>
+        </div>
+    </Divider>
+  </div>
+</template>
+        `,
+      },
+    },
   },
 };
 
-export const VerticalContentDefault = {
-  render: ContentTemplate.bind({}),
-  name: 'VerticalContentDefault',
-
-  args: {
-    layout: 'vertical',
-    class: 'h-[100px]',
-  },
-};
-
-export const ContentTop = {
-  render: ContentTemplate.bind({}),
-  name: 'ContentTop',
-
-  args: {
-    align: 'top',
-    layout: 'vertical',
-    class: 'h-[100px]',
-  },
-};
-
-export const ContentBottom = {
-  render: ContentTemplate.bind({}),
-  name: 'ContentBottom',
-
-  args: {
-    align: 'bottom',
-    layout: 'vertical',
-    class: 'h-[100px]',
+export const Type = {
+  render: TemplateType,
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<template>
+  <Divider type="dashed" />
+  <Divider type="dotted" />
+</template>
+        `,
+      },
+    },
   },
 };
