@@ -6,6 +6,6 @@ export const Template = (args) => ({
     return { args };
   },
   template: `
-      <Chip v-bind="args" class="w-fit" />
+    <Chip v-bind="args" class="w-fit" />
   `,
 });
