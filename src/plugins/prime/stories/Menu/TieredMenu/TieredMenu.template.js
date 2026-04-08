@@ -1,10 +1,10 @@
-import { TieredMenu, Badge } from 'primevue';
+import { Badge } from 'primevue';
 import { ref } from 'vue';
 import { useMenu } from '@/plugins/prime/stories/Menu/_common/composables/useMenu';
 import TieredMenuSelected from './TieredMenuSelected.vue';
 
 export const BasicTemplate = () => ({
-  components: { TieredMenu },
+  components: { TieredMenuSelected },
   setup() {
     const { items } = useMenu();
 
@@ -16,22 +16,26 @@ export const BasicTemplate = () => ({
   },
   template: `
     <div class="card flex justify-center">
-      <TieredMenu :model="items" />
+      <TieredMenuSelected :model="items" />
     </div>
   `,
 });
 
 export const WithSelectedTemplate = () => ({
   components: { TieredMenuSelected },
+  setup() {
+    const { items } = useMenu();
+    return { items };
+  },
   template: `
     <div class="card flex justify-center">
-      <TieredMenuSelected />
+      <TieredMenuSelected :model="items" />
     </div>
   `,
 });
 
 export const CustomTemplate = (args) => ({
-  components: { TieredMenu, Badge },
+  components: { TieredMenuSelected, Badge },
   setup() {
     const items = ref([
       {
@@ -86,7 +90,7 @@ export const CustomTemplate = (args) => ({
   },
   template: `
     <div class="card flex justify-center">
-      <TieredMenu :model="items" v-bind="args">
+      <TieredMenuSelected :model="items" v-bind="args">
         <template #item="{ item, props, hasSubmenu }">
           <a v-bind="props.action" class="p-tieredmenu-item-link">
             <span v-if="item.icon" :class="['p-tieredmenu-item-icon', item.icon]" />
@@ -98,7 +102,7 @@ export const CustomTemplate = (args) => ({
             <span v-if="hasSubmenu" class="p-tieredmenu-submenu-icon ti ti-chevron-right" />
           </a>
         </template>
-      </TieredMenu>
+      </TieredMenuSelected>
     </div>
   `,
 });

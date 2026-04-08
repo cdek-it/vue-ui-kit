@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { TieredMenu } from 'primevue';
-import { useMenu } from '@/plugins/prime/stories/Menu/_common/composables/useMenu';
+import type { MenuItem } from 'primevue/menuitem';
 
-const { items } = useMenu();
+defineProps<{
+  model: MenuItem[];
+}>();
+
+defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
-  <TieredMenu :model="items" />
+  <TieredMenu :model="model" v-bind="$attrs" />
 </template>
