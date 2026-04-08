@@ -112,8 +112,7 @@ export const GalleriaDefault = {
     :showItemNavigators="true"
     :showIndicators="true"
     :circular="true"
-    :pt="ptGalleria"
-  >
+>
     <template #item="slotProps">
       <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;" />
     </template>
@@ -144,8 +143,7 @@ export const Indicators = {
     :showItemNavigators="true"
     :showIndicators="true"
     :circular="true"
-    :pt="ptGalleria"
-  >
+>
     <template #item="slotProps">
       <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;" />
     </template>
@@ -166,6 +164,11 @@ export const Thumbnails = {
     docs: {
       source: {
         code: `
+<script setup>
+import ChevronLeft from '@/icons/ChevronLeft.svg';
+import ChevronRight from '@/icons/ChevronRight.svg';
+</script>
+
 <template>
   <Galleria
     :value="images"
@@ -184,16 +187,12 @@ export const Thumbnails = {
     </template>
     <template #previousThumbnailButton="slotProps">
       <button class="p-galleria-thumbnail-prev-button p-galleria-thumbnail-nav-button" type="button" @click="slotProps.onClick">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="p-icon p-galleria-thumbnail-prev-icon">
-          <path d="M..." fill="currentColor" />
-        </svg>
+        <ChevronLeft class="p-icon p-galleria-thumbnail-prev-icon" />
       </button>
     </template>
     <template #nextThumbnailButton="slotProps">
       <button class="p-galleria-thumbnail-next-button p-galleria-thumbnail-nav-button" type="button" @click="slotProps.onClick">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" class="p-icon p-galleria-thumbnail-next-icon">
-          <path d="M..." fill="currentColor" />
-        </svg>
+        <ChevronRight class="p-icon p-galleria-thumbnail-next-icon" />
       </button>
     </template>
   </Galleria>
@@ -219,15 +218,14 @@ export const Caption = {
     :showThumbnails="false"
     :showIndicators="true"
     :circular="true"
-    :pt="ptGalleria"
-  >
+>
     <template #item="slotProps">
       <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;" />
     </template>
     <template #caption="slotProps">
       <div>
-        <h4>{{ slotProps.item.title }}</h4>
-        <p>{{ slotProps.item.alt }}</p>
+        <h4 class="text-base font-bold m-0">{{ slotProps.item.title }}</h4>
+        <p class="text-sm font-normal m-0">{{ slotProps.item.alt }}</p>
       </div>
     </template>
   </Galleria>
@@ -258,8 +256,7 @@ const visible = ref(false);
     :showThumbnails="true"
     :fullScreen="true"
     :circular="true"
-    :pt="ptGalleria"
-    v-model:visible="visible"
+  v-model:visible="visible"
   >
     <template #item="slotProps">
       <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%; display: block;" />
