@@ -184,23 +184,29 @@ export const Width = {
     docs: {
       source: {
         code: `
+<script setup>
+import { useToast } from 'primevue/usetoast';
+
+const toast = useToast();
+
+// Доступные значения ширины: 20rem (sm), 25rem (base), 30rem (lg), 45rem (xlg)
+const show = () => {
+  toast.add({
+    severity: 'info',
+    summary: 'Сообщение',
+    detail: 'Подпись',
+    life: 5000,
+    icon: 'ti ti-info-circle',
+  });
+};
+</script>
+
 <template>
-  <!-- sm: 20rem -->
-  <Toast group="width-sm">
+  <!-- Ширина задаётся через CSS-переменную --p-toast-width с помощью пропа pt -->
+  <Toast :pt="{ root: { style: { '--p-toast-width': '30rem' } } }">
     <template #container="{ message }">...</template>
   </Toast>
-  <!-- base: 25rem -->
-  <Toast group="width-base">
-    <template #container="{ message }">...</template>
-  </Toast>
-  <!-- lg: 30rem -->
-  <Toast group="width-lg">
-    <template #container="{ message }">...</template>
-  </Toast>
-  <!-- xlg: 45rem -->
-  <Toast group="width-xlg">
-    <template #container="{ message }">...</template>
-  </Toast>
+  <Button label="Показать уведомление" @click="show" />
 </template>
         `,
       },

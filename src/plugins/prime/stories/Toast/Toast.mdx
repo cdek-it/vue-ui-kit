@@ -30,7 +30,28 @@ import * as ToastStories from './Toast.stories';
 <Controls of={ToastStories.WithContent} />
 
 ### Width
-Доступные размеры ширины тоста: sm (20rem), base (25rem), lg (30rem), xlg (45rem).
+Ширина тоста задаётся через CSS-переменную `--p-toast-width` с помощью пропа `pt`. Доступные значения:
+<details>
+  <summary>Примеры кода</summary>
+
+- `sm` (20rem)
+```html
+<Toast :pt="{ root: { style: { '--p-toast-width': '20rem' } } }" />
+```
+- `base` (25rem)
+```html
+<Toast :pt="{ root: { style: { '--p-toast-width': '25rem' } } }" />
+```
+- `lg` (30rem)
+```html
+<Toast :pt="{ root: { style: { '--p-toast-width': '30rem' } } }" />
+```
+- `xlg` (45rem)
+```html
+<Toast :pt="{ root: { style: { '--p-toast-width': '45rem' } } }" />
+```
+
+</details>
 <Canvas of={ToastStories.Width} />
 
 #### Аргументы и события
