@@ -10,6 +10,12 @@ import * as CarouselStories from './Carousel.stories';
 import Carousel from 'primevue/carousel';
 ```
 
+## Важно: обёртка карточки
+
+На элементе-обёртке внутри `#item` **обязательно** задавать `min-w-0 overflow-hidden`.
+
+PrimeVue по умолчанию скрывает неактивные слайды через `visibility: hidden`. Тема переопределяет это значение на `visibility: visible`, чтобы сохранить плавность анимации. В результате отсечение слайдов за пределами viewport берёт на себя `overflow: hidden` на самом контейнере карточки.
+
 ## Варианты использования
 
 ### Basic
