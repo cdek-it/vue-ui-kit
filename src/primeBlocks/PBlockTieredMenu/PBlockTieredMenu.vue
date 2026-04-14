@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import { TieredMenu } from 'primevue';
+import { TieredMenu as TieredMenuBase } from 'primevue';
+import type { DefineComponent } from 'vue';
 import type { MenuItem } from 'primevue/menuitem';
+
+// Cast needed for dynamic slot forwarding: TieredMenuSlots has no index signature
+const TieredMenu = TieredMenuBase as unknown as DefineComponent<
+  Record<string, unknown>
+>;
 
 defineProps<{
   model: MenuItem[];
@@ -11,7 +17,7 @@ defineOptions({ inheritAttrs: false });
 
 <template>
   <TieredMenu :model="model" v-bind="$attrs">
-    <template v-for="(_, name) in $slots" #[name]="slotProps">
+    <template v-for="name in Object.keys($slots)" #[name]="slotProps">
       <slot :name="name" v-bind="slotProps ?? {}" />
     </template>
   </TieredMenu>
