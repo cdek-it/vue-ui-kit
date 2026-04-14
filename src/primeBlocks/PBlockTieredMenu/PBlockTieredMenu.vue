@@ -58,19 +58,19 @@ defineOptions({ inheritAttrs: false });
 }
 
 .p-tieredmenu-submenu-icon {
-  font-size: var(--p-tieredmenu-extend-icon-size);
+  font-size: var(--p-tieredmenu-icon-size);
 }
 
 .p-tieredmenu-overlay {
   border: var(--p-border-width-100) solid
-    var(--p-tieredmenu-extend-ext-submenu-border-color);
-  background: var(--p-tieredmenu-extend-ext-submenu-background);
+    var(--p-tieredmenu-ext-submenu-border-color);
+  background: var(--p-tieredmenu-ext-submenu-background);
 }
 
 .p-tieredmenu .p-tieredmenu-submenu {
   border: var(--p-border-width-100) solid
-    var(--p-tieredmenu-extend-ext-submenu-border-color);
-  background: var(--p-tieredmenu-extend-ext-submenu-background);
+    var(--p-tieredmenu-ext-submenu-border-color);
+  background: var(--p-tieredmenu-ext-submenu-background);
 }
 
 .p-tieredmenu.p-component
@@ -90,11 +90,11 @@ defineOptions({ inheritAttrs: false });
 .p-tieredmenu-item-caption {
   display: flex;
   flex-direction: column;
-  gap: var(--p-tieredmenu-extend-ext-item-caption-gap);
+  gap: var(--p-tieredmenu-ext-item-caption-gap);
 }
 
 .p-tieredmenu-item-caption-text {
-  color: var(--p-tieredmenu-extend-ext-item-caption-color);
+  color: var(--p-tieredmenu-ext-item-caption-color);
   font-size: var(--p-fonts-font-size-xs);
 }
 </style>
