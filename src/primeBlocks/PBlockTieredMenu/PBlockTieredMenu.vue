@@ -52,4 +52,45 @@ defineOptions({ inheritAttrs: false });
 .p-tieredmenu.p-component .p-disabled .p-tieredmenu-item-icon {
   color: var(--p-button-disabled-disabled-button-text-color);
 }
+
+.p-tieredmenu-submenu-icon {
+  font-size: var(--p-tieredmenu-extend-icon-size);
+}
+
+.p-tieredmenu-overlay {
+  border: var(--p-border-width-100) solid
+    var(--p-tieredmenu-extend-ext-submenu-border-color);
+  background: var(--p-tieredmenu-extend-ext-submenu-background);
+}
+
+.p-tieredmenu .p-tieredmenu-submenu {
+  border: var(--p-border-width-100) solid
+    var(--p-tieredmenu-extend-ext-submenu-border-color);
+  background: var(--p-tieredmenu-extend-ext-submenu-background);
+}
+
+.p-tieredmenu.p-component
+  .p-tieredmenu-item:not(.p-disabled).p-menuitem-checked
+  > .p-tieredmenu-item-content {
+  background: var(--p-tieredmenu-item-active-background);
+  color: var(--p-tieredmenu-item-active-color);
+}
+
+.p-tieredmenu.p-component
+  .p-tieredmenu-item:not(.p-disabled).p-menuitem-checked
+  > .p-tieredmenu-item-content:hover {
+  background: var(--p-tieredmenu-item-active-background);
+  color: var(--p-tieredmenu-item-active-color);
+}
+
+.p-tieredmenu-item-caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-tieredmenu-extend-ext-item-caption-gap);
+}
+
+.p-tieredmenu-item-caption-text {
+  color: var(--p-tieredmenu-extend-ext-item-caption-color);
+  font-size: var(--p-fonts-font-size-xs);
+}
 </style>
