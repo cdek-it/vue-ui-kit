@@ -3,7 +3,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-family: ${dt('fonts.fontFamily.heading')};
   font-size: ${dt('badge.root.fontSize')};
   font-weight: ${dt('badge.root.fontWeight')};
-  line-height: 1;
+  line-height: ${dt('fonts.lineHeight.100')};
 }
 
 .p-badge-dot.p-badge-success {
