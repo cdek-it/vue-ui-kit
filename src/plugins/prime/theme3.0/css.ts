@@ -14,6 +14,7 @@ import drawerCss from './components/css/drawer';
 import messageCss from './components/css/message';
 import metergroupCss from './components/css/metergroup';
 import inputtextCss from './components/css/inputtext';
+import passwordCss from './components/css/password';
 import popoverCss from './components/css/popover';
 import progressbarCss from './components/css/progressbar';
 import selectbuttonCss from './components/css/selectbutton';
@@ -41,6 +42,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
    ${messageCss({ dt })}
    ${metergroupCss({ dt })}
    ${inputtextCss({ dt })}
+   ${passwordCss({ dt })}
    ${popoverCss({ dt })}
    ${progressbarCss({ dt })}
    ${popoverCss({ dt })}

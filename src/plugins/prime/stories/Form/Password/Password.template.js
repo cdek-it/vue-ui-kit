@@ -1,110 +1,89 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import Password from 'primevue/password';
+import Divider from 'primevue/divider';
+import FloatLabel from 'primevue/floatlabel';
 
-export const Template = (args) => ({
+export const BasicTemplate = (args) => ({
   components: { Password },
   setup() {
-    return { args };
+    const value = ref(null);
+    return { args, value };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(4, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
-  <span></span>
-  <span></span>
-  <span><code>value="Password"</code></span>
-  <span><code>toggleMask</code></span>
-
-  <span :style="{ justifySelf: 'flex-start' }"></span>
-  <Password placeholder="Password" v-bind="args" />
-  <Password placeholder="Password" :default-value="'Password'" v-bind="args" />
-  <Password placeholder="Password" :default-value="'Password'" toggleMask v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>invalid</code></span>
-  <Password placeholder="Password" invalid v-bind="args" />
-  <Password placeholder="Password" :default-value="'Password'" invalid v-bind="args" />
-  <Password placeholder="Password" :default-value="'Password'" toggleMask invalid v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>disabled</code></span>
-  <Password placeholder="Password" disabled v-bind="args" />
-  <Password placeholder="Password" :default-value="'Password'" disabled v-bind="args" />
-  <Password placeholder="Password" :default-value="'Password'" toggleMask disabled v-bind="args" />
-</div>
-`,
+    <Password 
+      v-model="value" 
+      v-bind="args" 
+      style="width: 100%"
+      inputStyle="width: 100%"
+      :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }" 
+    />
+  `,
 });
 
-const PasswordCustom = {
-  components: { Password },
+export const FloatLabelTemplate = (args) => ({
+  components: { Password, FloatLabel },
   setup() {
-    const password = ref('');
+    const value = ref(null);
+    const inputProps = computed(() => {
+      const rest = { ...args };
+      delete rest.label;
+      return rest;
+    });
 
-    const rules = ref([
-      { label: 'At least 8 characters', regex: /.{8,}/, icon: 'ti-point' },
-      {
-        label: 'At least one lowercase letter',
-        regex: /[a-z]/,
-        icon: 'ti-point',
-      },
-      {
-        label: 'At least one uppercase letter',
-        regex: /[A-Z]/,
-        icon: 'ti-point',
-      },
-      { label: 'At least one number', regex: /[0-9]/, icon: 'ti-point' },
-      {
-        label: 'At least one special character',
-        regex: /[!@#$%^&*]/,
-        icon: 'ti-point',
-      },
-    ]);
-
-    const checkRules = () => {
-      rules.value.forEach((rule) => {
-        rule.icon = rule.regex.test(password.value)
-          ? 'ti-circle-check'
-          : 'ti-circle-x';
-      });
-    };
-
-    const getColor = (icon) => {
-      switch (icon) {
-        case 'ti-circle-check':
-          return 'green';
-        case 'ti-circle-x':
-          return 'red';
-        default:
-          return 'grey';
-      }
-    };
-
-    return { password, rules, checkRules, getColor };
+    return { args, value, inputProps };
   },
   template: `
-<Password placeholder="Password" v-model="password" @change="checkRules">
-  <template #footer>
-    <div :style="{ padding: '1rem' }">
-      <div v-for="rule in rules" :key="rule.label" :style="{ display: 'flex', alignItems: 'center', gap: '0.5rem' }">
-        <i class="ti" :class="rule.icon" :style="{ color: getColor(rule.icon) }" />
-        <span>{{ rule.label }}</span>
-      </div>
-    </div>
-  </template>
-</Password>
-`,
-};
+    <FloatLabel variant="in">
+      <Password 
+        id="password_label" 
+        v-model="value" 
+        v-bind="inputProps" 
+        variant="filled"
+        style="width: 100%"
+        inputStyle="width: 100%"
+        :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
+      />
+      <label for="password_label">{{ args.label || 'Password' }}</label>
+    </FloatLabel>
+  `,
+});
 
-export const TemplateCustom = (args) => ({
-  components: { PasswordCustom },
+export const CustomContentTemplate = (args) => ({
+  components: { Password, Divider },
   setup() {
-    return { args };
+    const value = ref(null);
+    return { args, value };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(3, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
-  <span></span>
-  <span><code>value="Password"</code></span>
-  <span><code>toggleMask</code></span>
-
-  <PasswordCustom v-bind="args" />
-  <PasswordCustom :default-value="'Password'" v-bind="args" />
-  <PasswordCustom :default-value="'Password'" toggleMask v-bind="args" />
-</div>
-`,
+    <Password v-model="value" v-bind="args" style="width: 100%" inputStyle="width: 100%">
+      <template #header>
+        <div class="font-semibold text-sm mb-2" style="font-size: 0.875rem;">Введите пароль</div>
+      </template>
+      <template #footer>
+        <Divider />
+        <ul class="p-password-rules mt-2">
+          <li class="p-password-rule">
+            <i :class="['ti', !value ? 'ti-circle' : (value.length >= 8 ? 'ti-circle-check' : 'ti-circle-x')]" />
+            <span>Минимум 8 символов</span>
+          </li>
+          <li class="p-password-rule">
+            <i :class="['ti', !value ? 'ti-circle' : (/[a-z]/.test(value) ? 'ti-circle-check' : 'ti-circle-x')]" />
+            <span>Строчная буква</span>
+          </li>
+          <li class="p-password-rule">
+            <i :class="['ti', !value ? 'ti-circle' : (/[A-Z]/.test(value) ? 'ti-circle-check' : 'ti-circle-x')]" />
+            <span>Заглавная буква</span>
+          </li>
+          <li class="p-password-rule">
+            <i :class="['ti', !value ? 'ti-circle' : (/[0-9]/.test(value) ? 'ti-circle-check' : 'ti-circle-x')]" />
+            <span>Хотя бы одна цифра</span>
+          </li>
+          <li class="p-password-rule">
+            <i :class="['ti', !value ? 'ti-circle' : (/[^A-Za-z0-9]/.test(value) ? 'ti-circle-check' : 'ti-circle-x')]" />
+            <span>Спецсимвол</span>
+          </li>
+        </ul>
+      </template>
+    </Password>
+  `,
 });
