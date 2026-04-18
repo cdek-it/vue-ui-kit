@@ -1,24 +1,29 @@
 <script setup lang="ts">
-import { TieredMenu as TieredMenuBase } from 'primevue';
-import type { DefineComponent } from 'vue';
-import type { MenuItem } from 'primevue/menuitem';
+import { TieredMenu, type TieredMenuProps } from 'primevue';
 
-// Cast needed for dynamic slot forwarding: TieredMenuSlots has no index signature
-const TieredMenu = TieredMenuBase as unknown as DefineComponent<
-  Record<string, unknown>
->;
+interface IPBlockTieredMenu extends TieredMenuProps {}
 
-defineProps<{
-  model: MenuItem[];
-}>();
+defineProps<IPBlockTieredMenu>();
 
 defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
-  <TieredMenu :model="model" v-bind="$attrs">
-    <template v-for="name in Object.keys($slots)" #[name]="slotProps">
-      <slot :name="name" v-bind="slotProps ?? {}" />
+  <TieredMenu v-bind="{ ...$props, ...$attrs }">
+    <template #start>
+      <slot name="start" />
+    </template>
+    <template #end>
+      <slot name="end" />
+    </template>
+    <template #item="slotProps">
+      <slot name="item" v-bind="slotProps" />
+    </template>
+    <template #submenuicon="slotProps">
+      <slot name="submenuicon" v-bind="slotProps" />
+    </template>
+    <template #itemicon="slotProps">
+      <slot name="itemicon" v-bind="slotProps" />
     </template>
   </TieredMenu>
 </template>

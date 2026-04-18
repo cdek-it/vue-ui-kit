@@ -15,7 +15,7 @@ export const BasicTemplate = () => ({
     return { items };
   },
   template: `
-    <div class="card flex justify-center">
+    <div class="card flex justify-center" style="height: 280px;">
       <PBlockTieredMenu :model="items" />
     </div>
   `,
@@ -28,7 +28,7 @@ export const WithSelectedTemplate = () => ({
     return { items };
   },
   template: `
-    <div class="card flex justify-center">
+    <div class="card flex justify-center" style="height: 280px;">
       <PBlockTieredMenu :model="items" />
     </div>
   `,
@@ -89,7 +89,7 @@ export const CustomTemplate = (args) => ({
     return { args, items };
   },
   template: `
-    <div class="card flex justify-center">
+    <div class="card flex justify-center" style="height: 280px;">
       <PBlockTieredMenu :model="items" v-bind="args">
         <template #item="{ item, props, hasSubmenu }">
           <a v-bind="props.action" class="p-tieredmenu-item-link">
