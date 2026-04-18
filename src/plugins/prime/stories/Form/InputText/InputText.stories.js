@@ -2,45 +2,21 @@ import InputText from 'primevue/inputtext';
 import PrimeFloatLabel from 'primevue/floatlabel';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
-import InputTextClear from './InputTextClear.vue';
+import PBlockInputTextClear from '../../../../../primeBlocks/PBlockInputTextClear/PBlockInputTextClear.vue';
 import { ref, computed } from 'vue';
 import { Template } from './InputText.template';
 
 const CLEAR_BUTTON_SOURCE =
   `
 <script setup>
-import InputText from 'primevue/inputtext';
-import IconField from 'primevue/iconfield';
-import InputIcon from 'primevue/inputicon';
+import { PBlockInputTextClear } from '@cdek-it/vue-ui-kit';
 
 const model = defineModel({ default: '' });
-
-defineProps({
-  size: String,       // 'small' | 'large' | 'xlarge'
-  invalid: Boolean,
-  disabled: Boolean,
-  readonly: Boolean,
-  placeholder: String,
-});
 </` +
   `script>
 
 <template>
-  <IconField style="width: 100%">
-    <InputText
-      v-model="model"
-      :invalid="invalid"
-      :disabled="disabled"
-      :readonly="readonly"
-      :placeholder="placeholder"
-      style="width: 100%"
-      :class="{ 'p-inputtext-xlg': size === 'xlarge' }"
-      :size="size === 'xlarge' || !size ? undefined : size"
-    />
-    <InputIcon v-show="model" style="cursor: pointer; z-index: 1" @click.stop="model = ''">
-      <i class="ti ti-x" />
-    </InputIcon>
-  </IconField>
+  <PBlockInputTextClear v-model="model" placeholder="Введите текст..." />
 </template>
 `;
 
@@ -124,13 +100,13 @@ export const ClearButton = {
     placeholder: 'Введите текст...',
   },
   render: (args) => ({
-    components: { InputTextClear },
+    components: { PBlockInputTextClear },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <InputTextClear
+      <PBlockInputTextClear
         v-model="value"
         :placeholder="args.placeholder"
       />
