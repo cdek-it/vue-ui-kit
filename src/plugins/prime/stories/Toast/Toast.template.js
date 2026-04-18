@@ -236,10 +236,34 @@ export const TemplateWithContent = (args) => ({
 });
 
 const SIZES = [
-  { key: 'sm', label: 'Small (20rem)', cls: 'p-toast-sm', width: '20rem', group: 'width-sm' },
-  { key: 'base', label: 'Base (25rem)', cls: '', width: '25rem', group: 'width-base' },
-  { key: 'lg', label: 'Large (30rem)', cls: 'p-toast-lg', width: '30rem', group: 'width-lg' },
-  { key: 'xlg', label: 'X-Large (45rem)', cls: 'p-toast-xlg', width: '45rem', group: 'width-xlg' },
+  {
+    key: 'sm',
+    label: 'Small (20rem)',
+    cls: 'p-toast-sm',
+    width: '20rem',
+    group: 'width-sm',
+  },
+  {
+    key: 'base',
+    label: 'Base (25rem)',
+    cls: '',
+    width: '25rem',
+    group: 'width-base',
+  },
+  {
+    key: 'lg',
+    label: 'Large (30rem)',
+    cls: 'p-toast-lg',
+    width: '30rem',
+    group: 'width-lg',
+  },
+  {
+    key: 'xlg',
+    label: 'X-Large (45rem)',
+    cls: 'p-toast-xlg',
+    width: '45rem',
+    group: 'width-xlg',
+  },
 ];
 
 export const TemplateWidth = () => ({
