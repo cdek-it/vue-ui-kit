@@ -30,25 +30,25 @@ import * as ToastStories from './Toast.stories';
 <Controls of={ToastStories.WithContent} />
 
 ### Width
-Ширина тоста задаётся через CSS-переменную `--p-toast-width` с помощью пропа `pt`. Доступные значения:
+Ширина тоста задаётся через CSS-класс на компоненте. Доступные значения:
 <details>
   <summary>Примеры кода</summary>
 
 - `sm` (20rem)
 ```html
-<Toast :pt="{ root: { style: { '--p-toast-width': '20rem' } } }" />
+<Toast class="p-toast-sm" />
 ```
-- `base` (25rem)
+- `base` (25rem, по умолчанию)
 ```html
-<Toast :pt="{ root: { style: { '--p-toast-width': '25rem' } } }" />
+<Toast />
 ```
 - `lg` (30rem)
 ```html
-<Toast :pt="{ root: { style: { '--p-toast-width': '30rem' } } }" />
+<Toast class="p-toast-lg" />
 ```
 - `xlg` (45rem)
 ```html
-<Toast :pt="{ root: { style: { '--p-toast-width': '45rem' } } }" />
+<Toast class="p-toast-xlg" />
 ```
 
 </details>

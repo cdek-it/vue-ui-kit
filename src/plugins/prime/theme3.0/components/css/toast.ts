@@ -54,6 +54,11 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 )};
 }
 
+/* Размеры тоста через классы */
+.p-toast-sm .p-toast-message { width: 20rem; }
+.p-toast-lg .p-toast-message { width: 30rem; }
+.p-toast-xlg .p-toast-message { width: 45rem; }
+
 /* Стили для toast типа Info */
 .p-toast-message-info .p-toast-message-icon {
   color: ${dt('toast.extend.extInfo.color')};

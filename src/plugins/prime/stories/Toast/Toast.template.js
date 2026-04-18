@@ -236,38 +236,38 @@ export const TemplateWithContent = (args) => ({
 });
 
 const SIZES = [
-  { key: 'sm', label: 'Small (20rem)', width: '20rem', group: 'width-sm' },
-  { key: 'base', label: 'Base (25rem)', width: '25rem', group: 'width-base' },
-  { key: 'lg', label: 'Large (30rem)', width: '30rem', group: 'width-lg' },
-  { key: 'xlg', label: 'X-Large (45rem)', width: '45rem', group: 'width-xlg' },
+  { key: 'sm', label: 'Small (20rem)', cls: 'p-toast-sm', width: '20rem', group: 'width-sm' },
+  { key: 'base', label: 'Base (25rem)', cls: '', width: '25rem', group: 'width-base' },
+  { key: 'lg', label: 'Large (30rem)', cls: 'p-toast-lg', width: '30rem', group: 'width-lg' },
+  { key: 'xlg', label: 'X-Large (45rem)', cls: 'p-toast-xlg', width: '45rem', group: 'width-xlg' },
 ];
 
 export const TemplateWidth = () => ({
   components: { Toast, Button },
   setup() {
     const toast = useToast();
-    const currentWidth = ref('25rem');
+    const currentSize = ref(SIZES[1]);
 
-    const showToast = (width) => {
+    const showToast = (size) => {
       toast.removeGroup('width-preview');
-      currentWidth.value = width;
+      currentSize.value = size;
       toast.add({
         group: 'width-preview',
         severity: 'info',
         summary: 'Сообщение',
-        detail: 'Ширина: ' + width,
+        detail: 'Ширина: ' + size.width,
         life: 3000,
         icon: 'ti ti-info-circle',
       });
     };
 
-    return { showToast, sizes: SIZES, currentWidth };
+    return { showToast, sizes: SIZES, currentSize };
   },
   template: `
     <div>
       <Toast
         group="width-preview"
-        :pt="{ root: { style: { '--p-toast-width': currentWidth } } }"
+        :class="currentSize.cls"
       >
         <template #container="{ message }">
           <div class="p-toast-message-content">
@@ -299,11 +299,11 @@ export const TemplateWidth = () => ({
       </div>
       <div class="flex flex-wrap gap-2 mt-6">
         <Button
-          v-for="({ label, width }) in sizes"
-          :key="label"
-          :label="label"
+          v-for="(size) in sizes"
+          :key="size.label"
+          :label="size.label"
           severity="contrast"
-          @click="showToast(width)"
+          @click="showToast(size)"
         />
       </div>
     </div>
