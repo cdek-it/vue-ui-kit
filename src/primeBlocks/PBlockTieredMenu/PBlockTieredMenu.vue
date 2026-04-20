@@ -5,11 +5,28 @@ interface IPBlockTieredMenu extends TieredMenuProps {}
 
 defineProps<IPBlockTieredMenu>();
 
+const emit = defineEmits<{
+  (e: 'focus', event: Event): void;
+  (e: 'blur', event: Event): void;
+  (e: 'show'): void;
+  (e: 'hide'): void;
+  (e: 'before-show'): void;
+  (e: 'before-hide'): void;
+}>();
+
 defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
-  <TieredMenu v-bind="{ ...$props, ...$attrs }">
+  <TieredMenu
+    v-bind="{ ...$props, ...$attrs }"
+    @focus="emit('focus', $event)"
+    @blur="emit('blur', $event)"
+    @show="emit('show')"
+    @hide="emit('hide')"
+    @before-show="emit('before-show')"
+    @before-hide="emit('before-hide')"
+  >
     <template #start>
       <slot name="start" />
     </template>
