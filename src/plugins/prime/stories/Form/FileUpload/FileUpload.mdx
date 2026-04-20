@@ -1,18 +1,36 @@
-import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
+import {
+  Meta,
+  Canvas,
+  Controls,
+  Title,
+  Description,
+} from '@storybook/addon-docs/blocks';
 import * as FileUploadStories from './FileUpload.stories';
 
 <Meta of={FileUploadStories} />
 
 <Title />
-
 <Description />
 
 ```javascript
-import FileUpload from 'primevue/fileupload';
+import { PBlockFileUpload } from '@/primeBlocks';
 ```
+
+`PBlockFileUpload` — обёртка над `primevue/fileupload`, которая берёт на себя
+кастомные карточки файлов, dropzone и mock-обработчик загрузки
+(`console.log`, без реальных сетевых запросов). Все пропсы PrimeVue
+`FileUploadProps` прокидываются через `v-bind="$attrs"`, эмиты и ключевые
+слоты (`empty`, `chooseicon`, `uploadicon`, `cancelicon`, `fileremoveicon`,
+`filelabel`) проброшены явно.
 
 ## Варианты использования
 
-### Template
+### Default
 
-<Canvas of={FileUploadStories.Template} />
+Базовый вариант с кастомным dropzone и списком файлов.
+
+<Canvas of={FileUploadStories.Default} />
+
+#### Аргументы и события
+
+<Controls of={FileUploadStories.Default} />

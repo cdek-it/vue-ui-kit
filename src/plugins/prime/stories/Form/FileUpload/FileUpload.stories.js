@@ -1,4 +1,4 @@
-import { TemplateTemplate } from './FileUpload.template';
+import { DefaultTemplate } from './FileUpload.template';
 
 export default {
   title: 'Prime/Form/FileUpload',
@@ -6,49 +6,71 @@ export default {
     docs: {
       description: {
         component:
-          'Компонент загрузки файлов с кастомным шаблоном, поддержкой drag-and-drop, прогресс-бара и предпросмотра файлов.',
+          'Компонент загрузки файлов с поддержкой drag-and-drop, прогресс-бара и предпросмотра файлов. В stories используется обёртка `PBlockFileUpload` из `@/primeBlocks` — она инкапсулирует кастомный шаблон карточек, мок-uploader (console.log) и не затрагивает внутренние классы PrimeVue в потребителе.',
       },
     },
+    designToken: { disable: false },
     designTokens: {
       prefix: '--p-fileupload',
     },
   },
+  argTypes: {
+    multiple: {
+      control: 'boolean',
+      description: 'Разрешает выбирать несколько файлов за один раз.',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: true },
+        type: { summary: 'boolean' },
+      },
+    },
+    accept: {
+      control: 'text',
+      description: 'Шаблон разрешённых типов файлов.',
+      table: {
+        category: 'Props',
+        type: { summary: 'string' },
+      },
+    },
+    maxFileSize: {
+      control: 'number',
+      description: 'Максимальный размер одного файла в байтах.',
+      table: {
+        category: 'Props',
+        type: { summary: 'number' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Отключает возможность выбора и загрузки файлов.',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: false },
+        type: { summary: 'boolean' },
+      },
+    },
+  },
+  args: {
+    multiple: true,
+    accept: 'image/*,.pdf,.doc,.docx',
+    maxFileSize: 1000000,
+  },
 };
 
-export const Template = {
-  render: TemplateTemplate.bind({}),
+export const Default = {
+  render: DefaultTemplate.bind({}),
   parameters: {
     docs: {
       source: {
         code: `
-<FileUpload
-  name="files[]"
-  url="/api/upload"
-  :multiple="true"
-  accept="image/*,.pdf,.doc,.docx"
-  :maxFileSize="1000000"
-  customUpload
-  @select="onSelectedFiles"
-  @uploader="onUploader"
->
-  <template #header="{ chooseCallback, files }">
-    <div style="display: flex; flex-direction: column; width: 100%;">
-      <!-- Dropzone -->
-      <div @click="chooseCallback()" class="p-fileupload-dropzone">
-        <i class="ti ti-upload p-fileupload-dropzone-icon" />
-        <div class="p-fileupload-dropzone-info">
-          <span class="p-fileupload-dropzone-title">Чтобы загрузить файлы кликните или перетащите их в эту область</span>
-          <span class="p-fileupload-dropzone-caption"><i class="ti ti-info-circle" />Можно загрузить не более 10 файлов размером 1 MB</span>
-        </div>
-      </div>
-      <!-- Progress Bar -->
-      <ProgressBar :value="totalSizePercent" :showValue="false" class="p-fileupload-progressbar-v2" />
-    </div>
-  </template>
-  <template #content="{ files, uploadedFiles, removeUploadedFileCallback, removeFileCallback, uploadCallback, clearCallback }">
-    <!-- ... content template ... -->
-  </template>
-</FileUpload>`,
+<template>
+  <PBlockFileUpload
+    :multiple="true"
+    accept="image/*,.pdf,.doc,.docx"
+    :maxFileSize="1000000"
+  />
+</template>
+`,
       },
     },
   },
