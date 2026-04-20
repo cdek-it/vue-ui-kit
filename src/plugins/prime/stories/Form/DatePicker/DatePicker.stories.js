@@ -1,3 +1,4 @@
+import PBlockDatePicker from '@/primeBlocks/PBlockDatePicker/PBlockDatePicker.vue';
 import {
   BasicTemplate,
   RangeTemplate,
@@ -12,6 +13,7 @@ import {
 
 export default {
   title: 'Prime/Form/DatePicker',
+  component: PBlockDatePicker,
   argTypes: {
     size: {
       control: 'select',
