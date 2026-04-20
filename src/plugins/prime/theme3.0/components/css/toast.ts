@@ -55,9 +55,17 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Размеры тоста через классы */
-.p-toast-sm .p-toast-message { width: 20rem; }
-.p-toast-lg .p-toast-message { width: 30rem; }
-.p-toast-xlg .p-toast-message { width: 45rem; }
+.p-toast.p-toast-sm .p-toast-message {
+  width: ${dt('messages.sm.width')};
+}
+
+.p-toast.p-toast-lg .p-toast-message {
+  width: ${dt('messages.lg.width')};
+}
+
+.p-toast.p-toast-xlg .p-toast-message {
+  width: ${dt('messages.xlg.width')};
+}
 
 /* Стили для toast типа Info */
 .p-toast-message-info .p-toast-message-icon {
