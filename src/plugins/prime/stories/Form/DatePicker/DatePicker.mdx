@@ -1,0 +1,60 @@
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
+import * as DatePickerStories from './DatePicker.stories';
+
+<Meta of={DatePickerStories} />
+
+<Title />
+
+<Description />
+
+```javascript
+import DatePicker from 'primevue/datepicker';
+```
+
+## Варианты использования
+
+### Basic
+
+<Canvas of={DatePickerStories.Basic} />
+
+### Range
+
+<Canvas of={DatePickerStories.Range} />
+
+### Time
+
+<Canvas of={DatePickerStories.Time} />
+
+### Button Bar
+
+<Canvas of={DatePickerStories.ButtonBar} />
+
+### Inline
+
+Пример полной замены заголовка с использованием слота `#header` и компонентов `Select` для выбора месяца и года.
+
+<Canvas of={DatePickerStories.Inline} />
+
+### Month Picker
+
+Выбор только месяца.
+
+<Canvas of={DatePickerStories.MonthPicker} />
+
+### Year Picker
+
+Выбор только года.
+
+<Canvas of={DatePickerStories.YearPicker} />
+
+### Float Label
+
+Пример использования с плавающим лейблом.
+
+<Canvas of={DatePickerStories.FloatLabel} />
+
+### Clear Icon
+
+Использование крестика для очистки (ti-x) внутри инпута.
+
+<Canvas of={DatePickerStories.ClearIcon} />

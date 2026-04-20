@@ -67,6 +67,7 @@ export default {
       '300': '{sizing.10x}',
       '350': '{sizing.11x}',
       '400': '{sizing.12x}',
+      '450': '{sizing.36x}',
       '500': '{sizing.60x}',
       full: '{sizing.max}',
     },

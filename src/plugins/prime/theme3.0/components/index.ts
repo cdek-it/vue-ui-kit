@@ -1314,7 +1314,7 @@ export default {
     },
     title: {
       gap: '{form.gap.200}',
-      fontWeight: '{fonts.fontWeight.bold}',
+      fontWeight: '{fonts.fontWeight.medium}',
     },
     selectMonth: {
       hoverBackground: '{content.hoverBackground}',
@@ -1584,7 +1584,7 @@ export default {
       activeColor: '{form.floatLabelActiveColor}',
       invalidColor: '{form.floatLabelInvalidColor}',
       transitionDuration: '{form.transitionDuration}',
-      positionX: '{form.padding.400}',
+      positionX: '{form.padding.300}',
       positionY: '{form.padding.300}',
       fontWeight: '{fonts.fontWeight.regular}',
       fontSize: '{fonts.fontSize.300}',
@@ -1809,9 +1809,9 @@ export default {
       iconSize: '{form.icon.300}',
       borderWidth: '{form.borderWidth}',
       extXlg: {
-        fontSize: '{form.xlg.fontSize}',
-        paddingX: '{form.paddingX}',
-        paddingY: '{form.xlg.paddingY}',
+        fontSize: '{fonts.fontSize.300}',
+        paddingX: '{form.padding.300}',
+        paddingY: '{form.padding.600}',
       },
     },
     root: {
@@ -1829,19 +1829,19 @@ export default {
       placeholderColor: '{form.placeholderColor}',
       invalidPlaceholderColor: '{form.invalidPlaceholderColor}',
       shadow: '0',
-      paddingX: '{form.paddingX}',
-      paddingY: '{form.paddingY}',
+      paddingX: '{form.padding.300}',
+      paddingY: '{form.padding.300}',
       borderRadius: '{form.borderRadius.200}',
       transitionDuration: '{form.transitionDuration}',
       sm: {
-        fontSize: '{form.sm.fontSize}',
-        paddingX: '{form.paddingX}',
-        paddingY: '{form.sm.paddingY}',
+        fontSize: '{fonts.fontSize.300}',
+        paddingX: '{form.padding.300}',
+        paddingY: '{form.padding.200}',
       },
       lg: {
-        fontSize: '{form.lg.fontSize}',
-        paddingX: '{form.paddingX}',
-        paddingY: '{form.lg.paddingY}',
+        fontSize: '{fonts.fontSize.300}',
+        paddingX: '{form.padding.300}',
+        paddingY: '{form.padding.400}',
       },
       focusRing: {
         width: '{form.focusRing.width}',
@@ -2877,7 +2877,7 @@ export default {
     },
     dropdown: {
       width: '{form.width.300}',
-      color: '{form.iconColor}',
+      color: '{form.placeholderColor}',
     },
     overlay: {
       background: '{overlay.select.background}',
@@ -2911,7 +2911,7 @@ export default {
       padding: '{list.option.padding}',
     },
     clearIcon: {
-      color: '{form.iconColor}',
+      color: '{form.placeholderColor}',
     },
     checkmark: {
       color: '{list.option.color}',
