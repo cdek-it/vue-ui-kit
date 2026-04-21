@@ -12,6 +12,7 @@ export default {
         component:
           'Расширенное меню с поддержкой многоколоночных подменю. Поддерживает горизонтальную и вертикальную ориентацию.',
       },
+      story: { height: '300px' },
     },
     designTokens: {
       prefix: '--p-megamenu',
@@ -19,13 +20,8 @@ export default {
   },
 };
 
-const heightDecorator = () => ({
-  template: '<div style="min-height: 300px;"><story /></div>',
-});
-
 export const Horizontal = {
   render: HorizontalTemplate.bind({}),
-  decorators: [heightDecorator],
   parameters: {
     docs: {
       source: {
@@ -62,7 +58,6 @@ const items = ref([
 
 export const Vertical = {
   render: VerticalTemplate.bind({}),
-  decorators: [heightDecorator],
   parameters: {
     docs: {
       source: {
@@ -98,12 +93,12 @@ const items = ref([
 
 export const Custom = {
   render: CustomTemplate.bind({}),
-  decorators: [heightDecorator],
   parameters: {
     docs: {
       source: {
         code: `<script setup>
 import { ref } from 'vue';
+import MegaMenuItem from './MegaMenuItem.vue';
 
 const items = ref([
   {
@@ -136,15 +131,7 @@ const items = ref([
 <template>
   <MegaMenu :model="items">
     <template #item="{ item, props }">
-      <a v-bind="props.action" class="p-megamenu-item-link">
-        <span v-if="item.icon" :class="['p-megamenu-item-icon', item.icon]" />
-        <div class="megamenu-item-label">
-          <span class="p-megamenu-item-label">{{ item.label }}</span>
-          <small v-if="item.description" class="megamenu-item-caption">{{ item.description }}</small>
-        </div>
-        <Badge v-if="item.badge" :value="item.badge" />
-        <span v-if="item.items" class="p-megamenu-submenu-icon ti ti-chevron-down" />
-      </a>
+      <MegaMenuItem :item="item" :action-props="props.action" />
     </template>
   </MegaMenu>
 </template>`,

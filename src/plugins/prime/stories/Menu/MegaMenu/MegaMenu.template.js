@@ -1,5 +1,6 @@
-import { MegaMenu, Badge } from 'primevue';
+import { MegaMenu } from 'primevue';
 import { ref } from 'vue';
+import MegaMenuItem from './MegaMenuItem.vue';
 
 const baseItems = [
   {
@@ -70,7 +71,7 @@ export const VerticalTemplate = (args) => ({
 });
 
 export const CustomTemplate = (args) => ({
-  components: { MegaMenu, Badge },
+  components: { MegaMenu, MegaMenuItem },
   setup() {
     const items = ref([
       {
@@ -146,15 +147,7 @@ export const CustomTemplate = (args) => ({
   template: `
     <MegaMenu :model="items" v-bind="args">
       <template #item="{ item, props }">
-        <a v-bind="props.action" class="p-megamenu-item-link">
-          <span v-if="item.icon" :class="['p-megamenu-item-icon', item.icon]" />
-          <div class="megamenu-item-label">
-            <span class="p-megamenu-item-label">{{ item.label }}</span>
-            <small v-if="item.description" class="megamenu-item-caption">{{ item.description }}</small>
-          </div>
-          <Badge v-if="item.badge" :value="item.badge" />
-          <span v-if="item.items" class="p-megamenu-submenu-icon ti ti-chevron-down" />
-        </a>
+        <MegaMenuItem :item="item" :action-props="props.action" />
       </template>
     </MegaMenu>
   `,
