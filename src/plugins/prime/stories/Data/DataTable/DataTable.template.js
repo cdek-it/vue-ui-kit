@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';
@@ -74,11 +74,14 @@ const products = [
 export const Template = (args) => ({
   components: { DataTable, Column },
   setup() {
-    const data = ref(products);
-    return { args, data };
+    const data = ref([...products, ...products, ...products]);
+    const scrollHeight = computed(() =>
+      args.scrollable ? '400px' : undefined
+    );
+    return { args, data, scrollHeight };
   },
   template: `
-<DataTable :value="data" v-bind="args">
+<DataTable :value="data" v-bind="args" :scrollHeight="scrollHeight">
   <Column field="code" header="Код" sortable></Column>
   <Column field="name" header="Название" sortable></Column>
   <Column field="category" header="Категория" sortable></Column>
