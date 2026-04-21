@@ -1,5 +1,6 @@
-import { Menubar, Badge } from 'primevue';
+import { Menubar } from 'primevue';
 import { ref } from 'vue';
+import MenubarItem from './MenubarItem.vue';
 
 export const BasicTemplate = () => ({
   components: { Menubar },
@@ -90,7 +91,7 @@ export const WithIconTemplate = () => ({
 });
 
 export const CustomTemplate = (args) => ({
-  components: { Menubar, Badge },
+  components: { Menubar, MenubarItem },
   setup() {
     const items = ref([
       {
@@ -128,14 +129,7 @@ export const CustomTemplate = (args) => ({
   template: `
     <Menubar :model="items" v-bind="args">
       <template #item="{ item, props }">
-        <a v-bind="props.action" class="p-menubar-item-link">
-          <span v-if="item.icon" :class="['p-menubar-item-icon', item.icon]" />
-          <div class="menubar-item-label">
-            <span class="p-menubar-item-label">{{ item.label }}</span>
-            <small v-if="item.description" class="menubar-item-caption">{{ item.description }}</small>
-          </div>
-          <Badge v-if="item.badge" :value="item.badge" />
-        </a>
+        <MenubarItem :item="item" :action-props="props.action" />
       </template>
     </Menubar>
   `,
