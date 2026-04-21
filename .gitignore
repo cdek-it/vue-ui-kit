@@ -34,4 +34,4 @@ storybook-static
 
 .claude/*
 
-tsconfig.app.tsbuildinfo
+*.tsbuildinfo

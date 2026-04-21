@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as StepperStories from './Stepper.stories';
+
+<Meta of={StepperStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Horizontal
+Горизонтальный степпер — разметка через `StepList` и `StepPanels`.
+<Canvas of={StepperStories.Horizontal} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={StepperStories.Horizontal} />
+
+### Vertical
+Вертикальный степпер — разметка через `StepItem`, каждый шаг содержит свою панель.
+<Canvas of={StepperStories.Vertical} />
+
+### Linear
+Линейный режим: `linear` — переход к следующему шагу невозможен без завершения текущего.
+<Canvas of={StepperStories.Linear} />
+
+### Steps Only
+Только шаги без панелей с контентом.
+<Canvas of={StepperStories.StepsOnly} />
+
+### Error (Invalid step)
+Шаг с ошибкой отображается через CSS-класс `step-invalid`. Все последующие шаги должны быть `disabled`.
+<Canvas of={StepperStories.Error} />
