@@ -1,5 +1,5 @@
 import PBlockPassword from './PBlockExample/PBlockPassword.vue';
 import PBlockToggleButton from './PBlockToggleButton/PBlockToggleButton.vue';
-import PBlockInputTextClear from './PBlockInputTextClear/PBlockInputTextClear.vue';
+import PBlockInputText from './PBlockInputText/PBlockInputText.vue';
 
-export { PBlockPassword, PBlockToggleButton, PBlockInputTextClear };
+export { PBlockPassword, PBlockToggleButton, PBlockInputText };
