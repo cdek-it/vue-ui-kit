@@ -9,42 +9,38 @@ const defaultEvents = [
 ];
 
 const markerEvents = [
-  { status: 'Успех', date: 'caption', borderColor: 'var(--p-green-500)' },
   {
-    status: 'Успех с иконкой',
+    status: 'Успех',
     date: 'caption',
     icon: 'ti ti-circle-check',
-    iconColor: 'var(--p-green-500)',
-    borderColor: 'var(--p-green-500)',
+    color: 'var(--p-green-500)',
   },
+  { status: 'Успех (точка)', date: 'caption', color: 'var(--p-green-500)' },
   {
     status: 'Предупреждение',
     date: 'caption',
-    borderColor: 'var(--p-orange-500)',
-  },
-  {
-    status: 'Предупреждение с иконкой',
-    date: 'caption',
     icon: 'ti ti-alert-circle',
-    iconColor: 'var(--p-orange-500)',
-    borderColor: 'var(--p-orange-500)',
+    color: 'var(--p-orange-500)',
   },
-  { status: 'Ошибка', date: 'caption', borderColor: 'var(--p-red-500)' },
   {
-    status: 'Ошибка с иконкой',
+    status: 'Предупреждение (точка)',
+    date: 'caption',
+    color: 'var(--p-orange-500)',
+  },
+  {
+    status: 'Ошибка',
     date: 'caption',
     icon: 'ti ti-circle-x',
-    iconColor: 'var(--p-red-500)',
-    borderColor: 'var(--p-red-500)',
+    color: 'var(--p-red-500)',
   },
-  { status: 'Информация', date: 'caption', borderColor: 'var(--p-blue-500)' },
+  { status: 'Ошибка (точка)', date: 'caption', color: 'var(--p-red-500)' },
   {
-    status: 'Информация с иконкой',
+    status: 'Информация',
     date: 'caption',
     icon: 'ti ti-info-circle',
-    iconColor: 'var(--p-blue-500)',
-    borderColor: 'var(--p-blue-500)',
+    color: 'var(--p-blue-500)',
   },
+  { status: 'Информация (точка)', date: 'caption', color: 'var(--p-blue-500)' },
 ];
 
 export const HorizontalTemplate = (args) => ({
@@ -103,15 +99,12 @@ export const MarkersTemplate = (args) => ({
         <i
           v-if="slotProps.item.icon"
           :class="[slotProps.item.icon, 'timeline-marker-icon']"
-          :style="{
-            color: slotProps.item.iconColor,
-            borderColor: slotProps.item.borderColor,
-          }"
+          :style="{ color: slotProps.item.color }"
         ></i>
         <div
           v-else
           class="timeline-marker-dot"
-          :style="{ borderColor: slotProps.item.borderColor }"
+          :style="{ borderColor: slotProps.item.color }"
         ></div>
       </template>
       <template #content="slotProps">

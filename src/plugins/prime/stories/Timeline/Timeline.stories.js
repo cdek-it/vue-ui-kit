@@ -137,12 +137,12 @@ export const Markers = {
     <i
       v-if="slotProps.item.icon"
       :class="[slotProps.item.icon, 'timeline-marker-icon']"
-      :style="{ color: slotProps.item.iconColor, borderColor: slotProps.item.borderColor }"
+      :style="{ color: slotProps.item.color }"
     ></i>
     <div
       v-else
       class="timeline-marker-dot"
-      :style="{ borderColor: slotProps.item.borderColor }"
+      :style="{ borderColor: slotProps.item.color }"
     ></div>
   </template>
   <template #content="slotProps">
