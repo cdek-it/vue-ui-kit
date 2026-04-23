@@ -50,7 +50,9 @@ const onClear = () => {
       class="p-block-inputtext__icon"
       @click.stop="onClear"
     >
-      <i class="ti ti-x" />
+      <slot name="clear-icon">
+        <i class="ti ti-x" />
+      </slot>
     </InputIcon>
   </IconField>
   <InputText
