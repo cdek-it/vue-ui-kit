@@ -55,17 +55,17 @@ const emit = defineEmits<{
   />
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .p-block-inputtext {
   width: 100%;
-}
 
-.p-block-inputtext :deep(.p-inputtext) {
-  width: 100%;
-}
+  :deep(.p-inputtext) {
+    width: 100%;
+  }
 
-.p-block-inputtext__icon {
-  cursor: pointer;
-  z-index: 1;
+  &__icon {
+    cursor: pointer;
+    z-index: 1;
+  }
 }
 </style>
