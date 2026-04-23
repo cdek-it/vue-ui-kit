@@ -1,16 +1,15 @@
 import InputText from 'primevue/inputtext';
-import InputTextClear from './InputTextClear.vue';
-import FloatLabel from 'primevue/floatlabel';
+import PBlockInputText from '../../../../../primeBlocks/PBlockInputText/PBlockInputText.vue';
 import { ref } from 'vue';
 
 export const Template = (args) => ({
-  components: { InputText, InputTextClear },
+  components: { InputText, PBlockInputText },
   setup() {
     const value = ref('');
     return { args, value };
   },
   template: `
-    <InputTextClear
+    <PBlockInputText
       v-if="args.showClear"
       v-model="value"
       :size="args.size"
@@ -18,6 +17,7 @@ export const Template = (args) => ({
       :disabled="args.disabled"
       :readonly="args.readonly"
       :placeholder="args.placeholder"
+      :fluid="args.fluid"
     />
     <InputText
       v-else
@@ -26,23 +26,10 @@ export const Template = (args) => ({
       :disabled="args.disabled"
       :readonly="args.readonly"
       :placeholder="args.placeholder"
+      :fluid="args.fluid"
       style="width: 100%"
       :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
-      :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+      :size="args.size === 'xlarge' || args.size === 'base' ? null : args.size"
     />
   `,
-});
-
-export const TemplateFloatLabel = (args) => ({
-  components: { InputText, FloatLabel },
-  setup() {
-    const value = ref('');
-    return { args, value };
-  },
-  template: `
-    <FloatLabel variant="in">
-        <InputText id="in_label" v-model="value" style="width: 100%" v-bind="args" />
-        <label for="in_label">In Label</label>
-    </FloatLabel>
-`,
 });
