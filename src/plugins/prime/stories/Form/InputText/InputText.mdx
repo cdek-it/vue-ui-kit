@@ -1,4 +1,4 @@
-import { Meta, Story, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as InputTextStories from './InputText.stories';
 
 <Meta of={InputTextStories} />
@@ -6,24 +6,35 @@ import * as InputTextStories from './InputText.stories';
 <Title />
 <Description />
 
-## Импорт
-```js
-import InputText from 'primevue/inputtext';
-```
-
 ## Варианты использования
 
 ### Default
-Стационарный текстовый ввод. Вы можете управлять всеми параметрами (размеры, состояния, наличие иконки очистки и текст подсказки) через таблицу аргументов ниже.
+Базовый пример компонента. Используйте Controls для интерактивного изменения пропсов.
 <Canvas of={InputTextStories.Default} />
 
 #### Список параметров
 <Controls of={InputTextStories.Default} />
 
-### Кнопка очистки
-Для добавления кнопки очистки реализуйте обёртку на основе `IconField` + `InputIcon`. Ниже приведён сниппет готового компонента `InputTextClear.vue`.
+### ClearButton
+Поле с кнопкой очистки через `PBlockInputText`. Иконка × появляется при вводе первого символа.
 <Canvas of={InputTextStories.ClearButton} />
 
-### Float Label
-Использование поля ввода внутри контейнера `FloatLabel`.
+### Disabled
+Отключённое состояние.
+<Canvas of={InputTextStories.Disabled} />
+
+### Readonly
+Режим только для чтения.
+<Canvas of={InputTextStories.Readonly} />
+
+### Invalid
+Невалидное состояние.
+<Canvas of={InputTextStories.Invalid} />
+
+### FloatLabel
+Интеграция с `FloatLabel` — плавающая метка внутри поля.
 <Canvas of={InputTextStories.FloatLabel} />
+
+### FloatLabel + Invalid
+FloatLabel с невалидным состоянием.
+<Canvas of={InputTextStories.FloatLabelInvalid} />
