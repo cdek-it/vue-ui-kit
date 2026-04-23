@@ -33,3 +33,5 @@ coverage
 storybook-static
 
 .claude/*
+
+tsconfig.app.tsbuildinfo
