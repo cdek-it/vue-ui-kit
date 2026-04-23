@@ -19,7 +19,18 @@ const props = withDefaults(
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
+  (e: 'value-change', value: string): void;
 }>();
+
+const onUpdateModelValue = (value: string) => {
+  emit('update:modelValue', value);
+  emit('value-change', value);
+};
+
+const onClear = () => {
+  emit('update:modelValue', '');
+  emit('value-change', '');
+};
 </script>
 
 <template>
@@ -32,12 +43,12 @@ const emit = defineEmits<{
       :placeholder="placeholder"
       :variant="variant"
       :fluid="fluid"
-      @update:modelValue="emit('update:modelValue', $event as string)"
+      @update:modelValue="onUpdateModelValue($event as string)"
     />
     <InputIcon
       v-show="modelValue"
       class="p-block-inputtext__icon"
-      @click.stop="emit('update:modelValue', '')"
+      @click.stop="onClear"
     >
       <i class="ti ti-x" />
     </InputIcon>
@@ -51,7 +62,7 @@ const emit = defineEmits<{
     :placeholder="placeholder"
     :variant="variant"
     :fluid="fluid"
-    @update:modelValue="emit('update:modelValue', $event as string)"
+    @update:modelValue="onUpdateModelValue($event as string)"
   />
 </template>
 
