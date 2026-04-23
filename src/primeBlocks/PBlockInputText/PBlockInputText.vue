@@ -6,6 +6,7 @@ const props = withDefaults(
   defineProps<{
     modelValue?: string;
     clearable?: boolean;
+    size?: 'small' | 'large' | 'xlarge';
     invalid?: boolean;
     disabled?: boolean;
     readonly?: boolean;
@@ -44,6 +45,8 @@ const onClear = () => {
       :placeholder="placeholder"
       :variant="variant"
       :fluid="fluid"
+      :size="size === 'xlarge' ? undefined : size"
+      :class="{ 'p-inputtext-xlg': size === 'xlarge' }"
       @update:modelValue="onUpdateModelValue($event as string)"
     />
     <InputIcon
@@ -65,6 +68,8 @@ const onClear = () => {
     :placeholder="placeholder"
     :variant="variant"
     :fluid="fluid"
+    :size="size === 'xlarge' ? undefined : size"
+    :class="{ 'p-inputtext-xlg': size === 'xlarge' }"
     @update:modelValue="onUpdateModelValue($event as string)"
   />
 </template>
