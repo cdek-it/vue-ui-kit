@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { IconField, InputIcon, InputText } from 'primevue';
+import XIcon from './svg/x.svg?component';
 
 const props = withDefaults(
   defineProps<{
@@ -51,7 +52,7 @@ const onClear = () => {
       @click.stop="onClear"
     >
       <slot name="clear-icon">
-        <i class="ti ti-x" />
+        <XIcon />
       </slot>
     </InputIcon>
   </IconField>
