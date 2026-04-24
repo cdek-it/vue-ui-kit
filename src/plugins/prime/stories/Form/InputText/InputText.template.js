@@ -1,5 +1,5 @@
 import InputText from 'primevue/inputtext';
-import PBlockInputText from '../../../../../primeBlocks/PBlockInputText/PBlockInputText.vue';
+import PBlockInputText from '@/primeBlocks/PBlockInputText/PBlockInputText.vue';
 import { ref } from 'vue';
 
 export const Template = (args) => ({
