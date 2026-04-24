@@ -18,6 +18,7 @@ const emit = defineEmits<{
 }>();
 
 const inputTextProps = computed(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { showClear, size, ...rest } = props;
   return {
     ...rest,
