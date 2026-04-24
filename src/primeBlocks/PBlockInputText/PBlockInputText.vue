@@ -36,7 +36,7 @@ const onClear = () => {
 </script>
 
 <template>
-  <IconField v-if="clearable" class="p-block-inputtext">
+  <IconField class="p-block-inputtext">
     <InputText
       :modelValue="modelValue"
       :invalid="invalid"
@@ -50,7 +50,7 @@ const onClear = () => {
       @update:modelValue="onUpdateModelValue($event as string)"
     />
     <InputIcon
-      v-show="modelValue"
+      v-if="clearable && modelValue"
       class="p-block-inputtext__icon"
       @click.stop="onClear"
     >
@@ -59,19 +59,6 @@ const onClear = () => {
       </slot>
     </InputIcon>
   </IconField>
-  <InputText
-    v-else
-    :modelValue="modelValue"
-    :invalid="invalid"
-    :disabled="disabled"
-    :readonly="readonly"
-    :placeholder="placeholder"
-    :variant="variant"
-    :fluid="fluid"
-    :size="size === 'xlarge' ? undefined : size"
-    :class="{ 'p-inputtext-xlg': size === 'xlarge' }"
-    @update:modelValue="onUpdateModelValue($event as string)"
-  />
 </template>
 
 <style scoped lang="scss">
