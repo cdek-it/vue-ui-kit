@@ -3,7 +3,7 @@ import { type InputTextProps, IconField, InputIcon, InputText } from 'primevue';
 import { IconX } from '@tabler/icons-vue';
 import { computed } from 'vue';
 
-interface PBlockInputTextProps extends InputTextProps {
+interface PBlockInputTextProps extends /* @vue-ignore */ InputTextProps {
   showClear?: boolean;
   size?: 'small' | 'large' | 'xlarge';
 }
