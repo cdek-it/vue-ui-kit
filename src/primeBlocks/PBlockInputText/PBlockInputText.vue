@@ -1,11 +1,20 @@
 <script setup lang="ts">
-import { type InputTextProps, IconField, InputIcon, InputText } from 'primevue';
+import {
+  type InputTextProps,
+  FloatLabel,
+  IconField,
+  InputIcon,
+  InputText,
+} from 'primevue';
 import { IconX } from '@tabler/icons-vue';
 import { useAttrs } from 'vue';
 
 interface PBlockInputTextProps extends /* @vue-ignore */ InputTextProps {
   modelValue?: string;
   showClear?: boolean;
+  hasFloatlabel?: boolean;
+  label?: string;
+  required?: boolean;
   size?: 'small' | 'large' | 'xlarge';
   fluid?: boolean;
 }
@@ -35,7 +44,39 @@ const onClear = () => {
 </script>
 
 <template>
+  <FloatLabel v-if="hasFloatlabel" variant="in">
+    <IconField
+      class="p-block-inputtext"
+      :class="{ 'p-block-inputtext--fluid': fluid }"
+    >
+      <InputText
+        v-bind="attrs"
+        :id="label"
+        :modelValue="modelValue"
+        :fluid="fluid"
+        variant="filled"
+        :size="size === 'xlarge' ? undefined : size"
+        :class="{ 'p-inputtext-xlg': size === 'xlarge' }"
+        @update:modelValue="onUpdateModelValue($event as string)"
+      />
+      <InputIcon
+        v-show="showClear && modelValue"
+        class="p-block-inputtext__icon"
+        @click.stop="onClear"
+      >
+        <slot name="clear-icon">
+          <IconX :size="14" />
+        </slot>
+      </InputIcon>
+    </IconField>
+    <label :for="label">
+      {{ label
+      }}<span v-if="required" class="p-block-inputtext__required">*</span>
+    </label>
+  </FloatLabel>
+
   <IconField
+    v-else
     class="p-block-inputtext"
     :class="{ 'p-block-inputtext--fluid': fluid }"
   >
@@ -72,6 +113,11 @@ const onClear = () => {
   &__icon {
     cursor: pointer;
     z-index: 1;
+  }
+
+  &__required {
+    color: var(--p-red-500);
+    margin-left: 2px;
   }
 }
 </style>

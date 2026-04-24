@@ -1,4 +1,3 @@
-import PrimeFloatLabel from 'primevue/floatlabel';
 import PBlockInputText from '@/primeBlocks/PBlockInputText/PBlockInputText.vue';
 import { ref } from 'vue';
 import { Template } from './InputText.template';
@@ -78,6 +77,32 @@ import { PBlockInputText } from '@cdek-it/vue-ui-kit';
         type: { summary: 'string' },
       },
     },
+    hasFloatlabel: {
+      control: 'boolean',
+      description: 'Включает режим плавающей метки (FloatLabel)',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
+    label: {
+      control: 'text',
+      description: 'Текст плавающей метки (при `hasFloatlabel`)',
+      table: {
+        category: 'Props',
+        type: { summary: 'string' },
+      },
+    },
+    required: {
+      control: 'boolean',
+      description: 'Показывает маркер обязательного поля `*` рядом с меткой',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: 'false' },
+        type: { summary: 'boolean' },
+      },
+    },
     fluid: {
       control: 'boolean',
       description: 'Растягивает поле на всю ширину контейнера',
@@ -91,6 +116,7 @@ import { PBlockInputText } from '@cdek-it/vue-ui-kit';
   args: {
     placeholder: 'Введите текст...',
     showClear: true,
+    hasFloatlabel: false,
     invalid: false,
     disabled: false,
     readonly: false,
@@ -219,28 +245,35 @@ export const Invalid = {
 
 export const FloatLabel = {
   render: (args) => ({
-    components: { PBlockInputText, PrimeFloatLabel },
+    components: { PBlockInputText },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <PrimeFloatLabel variant="in">
-        <PBlockInputText
-          id="fl-name"
-          v-model="value"
-
-          :showClear="args.showClear"
-        />
-        <label for="fl-name">Имя<span v-if="args.required" class="text-red-500 ml-0.5">*</span></label>
-      </PrimeFloatLabel>
+      <PBlockInputText
+        v-model="value"
+        hasFloatlabel
+        :label="args.label"
+        :required="args.required"
+        :showClear="args.showClear"
+      />
     `,
   }),
   args: {
+    label: 'Имя',
     required: true,
     showClear: true,
   },
   argTypes: {
+    label: {
+      control: 'text',
+      description: 'Текст плавающей метки',
+      table: {
+        category: 'Props',
+        type: { summary: 'string' },
+      },
+    },
     required: {
       control: 'boolean',
       description: 'Показывает маркер обязательного поля `*` рядом с меткой',
@@ -274,10 +307,7 @@ export const FloatLabel = {
       source: {
         code: `
 <template>
-  <FloatLabel variant="in">
-    <PBlockInputText id="fl-name" v-model="value" />
-    <label for="fl-name">Имя<span class="text-red-500 ml-0.5">*</span></label>
-  </FloatLabel>
+  <PBlockInputText v-model="value" hasFloatlabel label="Имя" required />
 </template>
         `,
       },
@@ -288,29 +318,36 @@ export const FloatLabel = {
 export const FloatLabelInvalid = {
   name: 'FloatLabel + Invalid',
   render: (args) => ({
-    components: { PBlockInputText, PrimeFloatLabel },
+    components: { PBlockInputText },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <PrimeFloatLabel variant="in">
-        <PBlockInputText
-          id="fl-invalid"
-          v-model="value"
-
-          invalid
-          :showClear="args.showClear"
-        />
-        <label for="fl-invalid">Обязательное поле<span v-if="args.required" class="text-red-500 ml-0.5">*</span></label>
-      </PrimeFloatLabel>
+      <PBlockInputText
+        v-model="value"
+        hasFloatlabel
+        :label="args.label"
+        :required="args.required"
+        :showClear="args.showClear"
+        invalid
+      />
     `,
   }),
   args: {
+    label: 'Обязательное поле',
     required: true,
     showClear: true,
   },
   argTypes: {
+    label: {
+      control: 'text',
+      description: 'Текст плавающей метки',
+      table: {
+        category: 'Props',
+        type: { summary: 'string' },
+      },
+    },
     required: {
       control: 'boolean',
       description: 'Показывает маркер обязательного поля `*` рядом с меткой',
@@ -345,10 +382,7 @@ export const FloatLabelInvalid = {
       source: {
         code: `
 <template>
-  <FloatLabel variant="in">
-    <PBlockInputText id="fl-invalid" v-model="value" invalid />
-    <label for="fl-invalid">Обязательное поле<span class="text-red-500 ml-0.5">*</span></label>
-  </FloatLabel>
+  <PBlockInputText v-model="value" hasFloatlabel label="Обязательное поле" required invalid />
 </template>
         `,
       },
