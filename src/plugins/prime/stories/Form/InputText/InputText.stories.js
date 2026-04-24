@@ -3,20 +3,6 @@ import PBlockInputText from '@/primeBlocks/PBlockInputText/PBlockInputText.vue';
 import { ref } from 'vue';
 import { Template } from './InputText.template';
 
-const CLEAR_BUTTON_SOURCE =
-  `
-<script setup>
-import { PBlockInputText } from '@cdek-it/vue-ui-kit';
-
-const model = defineModel({ default: '' });
-</` +
-  `script>
-
-<template>
-  <PBlockInputText v-model="model" placeholder="Введите текст..." />
-</template>
-`;
-
 /**
  * Компонент текстового ввода.
  */
@@ -27,10 +13,10 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `Текстовое поле для ввода данных.
+        component: `Обёртка над PrimeVue InputText с поддержкой очистки, размеров и кастомной иконки.
 
 \`\`\`js
-import InputText from 'primevue/inputtext';
+import { PBlockInputText } from '@cdek-it/vue-ui-kit';
 \`\`\``,
       },
     },
@@ -40,20 +26,20 @@ import InputText from 'primevue/inputtext';
   argTypes: {
     size: {
       control: 'select',
-      options: ['small', 'base', 'large', 'xlarge'],
-      description: 'Размер поля',
+      options: ['small', 'large', 'xlarge'],
+      description:
+        'Размер поля. `xlarge` — кастомный размер, реализован через CSS-класс `p-inputtext-xlg`.',
       table: {
         category: 'Props',
-        defaultValue: { summary: 'base' },
-        type: { summary: "'small' | 'base' | 'large' | 'xlarge'" },
+        type: { summary: "'small' | 'large' | 'xlarge'" },
       },
     },
-    showClear: {
+    clearable: {
       control: 'boolean',
       description: 'Показывает иконку очистки при наличии значения',
       table: {
         category: 'Props',
-        defaultValue: { summary: 'false' },
+        defaultValue: { summary: 'true' },
         type: { summary: 'boolean' },
       },
     },
@@ -92,6 +78,16 @@ import InputText from 'primevue/inputtext';
         type: { summary: 'string' },
       },
     },
+    variant: {
+      control: 'select',
+      options: ['outlined', 'filled'],
+      description: 'Вариант отображения поля',
+      table: {
+        category: 'Props',
+        defaultValue: { summary: 'outlined' },
+        type: { summary: "'outlined' | 'filled'" },
+      },
+    },
     fluid: {
       control: 'boolean',
       description: 'Растягивает поле на всю ширину контейнера',
@@ -103,12 +99,11 @@ import InputText from 'primevue/inputtext';
     },
   },
   args: {
-    size: 'base',
     placeholder: 'Введите текст...',
+    clearable: true,
     invalid: false,
     disabled: false,
     readonly: false,
-    showClear: false,
     fluid: false,
   },
 };
@@ -126,46 +121,6 @@ export const Default = {
           'Базовый пример компонента. Используйте Controls для интерактивного изменения пропсов.',
       },
     },
-  },
-};
-
-export const ClearButton = {
-  render: (args) => ({
-    components: { PBlockInputText },
-    setup() {
-      const value = ref('');
-      return { args, value };
-    },
-    template: `
-      <PBlockInputText
-        v-model="value"
-        :placeholder="args.placeholder"
-      />
-    `,
-  }),
-  args: {
-    showClear: true,
-    placeholder: 'Введите текст...',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Поле с кнопкой очистки через `PBlockInputText`. Иконка × появляется при вводе первого символа.',
-      },
-      source: {
-        code: CLEAR_BUTTON_SOURCE,
-        language: 'vue',
-      },
-    },
-  },
-  argTypes: {
-    size: { table: { disable: true } },
-    showClear: { table: { disable: true } },
-    invalid: { table: { disable: true } },
-    disabled: { table: { disable: true } },
-    readonly: { table: { disable: true } },
-    fluid: { table: { disable: true } },
   },
 };
 
