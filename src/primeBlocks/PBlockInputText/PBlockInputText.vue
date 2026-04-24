@@ -1,27 +1,29 @@
 <script setup lang="ts">
-import { IconField, InputIcon, InputText } from 'primevue';
+import { type InputTextProps, IconField, InputIcon, InputText } from 'primevue';
 import { IconX } from '@tabler/icons-vue';
+import { computed } from 'vue';
 
-const props = withDefaults(
-  defineProps<{
-    modelValue?: string;
-    showClear?: boolean;
-    size?: 'small' | 'large' | 'xlarge';
-    invalid?: boolean;
-    disabled?: boolean;
-    readonly?: boolean;
-    placeholder?: string;
-    fluid?: boolean;
-  }>(),
-  {
-    showClear: true,
-  }
-);
+interface PBlockInputTextProps extends InputTextProps {
+  showClear?: boolean;
+  size?: 'small' | 'large' | 'xlarge';
+}
+
+const props = withDefaults(defineProps<PBlockInputTextProps>(), {
+  showClear: true,
+});
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
   (e: 'value-change', value: string): void;
 }>();
+
+const inputTextProps = computed(() => {
+  const { showClear, size, ...rest } = props;
+  return {
+    ...rest,
+    size: size === 'xlarge' ? undefined : size,
+  };
+});
 
 const onUpdateModelValue = (value: string) => {
   emit('update:modelValue', value);
@@ -37,13 +39,7 @@ const onClear = () => {
 <template>
   <IconField class="p-block-inputtext">
     <InputText
-      :modelValue="modelValue"
-      :invalid="invalid"
-      :disabled="disabled"
-      :readonly="readonly"
-      :placeholder="placeholder"
-      :fluid="fluid"
-      :size="size === 'xlarge' ? undefined : size"
+      v-bind="inputTextProps"
       :class="{ 'p-inputtext-xlg': size === 'xlarge' }"
       @update:modelValue="onUpdateModelValue($event as string)"
     />
