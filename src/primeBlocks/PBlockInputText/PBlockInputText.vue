@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { type InputTextProps, IconField, InputIcon, InputText } from 'primevue';
 import { IconX } from '@tabler/icons-vue';
-import { computed } from 'vue';
+import { useAttrs } from 'vue';
 
 interface PBlockInputTextProps extends /* @vue-ignore */ InputTextProps {
   modelValue?: string;
@@ -14,19 +14,14 @@ const props = withDefaults(defineProps<PBlockInputTextProps>(), {
   showClear: true,
 });
 
+defineOptions({ inheritAttrs: false });
+
+const attrs = useAttrs();
+
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void;
   (e: 'value-change', value: string): void;
 }>();
-
-const inputTextProps = computed(() => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { showClear, size, ...rest } = props;
-  return {
-    ...rest,
-    size: size === 'xlarge' ? undefined : size,
-  };
-});
 
 const onUpdateModelValue = (value: string) => {
   emit('update:modelValue', value);
@@ -42,7 +37,10 @@ const onClear = () => {
 <template>
   <IconField class="p-block-inputtext" :class="{ 'p-fluid': fluid }">
     <InputText
-      v-bind="inputTextProps"
+      v-bind="attrs"
+      :modelValue="modelValue"
+      :fluid="fluid"
+      :size="size === 'xlarge' ? undefined : size"
       :class="{ 'p-inputtext-xlg': size === 'xlarge' }"
       @update:modelValue="onUpdateModelValue($event as string)"
     />
