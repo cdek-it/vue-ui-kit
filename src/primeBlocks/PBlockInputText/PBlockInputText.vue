@@ -58,9 +58,11 @@ const onClear = () => {
 
 <style scoped lang="scss">
 .p-block-inputtext {
-  width: 100%;
-
   :deep(.p-inputtext) {
+    width: 100%;
+  }
+
+  &.p-fluid {
     width: 100%;
   }
 
