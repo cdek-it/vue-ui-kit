@@ -4,8 +4,10 @@ import { IconX } from '@tabler/icons-vue';
 import { computed } from 'vue';
 
 interface PBlockInputTextProps extends /* @vue-ignore */ InputTextProps {
+  modelValue?: string;
   showClear?: boolean;
   size?: 'small' | 'large' | 'xlarge';
+  fluid?: boolean;
 }
 
 const props = withDefaults(defineProps<PBlockInputTextProps>(), {
