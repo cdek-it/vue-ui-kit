@@ -35,7 +35,10 @@ const onClear = () => {
 </script>
 
 <template>
-  <IconField class="p-block-inputtext" :class="{ 'p-fluid': fluid }">
+  <IconField
+    class="p-block-inputtext"
+    :class="{ 'p-block-inputtext--fluid': fluid }"
+  >
     <InputText
       v-bind="attrs"
       :modelValue="modelValue"
@@ -62,7 +65,7 @@ const onClear = () => {
     width: 100%;
   }
 
-  &.p-fluid {
+  &--fluid {
     width: 100%;
   }
 
