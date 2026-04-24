@@ -11,7 +11,7 @@ export const Template = (args) => ({
     <PBlockInputText
       v-model="value"
       :size="args.size"
-      :clearable="args.clearable"
+      :show-clear="args.showClear"
       :invalid="args.invalid"
       :disabled="args.disabled"
       :readonly="args.readonly"

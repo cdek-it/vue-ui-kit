@@ -34,7 +34,7 @@ import { PBlockInputText } from '@cdek-it/vue-ui-kit';
         type: { summary: "'small' | 'large' | 'xlarge'" },
       },
     },
-    clearable: {
+    showClear: {
       control: 'boolean',
       description: 'Показывает иконку очистки при наличии значения',
       table: {
@@ -78,16 +78,6 @@ import { PBlockInputText } from '@cdek-it/vue-ui-kit';
         type: { summary: 'string' },
       },
     },
-    variant: {
-      control: 'select',
-      options: ['outlined', 'filled'],
-      description: 'Вариант отображения поля',
-      table: {
-        category: 'Props',
-        defaultValue: { summary: 'outlined' },
-        type: { summary: "'outlined' | 'filled'" },
-      },
-    },
     fluid: {
       control: 'boolean',
       description: 'Растягивает поле на всю ширину контейнера',
@@ -100,7 +90,7 @@ import { PBlockInputText } from '@cdek-it/vue-ui-kit';
   },
   args: {
     placeholder: 'Введите текст...',
-    clearable: true,
+    showClear: true,
     invalid: false,
     disabled: false,
     readonly: false,
@@ -239,8 +229,8 @@ export const FloatLabel = {
         <PBlockInputText
           id="fl-name"
           v-model="value"
-          variant="filled"
-          :clearable="args.clearable"
+
+          :showClear="args.showClear"
         />
         <label for="fl-name">Имя<span v-if="args.required" class="text-red-500 ml-0.5">*</span></label>
       </PrimeFloatLabel>
@@ -248,7 +238,7 @@ export const FloatLabel = {
   }),
   args: {
     required: true,
-    clearable: true,
+    showClear: true,
   },
   argTypes: {
     required: {
@@ -260,7 +250,7 @@ export const FloatLabel = {
         type: { summary: 'boolean' },
       },
     },
-    clearable: {
+    showClear: {
       control: 'boolean',
       description: 'Показывает иконку очистки при наличии значения',
       table: {
@@ -285,7 +275,7 @@ export const FloatLabel = {
         code: `
 <template>
   <FloatLabel variant="in">
-    <PBlockInputText id="fl-name" v-model="value" variant="filled" />
+    <PBlockInputText id="fl-name" v-model="value" />
     <label for="fl-name">Имя<span class="text-red-500 ml-0.5">*</span></label>
   </FloatLabel>
 </template>
@@ -308,9 +298,9 @@ export const FloatLabelInvalid = {
         <PBlockInputText
           id="fl-invalid"
           v-model="value"
-          variant="filled"
+
           invalid
-          :clearable="args.clearable"
+          :showClear="args.showClear"
         />
         <label for="fl-invalid">Обязательное поле<span v-if="args.required" class="text-red-500 ml-0.5">*</span></label>
       </PrimeFloatLabel>
@@ -318,7 +308,7 @@ export const FloatLabelInvalid = {
   }),
   args: {
     required: true,
-    clearable: true,
+    showClear: true,
   },
   argTypes: {
     required: {
@@ -330,7 +320,7 @@ export const FloatLabelInvalid = {
         type: { summary: 'boolean' },
       },
     },
-    clearable: {
+    showClear: {
       control: 'boolean',
       description: 'Показывает иконку очистки при наличии значения',
       table: {
@@ -356,7 +346,7 @@ export const FloatLabelInvalid = {
         code: `
 <template>
   <FloatLabel variant="in">
-    <PBlockInputText id="fl-invalid" v-model="value" variant="filled" invalid />
+    <PBlockInputText id="fl-invalid" v-model="value" invalid />
     <label for="fl-invalid">Обязательное поле<span class="text-red-500 ml-0.5">*</span></label>
   </FloatLabel>
 </template>

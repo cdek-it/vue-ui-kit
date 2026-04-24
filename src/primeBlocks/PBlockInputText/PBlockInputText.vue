@@ -5,17 +5,16 @@ import { IconX } from '@tabler/icons-vue';
 const props = withDefaults(
   defineProps<{
     modelValue?: string;
-    clearable?: boolean;
+    showClear?: boolean;
     size?: 'small' | 'large' | 'xlarge';
     invalid?: boolean;
     disabled?: boolean;
     readonly?: boolean;
     placeholder?: string;
-    variant?: 'outlined' | 'filled';
     fluid?: boolean;
   }>(),
   {
-    clearable: true,
+    showClear: true,
   }
 );
 
@@ -43,14 +42,13 @@ const onClear = () => {
       :disabled="disabled"
       :readonly="readonly"
       :placeholder="placeholder"
-      :variant="variant"
       :fluid="fluid"
       :size="size === 'xlarge' ? undefined : size"
       :class="{ 'p-inputtext-xlg': size === 'xlarge' }"
       @update:modelValue="onUpdateModelValue($event as string)"
     />
     <InputIcon
-      v-if="clearable && modelValue"
+      v-if="showClear && modelValue"
       class="p-block-inputtext__icon"
       @click.stop="onClear"
     >
