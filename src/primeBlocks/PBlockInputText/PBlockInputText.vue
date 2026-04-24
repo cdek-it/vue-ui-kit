@@ -117,7 +117,7 @@ const onClear = () => {
 
   &__required {
     color: var(--p-red-500);
-    margin-left: 2px;
+    margin-left: var(--p-spacing-1x);
   }
 }
 </style>
