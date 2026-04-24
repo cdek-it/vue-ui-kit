@@ -1,7 +1,4 @@
-import InputText from 'primevue/inputtext';
 import PrimeFloatLabel from 'primevue/floatlabel';
-import IconField from 'primevue/iconfield';
-import InputIcon from 'primevue/inputicon';
 import PBlockInputText from '@/primeBlocks/PBlockInputText/PBlockInputText.vue';
 import { ref } from 'vue';
 import { Template } from './InputText.template';
@@ -25,7 +22,7 @@ const model = defineModel({ default: '' });
  */
 const meta = {
   title: 'Prime/Form/InputText',
-  component: InputText,
+  component: PBlockInputText,
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -174,17 +171,16 @@ export const ClearButton = {
 
 export const Disabled = {
   render: (args) => ({
-    components: { InputText },
+    components: { PBlockInputText },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <InputText
+      <PBlockInputText
         v-model="value"
         :placeholder="args.placeholder"
         disabled
-        style="width: 100%"
       />
     `,
   }),
@@ -200,7 +196,7 @@ export const Disabled = {
       source: {
         code: `
 <template>
-  <InputText v-model="value" placeholder="Введите текст..." disabled />
+  <PBlockInputText v-model="value" placeholder="Введите текст..." disabled />
 </template>
         `,
       },
@@ -210,17 +206,16 @@ export const Disabled = {
 
 export const Readonly = {
   render: (args) => ({
-    components: { InputText },
+    components: { PBlockInputText },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <InputText
+      <PBlockInputText
         v-model="value"
         :placeholder="args.placeholder"
         readonly
-        style="width: 100%"
       />
     `,
   }),
@@ -237,7 +232,7 @@ export const Readonly = {
       source: {
         code: `
 <template>
-  <InputText v-model="value" placeholder="Введите текст..." readonly />
+  <PBlockInputText v-model="value" placeholder="Введите текст..." readonly />
 </template>
         `,
       },
@@ -247,17 +242,16 @@ export const Readonly = {
 
 export const Invalid = {
   render: (args) => ({
-    components: { InputText },
+    components: { PBlockInputText },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <InputText
+      <PBlockInputText
         v-model="value"
         placeholder="Обязательное поле"
         invalid
-        style="width: 100%"
       />
     `,
   }),
@@ -270,7 +264,7 @@ export const Invalid = {
       source: {
         code: `
 <template>
-  <InputText v-model="value" placeholder="Обязательное поле" invalid />
+  <PBlockInputText v-model="value" placeholder="Обязательное поле" invalid />
 </template>
         `,
       },
@@ -280,33 +274,18 @@ export const Invalid = {
 
 export const FloatLabel = {
   render: (args) => ({
-    components: { InputText, PrimeFloatLabel, IconField, InputIcon },
+    components: { PBlockInputText, PrimeFloatLabel },
     setup() {
       const value = ref('');
-      const onClear = () => {
-        value.value = '';
-      };
-      return { args, value, onClear };
+      return { args, value };
     },
     template: `
       <PrimeFloatLabel variant="in">
-        <IconField v-if="args.showClear" style="width: 100%">
-          <InputText
-            id="fl-name"
-            v-model="value"
-            variant="filled"
-            style="width: 100%"
-          />
-          <InputIcon v-if="value" @click.stop="onClear" style="cursor: pointer; z-index: 1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
-          </InputIcon>
-        </IconField>
-        <InputText
-          v-else
+        <PBlockInputText
           id="fl-name"
           v-model="value"
           variant="filled"
-          style="width: 100%"
+          :clearable="args.clearable"
         />
         <label for="fl-name">Имя<span v-if="args.required" class="text-red-500 ml-0.5">*</span></label>
       </PrimeFloatLabel>
@@ -314,7 +293,7 @@ export const FloatLabel = {
   }),
   args: {
     required: true,
-    showClear: true,
+    clearable: true,
   },
   argTypes: {
     required: {
@@ -326,7 +305,7 @@ export const FloatLabel = {
         type: { summary: 'boolean' },
       },
     },
-    showClear: {
+    clearable: {
       control: 'boolean',
       description: 'Показывает иконку очистки при наличии значения',
       table: {
@@ -351,12 +330,7 @@ export const FloatLabel = {
         code: `
 <template>
   <FloatLabel variant="in">
-    <IconField style="width: 100%">
-      <InputText id="fl-name" v-model="value" variant="filled" style="width: 100%" />
-      <InputIcon v-if="value" @click.stop="value = ''">
-        <XIcon />
-      </InputIcon>
-    </IconField>
+    <PBlockInputText id="fl-name" v-model="value" variant="filled" />
     <label for="fl-name">Имя<span class="text-red-500 ml-0.5">*</span></label>
   </FloatLabel>
 </template>
@@ -369,35 +343,19 @@ export const FloatLabel = {
 export const FloatLabelInvalid = {
   name: 'FloatLabel + Invalid',
   render: (args) => ({
-    components: { InputText, PrimeFloatLabel, IconField, InputIcon },
+    components: { PBlockInputText, PrimeFloatLabel },
     setup() {
       const value = ref('');
-      const onClear = () => {
-        value.value = '';
-      };
-      return { args, value, onClear };
+      return { args, value };
     },
     template: `
       <PrimeFloatLabel variant="in">
-        <IconField v-if="args.showClear" style="width: 100%">
-          <InputText
-            id="fl-invalid"
-            v-model="value"
-            variant="filled"
-            invalid
-            style="width: 100%"
-          />
-          <InputIcon v-if="value" @click.stop="onClear" style="cursor: pointer; z-index: 1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
-          </InputIcon>
-        </IconField>
-        <InputText
-          v-else
+        <PBlockInputText
           id="fl-invalid"
           v-model="value"
           variant="filled"
           invalid
-          style="width: 100%"
+          :clearable="args.clearable"
         />
         <label for="fl-invalid">Обязательное поле<span v-if="args.required" class="text-red-500 ml-0.5">*</span></label>
       </PrimeFloatLabel>
@@ -405,7 +363,7 @@ export const FloatLabelInvalid = {
   }),
   args: {
     required: true,
-    showClear: true,
+    clearable: true,
   },
   argTypes: {
     required: {
@@ -417,7 +375,7 @@ export const FloatLabelInvalid = {
         type: { summary: 'boolean' },
       },
     },
-    showClear: {
+    clearable: {
       control: 'boolean',
       description: 'Показывает иконку очистки при наличии значения',
       table: {
@@ -443,12 +401,7 @@ export const FloatLabelInvalid = {
         code: `
 <template>
   <FloatLabel variant="in">
-    <IconField style="width: 100%">
-      <InputText id="fl-invalid" v-model="value" variant="filled" invalid style="width: 100%" />
-      <InputIcon v-if="value" @click.stop="value = ''">
-        <XIcon />
-      </InputIcon>
-    </IconField>
+    <PBlockInputText id="fl-invalid" v-model="value" variant="filled" invalid />
     <label for="fl-invalid">Обязательное поле<span class="text-red-500 ml-0.5">*</span></label>
   </FloatLabel>
 </template>
