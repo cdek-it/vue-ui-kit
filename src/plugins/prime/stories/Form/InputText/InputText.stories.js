@@ -2,7 +2,7 @@ import InputText from 'primevue/inputtext';
 import PrimeFloatLabel from 'primevue/floatlabel';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
-import PBlockInputText from '../../../../../primeBlocks/PBlockInputText/PBlockInputText.vue';
+import PBlockInputText from '@/primeBlocks/PBlockInputText/PBlockInputText.vue';
 import { ref } from 'vue';
 import { Template } from './InputText.template';
 
