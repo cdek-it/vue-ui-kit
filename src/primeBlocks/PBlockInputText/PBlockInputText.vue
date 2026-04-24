@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IconField, InputIcon, InputText } from 'primevue';
-import XIcon from './svg/x.svg?component';
+import { IconX } from '@tabler/icons-vue';
 
 const props = withDefaults(
   defineProps<{
@@ -55,7 +55,7 @@ const onClear = () => {
       @click.stop="onClear"
     >
       <slot name="clear-icon">
-        <XIcon />
+        <IconX :size="14" />
       </slot>
     </InputIcon>
   </IconField>
