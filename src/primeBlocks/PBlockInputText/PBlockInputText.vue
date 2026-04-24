@@ -38,14 +38,14 @@ const onClear = () => {
 </script>
 
 <template>
-  <IconField class="p-block-inputtext">
+  <IconField class="p-block-inputtext" :class="{ 'p-fluid': fluid }">
     <InputText
       v-bind="inputTextProps"
       :class="{ 'p-inputtext-xlg': size === 'xlarge' }"
       @update:modelValue="onUpdateModelValue($event as string)"
     />
     <InputIcon
-      v-if="showClear && modelValue"
+      v-show="showClear && modelValue"
       class="p-block-inputtext__icon"
       @click.stop="onClear"
     >
