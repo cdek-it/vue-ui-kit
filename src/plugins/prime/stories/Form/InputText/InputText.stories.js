@@ -302,7 +302,16 @@ export const FloatLabel = {
   parameters: {
     docs: {
       description: {
-        story: 'Интеграция с `FloatLabel` — плавающая метка внутри поля.',
+        story: `Интеграция с \`FloatLabel\` — плавающая метка внутри поля.
+
+Можно также использовать \`FloatLabel\` и \`PBlockInputText\` напрямую:
+
+\`\`\`vue
+<FloatLabel variant="in">
+  <PBlockInputText id="name" v-model="value" variant="filled" />
+  <label for="name">Имя<span class="text-red-500">*</span></label>
+</FloatLabel>
+\`\`\``,
       },
       source: {
         code: `
