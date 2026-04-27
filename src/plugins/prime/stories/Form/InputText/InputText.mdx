@@ -31,6 +31,15 @@ import * as InputTextStories from './InputText.stories';
 Интеграция с `FloatLabel` — плавающая метка внутри поля.
 <Canvas of={InputTextStories.FloatLabel} />
 
+Также возможно использование `FloatLabel` и `PBlockInputText` напрямую:
+
+```vue
+<FloatLabel variant="in">
+  <PBlockInputText id="name" v-model="value" variant="filled" />
+  <label for="name">Имя<span class="text-red-500">*</span></label>
+</FloatLabel>
+```
+
 ### FloatLabel + Invalid
 FloatLabel с невалидным состоянием.
 <Canvas of={InputTextStories.FloatLabelInvalid} />
