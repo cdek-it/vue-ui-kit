@@ -49,7 +49,7 @@ const onClear = () => {
       @click.stop="onClear"
     >
       <slot name="clear-icon">
-        <IconX :size="14" />
+        <IconX size="1rem" />
       </slot>
     </InputIcon>
   </IconField>
