@@ -145,12 +145,14 @@ CSS-переменные: `--p-primary-{50|100|...|900}`, `--p-primary-color`, `
 
 В Tailwind доступны базовые классы: `bg-success`, `bg-info`, `bg-warning`, `bg-danger`, `bg-help` и аналогичные `text-*`, `border-*`.
 
+> **Важно:** в CSS-переменных токен ошибки называется `error` (`--p-error-500`), а в Tailwind-классах — `danger` (`bg-danger`, `text-danger`). Не путайте: `bg-error` не существует.
+
 ### Text
 
 | Токен | CSS-переменная | Tailwind | Значение |
 |-------|----------------|----------|----------|
-| Основной | `--p-text-color` | `text-color` | Zinc 900 |
-| Второстепенный | `--p-text-secondary-color` | `text-color-secondary` | Zinc 600 |
+| Основной | `--p-text-color` | `text-color`\* | Zinc 900 |
+| Второстепенный | `--p-text-secondary-color` | `text-color-secondary`\* | Zinc 600 |
 | Приглушённый | `--p-text-muted-color` | — | Zinc 500 |
 | Отключённый | `--p-text-disabled-color` | — | Zinc 300 |
 | Инвертированный | `--p-text-color-inverted` (extend) | — | White |
@@ -160,3 +162,5 @@ CSS-переменные: `--p-primary-{50|100|...|900}`, `--p-primary-color`, `
 | Предупреждение | `--p-text-warning-color` | `text-warning` | Yellow 600 |
 | Информация | `--p-text-info-color` | `text-info` | Blue 600 |
 | Помощь | `--p-text-help-color` | `text-help` | Purple 600 |
+
+> \* Классы `text-color` и `text-color-secondary` приходят из плагина `tailwindcss-primeui` и используют PrimeVue-токены. В `tailwindConfigTheme` определены `text-color-primary` (`--p-white-100`, белый) и `text-color-secondary` (`--p-black-60`, полупрозрачный чёрный) — это **другие значения** для использования на тёмных/светлых фонах. Подробнее см. [Tailwind](?path=/docs/prime-tailwind--docs).
