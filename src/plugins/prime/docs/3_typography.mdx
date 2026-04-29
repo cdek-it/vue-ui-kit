@@ -1,45 +1,67 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Prime/Иконки и типографика" />
+<Meta title="Prime/Типографика" />
 
-# Иконки и типографика
+# Типографика
 
 ## Подключение
 
-Для подключения добавьте в `index.html` следующий код:
+Добавьте в `index.html`:
 
 ```html dark
 <link rel="preconnect" href="https://public-static.cdek.ru" />
-<link
-  rel="stylesheet"
-  href="https://public-static.cdek.ru/common/icons/v3.30.0/tabler-icons.min.css"
-/>
 <link
   rel="stylesheet"
   href="https://public-static.cdek.ru/common/typography/v1.0.0/typography.min.css"
 />
 ```
 
-### Иконки
+`typography.min.css` заводит CSS-переменные на основе токенов DS и CSS-классы для каждого вида текста.
 
-`tabler-icons.min.css` — это иконочный шрифт из [tabler](https://tabler.io/docs/icons/webfont). Добавляет иконочные классы типа `ti ti-home`.
+## Как найти нужный класс в Figma
 
-Название иконки вы можете взять прям с дизайна.
-
-<img src="/assets/typography-icon.png" />
-
-### Типографика
-
-`typography.min.css` — это стили для типографики. Заводит переменные в `:root` на основе токенов DS, с фоллбэком на примитивные значения.
-
-Также он заводит классы для каждого вида текста по [дизайну](https://www.figma.com/design/2ZnL6XPKEpxAHvrlbRvnMu/Templates--DS--v1.0?node-id=3-1739\&m=dev).
-
-Название нужного класса вы также можете взять напрямую из дизайна. Важно нажимать именно на компонент `<Typography.*>`,
-а не на сам текст, иначе вы не увидите пометку с названием класса.
+Нажмите на компонент `<Typography.*>` (не на сам текст), и вы увидите название класса:
 
 <img src="/assets/typography-font-class.png" />
 
-## Готовые классы
+## SCSS-миксины
+
+Если вам нужно задать типографику в SCSS, используйте миксины из `@/assets/style/vars/fonts.scss`:
+
+```scss dark
+@import '@/assets/style/vars/fonts';
+
+.my-title {
+  @include headline-4;
+}
+
+.my-text {
+  @include body-2;
+}
+```
+
+| Миксин | Размер | Вес | Высота строки | Доп. |
+|--------|--------|-----|---------------|------|
+| `headline-1` | 40px | 300 | 50px | — |
+| `headline-2` | 32px | 500 | 40px | — |
+| `headline-3` | 28px | 500 | 36px | — |
+| `headline-4` | 24px | 500 | 32px | — |
+| `headline-5` | 20px | 500 | 28px | — |
+| `headline-6` | 16px | 500 | 24px | — |
+| `headline-7` | 14px | 500 | 20px | — |
+| `body-1` | 16px | 400 | 24px | — |
+| `body-2` | 14px | 400 | 20px | — |
+| `caption-1` | 12px | 400 | 16px | — |
+| `button-1` | 14px | 500 | 24px | uppercase, 0.03em |
+| `badge-1` | 12px | 500 | 14px | uppercase, 0.05em |
+| `step` | 12px | 500 | 16px | 0.02em |
+| `segment` | 12px | 500 | 24px | uppercase, 0.05em |
+| `title` | 16px | 500 | 24px | — |
+| `title-small` | 14px | 500 | 20px | 0.03em |
+| `title-counter` | 16px | 300 | 24px | — |
+| `initials-avatar-1` | 12px | 500 | 16px | 0.05em |
+
+## Готовые CSS-классы
 
 ### Заголовки
 
