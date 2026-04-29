@@ -103,6 +103,57 @@ export default {
 };
 ```
 
+## Кастомные утилиты из DS
+
+Помимо стандартных Tailwind-классов, `tailwindConfigTheme` из `@cdek-ui-kit/vue` добавляет кастомные утилиты.
+
+### Colors (background, border, text)
+
+Семантические цвета поверхностей:
+
+| Tailwind-класс | CSS-переменная | Назначение |
+|----------------|----------------|------------|
+| `bg-surface-ground` | `--p-surface-ground` | Фон страницы |
+| `bg-surface-overlay` | `--p-surface-overlay` | Фон оверлея |
+| `bg-surface-section` | `--p-surface-section` | Фон секции |
+| `bg-surface-hover` | `--p-surface-hover` | Hover-фон |
+| `border-surface-border` | `--p-surface-border` | Бордер по умолчанию |
+
+Severity-цвета (работают с `bg-*`, `text-*`, `border-*`):
+
+| Класс | CSS-переменная |
+|-------|----------------|
+| `info` | `--p-info-400` |
+| `success` | `--p-success-400` |
+| `warning` | `--p-warning-400` |
+| `danger` | `--p-danger-400` |
+| `help` | `--p-help-400` |
+
+### Text Color
+
+| Tailwind-класс | CSS-переменная | Значение |
+|----------------|----------------|----------|
+| `text-color-primary` | `--p-white-100` | Белый текст (на тёмном фоне) |
+| `text-color-secondary` | `--p-black-60` | Полупрозрачный чёрный |
+
+### Border Radius
+
+| Tailwind-класс | Значение |
+|----------------|----------|
+| `rounded-kit` | `0.5rem` (8px) — стандартное скругление DS |
+
+### Border Width
+
+| Tailwind-класс | Значение |
+|----------------|----------|
+| `border-3` | `3px` |
+
+### Sizing (width / height)
+
+Классы `w-*` и `h-*` в значениях `rem`. Доступные значения: 1-30, 34, 45, 50, 54, 58, 60.
+
+Пример: `w-10` = `10rem` (160px), `h-5` = `5rem` (80px).
+
 ## Токены
 
 ### Медиа запросы
