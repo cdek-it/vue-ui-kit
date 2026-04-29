@@ -223,25 +223,25 @@ import { Meta } from '@storybook/addon-docs/blocks';
 Шкала серых фонов и бордеров. Основана на палитре Zinc.
 
 <div class="grid grid-cols-4 gap-2">
-  <div class="p-3 rounded bg-surface-0 border border-surface-300"><code>surface-0</code><br/>Белый фон</div>
-  <div class="p-3 rounded bg-surface-50 border border-surface-300"><code>surface-50</code></div>
-  <div class="p-3 rounded bg-surface-100 border border-surface-300"><code>surface-100</code></div>
-  <div class="p-3 rounded bg-surface-200 border border-surface-300"><code>surface-200</code></div>
-  <div class="p-3 rounded bg-surface-300 border border-surface-400"><code>surface-300</code></div>
-  <div class="p-3 rounded bg-surface-400 border border-surface-500"><code>surface-400</code></div>
-  <div class="p-3 rounded bg-surface-500 text-white border border-surface-600"><code>surface-500</code></div>
-  <div class="p-3 rounded bg-surface-600 text-white border border-surface-700"><code>surface-600</code></div>
-  <div class="p-3 rounded bg-surface-700 text-white border border-surface-800"><code>surface-700</code></div>
-  <div class="p-3 rounded bg-surface-800 text-white border border-surface-900"><code>surface-800</code></div>
-  <div class="p-3 rounded bg-surface-900 text-white border border-surface-950"><code>surface-900</code></div>
-  <div class="p-3 rounded bg-surface-950 text-white border border-surface-900"><code>surface-950</code></div>
+  <div style={{ background: '#ffffff', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>surface-0</code><br/>Белый фон</div>
+  <div style={{ background: '#fafafa', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>surface-50</code></div>
+  <div style={{ background: '#f0f0f1', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>surface-100</code></div>
+  <div style={{ background: '#e2e2e4', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>surface-200</code></div>
+  <div style={{ background: '#cecfd2', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #a2a5a9' }}><code>surface-300</code></div>
+  <div style={{ background: '#a2a5a9', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #85888e' }}><code>surface-400</code></div>
+  <div style={{ background: '#85888e', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #6d7076' }}><code>surface-500</code></div>
+  <div style={{ background: '#6d7076', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #56595f' }}><code>surface-600</code></div>
+  <div style={{ background: '#56595f', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #404348' }}><code>surface-700</code></div>
+  <div style={{ background: '#404348', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #2b2e33' }}><code>surface-800</code></div>
+  <div style={{ background: '#2b2e33', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #181a1f' }}><code>surface-900</code></div>
+  <div style={{ background: '#181a1f', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #2b2e33' }}><code>surface-950</code></div>
 </div>
 
 <div class="grid grid-cols-4 gap-2 mt-4">
-  <div class="p-3 rounded bg-surface-ground border border-surface-300"><code>surface-ground</code><br/>Фон страницы</div>
-  <div class="p-3 rounded bg-surface-overlay border border-surface-300"><code>surface-overlay</code><br/>Фон оверлея</div>
-  <div class="p-3 rounded bg-surface-section border border-surface-300"><code>surface-section</code><br/>Фон секции</div>
-  <div class="p-3 rounded bg-surface-hover border border-surface-300"><code>surface-hover</code><br/>Hover-фон</div>
+  <div style={{ background: '#F5F6F8', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>surface-ground</code><br/>Фон страницы</div>
+  <div style={{ background: '#ffffff', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>surface-overlay</code><br/>Фон оверлея</div>
+  <div style={{ background: '#f0f0f1', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>surface-section</code><br/>Фон секции</div>
+  <div style={{ background: '#e2e2e4', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>surface-hover</code><br/>Hover-фон</div>
 </div>
 
 CSS-переменные: `--p-surface-{0|50|100|...|950}`, `--p-surface-{ground|overlay|section|hover|border}`
@@ -251,16 +251,16 @@ CSS-переменные: `--p-surface-{0|50|100|...|950}`, `--p-surface-{ground
 Акцентный цвет бренда. Основан на палитре Green.
 
 <div class="grid grid-cols-4 gap-2">
-  <div class="p-3 rounded border border-surface-300" style={{ background: 'var(--p-primary-50)' }}><code>primary-50</code></div>
-  <div class="p-3 rounded border border-surface-300" style={{ background: 'var(--p-primary-100)' }}><code>primary-100</code></div>
-  <div class="p-3 rounded border border-surface-300" style={{ background: 'var(--p-primary-200)' }}><code>primary-200</code></div>
-  <div class="p-3 rounded border border-surface-300" style={{ background: 'var(--p-primary-300)' }}><code>primary-300</code></div>
-  <div class="p-3 rounded border border-surface-300" style={{ background: 'var(--p-primary-400)' }}><code>primary-400</code></div>
-  <div class="p-3 rounded text-white border border-surface-300" style={{ background: 'var(--p-primary-500)' }}><code>primary-500</code></div>
-  <div class="p-3 rounded text-white border border-surface-300" style={{ background: 'var(--p-primary-600)' }}><code>primary-600</code></div>
-  <div class="p-3 rounded text-white border border-surface-300" style={{ background: 'var(--p-primary-700)' }}><code>primary-700</code></div>
-  <div class="p-3 rounded text-white border border-surface-300" style={{ background: 'var(--p-primary-800)' }}><code>primary-800</code></div>
-  <div class="p-3 rounded text-white border border-surface-300" style={{ background: 'var(--p-primary-900)' }}><code>primary-900</code></div>
+  <div style={{ background: '#fafffb', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>primary-50</code></div>
+  <div style={{ background: '#f0fff3', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>primary-100</code></div>
+  <div style={{ background: '#d4fedc', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>primary-200</code></div>
+  <div style={{ background: '#aafbb7', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>primary-300</code></div>
+  <div style={{ background: '#77f48a', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>primary-400</code></div>
+  <div style={{ background: '#44e858', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>primary-500</code></div>
+  <div style={{ background: '#1dc831', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>primary-600</code></div>
+  <div style={{ background: '#168322', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>primary-700</code></div>
+  <div style={{ background: '#12611b', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>primary-800</code></div>
+  <div style={{ background: '#0e4514', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>primary-900</code></div>
 </div>
 
 CSS-переменные: `--p-primary-{50|100|...|900}`, `--p-primary-color`, `--p-primary-contrast-color`, `--p-primary-hover-color`, `--p-primary-active-color`
@@ -270,11 +270,11 @@ CSS-переменные: `--p-primary-{50|100|...|900}`, `--p-primary-color`, `
 Цвета для статусов и обратной связи.
 
 <div class="grid grid-cols-5 gap-2">
-  <div class="p-3 rounded bg-success text-white"><code>success</code><br/>Green 400</div>
-  <div class="p-3 rounded bg-info text-white"><code>info</code><br/>Blue 400</div>
-  <div class="p-3 rounded bg-warning"><code>warning</code><br/>Yellow 400</div>
-  <div class="p-3 rounded bg-danger text-white"><code>danger</code><br/>Red 400</div>
-  <div class="p-3 rounded bg-help text-white"><code>help</code><br/>Purple 400</div>
+  <div style={{ background: '#77f48a', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>success</code><br/>Green 400</div>
+  <div style={{ background: '#77baf4', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>info</code><br/>Blue 400</div>
+  <div style={{ background: '#facb75', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>warning</code><br/>Yellow 400</div>
+  <div style={{ background: '#f47f77', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>danger</code><br/>Red 400</div>
+  <div style={{ background: '#c084fc', color: 'white', padding: '0.75rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}><code>help</code><br/>Purple 400</div>
 </div>
 
 Каждый severity-цвет имеет шкалу 50-950. CSS-переменные: `--p-{success|info|warn|error|help}-{50|100|...|950}`
