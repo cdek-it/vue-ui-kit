@@ -4,6 +4,16 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Установка
 
+## Что входит в дизайн-систему
+
+| Часть | Описание | Источник |
+|-------|----------|----------|
+| Тема (токены) | Цвета, отступы, скругления, тени — всё, что определяет внешний вид компонентов | `@cdek-ui-kit/vue` → `getPrimeVueConfig()` |
+| Типографика | CSS-классы для текста: заголовки, body, caption, service | CDN: `typography.min.css` |
+| Иконки | Иконочный шрифт Tabler Icons | CDN: `tabler-icons.min.css` |
+| Компоненты | Стилизованные компоненты PrimeVue + PBlock-обёртки | `primevue` + `@cdek-ui-kit/vue` |
+| Tailwind-интеграция | Токены DS в виде Tailwind-утилит | `tailwindcss-primeui` + `tailwindConfigTheme` |
+
 ### Установка библиотеки PrimeVue
 
 Необходимо будет установить библиотеку PrimeVue в проект. Мы делаем таким образом, чтобы отвязаться от ui-kit,
