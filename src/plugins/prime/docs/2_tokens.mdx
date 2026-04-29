@@ -1,0 +1,162 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Prime/Токены" />
+
+# Токены
+
+Дизайн-токены — это CSS-переменные с префиксом `--p-`, которые определяют все визуальные свойства: цвета, отступы, скругления, тени.
+Токены приходят из `@cdek-ui-kit/vue` через `getPrimeVueConfig()` и автоматически применяются ко всем компонентам PrimeVue.
+
+Вне компонентов вы используете токены напрямую — через CSS-переменные или Tailwind-классы.
+
+## Быстрый подбор токена
+
+Таблица для типовых задач. Если в Figma-макете указан токен — используйте его напрямую.
+
+| Задача | CSS-переменная | Tailwind-класс | Примечание |
+|--------|----------------|----------------|------------|
+| Фон страницы | `var(--p-surface-ground)` | `bg-surface-ground` | Основной фон приложения |
+| Фон карточки / модалки | `var(--p-surface-0)` | `bg-surface-0` | Белый фон поверх ground |
+| Фон секции | `var(--p-surface-section)` | `bg-surface-section` | Выделенная зона на странице |
+| Фон при наведении | `var(--p-surface-hover)` | `bg-surface-hover` | Hover-состояние строки, ячейки |
+| Светлый бордер | `var(--p-surface-200)` | `border-surface-200` | Разделители, карточки |
+| Средний бордер | `var(--p-surface-300)` | `border-surface-300` | Инпуты, кнопки secondary |
+| Тёмный бордер | `var(--p-surface-900)` | `border-surface-900` | Активные/акцентные границы |
+| Бордер по умолчанию | `var(--p-surface-border)` | `border-surface-border` | Универсальный бордер |
+| Акцентный фон | `var(--p-primary-color)` | `bg-primary` | Кнопки, бейджи, акценты |
+| Акцентный текст | `var(--p-text-primary-color)` | `text-primary` | Ссылки, активные элементы |
+| Основной текст | `var(--p-text-color)` | `text-color` | Zinc 900 |
+| Второстепенный текст | `var(--p-text-secondary-color)` | `text-color-secondary` | Zinc 600 |
+| Приглушённый текст | `var(--p-text-muted-color)` | — | Zinc 500, подсказки, плейсхолдеры |
+| Текст ошибки | `var(--p-text-danger-color)` | `text-danger` | Валидация, алерты |
+| Фон ошибки | `var(--p-error-50)` | — | Светлый фон для блока ошибки |
+| Текст успеха | `var(--p-text-success-color)` | `text-success` | Подтверждения |
+| Текст предупреждения | `var(--p-text-warning-color)` | `text-warning` | Предупреждения |
+
+### Пример использования
+
+```html dark
+<!-- CSS-переменные напрямую -->
+<div style="background: var(--p-surface-ground); border: 1px solid var(--p-surface-300);">
+  <p style="color: var(--p-text-color);">Основной текст</p>
+  <p style="color: var(--p-text-secondary-color);">Второстепенный текст</p>
+</div>
+```
+
+```html dark
+<!-- Tailwind-классы -->
+<div class="bg-surface-ground border border-surface-300">
+  <p class="text-color">Основной текст</p>
+  <p class="text-color-secondary">Второстепенный текст</p>
+</div>
+```
+
+```scss dark
+// SCSS
+.my-card {
+  background: var(--p-surface-0);
+  border: 1px solid var(--p-surface-200);
+  color: var(--p-text-color);
+}
+```
+
+## Почему нет Border Primary или Text Primary в Tailwind?
+
+В Figma-макетах вы можете видеть токены вроде `Border/Primary`, `Text/Primary`, `Surface/Background`.
+Это **семантические алиасы дизайнеров**, которые маппятся на конкретные токены шкалы.
+
+В коде эти алиасы не существуют как отдельные Tailwind-классы. Вместо этого используйте токены напрямую:
+
+| Figma-алиас | Что использовать в коде | Почему |
+|-------------|------------------------|--------|
+| `Border/Primary` | `border-surface-300` | Стандартный бордер = Surface 300 (Zinc 300) |
+| `Border/Active` | `border-surface-900` | Активный/акцентный бордер = Surface 900 |
+| `Border/Brand` | `border-primary` | Бордер в цвете бренда = Primary (Green 500) |
+| `Text/Primary` | `text-color` | Основной текст = Zinc 900 |
+| `Text/Secondary` | `text-color-secondary` | Второстепенный текст = Zinc 600 |
+| `Text/Brand` | `text-primary` | Текст в цвете бренда = Green 600 |
+| `Surface/Background` | `bg-surface-ground` | Фон страницы |
+| `Surface/Card` | `bg-surface-0` | Фон карточки |
+
+Если в макете указан конкретный цвет из шкалы (например `Zinc/300`) — используйте соответствующую CSS-переменную `var(--p-surface-300)`.
+
+## Справочник токенов
+
+### Surface
+
+Шкала серых фонов и бордеров. Основана на палитре Zinc.
+
+<div class="grid grid-cols-4 gap-2">
+  <div class="p-3 rounded bg-surface-0 border border-surface-300"><code>surface-0</code><br/>Белый фон</div>
+  <div class="p-3 rounded bg-surface-50"><code>surface-50</code></div>
+  <div class="p-3 rounded bg-surface-100"><code>surface-100</code></div>
+  <div class="p-3 rounded bg-surface-200"><code>surface-200</code></div>
+  <div class="p-3 rounded bg-surface-300"><code>surface-300</code></div>
+  <div class="p-3 rounded bg-surface-400"><code>surface-400</code></div>
+  <div class="p-3 rounded bg-surface-500 text-white"><code>surface-500</code></div>
+  <div class="p-3 rounded bg-surface-600 text-white"><code>surface-600</code></div>
+  <div class="p-3 rounded bg-surface-700 text-white"><code>surface-700</code></div>
+  <div class="p-3 rounded bg-surface-800 text-white"><code>surface-800</code></div>
+  <div class="p-3 rounded bg-surface-900 text-white"><code>surface-900</code></div>
+  <div class="p-3 rounded bg-surface-950 text-white"><code>surface-950</code></div>
+</div>
+
+<div class="grid grid-cols-4 gap-2 mt-4">
+  <div class="p-3 rounded bg-surface-ground border border-surface-300"><code>surface-ground</code><br/>Фон страницы</div>
+  <div class="p-3 rounded bg-surface-overlay border border-surface-300"><code>surface-overlay</code><br/>Фон оверлея</div>
+  <div class="p-3 rounded bg-surface-section border border-surface-300"><code>surface-section</code><br/>Фон секции</div>
+  <div class="p-3 rounded bg-surface-hover border border-surface-300"><code>surface-hover</code><br/>Hover-фон</div>
+</div>
+
+CSS-переменные: `--p-surface-{0|50|100|...|950}`, `--p-surface-{ground|overlay|section|hover|border}`
+
+### Primary
+
+Акцентный цвет бренда. Основан на палитре Green.
+
+<div class="grid grid-cols-4 gap-2">
+  <div class="p-3 rounded" style={{ background: 'var(--p-primary-50)' }}><code>primary-50</code></div>
+  <div class="p-3 rounded" style={{ background: 'var(--p-primary-100)' }}><code>primary-100</code></div>
+  <div class="p-3 rounded" style={{ background: 'var(--p-primary-200)' }}><code>primary-200</code></div>
+  <div class="p-3 rounded" style={{ background: 'var(--p-primary-300)' }}><code>primary-300</code></div>
+  <div class="p-3 rounded" style={{ background: 'var(--p-primary-400)' }}><code>primary-400</code></div>
+  <div class="p-3 rounded text-white" style={{ background: 'var(--p-primary-500)' }}><code>primary-500</code></div>
+  <div class="p-3 rounded text-white" style={{ background: 'var(--p-primary-600)' }}><code>primary-600</code></div>
+  <div class="p-3 rounded text-white" style={{ background: 'var(--p-primary-700)' }}><code>primary-700</code></div>
+  <div class="p-3 rounded text-white" style={{ background: 'var(--p-primary-800)' }}><code>primary-800</code></div>
+  <div class="p-3 rounded text-white" style={{ background: 'var(--p-primary-900)' }}><code>primary-900</code></div>
+</div>
+
+CSS-переменные: `--p-primary-{50|100|...|900}`, `--p-primary-color`, `--p-primary-contrast-color`, `--p-primary-hover-color`, `--p-primary-active-color`
+
+### Semantic (severity)
+
+Цвета для статусов и обратной связи.
+
+<div class="grid grid-cols-5 gap-2">
+  <div class="p-3 rounded bg-success text-white"><code>success</code><br/>Green 400</div>
+  <div class="p-3 rounded bg-info text-white"><code>info</code><br/>Blue 400</div>
+  <div class="p-3 rounded bg-warning"><code>warning</code><br/>Yellow 400</div>
+  <div class="p-3 rounded bg-danger text-white"><code>danger</code><br/>Red 400</div>
+  <div class="p-3 rounded bg-help text-white"><code>help</code><br/>Purple 400</div>
+</div>
+
+Каждый severity-цвет имеет шкалу 50-950. CSS-переменные: `--p-{success|info|warn|error|help}-{50|100|...|950}`
+
+В Tailwind доступны базовые классы: `bg-success`, `bg-info`, `bg-warning`, `bg-danger`, `bg-help` и аналогичные `text-*`, `border-*`.
+
+### Text
+
+| Токен | CSS-переменная | Tailwind | Значение |
+|-------|----------------|----------|----------|
+| Основной | `--p-text-color` | `text-color` | Zinc 900 |
+| Второстепенный | `--p-text-secondary-color` | `text-color-secondary` | Zinc 600 |
+| Приглушённый | `--p-text-muted-color` | — | Zinc 500 |
+| Отключённый | `--p-text-disabled-color` | — | Zinc 300 |
+| Инвертированный | `--p-text-color-inverted` (extend) | — | White |
+| Brand | `--p-text-primary-color` | `text-primary` | Green 600 |
+| Ошибка | `--p-text-danger-color` | `text-danger` | Red 600 |
+| Успех | `--p-text-success-color` | `text-success` | Green 700 |
+| Предупреждение | `--p-text-warning-color` | `text-warning` | Yellow 600 |
+| Информация | `--p-text-info-color` | `text-info` | Blue 600 |
+| Помощь | `--p-text-help-color` | `text-help` | Purple 600 |
