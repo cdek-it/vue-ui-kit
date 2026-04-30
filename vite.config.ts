@@ -23,6 +23,7 @@ export default defineConfig({
     svgLoader(),
     dts({
       insertTypesEntry: true,
+      rollupTypes: true,
     }),
     viteStaticCopy({
       targets: [
