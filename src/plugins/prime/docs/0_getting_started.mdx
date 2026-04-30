@@ -73,7 +73,28 @@ export default {
 </template>
 ```
 
-Если используете авто-импорт, компонент доступен сразу. Иначе:
+Если используете авто-импорт через `unplugin-vue-components`, компонент доступен сразу с префиксом `Prime`.
+Префикс задаётся в `getPrimeVueResolver()` из `@cdek-ui-kit/vue` (по умолчанию `'Prime'`):
+
+```js dark
+import Components from 'unplugin-vue-components/vite';
+import { getPrimeVueResolver } from '@cdek-ui-kit/vue';
+
+// vite.config.ts
+plugins: [
+  Components({
+    resolvers: [getPrimeVueResolver()],
+  }),
+]
+```
+
+При этом `<PrimeButton>` автоматически резолвится в `primevue/button`. Если нужен другой префикс:
+
+```js dark
+getPrimeVueResolver({ componentPrefix: 'P' }) // → <PButton>
+```
+
+Без авто-импорта компонент нужно импортировать вручную:
 
 ```js dark
 import Button from 'primevue/button';
