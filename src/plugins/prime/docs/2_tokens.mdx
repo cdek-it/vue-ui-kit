@@ -17,112 +17,112 @@ import { Meta } from '@storybook/addon-docs/blocks';
   <thead>
     <tr>
       <th>Задача</th>
-      <th>CSS-переменная</th>
       <th>Tailwind-класс</th>
+      <th>CSS-переменная</th>
       <th>Примечание</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Фон страницы</td>
-      <td><code>var(--p-surface-ground)</code></td>
       <td><code>bg-surface-ground</code></td>
+      <td><code>var(--p-surface-ground)</code></td>
       <td>Основной фон приложения</td>
     </tr>
     <tr>
       <td>Фон карточки / модалки</td>
-      <td><code>var(--p-surface-0)</code></td>
       <td><code>bg-surface-0</code></td>
+      <td><code>var(--p-surface-0)</code></td>
       <td>Белый фон поверх ground</td>
     </tr>
     <tr>
       <td>Фон секции</td>
-      <td><code>var(--p-surface-section)</code></td>
       <td><code>bg-surface-section</code></td>
+      <td><code>var(--p-surface-section)</code></td>
       <td>Выделенная зона на странице</td>
     </tr>
     <tr>
       <td>Фон при наведении</td>
-      <td><code>var(--p-surface-hover)</code></td>
       <td><code>bg-surface-hover</code></td>
+      <td><code>var(--p-surface-hover)</code></td>
       <td>Hover-состояние строки, ячейки</td>
     </tr>
     <tr>
       <td>Светлый бордер</td>
-      <td><code>var(--p-surface-200)</code></td>
       <td><code>border-surface-200</code></td>
+      <td><code>var(--p-surface-200)</code></td>
       <td>Разделители, карточки</td>
     </tr>
     <tr>
       <td>Средний бордер</td>
-      <td><code>var(--p-surface-300)</code></td>
       <td><code>border-surface-300</code></td>
+      <td><code>var(--p-surface-300)</code></td>
       <td>Инпуты, кнопки secondary</td>
     </tr>
     <tr>
       <td>Тёмный бордер</td>
-      <td><code>var(--p-surface-900)</code></td>
       <td><code>border-surface-900</code></td>
+      <td><code>var(--p-surface-900)</code></td>
       <td>Активные/акцентные границы</td>
     </tr>
     <tr>
       <td>Бордер по умолчанию</td>
-      <td><code>var(--p-surface-border)</code></td>
       <td><code>border-surface-border</code></td>
+      <td><code>var(--p-surface-border)</code></td>
       <td>Универсальный бордер</td>
     </tr>
     <tr>
       <td>Акцентный фон</td>
-      <td><code>var(--p-primary-color)</code></td>
       <td><code>bg-primary</code></td>
+      <td><code>var(--p-primary-color)</code></td>
       <td>Кнопки, бейджи, акценты</td>
     </tr>
     <tr>
       <td>Акцентный текст</td>
-      <td><code>var(--p-text-primary-color)</code></td>
       <td><code>text-primary</code></td>
+      <td><code>var(--p-text-primary-color)</code></td>
       <td>Ссылки, активные элементы</td>
     </tr>
     <tr>
       <td>Основной текст</td>
-      <td><code>var(--p-text-color)</code></td>
       <td><code>text-color</code></td>
+      <td><code>var(--p-text-color)</code></td>
       <td>Zinc 900</td>
     </tr>
     <tr>
       <td>Второстепенный текст</td>
-      <td><code>var(--p-text-secondary-color)</code></td>
       <td><code>text-color-secondary</code></td>
+      <td><code>var(--p-text-secondary-color)</code></td>
       <td>Zinc 600</td>
     </tr>
     <tr>
       <td>Приглушённый текст</td>
-      <td><code>var(--p-text-muted-color)</code></td>
       <td>—</td>
+      <td><code>var(--p-text-muted-color)</code></td>
       <td>Zinc 500, подсказки, плейсхолдеры</td>
     </tr>
     <tr>
       <td>Текст ошибки</td>
-      <td><code>var(--p-text-danger-color)</code></td>
       <td><code>text-danger</code></td>
+      <td><code>var(--p-text-danger-color)</code></td>
       <td>Валидация, алерты</td>
     </tr>
     <tr>
       <td>Фон ошибки</td>
-      <td><code>var(--p-error-50)</code></td>
       <td>—</td>
+      <td><code>var(--p-error-50)</code></td>
       <td>Светлый фон для блока ошибки</td>
     </tr>
     <tr>
       <td>Текст успеха</td>
-      <td><code>var(--p-text-success-color)</code></td>
       <td><code>text-success</code></td>
+      <td><code>var(--p-text-success-color)</code></td>
       <td>Подтверждения</td>
     </tr>
     <tr>
       <td>Текст предупреждения</td>
-      <td><code>var(--p-text-warning-color)</code></td>
       <td><code>text-warning</code></td>
+      <td><code>var(--p-text-warning-color)</code></td>
       <td>Предупреждения</td>
     </tr>
   </tbody>
@@ -131,18 +131,18 @@ import { Meta } from '@storybook/addon-docs/blocks';
 ### Пример использования
 
 ```html dark
-<!-- CSS-переменные напрямую -->
-<div style="background: var(--p-surface-ground); border: 1px solid var(--p-surface-300);">
-  <p style="color: var(--p-text-color);">Основной текст</p>
-  <p style="color: var(--p-text-secondary-color);">Второстепенный текст</p>
-</div>
-```
-
-```html dark
 <!-- Tailwind-классы -->
 <div class="bg-surface-ground border border-surface-300">
   <p class="text-color">Основной текст</p>
   <p class="text-color-secondary">Второстепенный текст</p>
+</div>
+```
+
+```html dark
+<!-- CSS-переменные напрямую -->
+<div style="background: var(--p-surface-ground); border: 1px solid var(--p-surface-300);">
+  <p style="color: var(--p-text-color);">Основной текст</p>
+  <p style="color: var(--p-text-secondary-color);">Второстепенный текст</p>
 </div>
 ```
 
