@@ -1,6 +1,7 @@
 import {
   BasicTemplate,
   WithSelectedTemplate,
+  WithSeparatorTemplate,
   CustomTemplate,
 } from './TieredMenu.template';
 
@@ -136,6 +137,36 @@ addCommandHandler(items.value);
 <template>
   <TieredMenu :model="items" />
 </template>
+        `.trim(),
+      },
+    },
+  },
+};
+
+export const WithSeparator = {
+  render: WithSeparatorTemplate,
+  parameters: {
+    docs: {
+      source: {
+        code: `
+<template>
+  <div class="card flex justify-center">
+    <PBlockTieredMenu :model="items" />
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import PBlockTieredMenu from '@/primeBlocks/PBlockTieredMenu/PBlockTieredMenu.vue';
+
+const items = ref([
+  { label: 'Home', icon: 'ti ti-user' },
+  { label: 'Features' },
+  { separator: true },
+  { label: 'Projects', icon: 'ti ti-folder' },
+  { label: 'Contact', icon: 'ti ti-user' },
+]);
+</script>
         `.trim(),
       },
     },

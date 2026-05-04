@@ -27,19 +27,19 @@ defineOptions({ inheritAttrs: false });
     @before-show="emit('before-show')"
     @before-hide="emit('before-hide')"
   >
-    <template #start>
+    <template v-if="$slots.start" #start>
       <slot name="start" />
     </template>
-    <template #end>
+    <template v-if="$slots.end" #end>
       <slot name="end" />
     </template>
-    <template #item="slotProps">
+    <template v-if="$slots.item" #item="slotProps">
       <slot name="item" v-bind="slotProps" />
     </template>
-    <template #submenuicon="slotProps">
+    <template v-if="$slots.submenuicon" #submenuicon="slotProps">
       <slot name="submenuicon" v-bind="slotProps" />
     </template>
-    <template #itemicon="slotProps">
+    <template v-if="$slots.itemicon" #itemicon="slotProps">
       <slot name="itemicon" v-bind="slotProps" />
     </template>
   </TieredMenu>
@@ -125,5 +125,9 @@ defineOptions({ inheritAttrs: false });
 .p-tieredmenu-item-caption-text {
   color: var(--p-tieredmenu-ext-item-caption-color);
   font-size: var(--p-fonts-font-size-xs);
+}
+
+.p-tieredmenu .p-tieredmenu-separator {
+  border-color: var(--p-tieredmenu-separator-border-color);
 }
 </style>

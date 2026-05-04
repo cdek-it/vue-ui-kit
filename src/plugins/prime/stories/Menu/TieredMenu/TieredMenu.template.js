@@ -34,6 +34,25 @@ export const WithSelectedTemplate = () => ({
   `,
 });
 
+export const WithSeparatorTemplate = () => ({
+  components: { PBlockTieredMenu },
+  setup() {
+    const items = ref([
+      { label: 'Home', icon: 'ti ti-user' },
+      { label: 'Features' },
+      { separator: true },
+      { label: 'Projects', icon: 'ti ti-folder' },
+      { label: 'Contact', icon: 'ti ti-user' },
+    ]);
+    return { items };
+  },
+  template: `
+    <div class="card flex justify-center" style="height: 280px;">
+      <PBlockTieredMenu :model="items" />
+    </div>
+  `,
+});
+
 export const CustomTemplate = (args) => ({
   components: { PBlockTieredMenu, Badge },
   setup() {
