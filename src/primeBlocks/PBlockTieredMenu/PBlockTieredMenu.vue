@@ -62,21 +62,7 @@ defineOptions({ inheritAttrs: false });
   .p-tieredmenu-item:not(.p-disabled).p-menuitem-checked
   > .p-tieredmenu-item-content
   .p-tieredmenu-item-icon {
-  color: var(--p-menu-item-menuitem-active-icon-color);
-}
-
-.p-tieredmenu.p-component
-  .p-tieredmenu-item.p-menuitem-checked
-  > .p-tieredmenu-item-content {
-  background: var(--p-menu-item-menuitem-active-bg);
-  color: var(--p-menu-item-menuitem-active-text-color);
-}
-
-.p-tieredmenu.p-component
-  .p-tieredmenu-item.p-menuitem-checked
-  > .p-tieredmenu-item-content:hover {
-  background: var(--p-menu-item-menuitem-active-hover-bg);
-  color: var(--p-menu-item-menuitem-active-text-color);
+  color: var(--p-tieredmenu-item-icon-active-color);
 }
 
 .p-tieredmenu.p-component .p-disabled .p-tieredmenu-item-icon {
@@ -121,7 +107,7 @@ defineOptions({ inheritAttrs: false });
 
 .p-tieredmenu-item-caption-text {
   color: var(--p-tieredmenu-ext-item-caption-color);
-  font-size: var(--p-fonts-font-size-xs);
+  font-size: var(--p-fonts-font-size-200);
 }
 
 .p-tieredmenu .p-tieredmenu-separator {
