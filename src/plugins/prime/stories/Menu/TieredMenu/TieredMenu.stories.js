@@ -67,18 +67,17 @@ export const Basic = {
     docs: {
       source: {
         code: `
-<template>
-  <div class="card flex justify-center">
-    <TieredMenu :model="items" />
-  </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 
 const items = ref(${baseItems});
 </script>
-        `.trim(),
+
+<template>
+  <div class="card flex justify-center">
+    <TieredMenu :model="items" />
+  </div>
+</template>`,
       },
     },
   },
@@ -90,9 +89,7 @@ export const WithSelected = {
     docs: {
       source: {
         code: `
-<!-- TieredMenuSelected.vue -->
-<script setup>
-import { TieredMenu } from 'primevue';
+<script setup lang="ts">
 import { ref } from 'vue';
 import { cloneDeep } from 'lodash';
 
@@ -136,8 +133,7 @@ addCommandHandler(items.value);
 
 <template>
   <TieredMenu :model="items" />
-</template>
-        `.trim(),
+</template>`,
       },
     },
   },
@@ -149,15 +145,8 @@ export const WithSeparator = {
     docs: {
       source: {
         code: `
-<template>
-  <div class="card flex justify-center">
-    <PBlockTieredMenu :model="items" />
-  </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
-import PBlockTieredMenu from '@/primeBlocks/PBlockTieredMenu/PBlockTieredMenu.vue';
 
 const items = ref([
   { label: 'Home', icon: 'ti ti-user' },
@@ -167,7 +156,12 @@ const items = ref([
   { label: 'Contact', icon: 'ti ti-user' },
 ]);
 </script>
-        `.trim(),
+
+<template>
+  <div class="card flex justify-center">
+    <PBlockTieredMenu :model="items" />
+  </div>
+</template>`,
       },
     },
   },
@@ -179,27 +173,8 @@ export const Custom = {
     docs: {
       source: {
         code: `
-<template>
-  <div class="card flex justify-center">
-    <TieredMenu :model="items">
-      <template #item="{ item, props, hasSubmenu }">
-        <a v-bind="props.action" class="p-tieredmenu-item-link">
-          <span v-if="item.icon" :class="['p-tieredmenu-item-icon', item.icon]" />
-          <div class="p-tieredmenu-item-caption">
-            <span class="p-tieredmenu-item-label">{{ item.label }}</span>
-            <small v-if="item.description" class="p-tieredmenu-item-caption-text">{{ item.description }}</small>
-          </div>
-          <Badge v-if="item.badge" :value="item.badge" />
-          <span v-if="hasSubmenu" class="p-tieredmenu-submenu-icon ti ti-chevron-right" />
-        </a>
-      </template>
-    </TieredMenu>
-  </div>
-</template>
-
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
-import { Badge } from 'primevue';
 
 const items = ref([
   {
@@ -234,7 +209,24 @@ const items = ref([
   },
 ]);
 </script>
-        `.trim(),
+
+<template>
+  <div class="card flex justify-center">
+    <TieredMenu :model="items">
+      <template #item="{ item, props, hasSubmenu }">
+        <a v-bind="props.action" class="p-tieredmenu-item-link">
+          <span v-if="item.icon" :class="['p-tieredmenu-item-icon', item.icon]" />
+          <div class="p-tieredmenu-item-caption">
+            <span class="p-tieredmenu-item-label">{{ item.label }}</span>
+            <small v-if="item.description" class="p-tieredmenu-item-caption-text">{{ item.description }}</small>
+          </div>
+          <Badge v-if="item.badge" :value="item.badge" />
+          <span v-if="hasSubmenu" class="p-tieredmenu-submenu-icon ti ti-chevron-right" />
+        </a>
+      </template>
+    </TieredMenu>
+  </div>
+</template>`,
       },
     },
   },

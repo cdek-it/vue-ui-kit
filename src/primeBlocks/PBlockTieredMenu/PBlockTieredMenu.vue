@@ -27,25 +27,13 @@ defineOptions({ inheritAttrs: false });
     @before-show="emit('before-show')"
     @before-hide="emit('before-hide')"
   >
-    <template v-if="$slots.start" #start>
-      <slot name="start" />
-    </template>
-    <template v-if="$slots.end" #end>
-      <slot name="end" />
-    </template>
-    <template v-if="$slots.item" #item="slotProps">
-      <slot name="item" v-bind="slotProps" />
-    </template>
-    <template v-if="$slots.submenuicon" #submenuicon="slotProps">
-      <slot name="submenuicon" v-bind="slotProps" />
-    </template>
-    <template v-if="$slots.itemicon" #itemicon="slotProps">
-      <slot name="itemicon" v-bind="slotProps" />
+    <template v-for="(_, name) in $slots" #[name]="slotProps">
+      <slot :name="name" v-bind="slotProps || {}" />
     </template>
   </TieredMenu>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .p-tieredmenu.p-component .p-tieredmenu-item.p-disabled {
   border-radius: calc(var(--p-tieredmenu-item-border-radius));
 }

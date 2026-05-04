@@ -1,4 +1,4 @@
-import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
 import * as TieredMenuStories from './TieredMenu.stories';
 
 <Meta of={TieredMenuStories} />
@@ -21,25 +21,24 @@ import { TieredMenu } from 'primevue';
 ### With Selected Item
 
 <details>
-<summary>Посмотреть пример кода выделенного пункта</summary>
+  <summary style={{ color: '#000', cursor: 'pointer' }}>Посмотреть пример кода выделенного пункта</summary>
 
-<div style={{ margin: '-20px 0' }}>
+  <div style={{ margin: '0 0 -20px 0' }}>
+    Меню с динамически изменяемым активным пунктом. При клике по пункту меню класс `p-menuitem-checked` переносится на выбранный элемент.
 
-Меню с динамически изменяемым активным пунктом. При клике по пункту меню класс `p-menuitem-checked` переносится на выбранный элемент.
+    ```js
+      const items = ref([
+        {
+          'label': 'Home',
+          'class': 'p-menuitem-checked', // ← активный пункт
+        },
+      ]);
+    ```
 
-```js
-const items = ref([
- {
-  label: 'Home',
-  class: 'p-menuitem-checked', // ← активный пункт
- }
-]);
-```
-
-`p-menuitem-checked` — CSS-класс PrimeVue, который задаёт стиль выбранного состояния. Передаётся через поле `class` в элементе модели меню — PrimeVue автоматически применяет его к `<li>` пункта. Переключение реализуется через обработчики `command` в модели.
-
-</div>
-
+    `p-menuitem-checked` — CSS-класс PrimeVue, который задаёт стиль выбранного состояния.<br />
+    Передаётся через поле `class` в элементе модели меню — PrimeVue автоматически применяет его к `li`-элементу пункта.<br />
+    Переключение реализуется через обработчики `command` в модели.
+  </div>
 </details>
 
 <Canvas of={TieredMenuStories.WithSelected} />
