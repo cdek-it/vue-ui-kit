@@ -47,10 +47,9 @@ defineOptions({ inheritAttrs: false });
 
 <style>
 .p-tieredmenu.p-component .p-tieredmenu-item.p-disabled {
-  background: var(--p-button-extend-disabled-background);
+  background: var(--p-form-disabled-background);
   border-radius: calc(var(--p-menu-item-menuitem-border-radius));
-  border: var(--p-border-width-100) solid
-    var(--p-button-extend-disabled-background);
+  border: var(--p-border-width-100) solid var(--p-form-disabled-background);
 }
 
 .p-tieredmenu.p-component
@@ -83,7 +82,7 @@ defineOptions({ inheritAttrs: false });
 }
 
 .p-tieredmenu.p-component .p-disabled .p-tieredmenu-item-icon {
-  color: var(--p-button-extend-disabled-color);
+  color: var(--p-form-disabled-color);
 }
 
 .p-tieredmenu-submenu-icon {
