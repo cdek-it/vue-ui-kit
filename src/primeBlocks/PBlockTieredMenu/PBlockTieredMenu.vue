@@ -45,7 +45,7 @@ defineOptions({ inheritAttrs: false });
   </TieredMenu>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .p-tieredmenu.p-component .p-tieredmenu-item.p-disabled {
   border-radius: calc(var(--p-tieredmenu-item-border-radius));
 }
