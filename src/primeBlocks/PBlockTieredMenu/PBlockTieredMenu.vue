@@ -47,9 +47,7 @@ defineOptions({ inheritAttrs: false });
 
 <style>
 .p-tieredmenu.p-component .p-tieredmenu-item.p-disabled {
-  background: var(--p-form-disabled-background);
   border-radius: calc(var(--p-tieredmenu-item-border-radius));
-  border: var(--p-border-width-100) solid var(--p-form-disabled-background);
 }
 
 .p-tieredmenu.p-component
