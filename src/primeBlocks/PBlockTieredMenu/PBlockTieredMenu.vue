@@ -58,13 +58,6 @@ defineOptions({ inheritAttrs: false });
   padding-bottom: calc(0.5rem - 1px);
 }
 
-.p-tieredmenu.p-component
-  .p-tieredmenu-item:not(.p-disabled).p-menuitem-checked
-  > .p-tieredmenu-item-content
-  .p-tieredmenu-item-icon {
-  color: var(--p-tieredmenu-item-icon-active-color);
-}
-
 .p-tieredmenu.p-component .p-disabled .p-tieredmenu-item-icon {
   color: var(--p-form-disabled-color);
 }
@@ -83,20 +76,6 @@ defineOptions({ inheritAttrs: false });
   border: var(--p-border-width-100) solid
     var(--p-tieredmenu-ext-submenu-border-color);
   background: var(--p-tieredmenu-ext-submenu-background);
-}
-
-.p-tieredmenu.p-component
-  .p-tieredmenu-item:not(.p-disabled).p-menuitem-checked
-  > .p-tieredmenu-item-content {
-  background: var(--p-tieredmenu-item-active-background);
-  color: var(--p-tieredmenu-item-active-color);
-}
-
-.p-tieredmenu.p-component
-  .p-tieredmenu-item:not(.p-disabled).p-menuitem-checked
-  > .p-tieredmenu-item-content:hover {
-  background: var(--p-tieredmenu-item-active-background);
-  color: var(--p-tieredmenu-item-active-color);
 }
 
 .p-tieredmenu-item-caption {
