@@ -1,9 +1,9 @@
-import { Menubar } from 'primevue';
 import { ref } from 'vue';
-import MenubarItem from './MenubarItem.vue';
+import PBlockMenubar from '@/primeBlocks/PBlockMenubar/PBlockMenubar.vue';
+import PBlockMenuItem from '@/primeBlocks/PBlockMenuItem/PBlockMenuItem.vue';
 
 export const BasicTemplate = () => ({
-  components: { Menubar },
+  components: { PBlockMenubar },
   setup() {
     const items = [
       {
@@ -40,12 +40,12 @@ export const BasicTemplate = () => ({
     return { items };
   },
   template: `
-    <Menubar :model="items" />
+    <PBlockMenubar :model="items" />
   `,
 });
 
 export const WithIconTemplate = () => ({
-  components: { Menubar },
+  components: { PBlockMenubar },
   setup() {
     const items = [
       {
@@ -86,12 +86,12 @@ export const WithIconTemplate = () => ({
     return { items };
   },
   template: `
-    <Menubar :model="items" />
+    <PBlockMenubar :model="items" />
   `,
 });
 
 export const CustomTemplate = (args) => ({
-  components: { Menubar, MenubarItem },
+  components: { PBlockMenubar, PBlockMenuItem },
   setup() {
     const items = ref([
       {
@@ -127,10 +127,10 @@ export const CustomTemplate = (args) => ({
     return { args, items };
   },
   template: `
-    <Menubar :model="items" v-bind="args">
-      <template #item="{ item, props }">
-        <MenubarItem :item="item" :action-props="props.action" />
+    <PBlockMenubar :model="items" v-bind="args">
+      <template #item="{ item, props, hasSubmenu }">
+        <PBlockMenuItem :item="item" :action-props="props.action" :has-submenu="hasSubmenu" />
       </template>
-    </Menubar>
+    </PBlockMenubar>
   `,
 });

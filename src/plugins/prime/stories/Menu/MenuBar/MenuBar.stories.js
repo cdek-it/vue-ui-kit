@@ -25,11 +25,12 @@ export const Basic = {
       source: {
         code: `
 <template>
-  <Menubar :model="items" />
+  <PBlockMenubar :model="items" />
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { PBlockMenubar } from '@/primeBlocks';
 
 const items = ref([
   { label: 'Features' },
@@ -65,11 +66,12 @@ export const WithIcon = {
       source: {
         code: `
 <template>
-  <Menubar :model="items" />
+  <PBlockMenubar :model="items" />
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { PBlockMenubar } from '@/primeBlocks';
 
 const items = ref([
   { label: 'Home', icon: 'ti ti-home' },
@@ -114,16 +116,16 @@ export const Custom = {
       source: {
         code: `
 <template>
-  <Menubar :model="items">
-    <template #item="{ item, props }">
-      <MenubarItem :item="item" :action-props="props.action" />
+  <PBlockMenubar :model="items">
+    <template #item="{ item, props, hasSubmenu }">
+      <PBlockMenuItem :item="item" :action-props="props.action" :has-submenu="hasSubmenu" />
     </template>
-  </Menubar>
+  </PBlockMenubar>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import MenubarItem from './MenubarItem.vue';
+import { PBlockMenubar, PBlockMenuItem } from '@/primeBlocks';
 
 const items = ref([
   {
