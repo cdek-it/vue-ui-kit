@@ -116,16 +116,12 @@ export const Custom = {
       source: {
         code: `
 <template>
-  <PBlockMenubar :model="items">
-    <template #item="{ item, props, hasSubmenu }">
-      <PBlockMenuItem :item="item" v-bind="props.action" :has-submenu="hasSubmenu" />
-    </template>
-  </PBlockMenubar>
+  <PBlockMenubar :model="items" />
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { PBlockMenubar, PBlockMenuItem } from '@cdek-it/vue-ui-kit';
+import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   {

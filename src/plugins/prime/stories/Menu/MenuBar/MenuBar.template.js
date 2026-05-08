@@ -1,6 +1,5 @@
 import { ref } from 'vue';
 import PBlockMenubar from '@/primeBlocks/PBlockMenubar/PBlockMenubar.vue';
-import PBlockMenuItem from '@/primeBlocks/PBlockMenuItem/PBlockMenuItem.vue';
 
 export const BasicTemplate = () => ({
   components: { PBlockMenubar },
@@ -91,7 +90,7 @@ export const WithIconTemplate = () => ({
 });
 
 export const CustomTemplate = (args) => ({
-  components: { PBlockMenubar, PBlockMenuItem },
+  components: { PBlockMenubar },
   setup() {
     const items = ref([
       {
@@ -127,10 +126,6 @@ export const CustomTemplate = (args) => ({
     return { args, items };
   },
   template: `
-    <PBlockMenubar :model="items" v-bind="args">
-      <template #item="{ item, props, hasSubmenu }">
-        <PBlockMenuItem :item="item" v-bind="props.action" :has-submenu="hasSubmenu" />
-      </template>
-    </PBlockMenubar>
+    <PBlockMenubar :model="items" v-bind="args" />
   `,
 });
