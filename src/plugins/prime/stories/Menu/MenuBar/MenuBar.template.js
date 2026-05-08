@@ -1,5 +1,6 @@
 import { ref } from 'vue';
 import PBlockMenubar from '@/primeBlocks/PBlockMenubar/PBlockMenubar.vue';
+import PBlockMenuItem from '@/primeBlocks/PBlockMenuItem/PBlockMenuItem.vue';
 
 export const BasicTemplate = () => ({
   components: { PBlockMenubar },
@@ -150,5 +151,38 @@ export const WithItemAsTemplate = () => ({
   },
   template: `
     <PBlockMenubar :model="items" item-as="button" />
+  `,
+});
+
+export const WithSlotsTemplate = () => ({
+  components: { PBlockMenubar, PBlockMenuItem },
+  setup() {
+    const items = ref([
+      { label: 'Home', icon: 'ti ti-home' },
+      {
+        label: 'Features',
+        icon: 'ti ti-star',
+        items: [
+          { label: 'Core', icon: 'ti ti-cpu' },
+          { label: 'UI Kit', icon: 'ti ti-palette' },
+        ],
+      },
+      { label: 'Settings', icon: 'ti ti-settings' },
+    ]);
+
+    return { items };
+  },
+  template: `
+    <PBlockMenubar :model="items">
+      <template #start>
+        <span class="ti ti-brand-vue" style="font-size: 1.5rem; margin-right: 0.5rem;" />
+      </template>
+      <template #item="{ item, props, hasSubmenu }">
+        <PBlockMenuItem v-bind="{ ...item, ...props.action }" />
+      </template>
+      <template #end>
+        <button class="p-button p-button-text p-button-sm">Logout</button>
+      </template>
+    </PBlockMenubar>
   `,
 });

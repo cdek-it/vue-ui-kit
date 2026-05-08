@@ -3,6 +3,7 @@ import {
   WithIconTemplate,
   CustomTemplate,
   WithItemAsTemplate,
+  WithSlotsTemplate,
 } from './MenuBar.template';
 
 export default {
@@ -170,6 +171,52 @@ export const WithItemAs = {
 <script setup>
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+
+const items = ref([
+  { label: 'Home', icon: 'ti ti-home' },
+  {
+    label: 'Features',
+    icon: 'ti ti-star',
+    items: [
+      { label: 'Core', icon: 'ti ti-cpu' },
+      { label: 'UI Kit', icon: 'ti ti-palette' },
+    ],
+  },
+  { label: 'Settings', icon: 'ti ti-settings' },
+]);
+</script>
+        `.trim(),
+      },
+    },
+  },
+};
+
+export const WithSlots = {
+  render: WithSlotsTemplate,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Menubar с использованием слотов `start`, `item` и `end`.',
+      },
+      source: {
+        code: `
+<template>
+  <PBlockMenubar :model="items">
+    <template #start>
+      <span class="ti ti-brand-vue" style="font-size: 1.5rem; margin-right: 0.5rem;" />
+    </template>
+    <template #item="{ item, props }">
+      <PBlockMenuItem v-bind="{ ...item, ...props.action }" />
+    </template>
+    <template #end>
+      <button class="p-button p-button-text p-button-sm">Logout</button>
+    </template>
+  </PBlockMenubar>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { PBlockMenubar, PBlockMenuItem } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   { label: 'Home', icon: 'ti ti-home' },
