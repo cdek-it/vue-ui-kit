@@ -1,42 +1,45 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as InputTextStories from './InputText.stories';
-
-import { Template, TemplateWithIcons } from './InputText.template';
 
 <Meta of={InputTextStories} />
 
-# InputText
+<Title />
+<Description />
 
-[PrimeVue InputText](https://primevue.org/inputtext), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5470\&node-type=section\&t=2PSg63p2UfJ4cUzB-0)
+## Варианты использования
 
-```html dark
-<PrimeInputText v-model="value" placeholder="InputText" />
+### Default
+Базовый пример компонента. Используйте Controls для интерактивного изменения пропсов.
+<Canvas of={InputTextStories.Default} />
+
+#### Список параметров
+<Controls of={InputTextStories.Default} />
+
+### Disabled
+Отключённое состояние.
+<Canvas of={InputTextStories.Disabled} />
+
+### Readonly
+Режим только для чтения.
+<Canvas of={InputTextStories.Readonly} />
+
+### Invalid
+Невалидное состояние.
+<Canvas of={InputTextStories.Invalid} />
+
+### FloatLabel
+Интеграция с `FloatLabel` — плавающая метка внутри поля.
+<Canvas of={InputTextStories.FloatLabel} />
+
+Возможно использование `FloatLabel` и `PBlockInputText` напрямую:
+
+```vue
+<FloatLabel variant="in">
+  <PBlockInputText id="name" v-model="value" variant="filled" />
+  <label for="name">Имя<span class="text-red-500">*</span></label>
+</FloatLabel>
 ```
 
-<Story of={InputTextStories.Primary} />
-
-# С иконками
-
-Логика на работу крестика не прописана в ui-ките, на данный момент должна быть прописана на стороне приложения
-
-```html dark
-<script setup>
-  const inputValue = ref('');
-
-    const onClickDelete = () => {
-      inputValue.value = '';
-    };
-</script>
-
-<template>
-    <PrimeIconField>
-        <PrimeInputText v-model=inputValue placeholder="Normal" />
-        <PrimeInputIcon @click="onClickDelete">
-            <i class="ti ti-x" />
-        </PrimeInputIcon>
-    </PrimeIconField>
-</template>
-
-```
-
-<Story of={InputTextStories.WithIcons} />
+### FloatLabel + Invalid
+FloatLabel с невалидным состоянием.
+<Canvas of={InputTextStories.FloatLabelInvalid} />
