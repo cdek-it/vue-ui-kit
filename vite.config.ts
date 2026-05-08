@@ -22,10 +22,11 @@ export default defineConfig({
   plugins: [
     vue(),
     svgLoader(),
-    dts({
-      insertTypesEntry: true,
-      rollupTypes: true,
-    }),
+    !isStorybookBuild &&
+      dts({
+        insertTypesEntry: true,
+        rollupTypes: true,
+      }),
     viteStaticCopy({
       targets: [
         {
