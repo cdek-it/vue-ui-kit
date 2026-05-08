@@ -1,4 +1,3 @@
-// const css = ({ dt }: { dt: (token: string) => string }) => `
 const css = () => `
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
@@ -12,6 +11,7 @@ const css = () => `
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
   }
+
 `;
 
 export default css;

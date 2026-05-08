@@ -1,20 +1,56 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
 import * as TieredMenuStories from './TieredMenu.stories';
-
-import { Template } from './TieredMenu.template';
 
 <Meta of={TieredMenuStories} />
 
-# TieredMenu
+<Title />
+<Description />
 
-[PrimeVue Menu](https://primevue.org/tieredmenu), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=888-12975\&m=dev)
+```js
+import { TieredMenu } from 'primevue';
+```
+
+## Варианты использования
 
 ### Basic
 
-```jsx dark
-const selectedClass = 'p-menuitem-checked';
+Базовый вариант меню с вложенными подменю без выделенного пункта.
 
-<PrimeTieredMenu :model="items" />
-```
+<Canvas of={TieredMenuStories.Basic} />
 
-<Story of={TieredMenuStories.Primary} />
+### With Selected Item
+
+<details>
+  <summary style={{ color: '#000', cursor: 'pointer' }}>Посмотреть пример кода выделенного пункта</summary>
+
+  <div style={{ margin: '0 0 -20px 0' }}>
+    Меню с динамически изменяемым активным пунктом. При клике по пункту меню класс `p-menuitem-checked` переносится на выбранный элемент.
+
+    ```js
+      const items = ref([
+        {
+          'label': 'Home',
+          'class': 'p-menuitem-checked', // ← активный пункт
+        },
+      ]);
+    ```
+
+    `p-menuitem-checked` — CSS-класс PrimeVue, который задаёт стиль выбранного состояния.<br />
+    Передаётся через поле `class` в элементе модели меню — PrimeVue автоматически применяет его к `li`-элементу пункта.<br />
+    Переключение реализуется через обработчики `command` в модели.
+  </div>
+</details>
+
+<Canvas of={TieredMenuStories.WithSelected} />
+
+### With Separator
+
+Меню с визуальным разделителем между группами пунктов. Сепаратор добавляется через `{ separator: true }` в модели.
+
+<Canvas of={TieredMenuStories.WithSeparator} />
+
+### Custom
+
+TieredMenu с кастомным отображением пунктов: иконка, подпись и описание.
+
+<Canvas of={TieredMenuStories.Custom} />
