@@ -7,8 +7,9 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-size: ${dt('menubar.extend.iconSize')};
 }
 
-.p-block-menuitem-submenu-icon {
-  color: ${dt('menubar.submenu.icon.color')};
+.p-block-menuitem-submenu-icon,
+.p-block-menuitem-icon {
+  color: inherit;
 }
 
 .p-menubar-item-label,
