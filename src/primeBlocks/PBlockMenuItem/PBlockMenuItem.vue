@@ -15,24 +15,32 @@ defineProps<IPBlockMenuItem>();
 </script>
 
 <template>
-  <a v-bind="actionProps" class="p-menuitem-link">
-    <span v-if="item.icon" :class="['p-menuitem-icon', item.icon]" />
-    <div class="p-menuitem-caption">
-      <span class="p-menuitem-label">{{ item.label }}</span>
-      <small v-if="item.description" class="p-menuitem-caption-text">{{
+  <a v-bind="actionProps" class="p-block-menuitem-link">
+    <span v-if="item.icon" :class="['p-block-menuitem-icon', item.icon]" />
+    <div class="p-block-menuitem-caption">
+      <span class="p-block-menuitem-label">{{ item.label }}</span>
+      <small v-if="item.description" class="p-block-menuitem-description">{{
         item.description
       }}</small>
     </div>
     <Badge v-if="item.badge" :value="item.badge" />
     <span
       v-if="hasSubmenu"
-      class="p-menuitem-submenu-icon ti ti-chevron-right"
+      class="p-block-menuitem-submenu-icon ti ti-chevron-right"
     />
   </a>
 </template>
 
-<style lang="scss">
-.p-menuitem-caption {
+<style lang="scss" scoped>
+.p-block-menuitem-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 0.5rem;
+}
+
+.p-block-menuitem-caption {
   display: flex;
   flex-direction: column;
 }
