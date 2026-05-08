@@ -29,17 +29,10 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   cursor: pointer;
 }
 
-.p-menubar-item-active > .p-menubar-item-content,
-.p-menubar-item-active.p-focus > .p-menubar-item-content {
+.p-menubar-item.p-menubar-item-active > .p-menubar-item-content,
+.p-menubar-item.p-menubar-item-active.p-focus > .p-menubar-item-content {
   color: ${dt('menubar.item.activeColor')};
   background: ${dt('menubar.item.activeBackground')};
-}
-
-.p-menubar-item-active > .p-menubar-item-content .p-block-menuitem-icon,
-.p-menubar-item-active > .p-menubar-item-content .p-block-menuitem-submenu-icon,
-.p-menubar-item-active.p-focus > .p-menubar-item-content .p-block-menuitem-icon,
-.p-menubar-item-active.p-focus > .p-menubar-item-content .p-block-menuitem-submenu-icon {
-  color: ${dt('menubar.item.icon.activeColor')};
 }
 
 .p-block-menuitem-description {
