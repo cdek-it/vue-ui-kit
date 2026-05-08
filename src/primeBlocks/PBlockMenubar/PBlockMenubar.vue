@@ -28,8 +28,12 @@ defineOptions({ inheritAttrs: false });
         />
       </slot>
     </template>
-    <template v-if="$slots.submenuicon" #submenuicon="slotProps">
-      <slot name="submenuicon" v-bind="slotProps" />
+    <template #submenuicon="slotProps">
+      <slot name="submenuicon" v-bind="slotProps">
+        <span
+          :class="slotProps.root ? 'ti ti-chevron-down' : 'ti ti-chevron-right'"
+        />
+      </slot>
     </template>
     <template v-if="$slots.itemicon" #itemicon="slotProps">
       <slot name="itemicon" v-bind="slotProps" />
@@ -37,8 +41,10 @@ defineOptions({ inheritAttrs: false });
     <template v-if="$slots.button" #button="slotProps">
       <slot name="button" v-bind="slotProps" />
     </template>
-    <template v-if="$slots.buttonicon" #buttonicon>
-      <slot name="buttonicon" />
+    <template #buttonicon>
+      <slot name="buttonicon">
+        <span class="ti ti-menu-2" />
+      </slot>
     </template>
   </Menubar>
 </template>

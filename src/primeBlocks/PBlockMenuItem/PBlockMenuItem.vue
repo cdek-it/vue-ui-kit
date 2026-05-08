@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue';
 import { Badge } from 'primevue';
 import type { MenuItem } from 'primevue/menuitem';
 import type { Component } from 'vue';
@@ -10,11 +9,7 @@ export interface IPBlockMenuItem extends MenuItem {
   as?: string | Component;
 }
 
-const props = defineProps<IPBlockMenuItem>();
-
-const hasSubmenu = computed(
-  () => Array.isArray(props.items) && props.items.length > 0
-);
+defineProps<IPBlockMenuItem>();
 </script>
 
 <template>
@@ -27,10 +22,6 @@ const hasSubmenu = computed(
       }}</small>
     </div>
     <Badge v-if="badge" :value="badge" />
-    <span
-      v-if="hasSubmenu"
-      class="p-block-menuitem-submenu-icon ti ti-chevron-right"
-    />
   </component>
 </template>
 
