@@ -28,17 +28,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   cursor: pointer;
 }
 
-.p-menubar-item.p-focus > .p-menubar-item-content .p-block-menuitem-link {
-  color: ${dt('menubar.item.focusColor')};
-}
-
-.p-menubar-item.p-focus > .p-menubar-item-content .p-block-menuitem-icon,
-.p-menubar-item.p-focus > .p-menubar-item-content .p-block-menuitem-submenu-icon {
-  color: ${dt('menubar.item.icon.focusColor')};
-}
-
-.p-menubar-item-active > .p-menubar-item-content .p-block-menuitem-link,
-.p-menubar-item-active.p-focus > .p-menubar-item-content .p-block-menuitem-link {
+.p-menubar-item-active > .p-menubar-item-content,
+.p-menubar-item-active.p-focus > .p-menubar-item-content {
   color: ${dt('menubar.item.activeColor')};
 }
 
@@ -47,10 +38,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-menubar-item-active.p-focus > .p-menubar-item-content .p-block-menuitem-icon,
 .p-menubar-item-active.p-focus > .p-menubar-item-content .p-block-menuitem-submenu-icon {
   color: ${dt('menubar.item.icon.activeColor')};
-}
-
-.p-menubar-item-active > .p-menubar-item-content .p-block-menuitem-description {
-  color: ${dt('menubar.item.activeColor')};
 }
 
 .p-block-menuitem-description {
