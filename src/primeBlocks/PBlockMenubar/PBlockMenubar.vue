@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Menubar, type MenubarProps } from 'primevue';
+import PBlockMenuItem from '../PBlockMenuItem/PBlockMenuItem.vue';
 
 interface IPBlockMenubar extends MenubarProps {}
 
@@ -16,8 +17,14 @@ defineOptions({ inheritAttrs: false });
     <template v-if="$slots.end" #end>
       <slot name="end" />
     </template>
-    <template v-if="$slots.item" #item="slotProps">
-      <slot name="item" v-bind="slotProps" />
+    <template #item="slotProps">
+      <slot name="item" v-bind="slotProps">
+        <PBlockMenuItem
+          :item="slotProps.item"
+          :has-submenu="slotProps.hasSubmenu"
+          v-bind="slotProps.props.action"
+        />
+      </slot>
     </template>
     <template v-if="$slots.submenuicon" #submenuicon="slotProps">
       <slot name="submenuicon" v-bind="slotProps" />

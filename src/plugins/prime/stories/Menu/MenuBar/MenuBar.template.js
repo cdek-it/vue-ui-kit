@@ -129,7 +129,7 @@ export const CustomTemplate = (args) => ({
   template: `
     <PBlockMenubar :model="items" v-bind="args">
       <template #item="{ item, props, hasSubmenu }">
-        <PBlockMenuItem :item="item" :action-props="props.action" :has-submenu="hasSubmenu" />
+        <PBlockMenuItem :item="item" v-bind="props.action" :has-submenu="hasSubmenu" />
       </template>
     </PBlockMenubar>
   `,

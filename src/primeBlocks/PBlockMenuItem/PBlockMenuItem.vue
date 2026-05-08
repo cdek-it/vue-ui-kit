@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { Badge } from 'primevue';
 import type { MenuItem } from 'primevue/menuitem';
+import type { Component } from 'vue';
 
 export interface IPBlockMenuItem {
   item: MenuItem & {
     description?: string;
     badge?: string;
   };
-  actionProps?: Record<string, unknown>;
+  as?: string | Component;
   hasSubmenu?: boolean;
 }
 
@@ -15,7 +16,7 @@ defineProps<IPBlockMenuItem>();
 </script>
 
 <template>
-  <a v-bind="actionProps" class="p-block-menuitem-link">
+  <component :is="as ?? 'a'" v-bind="$attrs" class="p-block-menuitem-link">
     <span v-if="item.icon" :class="['p-block-menuitem-icon', item.icon]" />
     <div class="p-block-menuitem-caption">
       <span class="p-block-menuitem-label">{{ item.label }}</span>
@@ -28,7 +29,7 @@ defineProps<IPBlockMenuItem>();
       v-if="hasSubmenu"
       class="p-block-menuitem-submenu-icon ti ti-chevron-right"
     />
-  </a>
+  </component>
 </template>
 
 <style lang="scss" scoped>

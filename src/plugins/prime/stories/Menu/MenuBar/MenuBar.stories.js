@@ -30,7 +30,7 @@ export const Basic = {
 
 <script setup>
 import { ref } from 'vue';
-import { PBlockMenubar } from '@/primeBlocks';
+import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   { label: 'Features' },
@@ -71,7 +71,7 @@ export const WithIcon = {
 
 <script setup>
 import { ref } from 'vue';
-import { PBlockMenubar } from '@/primeBlocks';
+import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   { label: 'Home', icon: 'ti ti-home' },
@@ -118,14 +118,14 @@ export const Custom = {
 <template>
   <PBlockMenubar :model="items">
     <template #item="{ item, props, hasSubmenu }">
-      <PBlockMenuItem :item="item" :action-props="props.action" :has-submenu="hasSubmenu" />
+      <PBlockMenuItem :item="item" v-bind="props.action" :has-submenu="hasSubmenu" />
     </template>
   </PBlockMenubar>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { PBlockMenubar, PBlockMenuItem } from '@/primeBlocks';
+import { PBlockMenubar, PBlockMenuItem } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   {
