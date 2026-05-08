@@ -1,0 +1,55 @@
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as TimelineStories from './Timeline.stories';
+
+<Meta of={TimelineStories} />
+
+<Title />
+<Description />
+
+## Импорт
+
+```js
+import Timeline from 'primevue/timeline';
+```
+
+## Варианты использования
+
+### Horizontal
+
+Горизонтальная ориентация с событиями в ряд.
+
+<Canvas of={TimelineStories.Horizontal} />
+
+#### Список аргументов компонента.
+<Controls of={TimelineStories.Horizontal} />
+
+### Vertical
+
+Вертикальная ориентация — события сверху вниз.
+
+<Canvas of={TimelineStories.Vertical} />
+
+### Vertical Alternate
+
+Чередующееся расположение контента (слева-справа).
+
+<Canvas of={TimelineStories.VerticalAlternate} />
+
+### Markers
+
+Кастомные маркеры с цветами и иконками.
+
+<Canvas of={TimelineStories.Markers} />
+
+<details>
+<summary>Подробнее о кастомных маркерах</summary>
+
+Доступны два варианта:
+- **Без иконки** — цветная обводка через CSS-класс `timeline-marker-dot` и inline-стиль `borderColor`
+- **С иконкой** — иконка Tabler через CSS-класс `timeline-marker-icon` и inline-стиль `color`
+
+Классы `timeline-marker-dot` и `timeline-marker-icon` — кастомные классы из дизайн-системы CDEK.
+Они стилизуют маркер на основе токенов `timeline.eventMarker.*` (размер, фон, скругление, толщина обводки).
+Применяются внутри слота `#marker` компонента Timeline.
+
+</details>
