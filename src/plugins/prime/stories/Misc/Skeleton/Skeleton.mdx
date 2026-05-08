@@ -1,34 +1,39 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
 import * as SkeletonStories from './Skeleton.stories';
-
-import { Template } from './Skeleton.template';
 
 <Meta of={SkeletonStories} />
 
-# Skeleton
+<Title />
+<Description />
 
-[PrimeVue Skeleton](https://primevue.org/skeleton), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace--DS-?node-id=5241-3731\&m=dev)
+## Импорт
+
+```js
+import Skeleton from 'primevue/skeleton';
+```
+
+## Варианты использования
 
 ### Default
+Базовый вариант скелетона. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={SkeletonStories.SkeletonDefault} />
 
-```html dark
-<PrimeSkeleton />
-```
+#### Полный список аргументов и событий компонента.
+<Controls of={SkeletonStories.SkeletonDefault} />
 
-<Story of={SkeletonStories.Default} />
+### Rectangles
+Прямоугольные строки-заглушки — паттерн для текстового контента.
+<Canvas of={SkeletonStories.Rectangles} />
 
-# Circle
+### Circle
+Круглые заглушки для аватаров и иконок.
+<Canvas of={SkeletonStories.Circle} />
 
-```html dark
-<PrimeSkeleton shape="circle" size="100px"/>
-```
+### Card Placeholder
+Составная заглушка: аватар + несколько текстовых строк.
+<Canvas of={SkeletonStories.CardPlaceholder} />
 
-<Story of={SkeletonStories.Circle} />
+### No Animation
+Скелетон без волновой анимации.
+<Canvas of={SkeletonStories.NoAnimation} />
 
-# Disable animations
-
-```html dark
-<PrimeSkeleton size="100px"  animation="none" />
-```
-
-<Story of={SkeletonStories.NoAnimate} />
