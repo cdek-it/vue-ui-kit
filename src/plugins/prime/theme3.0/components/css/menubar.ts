@@ -1,9 +1,14 @@
 const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-menubar-submenu-icon,
+.p-block-menuitem-submenu-icon,
 .p-menubar-item-icon,
 .p-block-menuitem-icon {
   font-size: ${dt('menubar.extend.iconSize')};
+}
+
+.p-block-menuitem-submenu-icon {
+  color: ${dt('menubar.submenu.icon.color')};
 }
 
 .p-menubar-item-label,

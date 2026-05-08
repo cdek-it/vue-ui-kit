@@ -25,6 +25,7 @@ defineOptions({ inheritAttrs: false });
         <PBlockMenuItem
           v-bind="{ ...slotProps.item, ...slotProps.props.action }"
           :as="itemAs"
+          :root="slotProps.root"
         />
       </slot>
     </template>
