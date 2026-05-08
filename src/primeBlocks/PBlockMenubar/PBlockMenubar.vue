@@ -23,9 +23,8 @@ defineOptions({ inheritAttrs: false });
     <template #item="slotProps">
       <slot name="item" v-bind="slotProps">
         <PBlockMenuItem
-          :item="slotProps.item"
+          v-bind="{ ...slotProps.item, ...slotProps.props.action }"
           :as="itemAs"
-          v-bind="slotProps.props.action"
         />
       </slot>
     </template>
