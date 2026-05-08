@@ -32,6 +32,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-menubar-item-active > .p-menubar-item-content,
 .p-menubar-item-active.p-focus > .p-menubar-item-content {
   color: ${dt('menubar.item.activeColor')};
+  background: ${dt('menubar.item.activeBackground')};
 }
 
 .p-menubar-item-active > .p-menubar-item-content .p-block-menuitem-icon,
