@@ -2,6 +2,7 @@ import {
   BasicTemplate,
   WithIconTemplate,
   CustomTemplate,
+  WithItemAsTemplate,
 } from './MenuBar.template';
 
 export default {
@@ -144,6 +145,43 @@ const items = ref([
     icon: 'ti ti-settings',
     description: 'Настройки приложения',
   },
+]);
+</script>
+        `.trim(),
+      },
+    },
+  },
+};
+
+export const WithItemAs = {
+  render: WithItemAsTemplate,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Menubar с кастомным тегом/компонентом для пунктов меню через проп `itemAs`.',
+      },
+      source: {
+        code: `
+<template>
+  <PBlockMenubar :model="items" item-as="button" />
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+
+const items = ref([
+  { label: 'Home', icon: 'ti ti-home' },
+  {
+    label: 'Features',
+    icon: 'ti ti-star',
+    items: [
+      { label: 'Core', icon: 'ti ti-cpu' },
+      { label: 'UI Kit', icon: 'ti ti-palette' },
+    ],
+  },
+  { label: 'Settings', icon: 'ti ti-settings' },
 ]);
 </script>
         `.trim(),

@@ -17,10 +17,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   color: ${dt('menubar.extend.extSubmenuLabel.color')};
 }
 
-.p-menubar-mobile-button-icon {
-  font-size: ${dt('menubar.extend.iconSize')};
-}
-
 `;
 
 export default css;

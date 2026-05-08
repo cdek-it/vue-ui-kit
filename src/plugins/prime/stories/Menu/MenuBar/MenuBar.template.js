@@ -129,3 +129,26 @@ export const CustomTemplate = (args) => ({
     <PBlockMenubar :model="items" v-bind="args" />
   `,
 });
+
+export const WithItemAsTemplate = () => ({
+  components: { PBlockMenubar },
+  setup() {
+    const items = ref([
+      { label: 'Home', icon: 'ti ti-home' },
+      {
+        label: 'Features',
+        icon: 'ti ti-star',
+        items: [
+          { label: 'Core', icon: 'ti ti-cpu' },
+          { label: 'UI Kit', icon: 'ti ti-palette' },
+        ],
+      },
+      { label: 'Settings', icon: 'ti ti-settings' },
+    ]);
+
+    return { items };
+  },
+  template: `
+    <PBlockMenubar :model="items" item-as="button" />
+  `,
+});

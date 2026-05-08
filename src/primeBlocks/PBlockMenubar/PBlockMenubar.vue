@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import type { Component } from 'vue';
 import { Menubar, type MenubarProps } from 'primevue';
 import PBlockMenuItem from '../PBlockMenuItem/PBlockMenuItem.vue';
 
-interface IPBlockMenubar extends MenubarProps {}
+interface IPBlockMenubar extends MenubarProps {
+  itemAs?: string | Component;
+}
 
 defineProps<IPBlockMenubar>();
 
@@ -21,7 +24,7 @@ defineOptions({ inheritAttrs: false });
       <slot name="item" v-bind="slotProps">
         <PBlockMenuItem
           :item="slotProps.item"
-          :has-submenu="slotProps.hasSubmenu"
+          :as="itemAs"
           v-bind="slotProps.props.action"
         />
       </slot>
