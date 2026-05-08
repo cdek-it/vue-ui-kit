@@ -25,7 +25,6 @@ export default defineConfig({
     !isStorybookBuild &&
       dts({
         insertTypesEntry: true,
-        rollupTypes: true,
       }),
     viteStaticCopy({
       targets: [
