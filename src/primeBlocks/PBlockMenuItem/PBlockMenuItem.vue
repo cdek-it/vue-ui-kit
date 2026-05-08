@@ -33,9 +33,4 @@ defineProps<IPBlockMenuItem>();
   color: inherit;
   gap: 0.5rem;
 }
-
-.p-block-menuitem-caption {
-  display: flex;
-  flex-direction: column;
-}
 </style>

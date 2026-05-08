@@ -1,13 +1,26 @@
 const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-menubar-submenu-icon,
-.p-menubar-item-icon {
+.p-menubar-item-icon,
+.p-block-menuitem-icon {
   font-size: ${dt('menubar.extend.iconSize')};
 }
 
-.p-menubar-item-label {
+.p-menubar-item-label,
+.p-block-menuitem-label {
   font-size: ${dt('fonts.fontSize.base')};
   font-weight: ${dt('fonts.fontWeight.regular')};
+}
+
+.p-block-menuitem-description {
+  font-size: ${dt('fonts.fontSize.sm')};
+  color: ${dt('menubar.extend.extItem.caption.color')};
+}
+
+.p-block-menuitem-caption {
+  display: flex;
+  flex-direction: column;
+  gap: ${dt('menubar.extend.extItem.caption.gap')};
 }
 
 .p-menubar-submenu-label {
