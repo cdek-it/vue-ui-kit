@@ -25,12 +25,4 @@ defineProps<IPBlockMenuItem>();
   </component>
 </template>
 
-<style lang="scss" scoped>
-.p-block-menuitem-link {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
-  gap: 0.5rem;
-}
-</style>
+<style lang="scss"></style>
