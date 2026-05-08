@@ -196,7 +196,8 @@ export const WithSlots = {
   parameters: {
     docs: {
       description: {
-        story: 'Menubar с использованием слотов `start`, `item` и `end`.',
+        story:
+          'Menubar с использованием слотов `start`, `item`, `itemicon`, `submenuicon` и `end`.',
       },
       source: {
         code: `
@@ -207,6 +208,12 @@ export const WithSlots = {
     </template>
     <template #item="{ item, props }">
       <PBlockMenuItem v-bind="{ ...item, ...props.action }" />
+    </template>
+    <template #itemicon="{ item }">
+      <span v-if="item.icon" :class="item.icon" style="color: var(--p-primary-color);" />
+    </template>
+    <template #submenuicon>
+      <span class="ti ti-chevron-down" style="font-size: 0.75rem;" />
     </template>
     <template #end>
       <button class="p-button p-button-text p-button-sm">Logout</button>

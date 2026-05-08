@@ -177,8 +177,14 @@ export const WithSlotsTemplate = () => ({
       <template #start>
         <span class="ti ti-brand-vue" style="font-size: 1.5rem; margin-right: 0.5rem;" />
       </template>
-      <template #item="{ item, props, hasSubmenu }">
+      <template #item="{ item, props }">
         <PBlockMenuItem v-bind="{ ...item, ...props.action }" />
+      </template>
+      <template #itemicon="{ item }">
+        <span v-if="item.icon" :class="item.icon" style="color: var(--p-primary-color);" />
+      </template>
+      <template #submenuicon>
+        <span class="ti ti-chevron-down" style="font-size: 0.75rem;" />
       </template>
       <template #end>
         <button class="p-button p-button-text p-button-sm">Logout</button>
