@@ -74,6 +74,14 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   background: ${dt('toast.extend.extInfo.color')};
 }
 
+.p-toast-message-info .p-toast-summary {
+  color: ${dt('message.colorScheme.light.info.color')};
+}
+
+.p-toast-message-info .p-toast-message-caption {
+  color: ${dt('message.extend.extInfo.caption.color')};
+}
+
 /* Стили для toast типа Success */
 .p-toast-message-success .p-toast-message-icon {
   color: ${dt('toast.extend.extSuccess.color')};
@@ -96,6 +104,14 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   background: ${dt('toast.extend.extSuccess.color')};
 }
 
+.p-toast-message-success .p-toast-summary {
+  color: ${dt('message.colorScheme.light.success.color')};
+}
+
+.p-toast-message-success .p-toast-message-caption {
+  color: ${dt('message.extend.extSuccess.caption.color')};
+}
+
 /* Стили для toast типа Warn */
 .p-toast-message-warn .p-toast-message-icon {
   color: ${dt('toast.extend.extWarn.color')};
@@ -114,6 +130,14 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-toast-message-warn .p-toast-accent-line {
   background: ${dt('toast.extend.extWarn.color')};
+}
+
+.p-toast-message-warn .p-toast-summary {
+  color: ${dt('message.colorScheme.light.warn.color')};
+}
+
+.p-toast-message-warn .p-toast-message-caption {
+  color: ${dt('message.extend.extWarn.caption.color')};
 }
 
 /* Стили для toast типа Error */
@@ -138,6 +162,13 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   background: ${dt('toast.extend.extError.color')};
 }
 
+.p-toast-message-error .p-toast-summary {
+  color: ${dt('message.colorScheme.light.error.color')};
+}
+
+.p-toast-message-error .p-toast-message-caption {
+  color: ${dt('message.extend.extError.caption.color')};
+}
 `;
 
 export default css;

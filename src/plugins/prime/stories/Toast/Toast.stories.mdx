@@ -1,6 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs';
 
-import { Template, CustomContainer, WithContent } from './Toast.template';
+import { Template, TemplateToastTypes, CustomContainer, WithContent } from './Toast.template';
 
 <Meta title="Prime/Toast" />
 
@@ -8,89 +8,188 @@ import { Template, CustomContainer, WithContent } from './Toast.template';
 
 [PrimeVue Toast](https://primevue.org/toast), [Макет](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=15953-4478)
 
-Toast is used to display messages in an overlay.
+`Toast` — всплывающее окно, которое используется для отображения сообщений. Подобно уведомлениям в iOS и Android.
+
+<br />
+<hr />
+<br />
 
 ### Basic
 
-Basic toast with different severity levels (info, success, warn, error).
+Подключение `Toast` осуществляется через хук `usePBlockToast` и вызов метода `.add()` с конфигом.
 
-```jsx dark
-import { useToast } from 'primevue/usetoast';
+```html dark
+<!-- Ваш компонент -->
+<script setup lang="ts">
+  import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue'
+  import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
 
-const toast = useToast();
+  const toast = usePBlockToast();
 
-toast.add({
-  severity: 'info',
-  summary: 'Message',
-  detail: 'caption',
-  life: 5000,
-  icon: 'ti ti-info-circle'
-});
+  const onClickToastShowBtn = () => {
+    toast.add({
+      severity: 'success', // Тип Toast
+      summary: 'Заголовок сообщения',
+      detail: 'Дополнительная информация',
+      life: 3_000, // Время, в течении которого будет показан Toast. В миллисекундах
+      closable: true, // Закрываемый или нет. Значение `true` по умолчанию.
+    });
+  };
+</script>
 
-<Toast />
+<template>
+  <div>
+    <PBlockToast />
+    <Button label="Показать Toast" @click="onClickToastShowBtn" />
+  </div>
+</template>
 ```
 
 <Story name="Basic">{Template.bind({})}</Story>
 
+<br />
+<br />
+<hr />
+
+### Toast's Types
+
+`Toast` имеет 4 типа:
+* `success` — успех;
+* `info` — информация;
+* `warn` — предупреждение;
+* `error` — ошибка.
+
+Тип указывается в поле `severity`.
+
+<Story name="Toast Types">{TemplateToastTypes.bind({})}</Story>
+
+<br />
+<br />
+<hr />
+
 ### Custom Container
 
-Toast with custom container template using accent line and styled close button.
+`Toast` с пользовательским шаблоном контейнера и стилизованной кнопкой закрытия.
 
-```jsx dark
-<Toast>
-  <template #container="{ message, closeCallback }">
-    <div class="p-toast-message-content">
-      <div class="p-toast-accent-line"></div>
-      <i :class="message.icon + ' p-toast-message-icon'"></i>
-      <div class="p-toast-message-text">
-        <span class="p-toast-summary">{{ message.summary }}</span>
-        <div class="p-toast-message-caption">{{ message.detail }}</div>
-      </div>
-      <Button
-        class="p-toast-close-button"
-        icon="ti ti-x"
-        variant="text"
-        rounded
-        @click="closeCallback"
-      />
-    </div>
-  </template>
-</Toast>
+```html dark
+<!-- Ваш компонент -->
+<script setup lang="ts">
+  import {
+    usePBlockToast,
+    PBlockToastMessageIcon,
+  } from '@/primeBlocks/PBlockToast/usePBlockToast';
+  import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+
+  const toast = usePBlockToast();
+
+  const onClickToastShowBtn = () => {
+    toast.add({
+      severity: 'success',
+      summary: 'Заголовок сообщения',
+      detail: 'Дополнительная информация',
+      life: 3_000,
+      icon: PBlockToastMessageIcon.success, // ti-circle-check
+    });
+  };
+</script>
+
+<template>
+  <div>
+    <PBlockToast>
+      <template #container="{ message, closeCallback }">
+        <div class="p-toast-message-content">
+          <div class="p-toast-accent-line"></div>
+          <i :class="'p-toast-message-icon ti ' + message.icon"></i>
+          <div class="p-toast-message-text">
+            <span class="p-toast-summary">{{ message.summary }}</span>
+            <div class="p-toast-message-caption">{{ message.detail }}</div>
+          </div>
+          <Button
+            class="p-toast-close-button"
+            icon="ti ti-x"
+            variant="text"
+            rounded
+            @click="closeCallback"
+          />
+        </div>
+      </template>
+    </PBlockToast>
+    <Button label="Показать Toast" @click="onClickToastShowBtn" />
+  </div>
+</template>
 ```
 
-<Story name="CustomContainer">{CustomContainer.bind({})}</Story>
+<Story name="Custom Container">{CustomContainer.bind({})}</Story>
 
-### With Content
+<br />
+<br />
+<hr />
 
-Toast with additional content cells below the caption.
+### Custom Container & Content
 
-```jsx dark
-<Toast>
-  <template #container="{ message, closeCallback }">
-    <div class="p-toast-message-content">
-      <div class="p-toast-accent-line"></div>
-      <i :class="message.icon + ' p-toast-message-icon'"></i>
-      <div class="p-toast-message-text">
-        <span class="p-toast-summary">{{ message.summary }}</span>
-        <div class="p-toast-message-caption">{{ message.detail }}</div>
-        <div class="mt-4">
-          <div class="text-sm">CONTENT</div>
+`Toast` с:
+* пользовательским шаблоном контейнера;
+* с дополнительным содержимым ячеек под подписью;
+* стилизованной кнопкой закрытия.
+
+```html dark
+<!-- Ваш компонент -->
+<script setup lang="ts">
+  import {
+    usePBlockToast,
+    PBlockToastMessageIcon,
+  } from '@/primeBlocks/PBlockToast/usePBlockToast';
+  import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+
+  const toast = usePBlockToast();
+
+  const onClickToastShowBtn = () => {
+    toast.add({
+      severity: 'success',
+      summary: 'Заголовок сообщения',
+      detail: 'Дополнительная информация',
+      life: 3_000,
+      icon: PBlockToastMessageIcon.success,
+      content: 'Контент',
+      cells: ['Ячейка 1', 'Ячейка 2'],
+    });
+  };
+</script>
+
+<template>
+  <div>
+    <PBlockToast>
+      <template #container="{ message, closeCallback }">
+        <div class="p-toast-message-content">
+          <div class="p-toast-accent-line"></div>
+          <i :class="'p-toast-message-icon ti ' + message.icon"></i>
+          <div class="p-toast-message-text">
+            <span class="p-toast-summary">{{ message.summary }}</span>
+            <div class="p-toast-message-caption">{{ message.detail }}</div>
+            <div class="mt-4">
+              <div class="text-sm">{{ message.content }}</div>
+            </div>
+            <div class="flex gap-2 mt-2">
+              <div
+                v-for="(cell, idx) in message.cells"
+                :key="idx"
+                class="text-sm"
+              >{{ cell }}</div>
+            </div>
+          </div>
+          <Button
+            class="p-toast-close-button"
+            icon="ti ti-x"
+            variant="text"
+            rounded
+            @click="closeCallback"
+          />
         </div>
-        <div class="flex gap-2 mt-2">
-          <div class="text-sm">Cell 1</div>
-          <div class="text-sm">Cell 2</div>
-        </div>
-      </div>
-      <Button
-        class="p-toast-close-button"
-        icon="ti ti-x"
-        variant="text"
-        rounded
-        @click="closeCallback"
-      />
-    </div>
-  </template>
-</Toast>
+      </template>
+    </PBlockToast>
+    <Button label="Показать Toast" @click="onClickToastShowBtn" />
+  </div>
+</template>
 ```
 
 <Story name="WithContent">{WithContent.bind({})}</Story>
