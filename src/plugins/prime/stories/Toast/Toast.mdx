@@ -8,57 +8,69 @@ import * as ToastStories from './Toast.stories';
 
 ## Варианты использования
 
-### Default
-Базовый вариант тоста. Используйте таблицу ниже для настройки пропсов. Кнопки внизу позволяют показать живые тосты.
+<br />
+
+### Базовый
+Базовый вариант `Toast`. Используйте таблицу ниже для настройки пропсов. Кнопки внизу позволяют показать живые тосты.
 <Canvas of={ToastStories.Default} />
 
 #### Полный список аргументов и событий компонента.
 <Controls of={ToastStories.Default} />
 
-### WithCloseButton
-Тост с кастомным контейнером и кнопкой закрытия.
-<Canvas of={ToastStories.WithCloseButton} />
+<hr />
 
-#### Аргументы и события
-<Controls of={ToastStories.WithCloseButton} />
+### С кнопкой закрытия
+Базовый вариант `Toast` с кнопкой закрытия.
+<Canvas of={ToastStories.DefaultButton} />
 
-### WithContent
-Тост с дополнительным контентом под заголовком.
+### Кастомный контент
+`Toast` с кастомным контейнером.
 <Canvas of={ToastStories.WithContent} />
 
 #### Аргументы и события
 <Controls of={ToastStories.WithContent} />
 
-### Width
-Ширина тоста задаётся через CSS-класс на компоненте. Доступные значения:
+<hr />
+
+### С кастомным контейнером и кнопкой закрытия
+`Toast` с кастомным контейнером и кнопкой закрытия.
+<Canvas of={ToastStories.WithContentAndCloseButton} />
+
+#### Аргументы и события
+<Controls of={ToastStories.WithContentAndCloseButton} />
+
+<hr />
+
+### Ширина Toast
+Ширина `Toast` задаётся через `props` — `width`. Доступные значения:
 <details>
   <summary>Примеры кода</summary>
 
-- `sm` (20rem)
-```html
-<Toast class="p-toast-sm" />
-```
-- `base` (25rem, по умолчанию)
-```html
-<Toast />
-```
-- `lg` (30rem)
-```html
-<Toast class="p-toast-lg" />
-```
-- `xlg` (45rem)
-```html
-<Toast class="p-toast-xlg" />
-```
-
+  - `sm` (20rem)
+  ```html dark
+  <PBlockToast width="sm" />
+  ```
+  - `md` (25rem, по умолчанию)
+  ```html dark
+  <PBlockToast />
+  ```
+  - `lg` (30rem)
+  ```html dark
+  <PBlockToast width="lg" />
+  ```
+  - `xlg` (45rem)
+  ```html dark
+  <PBlockToast width="xlg" />
+  ```
 </details>
+
 <Canvas of={ToastStories.Width} />
 
 #### Аргументы и события
 <Controls of={ToastStories.Width} />
 
-### Position
-Демонстрация всех доступных позиций тоста. Каждая кнопка показывает уведомление в соответствующей позиции.
+### Позиция
+Демонстрация всех доступных позиций `Toast`. Каждая кнопка показывает уведомление в соответствующей позиции.
 <Canvas of={ToastStories.Position} />
 
 #### Аргументы и события

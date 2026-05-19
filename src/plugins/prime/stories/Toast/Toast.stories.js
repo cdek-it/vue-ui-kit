@@ -1,7 +1,9 @@
-import Toast from 'primevue/toast';
+import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+
 import {
   Template,
-  TemplateWithCloseButton,
+  TemplateCloseButton,
+  TemplateCustomContentWithCloseButton,
   TemplateWithContent,
   TemplateWidth,
   TemplatePosition,
@@ -9,12 +11,13 @@ import {
 
 const meta = {
   title: 'Prime/Messages/Toast',
-  component: Toast,
+  component: PBlockToast,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
-        component: `Toast используется для отображения всплывающих уведомлений поверх интерфейса. Требует подключения \`ToastService\`. \n\n \n \`\`\`js \n import Toast from 'primevue/toast'; \n import { useToast } from 'primevue/usetoast'; \n \`\`\` `,
+        component: `\`Toast\` используется для отображения всплывающих уведомлений поверх интерфейса.\n 
+Требует подключения \`ToastService\`.\n\`\`\`ts dark \nimport PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';\nimport { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast.ts';\`\`\` `,
       },
     },
     designToken: { disable: false },
@@ -56,7 +59,7 @@ const meta = {
       description: 'Время (мс) до автоматического закрытия тоста.',
       table: {
         category: 'Props',
-        defaultValue: { summary: 5000 },
+        defaultValue: { summary: 5_000 },
         type: { summary: 'number' },
       },
     },
@@ -65,39 +68,40 @@ const meta = {
 
 export default meta;
 
-// ── Default ──────────────────────────────────────────────────────────────────
-
 export const Default = {
   name: 'Toast',
   render: Template,
   args: {
-    group: 'default',
+    group: 'basic',
     position: 'top-right',
-    life: 5000,
+    life: 5_000,
   },
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
-<script setup>
-import { useToast } from 'primevue/usetoast';
+<script setup lang="ts">
+import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
+import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
 
-const toast = useToast();
+const toast = usePBlockToast();
 
-const show = () => {
+const showToast = () => {
   toast.add({
     severity: 'info',
-    summary: 'Сообщение',
-    detail: 'Подпись',
-    life: 5000,
-    icon: 'ti ti-info-circle',
+    summary: 'Заголовок сообщения',
+    detail: 'Дополнительная информация',
+    life: 5_000, // мс
   });
 };
 </script>
 
 <template>
-  <Toast />
-  <Button label="Показать уведомление" @click="show" />
+  <div>
+    <PBlockToast />
+    <Button label="Показать toast" @click="showToast" />
+  </div>
 </template>
         `,
       },
@@ -105,33 +109,41 @@ const show = () => {
   },
 };
 
-// ── Stories ──────────────────────────────────────────────────────────────────
-
-export const WithCloseButton = {
-  render: TemplateWithCloseButton,
+export const DefaultButton = {
+  name: 'Toast',
+  render: TemplateCloseButton,
   args: {
-    group: 'close-button',
+    group: 'basic-button',
+    position: 'top-right',
+    life: 5_000,
   },
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
+<script setup lang="ts">
+import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
+import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+
+const toast = usePBlockToast();
+
+const showToast = () => {
+  toast.add({
+    severity: 'info',
+    summary: 'Заголовок сообщения',
+    detail: 'Дополнительная информация',
+    life: 5_000,
+    closable: true, // по умолчанию false
+  });
+};
+</script>
+
 <template>
-  <Toast>
-    <template #container="{ message, closeCallback }">
-      <div class="p-toast-message-content">
-        <div class="p-toast-accent-line"></div>
-        <i :class="message.icon + ' p-toast-message-icon'"></i>
-        <div class="p-toast-message-text">
-          <span class="p-toast-summary">{{ message.summary }}</span>
-          <div class="p-toast-detail">{{ message.detail }}</div>
-        </div>
-        <button class="p-button p-component p-button-text p-toast-close-button" type="button" @click="closeCallback">
-          <span class="p-button-icon ti ti-x"></span>
-        </button>
-      </div>
-    </template>
-  </Toast>
+  <div>
+    <PBlockToast />
+    <Button label="Показать toast" @click="showToast" />
+  </div>
 </template>
         `,
       },
@@ -143,34 +155,110 @@ export const WithContent = {
   render: TemplateWithContent,
   args: {
     group: 'content',
+    position: 'top-right',
+    life: 5_000,
   },
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
+<script setup lang="ts">
+import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
+import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+
+const toast = usePBlockToast();
+
+const showToast = () => {
+  toast.add({
+    severity: 'info',
+    summary: 'Заголовок сообщения',
+    detail: 'Дополнительная информация',
+    life: 5_000,
+  });
+};
+</script>
+
 <template>
-  <Toast>
-    <template #container="{ message, closeCallback }">
-      <div class="p-toast-message-content">
-        <div class="p-toast-accent-line"></div>
-        <i :class="message.icon + ' p-toast-message-icon'"></i>
-        <div class="p-toast-message-text">
-          <span class="p-toast-summary">{{ message.summary }}</span>
-          <div class="p-toast-detail">{{ message.detail }}</div>
-          <div class="mt-4">
-            <div class="text-sm">Дополнительный контент</div>
-          </div>
-          <div class="flex gap-2 mt-2">
-            <div class="text-sm">Ячейка 1</div>
-            <div class="text-sm">Ячейка 2</div>
+  <div>
+    <PBlockToast>
+      <template #container="{ message }">
+        <div class="p-toast-message-content">
+          <div class="p-toast-accent-line"></div>
+          <i :class="'p-toast-message-icon ti ' + message.icon"></i>
+          <div class="p-toast-message-text">
+            <span class="p-toast-summary">{{ message.summary }}</span>
+            <div class="p-toast-detail">{{ message.detail }}</div>
+            <div class="mt-4">
+              <div class="text-sm">Дополнительный контент</div>
+            </div>
+            <div class="flex gap-2 mt-2">
+              <div class="text-sm">Ячейка 1</div>
+              <div class="text-sm">Ячейка 2</div>
+            </div>
           </div>
         </div>
-        <button class="p-button p-component p-button-text p-toast-close-button" type="button" @click="closeCallback">
-          <span class="p-button-icon ti ti-x"></span>
-        </button>
-      </div>
-    </template>
-  </Toast>
+      </template>
+    </PBlockToast>
+    <Button label="Показать toast" @click="showToast" />
+  </div>
+</template>
+        `,
+      },
+    },
+  },
+};
+
+export const WithContentAndCloseButton = {
+  render: TemplateCustomContentWithCloseButton,
+  args: {
+    group: 'content-close-button',
+    life: 5_000,
+  },
+  parameters: {
+    docs: {
+      source: {
+        language: 'html',
+        code: `
+<script setup lang="ts">
+import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
+import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+
+const toast = usePBlockToast();
+
+const showToast = () => {
+  toast.add({
+    severity: 'info',
+    summary: 'Заголовок сообщения',
+    detail: 'Дополнительная информация',
+    life: 5_000,
+  });
+};
+</script>
+
+<template>
+  <div>
+     <PBlockToast>
+      <template #container="{ message, closeCallback }">
+        <div class="p-toast-message-content">
+          <div class="p-toast-accent-line"></div>
+          <i :class="'p-toast-message-icon ti ' + message.icon"></i>
+          <div class="p-toast-message-text">
+            <span class="p-toast-summary">{{ message.summary }}</span>
+            <div class="p-toast-detail">{{ message.detail }}</div>
+          </div>
+          <button
+            class="p-button p-component p-button-text p-toast-close-button"
+            type="button"
+            @click="closeCallback"
+            >
+              <span class="p-button-icon ti ti-x"></span>
+          </button>
+        </div>
+      </template>
+    </PBlockToast>
+    <Button label="Показать toast" @click="showToast" />
+  </div>
 </template>
         `,
       },
@@ -180,30 +268,37 @@ export const WithContent = {
 
 export const Width = {
   render: TemplateWidth,
+  args: {
+    group: 'width-preview',
+    position: 'top-right',
+    life: 5_000,
+  },
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
-<script setup>
-import { useToast } from 'primevue/usetoast';
+<script setup lang="ts">
+import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
+import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
 
-const toast = useToast();
+const toast = usePBlockToast();
 
-// Доступные классы: p-toast-sm (20rem), по умолчанию (25rem), p-toast-lg (30rem), p-toast-xlg (45rem)
-const show = () => {
+const showToast = () => {
   toast.add({
     severity: 'info',
-    summary: 'Сообщение',
-    detail: 'Подпись',
-    life: 5000,
-    icon: 'ti ti-info-circle',
+    summary: 'Заголовок сообщения',
+    detail: 'Дополнительная информация',
+    life: 5_000,
   });
 };
 </script>
 
 <template>
-  <Toast class="p-toast-lg" />
-  <Button label="Показать уведомление" @click="show" />
+  <div>
+    <PBlockToast width="sm" />
+    <Button label="Показать уведомление" @click="showToast" />
+  </div>
 </template>
         `,
       },
@@ -216,38 +311,39 @@ export const Position = {
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
-<script setup>
-import { useToast } from 'primevue/usetoast';
+<script setup lang="ts">
+import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
+import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
 
-const toast = useToast();
+const toast = usePBlockToast();
 
-const show = (position) => {
+const showToast = (position) => {
   toast.add({
-    group: position,
     severity: 'info',
-    summary: 'Сообщение',
+    summary: 'Заголовок сообщения',
     detail: 'Позиция: ' + position,
-    life: 3000,
-    icon: 'ti ti-info-circle',
+    life: 5_000,
+    group: position,
   });
 };
 </script>
 
 <template>
-  <Toast position="top-left"      group="top-left" />
-  <Toast position="top-center"    group="top-center" />
-  <Toast position="top-right"     group="top-right" />
-  <Toast position="bottom-left"   group="bottom-left" />
-  <Toast position="bottom-center" group="bottom-center" />
-  <Toast position="bottom-right"  group="bottom-right" />
+  <PBlockToast position="top-left" group="top-left" />
+  <PBlockToast position="top-center" group="top-center" />
+  <PBlockToast position="top-right" group="top-right" />
+  <PBlockToast position="bottom-left" group="bottom-left" />
+  <PBlockToast position="bottom-center" group="bottom-center" />
+  <PBlockToast position="bottom-right" group="bottom-right" />
 
-  <Button label="Вверх слева"     severity="contrast" @click="show('top-left')" />
-  <Button label="Вверх по центру" severity="contrast" @click="show('top-center')" />
-  <Button label="Вверх справа"    severity="contrast" @click="show('top-right')" />
-  <Button label="Вниз слева"      severity="contrast" @click="show('bottom-left')" />
-  <Button label="Вниз по центру"  severity="contrast" @click="show('bottom-center')" />
-  <Button label="Вниз справа"     severity="contrast" @click="show('bottom-right')" />
+  <Button label="Вверх слева" @click="showToast('top-left')" />
+  <Button label="Вверх по центру" @click="showToast('top-center')" />
+  <Button label="Вверх справа" @click="showToast('top-right')" />
+  <Button label="Вниз слева" @click="showToast('bottom-left')" />
+  <Button label="Вниз по центру" @click="showToast('bottom-center')" />
+  <Button label="Вниз справа" @click="showToast('bottom-right')" />
 </template>
         `,
       },

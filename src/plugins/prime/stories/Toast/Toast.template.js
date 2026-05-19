@@ -1,13 +1,17 @@
-import Toast from 'primevue/toast';
-import Button from 'primevue/button';
-import { useToast } from 'primevue/usetoast';
 import { ref } from 'vue';
+import {
+  usePBlockToast,
+  PBlockToastMessageIcon,
+} from '@/primeBlocks/PBlockToast/usePBlockToast.ts';
+
+import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+import Button from 'primevue/button';
 
 const SEVERITIES = [
-  { type: 'info', icon: 'ti ti-info-circle', label: 'Информация' },
-  { type: 'success', icon: 'ti ti-circle-check', label: 'Успех' },
-  { type: 'warn', icon: 'ti ti-alert-triangle', label: 'Предупреждение' },
-  { type: 'error', icon: 'ti ti-alert-circle', label: 'Ошибка' },
+  { type: 'success', icon: PBlockToastMessageIcon.success, label: 'Успех' },
+  { type: 'info', icon: PBlockToastMessageIcon.info, label: 'Информация' },
+  { type: 'warn', icon: PBlockToastMessageIcon.warn, label: 'Предупреждение' },
+  { type: 'error', icon: PBlockToastMessageIcon.error, label: 'Ошибка' },
 ];
 
 const POSITIONS = [
@@ -23,61 +27,85 @@ const POSITIONS = [
   { position: 'bottom-right', label: 'Вниз справа', group: 'pos-bottom-right' },
 ];
 
+const SIZES = [
+  {
+    key: 'sm',
+    label: 'Small (20rem)',
+    width: '20rem',
+    group: 'width-sm',
+  },
+  {
+    key: 'base',
+    label: 'Base (25rem)',
+    width: '25rem',
+    group: 'width-base',
+  },
+  {
+    key: 'lg',
+    label: 'Large (30rem)',
+    width: '30rem',
+    group: 'width-lg',
+  },
+  {
+    key: 'xlg',
+    label: 'X-Large (45rem)',
+    width: '45rem',
+    group: 'width-xlg',
+  },
+];
+
+const commonToastConfig = {
+  summary: 'Заголовок сообщения',
+  detail: 'Дополнительная информация',
+};
+
 export const Template = (args) => ({
-  components: { Toast, Button },
+  components: { PBlockToast, Button },
   setup() {
-    const toast = useToast();
+    const toast = usePBlockToast();
 
     const showToast = (severity, icon) => {
       toast.add({
-        group: args.group,
         severity,
-        summary: 'Сообщение',
-        detail: 'Подпись',
-        life: args.life ?? 5000,
+        ...commonToastConfig,
+        life: args.life ?? 5_000,
         icon,
+        group: args.group || `story_${Date.now()}`,
       });
     };
 
-    return { args, showToast, severities: SEVERITIES };
+    return {
+      args,
+      showToast,
+      severities: SEVERITIES,
+    };
   },
   template: `
     <div>
-      <Toast :position="args.position" :group="args.group">
-        <template #container="{ message }">
-          <div class="p-toast-message-content">
-            <div class="p-toast-accent-line"></div>
-            <i :class="message.icon + ' p-toast-message-icon'"></i>
-            <div class="p-toast-message-text">
-              <span class="p-toast-summary">{{ message.summary }}</span>
-              <div class="p-toast-detail">{{ message.detail }}</div>
-            </div>
-          </div>
-        </template>
-      </Toast>
-      <div class="flex flex-col gap-4">
-        <div
-          v-for="({ type, icon }, index) in severities"
-          :key="index"
-          :class="'p-toast-message p-toast-message-' + type"
-        >
-          <div class="p-toast-message-content">
-            <div class="p-toast-accent-line"></div>
-            <i :class="icon + ' p-toast-message-icon'"></i>
-            <div class="p-toast-message-text">
-              <span class="p-toast-summary">Сообщение</span>
-              <div class="p-toast-detail">Подпись</div>
+      <PBlockToast :position="args.position" :group="args.group" style="z-index:1" />
+
+      <div class="grid grid-cols-2 gap-4">
+        <div v-for="({ type, icon }, index) in severities" :key="index">
+          <div :class="'p-toast-message p-toast-message-' + type">
+            <div class="p-toast-message-content">
+              <div class="p-toast-accent-line"></div>
+              <i :class="'p-toast-message-icon ti ' + icon"></i>
+              <div class="p-toast-message-text">
+                <span class="p-toast-summary">Заголовок сообщения</span>
+                <div class="p-toast-detail">Дополнительная информация</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <br>
+      <hr>
       <div class="flex flex-wrap gap-2 mt-6">
         <Button
           v-for="({ type, icon, label }, index) in severities"
           :key="index"
-          :label="'Показать: ' + label"
+          :label="'Показать Toast: ' + label"
           :severity="type === 'error' ? 'danger' : type"
-          variant="outlined"
           @click="showToast(type, icon)"
         />
       </div>
@@ -85,67 +113,57 @@ export const Template = (args) => ({
   `,
 });
 
-export const TemplateWithCloseButton = (args) => ({
-  components: { Toast, Button },
+export const TemplateCloseButton = (args) => ({
+  components: { PBlockToast, Button },
   setup() {
-    const toast = useToast();
+    const toast = usePBlockToast();
 
     const showToast = (severity, icon) => {
       toast.add({
-        group: args.group,
         severity,
-        summary: 'Сообщение',
-        detail: 'Подпись',
-        life: 5000,
+        ...commonToastConfig,
+        life: args.life ?? 5_000,
         icon,
+        group: args.group || `story_${Date.now()}`,
+        closable: true,
       });
     };
 
-    return { args, showToast, severities: SEVERITIES };
+    return {
+      args,
+      showToast,
+      severities: SEVERITIES,
+    };
   },
   template: `
     <div>
-      <Toast :group="args.group">
-        <template #container="{ message, closeCallback }">
-          <div class="p-toast-message-content">
-            <div class="p-toast-accent-line"></div>
-            <i :class="message.icon + ' p-toast-message-icon'"></i>
-            <div class="p-toast-message-text">
-              <span class="p-toast-summary">{{ message.summary }}</span>
-              <div class="p-toast-detail">{{ message.detail }}</div>
+      <PBlockToast :position="args.position" :group="args.group" style="z-index:1" />
+
+      <div class="grid grid-cols-2 gap-4">
+        <div v-for="({ type, icon }, index) in severities" :key="index">
+          <div :class="'p-toast-message p-toast-message-' + type">
+            <div class="p-toast-message-content">
+              <div class="p-toast-accent-line"></div>
+              <i :class="'p-toast-message-icon ti ' + icon"></i>
+              <div class="p-toast-message-text">
+                <span class="p-toast-summary">Заголовок сообщения</span>
+                <div class="p-toast-detail">Дополнительная информация</div>
+              </div>
+              <button class="p-toast-close-button" type="button">
+                <i class="ti ti-x"></i>
+              </button>
             </div>
-            <button class="p-button p-component p-button-text p-toast-close-button" type="button" @click="closeCallback">
-              <span class="p-button-icon ti ti-x"></span>
-            </button>
-          </div>
-        </template>
-      </Toast>
-      <div class="flex flex-col gap-4">
-        <div
-          v-for="({ type, icon }, index) in severities"
-          :key="index"
-          :class="'p-toast-message p-toast-message-' + type"
-        >
-          <div class="p-toast-message-content">
-            <div class="p-toast-accent-line"></div>
-            <i :class="icon + ' p-toast-message-icon'"></i>
-            <div class="p-toast-message-text">
-              <span class="p-toast-summary">Сообщение</span>
-              <div class="p-toast-detail">Подпись</div>
-            </div>
-            <button class="p-button p-component p-button-text p-toast-close-button" type="button">
-              <span class="p-button-icon ti ti-x"></span>
-            </button>
           </div>
         </div>
       </div>
+      <br>
+      <hr>
       <div class="flex flex-wrap gap-2 mt-6">
         <Button
           v-for="({ type, icon, label }, index) in severities"
           :key="index"
-          :label="'Показать: ' + label"
+          :label="'Показать Toast: ' + label"
           :severity="type === 'error' ? 'danger' : type"
-          variant="outlined"
           @click="showToast(type, icon)"
         />
       </div>
@@ -154,30 +172,33 @@ export const TemplateWithCloseButton = (args) => ({
 });
 
 export const TemplateWithContent = (args) => ({
-  components: { Toast, Button },
+  components: { PBlockToast, Button },
   setup() {
-    const toast = useToast();
+    const toast = usePBlockToast();
 
     const showToast = (severity, icon) => {
       toast.add({
-        group: args.group,
         severity,
-        summary: 'Сообщение',
-        detail: 'Подпись',
-        life: 5000,
+        ...commonToastConfig,
+        life: args.life ?? 5_000,
         icon,
+        group: args.group || `story_${Date.now()}`,
       });
     };
 
-    return { args, showToast, severities: SEVERITIES };
+    return {
+      args,
+      severities: SEVERITIES,
+      showToast,
+    };
   },
   template: `
     <div>
-      <Toast :group="args.group">
-        <template #container="{ message, closeCallback }">
+      <PBlockToast :group="args.group" style="z-index:1">
+        <template #container="{ message }">
           <div class="p-toast-message-content">
             <div class="p-toast-accent-line"></div>
-            <i :class="message.icon + ' p-toast-message-icon'"></i>
+            <i :class="'p-toast-message-icon ti ' + message.icon"></i>
             <div class="p-toast-message-text">
               <span class="p-toast-summary">{{ message.summary }}</span>
               <div class="p-toast-detail">{{ message.detail }}</div>
@@ -189,45 +210,38 @@ export const TemplateWithContent = (args) => ({
                 <div class="text-sm">Ячейка 2</div>
               </div>
             </div>
-            <button class="p-button p-component p-button-text p-toast-close-button" type="button" @click="closeCallback">
-              <span class="p-button-icon ti ti-x"></span>
-            </button>
           </div>
         </template>
-      </Toast>
-      <div class="flex flex-col gap-4">
-        <div
-          v-for="({ type, icon }, index) in severities"
-          :key="index"
-          :class="'p-toast-message p-toast-message-' + type"
-        >
-          <div class="p-toast-message-content">
-            <div class="p-toast-accent-line"></div>
-            <i :class="icon + ' p-toast-message-icon'"></i>
-            <div class="p-toast-message-text">
-              <span class="p-toast-summary">Сообщение</span>
-              <div class="p-toast-detail">Подпись</div>
-              <div class="mt-4">
-                <div class="text-sm">Дополнительный контент</div>
-              </div>
-              <div class="flex gap-2 mt-2">
-                <div class="text-sm">Ячейка 1</div>
-                <div class="text-sm">Ячейка 2</div>
+      </PBlockToast>
+      <div class="grid grid-cols-2 gap-4">
+        <div v-for="({ type, icon }, idx) in severities" :key="idx">
+          <div :class="'p-toast-message p-toast-message-' + type">
+            <div class="p-toast-message-content">
+              <div class="p-toast-accent-line"></div>
+              <i :class="'p-toast-message-icon ti ' + icon"></i>
+              <div class="p-toast-message-text">
+                <span class="p-toast-summary">Заголовок сообщения</span>
+                <div class="p-toast-detail">Дополнительная информация</div>
+                <div class="mt-4">
+                  <div class="text-sm">Дополнительный контент</div>
+                </div>
+                <div class="flex gap-2 mt-2">
+                  <div class="text-sm">Ячейка 1</div>
+                  <div class="text-sm">Ячейка 2</div>
+                </div>
               </div>
             </div>
-            <button class="p-button p-component p-button-text p-toast-close-button" type="button">
-              <span class="p-button-icon ti ti-x"></span>
-            </button>
           </div>
         </div>
       </div>
+      <br>
+      <hr>
       <div class="flex flex-wrap gap-2 mt-6">
         <Button
           v-for="({ type, icon, label }, index) in severities"
           :key="index"
-          :label="'Показать: ' + label"
+          :label="'Показать Toast: ' + label"
           :severity="type === 'error' ? 'danger' : type"
-          variant="outlined"
           @click="showToast(type, icon)"
         />
       </div>
@@ -235,87 +249,141 @@ export const TemplateWithContent = (args) => ({
   `,
 });
 
-const SIZES = [
-  {
-    key: 'sm',
-    label: 'Small (20rem)',
-    cls: 'p-toast-sm',
-    width: '20rem',
-    group: 'width-sm',
-  },
-  {
-    key: 'base',
-    label: 'Base (25rem)',
-    cls: '',
-    width: '25rem',
-    group: 'width-base',
-  },
-  {
-    key: 'lg',
-    label: 'Large (30rem)',
-    cls: 'p-toast-lg',
-    width: '30rem',
-    group: 'width-lg',
-  },
-  {
-    key: 'xlg',
-    label: 'X-Large (45rem)',
-    cls: 'p-toast-xlg',
-    width: '45rem',
-    group: 'width-xlg',
-  },
-];
-
-export const TemplateWidth = () => ({
-  components: { Toast, Button },
+export const TemplateCustomContentWithCloseButton = (args) => ({
+  components: { PBlockToast, Button },
   setup() {
-    const toast = useToast();
-    const currentSize = ref(SIZES[1]);
+    const toast = usePBlockToast();
 
-    const showToast = (size) => {
-      toast.removeGroup('width-preview');
-      currentSize.value = size;
+    const showToast = (severity, icon) => {
       toast.add({
-        group: 'width-preview',
-        severity: 'info',
-        summary: 'Сообщение',
-        detail: 'Ширина: ' + size.width,
-        life: 3000,
-        icon: 'ti ti-info-circle',
+        severity,
+        ...commonToastConfig,
+        life: args.life ?? 5_000,
+        icon,
+        group: args.group,
       });
     };
 
-    return { showToast, sizes: SIZES, currentSize };
+    return {
+      args,
+      showToast,
+      severities: SEVERITIES,
+    };
   },
   template: `
     <div>
-      <Toast
-        group="width-preview"
-        :class="currentSize.cls"
-      >
-        <template #container="{ message }">
+      <PBlockToast :group="args.group" style="z-index:1">
+        <template #container="{ message, closeCallback }">
           <div class="p-toast-message-content">
             <div class="p-toast-accent-line"></div>
-            <i :class="message.icon + ' p-toast-message-icon'"></i>
+            <i :class="'p-toast-message-icon ti ' + message.icon"></i>
             <div class="p-toast-message-text">
               <span class="p-toast-summary">{{ message.summary }}</span>
               <div class="p-toast-detail">{{ message.detail }}</div>
+              <div class="mt-4">
+                <div class="text-sm">Дополнительный контент</div>
+              </div>
+              <div class="flex gap-2 mt-2">
+                <div class="text-sm">Ячейка 1</div>
+                <div class="text-sm">Ячейка 2</div>
+              </div>
             </div>
+            <button
+              class="p-button p-component p-button-text p-toast-close-button"
+              type="button"
+              @click="closeCallback"
+            >
+              <span class="p-button-icon ti ti-x"></span>
+            </button>
           </div>
         </template>
-      </Toast>
+      </PBlockToast>
+      <div class="grid grid-cols-2 gap-4">
+        <div
+          v-for="({ type, icon }, index) in severities"
+          :key="index"
+        >
+          <div :class="'p-toast-message p-toast-message-' + type">
+            <div class="p-toast-message-content">
+              <div class="p-toast-accent-line"></div>
+              <i :class="'p-toast-message-icon ti ' + icon"></i>
+              <div class="p-toast-message-text">
+                <span class="p-toast-summary">Заголовок сообщения</span>
+                <div class="p-toast-detail">Дополнительная информация</div>
+                <div class="mt-4">
+                  <div class="text-sm">Дополнительный контент</div>
+                </div>
+                <div class="flex gap-2 mt-2">
+                  <div class="text-sm">Ячейка 1</div>
+                  <div class="text-sm">Ячейка 2</div>
+                </div>
+              </div>
+              <button class="p-toast-close-button" type="button">
+                <i class="ti ti-x"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <hr>
+      <div class="flex flex-wrap gap-2 mt-6">
+        <Button
+          v-for="({ type, icon, label }, index) in severities"
+          :key="index"
+          :label="'Показать Toast: ' + label"
+          :severity="type === 'error' ? 'danger' : type"
+          @click="showToast(type, icon)"
+        />
+      </div>
+    </div>
+  `,
+});
+
+export const TemplateWidth = (args) => ({
+  components: { PBlockToast, Button },
+  setup() {
+    const toast = usePBlockToast();
+    const currentSize = ref(SIZES[1]);
+    const group = args?.group || 'width-preview';
+
+    const showToast = (size) => {
+      toast.removeGroup(group);
+      currentSize.value = size;
+
+      toast.add({
+        severity: 'info',
+        ...commonToastConfig,
+        detail: 'Ширина: ' + size.width,
+        life: args.life ?? 5_000,
+        group,
+      });
+    };
+
+    return {
+      currentSize,
+      sizes: SIZES,
+      showToast,
+    };
+  },
+  template: `
+    <div>
+      <PBlockToast
+        group="width-preview"
+        :width="currentSize.key"
+      />
       <div class="flex flex-col gap-4">
         <div
           v-for="({ key, width }, index) in sizes"
           :key="index"
           class="p-toast-message p-toast-message-info"
-          :style="{ width }"
+          :style="'width:' + width"
         >
           <div class="p-toast-message-content">
             <div class="p-toast-accent-line"></div>
-            <i class="ti ti-info-circle p-toast-message-icon"></i>
+            <i class="p-toast-message-icon ti ti-info-circle"></i>
             <div class="p-toast-message-text">
-              <span class="p-toast-summary">Сообщение</span>
+              <span class="p-toast-summary">Заголовок сообщения</span>
               <div class="p-toast-detail">Ширина {{ key }}: {{ width }}</div>
             </div>
           </div>
@@ -326,7 +394,6 @@ export const TemplateWidth = () => ({
           v-for="(size) in sizes"
           :key="size.label"
           :label="size.label"
-          severity="contrast"
           @click="showToast(size)"
         />
       </div>
@@ -335,48 +402,39 @@ export const TemplateWidth = () => ({
 });
 
 export const TemplatePosition = () => ({
-  components: { Toast, Button },
+  components: { PBlockToast, Button },
   setup() {
-    const toast = useToast();
+    const toast = usePBlockToast();
 
     const showToast = (group, position) => {
       toast.add({
         group,
         severity: 'info',
-        summary: 'Сообщение',
+        ...commonToastConfig,
         detail: 'Позиция: ' + position,
-        life: 3000,
-        icon: 'ti ti-info-circle',
+        life: 5_000,
       });
     };
 
-    return { showToast, positions: POSITIONS };
+    return {
+      showToast,
+      positions: POSITIONS,
+    };
   },
   template: `
     <div>
-      <Toast
+      <PBlockToast
         v-for="({ position, group }) in positions"
         :key="group"
         :position="position"
         :group="group"
-      >
-        <template #container="{ message }">
-          <div class="p-toast-message-content">
-            <div class="p-toast-accent-line"></div>
-            <i :class="message.icon + ' p-toast-message-icon'"></i>
-            <div class="p-toast-message-text">
-              <span class="p-toast-summary">{{ message.summary }}</span>
-              <div class="p-toast-detail">{{ message.detail }}</div>
-            </div>
-          </div>
-        </template>
-      </Toast>
-      <div class="flex flex-col gap-2 items-center justify-center min-h-48">
+        style="z-index:1"
+      />
+      <div class="grid grid-cols-3 gap-2">
         <Button
           v-for="({ position, label, group }) in positions"
           :key="group"
           :label="label"
-          severity="contrast"
           @click="showToast(group, position)"
         />
       </div>

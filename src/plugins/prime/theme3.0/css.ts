@@ -1,5 +1,8 @@
-// const css = ({ dt }: { dt: (token: string) => string }) => `
-const css = () => `
+import toastCss from './components/css/toast';
+
+const css = ({ dt }: { dt: (token: string) => string }) => `
+  ${toastCss({ dt })}
+
   .p-disabled, .p-component:disabled {
     mix-blend-mode: luminosity;
   }

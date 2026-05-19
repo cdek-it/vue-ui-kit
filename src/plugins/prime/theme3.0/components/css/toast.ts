@@ -54,15 +54,22 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 )};
 }
 
+.p-toast-close-button > i {
+  font-size: 1.25rem;
+}
+
 /* Размеры тоста через классы */
+.p-toast.p-toast-sm,
 .p-toast.p-toast-sm .p-toast-message {
   width: ${dt('messages.sm.width')};
 }
 
+.p-toast.p-toast-lg,
 .p-toast.p-toast-lg .p-toast-message {
   width: ${dt('messages.lg.width')};
 }
 
+.p-toast.p-toast-xlg,
 .p-toast.p-toast-xlg .p-toast-message {
   width: ${dt('messages.xlg.width')};
 }
@@ -87,6 +94,14 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   background: ${dt('toast.extend.extInfo.color')};
 }
 
+.p-toast-message-info .p-toast-summary {
+  color: ${dt('toast.colorScheme.light.info.color')};
+}
+
+.p-toast-message-info .p-toast-detail {
+  color: ${dt('toast.colorScheme.light.info.detailColor')};
+}
+
 /* Стили для toast типа Success */
 .p-toast-message-success .p-toast-message-icon {
   color: ${dt('toast.extend.extSuccess.color')};
@@ -109,6 +124,14 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   background: ${dt('toast.extend.extSuccess.color')};
 }
 
+.p-toast-message-success .p-toast-summary {
+  color: ${dt('toast.colorScheme.light.success.color')};
+}
+
+.p-toast-message-success .p-toast-detail {
+  color: ${dt('toast.colorScheme.light.info.detailColor')};
+}
+
 /* Стили для toast типа Warn */
 .p-toast-message-warn .p-toast-message-icon {
   color: ${dt('toast.extend.extWarn.color')};
@@ -127,6 +150,14 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-toast-message-warn .p-toast-accent-line {
   background: ${dt('toast.extend.extWarn.color')};
+}
+
+.p-toast-message-warn .p-toast-summary {
+  color: ${dt('toast.colorScheme.light.warn.color')};
+}
+
+.p-toast-message-warn .p-toast-detail {
+  color: ${dt('toast.colorScheme.light.info.detailColor')};
 }
 
 /* Стили для toast типа Error */
@@ -149,6 +180,14 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-toast-message-error .p-toast-accent-line {
   background: ${dt('toast.extend.extError.color')};
+}
+
+.p-toast-message-error .p-toast-summary {
+  color: ${dt('toast.colorScheme.light.error.color')};
+}
+
+.p-toast-message-error .p-toast-detail {
+  color: ${dt('toast.colorScheme.light.info.detailColor')};
 }
 `;
 
