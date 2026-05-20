@@ -1,10 +1,9 @@
 import { ref } from 'vue';
 import {
+  PBlockToast,
   usePBlockToast,
   PBlockToastMessageIcon,
-} from '@/primeBlocks/PBlockToast/usePBlockToast.ts';
-
-import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+} from '@/primeBlocks';
 import Button from 'primevue/button';
 
 const SEVERITIES = [

@@ -1,4 +1,4 @@
-import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+import { PBlockToast } from '@/primeBlocks';
 
 import {
   Template,
@@ -17,7 +17,7 @@ const meta = {
     docs: {
       description: {
         component: `\`Toast\` используется для отображения всплывающих уведомлений поверх интерфейса.\n 
-Требует подключения \`ToastService\`.\n\`\`\`ts dark \nimport PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';\nimport { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast.ts';\`\`\` `,
+Требует подключения \`ToastService\`.\n\`\`\`ts dark \nimport { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';\`\`\` `,
       },
     },
     designToken: { disable: false },
@@ -82,8 +82,7 @@ export const Default = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
-import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
 
 const toast = usePBlockToast();
 
@@ -123,8 +122,7 @@ export const DefaultButton = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
-import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
 
 const toast = usePBlockToast();
 
@@ -164,8 +162,7 @@ export const WithContent = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
-import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
 
 const toast = usePBlockToast();
 
@@ -221,8 +218,7 @@ export const WithContentAndCloseButton = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
-import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
 
 const toast = usePBlockToast();
 
@@ -279,8 +275,7 @@ export const Width = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
-import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
 
 const toast = usePBlockToast();
 
@@ -314,8 +309,7 @@ export const Position = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { usePBlockToast } from '@/primeBlocks/PBlockToast/usePBlockToast';
-import PBlockToast from '@/primeBlocks/PBlockToast/PBlockToast.vue';
+import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
 
 const toast = usePBlockToast();
 
