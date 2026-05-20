@@ -129,7 +129,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-toast-message-success .p-toast-detail {
-  color: ${dt('toast.colorScheme.light.info.detailColor')};
+  color: ${dt('toast.colorScheme.light.success.detailColor')};
 }
 
 /* Стили для toast типа Warn */
@@ -157,7 +157,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-toast-message-warn .p-toast-detail {
-  color: ${dt('toast.colorScheme.light.info.detailColor')};
+  color: ${dt('toast.colorScheme.light.warn.detailColor')};
 }
 
 /* Стили для toast типа Error */
@@ -187,7 +187,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-toast-message-error .p-toast-detail {
-  color: ${dt('toast.colorScheme.light.info.detailColor')};
+  color: ${dt('toast.colorScheme.light.error.detailColor')};
 }
 `;
 
