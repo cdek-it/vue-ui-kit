@@ -22,7 +22,8 @@ export function usePBlockToast() {
 
   const add = (config: PBlockToastMessageOptions) => {
     const severity = config.severity || 'info';
-    const icon: PBlockToastMessageIconClass =
+    const icon: PBlockToastMessageIconClass | string =
+      config?.icon ||
       PBlockToastMessageIcon[severity as keyof typeof PBlockToastMessageIcon] ||
       PBlockToastMessageIcon.info;
 
