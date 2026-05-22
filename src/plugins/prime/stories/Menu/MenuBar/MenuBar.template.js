@@ -1,6 +1,5 @@
 import { ref } from 'vue';
 import PBlockMenubar from '@/primeBlocks/PBlockMenubar/PBlockMenubar.vue';
-import PBlockMenuItem from '@/primeBlocks/PBlockMenuItem/PBlockMenuItem.vue';
 
 export const BasicTemplate = () => ({
   components: { PBlockMenubar },
@@ -140,7 +139,14 @@ export const WithItemAsTemplate = () => ({
         label: 'Features',
         icon: 'ti ti-star',
         items: [
-          { label: 'Core', icon: 'ti ti-cpu' },
+          {
+            label: 'Core',
+            icon: 'ti ti-cpu',
+            items: [
+              { label: 'API', icon: 'ti ti-braces' },
+              { label: 'CLI', icon: 'ti ti-terminal-2' },
+            ],
+          },
           { label: 'UI Kit', icon: 'ti ti-palette' },
         ],
       },
@@ -154,40 +160,121 @@ export const WithItemAsTemplate = () => ({
   `,
 });
 
-export const WithSlotsTemplate = () => ({
-  components: { PBlockMenubar, PBlockMenuItem },
-  setup() {
-    const items = ref([
-      { label: 'Home', icon: 'ti ti-home' },
-      {
-        label: 'Features',
-        icon: 'ti ti-star',
-        items: [
-          { label: 'Core', icon: 'ti ti-cpu' },
-          { label: 'UI Kit', icon: 'ti ti-palette' },
-        ],
-      },
-      { label: 'Settings', icon: 'ti ti-settings' },
-    ]);
+const baseItems = () =>
+  ref([
+    { label: 'Home', icon: 'ti ti-home' },
+    {
+      label: 'Features',
+      icon: 'ti ti-star',
+      items: [
+        {
+          label: 'Core',
+          icon: 'ti ti-cpu',
+          items: [
+            { label: 'API', icon: 'ti ti-braces' },
+            { label: 'CLI', icon: 'ti ti-terminal-2' },
+          ],
+        },
+        { label: 'UI Kit', icon: 'ti ti-palette' },
+      ],
+    },
+    { label: 'Settings', icon: 'ti ti-settings' },
+  ]);
 
-    return { items };
+export const WithSlotsTemplate = () => ({
+  components: { PBlockMenubar },
+  setup() {
+    return { items: baseItems() };
   },
   template: `
     <PBlockMenubar :model="items">
       <template #start>
         <span class="ti ti-brand-vue" style="font-size: 1.5rem; margin-right: 0.5rem;" />
       </template>
-      <template #item="{ item, props }">
-        <PBlockMenuItem v-bind="{ ...item, ...props.action }" />
-      </template>
-      <template #itemicon="{ item }">
-        <span v-if="item.icon" :class="item.icon" style="color: var(--p-primary-color);" />
-      </template>
       <template #submenuicon>
         <span class="ti ti-chevron-down" style="font-size: 0.75rem;" />
       </template>
       <template #end>
         <button class="p-button p-button-text p-button-sm">Logout</button>
+      </template>
+    </PBlockMenubar>
+  `,
+});
+
+export const WithItemIconSlotTemplate = () => ({
+  components: { PBlockMenubar },
+  setup() {
+    return { items: baseItems() };
+  },
+  template: `
+    <PBlockMenubar :model="items">
+      <template #itemicon="{ item }">
+        <span v-if="item.icon" :class="item.icon" class="text-violet-600" />
+      </template>
+    </PBlockMenubar>
+  `,
+});
+
+export const WithSubmenuIconSlotTemplate = () => ({
+  components: { PBlockMenubar },
+  setup() {
+    return { items: baseItems() };
+  },
+  template: `
+    <PBlockMenubar :model="items">
+      <template #submenuicon="{ root }">
+        <span :class="root ? 'ti ti-caret-down-filled text-emerald-500' : 'ti ti-caret-right-filled text-emerald-500'" />
+      </template>
+    </PBlockMenubar>
+  `,
+});
+
+export const WithSubmenuIconActiveStateTemplate = () => ({
+  components: { PBlockMenubar },
+  setup() {
+    return { items: baseItems() };
+  },
+  template: `
+    <PBlockMenubar :model="items">
+      <template #submenuicon="{ root }">
+        <span
+          :class="[
+            root ? 'ti ti-chevron-down' : 'ti ti-chevron-right',
+            'text-emerald-500 transition-transform duration-200',
+            '[li[data-p-active=true]_&]:rotate-180',
+          ]"
+        />
+      </template>
+    </PBlockMenubar>
+  `,
+});
+
+export const WithButtonSlotTemplate = () => ({
+  components: { PBlockMenubar },
+  setup() {
+    return { items: baseItems() };
+  },
+  template: `
+    <PBlockMenubar :model="items">
+      <template #button="{ toggleCallback }">
+        <button class="p-button p-button-text p-button-sm" type="button" @click="toggleCallback">
+          <span class="ti ti-menu-2" style="margin-right: 0.25rem;" />
+          Menu
+        </button>
+      </template>
+    </PBlockMenubar>
+  `,
+});
+
+export const WithButtonIconSlotTemplate = () => ({
+  components: { PBlockMenubar },
+  setup() {
+    return { items: baseItems() };
+  },
+  template: `
+    <PBlockMenubar :model="items">
+      <template #buttonicon>
+        <span class="ti ti-layout-sidebar-right-collapse text-sky-500" />
       </template>
     </PBlockMenubar>
   `,

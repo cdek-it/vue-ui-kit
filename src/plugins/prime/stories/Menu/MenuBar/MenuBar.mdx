@@ -36,8 +36,40 @@ Menubar с рендером пунктов через `<button>` вместо `<
 
 <Canvas of={MenuBarStories.WithItemAs} />
 
-### Слоты (start, item, end)
+## Слоты
 
-Menubar с кастомными слотами: логотип в `start`, кастомный `item` и кнопка в `end`.
+### start, item, end
+
+Логотип в `start`, кастомная стрелка в `submenuicon` и кнопка в `end`.
 
 <Canvas of={MenuBarStories.WithSlots} />
+
+### itemicon
+
+Кастомный рендер иконки пункта меню. Слот получает `{ item }`.
+
+<Canvas of={MenuBarStories.WithItemIconSlot} />
+
+### submenuicon
+
+Кастомная иконка стрелки подменю. Слот получает `{ item, root }`, где `root: true` — верхний уровень, `root: false` — вложенное подменю.
+
+<Canvas of={MenuBarStories.WithSubmenuIconSlot} />
+
+### submenuicon (active state)
+
+Иконка подменю с вращением при открытии через `data-p-active`. Откройте `Features → Core`, чтобы увидеть nested-состояние.
+
+<Canvas of={MenuBarStories.WithSubmenuIconActiveState} />
+
+### button
+
+Кастомная кнопка раскрытия мобильного меню (видна при узком viewport). Слот получает `{ toggleCallback }`.
+
+<Canvas of={MenuBarStories.WithButtonSlot} />
+
+### buttonicon
+
+Кастомная иконка внутри кнопки мобильного меню.
+
+<Canvas of={MenuBarStories.WithButtonIconSlot} />

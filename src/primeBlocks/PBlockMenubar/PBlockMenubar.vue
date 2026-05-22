@@ -23,17 +23,18 @@ defineOptions({ inheritAttrs: false });
     <template #item="slotProps">
       <slot name="item" v-bind="slotProps">
         <PBlockMenuItem
-          v-bind="{ ...slotProps.item, ...slotProps.props.action }"
+          v-bind="slotProps.item"
+          :tabindex="slotProps.props.action.tabindex"
           :as="itemAs"
           :root="slotProps.root"
-        />
-      </slot>
-    </template>
-    <template #submenuicon="slotProps">
-      <slot name="submenuicon" v-bind="slotProps">
-        <span
-          :class="slotProps.root ? 'ti ti-chevron-down' : 'ti ti-chevron-right'"
-        />
+        >
+          <template v-if="$slots.itemicon" #itemicon="itemiconProps">
+            <slot name="itemicon" v-bind="itemiconProps" />
+          </template>
+          <template v-if="$slots.submenuicon" #submenuicon="submenuIconProps">
+            <slot name="submenuicon" v-bind="submenuIconProps" />
+          </template>
+        </PBlockMenuItem>
       </slot>
     </template>
     <template v-if="$slots.itemicon" #itemicon="slotProps">

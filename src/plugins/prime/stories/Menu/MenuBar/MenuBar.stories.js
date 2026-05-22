@@ -4,7 +4,45 @@ import {
   CustomTemplate,
   WithItemAsTemplate,
   WithSlotsTemplate,
+  WithItemIconSlotTemplate,
+  WithSubmenuIconSlotTemplate,
+  WithSubmenuIconActiveStateTemplate,
+  WithButtonSlotTemplate,
+  WithButtonIconSlotTemplate,
 } from './MenuBar.template';
+
+const DOC_ITEMS_NESTED = `[
+  { label: 'Home', icon: 'ti ti-home' },
+  {
+    label: 'Features',
+    icon: 'ti ti-star',
+    items: [
+      {
+        label: 'Core',
+        icon: 'ti ti-cpu',
+        items: [
+          { label: 'API', icon: 'ti ti-braces' },
+          { label: 'CLI', icon: 'ti ti-terminal-2' },
+        ],
+      },
+      { label: 'UI Kit', icon: 'ti ti-palette' },
+    ],
+  },
+  { label: 'Settings', icon: 'ti ti-settings' },
+]`;
+
+const DOC_ITEMS_FLAT = `[
+  { label: 'Home', icon: 'ti ti-home' },
+  {
+    label: 'Features',
+    icon: 'ti ti-star',
+    items: [
+      { label: 'Core', icon: 'ti ti-cpu' },
+      { label: 'UI Kit', icon: 'ti ti-palette' },
+    ],
+  },
+  { label: 'Settings', icon: 'ti ti-settings' },
+]`;
 
 export default {
   title: 'Prime/Menu/MenuBar',
@@ -172,18 +210,7 @@ export const WithItemAs = {
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
-const items = ref([
-  { label: 'Home', icon: 'ti ti-home' },
-  {
-    label: 'Features',
-    icon: 'ti ti-star',
-    items: [
-      { label: 'Core', icon: 'ti ti-cpu' },
-      { label: 'UI Kit', icon: 'ti ti-palette' },
-    ],
-  },
-  { label: 'Settings', icon: 'ti ti-settings' },
-]);
+const items = ref(${DOC_ITEMS_NESTED});
 </script>
         `.trim(),
       },
@@ -197,7 +224,7 @@ export const WithSlots = {
     docs: {
       description: {
         story:
-          'Menubar с использованием слотов `start`, `item`, `itemicon`, `submenuicon` и `end`.',
+          'Menubar с использованием слотов `start`, `submenuicon` и `end`.',
       },
       source: {
         code: `
@@ -205,12 +232,6 @@ export const WithSlots = {
   <PBlockMenubar :model="items">
     <template #start>
       <span class="ti ti-brand-vue" style="font-size: 1.5rem; margin-right: 0.5rem;" />
-    </template>
-    <template #item="{ item, props }">
-      <PBlockMenuItem v-bind="{ ...item, ...props.action }" />
-    </template>
-    <template #itemicon="{ item }">
-      <span v-if="item.icon" :class="item.icon" style="color: var(--p-primary-color);" />
     </template>
     <template #submenuicon>
       <span class="ti ti-chevron-down" style="font-size: 0.75rem;" />
@@ -223,20 +244,165 @@ export const WithSlots = {
 
 <script setup>
 import { ref } from 'vue';
-import { PBlockMenubar, PBlockMenuItem } from '@cdek-it/vue-ui-kit';
+import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
-const items = ref([
-  { label: 'Home', icon: 'ti ti-home' },
-  {
-    label: 'Features',
-    icon: 'ti ti-star',
-    items: [
-      { label: 'Core', icon: 'ti ti-cpu' },
-      { label: 'UI Kit', icon: 'ti ti-palette' },
-    ],
+const items = ref(${DOC_ITEMS_NESTED});
+</script>
+        `.trim(),
+      },
+    },
   },
-  { label: 'Settings', icon: 'ti ti-settings' },
-]);
+};
+
+export const WithItemIconSlot = {
+  render: WithItemIconSlotTemplate,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Кастомный рендер иконки пункта меню через слот `itemicon`.',
+      },
+      source: {
+        code: `
+<template>
+  <PBlockMenubar :model="items">
+    <template #itemicon="{ item }">
+      <span v-if="item.icon" :class="item.icon" class="text-violet-600" />
+    </template>
+  </PBlockMenubar>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+
+const items = ref(${DOC_ITEMS_NESTED});
+</script>
+        `.trim(),
+      },
+    },
+  },
+};
+
+export const WithSubmenuIconSlot = {
+  render: WithSubmenuIconSlotTemplate,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Кастомный рендер иконки подменю через слот `submenuicon`.',
+      },
+      source: {
+        code: `
+<template>
+  <PBlockMenubar :model="items">
+    <template #submenuicon="{ root }">
+      <span :class="root ? 'ti ti-caret-down-filled text-emerald-500' : 'ti ti-caret-right-filled text-emerald-500'" />
+    </template>
+  </PBlockMenubar>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+
+const items = ref(${DOC_ITEMS_NESTED});
+</script>
+        `.trim(),
+      },
+    },
+  },
+};
+
+export const WithSubmenuIconActiveState = {
+  render: WithSubmenuIconActiveStateTemplate,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Иконка подменю с визуальной реакцией на активный пункт через `data-p-active`. Откройте `Features → Core`, чтобы увидеть nested-состояние.',
+      },
+      source: {
+        code: `
+<template>
+  <PBlockMenubar :model="items">
+    <template #submenuicon="{ root }">
+      <span
+        :class="[
+          root ? 'ti ti-chevron-down' : 'ti ti-chevron-right',
+          'text-emerald-500 transition-transform duration-200',
+          '[li[data-p-active=true]_&]:rotate-180',
+        ]"
+      />
+    </template>
+  </PBlockMenubar>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+
+const items = ref(${DOC_ITEMS_NESTED});
+</script>
+        `.trim(),
+      },
+    },
+  },
+};
+
+export const WithButtonSlot = {
+  render: WithButtonSlotTemplate,
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Кастомная кнопка раскрытия мобильного меню через слот `button`.',
+      },
+      source: {
+        code: `
+<template>
+  <PBlockMenubar :model="items">
+    <template #button="{ toggleCallback }">
+      <button class="p-button p-button-text p-button-sm" type="button" @click="toggleCallback">
+        <span class="ti ti-menu-2" style="margin-right: 0.25rem;" />
+        Menu
+      </button>
+    </template>
+  </PBlockMenubar>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+
+const items = ref(${DOC_ITEMS_FLAT});
+</script>
+        `.trim(),
+      },
+    },
+  },
+};
+
+export const WithButtonIconSlot = {
+  render: WithButtonIconSlotTemplate,
+  parameters: {
+    docs: {
+      description: {
+        story: 'Кастомная иконка кнопки раскрытия через слот `buttonicon`.',
+      },
+      source: {
+        code: `
+<template>
+  <PBlockMenubar :model="items">
+    <template #buttonicon>
+      <span class="ti ti-layout-sidebar-right-collapse text-sky-500" />
+    </template>
+  </PBlockMenubar>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+
+const items = ref(${DOC_ITEMS_FLAT});
 </script>
         `.trim(),
       },

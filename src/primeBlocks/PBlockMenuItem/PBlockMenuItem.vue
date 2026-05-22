@@ -19,8 +19,18 @@ const hasSubmenu = computed(
 </script>
 
 <template>
-  <component :is="as ?? 'a'" v-bind="$attrs" class="p-block-menuitem-link">
-    <span v-if="icon" :class="['p-block-menuitem-icon', icon]" />
+  <component
+    :is="as ?? 'a'"
+    v-bind="$attrs"
+    :href="url"
+    :target="target"
+    class="p-block-menuitem-link"
+  >
+    <span v-if="icon || $slots.itemicon" class="p-block-menuitem-icon">
+      <slot name="itemicon" v-bind="{ item: props }">
+        <span v-if="icon" :class="icon" />
+      </slot>
+    </span>
     <div class="p-block-menuitem-caption">
       <span class="p-block-menuitem-label">{{ label }}</span>
       <small v-if="description" class="p-block-menuitem-description">{{
@@ -28,14 +38,12 @@ const hasSubmenu = computed(
       }}</small>
     </div>
     <Badge v-if="badge" :value="badge" />
-    <span
-      v-if="hasSubmenu"
-      :class="[
-        'p-block-menuitem-submenu-icon',
-        root ? 'ti ti-chevron-down' : 'ti ti-chevron-right',
-      ]"
-    />
+    <span v-if="hasSubmenu" class="p-block-menuitem-submenu-icon">
+      <slot name="submenuicon" v-bind="{ item: props, root }">
+        <span :class="root ? 'ti ti-chevron-down' : 'ti ti-chevron-right'" />
+      </slot>
+    </span>
   </component>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" scoped></style>
