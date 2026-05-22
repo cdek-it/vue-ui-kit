@@ -1,10 +1,19 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
 import { Menubar, type MenubarProps } from 'primevue';
+import type { MenubarSlots } from 'primevue/menubar';
 import PBlockMenuItem from '../PBlockMenuItem/PBlockMenuItem.vue';
 
 interface IPBlockMenubar extends MenubarProps {
   itemAs?: string | Component;
+}
+
+type MenubarItemSlotProps = Parameters<NonNullable<MenubarSlots['item']>>[0];
+
+function getItemAttrs(
+  slotProps: MenubarItemSlotProps
+): Record<string, unknown> {
+  return { ...slotProps.item, ...slotProps.props.action };
 }
 
 defineProps<IPBlockMenubar>();
@@ -23,8 +32,7 @@ defineOptions({ inheritAttrs: false });
     <template #item="slotProps">
       <slot name="item" v-bind="slotProps">
         <PBlockMenuItem
-          v-bind="slotProps.item"
-          :tabindex="slotProps.props.action.tabindex"
+          v-bind="getItemAttrs(slotProps)"
           :as="itemAs"
           :root="slotProps.root"
         >
