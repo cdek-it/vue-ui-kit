@@ -38,7 +38,6 @@ const meta = {
       description: 'Позиция тоста на экране.',
       table: {
         category: 'Props',
-        defaultValue: { summary: 'top-right' },
         type: {
           summary:
             "'top-right' | 'top-left' | 'top-center' | 'bottom-right' | 'bottom-left' | 'bottom-center' | 'center'",
@@ -59,10 +58,24 @@ const meta = {
       description: 'Время (мс) до автоматического закрытия тоста.',
       table: {
         category: 'Props',
-        defaultValue: { summary: 5_000 },
         type: { summary: 'number' },
       },
     },
+    width: {
+      control: 'select',
+      options: ['sm', 'md', 'lg', 'xlg'],
+      description: 'Ширина тоста на экране.',
+      table: {
+        category: 'Props',
+        type: { summary: "'sm' | 'md' | 'lg' | 'xlg'" },
+      },
+    },
+  },
+  args: {
+    position: 'top-right',
+    group: 'basic',
+    life: 5000,
+    width: 'md',
   },
 };
 

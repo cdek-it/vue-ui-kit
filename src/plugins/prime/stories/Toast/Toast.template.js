@@ -81,7 +81,12 @@ export const Template = (args) => ({
   },
   template: `
     <div>
-      <PBlockToast :position="args.position" :group="args.group" style="z-index:1" />
+      <PBlockToast
+        :position="args.position"
+        :group="args.group"
+        :width="args.width"
+        style="z-index:1"
+      />
 
       <div class="grid grid-cols-2 gap-4">
         <div v-for="({ type, icon }, index) in severities" :key="index">
@@ -136,7 +141,12 @@ export const TemplateCloseButton = (args) => ({
   },
   template: `
     <div>
-      <PBlockToast :position="args.position" :group="args.group" style="z-index:1" />
+      <PBlockToast
+        :position="args.position"
+        :group="args.group"
+        :width="args.width"
+        style="z-index:1"
+      />
 
       <div class="grid grid-cols-2 gap-4">
         <div v-for="({ type, icon }, index) in severities" :key="index">
@@ -193,7 +203,7 @@ export const TemplateWithContent = (args) => ({
   },
   template: `
     <div>
-      <PBlockToast :group="args.group" style="z-index:1">
+      <PBlockToast :group="args.group" :width="args.width" style="z-index:1">
         <template #container="{ message }">
           <div class="p-toast-message-content">
             <div class="p-toast-accent-line"></div>
@@ -271,7 +281,7 @@ export const TemplateCustomContentWithCloseButton = (args) => ({
   },
   template: `
     <div>
-      <PBlockToast :group="args.group" style="z-index:1">
+      <PBlockToast :group="args.group" :width="args.width" style="z-index:1">
         <template #container="{ message, closeCallback }">
           <div class="p-toast-message-content">
             <div class="p-toast-accent-line"></div>
@@ -370,6 +380,7 @@ export const TemplateWidth = (args) => ({
       <PBlockToast
         group="width-preview"
         :width="currentSize.key"
+        style="z-index:1"
       />
       <div class="flex flex-col gap-4">
         <div
@@ -400,7 +411,7 @@ export const TemplateWidth = (args) => ({
   `,
 });
 
-export const TemplatePosition = () => ({
+export const TemplatePosition = (args) => ({
   components: { PBlockToast, Button },
   setup() {
     const toast = usePBlockToast();
@@ -416,6 +427,7 @@ export const TemplatePosition = () => ({
     };
 
     return {
+      args,
       showToast,
       positions: POSITIONS,
     };
@@ -427,6 +439,7 @@ export const TemplatePosition = () => ({
         :key="group"
         :position="position"
         :group="group"
+        :width="args.width"
         style="z-index:1"
       />
       <div class="grid grid-cols-3 gap-2">
