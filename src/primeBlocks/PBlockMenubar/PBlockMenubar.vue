@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Component } from 'vue';
+import { IconMenu2 } from '@tabler/icons-vue';
 import { Menubar, type MenubarProps } from 'primevue';
 import type { MenubarSlots } from 'primevue/menubar';
 import PBlockMenuItem from '../PBlockMenuItem/PBlockMenuItem.vue';
@@ -51,7 +52,7 @@ defineProps<IPBlockMenubar>();
     </template>
     <template #buttonicon>
       <slot name="buttonicon">
-        <span class="ti ti-menu-2" />
+        <IconMenu2 size="1.125rem" />
       </slot>
     </template>
   </Menubar>

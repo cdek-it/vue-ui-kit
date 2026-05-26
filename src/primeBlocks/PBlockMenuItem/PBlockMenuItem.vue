@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
+import { IconChevronDown, IconChevronRight } from '@tabler/icons-vue';
 import { Badge } from 'primevue';
 import type { MenuItem } from 'primevue/menuitem';
 import type { Component } from 'vue';
@@ -40,7 +41,10 @@ const hasSubmenu = computed(
     <Badge v-if="badge" :value="badge" />
     <span v-if="hasSubmenu" class="p-block-menuitem-submenu-icon">
       <slot name="submenuicon" v-bind="{ item: props, root }">
-        <span :class="root ? 'ti ti-chevron-down' : 'ti ti-chevron-right'" />
+        <component
+          :is="root ? IconChevronDown : IconChevronRight"
+          size="1.25rem"
+        />
       </slot>
     </span>
   </component>
