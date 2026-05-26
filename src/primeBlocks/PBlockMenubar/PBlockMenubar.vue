@@ -17,12 +17,10 @@ function getItemAttrs(
 }
 
 defineProps<IPBlockMenubar>();
-
-defineOptions({ inheritAttrs: false });
 </script>
 
 <template>
-  <Menubar v-bind="{ ...$props, ...$attrs }">
+  <Menubar v-bind="$props">
     <template v-if="$slots.start" #start>
       <slot name="start" />
     </template>
