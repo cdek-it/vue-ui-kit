@@ -18,13 +18,17 @@
     },
     "./style.css": {
       "import": "./dist/style.css"
+    },
+    "./prime-theme.css": {
+      "import": "./dist/prime-theme.css"
     }
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "run-p type-check build-only",
+    "build": "run-p type-check build-only && yarn build:theme",
+    "build:theme": "npx tsx scripts/compile-theme.ts",
     "test": "vitest --environment jsdom --root src/",
     "test:cli": "vitest run --environment jsdom --root src/",
     "test:ui": "vitest --environment jsdom --root src/ --ui",
