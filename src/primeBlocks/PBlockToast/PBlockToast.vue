@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import { Toast, type ToastEvent, type ToastProps } from 'primevue';
+import { PBlockToastMessageIcon } from './usePBlockToast';
+
+import {
+  IconCircleCheck,
+  IconInfoCircle,
+  IconAlertTriangle,
+  IconAlertCircle,
+} from '@tabler/icons-vue';
 
 interface IPBlockToast extends ToastProps {
   width?: 'sm' | 'md' | 'lg' | 'xlg';
@@ -30,7 +38,22 @@ const emit = defineEmits<{
     </template>
     <template v-else #message="slotProps">
       <div class="p-toast-accent-line"></div>
-      <i :class="`p-icon p-toast-message-icon ti ${slotProps.message.icon}`" />
+      <IconCircleCheck
+        v-if="slotProps.message.icon === PBlockToastMessageIcon.success"
+      />
+      <IconInfoCircle
+        v-else-if="slotProps.message.icon === PBlockToastMessageIcon.info"
+      />
+      <IconAlertTriangle
+        v-else-if="slotProps.message.icon === PBlockToastMessageIcon.warn"
+      />
+      <IconAlertCircle
+        v-else-if="slotProps.message.icon === PBlockToastMessageIcon.error"
+      />
+      <i
+        v-else
+        :class="`p-icon p-toast-message-icon ti ${slotProps.message.icon}`"
+      />
       <div class="p-toast-message-text">
         <span class="p-toast-summary">
           {{ slotProps.message.summary }}

@@ -3,18 +3,18 @@ import { useToast } from 'primevue/usetoast';
 import type { ToastMessageOptions } from 'primevue/toast';
 
 export const PBlockToastMessageIcon = {
-  success: 'ti-circle-check',
-  info: 'ti-info-circle',
-  warn: 'ti-alert-triangle',
-  error: 'ti-alert-circle',
+  success: 'success',
+  info: 'info',
+  warn: 'warn',
+  error: 'error',
 } as const;
 
-type PBlockToastMessageIconClass =
+export type PBlockToastMessageIconValues =
   (typeof PBlockToastMessageIcon)[keyof typeof PBlockToastMessageIcon];
 
 export interface PBlockToastMessageOptions extends ToastMessageOptions {
-  severity?: HintedString<'success' | 'info' | 'warn' | 'error'>;
-  icon?: PBlockToastMessageIconClass;
+  severity?: HintedString<PBlockToastMessageIconValues>;
+  icon?: string;
 }
 
 export function usePBlockToast() {
@@ -22,10 +22,8 @@ export function usePBlockToast() {
 
   const add = (config: PBlockToastMessageOptions) => {
     const severity = config.severity || 'info';
-    const icon: PBlockToastMessageIconClass | string =
-      config?.icon ||
-      PBlockToastMessageIcon[severity as keyof typeof PBlockToastMessageIcon] ||
-      PBlockToastMessageIcon.info;
+    const icon: string | PBlockToastMessageIconValues =
+      config?.icon || severity;
 
     toast.add({
       ...config,

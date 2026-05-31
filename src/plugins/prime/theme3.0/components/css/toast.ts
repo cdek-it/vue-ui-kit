@@ -14,6 +14,13 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   border-radius: ${dt('toast.root.borderRadius')};
 }
 
+/* svg-иконка */
+.p-toast .p-toast-message .p-toast-message-content .tabler-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  stroke: 1.5;
+}
+
 /* Заголовок toast */
 .p-toast-summary {
   line-height: ${dt('fonts.lineHeight.250')};
@@ -75,7 +82,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Стили для toast типа Info */
-.p-toast-message-info .p-toast-message-icon {
+.p-toast-message-info .p-toast-message-icon,
+.p-toast-message-info .p-toast-message-content .tabler-icon {
   color: ${dt('toast.extend.extInfo.color')};
 }
 
@@ -103,7 +111,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Стили для toast типа Success */
-.p-toast-message-success .p-toast-message-icon {
+.p-toast-message-success .p-toast-message-icon,
+.p-toast-message-success .p-toast-message-content .tabler-icon {
   color: ${dt('toast.extend.extSuccess.color')};
 }
 
@@ -133,7 +142,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Стили для toast типа Warn */
-.p-toast-message-warn .p-toast-message-icon {
+.p-toast-message-warn .p-toast-message-icon,
+.p-toast-message-warn .p-toast-message-content .tabler-icon {
   color: ${dt('toast.extend.extWarn.color')};
 }
 
@@ -161,7 +171,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 /* Стили для toast типа Error */
-.p-toast-message-error .p-toast-message-icon {
+.p-toast-message-error .p-toast-message-icon,
+.p-toast-message-error .p-toast-message-content .tabler-icon {
   color: ${dt('toast.extend.extError.color')};
 }
 

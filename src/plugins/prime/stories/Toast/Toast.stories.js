@@ -176,6 +176,7 @@ export const WithContent = {
         code: `
 <script setup lang="ts">
 import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
+import { IconCircleCheck } from '@tabler/icons-vue'; // Указано для примера.
 
 const toast = usePBlockToast();
 
@@ -184,6 +185,7 @@ const showToast = () => {
     severity: 'info',
     summary: 'Заголовок сообщения',
     detail: 'Дополнительная информация',
+    icon: 'ti-circle-info',
     life: 5_000,
   });
 };
@@ -195,6 +197,8 @@ const showToast = () => {
       <template #container="{ message }">
         <div class="p-toast-message-content">
           <div class="p-toast-accent-line"></div>
+          <!-- Можно указать через icon или через как IconCircleCheck. -->
+          <!-- В случае использования иконки как IconCircleCheck, то icon в конфиге не указываем. -->
           <i :class="'p-toast-message-icon ti ' + message.icon"></i>
           <div class="p-toast-message-text">
             <span class="p-toast-summary">{{ message.summary }}</span>
@@ -240,6 +244,7 @@ const showToast = () => {
     severity: 'info',
     summary: 'Заголовок сообщения',
     detail: 'Дополнительная информация',
+    icon: 'ti-circle-info',
     life: 5_000,
   });
 };

@@ -1,16 +1,19 @@
 import { ref } from 'vue';
-import {
-  PBlockToast,
-  usePBlockToast,
-  PBlockToastMessageIcon,
-} from '@/primeBlocks';
+import { PBlockToast, usePBlockToast } from '@/primeBlocks';
 import Button from 'primevue/button';
 
+const MessageIcons = {
+  success: 'ti-circle-check',
+  info: 'ti-info-circle',
+  warn: 'ti-alert-triangle',
+  error: 'ti-alert-circle',
+};
+
 const SEVERITIES = [
-  { type: 'success', icon: PBlockToastMessageIcon.success, label: 'Успех' },
-  { type: 'info', icon: PBlockToastMessageIcon.info, label: 'Информация' },
-  { type: 'warn', icon: PBlockToastMessageIcon.warn, label: 'Предупреждение' },
-  { type: 'error', icon: PBlockToastMessageIcon.error, label: 'Ошибка' },
+  { type: 'success', icon: MessageIcons.success, label: 'Успех' },
+  { type: 'info', icon: MessageIcons.info, label: 'Информация' },
+  { type: 'warn', icon: MessageIcons.warn, label: 'Предупреждение' },
+  { type: 'error', icon: MessageIcons.error, label: 'Ошибка' },
 ];
 
 const POSITIONS = [
