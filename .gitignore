@@ -31,5 +31,6 @@ coverage
 .npmrc
 
 storybook-static
+*.tsbuildinfo
 
 .claude/*
