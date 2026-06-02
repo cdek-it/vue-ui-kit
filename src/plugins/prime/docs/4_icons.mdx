@@ -1,0 +1,84 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Prime/Иконки" />
+
+# Иконки
+
+## Подключение
+
+Добавьте в `index.html`:
+
+```html dark
+<link rel="preconnect" href="https://public-static.cdek.ru" />
+<link
+  rel="stylesheet"
+  href="https://public-static.cdek.ru/common/icons/v3.30.0/tabler-icons.min.css"
+/>
+```
+
+`tabler-icons.min.css` — иконочный шрифт на основе [Tabler Icons](https://tabler.io/icons).
+
+## Использование
+
+### HTML
+
+```html dark
+<i class="ti ti-home"></i>
+<i class="ti ti-search"></i>
+<i class="ti ti-settings"></i>
+```
+
+### Vue-компонент
+
+```html dark
+<template>
+  <PrimeButton>
+    <i class="ti ti-plus" />
+    Добавить
+  </PrimeButton>
+</template>
+```
+
+## Как найти нужную иконку
+
+1. В Figma: название иконки указано прямо в дизайне:
+
+<img src="/assets/typography-icon.png" />
+
+2. На сайте [tabler.io/icons](https://tabler.io/icons) — поиск по названию.
+
+Имя класса строится как `ti ti-{name}`, где `{name}` — название иконки с сайта.
+
+## SVG-импорт (рекомендуемая альтернатива)
+
+Иконочный шрифт загружает **все** иконки сразу (~400 КБ). Если вы используете лишь несколько иконок, значительно выгоднее подключить SVG через пакет `@tabler/icons-vue` — в бандл попадут только используемые иконки (tree-shaking).
+
+Вместо иконочного шрифта можно импортировать SVG напрямую. Это даёт полный контроль над размером и цветом:
+
+```html dark
+<template>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+    stroke-linejoin="round">
+    <path d="M5 12l5 5l10 -10" />
+  </svg>
+</template>
+```
+
+Для этого скачайте SVG с [tabler.io/icons](https://tabler.io/icons) или используйте пакет `@tabler/icons-vue`:
+
+```bash dark
+npm install @tabler/icons-vue
+```
+
+```html dark
+<template>
+  <IconCheck :size="24" />
+</template>
+
+<script setup>
+import { IconCheck } from '@tabler/icons-vue';
+</script>
+```
+
+SVG-импорт предпочтителен, когда нужно точно контролировать размер и цвет иконки, а также для уменьшения размера бандла.
