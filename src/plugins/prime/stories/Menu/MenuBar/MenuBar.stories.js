@@ -63,12 +63,13 @@ export const Basic = {
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockMenubar :model="items" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
@@ -93,7 +94,7 @@ const items = ref([
   },
 ]);
 </script>
-        `.trim(),
+        `,
       },
     },
   },
@@ -104,12 +105,13 @@ export const WithIcon = {
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockMenubar :model="items" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
@@ -143,7 +145,7 @@ const items = ref([
   { label: 'Settings', icon: 'ti ti-settings' },
 ]);
 </script>
-        `.trim(),
+        `,
       },
     },
   },
@@ -154,12 +156,13 @@ export const Custom = {
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockMenubar :model="items" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
@@ -186,7 +189,7 @@ const items = ref([
   },
 ]);
 </script>
-        `.trim(),
+        `,
       },
     },
   },
@@ -201,18 +204,19 @@ export const WithItemAs = {
           'Menubar с кастомным тегом/компонентом для пунктов меню через проп `itemAs`.',
       },
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockMenubar :model="items" item-as="button" />
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_NESTED});
 </script>
-        `.trim(),
+        `,
       },
     },
   },
@@ -227,6 +231,7 @@ export const WithSlots = {
           'Menubar с использованием слотов `start`, `submenuicon` и `end`.',
       },
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockMenubar :model="items">
@@ -242,13 +247,13 @@ export const WithSlots = {
   </PBlockMenubar>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_NESTED});
 </script>
-        `.trim(),
+        `,
       },
     },
   },
@@ -262,6 +267,7 @@ export const WithItemIconSlot = {
         story: 'Кастомный рендер иконки пункта меню через слот `itemicon`.',
       },
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockMenubar :model="items">
@@ -271,13 +277,13 @@ export const WithItemIconSlot = {
   </PBlockMenubar>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_NESTED});
 </script>
-        `.trim(),
+        `,
       },
     },
   },
@@ -291,6 +297,7 @@ export const WithSubmenuIconSlot = {
         story: 'Кастомный рендер иконки подменю через слот `submenuicon`.',
       },
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockMenubar :model="items">
@@ -300,13 +307,13 @@ export const WithSubmenuIconSlot = {
   </PBlockMenubar>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_NESTED});
 </script>
-        `.trim(),
+        `,
       },
     },
   },
@@ -321,6 +328,7 @@ export const WithSubmenuIconActiveState = {
           'Иконка подменю с визуальной реакцией на активный пункт через `data-p-active`. Откройте `Features → Core`, чтобы увидеть nested-состояние.',
       },
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockMenubar :model="items">
@@ -336,13 +344,13 @@ export const WithSubmenuIconActiveState = {
   </PBlockMenubar>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_NESTED});
 </script>
-        `.trim(),
+        `,
       },
     },
   },
@@ -357,6 +365,7 @@ export const WithButtonSlot = {
           'Кастомная кнопка раскрытия мобильного меню через слот `button`.',
       },
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockMenubar :model="items">
@@ -369,13 +378,13 @@ export const WithButtonSlot = {
   </PBlockMenubar>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_FLAT});
 </script>
-        `.trim(),
+        `,
       },
     },
   },
@@ -389,6 +398,7 @@ export const WithButtonIconSlot = {
         story: 'Кастомная иконка кнопки раскрытия через слот `buttonicon`.',
       },
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockMenubar :model="items">
@@ -398,13 +408,13 @@ export const WithButtonIconSlot = {
   </PBlockMenubar>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_FLAT});
 </script>
-        `.trim(),
+        `,
       },
     },
   },

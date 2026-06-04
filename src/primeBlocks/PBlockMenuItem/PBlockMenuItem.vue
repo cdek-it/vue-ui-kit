@@ -34,9 +34,9 @@ const hasSubmenu = computed(
     </span>
     <div class="p-block-menuitem-caption">
       <span class="p-block-menuitem-label">{{ label }}</span>
-      <small v-if="description" class="p-block-menuitem-description">{{
-        description
-      }}</small>
+      <small v-if="description" class="p-block-menuitem-description">
+        {{ description }}
+      </small>
     </div>
     <Badge v-if="badge" :value="badge" />
     <span v-if="hasSubmenu" class="p-block-menuitem-submenu-icon">

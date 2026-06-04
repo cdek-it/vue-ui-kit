@@ -1,0 +1,460 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Prime/Tailwind" />
+
+# Tailwind
+
+При желании вы можете использовать Tailwind в своих проектах. Этот гайд поможет вам подключить Tailwind в проект и сделать интеграцию с Prime.
+
+## Установка
+
+В проекте используется **Tailwind CSS v3**. Установите его по [гайду для Tailwind v3 + Vite](https://v3.tailwindcss.com/docs/guides/vite#vue).
+
+Не забудьте выполнить команду `npx tailwindcss init -p` после установки зависимостей, она создает необходимые файлы для конфигурации и
+подключения Tailwind.
+
+На 4-м шаге вам необходимо добавить директивы `@tailwind`, для этого необязательно создавать новый файл, и необязательно называть его именно
+`style.css`. Добавьте эти директивы в любой файл, который импортируется в `main.ts`.
+
+## Интеграция с Prime
+
+Для интеграции с Prime вам необходимо установить плагин `tailwindcss-primeui`.
+
+```bash dark
+yarn add tailwindcss-primeui
+
+npm install tailwindcss-primeui
+```
+
+После установки плагина добавьте его в конфигурационный файл `tailwind.config.js`.
+
+```js dark
+export default {
+  // ...
+  plugins: [require('tailwindcss-primeui')],
+};
+```
+
+Подробнее о плагине можно узнать в [его документации](https://primevue.org/tailwind/). Если коротко то он добавляет `primary` и `surface` цвета.
+
+Если вы хотите использовать эти классы, чтобы переопределить стили праймовского компонента, добавляйте перед ним `!`.
+
+```html dark
+<PrimeInputText placeholder="Overriden" class="!p-8" />
+```
+
+По документации Prime предлагает использовать `layers`, чтобы не нужно было добавлять `!` перед классами, это пока сырая технология и вы убьете
+стили для Chrome (как минимум) ниже 99-й версии.
+
+### Тема
+
+Для того чтобы все токены были доступны, нужно добавить настройки темы в `tailwind.config.js`.
+
+```js dark
+const { tailwindConfigTheme } = require('@cdek-ui-kit/vue');
+
+export default {
+  // ...
+  theme: {
+    extend: {
+      ...tailwindConfigTheme,
+    },
+  },
+};
+```
+
+Если вы хотите изменить или добавить свои токены в уже заданные свойства,
+то можно использовать функцию `mergeTailwindTheme` из пакета `@cdek-ui-kit/vue`.
+
+Используйте этот вариант, если вам нужно изменить `screens`, `colors`, `textColor`, `borderRadius`, `borderWidth`, `width` или `height`.
+
+```js dark
+const { mergeTailwindTheme } = require('@cdek-ui-kit/vue');
+
+export default {
+  // ...
+  theme: {
+    extend: {
+      ...mergeTailwindTheme({
+        spacing: {
+          custom: '4px',
+        },
+      }),
+    },
+  },
+};
+```
+
+Если ваше изменение не попадает в эти свойства, то вы можете спокойно просто добавлять свойства.
+
+```js dark
+const { tailwindConfigTheme } = require('@cdek-ui-kit/vue');
+
+export default {
+  // ...
+  theme: {
+    extend: {
+      ...tailwindConfigTheme,
+      gridTemplateColumns: {
+        '100%': '100%',
+      },
+    },
+  },
+};
+```
+
+## Кастомные утилиты из DS
+
+Помимо стандартных Tailwind-классов, `tailwindConfigTheme` из `@cdek-ui-kit/vue` добавляет кастомные утилиты.
+
+### Colors (background, border, text)
+
+Семантические цвета поверхностей:
+
+<table>
+  <thead>
+    <tr>
+      <th>Tailwind-класс</th>
+      <th>CSS-переменная</th>
+      <th>Назначение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>bg-surface-ground</code></td>
+      <td><code>--p-surface-ground</code></td>
+      <td>Фон страницы</td>
+    </tr>
+    <tr>
+      <td><code>bg-surface-overlay</code></td>
+      <td><code>--p-surface-overlay</code></td>
+      <td>Фон оверлея</td>
+    </tr>
+    <tr>
+      <td><code>bg-surface-section</code></td>
+      <td><code>--p-surface-section</code></td>
+      <td>Фон секции</td>
+    </tr>
+    <tr>
+      <td><code>bg-surface-hover</code></td>
+      <td><code>--p-surface-hover</code></td>
+      <td>Hover-фон</td>
+    </tr>
+    <tr>
+      <td><code>border-surface-border</code></td>
+      <td><code>--p-surface-border</code></td>
+      <td>Бордер по умолчанию</td>
+    </tr>
+  </tbody>
+</table>
+
+Severity-цвета (работают с `bg-*`, `text-*`, `border-*`):
+
+<table>
+  <thead>
+    <tr>
+      <th>Класс</th>
+      <th>CSS-переменная</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>info</code></td>
+      <td><code>--p-info-400</code></td>
+    </tr>
+    <tr>
+      <td><code>success</code></td>
+      <td><code>--p-success-400</code></td>
+    </tr>
+    <tr>
+      <td><code>warning</code></td>
+      <td><code>--p-warning-400</code></td>
+    </tr>
+    <tr>
+      <td><code>danger</code></td>
+      <td><code>--p-danger-400</code></td>
+    </tr>
+    <tr>
+      <td><code>help</code></td>
+      <td><code>--p-help-400</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### Text Color
+
+<table>
+  <thead>
+    <tr>
+      <th>Tailwind-класс</th>
+      <th>CSS-переменная</th>
+      <th>Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>text-color-primary</code></td>
+      <td><code>--p-white-100</code></td>
+      <td>Белый текст (на тёмном фоне)</td>
+    </tr>
+    <tr>
+      <td><code>text-color-secondary</code></td>
+      <td><code>--p-black-60</code></td>
+      <td>Полупрозрачный чёрный</td>
+    </tr>
+  </tbody>
+</table>
+
+### Border Radius
+
+<table>
+  <thead>
+    <tr>
+      <th>Tailwind-класс</th>
+      <th>Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>rounded-kit</code></td>
+      <td><code>0.5rem</code> (8px) — стандартное скругление DS</td>
+    </tr>
+  </tbody>
+</table>
+
+### Border Width
+
+<table>
+  <thead>
+    <tr>
+      <th>Tailwind-класс</th>
+      <th>Значение</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>border-3</code></td>
+      <td><code>3px</code></td>
+    </tr>
+  </tbody>
+</table>
+
+### Sizing (width / height)
+
+Классы `w-*` и `h-*` в значениях `rem`. Доступные значения: 1-30, 34, 45, 50, 54, 58, 60.
+
+Пример: `w-10` = `10rem` (160px), `h-5` = `5rem` (80px).
+
+## Токены
+
+### Медиа запросы
+
+Медиа адаптированы под наши миксины, так что бы не было конфликтов со старым дизайном.
+
+```js dark
+screens: {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
+  xl: '1200px',
+  '2xl': '1400px',
+}
+```
+
+Для mobile first подхода используйте `<screen>:<rule>`, например `sm:w-10`. Для desktop first подхода используйте
+`max-<screen>:<rule>`, например `max-lg:w-10`.
+
+### Background
+
+[Figma](https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-\(DS\)?node-id=0-1\&p=f\&vars=1\&var-id=5-171\&m=dev)
+
+<div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+    <div style={{ background: '#F5F6F8', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-surface-ground</div>
+    <div style={{ background: '#ffffff', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-surface-overlay</div>
+    <div style={{ background: '#f0f0f1', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-surface-section</div>
+    <div style={{ background: '#e2e2e4', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-surface-hover</div>
+  </div>
+
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+    <div style={{ background: '#ffffff', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-surface-0</div>
+    <div style={{ background: '#fafafa', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-surface-50</div>
+    <div style={{ background: '#f0f0f1', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-surface-100</div>
+    <div style={{ background: '#e2e2e4', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-surface-200</div>
+    <div style={{ background: '#cecfd2', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #a2a5a9' }}>bg-surface-300</div>
+    <div style={{ background: '#a2a5a9', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #85888e' }}>bg-surface-400</div>
+    <div style={{ background: '#85888e', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #6d7076', color: 'white' }}>bg-surface-500</div>
+    <div style={{ background: '#6d7076', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #56595f', color: 'white' }}>bg-surface-600</div>
+    <div style={{ background: '#56595f', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #404348', color: 'white' }}>bg-surface-700</div>
+    <div style={{ background: '#404348', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #2b2e33', color: 'white' }}>bg-surface-800</div>
+    <div style={{ background: '#2b2e33', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #181a1f', color: 'white' }}>bg-surface-900</div>
+  </div>
+
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+    <div style={{ background: '#44e858', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2', color: 'white' }}>bg-primary</div>
+    <div style={{ background: '#fafffb', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-primary-50</div>
+    <div style={{ background: '#f0fff3', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-primary-100</div>
+    <div style={{ background: '#d4fedc', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-primary-200</div>
+    <div style={{ background: '#aafbb7', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-primary-300</div>
+    <div style={{ background: '#77f48a', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-primary-400</div>
+    <div style={{ background: '#44e858', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2', color: 'white' }}>bg-primary-500</div>
+    <div style={{ background: '#1dc831', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2', color: 'white' }}>bg-primary-600</div>
+    <div style={{ background: '#168322', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2', color: 'white' }}>bg-primary-700</div>
+    <div style={{ background: '#12611b', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2', color: 'white' }}>bg-primary-800</div>
+    <div style={{ background: '#0e4514', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2', color: 'white' }}>bg-primary-900</div>
+  </div>
+
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+    <div style={{ background: '#77baf4', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2', color: 'white' }}>bg-info</div>
+    <div style={{ background: '#77f48a', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-success</div>
+    <div style={{ background: '#facb75', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2' }}>bg-warning</div>
+    <div style={{ background: '#f47f77', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2', color: 'white' }}>bg-danger</div>
+    <div style={{ background: '#c084fc', padding: '0.5rem', borderRadius: '0.25rem', border: '1px solid #cecfd2', color: 'white' }}>bg-help</div>
+  </div>
+</div>
+
+### Border
+
+[Figma](https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-\(DS\)?node-id=0-1\&p=f\&vars=1\&m=dev)
+
+<div style={{ display: 'grid', gridAutoFlow: 'column', gap: '1rem' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+    <div style={{ borderRadius: '0', padding: '0.5rem', border: '1px solid #cecfd2' }}>rounded-none</div>
+    <div style={{ borderRadius: '0.125rem', padding: '0.5rem', border: '1px solid #cecfd2' }}>rounded-sm</div>
+    <div style={{ borderRadius: '0.25rem', padding: '0.5rem', border: '1px solid #cecfd2' }}>rounded</div>
+    <div style={{ borderRadius: '0.375rem', padding: '0.5rem', border: '1px solid #cecfd2' }}>rounded-md</div>
+    <div style={{ borderRadius: '0.5rem', padding: '0.5rem', border: '1px solid #cecfd2' }}>rounded-lg</div>
+    <div style={{ borderRadius: '0.5rem', padding: '0.5rem', border: '1px solid #cecfd2' }}>rounded-kit</div>
+    <div style={{ borderRadius: '0.75rem', padding: '0.5rem', border: '1px solid #cecfd2' }}>rounded-xl</div>
+    <div style={{ borderRadius: '1rem', padding: '0.5rem', border: '1px solid #cecfd2' }}>rounded-2xl</div>
+    <div style={{ borderRadius: '1.5rem', padding: '0.5rem', border: '1px solid #cecfd2' }}>rounded-3xl</div>
+    <div style={{ borderRadius: '9999px', padding: '0.5rem', border: '1px solid #cecfd2' }}>rounded-full</div>
+  </div>
+
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+    <div style={{ padding: '0.25rem', border: '1px solid transparent' }}>border-transparent</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #44e858' }}>border-primary</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #cecfd2' }}>border-surface-border</div>
+  </div>
+
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+    <div style={{ padding: '0.5rem', border: '1px solid #ffffff', background: '#404348', color: 'white', borderRadius: '0.25rem' }}>border-surface-0</div>
+    <div style={{ padding: '0.5rem', border: '1px solid #fafafa', background: '#404348', color: 'white', borderRadius: '0.25rem' }}>border-surface-50</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #f0f0f1' }}>border-surface-100</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #e2e2e4' }}>border-surface-200</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #cecfd2' }}>border-surface-300</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #a2a5a9' }}>border-surface-400</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #85888e' }}>border-surface-500</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #6d7076' }}>border-surface-600</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #56595f' }}>border-surface-700</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #404348' }}>border-surface-800</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #2b2e33' }}>border-surface-900</div>
+  </div>
+
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+    <div style={{ padding: '0.25rem', border: '1px solid #77baf4' }}>border-info</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #77f48a' }}>border-success</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #facb75' }}>border-warning</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #f47f77' }}>border-danger</div>
+    <div style={{ padding: '0.25rem', border: '1px solid #c084fc' }}>border-help</div>
+  </div>
+
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+    <div style={{ padding: '0.5rem', border: '1px solid #cecfd2', borderRadius: '0.25rem' }}>border</div>
+    <div style={{ padding: '0.5rem', border: '2px solid #cecfd2', borderRadius: '0.25rem' }}>border-2</div>
+    <div style={{ padding: '0.5rem', border: '3px solid #cecfd2', borderRadius: '0.25rem' }}>border-3</div>
+    <div style={{ padding: '0.5rem', border: '4px solid #cecfd2', borderRadius: '0.25rem' }}>border-4</div>
+  </div>
+</div>
+
+### Effects
+
+[Figma](https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-\(DS\)?node-id=0-1\&p=f\&vars=1\&m=dev)
+
+<section class="opacity-0">opacity-0</section>
+<section class="opacity-10">opacity-10</section>
+<section class="opacity-20">opacity-20</section>
+<section class="opacity-30">opacity-30</section>
+<section class="opacity-40">opacity-40</section>
+<section class="opacity-50">opacity-50</section>
+<section class="opacity-60">opacity-60</section>
+<section class="opacity-70">opacity-70</section>
+<section class="opacity-80">opacity-80</section>
+<section class="opacity-90">opacity-90</section>
+<section class="opacity-100">opacity-100</section>
+
+### Sizing
+
+[Figma](https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-\(DS\)?node-id=0-1\&p=f\&vars=1\&m=dev)
+
+Классы `w-*` и `h-*` можно использовать для задания абсолютной ширины и высоты элемента. Равны кол-ву `rem`.
+
+Доступные значения: 1 - 30, 34, 45, 50, 54, 58, 60
+
+<div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+  <div>w-1 h-1</div> <div style={{ width: '1rem', height: '1rem', background: '#ffffff', border: '1px solid #cecfd2' }} />
+  <code>width: 1rem; height: 1rem;</code>
+</div>
+
+<div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
+  <div>w-2 h-2</div> <div style={{ width: '2rem', height: '2rem', background: '#ffffff', border: '1px solid #cecfd2' }} />
+  <code>width: 2rem; height: 2rem;</code>
+</div>
+
+### Spacing
+
+[Figma](https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-\(DS\)?node-id=0-1\&p=f\&vars=1\&m=dev)
+
+Классы типа `gap-*`, `p-*`, `m-*` и т.д., везде где используется spacing значения из темы.
+
+Доступные значения: 0 - 12, 14, 16, 20, 24, 28, 32, 36, 40. Поставляются со стандартным конфигом tailwind.
+
+### Typography
+
+[Figma](https://www.figma.com/design/OK44HgVRLUSTro0IAfD9zk/Tokens-Tailwind-CSS-\(DS\)?node-id=0-1\&p=f\&vars=1\&m=dev)
+
+<div style={{ display: 'grid', gridAutoFlow: 'column', gap: '1rem' }}>
+  <div>
+    <div style={{ color: '#1dc831' }}>text-primary</div>
+    <div style={{ color: '#ffffff', background: '#2b2e33', padding: '0.5rem', borderRadius: '0.25rem' }}>text-color-primary</div>
+    <div style={{ color: '#2b2e33' }}>text-color</div>
+    <div style={{ color: '#6d7076' }}>text-color-secondary</div>
+    <div style={{ color: '#ffffff', background: '#2b2e33', padding: '0.5rem', borderRadius: '0.25rem' }}>text-white</div>
+  </div>
+
+  <div>
+    <div style={{ color: '#ffffff', background: '#2b2e33', padding: '0.5rem', borderRadius: '0.25rem' }}>text-surface-0</div>
+    <div style={{ color: '#fafafa', background: '#2b2e33', padding: '0.5rem', borderRadius: '0.25rem' }}>text-surface-50</div>
+    <div style={{ color: '#f0f0f1', background: '#2b2e33', padding: '0.5rem', borderRadius: '0.25rem' }}>text-surface-100</div>
+    <div style={{ color: '#e2e2e4', background: '#2b2e33', padding: '0.5rem', borderRadius: '0.25rem' }}>text-surface-200</div>
+    <div style={{ color: '#cecfd2', background: '#2b2e33', padding: '0.5rem', borderRadius: '0.25rem' }}>text-surface-300</div>
+    <div style={{ color: '#a2a5a9' }}>text-surface-400</div>
+    <div style={{ color: '#85888e' }}>text-surface-500</div>
+    <div style={{ color: '#6d7076' }}>text-surface-600</div>
+    <div style={{ color: '#56595f' }}>text-surface-700</div>
+    <div style={{ color: '#404348' }}>text-surface-800</div>
+    <div style={{ color: '#2b2e33' }}>text-surface-900</div>
+  </div>
+
+  <div>
+    <div style={{ color: '#77baf4' }}>text-info</div>
+    <div style={{ color: '#77f48a' }}>text-success</div>
+    <div style={{ color: '#facb75' }}>text-warning</div>
+    <div style={{ color: '#f47f77' }}>text-danger</div>
+    <div style={{ color: '#c084fc' }}>text-help</div>
+  </div>
+
+  <div>
+    <section class="text-xs">text-xs</section>
+    <section class="text-base">text-base</section>
+    <section class="text-lg">text-lg</section>
+    <section class="text-xl">text-xl</section>
+    <section class="text-2xl">text-2xl</section>
+    <section class="text-3xl">text-3xl</section>
+    <section class="text-4xl">text-4xl</section>
+    <section class="text-5xl">text-5xl</section>
+    <section class="text-6xl">text-6xl</section>
+    <section class="text-7xl">text-7xl</section>
+    <section class="text-8xl">text-8xl</section>
+  </div>
+</div>
