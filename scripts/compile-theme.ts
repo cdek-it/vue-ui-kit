@@ -50,7 +50,7 @@ if (fs.existsSync(componentsCssDir)) {
     const mod = await import(filePath);
     const cssFn = mod.default;
     // cssFn — это функция ({ dt }) => `...`, передаём как есть,
-    // ThemeService сам вызовет её с правильным dt()
+    // Theme сам вызовет её с правильным dt()
     if (typeof cssFn === 'function' && baseTokens.components?.[name]) {
       baseTokens.components[name].css = cssFn;
     }
@@ -73,16 +73,51 @@ Theme.setTheme({
 // Генерируем CSS
 
 // 1. Common CSS (примитивы + семантика + глобал)
-const commonCss = Theme.getCommonStyleSheet('primevue', {});
+// getCommon возвращает { primitive: { css }, semantic: { css }, global: { css }, style: string }
+const common = Theme.getCommon('primevue', {});
+const commonCssParts: string[] = [];
+
+// Примитивные переменные
+if (common.primitive?.css) {
+  commonCssParts.push(
+    common.primitive.css.startsWith(':root')
+      ? common.primitive.css
+      : `:root{${common.primitive.css}}`
+  );
+}
+// Семантические переменные
+if (common.semantic?.css) {
+  commonCssParts.push(
+    common.semantic.css.startsWith(':root')
+      ? common.semantic.css
+      : `:root{${common.semantic.css}}`
+  );
+}
+// Глобальные (color-scheme)
+if (common.global?.css) {
+  commonCssParts.push(
+    common.global.css.startsWith(':root')
+      ? common.global.css
+      : `:root{${common.global.css}}`
+  );
+}
+// Дополнительный style из css()
+if (common.style) {
+  commonCssParts.push(common.style);
+}
 
 // 2. CSS для каждого компонента
 const componentNames = Object.keys(baseTokens.components || {});
 const componentCssParts: string[] = [];
 
 for (const name of componentNames) {
-  const sheet = Theme.getStyleSheet(name, {});
-  if (sheet) {
-    componentCssParts.push(sheet);
+  const presetC = Theme.getComponent(name, {});
+  if (presetC?.css) {
+    const css =
+      presetC.css.startsWith('@media') || presetC.css.startsWith(':root')
+        ? presetC.css
+        : `:root{${presetC.css}}`;
+    componentCssParts.push(css);
   }
 }
 
@@ -91,9 +126,9 @@ const fullCss = [
   '/* PrimeVue Theme — compiled from CdekPreset */',
   '/* This file is auto-generated. Do not edit manually. */',
   '',
-  commonCss,
+  ...commonCssParts,
   '',
-  componentCssParts.join('\n'),
+  ...componentCssParts,
   '',
 ].join('\n');
 
