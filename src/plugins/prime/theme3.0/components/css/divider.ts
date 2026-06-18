@@ -13,6 +13,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   gap: ${dt('divider.extend.content.gap')};
 }
 
+.p-divider-content > i {
   color: ${dt('divider.colorScheme.light.content.color')};
   font-size: ${dt('divider.extend.iconSize')};
 }

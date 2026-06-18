@@ -1,6 +1,6 @@
 {
   "name": "@cdek-it/vue-ui-kit",
-  "version": "3.0.0-beta.ds543",
+  "version": "3.0.0-beta.ds583.2",
   "type": "module",
   "files": [
     "dist"
@@ -13,18 +13,57 @@
       "import": "./dist/vue-ui-kit.es.js",
       "require": "./dist/vue-ui-kit.umd.js"
     },
+    "./with-styles": {
+      "types": "./dist/with-styles.d.ts",
+      "import": "./dist/with-styles.es.js"
+    },
+    "./with-styles/tokens": {
+      "types": "./dist/with-styles/tokens.d.ts",
+      "import": "./dist/with-styles/tokens.es.js"
+    },
+    "./with-styles/components/*": {
+      "types": "./dist/with-styles/components/*.d.ts",
+      "import": "./dist/with-styles/components/*.es.js"
+    },
+    "./prime/*": {
+      "types": "./dist/prime/*.d.ts",
+      "node": "./dist/prime/*.es.js",
+      "import": "./dist/prime/*.styled.es.js"
+    },
     "./scss": {
       "import": "./dist/scss/index.scss"
     },
     "./style.css": {
       "import": "./dist/style.css"
+    },
+    "./prime-theme.css": {
+      "import": "./dist/prime-theme.css"
+    },
+    "./prime-theme.min.css": {
+      "import": "./dist/prime-theme.min.css"
+    },
+    "./prime-theme-tokens.css": {
+      "import": "./dist/prime-theme-tokens.css"
+    },
+    "./prime-theme-tokens.min.css": {
+      "import": "./dist/prime-theme-tokens.min.css"
+    },
+    "./prime-theme-components.css": {
+      "import": "./dist/prime-theme-components.css"
+    },
+    "./prime-theme-components.min.css": {
+      "import": "./dist/prime-theme-components.min.css"
+    },
+    "./prime-theme-components/*": {
+      "import": "./dist/prime-theme-components/*.css"
     }
   },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "run-p type-check build-only",
+    "build": "run-p type-check build-only && yarn build:theme",
+    "build:theme": "npx tsx scripts/compile-theme.ts",
     "test": "vitest --environment jsdom --root src/",
     "test:cli": "vitest run --environment jsdom --root src/",
     "test:ui": "vitest --environment jsdom --root src/ --ui",

@@ -1294,6 +1294,13 @@
     type-fest "~2.19"
     vue-component-type-helpers latest
 
+"@tabler/icons-vue@^3.22.0":
+  version "3.44.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-vue/-/icons-vue-3.44.0.tgz#e984f60dca9abc3d42c95a2306b5ec661c1efe0e"
+  integrity sha512-mABxdhq3SWo2ZI77w/t0reiOGNim/SEDSlfMT5PeiWA3cZwnZoQUYRiq/X6SgeTaA7LzCTX0IuvQWVf4RWOvsg==
+  dependencies:
+    "@tabler/icons" "3.44.0"
+
 "@tabler/icons-webfont@^3.22.0":
   version "3.34.1"
   resolved "https://registry.npmjs.org/@tabler/icons-webfont/-/icons-webfont-3.34.1.tgz"
@@ -1306,6 +1313,11 @@
   version "3.34.1"
   resolved "https://registry.npmjs.org/@tabler/icons/-/icons-3.34.1.tgz"
   integrity sha512-9gTnUvd7Fd/DmQgr3MKY+oJLa1RfNsQo8c/ir3TJAWghOuZXodbtbVp0QBY2DxWuuvrSZFys0HEbv1CoiI5y6A==
+
+"@tabler/icons@3.44.0":
+  version "3.44.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-3.44.0.tgz#286b203aac98591e27360de03974762568bbb272"
+  integrity sha512-Wn0AOZG9sg0L+bjfMqq4eNhC6pQjIrk94LvvWYNYkY8KH8wC3YILRzQlrnVJc4FUeMxH/AK97QsYCX35H3LndA==
 
 "@tanstack/virtual-core@3.13.12":
   version "3.13.12"
