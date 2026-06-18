@@ -1,16 +1,24 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
 import * as RadioButtonStories from './RadioButton.stories';
-
-import { Template } from './RadioButton.template';
 
 <Meta of={RadioButtonStories} />
 
-# RadioButton
+<Title />
+<Description />
 
-[PrimeVue RadioButton](https://primevue.org/radiobutton), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5367\&node-type=section\&t=1Q8VTt6Y4LnVAfrv-0)
+## Варианты использования
 
-```html dark
-<PrimeRadioButton v-model="value" name="groupName" value="valueInGroup" />
-```
+### Default
+Группа радиокнопок для выбора одного значения. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={RadioButtonStories.RadioButtonDefault} />
 
-<Story of={RadioButtonStories.Primary} />
+#### Полный список аргументов и событий компонента.
+<Controls of={RadioButtonStories.RadioButtonDefault} />
+
+### Invalid
+Состояние ошибки валидации.
+<Canvas of={RadioButtonStories.Invalid} />
+
+### Disabled
+Неактивное состояние радиокнопок.
+<Canvas of={RadioButtonStories.Disabled} />
