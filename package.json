@@ -27,7 +27,8 @@
     },
     "./prime/*": {
       "types": "./dist/prime/*.d.ts",
-      "import": "./dist/prime/*.es.js"
+      "node": "./dist/prime/*.es.js",
+      "import": "./dist/prime/*.styled.es.js"
     },
     "./scss": {
       "import": "./dist/scss/index.scss"

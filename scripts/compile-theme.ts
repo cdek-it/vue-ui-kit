@@ -254,13 +254,20 @@ const primeEntries = PRIME_ENTRIES;
 
 for (const entry of primeEntries) {
   const jsPath = path.resolve(primeDir, `${entry.out}.es.js`);
+  const styledJsPath = path.resolve(primeDir, `${entry.out}.styled.es.js`);
   const dtsPath = path.resolve(primeDir, `${entry.out}.d.ts`);
   const hasStyle = perComponentStyles.has(entry.style);
-  const jsContent = [
+  const styledJsContent = [
     "import '../with-styles/tokens.es.js';",
     ...(hasStyle
       ? [`import '../prime-theme-components/${entry.style}.min.css';`]
       : []),
+    `export { default } from 'primevue/${entry.module}';`,
+    '',
+  ].join('\n');
+
+  // SSR-safe entry: без CSS side-effect import, чтобы Node runtime в Nitro не падал на .css.
+  const jsContent = [
     `export { default } from 'primevue/${entry.module}';`,
     '',
   ].join('\n');
@@ -271,6 +278,7 @@ for (const entry of primeEntries) {
   ].join('\n');
 
   fs.writeFileSync(jsPath, jsContent, 'utf-8');
+  fs.writeFileSync(styledJsPath, styledJsContent, 'utf-8');
   fs.writeFileSync(dtsPath, dtsContent, 'utf-8');
 }
 
