@@ -16,8 +16,8 @@ const meta = {
   parameters: {
     docs: {
       description: {
-        component: `\`Toast\` используется для отображения всплывающих уведомлений поверх интерфейса.\n 
-Требует подключения \`ToastService\`.\n\`\`\`ts dark \nimport { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';\`\`\` `,
+        component: `\`Toast\` используется для отображения всплывающих уведомлений поверх интерфейса.\nТребует подключения \`toastService\` при инициализации приложения.\n
+\`\`\`ts dark \nimport { toastService } from '@cdek-it/vue-ui-kit';\n\nconst app = new Vue();\napp.use(toastService);\`\`\` `,
       },
     },
     designToken: { disable: false },

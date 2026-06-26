@@ -5,7 +5,7 @@ import PrimeVue from 'primevue/config';
 import { getPrimeVueConfig } from '@/plugins/prime';
 import Tooltip from 'primevue/tooltip';
 import ConfirmationService from 'primevue/confirmationservice';
-import ToastService from 'primevue/toastservice';
+import { ToastService } from '@/services/toastService.ts';
 
 import '../src/tailwind.css';
 import './themes/base.css';
