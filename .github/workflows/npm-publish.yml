@@ -1,13 +1,10 @@
 name: Publish Package
-
 on:
   release:
     types: [created]
-
 permissions:
   id-token: write
   contents: read
-
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
@@ -17,14 +14,11 @@ jobs:
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-
       - run: corepack enable
-
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
           cmd: install
-
       - name: Run build
         uses: borales/actions-yarn@v4
         with:
@@ -36,5 +30,36 @@ jobs:
           if [ "${{ github.event.release.prerelease }}" = "true" ]; then
             npm publish --tag beta
           else
-            npm publish
+            npm publish --tag latest
+          fi
+
+  publish-npm-green:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
+      - run: corepack enable
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+      - name: Set green version suffix
+        run: npm version "$(node -p "require('./package.json').version")-green" --no-git-tag-version --allow-same-version
+      - name: Run build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build
+        env:
+          VITE_STYLE_PREFIX: green
+      - name: Update npm
+        run: npm install -g npm@latest
+      - name: Publish to npm
+        run: |
+          if [ "${{ github.event.release.prerelease }}" = "true" ]; then
+            npm publish --tag green-beta
+          else
+            npm publish --tag green
           fi
