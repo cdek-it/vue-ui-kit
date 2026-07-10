@@ -1,4 +1,5 @@
 import InputText from 'primevue/inputtext';
+import FloatLabel from 'primevue/floatlabel';
 import { IconField, InputIcon } from 'primevue';
 import { ref } from 'vue';
 
@@ -8,22 +9,30 @@ export const Template = (args) => ({
     return { args };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(4, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
-  <span></span>
-  <span></span>
-  <span><code>invalid</code></span>
-  <span><code>disabled</code></span>
+    <InputText 
+      v-bind="args"
+      :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }" 
+      :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+    />
+  `,
+});
 
-  <span :style="{ justifySelf: 'flex-start' }"></span>
-  <InputText placeholder="InputText" v-bind="args" />
-  <InputText placeholder="InputText" invalid v-bind="args" />
-  <InputText placeholder="InputText" disabled v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>v-model="text input"</code></span>
-  <InputText :default-value="'text input'" placeholder="InputText" v-bind="args" />
-  <InputText :default-value="'text input'" placeholder="InputText" invalid v-bind="args" />
-  <InputText :default-value="'text input'" placeholder="InputText" disabled v-bind="args" />
-</div>
+export const TemplateFloatLabel = (args) => ({
+  components: { InputText, FloatLabel, IconField, InputIcon },
+  setup() {
+    const value = ref('');
+    return { args, value };
+  },
+  template: `
+    <IconField>
+      <FloatLabel variant="in">
+        <InputText id="username" v-model="value" style="width: 100%" :invalid="args.invalid" :disabled="args.disabled" />
+        <label for="username">Username</label>
+      </FloatLabel>
+      <InputIcon @click="value = ''">
+        <i class="ti ti-x" />
+      </InputIcon>
+    </IconField>
 `,
 });
 
@@ -40,7 +49,13 @@ export const TemplateWithIcons = (args) => ({
   },
   template: `
     <IconField>
-      <InputText v-model="inputValue" placeholder="Normal" />
+      <InputText 
+        v-model="inputValue" 
+        v-bind="args"
+        :class="{ 'p-inputtext-xlg': args.size === 'xlarge' }"
+        :size="args.size === 'xlarge' || args.size === 'medium' ? null : args.size"
+        placeholder="Normal" 
+      />
       <InputIcon @click="onClickDelete">
         <i class="ti ti-x" />
       </InputIcon>
