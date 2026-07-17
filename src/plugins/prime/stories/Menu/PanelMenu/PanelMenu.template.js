@@ -1,5 +1,5 @@
-import { PanelMenu, Badge } from 'primevue';
 import { ref, computed } from 'vue';
+import { PBlockPanelMenu, PBlockMenuItem } from '@/primeBlocks';
 
 const createItems = (showIcons) => [
   {
@@ -40,31 +40,31 @@ const createItems = (showIcons) => [
 ];
 
 export const BasicTemplate = (args) => ({
-  components: { PanelMenu },
+  components: { PBlockPanelMenu },
   setup() {
     const items = computed(() => createItems(args.showIcons));
 
     return { args, items };
   },
   template: `
-    <PanelMenu :model="items" />
+    <PBlockPanelMenu :model="items" />
   `,
 });
 
 export const MultipleTemplate = (args) => ({
-  components: { PanelMenu },
+  components: { PBlockPanelMenu },
   setup() {
     const items = computed(() => createItems(args.showIcons));
 
     return { args, items };
   },
   template: `
-    <PanelMenu :model="items" multiple />
+    <PBlockPanelMenu :model="items" multiple />
   `,
 });
 
 export const CustomTemplate = (args) => ({
-  components: { PanelMenu, Badge },
+  components: { PBlockPanelMenu, PBlockMenuItem },
   setup() {
     const items = ref([
       {
@@ -119,18 +119,10 @@ export const CustomTemplate = (args) => ({
     return { args, items };
   },
   template: `
-    <PanelMenu :model="items" multiple v-bind="args">
-      <template #item="{ item, props, hasSubmenu }">
-        <a v-bind="props.action" class="p-panelmenu-item-link">
-          <span v-if="item.icon" :class="['p-panelmenu-item-icon', item.icon]" />
-          <div class="panelmenu-item-label">
-            <span class="p-panelmenu-item-label">{{ item.label }}</span>
-            <small v-if="item.description" class="panelmenu-item-caption">{{ item.description }}</small>
-          </div>
-          <Badge v-if="item.badge" :value="item.badge" />
-          <span v-if="hasSubmenu" class="p-panelmenu-submenu-icon ti ti-chevron-right" />
-        </a>
+    <PBlockPanelMenu :model="items" multiple v-bind="args">
+      <template #item="{ item, props, root }">
+        <PBlockMenuItem v-bind="{ ...item, ...props.action }" :root="root" />
       </template>
-    </PanelMenu>
+    </PBlockPanelMenu>
   `,
 });

@@ -58,11 +58,12 @@ export const Basic = {
       source: {
         code: `
 <template>
-  <PanelMenu :model="items" />
+  <PBlockPanelMenu :model="items" />
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { PBlockPanelMenu } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   {
@@ -95,11 +96,12 @@ export const Multiple = {
       source: {
         code: `
 <template>
-  <PanelMenu :model="items" multiple />
+  <PBlockPanelMenu :model="items" multiple />
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { PBlockPanelMenu } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${baseItemsWithIcons});
 </script>
@@ -116,24 +118,16 @@ export const Custom = {
       source: {
         code: `
 <template>
-  <PanelMenu :model="items" multiple>
-    <template #item="{ item, props, hasSubmenu }">
-      <a v-bind="props.action" class="p-panelmenu-item-link">
-        <span v-if="item.icon" :class="['p-panelmenu-item-icon', item.icon]" />
-        <div class="panelmenu-item-label">
-          <span class="p-panelmenu-item-label">{{ item.label }}</span>
-          <small v-if="item.description" class="panelmenu-item-caption">{{ item.description }}</small>
-        </div>
-        <Badge v-if="item.badge" :value="item.badge" />
-        <span v-if="hasSubmenu" class="p-panelmenu-submenu-icon ti ti-chevron-right" />
-      </a>
+  <PBlockPanelMenu :model="items" multiple>
+    <template #item="{ item, props, root }">
+      <PBlockMenuItem v-bind="{ ...item, ...props.action }" :root="root" />
     </template>
-  </PanelMenu>
+  </PBlockPanelMenu>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { Badge } from 'primevue';
+import { PBlockPanelMenu, PBlockMenuItem } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   {
