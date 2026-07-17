@@ -7,7 +7,7 @@ export type AutoImportOptions = {
 const PRIME_COMPONENT_PREFIX = 'Prime';
 const PRIME_DIRECTIVE_PREFIX = 'p';
 
-export const getPrimeVueResolver = (options?: AutoImportOptions) => {
+export const getPrimeVueResolver = () => {
   return PrimeVueResolver({
     components: {
       prefix: PRIME_COMPONENT_PREFIX,
@@ -27,6 +27,6 @@ export const getComponentsAutoImportOptions = (options?: AutoImportOptions) => {
 
   return {
     excludeNames: excludeNames,
-    resolvers: [getPrimeVueResolver(options)],
+    resolvers: [getPrimeVueResolver()],
   };
 };
