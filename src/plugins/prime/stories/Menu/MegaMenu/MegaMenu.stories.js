@@ -25,6 +25,7 @@ export const Horizontal = {
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `<script setup>
 import { ref } from 'vue';
 
@@ -61,6 +62,7 @@ export const Vertical = {
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `<script setup>
 import { ref } from 'vue';
 
@@ -96,6 +98,7 @@ export const Custom = {
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `<script setup>
 import { ref } from 'vue';
 import { PBlockMenuItem } from '@cdek-it/vue-ui-kit';
