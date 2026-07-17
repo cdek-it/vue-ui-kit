@@ -15,15 +15,17 @@ interface VitestConfigExport extends UserConfig {
 import path from 'path';
 
 const prefix = process.env.VITE_STYLE_PREFIX || 'cdek';
+const isStorybookBuild = Boolean(process.env.STORYBOOK_BASE_HREF);
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     svgLoader(),
-    dts({
-      insertTypesEntry: true,
-    }),
+    !isStorybookBuild &&
+      dts({
+        insertTypesEntry: true,
+      }),
     viteStaticCopy({
       targets: [
         {

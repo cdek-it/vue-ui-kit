@@ -1,4 +1,4 @@
-import { selectedMenuItemClass } from '@/plugins/prime/consts';
+import { selectedMenuItemClass } from '../../../consts';
 
 export const baseMenuItems = [
   {
