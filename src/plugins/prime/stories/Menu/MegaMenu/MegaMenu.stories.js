@@ -49,7 +49,7 @@ const items = ref([
 </script>
 
 <template>
-  <MegaMenu :model="items" />
+  <PBlockMegaMenu :model="items" />
 </template>`,
       },
     },
@@ -84,7 +84,7 @@ const items = ref([
 </script>
 
 <template>
-  <MegaMenu :model="items" orientation="vertical" />
+  <PBlockMegaMenu :model="items" orientation="vertical" />
 </template>`,
       },
     },
@@ -98,7 +98,7 @@ export const Custom = {
       source: {
         code: `<script setup>
 import { ref } from 'vue';
-import MegaMenuItem from './MegaMenuItem.vue';
+import { PBlockMenuItem } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   {
@@ -129,11 +129,11 @@ const items = ref([
 </script>
 
 <template>
-  <MegaMenu :model="items">
+  <PBlockMegaMenu :model="items">
     <template #item="{ item, props }">
-      <MegaMenuItem :item="item" :action-props="props.action" />
+      <PBlockMenuItem v-bind="{ ...item, ...props.action }" />
     </template>
-  </MegaMenu>
+  </PBlockMegaMenu>
 </template>`,
       },
     },

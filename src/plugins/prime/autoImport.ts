@@ -2,28 +2,27 @@ import { PrimeVueResolver } from '@primevue/auto-import-resolver';
 
 export type AutoImportOptions = {
   onlyPrime?: boolean;
-  componentPrefix?: string;
-  directivePrefix?: string;
 };
 
-export const getPrimeVueResolver = (options?: AutoImportOptions) => {
-  const { componentPrefix, directivePrefix } = options || {};
+const PRIME_COMPONENT_PREFIX = 'Prime';
+const PRIME_DIRECTIVE_PREFIX = 'p';
 
+export const getPrimeVueResolver = (options?: AutoImportOptions) => {
   return PrimeVueResolver({
     components: {
-      prefix: componentPrefix || 'Prime',
+      prefix: PRIME_COMPONENT_PREFIX,
     },
     directives: {
-      prefix: directivePrefix || 'p',
+      prefix: PRIME_DIRECTIVE_PREFIX,
     },
   });
 };
 
 export const getComponentsAutoImportOptions = (options?: AutoImportOptions) => {
-  const { onlyPrime, componentPrefix, directivePrefix } = options || {};
+  const { onlyPrime } = options || {};
 
   const excludePrefix = `^(?!
-    (${componentPrefix || 'Prime'}|${directivePrefix || 'p'}-)).+`;
+    (${PRIME_COMPONENT_PREFIX}|${PRIME_DIRECTIVE_PREFIX}-)).+`;
   const excludeNames = onlyPrime ? [new RegExp(excludePrefix)] : [];
 
   return {

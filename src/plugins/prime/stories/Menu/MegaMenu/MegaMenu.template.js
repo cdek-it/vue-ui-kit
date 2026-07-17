@@ -1,6 +1,5 @@
-import { MegaMenu } from 'primevue';
 import { ref } from 'vue';
-import MegaMenuItem from './MegaMenuItem.vue';
+import { PBlockMegaMenu, PBlockMenuItem } from '@/primeBlocks';
 
 const baseItems = [
   {
@@ -51,27 +50,27 @@ const baseItems = [
 ];
 
 export const HorizontalTemplate = (args) => ({
-  components: { MegaMenu },
+  components: { PBlockMegaMenu },
   setup() {
     const items = ref(baseItems);
 
     return { args, items };
   },
-  template: `<MegaMenu :model="items" v-bind="args" />`,
+  template: `<PBlockMegaMenu :model="items" v-bind="args" />`,
 });
 
 export const VerticalTemplate = (args) => ({
-  components: { MegaMenu },
+  components: { PBlockMegaMenu },
   setup() {
     const items = ref(baseItems);
 
     return { args, items };
   },
-  template: `<MegaMenu :model="items" orientation="vertical" v-bind="args" />`,
+  template: `<PBlockMegaMenu :model="items" orientation="vertical" v-bind="args" />`,
 });
 
 export const CustomTemplate = (args) => ({
-  components: { MegaMenu, MegaMenuItem },
+  components: { PBlockMegaMenu, PBlockMenuItem },
   setup() {
     const items = ref([
       {
@@ -145,10 +144,10 @@ export const CustomTemplate = (args) => ({
     return { args, items };
   },
   template: `
-    <MegaMenu :model="items" v-bind="args">
+    <PBlockMegaMenu :model="items" v-bind="args">
       <template #item="{ item, props }">
-        <MegaMenuItem :item="item" :action-props="props.action" />
+        <PBlockMenuItem v-bind="{ ...item, ...props.action }" />
       </template>
-    </MegaMenu>
+    </PBlockMegaMenu>
   `,
 });
