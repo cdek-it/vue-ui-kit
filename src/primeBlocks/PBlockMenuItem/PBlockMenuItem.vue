@@ -64,6 +64,14 @@ const hasSubmenu = computed(
   cursor: pointer;
 }
 
+.p-block-menuitem-link:active {
+  background: var(
+    --p-navigation-item-active-background,
+    var(--p-navigation-item-focus-background, transparent)
+  );
+  color: var(--p-navigation-item-active-color, inherit);
+}
+
 .p-block-menuitem-icon,
 .p-block-menuitem-submenu-icon {
   display: inline-flex;
