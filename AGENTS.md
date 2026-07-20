@@ -67,6 +67,7 @@ interface IPBlockX extends XProps {
 - Стили, относящиеся к `PBlock*` (например, `.p-block-*`), размещать в самой обертке (`<style scoped>` + `:deep(...)`), а не в `theme3.0/components/css/*.ts`.
 - `theme3.0/components/css/*.ts` использовать только для базового upstream-слоя PrimeVue (токены/базовые селекторы `.p-*`) и как временный bridge до полной миграции на библиотечные обертки.
 - В одном `theme3.0/components/css/*.ts` файле не смешивать upstream-селекторы `.p-*` и wrapper-селекторы `.p-block-*`.
+- Изменения дизайн-токенов (цвета, состояния, семантика) вносить в `src/plugins/prime/theme3.0/**` (`tokens.json`, `CdekPreset.ts`, `components/css/*.ts`) и не дублировать их в legacy-слое `src/plugins/prime/theme/semantic.ts` без отдельной задачи.
 - Если визуальная логика компонента полностью перенесена в обертку, соответствующий upstream `*.ts` файл удалить.
 - Для общих дочерних menu-компонентов (например, `PBlockMenuItem`) базовый layout и геометрия (`display`, `align-items`, `caption`, `icon/submenu` alignment) должны быть в самом компоненте.
 - Обертки (`PBlockMegaMenu`, `PBlockMenubar`, `PBlockPanelMenu`) должны задавать только контекстную дельту через токены/переменные и не дублировать базовый layout child-компонента.
@@ -117,10 +118,6 @@ interface IPBlockX extends XProps {
 - [ ] Для компонентов с `PBlock`-оберткой docs-snippets и пользовательские примеры используют импорты из текущей библиотеки (`@cdek-it/vue-ui-kit`); во внутренних story-файлах допустим локальный импорт (если обертки нет, допустим `primevue`).
 - [ ] Для визуальных правок целевой узел найден через MCP-поиск по слоям/названию компонента (или есть явное объяснение, почему это невозможно).
 - [ ] Добавлены/обновлены stories.
+- [ ] Если менялись токены, правки внесены в `src/plugins/prime/theme3.0/**`; legacy `src/plugins/prime/theme/semantic.ts` не изменялся без явного запроса.
 - [ ] Пройдены `type-check` и `lint`.
-
-
-
-
-
 
