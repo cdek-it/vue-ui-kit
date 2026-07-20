@@ -9,7 +9,8 @@ const navigation = {
       background: '{menu.item.menuitemHoverBg}',
       color: '{menu.item.menuitemHoverTextColor}',
     },
-    activeColor: '{menu.item.menuitemHoverTextColor}',
+    activeBackground: '{menu.item.menuitemActiveBg}',
+    activeColor: '{menu.item.menuitemActiveTextColor}',
     icon: {
       color: '{menu.item.menuitemIconColor}',
       focus: {
