@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as ProgressSpinnerStories from './ProgressSpinner.stories';
+
+<Meta of={ProgressSpinnerStories} />
+
+<Title />
+<Description />
+
+## Импорт
+
+```js
+import ProgressSpinner from 'primevue/progressspinner';
+```
+
+## Варианты использования
+
+### Default
+Поддерживает многоцветную анимацию (по умолчанию) или один цвет (зеленый). 
+Помимо этого, можно выбрать размер через `size` в таблице параметров.
+<Canvas of={ProgressSpinnerStories.Default} />
+
+#### Список аргументов компонента.
+<Controls of={ProgressSpinnerStories.Default} />

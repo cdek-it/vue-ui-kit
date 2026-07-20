@@ -1,0 +1,36 @@
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as CheckboxStories from './Checkbox.stories';
+
+<Meta of={CheckboxStories} />
+
+<Title />
+<Description />
+
+```javascript
+import Checkbox from 'primevue/checkbox';
+```
+
+## Варианты использования
+
+### Basic
+Базовый вариант чекбокса. Используйте `binary` проп для работы с одиночным булевым значением.
+<Canvas of={CheckboxStories.Basic} />
+
+#### Параметры компонента
+<Controls of={CheckboxStories.Basic} />
+
+### Invalid
+Отображение состояния ошибки валидации.
+<Canvas of={CheckboxStories.Invalid} />
+
+### Disabled
+Отключенное состояние чекбокса.
+<Canvas of={CheckboxStories.Disabled} />
+
+### Indeterminate
+Неопределенное состояние (например, для частичного выбора в группе).
+<Canvas of={CheckboxStories.Indeterminate} />
+
+### Group
+Пример использования чекбоксов в группе для выбора нескольких значений из списка.
+<Canvas of={CheckboxStories.Group} />

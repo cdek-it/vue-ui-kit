@@ -1,0 +1,58 @@
+import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+<Title />
+<Description />
+
+---
+
+## Варианты использования
+
+### Default
+Базовый вариант кнопки.
+<Canvas of={ButtonStories.ButtonDefault} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={ButtonStories.ButtonDefault} />
+
+### Sizes
+Кнопка поддерживает три размера: `small`, `base`, `large`.
+<Canvas of={ButtonStories.Sizes} />
+
+### Icons
+Кнопки могут содержать иконки слева, справа или с обеих сторон.
+<Canvas of={ButtonStories.Icons} />
+
+### Icon Only
+В случаях, когда текст не требуется, можно использовать только иконку.
+<Canvas of={ButtonStories.IconOnly} />
+
+### Severity
+Цветовые схемы для различных контекстов: `success`, `info`, `warn`, `danger`.
+<Canvas of={ButtonStories.Severity} />
+
+### Text
+Кнопка без заливки и границ, часто используется в тулбарах или списках.
+<Canvas of={ButtonStories.Text} />
+
+### Link
+Кнопка, стилизованная под ссылку.
+<Canvas of={ButtonStories.Link} />
+
+### Rounded
+Полностью скруглённая форма кнопки.
+<Canvas of={ButtonStories.Rounded} />
+
+### Disabled
+Состояние кнопки, при котором взаимодействие с ней заблокировано.
+<Canvas of={ButtonStories.Disabled} />
+
+### Loading
+Кнопка с индикатором загрузки. Полезно для асинхронных действий.
+<Canvas of={ButtonStories.Loading} />
+
+### Badge
+Кнопка с уведомлением или числовым индикатором (OverlayBadge).
+<Canvas of={ButtonStories.Badge} />

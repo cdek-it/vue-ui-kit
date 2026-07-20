@@ -1,0 +1,42 @@
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as DialogStories from './Dialog.stories';
+
+<Meta of={DialogStories} />
+
+<Title />
+<Description />
+
+```javascript
+import Dialog from 'primevue/dialog';
+```
+
+## Варианты использования
+
+### Basic
+Базовый вариант модального окна с заголовком и кнопками действия.
+<Canvas of={DialogStories.Basic} />
+
+#### Параметры компонента
+<Controls of={DialogStories.Basic} />
+
+### Sizes
+Различные предустановленные размеры окна: `p-dialog-sm` (Small), `p-dialog-lg` (Large), `p-dialog-xlg` (Extra Large).
+
+#### Small
+<Canvas of={DialogStories.Small} />
+
+#### Large
+<Canvas of={DialogStories.Large} />
+
+#### Extra Large
+<Canvas of={DialogStories.ExtraLarge} />
+
+### Modal vs Non-Modal
+По умолчанию окно является модальным (`modal: true`), блокируя взаимодействие с фоном.
+
+#### No Modal
+<Canvas of={DialogStories.NoModal} />
+
+### Show Header
+Заголовок можно скрыть с помощью пропса `showHeader: false`.
+<Canvas of={DialogStories.NoHeader} />

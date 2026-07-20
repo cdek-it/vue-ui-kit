@@ -1,0 +1,28 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as TooltipStories from './Tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+<Title />
+<Description />
+
+## Использование
+
+### По умолчанию
+Базовый вариант интерактивной подсказки. Настраивайте текст и позицию в таблице ниже.
+<Canvas of={TooltipStories.Default} />
+
+#### Аргументы и события
+<Controls of={TooltipStories.Default} />
+
+### Позиционирование
+Демонстрация различных положений подсказки относительно элемента.
+<Canvas of={TooltipStories.Positions} />
+
+### Задержка (Delay)
+Настройка задержки появления (`showDelay`) и исчезновения (`hideDelay`) подсказки в миллисекундах.
+<Canvas of={TooltipStories.Delay} />
+
+### События (Event)
+Настройка события, по которому должен отображаться тултип (например, при фокусе).
+<Canvas of={TooltipStories.Event} />

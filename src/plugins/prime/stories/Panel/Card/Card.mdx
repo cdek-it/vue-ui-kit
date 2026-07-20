@@ -1,0 +1,29 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Карточка со всеми элементами: header, title, subtitle, content и footer.
+<Canvas of={CardStories.Default} />
+
+### Overlay
+Карточка с тенью (`class="shadow-md"`) и без тени (по умолчанию).
+<Canvas of={CardStories.Overlay} />
+
+### WithoutHeader
+Карточка без изображения в шапке.
+<Canvas of={CardStories.WithoutHeader} />
+
+### WithoutFooter
+Карточка без футера с действиями.
+<Canvas of={CardStories.WithoutFooter} />
+
+### WithoutSubtitle
+Карточка без подзаголовка.
+<Canvas of={CardStories.WithoutSubtitle} />

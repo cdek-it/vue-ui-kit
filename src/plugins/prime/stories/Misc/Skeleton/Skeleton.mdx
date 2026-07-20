@@ -1,0 +1,39 @@
+import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as SkeletonStories from './Skeleton.stories';
+
+<Meta of={SkeletonStories} />
+
+<Title />
+<Description />
+
+## Импорт
+
+```js
+import Skeleton from 'primevue/skeleton';
+```
+
+## Варианты использования
+
+### Default
+Базовый вариант скелетона. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={SkeletonStories.SkeletonDefault} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={SkeletonStories.SkeletonDefault} />
+
+### Rectangles
+Прямоугольные строки-заглушки — паттерн для текстового контента.
+<Canvas of={SkeletonStories.Rectangles} />
+
+### Circle
+Круглые заглушки для аватаров и иконок.
+<Canvas of={SkeletonStories.Circle} />
+
+### Card Placeholder
+Составная заглушка: аватар + несколько текстовых строк.
+<Canvas of={SkeletonStories.CardPlaceholder} />
+
+### No Animation
+Скелетон без волновой анимации.
+<Canvas of={SkeletonStories.NoAnimation} />
+

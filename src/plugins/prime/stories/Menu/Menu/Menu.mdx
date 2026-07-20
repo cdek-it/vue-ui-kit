@@ -1,0 +1,43 @@
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
+import * as MenuStories from './Menu.stories';
+
+<Meta of={MenuStories} />
+
+<Title />
+<Description />
+
+```javascript
+import Menu from 'primevue/menu';
+```
+
+## Варианты использования
+
+### Popup
+
+Меню вызывается по нажатию на кнопку.
+
+<Canvas of={MenuStories.Popup} />
+
+### Basic
+
+Базовый вариант без иконок.
+
+<Canvas of={MenuStories.Basic} />
+
+### With Icon
+
+Пункты меню с иконками.
+
+<Canvas of={MenuStories.WithIcon} />
+
+### Grouped
+
+Группировка пунктов меню через `label` у родительского элемента.
+
+<Canvas of={MenuStories.Grouped} />
+
+### Custom
+
+Кастомный шаблон пункта меню с иконкой и описанием (caption).
+
+<Canvas of={MenuStories.Custom} />

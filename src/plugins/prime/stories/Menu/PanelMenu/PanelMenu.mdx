@@ -1,0 +1,31 @@
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
+import * as PanelMenuStories from './PanelMenu.stories';
+
+<Meta of={PanelMenuStories} />
+
+<Title />
+<Description />
+
+```javascript
+import { PBlockPanelMenu } from '@cdek-it/vue-ui-kit';
+```
+
+## Варианты использования
+
+### Basic
+
+Аккордеон-меню — одновременно может быть раскрыта только одна панель.
+
+<Canvas of={PanelMenuStories.Basic} />
+
+### Multiple
+
+Аккордеон-меню с возможностью одновременного раскрытия нескольких панелей.
+
+<Canvas of={PanelMenuStories.Multiple} />
+
+### Кастомный шаблон
+
+PanelMenu с кастомным отображением пунктов: иконка, подпись и описание.
+
+<Canvas of={PanelMenuStories.Custom} />

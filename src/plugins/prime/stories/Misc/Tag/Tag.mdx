@@ -1,0 +1,34 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as TagStories from './Tag.stories';
+
+<Meta of={TagStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Базовый вариант тега. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={TagStories.Default} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={TagStories.Default} />
+
+### Severities
+Все доступные варианты важности: `primary`, `secondary`, `success`, `info`, `warn`, `danger`.
+<Canvas of={TagStories.Severities} />
+
+### Rounded
+Тег со скругленными углами.
+<Canvas of={TagStories.Rounded} />
+
+#### Аргументы и события
+<Controls of={TagStories.Rounded} />
+
+### WithIcon
+Тег с иконкой.
+<Canvas of={TagStories.WithIcon} />
+
+#### Аргументы и события
+<Controls of={TagStories.WithIcon} />

@@ -1,0 +1,35 @@
+import { Meta, Story } from '@storybook/addon-docs/blocks';
+import * as MultiSelectStories from './MultiSelect.stories';
+
+import { Template } from './MultiSelect.template';
+
+<Meta of={MultiSelectStories} />
+
+# MultiSelect
+
+[PrimeVue MultiSelect](https://primevue.org/multiselect), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-5726\&node-type=section\&t=1Q8VTt6Y4LnVAfrv-0)
+
+### Comma Separated
+
+```html dark
+<PrimeMultiSelect
+  v-model="value"
+  :options="options"
+  placeholder="MultiSelect"
+/>
+```
+
+<Story of={MultiSelectStories.Primary} />
+
+### Chips
+
+```html dark
+<PrimeMultiSelect
+  v-model="value"
+  :options="options"
+  placeholder="MultiSelect"
+  display="chip"
+/>
+```
+
+<Story of={MultiSelectStories.Chips} />

@@ -1,0 +1,54 @@
+import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as AvatarStories from './Avatar.stories';
+
+<Meta of={AvatarStories} />
+
+<Title />
+<Description />
+
+---
+
+## Варианты использования
+
+### Default
+Базовый вариант аватара. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={AvatarStories.AvatarDefault} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={AvatarStories.AvatarDefault} />
+
+### Label
+Аватар с текстовым содержимым.
+<Canvas of={AvatarStories.Label} />
+
+### Icon
+Аватар с использованием иконок.
+<Canvas of={AvatarStories.Icon} />
+
+### Image
+Аватар с изображением профиля.
+<Canvas of={AvatarStories.Image} />
+
+### Badge
+Аватары с уведомлениями (используется через OverlayBadge).
+
+#### Label с бейджем
+<Canvas of={AvatarStories.LabelWithBadge} />
+
+#### Icon с бейджем
+<Canvas of={AvatarStories.IconWithBadge} />
+
+#### Image с бейджем
+<Canvas of={AvatarStories.ImageWithBadge} />
+
+### AvatarGroup
+Группировка нескольких аватаров.
+<Canvas of={AvatarStories.AvatarGroup} />
+
+### Size
+Различные размеры аватаров: `small`, `normal`, `large`, `xlarge`.
+<Canvas of={AvatarStories.Size} />
+
+### Shape
+Формы аватара: `square` (по умолчанию) и `circle`.
+<Canvas of={AvatarStories.Shape} />

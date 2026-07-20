@@ -1,0 +1,29 @@
+import { Meta, Story, Canvas, ArgTypes, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as ChipStories from './Chip.stories';
+
+<Meta of={ChipStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Базовый вариант чипа с текстом.
+<Canvas of={ChipStories.Default} />
+
+### С иконкой
+<Canvas of={ChipStories.WithIcon} />
+
+### Removable
+Чип с кнопкой удаления.
+<Canvas of={ChipStories.Removable} />
+
+### Removable с иконкой
+<Canvas of={ChipStories.RemovableWithIcon} />
+
+### Disabled
+<Canvas of={ChipStories.Disabled} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={ChipStories.Default} />
