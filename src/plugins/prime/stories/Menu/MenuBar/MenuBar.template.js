@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import PBlockMenubar from '@/primeBlocks/PBlockMenubar/PBlockMenubar.vue';
+import { PBlockMenubar } from '@/primeBlocks';
 
 export const BasicTemplate = () => ({
   components: { PBlockMenubar },
