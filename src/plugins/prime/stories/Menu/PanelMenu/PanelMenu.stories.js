@@ -56,6 +56,7 @@ export const Basic = {
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockPanelMenu :model="items" />
@@ -94,6 +95,7 @@ export const Multiple = {
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockPanelMenu :model="items" multiple />
@@ -116,6 +118,7 @@ export const Custom = {
   parameters: {
     docs: {
       source: {
+        language: 'html',
         code: `
 <template>
   <PBlockPanelMenu :model="items" multiple>
