@@ -58,4 +58,36 @@ defineProps<IPBlockMenubar>();
   </Menubar>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss" scoped>
+:deep(.p-menubar .p-menubar-submenu-icon),
+:deep(.p-menubar .p-menubar-item-icon) {
+  font-size: var(--p-menubar-extend-icon-size);
+}
+
+:deep(.p-menubar .p-menubar-item-link.p-block-menuitem-link) {
+  --p-block-menuitem-padding: var(--p-menubar-item-padding);
+  --p-block-menuitem-gap: var(--p-menubar-item-gap);
+  --p-block-menuitem-border-radius: var(--p-menubar-item-border-radius);
+  --p-block-menuitem-icon-size: var(--p-menubar-extend-icon-size);
+  --p-block-menuitem-label-font-size: var(--p-fonts-font-size-base);
+  --p-block-menuitem-label-font-weight: var(--p-fonts-font-weight-regular);
+  --p-block-menuitem-caption-gap: var(--p-menubar-extend-ext-item-caption-gap);
+  --p-block-menuitem-description-font-size: var(--p-fonts-font-size-sm);
+  --p-block-menuitem-description-color: var(
+    --p-menubar-extend-ext-item-caption-color
+  );
+}
+
+:deep(.p-menubar-item.p-menubar-item-active > .p-menubar-item-content),
+:deep(.p-menubar-item.p-menubar-item-active.p-focus > .p-menubar-item-content) {
+  color: var(--p-menubar-item-active-color);
+  background: var(--p-menubar-item-active-background);
+}
+
+:deep(.p-menubar .p-menubar-submenu-label) {
+  padding: var(--p-menubar-extend-ext-submenu-label-padding);
+  font-weight: var(--p-menubar-extend-ext-submenu-label-font-weight);
+  background: var(--p-menubar-extend-ext-submenu-label-background);
+  color: var(--p-menubar-extend-ext-submenu-label-color);
+}
+</style>
