@@ -20,7 +20,7 @@ const meta = {
     docs: {
       description: {
         component:
-          'Avatar представляет пользователя или сущность. Может содержать текст, иконку или изображение. [PrimeVue Avatar](https://primevue.org/avatar)',
+          'Avatar представляет пользователя или сущность. Может содержать текст, иконку или изображение.',
       },
     },
     designToken: { disable: false },
@@ -145,9 +145,9 @@ export const Image = {
         code: `
 <template>
   <div class="flex items-center gap-4">
-    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" />
-    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/asiyajavayant.png" size="large" />
-    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png" size="xlarge" />
+    <Avatar image="https://i.pravatar.cc/300?u=a" />
+    <Avatar image="https://i.pravatar.cc/300?u=b" size="large" />
+    <Avatar image="https://i.pravatar.cc/300?u=c" size="xlarge" />
   </div>
 </template>
         `,
@@ -209,10 +209,10 @@ export const ImageWithBadge = {
 <template>
   <div class="flex items-center gap-4">
     <OverlayBadge severity="success">
-      <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" size="xlarge" shape="circle" />
+      <Avatar image="https://i.pravatar.cc/300?u=a" size="xlarge" shape="circle" />
     </OverlayBadge>
     <OverlayBadge severity="danger">
-      <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/asiyajavayant.png" size="large" />
+      <Avatar image="https://i.pravatar.cc/300?u=b" size="large" />
     </OverlayBadge>
   </div>
 </template>
@@ -230,11 +230,11 @@ export const AvatarGroup = {
         code: `
 <template>
   <AvatarGroup>
-    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/amyelsner.png" shape="circle" />
-    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/asiyajavayant.png" shape="circle" />
-    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/xuxuefeng.png" shape="circle" />
-    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/ionibowcher.png" shape="circle" />
-    <Avatar image="https://primefaces.org/cdn/primevue/images/avatar/stephenshaw.png" shape="circle" />
+    <Avatar image="https://i.pravatar.cc/300?u=a" shape="circle" />
+    <Avatar image="https://i.pravatar.cc/300?u=b" shape="circle" />
+    <Avatar image="https://i.pravatar.cc/300?u=c" shape="circle" />
+    <Avatar image="https://i.pravatar.cc/300?u=d" shape="circle" />
+    <Avatar image="https://i.pravatar.cc/300?u=e" shape="circle" />
     <Avatar label="+2" shape="circle" />
   </AvatarGroup>
 </template>
