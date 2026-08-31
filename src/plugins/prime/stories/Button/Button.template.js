@@ -7,12 +7,13 @@ export const Template = (args) => ({
     return { args };
   },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(7, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
+<div :style="{ display: 'grid', gridTemplateColumns: args.severity ? 'repeat(7, max-content)' : 'repeat(8, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
   <span></span>
   <span></span>
   <span><code>rounded</code></span>
   <span><code>variant="outlined"</code></span>
   <span><code>variant="text"</code></span>
+  <span v-if="!args.severity"><code>variant="link"</code></span>
   <span><code>disabled</code></span>
   <span><code>loading</code></span>
 
@@ -21,6 +22,7 @@ export const Template = (args) => ({
   <Button size="large" rounded v-bind="args" />
   <Button size="large" variant="outlined" v-bind="args" />
   <Button size="large" variant="text" v-bind="args" />
+  <Button v-if="!args.severity" size="large" variant="link" v-bind="args" />
   <Button size="large" disabled v-bind="args" />
   <Button size="large" loading v-bind="args" />
 
@@ -29,6 +31,7 @@ export const Template = (args) => ({
   <Button rounded v-bind="args" />
   <Button variant="outlined" v-bind="args" />
   <Button variant="text" v-bind="args" />
+  <Button v-if="!args.severity" variant="link" v-bind="args" />
   <Button disabled v-bind="args" />
   <Button loading v-bind="args" />
 
@@ -37,6 +40,7 @@ export const Template = (args) => ({
   <Button size="small" rounded v-bind="args" />
   <Button size="small" variant="outlined" v-bind="args" />
   <Button size="small" variant="text" v-bind="args" />
+  <Button v-if="!args.severity" size="small" variant="link" v-bind="args" />
   <Button size="small" disabled v-bind="args" />
   <Button size="small" loading v-bind="args" />
 </div>

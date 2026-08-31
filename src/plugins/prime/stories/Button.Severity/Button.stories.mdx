@@ -1,0 +1,105 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { Template } from '../Button/Button.template';
+
+<Meta
+  title="Prime/Button/Severity"
+/>
+
+### Severity
+
+[Figma](<https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-(DS)?node-id=489-4122>)
+
+#### Secondary
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-help-circle" severity="secondary" />
+```
+
+<Story
+  name="Secondary"
+  args={{
+    label: 'Button',
+    icon: 'ti ti-arrow-down-right',
+    severity: 'secondary',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+
+#### Tertiary
+
+```html dark
+<PrimeButton label="Button" icon="ti ti-help-circle" severity="contrast" />
+```
+
+<Story
+  name="Tertiary"
+  args={{
+    label: 'Button',
+    icon: 'ti ti-arrow-down-right',
+    severity: 'contrast',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+#### Danger
+```html dark
+<PrimeButton label="Button" icon="ti ti-arrow-down-right" severity="danger" />
+```
+<Story
+  name="Danger"
+  args={{
+    label: 'Button',
+    icon: 'ti ti-arrow-down-right',
+    severity: 'danger',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+#### Warn
+```html dark
+<PrimeButton label="Button" icon="ti ti-alert-triangle" severity="warn" />
+```
+<Story
+  name="Warn"
+  args={{
+    label: 'Button',
+    icon: 'ti ti-alert-triangle',
+    severity: 'warn',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+#### Success
+```html dark
+<PrimeButton label="Button" icon="ti ti-check" severity="success" />
+```
+<Story
+  name="Success"
+  args={{
+    label: 'Button',
+    icon: 'ti ti-check',
+    severity: 'success',
+  }}
+>
+  {Template.bind({})}
+</Story>
+
+#### Info
+```html dark
+<PrimeButton label="Button" icon="ti ti-info-circle" severity="info" />
+```
+<Story
+  name="Info"
+  args={{
+    label: 'Button',
+    icon: 'ti ti-info-circle',
+    severity: 'info',
+  }}
+>
+  {Template.bind({})}
+</Story>
