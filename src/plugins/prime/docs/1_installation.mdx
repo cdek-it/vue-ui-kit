@@ -4,6 +4,45 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 # Установка
 
+## Что входит в дизайн-систему
+
+<table>
+  <thead>
+    <tr>
+      <th>Часть</th>
+      <th>Описание</th>
+      <th>Источник</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Тема (токены)</td>
+      <td>Цвета, отступы, скругления, тени — всё, что определяет внешний вид компонентов</td>
+      <td><code>@cdek-ui-kit/vue</code> → <code>getPrimeVueConfig()</code></td>
+    </tr>
+    <tr>
+      <td>Типографика</td>
+      <td>CSS-классы для текста: заголовки, body, caption, service</td>
+      <td>CDN: <code>typography.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Иконки</td>
+      <td>Иконочный шрифт Tabler Icons</td>
+      <td>CDN: <code>tabler-icons.min.css</code></td>
+    </tr>
+    <tr>
+      <td>Компоненты</td>
+      <td>Стилизованные компоненты PrimeVue + PBlock-обёртки</td>
+      <td><code>primevue</code> + <code>@cdek-ui-kit/vue</code></td>
+    </tr>
+    <tr>
+      <td>Tailwind-интеграция</td>
+      <td>Токены DS в виде Tailwind-утилит</td>
+      <td><code>tailwindcss-primeui</code> + <code>tailwindConfigTheme</code></td>
+    </tr>
+  </tbody>
+</table>
+
 ### Установка библиотеки PrimeVue
 
 Необходимо будет установить библиотеку PrimeVue в проект. Мы делаем таким образом, чтобы отвязаться от ui-kit,
