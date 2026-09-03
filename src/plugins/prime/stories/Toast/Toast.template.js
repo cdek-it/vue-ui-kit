@@ -1,5 +1,5 @@
 import { ref } from 'vue';
-import { PBlockToast, usePBlockToast } from '@/primeBlocks';
+import { ExtraToast, useExtraToast } from '@/primeBlocks';
 import Button from 'primevue/button';
 
 const MessageIcons = {
@@ -62,9 +62,9 @@ const commonToastConfig = {
 };
 
 export const Template = (args) => ({
-  components: { PBlockToast, Button },
+  components: { ExtraToast, Button },
   setup() {
-    const toast = usePBlockToast();
+    const toast = useExtraToast();
 
     const showToast = (severity, icon) => {
       toast.add({
@@ -84,7 +84,7 @@ export const Template = (args) => ({
   },
   template: `
     <div>
-      <PBlockToast
+      <ExtraToast
         :position="args.position"
         :group="args.group"
         :width="args.width"
@@ -121,9 +121,9 @@ export const Template = (args) => ({
 });
 
 export const TemplateCloseButton = (args) => ({
-  components: { PBlockToast, Button },
+  components: { ExtraToast, Button },
   setup() {
-    const toast = usePBlockToast();
+    const toast = useExtraToast();
 
     const showToast = (severity, icon) => {
       toast.add({
@@ -144,7 +144,7 @@ export const TemplateCloseButton = (args) => ({
   },
   template: `
     <div>
-      <PBlockToast
+      <ExtraToast
         :position="args.position"
         :group="args.group"
         :width="args.width"
@@ -184,9 +184,9 @@ export const TemplateCloseButton = (args) => ({
 });
 
 export const TemplateWithContent = (args) => ({
-  components: { PBlockToast, Button },
+  components: { ExtraToast, Button },
   setup() {
-    const toast = usePBlockToast();
+    const toast = useExtraToast();
 
     const showToast = (severity, icon) => {
       toast.add({
@@ -206,7 +206,7 @@ export const TemplateWithContent = (args) => ({
   },
   template: `
     <div>
-      <PBlockToast :group="args.group" :width="args.width" style="z-index:1">
+      <ExtraToast :group="args.group" :width="args.width" style="z-index:1">
         <template #container="{ message }">
           <div class="p-toast-message-content">
             <div class="p-toast-accent-line"></div>
@@ -224,7 +224,7 @@ export const TemplateWithContent = (args) => ({
             </div>
           </div>
         </template>
-      </PBlockToast>
+      </ExtraToast>
       <div class="grid grid-cols-2 gap-4">
         <div v-for="({ type, icon }, idx) in severities" :key="idx">
           <div :class="'p-toast-message p-toast-message-' + type">
@@ -262,9 +262,9 @@ export const TemplateWithContent = (args) => ({
 });
 
 export const TemplateCustomContentWithCloseButton = (args) => ({
-  components: { PBlockToast, Button },
+  components: { ExtraToast, Button },
   setup() {
-    const toast = usePBlockToast();
+    const toast = useExtraToast();
 
     const showToast = (severity, icon) => {
       toast.add({
@@ -284,7 +284,7 @@ export const TemplateCustomContentWithCloseButton = (args) => ({
   },
   template: `
     <div>
-      <PBlockToast :group="args.group" :width="args.width" style="z-index:1">
+      <ExtraToast :group="args.group" :width="args.width" style="z-index:1">
         <template #container="{ message, closeCallback }">
           <div class="p-toast-message-content">
             <div class="p-toast-accent-line"></div>
@@ -309,7 +309,7 @@ export const TemplateCustomContentWithCloseButton = (args) => ({
             </button>
           </div>
         </template>
-      </PBlockToast>
+      </ExtraToast>
       <div class="grid grid-cols-2 gap-4">
         <div
           v-for="({ type, icon }, index) in severities"
@@ -353,9 +353,9 @@ export const TemplateCustomContentWithCloseButton = (args) => ({
 });
 
 export const TemplateWidth = (args) => ({
-  components: { PBlockToast, Button },
+  components: { ExtraToast, Button },
   setup() {
-    const toast = usePBlockToast();
+    const toast = useExtraToast();
     const currentSize = ref(SIZES[1]);
     const group = args?.group || 'width-preview';
 
@@ -380,7 +380,7 @@ export const TemplateWidth = (args) => ({
   },
   template: `
     <div>
-      <PBlockToast
+      <ExtraToast
         group="width-preview"
         :width="currentSize.key"
         style="z-index:1"
@@ -415,9 +415,9 @@ export const TemplateWidth = (args) => ({
 });
 
 export const TemplatePosition = (args) => ({
-  components: { PBlockToast, Button },
+  components: { ExtraToast, Button },
   setup() {
-    const toast = usePBlockToast();
+    const toast = useExtraToast();
 
     const showToast = (group, position) => {
       toast.add({
@@ -437,7 +437,7 @@ export const TemplatePosition = (args) => ({
   },
   template: `
     <div>
-      <PBlockToast
+      <ExtraToast
         v-for="({ position, group }) in positions"
         :key="group"
         :position="position"

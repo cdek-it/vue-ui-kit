@@ -2,9 +2,9 @@
 import type { Component } from 'vue';
 import { PanelMenu, type PanelMenuProps } from 'primevue';
 import type { PanelMenuSlots } from 'primevue/panelmenu';
-import PBlockMenuItem from '../PBlockMenuItem/PBlockMenuItem.vue';
+import ExtraMenuItem from '../ExtraMenuItem/ExtraMenuItem.vue';
 
-interface IPBlockPanelMenu extends PanelMenuProps {
+interface IExtraPanelMenu extends PanelMenuProps {
   itemAs?: string | Component;
 }
 
@@ -18,14 +18,14 @@ function getItemAttrs(
   return { ...slotProps.item, ...slotProps.props.action };
 }
 
-defineProps<IPBlockPanelMenu>();
+defineProps<IExtraPanelMenu>();
 </script>
 
 <template>
   <PanelMenu v-bind="$props">
     <template #item="slotProps">
       <slot name="item" v-bind="slotProps">
-        <PBlockMenuItem
+        <ExtraMenuItem
           v-bind="getItemAttrs(slotProps)"
           :as="itemAs"
           :root="slotProps.root"
@@ -36,7 +36,7 @@ defineProps<IPBlockPanelMenu>();
           <template v-if="$slots.submenuicon" #submenuicon="submenuIconProps">
             <slot name="submenuicon" v-bind="submenuIconProps" />
           </template>
-        </PBlockMenuItem>
+        </ExtraMenuItem>
       </slot>
     </template>
 

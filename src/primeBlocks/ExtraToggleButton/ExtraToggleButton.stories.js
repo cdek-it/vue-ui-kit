@@ -1,9 +1,9 @@
-import PBlockToggleButton from './PBlockToggleButton.vue';
+import ExtraToggleButton from './ExtraToggleButton.vue';
 import { ref } from 'vue';
 
 export default {
-  title: 'Prime Blocks/PBlockToggleButton',
-  component: PBlockToggleButton,
+  title: 'Prime Blocks/ExtraToggleButton',
+  component: ExtraToggleButton,
   parameters: {
     docs: {
       description: {
@@ -19,7 +19,7 @@ const label = 'ToggleButton';
 const icon = 'ti ti-arrow-down-right';
 
 const Template = (args) => ({
-  components: { PBlockToggleButton },
+  components: { ExtraToggleButton },
   setup() {
     const isChecked = ref(args.modelValue);
 
@@ -33,7 +33,7 @@ const Template = (args) => ({
   },
   template: `
     <div v-if="args.story === 'vModel'">isChecked:  {{ isChecked }} </div>
-    <PBlockToggleButton 
+    <ExtraToggleButton 
         v-bind="args" 
         v-model="isChecked" 
         @focus="(e) => onEmit(e, 'focus')" 
@@ -46,7 +46,7 @@ const Template = (args) => ({
       <template #icon>
         <i v-if="args.story === 'IconSlot'" class="ti ti-ban"/>
       </template>
-    </PBlockToggleButton>
+    </ExtraToggleButton>
     
     
     <div v-if="args.story === 'emits'">
@@ -67,7 +67,7 @@ Primary.args = {
 Primary.parameters = {
   docs: {
     source: {
-      code: '<PBlockToggleButton :base-icon="icon" :base-label="label"  />',
+      code: '<ExtraToggleButton :base-icon="icon" :base-label="label"  />',
     },
   },
 };
@@ -85,7 +85,7 @@ MergeProps.parameters = {
   docs: {
     source: {
       code: `
-<PBlockToggleButton 
+<ExtraToggleButton 
     base-icon="ti ti-arrow-down-right"
     base-label="ToggleButton" 
     on-label="Выбрано" 
@@ -110,7 +110,7 @@ VModel.parameters = {
   docs: {
     source: {
       code: `
-<PBlockToggleButton v-model="modelValue"/>`,
+<ExtraToggleButton v-model="modelValue"/>`,
     },
   },
 };
@@ -125,9 +125,9 @@ DefaultSlot.parameters = {
   docs: {
     source: {
       code: `
-<PBlockToggleButton>
+<ExtraToggleButton>
     <div>Дефолтный слот</div>
-</PBlockToggleButton>`,
+</ExtraToggleButton>`,
     },
   },
 };
@@ -142,11 +142,11 @@ IconSlot.parameters = {
   docs: {
     source: {
       code: `
-<PBlockToggleButton>
+<ExtraToggleButton>
     <template #icon>
         <i class="ti ti-ban"/>
     </template>
-</PBlockToggleButton>`,
+</ExtraToggleButton>`,
     },
   },
 };
@@ -161,7 +161,7 @@ Emits.parameters = {
   docs: {
     source: {
       code: `
-<PBlockToggleButton v-model="modelValue" />`,
+<ExtraToggleButton v-model="modelValue" />`,
     },
   },
 };

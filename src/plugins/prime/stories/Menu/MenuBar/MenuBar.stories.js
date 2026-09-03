@@ -66,12 +66,12 @@ export const Basic = {
         language: 'html',
         code: `
 <template>
-  <PBlockMenubar :model="items" />
+  <ExtraMenubar :model="items" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   { label: 'Features' },
@@ -108,12 +108,12 @@ export const WithIcon = {
         language: 'html',
         code: `
 <template>
-  <PBlockMenubar :model="items" />
+  <ExtraMenubar :model="items" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   { label: 'Home', icon: 'ti ti-home' },
@@ -159,12 +159,12 @@ export const Custom = {
         language: 'html',
         code: `
 <template>
-  <PBlockMenubar :model="items" />
+  <ExtraMenubar :model="items" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   {
@@ -207,12 +207,12 @@ export const WithItemAs = {
         language: 'html',
         code: `
 <template>
-  <PBlockMenubar :model="items" item-as="button" />
+  <ExtraMenubar :model="items" item-as="button" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_NESTED});
 </script>
@@ -234,7 +234,7 @@ export const WithSlots = {
         language: 'html',
         code: `
 <template>
-  <PBlockMenubar :model="items">
+  <ExtraMenubar :model="items">
     <template #start>
       <span class="ti ti-brand-vue" style="font-size: 1.5rem; margin-right: 0.5rem;" />
     </template>
@@ -244,12 +244,12 @@ export const WithSlots = {
     <template #end>
       <button class="p-button p-button-text p-button-sm">Logout</button>
     </template>
-  </PBlockMenubar>
+  </ExtraMenubar>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_NESTED});
 </script>
@@ -270,16 +270,16 @@ export const WithItemIconSlot = {
         language: 'html',
         code: `
 <template>
-  <PBlockMenubar :model="items">
+  <ExtraMenubar :model="items">
     <template #itemicon="{ item }">
       <span v-if="item.icon" :class="item.icon" class="text-violet-600" />
     </template>
-  </PBlockMenubar>
+  </ExtraMenubar>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_NESTED});
 </script>
@@ -300,16 +300,16 @@ export const WithSubmenuIconSlot = {
         language: 'html',
         code: `
 <template>
-  <PBlockMenubar :model="items">
+  <ExtraMenubar :model="items">
     <template #submenuicon="{ root }">
       <span :class="root ? 'ti ti-caret-down-filled text-emerald-500' : 'ti ti-caret-right-filled text-emerald-500'" />
     </template>
-  </PBlockMenubar>
+  </ExtraMenubar>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_NESTED});
 </script>
@@ -331,7 +331,7 @@ export const WithSubmenuIconActiveState = {
         language: 'html',
         code: `
 <template>
-  <PBlockMenubar :model="items">
+  <ExtraMenubar :model="items">
     <template #submenuicon="{ root }">
       <span
         :class="[
@@ -341,12 +341,12 @@ export const WithSubmenuIconActiveState = {
         ]"
       />
     </template>
-  </PBlockMenubar>
+  </ExtraMenubar>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_NESTED});
 </script>
@@ -368,19 +368,19 @@ export const WithButtonSlot = {
         language: 'html',
         code: `
 <template>
-  <PBlockMenubar :model="items">
+  <ExtraMenubar :model="items">
     <template #button="{ toggleCallback }">
       <button class="p-button p-button-text p-button-sm" type="button" @click="toggleCallback">
         <span class="ti ti-menu-2" style="margin-right: 0.25rem;" />
         Menu
       </button>
     </template>
-  </PBlockMenubar>
+  </ExtraMenubar>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_FLAT});
 </script>
@@ -401,16 +401,16 @@ export const WithButtonIconSlot = {
         language: 'html',
         code: `
 <template>
-  <PBlockMenubar :model="items">
+  <ExtraMenubar :model="items">
     <template #buttonicon>
       <span class="ti ti-layout-sidebar-right-collapse text-sky-500" />
     </template>
-  </PBlockMenubar>
+  </ExtraMenubar>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { PBlockMenubar } from '@cdek-it/vue-ui-kit';
+import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${DOC_ITEMS_FLAT});
 </script>

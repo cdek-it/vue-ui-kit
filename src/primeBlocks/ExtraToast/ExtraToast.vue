@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Toast, type ToastEvent, type ToastProps } from 'primevue';
-import { PBlockToastMessageIcon } from './usePBlockToast';
+import { ExtraToastMessageIcon } from './useExtraToast';
 
 import {
   IconCircleCheck,
@@ -9,11 +9,11 @@ import {
   IconAlertCircle,
 } from '@tabler/icons-vue';
 
-interface IPBlockToast extends ToastProps {
+interface IExtraToast extends ToastProps {
   width?: 'sm' | 'md' | 'lg' | 'xlg';
 }
 
-withDefaults(defineProps<IPBlockToast>(), {
+withDefaults(defineProps<IExtraToast>(), {
   width: 'md',
 });
 
@@ -39,16 +39,16 @@ const emit = defineEmits<{
     <template v-else #message="slotProps">
       <div class="p-toast-accent-line"></div>
       <IconCircleCheck
-        v-if="slotProps.message.icon === PBlockToastMessageIcon.success"
+        v-if="slotProps.message.icon === ExtraToastMessageIcon.success"
       />
       <IconInfoCircle
-        v-else-if="slotProps.message.icon === PBlockToastMessageIcon.info"
+        v-else-if="slotProps.message.icon === ExtraToastMessageIcon.info"
       />
       <IconAlertTriangle
-        v-else-if="slotProps.message.icon === PBlockToastMessageIcon.warn"
+        v-else-if="slotProps.message.icon === ExtraToastMessageIcon.warn"
       />
       <IconAlertCircle
-        v-else-if="slotProps.message.icon === PBlockToastMessageIcon.error"
+        v-else-if="slotProps.message.icon === ExtraToastMessageIcon.error"
       />
       <i
         v-else

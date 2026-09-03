@@ -1,4 +1,4 @@
-import PBlockInputText from '@/primeBlocks/PBlockInputText/PBlockInputText.vue';
+import ExtraInputText from '@/primeBlocks/ExtraInputText/ExtraInputText.vue';
 import { ref } from 'vue';
 import { Template } from './InputText.template';
 
@@ -7,7 +7,7 @@ import { Template } from './InputText.template';
  */
 const meta = {
   title: 'Prime/Form/InputText',
-  component: PBlockInputText,
+  component: ExtraInputText,
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -15,7 +15,7 @@ const meta = {
         component: `Обёртка над PrimeVue InputText с поддержкой очистки, размеров и кастомной иконки.
 
 \`\`\`js
-import { PBlockInputText } from '@cdek-it/vue-ui-kit';
+import { ExtraInputText } from '@cdek-it/vue-ui-kit';
 \`\`\``,
       },
     },
@@ -142,13 +142,13 @@ export const Default = {
 
 export const Disabled = {
   render: (args) => ({
-    components: { PBlockInputText },
+    components: { ExtraInputText },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <PBlockInputText
+      <ExtraInputText
         v-model="value"
         :placeholder="args.placeholder"
         disabled
@@ -167,7 +167,7 @@ export const Disabled = {
       source: {
         code: `
 <template>
-  <PBlockInputText v-model="value" placeholder="Введите текст..." disabled />
+  <ExtraInputText v-model="value" placeholder="Введите текст..." disabled />
 </template>
         `,
       },
@@ -177,13 +177,13 @@ export const Disabled = {
 
 export const Readonly = {
   render: (args) => ({
-    components: { PBlockInputText },
+    components: { ExtraInputText },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <PBlockInputText
+      <ExtraInputText
         v-model="value"
         :placeholder="args.placeholder"
         readonly
@@ -203,7 +203,7 @@ export const Readonly = {
       source: {
         code: `
 <template>
-  <PBlockInputText v-model="value" placeholder="Введите текст..." readonly />
+  <ExtraInputText v-model="value" placeholder="Введите текст..." readonly />
 </template>
         `,
       },
@@ -213,13 +213,13 @@ export const Readonly = {
 
 export const Invalid = {
   render: (args) => ({
-    components: { PBlockInputText },
+    components: { ExtraInputText },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <PBlockInputText
+      <ExtraInputText
         v-model="value"
         placeholder="Обязательное поле"
         invalid
@@ -235,7 +235,7 @@ export const Invalid = {
       source: {
         code: `
 <template>
-  <PBlockInputText v-model="value" placeholder="Обязательное поле" invalid />
+  <ExtraInputText v-model="value" placeholder="Обязательное поле" invalid />
 </template>
         `,
       },
@@ -245,13 +245,13 @@ export const Invalid = {
 
 export const FloatLabel = {
   render: (args) => ({
-    components: { PBlockInputText },
+    components: { ExtraInputText },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <PBlockInputText
+      <ExtraInputText
         v-model="value"
         hasFloatlabel
         :label="args.label"
@@ -304,11 +304,11 @@ export const FloatLabel = {
       description: {
         story: `Интеграция с \`FloatLabel\` — плавающая метка внутри поля.
 
-Можно также использовать \`FloatLabel\` и \`PBlockInputText\` напрямую:
+Можно также использовать \`FloatLabel\` и \`ExtraInputText\` напрямую:
 
 \`\`\`vue
 <FloatLabel variant="in">
-  <PBlockInputText id="name" v-model="value" variant="filled" />
+  <ExtraInputText id="name" v-model="value" variant="filled" />
   <label for="name">Имя<span class="text-red-500">*</span></label>
 </FloatLabel>
 \`\`\``,
@@ -316,7 +316,7 @@ export const FloatLabel = {
       source: {
         code: `
 <template>
-  <PBlockInputText v-model="value" hasFloatlabel label="Имя" required />
+  <ExtraInputText v-model="value" hasFloatlabel label="Имя" required />
 </template>
         `,
       },
@@ -327,13 +327,13 @@ export const FloatLabel = {
 export const FloatLabelInvalid = {
   name: 'FloatLabel + Invalid',
   render: (args) => ({
-    components: { PBlockInputText },
+    components: { ExtraInputText },
     setup() {
       const value = ref('');
       return { args, value };
     },
     template: `
-      <PBlockInputText
+      <ExtraInputText
         v-model="value"
         hasFloatlabel
         :label="args.label"
@@ -391,7 +391,7 @@ export const FloatLabelInvalid = {
       source: {
         code: `
 <template>
-  <PBlockInputText v-model="value" hasFloatlabel label="Обязательное поле" required invalid />
+  <ExtraInputText v-model="value" hasFloatlabel label="Обязательное поле" required invalid />
 </template>
         `,
       },

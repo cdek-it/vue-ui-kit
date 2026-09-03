@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ToggleButton, type ToggleButtonProps } from 'primevue';
 
-interface IPBlockToggleButton extends ToggleButtonProps {
+interface IExtraToggleButton extends ToggleButtonProps {
   baseIcon?: string;
   baseLabel?: string;
   modelValue?: boolean;
 }
 
-defineProps<IPBlockToggleButton>();
+defineProps<IExtraToggleButton>();
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: boolean): void;

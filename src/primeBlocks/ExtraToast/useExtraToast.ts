@@ -2,28 +2,27 @@ import type { HintedString } from '@primevue/core';
 import { useToast } from 'primevue/usetoast';
 import type { ToastMessageOptions } from 'primevue/toast';
 
-export const PBlockToastMessageIcon = {
+export const ExtraToastMessageIcon = {
   success: 'success',
   info: 'info',
   warn: 'warn',
   error: 'error',
 } as const;
 
-export type PBlockToastMessageIconValues =
-  (typeof PBlockToastMessageIcon)[keyof typeof PBlockToastMessageIcon];
+export type ExtraToastMessageIconValues =
+  (typeof ExtraToastMessageIcon)[keyof typeof ExtraToastMessageIcon];
 
-export interface PBlockToastMessageOptions extends ToastMessageOptions {
-  severity?: HintedString<PBlockToastMessageIconValues>;
+export interface ExtraToastMessageOptions extends ToastMessageOptions {
+  severity?: HintedString<ExtraToastMessageIconValues>;
   icon?: string;
 }
 
-export function usePBlockToast() {
+export function useExtraToast() {
   const toast = useToast();
 
-  const add = (config: PBlockToastMessageOptions) => {
+  const add = (config: ExtraToastMessageOptions) => {
     const severity = config.severity || 'info';
-    const icon: string | PBlockToastMessageIconValues =
-      config?.icon || severity;
+    const icon: string | ExtraToastMessageIconValues = config?.icon || severity;
 
     toast.add({
       ...config,

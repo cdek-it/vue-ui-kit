@@ -3,9 +3,9 @@ import type { Component } from 'vue';
 import { IconMenu2 } from '@tabler/icons-vue';
 import { Menubar, type MenubarProps } from 'primevue';
 import type { MenubarSlots } from 'primevue/menubar';
-import PBlockMenuItem from '../PBlockMenuItem/PBlockMenuItem.vue';
+import ExtraMenuItem from '../ExtraMenuItem/ExtraMenuItem.vue';
 
-interface IPBlockMenubar extends MenubarProps {
+interface IExtraMenubar extends MenubarProps {
   itemAs?: string | Component;
 }
 
@@ -17,7 +17,7 @@ function getItemAttrs(
   return { ...slotProps.item, ...slotProps.props.action };
 }
 
-defineProps<IPBlockMenubar>();
+defineProps<IExtraMenubar>();
 </script>
 
 <template>
@@ -30,7 +30,7 @@ defineProps<IPBlockMenubar>();
     </template>
     <template #item="slotProps">
       <slot name="item" v-bind="slotProps">
-        <PBlockMenuItem
+        <ExtraMenuItem
           v-bind="getItemAttrs(slotProps)"
           :as="itemAs"
           :root="slotProps.root"
@@ -41,7 +41,7 @@ defineProps<IPBlockMenubar>();
           <template v-if="$slots.submenuicon" #submenuicon="submenuIconProps">
             <slot name="submenuicon" v-bind="submenuIconProps" />
           </template>
-        </PBlockMenuItem>
+        </ExtraMenuItem>
       </slot>
     </template>
     <template v-if="$slots.itemicon" #itemicon="slotProps">
