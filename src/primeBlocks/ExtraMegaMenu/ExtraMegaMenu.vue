@@ -3,9 +3,9 @@ import type { Component } from 'vue';
 import { IconChevronRight, IconMenu2 } from '@tabler/icons-vue';
 import { MegaMenu, type MegaMenuProps } from 'primevue';
 import type { MegaMenuSlots } from 'primevue/megamenu';
-import PBlockMenuItem from '../PBlockMenuItem/PBlockMenuItem.vue';
+import ExtraMenuItem from '../ExtraMenuItem/ExtraMenuItem.vue';
 
-interface IPBlockMegaMenu extends MegaMenuProps {
+interface IExtraMegaMenu extends MegaMenuProps {
   itemAs?: string | Component;
 }
 
@@ -17,7 +17,7 @@ function getItemAttrs(
   return { ...slotProps.item, ...slotProps.props.action };
 }
 
-defineProps<IPBlockMegaMenu>();
+defineProps<IExtraMegaMenu>();
 </script>
 
 <template>
@@ -30,7 +30,7 @@ defineProps<IPBlockMegaMenu>();
     </template>
     <template #item="slotProps">
       <slot name="item" v-bind="slotProps">
-        <PBlockMenuItem
+        <ExtraMenuItem
           v-bind="getItemAttrs(slotProps)"
           :as="itemAs"
           :root="false"
@@ -43,7 +43,7 @@ defineProps<IPBlockMegaMenu>();
               <IconChevronRight size="0.875rem" />
             </slot>
           </template>
-        </PBlockMenuItem>
+        </ExtraMenuItem>
       </slot>
     </template>
     <template v-if="$slots.itemicon" #itemicon="slotProps">

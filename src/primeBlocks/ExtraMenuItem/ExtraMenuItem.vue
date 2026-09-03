@@ -5,14 +5,14 @@ import { Badge } from 'primevue';
 import type { MenuItem } from 'primevue/menuitem';
 import type { Component } from 'vue';
 
-export interface IPBlockMenuItem extends MenuItem {
+export interface IExtraMenuItem extends MenuItem {
   description?: string;
   badge?: string;
   as?: string | Component;
   root?: boolean;
 }
 
-const props = defineProps<IPBlockMenuItem>();
+const props = defineProps<IExtraMenuItem>();
 
 const hasSubmenu = computed(
   () => Array.isArray(props.items) && props.items.length > 0

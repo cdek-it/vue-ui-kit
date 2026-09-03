@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { type InputTextProps, FloatLabel } from 'primevue';
-import PBlockInputTextField from './PBlockInputTextField.vue';
+import ExtraInputTextField from './ExtraInputTextField.vue';
 
-interface PBlockInputTextProps extends /* @vue-ignore */ InputTextProps {
+interface ExtraInputTextProps extends /* @vue-ignore */ InputTextProps {
   modelValue?: string;
   showClear?: boolean;
   hasFloatlabel?: boolean;
@@ -12,7 +12,7 @@ interface PBlockInputTextProps extends /* @vue-ignore */ InputTextProps {
   fluid?: boolean;
 }
 
-withDefaults(defineProps<PBlockInputTextProps>(), {
+withDefaults(defineProps<ExtraInputTextProps>(), {
   showClear: true,
 });
 
@@ -24,7 +24,7 @@ defineEmits<{
 
 <template>
   <FloatLabel v-if="hasFloatlabel" variant="in">
-    <PBlockInputTextField
+    <ExtraInputTextField
       :id="label"
       :modelValue="modelValue"
       :showClear="showClear"
@@ -38,14 +38,14 @@ defineEmits<{
       <template #clear-icon>
         <slot name="clear-icon" />
       </template>
-    </PBlockInputTextField>
+    </ExtraInputTextField>
     <label :for="label">
       {{ label
       }}<span v-if="required" class="p-block-inputtext__required">*</span>
     </label>
   </FloatLabel>
 
-  <PBlockInputTextField
+  <ExtraInputTextField
     v-else
     :modelValue="modelValue"
     :showClear="showClear"
@@ -58,7 +58,7 @@ defineEmits<{
     <template #clear-icon>
       <slot name="clear-icon" />
     </template>
-  </PBlockInputTextField>
+  </ExtraInputTextField>
 </template>
 
 <style scoped lang="scss">

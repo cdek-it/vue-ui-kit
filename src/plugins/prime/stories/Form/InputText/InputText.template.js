@@ -1,14 +1,14 @@
-import PBlockInputText from '@/primeBlocks/PBlockInputText/PBlockInputText.vue';
+import ExtraInputText from '@/primeBlocks/ExtraInputText/ExtraInputText.vue';
 import { ref } from 'vue';
 
 export const Template = (args) => ({
-  components: { PBlockInputText },
+  components: { ExtraInputText },
   setup() {
     const value = ref('');
     return { args, value };
   },
   template: `
-    <PBlockInputText
+    <ExtraInputText
       v-model="value"
       :size="args.size"
       :showClear="args.showClear"
