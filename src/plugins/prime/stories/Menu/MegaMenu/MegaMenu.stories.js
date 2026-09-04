@@ -3,9 +3,11 @@ import {
   VerticalTemplate,
   CustomTemplate,
 } from './MegaMenu.template';
+import { ExtraMegaMenu } from '@/primeBlocks';
 
 export default {
-  title: 'Prime/Menu/MegaMenu',
+  title: 'Prime/Menu/ExtraMegaMenu',
+  component: ExtraMegaMenu,
   parameters: {
     docs: {
       description: {

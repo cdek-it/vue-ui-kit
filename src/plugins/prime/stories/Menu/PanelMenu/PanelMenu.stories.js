@@ -3,9 +3,11 @@ import {
   MultipleTemplate,
   CustomTemplate,
 } from './PanelMenu.template';
+import { ExtraPanelMenu } from '@/primeBlocks';
 
 export default {
-  title: 'Prime/Menu/PanelMenu',
+  title: 'Prime/Menu/ExtraPanelMenu',
+  component: ExtraPanelMenu,
   argTypes: {
     showIcons: {
       name: 'Show Icons',

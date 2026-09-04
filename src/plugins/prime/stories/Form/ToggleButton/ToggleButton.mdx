@@ -5,19 +5,19 @@ import { Template, Slots } from './ToggleButton.template';
 
 <Meta of={ToggleButtonStories} />
 
-# Rating
+# ExtraToggleButton
 
 [PrimeVue ToggleButton](https://primevue.org/togglebutton/), [Макет](https://www.figma.com/design/4TYeki0MDLhfPGJstbIicf/UI-kit-PrimeFace-\(DS\)?node-id=484-4821\&t=3YXMhb09kaDg7lEL-4)
 
 ### Basic
 
 ```html dark
-<PrimeToggleButton
+<ExtraToggleButton
     v-model="value"
     off-icon="ti ti-arrow-down-right"
     on-icon="ti ti-arrow-down-right"
-    off-label="ToggleButton"
-    on-label="ToggleButton"
+    off-label="ExtraToggleButton"
+    on-label="ExtraToggleButton"
 />
 ```
 
@@ -28,11 +28,11 @@ import { Template, Slots } from './ToggleButton.template';
 В макетах скорее всего нет изменения текста, поэтому предлагаю передавать текст и икону через дефолтный слот. Обрати внимание, что при передаче дефолтного слота, иконочный слот работать не будет
 
 ```html dark
-<ToggleButton>
+<ExtraToggleButton>
     <div>
         <i class="ti ti-arrow-down-right"/> Дефолтный слот
     </div>
-</ToggleButton>
+</ExtraToggleButton>
 ```
 
 <Story of={ToggleButtonStories.Slot} />
@@ -40,11 +40,11 @@ import { Template, Slots } from './ToggleButton.template';
 ### Слот иконки
 
 ```html dark
-<ToggleButton off-label="ToggleButton" on-label="ToggleButton">
+<ExtraToggleButton off-label="ExtraToggleButton" on-label="ExtraToggleButton">
      <template #icon>
          <i class="ti ti-ban"/>
      </template>
-</ToggleButton>
+</ExtraToggleButton>
 ```
 
 <Story of={ToggleButtonStories.IconSlot} />

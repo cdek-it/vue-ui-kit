@@ -1,12 +1,12 @@
-import { ToggleButton } from 'primevue';
+import { ExtraToggleButton } from '@/primeBlocks';
 import { ref } from 'vue';
 
 export const Template = (args) => ({
-  components: { ToggleButton },
+  components: { ExtraToggleButton },
   setup() {
     const checked = ref(true);
 
-    const label = 'ToggleButton';
+    const label = 'ExtraToggleButton';
 
     const icon = 'ti ti-arrow-down-right';
 
@@ -22,42 +22,42 @@ export const Template = (args) => ({
       <span><code>disabled icon</code></span>
 
       <span :style="{ justifySelf: 'flex-start' }"><code>size="large"</code></span>
-      <ToggleButton size="large" v-bind="args" :off-label="label" :on-label="label"/>
-      <ToggleButton size="large" v-model="checked" v-bind="args" :off-label="label" :on-label="label" />
-      <ToggleButton size="large" v-model="checked" :off-icon="icon" :on-icon="icon" v-bind="args" :off-label="label" :on-label="label" />
-      <ToggleButton size="large" disabled v-bind="args" :off-label="label" :on-label="label"/>
-      <ToggleButton :off-icon="icon" :on-icon="icon" disabled size="large" variant="text" v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton size="large" v-bind="args" :off-label="label" :on-label="label"/>
+      <ExtraToggleButton size="large" v-model="checked" v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton size="large" v-model="checked" :off-icon="icon" :on-icon="icon" v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton size="large" disabled v-bind="args" :off-label="label" :on-label="label"/>
+      <ExtraToggleButton :off-icon="icon" :on-icon="icon" disabled size="large" variant="text" v-bind="args" :off-label="label" :on-label="label" />
 
       <span></span>
-      <ToggleButton v-bind="args" :off-label="label" :on-label="label" />
-      <ToggleButton v-model="checked" v-bind="args" :off-label="label" :on-label="label" />
-      <ToggleButton v-model="checked" :off-icon="icon" :on-icon="icon" v-bind="args" :off-label="label" :on-label="label" />
-      <ToggleButton disabled v-bind="args" :off-label="label" :on-label="label" />
-      <ToggleButton disabled :off-icon="icon" :on-icon="icon" iconPos="right" v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton v-model="checked" v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton v-model="checked" :off-icon="icon" :on-icon="icon" v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton disabled v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton disabled :off-icon="icon" :on-icon="icon" iconPos="right" v-bind="args" :off-label="label" :on-label="label" />
 
       <span :style="{ justifySelf: 'flex-start' }"><code>size="small"</code></span>
-      <ToggleButton size="small" v-bind="args" :off-label="label" :on-label="label" />
-      <ToggleButton size="small" v-model="checked" v-bind="args" :off-label="label" :on-label="label" />
-      <ToggleButton size="small" v-model="checked" :off-icon="icon" :on-icon="icon" v-bind="args"  :off-label="label" :on-label="label"/>
-      <ToggleButton size="small" disabled v-bind="args" :off-label="label" :on-label="label" />
-      <ToggleButton size="small" :off-icon="icon" :on-icon="icon" disabled v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton size="small" v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton size="small" v-model="checked" v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton size="small" v-model="checked" :off-icon="icon" :on-icon="icon" v-bind="args"  :off-label="label" :on-label="label"/>
+      <ExtraToggleButton size="small" disabled v-bind="args" :off-label="label" :on-label="label" />
+      <ExtraToggleButton size="small" :off-icon="icon" :on-icon="icon" disabled v-bind="args" :off-label="label" :on-label="label" />
     </div>
 `,
 });
 
 export const Slots = (args) => ({
-  components: { ToggleButton },
+  components: { ExtraToggleButton },
   setup() {
     return { args };
   },
   template: `
   <div>
-    <ToggleButton v-bind="args">
+    <ExtraToggleButton v-bind="args">
       <template #icon>
         <i v-if="args.name === 'icon'" class="ti ti-ban"/>
       </template>
       <div v-if="args.name === 'default'"><i class="ti ti-arrow-down-right"></i> Дефолтный слот</div>
-    </ToggleButton>
+    </ExtraToggleButton>
   </div>
 `,
 });

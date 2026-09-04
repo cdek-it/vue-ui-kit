@@ -10,6 +10,7 @@ import {
   WithButtonSlotTemplate,
   WithButtonIconSlotTemplate,
 } from './MenuBar.template';
+import { ExtraMenubar } from '@/primeBlocks';
 
 const DOC_ITEMS_NESTED = `[
   { label: 'Home', icon: 'ti ti-home' },
@@ -45,7 +46,8 @@ const DOC_ITEMS_FLAT = `[
 ]`;
 
 export default {
-  title: 'Prime/Menu/MenuBar',
+  title: 'Prime/Menu/ExtraMenubar',
+  component: ExtraMenubar,
   parameters: {
     docs: {
       description: {
