@@ -6,7 +6,7 @@ import { Template } from './InputText.template';
  * Компонент текстового ввода.
  */
 const meta = {
-  title: 'Prime/Form/InputText',
+  title: 'Prime/Form/ExtraInputText',
   component: ExtraInputText,
   tags: ['autodocs'],
   parameters: {

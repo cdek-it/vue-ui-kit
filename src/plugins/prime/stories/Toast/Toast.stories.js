@@ -10,7 +10,7 @@ import {
 } from './Toast.template';
 
 const meta = {
-  title: 'Prime/Messages/Toast',
+  title: 'Prime/Messages/ExtraToast',
   component: ExtraToast,
   tags: ['autodocs'],
   parameters: {
@@ -82,7 +82,7 @@ const meta = {
 export default meta;
 
 export const Default = {
-  name: 'Toast',
+  name: 'ExtraToast',
   render: Template,
   args: {
     group: 'basic',
@@ -122,7 +122,7 @@ const showToast = () => {
 };
 
 export const DefaultButton = {
-  name: 'Toast',
+  name: 'ExtraToast / Closable',
   render: TemplateCloseButton,
   args: {
     group: 'basic-button',
