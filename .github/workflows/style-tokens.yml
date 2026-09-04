@@ -1,10 +1,11 @@
-name: Lint on Push
+name: Style Tokens Check
 
 on:
-  push:         # срабатывает при любом пуше
+  pull_request:
+  push:
 
 jobs:
-  lint:
+  style-tokens:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,11 +16,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
       - name: Run install
         uses: borales/actions-yarn@v4
         with:
           cmd: install
 
-      - name: Run ESLint
-        run: yarn lint:cli
+      - name: Build Storybook + Check Style Tokens
+        run: yarn check:style-tokens
 

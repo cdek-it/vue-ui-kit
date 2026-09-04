@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Toast, type ToastEvent, type ToastProps } from 'primevue';
+import { Toast, type ToastEvent } from 'primevue';
 import { ExtraToastMessageIcon } from './useExtraToast';
+import type { ExtraToastProps } from './types';
 
 import {
   IconCircleCheck,
@@ -9,11 +10,7 @@ import {
   IconAlertCircle,
 } from '@tabler/icons-vue';
 
-interface IExtraToast extends ToastProps {
-  width?: 'sm' | 'md' | 'lg' | 'xlg';
-}
-
-withDefaults(defineProps<IExtraToast>(), {
+withDefaults(defineProps<ExtraToastProps>(), {
   width: 'md',
 });
 
@@ -25,8 +22,10 @@ const emit = defineEmits<{
 
 <template>
   <Toast
-    v-bind="{ ...$props, ...$attrs }"
-    :class="`p-toast-${width}`"
+    v-bind="$attrs"
+    :group="group"
+    :position="position"
+    :class="['extra-toast', `extra-toast--${width}`]"
     @close="emit('close', $event)"
     @lifeEnd="emit('life-end', $event)"
   >
@@ -71,3 +70,20 @@ const emit = defineEmits<{
     </template>
   </Toast>
 </template>
+
+<style scoped lang="scss">
+:deep(.p-toast.extra-toast--sm),
+:deep(.p-toast.extra-toast--sm .p-toast-message) {
+  width: var(--p-messages-sm-width);
+}
+
+:deep(.p-toast.extra-toast--lg),
+:deep(.p-toast.extra-toast--lg .p-toast-message) {
+  width: var(--p-messages-lg-width);
+}
+
+:deep(.p-toast.extra-toast--xlg),
+:deep(.p-toast.extra-toast--xlg .p-toast-message) {
+  width: var(--p-messages-xlg-width);
+}
+</style>

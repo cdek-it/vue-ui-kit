@@ -28,7 +28,7 @@ import * as InputTextStories from './InputText.stories';
 <Canvas of={InputTextStories.Invalid} />
 
 ### FloatLabel
-Интеграция с `FloatLabel` — плавающая метка внутри поля.
+Сценарий `label-position="float"` — лейбл расположен внутри поля.
 <Canvas of={InputTextStories.FloatLabel} />
 
 Возможно использование `FloatLabel` и `ExtraInputText` напрямую:
@@ -41,5 +41,10 @@ import * as InputTextStories from './InputText.stories';
 ```
 
 ### FloatLabel + Invalid
-FloatLabel с невалидным состоянием.
+Сценарий `label-position="float"` с невалидным состоянием.
 <Canvas of={InputTextStories.FloatLabelInvalid} />
+
+### Left Label + Caption + Info
+Сценарий по спецификации с лейблом слева, подписью и дополнительной информацией.
+<Canvas of={InputTextStories.LeftLabelWithMeta} />
+
