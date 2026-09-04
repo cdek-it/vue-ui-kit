@@ -34,6 +34,8 @@
     "lint:cli": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore --max-warnings 0",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "STORYBOOK_BASE_HREF=vue-ui-kit storybook build",
+    "check:css-vars": "node ./scripts/check-css-vars.mjs",
+    "check:style-tokens": "yarn -s build-storybook && yarn -s check:css-vars",
     "gen:component": "bash ./scripts/generate-component.sh",
     "prepare": "husky install"
   },
@@ -45,7 +47,7 @@
     "@mdx-js/react": "^3.1.1",
     "@primevue/auto-import-resolver": "4.3.6",
     "@primevue/themes": "4.3.6",
-    "@tabler/icons-vue": "^3.22.0",
+    "@tabler/icons-vue": "^3.41.1",
     "@tabler/icons-webfont": "^3.22.0",
     "@vee-validate/rules": "^4.7.3",
     "lodash": "^4.17.21",

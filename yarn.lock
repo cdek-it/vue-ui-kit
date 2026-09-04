@@ -1294,12 +1294,12 @@
     type-fest "~2.19"
     vue-component-type-helpers latest
 
-"@tabler/icons-vue@3.22.0":
-  version "3.22.0"
-  resolved "https://registry.yarnpkg.com/@tabler/icons-vue/-/icons-vue-3.22.0.tgz#3919c344b22f9dfe7087be5d640a62262156dc4a"
-  integrity sha512-cgjvq+kjfqu7aJCAUmZByf+enUeLhSI7gVyWzBMCKNCehPoUHBmWNqM5zdnVJw/X2ogdvYL/H5arrSvKktH70Q==
+"@tabler/icons-vue@^3.41.1":
+  version "3.41.1"
+  resolved "https://registry.yarnpkg.com/@tabler/icons-vue/-/icons-vue-3.41.1.tgz#c7c79984d8125e112556f114754227d8a70cefca"
+  integrity sha512-OLLWlyrx6HdQpdgnZ8dO8uBGIIZwQDPgE8Gl6tUuAD7AgtfnmtFz8vb7dTEvxddM5CMpPt21ogPpBhJfEjSY+Q==
   dependencies:
-    "@tabler/icons" "3.22.0"
+    "@tabler/icons" "3.41.1"
 
 "@tabler/icons-webfont@^3.22.0":
   version "3.34.1"
@@ -1309,15 +1309,15 @@
     "@tabler/icons" "3.34.1"
     sharp "^0.34.1"
 
-"@tabler/icons@3.22.0":
-  version "3.22.0"
-  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-3.22.0.tgz#f937ec65d98710b891da6368559ea15cbcd87f91"
-  integrity sha512-IfgGzhFph5OBr2wTieWL/hyAs0FThnq9O155a6kfGYxqx7h5LQw91wnRswhEaGhXCcfmR7ZVDUr9H+x4b9Pb8g==
-
 "@tabler/icons@3.34.1":
   version "3.34.1"
   resolved "https://registry.npmjs.org/@tabler/icons/-/icons-3.34.1.tgz"
   integrity sha512-9gTnUvd7Fd/DmQgr3MKY+oJLa1RfNsQo8c/ir3TJAWghOuZXodbtbVp0QBY2DxWuuvrSZFys0HEbv1CoiI5y6A==
+
+"@tabler/icons@3.41.1":
+  version "3.41.1"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-3.41.1.tgz#dff9c77af287c73c2fcab4074cfa9f2069f9b7ee"
+  integrity sha512-OaRnVbRmH2nHtFeg+RmMJ/7m2oBIF9XCJAUD5gQnMrpK9f05ydj8MZrAf3NZQqOXyxGN1UBL0D5IKLLEUfr74Q==
 
 "@tanstack/virtual-core@3.13.12":
   version "3.13.12"

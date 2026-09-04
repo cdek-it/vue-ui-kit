@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { Toast, type ToastEvent, type ToastProps } from 'primevue';
-import { PBlockToastMessageIcon } from './usePBlockToast';
+import { Toast, type ToastEvent } from 'primevue';
+import { ExtraToastMessageIcon } from './useExtraToast';
+import type { ExtraToastProps } from './types';
 
 import {
   IconCircleCheck,
@@ -9,11 +10,7 @@ import {
   IconAlertCircle,
 } from '@tabler/icons-vue';
 
-interface IPBlockToast extends ToastProps {
-  width?: 'sm' | 'md' | 'lg' | 'xlg';
-}
-
-withDefaults(defineProps<IPBlockToast>(), {
+withDefaults(defineProps<ExtraToastProps>(), {
   width: 'md',
 });
 
@@ -25,8 +22,10 @@ const emit = defineEmits<{
 
 <template>
   <Toast
-    v-bind="{ ...$props, ...$attrs }"
-    :class="`p-toast-${width}`"
+    v-bind="$attrs"
+    :group="group"
+    :position="position"
+    :class="['extra-toast', `extra-toast--${width}`]"
     @close="emit('close', $event)"
     @lifeEnd="emit('life-end', $event)"
   >
@@ -39,16 +38,16 @@ const emit = defineEmits<{
     <template v-else #message="slotProps">
       <div class="p-toast-accent-line"></div>
       <IconCircleCheck
-        v-if="slotProps.message.icon === PBlockToastMessageIcon.success"
+        v-if="slotProps.message.icon === ExtraToastMessageIcon.success"
       />
       <IconInfoCircle
-        v-else-if="slotProps.message.icon === PBlockToastMessageIcon.info"
+        v-else-if="slotProps.message.icon === ExtraToastMessageIcon.info"
       />
       <IconAlertTriangle
-        v-else-if="slotProps.message.icon === PBlockToastMessageIcon.warn"
+        v-else-if="slotProps.message.icon === ExtraToastMessageIcon.warn"
       />
       <IconAlertCircle
-        v-else-if="slotProps.message.icon === PBlockToastMessageIcon.error"
+        v-else-if="slotProps.message.icon === ExtraToastMessageIcon.error"
       />
       <i
         v-else
@@ -71,3 +70,20 @@ const emit = defineEmits<{
     </template>
   </Toast>
 </template>
+
+<style scoped lang="scss">
+:deep(.p-toast.extra-toast--sm),
+:deep(.p-toast.extra-toast--sm .p-toast-message) {
+  width: var(--p-messages-sm-width);
+}
+
+:deep(.p-toast.extra-toast--lg),
+:deep(.p-toast.extra-toast--lg .p-toast-message) {
+  width: var(--p-messages-lg-width);
+}
+
+:deep(.p-toast.extra-toast--xlg),
+:deep(.p-toast.extra-toast--xlg .p-toast-message) {
+  width: var(--p-messages-xlg-width);
+}
+</style>

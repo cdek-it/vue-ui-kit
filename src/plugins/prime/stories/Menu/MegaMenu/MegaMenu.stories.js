@@ -3,9 +3,11 @@ import {
   VerticalTemplate,
   CustomTemplate,
 } from './MegaMenu.template';
+import { ExtraMegaMenu } from '@/primeBlocks';
 
 export default {
-  title: 'Prime/Menu/MegaMenu',
+  title: 'Prime/Menu/ExtraMegaMenu',
+  component: ExtraMegaMenu,
   parameters: {
     docs: {
       description: {
@@ -50,7 +52,7 @@ const items = ref([
 </script>
 
 <template>
-  <PBlockMegaMenu :model="items" />
+  <ExtraMegaMenu :model="items" />
 </template>`,
       },
     },
@@ -86,7 +88,7 @@ const items = ref([
 </script>
 
 <template>
-  <PBlockMegaMenu :model="items" orientation="vertical" />
+  <ExtraMegaMenu :model="items" orientation="vertical" />
 </template>`,
       },
     },
@@ -101,7 +103,7 @@ export const Custom = {
         language: 'html',
         code: `<script setup>
 import { ref } from 'vue';
-import { PBlockMenuItem } from '@cdek-it/vue-ui-kit';
+import { ExtraMenuItem } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   {
@@ -132,11 +134,11 @@ const items = ref([
 </script>
 
 <template>
-  <PBlockMegaMenu :model="items">
+  <ExtraMegaMenu :model="items">
     <template #item="{ item, props }">
-      <PBlockMenuItem v-bind="{ ...item, ...props.action }" />
+      <ExtraMenuItem v-bind="{ ...item, ...props.action }" />
     </template>
-  </PBlockMegaMenu>
+  </ExtraMegaMenu>
 </template>`,
       },
     },

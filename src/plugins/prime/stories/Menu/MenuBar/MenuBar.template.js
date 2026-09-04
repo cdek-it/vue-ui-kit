@@ -1,8 +1,8 @@
 import { ref } from 'vue';
-import { PBlockMenubar } from '@/primeBlocks';
+import { ExtraMenubar } from '@/primeBlocks';
 
 export const BasicTemplate = () => ({
-  components: { PBlockMenubar },
+  components: { ExtraMenubar },
   setup() {
     const items = [
       {
@@ -39,12 +39,12 @@ export const BasicTemplate = () => ({
     return { items };
   },
   template: `
-    <PBlockMenubar :model="items" />
+    <ExtraMenubar :model="items" />
   `,
 });
 
 export const WithIconTemplate = () => ({
-  components: { PBlockMenubar },
+  components: { ExtraMenubar },
   setup() {
     const items = [
       {
@@ -85,12 +85,12 @@ export const WithIconTemplate = () => ({
     return { items };
   },
   template: `
-    <PBlockMenubar :model="items" />
+    <ExtraMenubar :model="items" />
   `,
 });
 
 export const CustomTemplate = (args) => ({
-  components: { PBlockMenubar },
+  components: { ExtraMenubar },
   setup() {
     const items = ref([
       {
@@ -126,12 +126,12 @@ export const CustomTemplate = (args) => ({
     return { args, items };
   },
   template: `
-    <PBlockMenubar :model="items" v-bind="args" />
+    <ExtraMenubar :model="items" v-bind="args" />
   `,
 });
 
 export const WithItemAsTemplate = () => ({
-  components: { PBlockMenubar },
+  components: { ExtraMenubar },
   setup() {
     const items = ref([
       { label: 'Home', icon: 'ti ti-home' },
@@ -156,7 +156,7 @@ export const WithItemAsTemplate = () => ({
     return { items };
   },
   template: `
-    <PBlockMenubar :model="items" item-as="button" />
+    <ExtraMenubar :model="items" item-as="button" />
   `,
 });
 
@@ -182,12 +182,12 @@ const baseItems = () =>
   ]);
 
 export const WithSlotsTemplate = () => ({
-  components: { PBlockMenubar },
+  components: { ExtraMenubar },
   setup() {
     return { items: baseItems() };
   },
   template: `
-    <PBlockMenubar :model="items">
+    <ExtraMenubar :model="items">
       <template #start>
         <span class="ti ti-brand-vue" style="font-size: 1.5rem; margin-right: 0.5rem;" />
       </template>
@@ -197,45 +197,45 @@ export const WithSlotsTemplate = () => ({
       <template #end>
         <button class="p-button p-button-text p-button-sm">Logout</button>
       </template>
-    </PBlockMenubar>
+    </ExtraMenubar>
   `,
 });
 
 export const WithItemIconSlotTemplate = () => ({
-  components: { PBlockMenubar },
+  components: { ExtraMenubar },
   setup() {
     return { items: baseItems() };
   },
   template: `
-    <PBlockMenubar :model="items">
+    <ExtraMenubar :model="items">
       <template #itemicon="{ item }">
         <span v-if="item.icon" :class="item.icon" class="text-violet-600" />
       </template>
-    </PBlockMenubar>
+    </ExtraMenubar>
   `,
 });
 
 export const WithSubmenuIconSlotTemplate = () => ({
-  components: { PBlockMenubar },
+  components: { ExtraMenubar },
   setup() {
     return { items: baseItems() };
   },
   template: `
-    <PBlockMenubar :model="items">
+    <ExtraMenubar :model="items">
       <template #submenuicon="{ root }">
         <span :class="root ? 'ti ti-caret-down-filled text-emerald-500' : 'ti ti-caret-right-filled text-emerald-500'" />
       </template>
-    </PBlockMenubar>
+    </ExtraMenubar>
   `,
 });
 
 export const WithSubmenuIconActiveStateTemplate = () => ({
-  components: { PBlockMenubar },
+  components: { ExtraMenubar },
   setup() {
     return { items: baseItems() };
   },
   template: `
-    <PBlockMenubar :model="items">
+    <ExtraMenubar :model="items">
       <template #submenuicon="{ root }">
         <span
           :class="[
@@ -245,37 +245,37 @@ export const WithSubmenuIconActiveStateTemplate = () => ({
           ]"
         />
       </template>
-    </PBlockMenubar>
+    </ExtraMenubar>
   `,
 });
 
 export const WithButtonSlotTemplate = () => ({
-  components: { PBlockMenubar },
+  components: { ExtraMenubar },
   setup() {
     return { items: baseItems() };
   },
   template: `
-    <PBlockMenubar :model="items">
+    <ExtraMenubar :model="items">
       <template #button="{ toggleCallback }">
         <button class="p-button p-button-text p-button-sm" type="button" @click="toggleCallback">
           <span class="ti ti-menu-2" style="margin-right: 0.25rem;" />
           Menu
         </button>
       </template>
-    </PBlockMenubar>
+    </ExtraMenubar>
   `,
 });
 
 export const WithButtonIconSlotTemplate = () => ({
-  components: { PBlockMenubar },
+  components: { ExtraMenubar },
   setup() {
     return { items: baseItems() };
   },
   template: `
-    <PBlockMenubar :model="items">
+    <ExtraMenubar :model="items">
       <template #buttonicon>
         <span class="ti ti-layout-sidebar-right-collapse text-sky-500" />
       </template>
-    </PBlockMenubar>
+    </ExtraMenubar>
   `,
 });

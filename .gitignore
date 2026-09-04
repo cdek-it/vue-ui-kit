@@ -31,3 +31,5 @@ coverage
 .npmrc
 
 storybook-static
+
+.claude/*

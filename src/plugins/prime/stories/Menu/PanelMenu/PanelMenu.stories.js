@@ -3,9 +3,11 @@ import {
   MultipleTemplate,
   CustomTemplate,
 } from './PanelMenu.template';
+import { ExtraPanelMenu } from '@/primeBlocks';
 
 export default {
-  title: 'Prime/Menu/PanelMenu',
+  title: 'Prime/Menu/ExtraPanelMenu',
+  component: ExtraPanelMenu,
   argTypes: {
     showIcons: {
       name: 'Show Icons',
@@ -59,12 +61,12 @@ export const Basic = {
         language: 'html',
         code: `
 <template>
-  <PBlockPanelMenu :model="items" />
+  <ExtraPanelMenu :model="items" />
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { PBlockPanelMenu } from '@cdek-it/vue-ui-kit';
+import { ExtraPanelMenu } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   {
@@ -98,12 +100,12 @@ export const Multiple = {
         language: 'html',
         code: `
 <template>
-  <PBlockPanelMenu :model="items" multiple />
+  <ExtraPanelMenu :model="items" multiple />
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { PBlockPanelMenu } from '@cdek-it/vue-ui-kit';
+import { ExtraPanelMenu } from '@cdek-it/vue-ui-kit';
 
 const items = ref(${baseItemsWithIcons});
 </script>
@@ -121,16 +123,16 @@ export const Custom = {
         language: 'html',
         code: `
 <template>
-  <PBlockPanelMenu :model="items" multiple>
+  <ExtraPanelMenu :model="items" multiple>
     <template #item="{ item, props, root }">
-      <PBlockMenuItem v-bind="{ ...item, ...props.action }" :root="root" />
+      <ExtraMenuItem v-bind="{ ...item, ...props.action }" :root="root" />
     </template>
-  </PBlockPanelMenu>
+  </ExtraPanelMenu>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { PBlockPanelMenu, PBlockMenuItem } from '@cdek-it/vue-ui-kit';
+import { ExtraPanelMenu, ExtraMenuItem } from '@cdek-it/vue-ui-kit';
 
 const items = ref([
   {

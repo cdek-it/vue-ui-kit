@@ -1,21 +1,21 @@
 import { mount } from '@vue/test-utils';
 import { describe, test, expect } from 'vitest';
 import builderProp from '@/test/decorators';
-import PBlockToggleButton from './PBlockToggleButton.vue';
+import ExtraToggleButton from './ExtraToggleButton.vue';
 
-interface PBlockToggleButtonBuilder {
-  setBaseIcon: (baseIcon: string) => PBlockToggleButtonBuilder;
-  setBaseLabel: (baseLabel: string) => PBlockToggleButtonBuilder;
-  setOnIcon: (onIcon: string) => PBlockToggleButtonBuilder;
-  setOffIcon: (offIcon: string) => PBlockToggleButtonBuilder;
-  setOnLabel: (onLabel: string) => PBlockToggleButtonBuilder;
-  setOffLabel: (offLabel: string) => PBlockToggleButtonBuilder;
-  setModelValue: (modelValue: boolean) => PBlockToggleButtonBuilder;
-  setDefaultSlot: (defaultSlot: string) => PBlockToggleButtonBuilder;
-  setIconSlot: (iconSlot: string) => PBlockToggleButtonBuilder;
+interface ExtraToggleButtonBuilder {
+  setBaseIcon: (baseIcon: string) => ExtraToggleButtonBuilder;
+  setBaseLabel: (baseLabel: string) => ExtraToggleButtonBuilder;
+  setOnIcon: (onIcon: string) => ExtraToggleButtonBuilder;
+  setOffIcon: (offIcon: string) => ExtraToggleButtonBuilder;
+  setOnLabel: (onLabel: string) => ExtraToggleButtonBuilder;
+  setOffLabel: (offLabel: string) => ExtraToggleButtonBuilder;
+  setModelValue: (modelValue: boolean) => ExtraToggleButtonBuilder;
+  setDefaultSlot: (defaultSlot: string) => ExtraToggleButtonBuilder;
+  setIconSlot: (iconSlot: string) => ExtraToggleButtonBuilder;
 }
 
-class PBlockToggleButtonBuilder {
+class ExtraToggleButtonBuilder {
   @builderProp
   baseIcon?: string;
 
@@ -44,7 +44,7 @@ class PBlockToggleButtonBuilder {
   iconSlot?: string;
 
   build() {
-    return mount(PBlockToggleButton, {
+    return mount(ExtraToggleButton, {
       props: {
         baseIcon: this.baseIcon,
         baseLabel: this.baseLabel,
@@ -62,9 +62,9 @@ class PBlockToggleButtonBuilder {
   }
 }
 
-describe('Unit: PBlockToggleButton', () => {
+describe('Unit: ExtraToggleButton', () => {
   test('Если задан baseLabel, то он должен отображаться в тексте кнопки', () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setBaseLabel('Base Label')
       .build();
 
@@ -72,7 +72,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если задан baseLabel, то он должен то он отображается и при нажатии', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setBaseLabel('Base Label')
       .build();
 
@@ -88,7 +88,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если задан baseLabel и onLabel, то при нажатии отображается onLabel', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setBaseLabel('Base Label')
       .setOnLabel('On Label')
       .build();
@@ -105,7 +105,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если задан baseLabel и offLabel, то при нажатии отображается baseLabel, по умолчанию отображется offLabel', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setBaseLabel('Base Label')
       .setOffLabel('Off Label')
       .build();
@@ -122,7 +122,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если задан onLabel и offLabel, то при нажатии отображается onLabel, по умолчанию отображется offLabel', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setOffLabel('Off Label')
       .setOnLabel('On Label')
       .build();
@@ -139,7 +139,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если задана baseIcon, то должна отображаться заданная иконка', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setBaseIcon('ti ti-arrow-down-right')
       .build();
 
@@ -147,7 +147,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если задана baseIcon, то должна отображаться заданная иконка и при нажатии', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setBaseIcon('ti ti-arrow-down-right')
       .build();
 
@@ -162,7 +162,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если задана baseIcon и onIcon, то при нажатии отображается OnIcon', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setBaseIcon('ti ti-arrow-down-right')
       .setOnIcon('ti ti-star')
       .build();
@@ -178,7 +178,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если задана offIcon, то должна отображаться по умолчанию', () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setOffIcon('ti ti-lock')
       .build();
 
@@ -189,7 +189,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если задана onIcon, то она отображается после нажатия', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setOnIcon('ti ti-unlock')
       .build();
 
@@ -204,7 +204,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если задана offIcon, она отображается снова после повторного нажатия', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setOffIcon('ti ti-lock')
       .setOnIcon('ti ti-unlock')
       .build();
@@ -223,7 +223,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Если заданы baseIcon, onIcon и offIcon, то отображаются onIcon и offIcon', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setBaseIcon('ti ti-arrow-down-right')
       .setOnIcon('ti ti-star')
       .setOffIcon('ti ti-lock')
@@ -245,7 +245,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('При нажатии на кнопку прокидывается эмит focus', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setBaseIcon('ti ti-arrow-down-right')
       .build();
 
@@ -257,7 +257,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Прокидываются эмиты focus, blur, change с ToggleButton компонента', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setBaseIcon('ti ti-arrow-down-right')
       .build();
 
@@ -277,7 +277,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Компонент поддерживает v-model', async () => {
-    const wrapper = new PBlockToggleButtonBuilder().setModelValue(true).build();
+    const wrapper = new ExtraToggleButtonBuilder().setModelValue(true).build();
 
     const button = wrapper.find('button');
 
@@ -287,7 +287,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Дефолтный слот прокидывается в ToggleButton', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setDefaultSlot('default clot')
       .build();
 
@@ -297,7 +297,7 @@ describe('Unit: PBlockToggleButton', () => {
   });
 
   test('Иконочный слот прокидывается в ToggleButton', async () => {
-    const wrapper = new PBlockToggleButtonBuilder()
+    const wrapper = new ExtraToggleButtonBuilder()
       .setIconSlot('<i class="ti ti-ban"/>')
       .build();
 

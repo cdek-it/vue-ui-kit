@@ -1,7 +1,9 @@
+import { ExtraToggleButton } from '@/primeBlocks';
 import { Template, Slots } from './ToggleButton.template';
 
 export default {
-  title: 'Prime/Form/ToggleButton',
+  title: 'Prime/Form/ExtraToggleButton',
+  component: ExtraToggleButton,
 };
 
 export const Primary = {
