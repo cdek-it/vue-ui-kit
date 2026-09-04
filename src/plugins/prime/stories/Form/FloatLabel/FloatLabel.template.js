@@ -1,10 +1,10 @@
 import { ref } from 'vue';
 import FloatLabel from 'primevue/floatlabel';
-import InputText from 'primevue/inputtext';
+import ExtraInputText from '@/primeBlocks/ExtraInputText/ExtraInputText.vue';
 import Textarea from 'primevue/textarea';
 
 export const Template = (args) => ({
-  components: { FloatLabel, InputText, Textarea },
+  components: { FloatLabel, InputText: ExtraInputText, Textarea },
   setup() {
     const value1 = ref('text input');
     const value2 = ref('text input');

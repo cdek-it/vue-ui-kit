@@ -1,5 +1,5 @@
 import Button from 'primevue/button';
-import InputText from 'primevue/inputtext';
+import ExtraInputText from '@/primeBlocks/ExtraInputText/ExtraInputText.vue';
 
 export const Template = (args) => ({
   components: { Button },
@@ -45,7 +45,7 @@ export const TemplateDelay = () => ({
 });
 
 export const TemplateEvent = () => ({
-  components: { InputText, Button },
+  components: { InputText: ExtraInputText, Button },
   template: `
     <div class="flex flex-col items-center gap-8 p-10">
       <div class="flex flex-col gap-2">

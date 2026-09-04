@@ -11,9 +11,11 @@ export const Template = (args) => ({
     <ExtraInputText
       v-model="value"
       :size="args.size"
-      :showClear="args.showClear"
-      :hasFloatlabel="args.hasFloatlabel"
+      :clearable="args.clearable"
+      :label-position="args.labelPosition"
       :label="args.label"
+      :caption="args.caption"
+      :info="args.info"
       :required="args.required"
       :invalid="args.invalid"
       :disabled="args.disabled"

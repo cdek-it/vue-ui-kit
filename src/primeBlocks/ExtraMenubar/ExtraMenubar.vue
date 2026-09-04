@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import type { Component } from 'vue';
 import { IconMenu2 } from '@tabler/icons-vue';
-import { Menubar, type MenubarProps } from 'primevue';
+import { Menubar } from 'primevue';
 import type { MenubarSlots } from 'primevue/menubar';
 import ExtraMenuItem from '../ExtraMenuItem/ExtraMenuItem.vue';
-
-interface IExtraMenubar extends MenubarProps {
-  itemAs?: string | Component;
-}
+import type { ExtraMenubarProps } from './types';
 
 type MenubarItemSlotProps = Parameters<NonNullable<MenubarSlots['item']>>[0];
 
@@ -17,7 +13,7 @@ function getItemAttrs(
   return { ...slotProps.item, ...slotProps.props.action };
 }
 
-defineProps<IExtraMenubar>();
+defineProps<ExtraMenubarProps>();
 </script>
 
 <template>
@@ -64,16 +60,16 @@ defineProps<IExtraMenubar>();
   font-size: var(--p-menubar-extend-icon-size);
 }
 
-:deep(.p-menubar .p-menubar-item-link.p-block-menuitem-link) {
-  --p-block-menuitem-padding: var(--p-menubar-item-padding);
-  --p-block-menuitem-gap: var(--p-menubar-item-gap);
-  --p-block-menuitem-border-radius: var(--p-menubar-item-border-radius);
-  --p-block-menuitem-icon-size: var(--p-menubar-extend-icon-size);
-  --p-block-menuitem-label-font-size: var(--p-fonts-font-size-base);
-  --p-block-menuitem-label-font-weight: var(--p-fonts-font-weight-regular);
-  --p-block-menuitem-caption-gap: var(--p-menubar-extend-ext-item-caption-gap);
-  --p-block-menuitem-description-font-size: var(--p-fonts-font-size-sm);
-  --p-block-menuitem-description-color: var(
+:deep(.p-menubar .p-menubar-item-link.extra-menuitem-link) {
+  --p-navigation-item-padding: var(--p-menubar-item-padding);
+  --p-navigation-item-gap: var(--p-menubar-item-gap);
+  --p-navigation-item-border-radius: var(--p-menubar-item-border-radius);
+  --p-navigation-item-icon-size: var(--p-menubar-extend-icon-size);
+  --p-navigation-item-label-font-size: var(--p-fonts-font-size-300);
+  --p-navigation-item-label-font-weight: var(--p-fonts-font-weight-regular);
+  --p-navigation-item-caption-gap: var(--p-menubar-extend-ext-item-caption-gap);
+  --p-navigation-item-description-font-size: var(--p-fonts-font-size-200);
+  --p-navigation-item-description-color: var(
     --p-menubar-extend-ext-item-caption-color
   );
 }

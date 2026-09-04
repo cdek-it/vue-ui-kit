@@ -25,15 +25,14 @@ import { ExtraInputText } from '@cdek-it/vue-ui-kit';
   argTypes: {
     size: {
       control: 'select',
-      options: ['small', 'large', 'xlarge'],
-      description:
-        'Размер поля. `xlarge` — кастомный размер, реализован через CSS-класс `p-inputtext-xlg`.',
+      options: ['sm', 'base', 'lg', 'xlg'],
+      description: 'Размер поля по дизайн-спеке.',
       table: {
         category: 'Props',
-        type: { summary: "'small' | 'large' | 'xlarge'" },
+        type: { summary: "'sm' | 'base' | 'lg' | 'xlg'" },
       },
     },
-    showClear: {
+    clearable: {
       control: 'boolean',
       description: 'Показывает иконку очистки при наличии значения',
       table: {
@@ -77,18 +76,19 @@ import { ExtraInputText } from '@cdek-it/vue-ui-kit';
         type: { summary: 'string' },
       },
     },
-    hasFloatlabel: {
-      control: 'boolean',
-      description: 'Включает режим плавающей метки (FloatLabel)',
+    labelPosition: {
+      control: 'select',
+      options: ['default', 'float', 'left'],
+      description: 'Положение лейбла по спецификации',
       table: {
         category: 'Props',
-        defaultValue: { summary: 'false' },
-        type: { summary: 'boolean' },
+        defaultValue: { summary: 'default' },
+        type: { summary: "'default' | 'float' | 'left'" },
       },
     },
     label: {
       control: 'text',
-      description: 'Текст плавающей метки (при `hasFloatlabel`)',
+      description: 'Текст названия поля',
       table: {
         category: 'Props',
         type: { summary: 'string' },
@@ -103,6 +103,22 @@ import { ExtraInputText } from '@cdek-it/vue-ui-kit';
         type: { summary: 'boolean' },
       },
     },
+    caption: {
+      control: 'text',
+      description: 'Текст пояснения под полем',
+      table: {
+        category: 'Props',
+        type: { summary: 'string' },
+      },
+    },
+    info: {
+      control: 'text',
+      description: 'Дополнительная информация в tooltip иконки',
+      table: {
+        category: 'Props',
+        type: { summary: 'string' },
+      },
+    },
     fluid: {
       control: 'boolean',
       description: 'Растягивает поле на всю ширину контейнера',
@@ -115,11 +131,14 @@ import { ExtraInputText } from '@cdek-it/vue-ui-kit';
   },
   args: {
     placeholder: 'Введите текст...',
-    showClear: true,
-    hasFloatlabel: false,
+    clearable: true,
+    labelPosition: 'default',
+    size: 'base',
     invalid: false,
     disabled: false,
     readonly: false,
+    caption: '',
+    info: '',
     fluid: false,
   },
 };
@@ -253,22 +272,22 @@ export const FloatLabel = {
     template: `
       <ExtraInputText
         v-model="value"
-        hasFloatlabel
+        label-position="float"
         :label="args.label"
         :required="args.required"
-        :showClear="args.showClear"
+        :clearable="args.clearable"
       />
     `,
   }),
   args: {
     label: 'Имя',
     required: true,
-    showClear: true,
+    clearable: true,
   },
   argTypes: {
     label: {
       control: 'text',
-      description: 'Текст плавающей метки',
+      description: 'Текст названия поля',
       table: {
         category: 'Props',
         type: { summary: 'string' },
@@ -283,7 +302,7 @@ export const FloatLabel = {
         type: { summary: 'boolean' },
       },
     },
-    showClear: {
+    clearable: {
       control: 'boolean',
       description: 'Показывает иконку очистки при наличии значения',
       table: {
@@ -293,6 +312,9 @@ export const FloatLabel = {
       },
     },
     size: { table: { disable: true } },
+    labelPosition: { table: { disable: true } },
+    caption: { table: { disable: true } },
+    info: { table: { disable: true } },
     invalid: { table: { disable: true } },
     disabled: { table: { disable: true } },
     readonly: { table: { disable: true } },
@@ -302,7 +324,7 @@ export const FloatLabel = {
   parameters: {
     docs: {
       description: {
-        story: `Интеграция с \`FloatLabel\` — плавающая метка внутри поля.
+        story: `Сценарий \`label-position="float"\` — лейбл расположен внутри поля.
 
 Можно также использовать \`FloatLabel\` и \`ExtraInputText\` напрямую:
 
@@ -316,7 +338,7 @@ export const FloatLabel = {
       source: {
         code: `
 <template>
-  <ExtraInputText v-model="value" hasFloatlabel label="Имя" required />
+  <ExtraInputText v-model="value" label-position="float" label="Имя" required />
 </template>
         `,
       },
@@ -335,10 +357,10 @@ export const FloatLabelInvalid = {
     template: `
       <ExtraInputText
         v-model="value"
-        hasFloatlabel
+        label-position="float"
         :label="args.label"
         :required="args.required"
-        :showClear="args.showClear"
+        :clearable="args.clearable"
         invalid
       />
     `,
@@ -346,12 +368,12 @@ export const FloatLabelInvalid = {
   args: {
     label: 'Обязательное поле',
     required: true,
-    showClear: true,
+    clearable: true,
   },
   argTypes: {
     label: {
       control: 'text',
-      description: 'Текст плавающей метки',
+      description: 'Текст названия поля',
       table: {
         category: 'Props',
         type: { summary: 'string' },
@@ -366,7 +388,7 @@ export const FloatLabelInvalid = {
         type: { summary: 'boolean' },
       },
     },
-    showClear: {
+    clearable: {
       control: 'boolean',
       description: 'Показывает иконку очистки при наличии значения',
       table: {
@@ -376,6 +398,9 @@ export const FloatLabelInvalid = {
       },
     },
     size: { table: { disable: true } },
+    labelPosition: { table: { disable: true } },
+    caption: { table: { disable: true } },
+    info: { table: { disable: true } },
     invalid: { table: { disable: true } },
     disabled: { table: { disable: true } },
     readonly: { table: { disable: true } },
@@ -385,13 +410,73 @@ export const FloatLabelInvalid = {
   parameters: {
     docs: {
       description: {
-        story:
-          'FloatLabel с невалидным состоянием — демонстрирует стилизацию ошибки в комбинации с плавающей меткой.',
+        story: 'Сценарий `label-position="float"` с невалидным состоянием.',
       },
       source: {
         code: `
 <template>
-  <ExtraInputText v-model="value" hasFloatlabel label="Обязательное поле" required invalid />
+  <ExtraInputText v-model="value" label-position="float" label="Обязательное поле" required invalid />
+</template>
+        `,
+      },
+    },
+  },
+};
+
+export const LeftLabelWithMeta = {
+  name: 'Left Label + Caption + Info',
+  render: (args) => ({
+    components: { ExtraInputText },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `
+      <ExtraInputText
+        v-model="value"
+        label-position="left"
+        :label="args.label"
+        :caption="args.caption"
+        :info="args.info"
+        :placeholder="args.placeholder"
+        :clearable="args.clearable"
+        :size="args.size"
+      />
+    `,
+  }),
+  args: {
+    label: 'Телефон',
+    caption: 'Формат: +7 (XXX) XXX-XX-XX',
+    info: 'Используется для связи с получателем',
+    placeholder: '+7 (900) 000-00-00',
+    clearable: true,
+    size: 'base',
+  },
+  argTypes: {
+    labelPosition: { table: { disable: true } },
+    required: { table: { disable: true } },
+    invalid: { table: { disable: true } },
+    disabled: { table: { disable: true } },
+    readonly: { table: { disable: true } },
+    fluid: { table: { disable: true } },
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Сценарий по спецификации с левым лейблом, подписью под полем и инфо-иконкой.',
+      },
+      source: {
+        code: `
+<template>
+  <ExtraInputText
+    v-model="value"
+    label-position="left"
+    label="Телефон"
+    caption="Формат: +7 (XXX) XXX-XX-XX"
+    info="Используется для связи с получателем"
+    placeholder="+7 (900) 000-00-00"
+  />
 </template>
         `,
       },
