@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, useAttrs } from 'vue';
+import { computed, useAttrs, useId } from 'vue';
 import { IconInfoCircle } from '@tabler/icons-vue';
 import { FloatLabel } from 'primevue';
 import ExtraInputTextField from './ExtraInputTextField.vue';
@@ -9,34 +9,21 @@ defineOptions({ inheritAttrs: false });
 
 const props = withDefaults(defineProps<ExtraInputTextProps>(), {
   clearable: true,
+  labelPosition: 'default',
 });
 
 const attrs = useAttrs();
+const autoInputId = useId();
 
-const resolvedLabelPosition = computed(() => {
-  return props.labelPosition ?? 'default';
-});
-
-const isFloatLabel = computed(() => resolvedLabelPosition.value === 'float');
-const isLeftLabel = computed(() => resolvedLabelPosition.value === 'left');
+const isFloatLabel = computed(() => props.labelPosition === 'float');
+const isLeftLabel = computed(() => props.labelPosition === 'left');
 
 const inputId = computed(() => {
   if (typeof attrs.id === 'string' && attrs.id) {
     return attrs.id;
   }
 
-  const labelValue = props.label?.trim();
-
-  if (!labelValue) {
-    return undefined;
-  }
-
-  const sanitizedLabel = labelValue
-    .toLowerCase()
-    .replace(/[^a-z0-9_-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-
-  return sanitizedLabel ? `extra-inputtext-${sanitizedLabel}` : undefined;
+  return autoInputId;
 });
 
 defineEmits<{
