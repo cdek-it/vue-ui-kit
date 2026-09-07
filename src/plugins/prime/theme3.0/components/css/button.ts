@@ -6,11 +6,15 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Размеры иконок для разных размеров кнопок */
 .p-button .p-button-icon {
+  font-size: ${dt('button.extend.iconSize.md')};
+}
+
+.p-button.p-button-sm .p-button-icon {
   font-size: ${dt('button.extend.iconSize.sm')};
 }
 
 .p-button.p-button-lg .p-button-icon {
-  font-size: ${dt('button.extend.iconSize.md')};
+  font-size: ${dt('button.extend.iconSize.lg')};
 }
 
 .p-button-xlg.p-button .p-button-icon,
@@ -21,7 +25,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 /* Стили для disabled и loading кнопок */
 .p-button:is(.p-disabled, :disabled, .p-button-loading) {
     mix-blend-mode: inherit;
-    opacity: ${dt('opacity.100')};
+    opacity: ${dt('opacity.1000')};
     color: ${dt('button.extend.disabledColor')};
     background: ${dt('button.extend.disabledBackground')};
     border-color: ${dt('button.extend.disabledBackground')};
@@ -30,22 +34,22 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 /* disabled outlined кнопки */
 .p-button.p-button-outlined:is(.p-disabled, :disabled, .p-button-loading) {
     color: ${dt('button.extend.disabledColor')};
-    background: ${dt('colorScheme.transparent')};
-    border-color: ${dt('colorScheme.transparent')};
+    background: ${dt('transparent')};
+    border-color: ${dt('transparent')};
 }
 
 /* disabled text кнопки */
 .p-button.p-button-text:is(.p-disabled, :disabled, .p-button-loading) {
     color: ${dt('button.extend.disabledColor')};
-    background: ${dt('colorScheme.transparent')};
-    border-color: ${dt('colorScheme.transparent')};
+    background: ${dt('transparent')};
+    border-color: ${dt('transparent')};
 }
 
 /* disabled link кнопки */
 .p-button.p-button-link:is(.p-disabled, :disabled, .p-button-loading) {
     color: ${dt('button.extend.disabledColor')};
-    background: ${dt('colorScheme.transparent')};
-    border-color: ${dt('colorScheme.transparent')};
+    background: ${dt('transparent')};
+    border-color: ${dt('transparent')};
 }
 
 /* Отступы для link кнопок */
@@ -61,7 +65,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Размер шрифта для link кнопки xlg */
 .p-button-link.p-button.p-button-xlg {
-  font-size: ${dt('fonts.fontSize.xl')};
+  font-size: ${dt('fonts.fontSize.600')};
 }
 
 /* Стили при наведении на link кнопку */
@@ -91,11 +95,11 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Высота строки для кнопок */
 .p-button-sm {
-  line-height: ${dt('fonts.lineHeight.25')};
+  line-height: ${dt('fonts.lineHeight.250')};
 }
 
 .p-button:is(.p-button-lg, .p-button-xlg) {
-  line-height: ${dt('fonts.lineHeight.55')};
+  line-height: ${dt('fonts.lineHeight.550')};
 }
 
 /* Скругление углов для кнопок large и xlg (кроме rounded) */
@@ -111,7 +115,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-button-lg.p-button:not(.p-button-icon-only):not(.p-button-link) {
   padding: ${dt('button.root.lg.paddingY')} ${dt('button.root.lg.paddingX')};
   font-size: ${dt('button.root.lg.fontSize')};
-  height: ${dt('controls.iconOnly.4xlg')};
+  height: ${dt('controls.iconOnly.850')};
 }
 
 /* Отступы и размер шрифта для xlg кнопки */
@@ -119,8 +123,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   padding: ${dt('button.extend.extXlg.paddingY')} ${dt(
   'button.extend.extXlg.paddingX'
 )};
-  font-size: ${dt('fonts.fontSize.xl')};
-  height: ${dt('controls.iconOnly.5xlg')};
+  font-size: ${dt('fonts.fontSize.500')};
+  height: ${dt('controls.iconOnly.900')};
 }
 
 /* Размеры для icon-only кнопок */

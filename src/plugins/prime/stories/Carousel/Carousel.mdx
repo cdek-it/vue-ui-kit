@@ -1,0 +1,43 @@
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as CarouselStories from './Carousel.stories';
+
+<Meta of={CarouselStories} />
+
+<Title />
+<Description />
+
+```javascript
+import Carousel from 'primevue/carousel';
+```
+
+## Варианты использования
+
+### Basic
+
+<details>
+<summary>Важно: обёртка карточки</summary>
+
+На элементе-обёртке внутри `#item` **обязательно** задавать `min-w-0 overflow-hidden`.
+
+PrimeVue по умолчанию скрывает неактивные слайды через `visibility: hidden`. Тема переопределяет это значение на `visibility: visible`, чтобы сохранить плавность анимации. В результате отсечение слайдов за пределами viewport берёт на себя `overflow: hidden` на самом контейнере карточки.
+
+</details>
+
+Базовая карусель с горизонтальной прокруткой. Используйте таблицу ниже для настройки пропсов в реальном времени.
+
+<Canvas of={CarouselStories.Basic} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={CarouselStories.Basic} />
+
+### Vertical
+
+Карусель с вертикальной ориентацией.
+
+<Canvas of={CarouselStories.Vertical} />
+
+### Autoplay
+
+Карусель с автоматической прокруткой слайдов (`autoplayInterval`, `circular`).
+
+<Canvas of={CarouselStories.Autoplay} />
