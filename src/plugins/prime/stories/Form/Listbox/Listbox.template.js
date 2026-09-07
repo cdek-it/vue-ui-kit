@@ -1,45 +1,38 @@
-import Listbox from 'primevue/listbox';
+import { Listbox } from 'primevue';
+import { ref } from 'vue';
 
-export const Template = (args) => ({
+const basicOptions = [
+  { name: 'New York', code: 'NY' },
+  { name: 'Rome', code: 'RM' },
+  { name: 'London', code: 'LDN' },
+  { name: 'Istanbul', code: 'IST' },
+  { name: 'Paris', code: 'PRS' },
+];
+
+export const BasicTemplate = (args) => ({
   components: { Listbox },
   setup() {
-    const options = [
-      { name: 'Option 1', code: 'O1' },
-      { name: 'Option 2', code: 'O2' },
-    ];
+    const value = ref(null);
 
-    const defaultValue = options[0];
-
-    return { args, options, defaultValue };
+    return { args, value, options: basicOptions };
   },
-  template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(4, max-content)', gap: '15px', alignItems: 'center' }">
-  <span></span>
-  <span></span>
-  <span><code>invalid</code></span>
-  <span><code>disabled</code></span>
-
-  <span :style="{ justifySelf: 'flex-start' }"></span>
-  <Listbox :options="options" optionLabel="name" v-bind="args" />
-  <Listbox :options="options" optionLabel="name" invalid v-bind="args" />
-  <Listbox :options="options" optionLabel="name" disabled v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>v-model="Option 1"</code></span>
-  <Listbox :options="options" optionLabel="name" :default-value="defaultValue" v-bind="args" />
-  <Listbox :options="options" optionLabel="name" :default-value="defaultValue" invalid v-bind="args" />
-  <Listbox :options="options" optionLabel="name" :default-value="defaultValue" disabled v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>:options="[]"</code></span>
-  <Listbox :options="[]" optionLabel="name" v-bind="args" />
-  <Listbox :options="[]" optionLabel="name" invalid v-bind="args" />
-  <Listbox :options="[]" optionLabel="name" disabled v-bind="args" />
-</div>
-`,
+  template: `<Listbox v-model="value" :options="options" optionLabel="name" v-bind="args" />`,
 });
 
-export const TemplateGrouped = (args) => ({
+export const CheckmarkTemplate = (args) => ({
   components: { Listbox },
   setup() {
+    const value = ref(null);
+
+    return { args, value, options: basicOptions };
+  },
+  template: `<Listbox v-model="value" :options="options" optionLabel="name" checkmark v-bind="args" />`,
+});
+
+export const GroupedTemplate = (args) => ({
+  components: { Listbox },
+  setup() {
+    const value = ref(null);
     const groupedOptions = [
       {
         label: 'Germany',
@@ -47,6 +40,7 @@ export const TemplateGrouped = (args) => ({
         items: [
           { label: 'Berlin', value: 'BE' },
           { label: 'Frankfurt', value: 'FR' },
+          { label: 'Hamburg', value: 'HA' },
         ],
       },
       {
@@ -55,54 +49,93 @@ export const TemplateGrouped = (args) => ({
         items: [
           { label: 'Chicago', value: 'CH' },
           { label: 'Los Angeles', value: 'LA' },
+          { label: 'New York', value: 'NY' },
         ],
       },
     ];
-    return { args, groupedOptions };
+
+    return { args, value, groupedOptions };
   },
   template: `
-<Listbox 
-  :options="groupedOptions" 
-  optionLabel="label"
-  optionGroupLabel="label"
-  optionGroupChildren="items"
-  v-bind="args"
->
-  <template #optiongroup="slotProps">
-    <div>
-      <i class="ti ti-brand-tabler" />
-      <div>{{ slotProps.option.label }}</div>
-    </div>
-  </template>
-</Listbox>
-`,
+    <Listbox
+      v-model="value"
+      :options="groupedOptions"
+      optionLabel="label"
+      optionGroupLabel="label"
+      optionGroupChildren="items"
+      v-bind="args"
+    >
+      <template #optiongroup="slotProps">
+        <div class="flex items-center gap-2">
+          <i class="ti ti-brand-tabler" />
+          <span>{{ slotProps.option.label }}</span>
+        </div>
+      </template>
+    </Listbox>
+  `,
 });
 
-export const TemplateCustom = (args) => ({
+export const CustomTemplate = (args) => ({
   components: { Listbox },
   setup() {
+    const value = ref(null);
     const options = [
-      { name: 'Option 1', description: 'Description 1', icon: 'ti ti-user' },
-      { name: 'Option 2', description: 'Description 2', icon: 'ti ti-users' },
       {
-        name: 'Option 3',
-        description: 'Description 3',
-        icon: 'ti ti-user-plus',
+        name: 'Profile',
+        description: 'Manage your account',
+        icon: 'ti ti-user',
       },
+      {
+        name: 'Settings',
+        description: 'App preferences',
+        icon: 'ti ti-settings',
+      },
+      { name: 'Messages', description: 'Your inbox', icon: 'ti ti-message' },
     ];
-    return { args, options };
+
+    return { args, value, options };
   },
   template: `
-<Listbox :options="options" optionLabel="name" v-bind="args">
-  <template #option="slotProps">
-    <div class="flex items-center">
-      <i :class="slotProps.option.icon" />
-      <div class="ml-2">
-        <div>{{ slotProps.option.name }}</div>
-        <small>{{ slotProps.option.description }}</small>
-      </div>
-    </div>
-  </template>
-</Listbox>
-`,
+    <Listbox v-model="value" :options="options" optionLabel="name" v-bind="args">
+      <template #option="slotProps">
+        <div class="flex items-center gap-2">
+          <i :class="slotProps.option.icon" />
+          <div>
+            <div>{{ slotProps.option.name }}</div>
+            <small class="p-listbox-option-caption">{{ slotProps.option.description }}</small>
+          </div>
+        </div>
+      </template>
+    </Listbox>
+  `,
+});
+
+export const FilterTemplate = (args) => ({
+  components: { Listbox },
+  setup() {
+    const value = ref(null);
+
+    return { args, value, options: basicOptions };
+  },
+  template: `<Listbox v-model="value" :options="options" filter optionLabel="name" v-bind="args" />`,
+});
+
+export const DisabledTemplate = (args) => ({
+  components: { Listbox },
+  setup() {
+    const value = ref(null);
+
+    return { args, value, options: basicOptions };
+  },
+  template: `<Listbox v-model="value" disabled :options="options" optionLabel="name" v-bind="args" />`,
+});
+
+export const MultipleTemplate = (args) => ({
+  components: { Listbox },
+  setup() {
+    const value = ref([]);
+
+    return { args, value, options: basicOptions };
+  },
+  template: `<Listbox v-model="value" :options="options" optionLabel="name" multiple v-bind="args" />`,
 });

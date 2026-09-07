@@ -1,0 +1,34 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as MessageStories from './Message.stories';
+
+<Meta of={MessageStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Базовый вариант сообщения. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={MessageStories.Default} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={MessageStories.Default} />
+
+### Severities
+Все доступные уровни важности: `info`, `success`, `warn`, `error`.
+<Canvas of={MessageStories.Severities} />
+
+### WithCloseButton
+Сообщение с кнопкой закрытия.
+<Canvas of={MessageStories.WithCloseButton} />
+
+#### Аргументы и события
+<Controls of={MessageStories.WithCloseButton} />
+
+### WithContent
+Сообщение с дополнительным контентом под заголовком.
+<Canvas of={MessageStories.WithContent} />
+
+#### Аргументы и события
+<Controls of={MessageStories.WithContent} />

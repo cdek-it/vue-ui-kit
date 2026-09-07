@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "figma": {
+      "type": "stdio",
+      "command": "figma-mcp",
+      "args": [],
+    }
+  }
+}
+

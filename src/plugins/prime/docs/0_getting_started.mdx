@@ -1,0 +1,117 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Prime/Быстрый старт" />
+
+# Быстрый старт
+
+Пошаговый чеклист для подключения дизайн-системы к Vue-проекту.
+
+## 1. Установка зависимостей
+
+```bash dark
+npm install primevue @cdek-ui-kit/vue
+```
+
+## 2. Подключение PrimeVue
+
+```js dark
+import PrimeVue from 'primevue/config';
+import { getPrimeVueConfig } from '@cdek-ui-kit/vue';
+
+app.use(PrimeVue, getPrimeVueConfig());
+```
+
+Подробнее: [Установка](?path=/docs/prime-установка--docs)
+
+## 3. Подключение типографики и иконок
+
+Добавьте в `index.html`:
+
+```html dark
+<link rel="preconnect" href="https://public-static.cdek.ru" />
+<link
+  rel="stylesheet"
+  href="https://public-static.cdek.ru/common/icons/v3.30.0/tabler-icons.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://public-static.cdek.ru/common/typography/v3.0.1/typography.min.css"
+/>
+```
+
+Подробнее: [Типографика](?path=/docs/prime-типографика--docs) | [Иконки](?path=/docs/prime-иконки--docs)
+
+## 4. Tailwind CSS (опционально)
+
+```bash dark
+npm install tailwindcss tailwindcss-primeui
+```
+
+В `tailwind.config.js`:
+
+```js dark
+const { tailwindConfigTheme } = require('@cdek-ui-kit/vue');
+
+export default {
+  content: ['./src/**/*.{vue,js,ts}'],
+  plugins: [require('tailwindcss-primeui')],
+  theme: {
+    extend: {
+      ...tailwindConfigTheme,
+    },
+  },
+};
+```
+
+Подробнее: [Tailwind](?path=/docs/prime-tailwind--docs)
+
+## 5. Первый компонент
+
+```html dark
+<template>
+  <PrimeButton label="Готово" />
+</template>
+```
+
+Если используете авто-импорт через `unplugin-vue-components`, компонент доступен сразу с префиксом `Prime`.
+Префикс задаётся в `getPrimeVueResolver()` из `@cdek-ui-kit/vue` (по умолчанию `'Prime'`):
+
+```js dark
+import Components from 'unplugin-vue-components/vite';
+import { getPrimeVueResolver } from '@cdek-ui-kit/vue';
+
+// vite.config.ts
+plugins: [
+  Components({
+    resolvers: [getPrimeVueResolver()],
+  }),
+]
+```
+
+При этом `<PrimeButton>` автоматически резолвится в `primevue/button`. Если нужен другой префикс:
+
+```js dark
+getPrimeVueResolver({ componentPrefix: 'P' }) // → <PButton>
+```
+
+Без авто-импорта компонент нужно импортировать вручную:
+
+```js dark
+import Button from 'primevue/button';
+```
+
+## Что входит в DS
+
+- **Тема** — дизайн-токены для всех компонентов PrimeVue (цвета, отступы, скругления, тени)
+- **Типографика** — CSS-классы для текста по дизайн-системе
+- **Иконки** — иконочный шрифт Tabler Icons
+- **Компоненты** — стилизованные компоненты PrimeVue + PBlock-обёртки с бизнес-логикой
+- **Tailwind-интеграция** — токены DS доступны как Tailwind-утилиты
+
+## Полезные ссылки
+
+- [Токены](?path=/docs/prime-токены--docs) — какие CSS-переменные и Tailwind-классы использовать
+- [Типографика](?path=/docs/prime-типографика--docs) — шрифтовые классы и SCSS-миксины
+- [Иконки](?path=/docs/prime-иконки--docs) — Tabler Icons, SVG-импорт
+- [Tailwind](?path=/docs/prime-tailwind--docs) — подключение и кастомные утилиты
+- [Тёмная тема](?path=/docs/prime-тёмная-тема--docs) — текущий статус и план включения

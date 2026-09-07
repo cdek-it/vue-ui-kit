@@ -1,0 +1,42 @@
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
+import * as ListboxStories from './Listbox.stories';
+
+<Meta of={ListboxStories} />
+
+<Title />
+
+<Description />
+
+```javascript
+import { Listbox } from 'primevue';
+```
+
+## Варианты использования
+
+### Basic
+
+<Canvas of={ListboxStories.Basic} />
+
+### С галочкой при выборе
+
+<Canvas of={ListboxStories.Checkmark} />
+
+### С группами
+
+<Canvas of={ListboxStories.Grouped} />
+
+### Кастомный шаблон
+
+<Canvas of={ListboxStories.Custom} />
+
+### С фильтром
+
+<Canvas of={ListboxStories.Filter} />
+
+### Disabled
+
+<Canvas of={ListboxStories.Disabled} />
+
+### Множественный выбор
+
+<Canvas of={ListboxStories.Multiple} />

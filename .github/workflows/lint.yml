@@ -21,4 +21,4 @@ jobs:
           cmd: install
 
       - name: Run ESLint
-        run: yarn lint
+        run: yarn lint:cli

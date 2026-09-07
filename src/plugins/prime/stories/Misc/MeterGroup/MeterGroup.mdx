@@ -1,0 +1,36 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as MeterGroupStories from './MeterGroup.stories';
+
+<Meta of={MeterGroupStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Basic
+Базовый пример с одним сегментом.
+<Canvas of={MeterGroupStories.Basic} />
+
+### Horizontal
+Горизонтальная шкала с несколькими сегментами и метками.
+<Canvas of={MeterGroupStories.Horizontal} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={MeterGroupStories.Horizontal} />
+
+### Vertical
+Вертикальная ориентация через `orientation="vertical"`.
+<Canvas of={MeterGroupStories.Vertical} />
+
+### Icon
+Иконки в метках через свойство `icon` в массиве `value`.
+<Canvas of={MeterGroupStories.Icon} />
+
+### Label Position Start
+Список меток располагается над шкалой через `labelPosition="start"`.
+<Canvas of={MeterGroupStories.LabelStart} />
+
+### Label Orientation Vertical
+Метки отображаются вертикальным списком через `labelOrientation="vertical"`.
+<Canvas of={MeterGroupStories.LabelVertical} />

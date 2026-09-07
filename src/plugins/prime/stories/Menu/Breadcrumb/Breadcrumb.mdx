@@ -1,0 +1,22 @@
+import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as BreadcrumbStories from './Breadcrumb.stories';
+
+<Meta of={BreadcrumbStories} />
+
+<Title />
+<Description />
+
+---
+
+## Варианты использования
+
+### Basic
+Простое использование с массивом ссылок и иконкой дома.
+<Canvas of={BreadcrumbStories.Basic} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={BreadcrumbStories.Basic} />
+
+### Only Icons
+Вариант отображения навигации, состоящий только из иконок.
+<Canvas of={BreadcrumbStories.IconsOnly} />

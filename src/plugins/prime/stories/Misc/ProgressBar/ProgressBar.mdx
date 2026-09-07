@@ -1,0 +1,32 @@
+import { Meta, Canvas, ArgTypes, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as ProgressBarStories from './ProgressBar.stories';
+
+<Meta of={ProgressBarStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### По умолчанию
+Базовый вариант прогресс-бара. Используйте таблицу ниже для настройки параметров в реальном времени.
+
+<Canvas of={ProgressBarStories.Default} />
+
+#### Аргументы и события
+<Controls of={ProgressBarStories.Default} />
+
+### Неопределенный режим (Indeterminate)
+Используется, когда точное время завершения процесса неизвестно.
+
+<Canvas of={ProgressBarStories.Indeterminate} />
+
+### Различные значения
+Примеры прогресса на разных этапах выполнения.
+
+<Canvas of={ProgressBarStories.Values} />
+
+### Без отображения значения
+Вариант без текстовой метки внутри индикатора.
+
+<Canvas of={ProgressBarStories.NoLabel} />
