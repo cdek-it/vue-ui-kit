@@ -1,0 +1,26 @@
+import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
+import * as MegaMenuStories from './MegaMenu.stories';
+
+<Meta of={MegaMenuStories} />
+
+<Title />
+
+<Description />
+
+```javascript
+import { PBlockMegaMenu } from '@cdek-it/vue-ui-kit';
+```
+
+## Варианты использования
+
+### Horizontal
+
+<Canvas of={MegaMenuStories.Horizontal} />
+
+### Vertical
+
+<Canvas of={MegaMenuStories.Vertical} />
+
+### Кастомный шаблон
+
+<Canvas of={MegaMenuStories.Custom} />

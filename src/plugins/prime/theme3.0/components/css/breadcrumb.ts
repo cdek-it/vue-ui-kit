@@ -14,7 +14,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-breadcrumb-item:last-child .p-breadcrumb-item-link {
-  opacity: ${dt('opacity.50')};
+  opacity: ${dt('opacity.500')};
   pointer-events: none;
   cursor: default;
   

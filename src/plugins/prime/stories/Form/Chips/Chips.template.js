@@ -52,7 +52,7 @@ export const ChangedIcon = (args) => ({
 `,
 });
 
-export const CustomChip = (args) => ({
+export const CustomChipTemplate = (args) => ({
   components: { AutoComplete, Chip },
   setup() {
     const options = ref(['Chip', 'Chip 2', 'Chip 3']);
