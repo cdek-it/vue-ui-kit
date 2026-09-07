@@ -1,27 +1,40 @@
 import { ref } from 'vue';
-import { Dialog } from 'primevue';
+import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
-import { addons } from '@storybook/addons';
 
 export const Template = (args) => ({
   components: { Dialog, Button },
   setup() {
-    const visible = ref(args.modal === false);
-    const channel = addons.getChannel();
-    channel.on('storyChanged', () => {
-      visible.value = false;
-    });
-
+    const visible = ref(false);
     return { args, visible };
   },
   template: `
-    <Button v-if="args.modal !== false" @click="visible = true">Нажми на меня</Button>
-    
-    <Dialog header="Dialog" modal v-model:visible="visible" v-bind="args">
-      <div> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, saepe. </div>
-      <template #footer>
-        Футер диалога
-      </template>
-    </Dialog>
-  `,
+<div>
+  <Button label="Open Dialog" @click="visible = true" />
+  
+  <Dialog 
+    v-model:visible="visible" 
+    v-bind="args"
+    :focusOnShow="false"
+    :closeButtonProps="{ 
+      autofocus: false, 
+      class: 'p-button-rounded p-button-text' 
+    }"
+  >
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+    <template #footer v-if="args.header !== undefined || args.showHeader !== false">
+      <Button label="Cancel" variant="text" @click="visible = false" />
+      <Button label="Save" severity="tertiary" @click="visible = false" />
+    </template>
+    <template #footer v-else>
+      <div class="flex justify-end">
+         <Button label="Close" @click="visible = false" />
+      </div>
+    </template>
+  </Dialog>
+</div>
+`,
 });

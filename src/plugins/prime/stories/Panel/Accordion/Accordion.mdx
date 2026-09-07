@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as AccordionStories from './Accordion.stories';
+
+<Meta of={AccordionStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Аккордеон с панелями, содержащими иконку и текст в заголовке. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={AccordionStories.AccordionDefault} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={AccordionStories.AccordionDefault} />
+
+### Multiple
+Режим одновременного открытия нескольких панелей (`multiple`).
+<Canvas of={AccordionStories.Multiple} />
+
+### Disabled
+Аккордеон с отключённой панелью.
+<Canvas of={AccordionStories.Disabled} />

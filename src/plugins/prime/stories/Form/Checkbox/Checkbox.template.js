@@ -5,27 +5,32 @@ export const Template = (args) => ({
   setup() {
     return { args };
   },
+  template: '<Checkbox v-bind="args" />',
+});
+
+export const TemplateGroup = (args) => ({
+  components: { Checkbox },
+  setup() {
+    return { args };
+  },
   template: `
-<div :style="{ display: 'grid', gridTemplateColumns: 'repeat(4, max-content)', gap: '20px', alignItems: 'center', justifyItems: 'center' }">
-  <span></span>
-  <span></span>
-  <span><code>invalid</code></span>
-  <span><code>disabled</code></span>
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>v-model="false"</code></span>
-  <Checkbox binary v-bind="args" />
-  <Checkbox binary invalid v-bind="args" />
-  <Checkbox binary disabled v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>v-model="true"</code></span>
-  <Checkbox :default-value="true" binary v-bind="args" />
-  <Checkbox :default-value="true" binary invalid v-bind="args" />
-  <Checkbox :default-value="true" binary disabled v-bind="args" />
-
-  <span :style="{ justifySelf: 'flex-start' }"><code>indeterminate</code></span>
-  <Checkbox binary indeterminate v-bind="args" />
-  <Checkbox binary indeterminate invalid v-bind="args" />
-  <Checkbox binary indeterminate disabled v-bind="args" />
+<div class="flex flex-col gap-4">
+  <div class="flex items-center gap-3">
+    <Checkbox v-bind="args" value="Pizza" inputId="ingredient1" name="pizza" />
+    <label for="ingredient1"> Cheese </label>
+  </div>
+  <div class="flex items-center gap-3">
+    <Checkbox v-bind="args" value="Mushroom" inputId="ingredient2" name="pizza" />
+    <label for="ingredient2"> Mushroom </label>
+  </div>
+  <div class="flex items-center gap-3">
+    <Checkbox v-bind="args" value="Pepper" inputId="ingredient3" name="pizza" />
+    <label for="ingredient3"> Pepper </label>
+  </div>
+  <div class="flex items-center gap-3">
+    <Checkbox v-bind="args" value="Onion" inputId="ingredient4" name="pizza" />
+    <label for="ingredient4"> Onion </label>
+  </div>
 </div>
 `,
 });

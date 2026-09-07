@@ -1,0 +1,54 @@
+import {
+  Meta,
+  Story,
+  Canvas,
+  ArgTypes,
+  Title,
+  Subtitle,
+  Description,
+  Controls,
+} from '@storybook/addon-docs/blocks';
+import * as DividerStories from './Divider.stories';
+
+<Meta of={DividerStories} />
+
+<Title />
+<Description />
+
+---
+
+## Варианты использования
+
+### Default
+
+Базовый вариант разделителя. Используйте таблицу ниже для настройки пропсов в реальном времени.
+
+<Canvas of={DividerStories.Default} />
+
+#### Полный список аргументов и событий компонента.
+
+<Controls of={DividerStories.Default} />
+
+### With Content
+
+Разделитель с контентом внутри (текст или иконки) и различными вариантами выравнивания.
+
+<Canvas of={DividerStories.WithContent} />
+
+### Vertical
+
+Вертикальный разделитель для разделения элементов в ряд.
+
+<Canvas of={DividerStories.Vertical} />
+
+### Vertical with Content
+
+Вертикальный разделитель с контентом внутри и различными вариантами выравнивания.
+
+<Canvas of={DividerStories.VerticalWithContent} />
+
+### Type
+
+Различные типы линий: `solid` (сплошная), `dashed` (пунктирная), `dotted` (точками).
+
+<Canvas of={DividerStories.Type} />

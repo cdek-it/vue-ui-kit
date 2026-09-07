@@ -1,0 +1,24 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as SelectButtonStories from './SelectButton.stories';
+
+<Meta of={SelectButtonStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+<Canvas of={SelectButtonStories.Default} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={SelectButtonStories.Default} />
+
+### Selected
+<Canvas of={SelectButtonStories.Selected} />
+
+### Disabled
+<Canvas of={SelectButtonStories.Disabled} />
+
+### Semi-disabled
+<Canvas of={SelectButtonStories.SemiDisabled} />

@@ -1,0 +1,26 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as RatingStories from './Rating.stories';
+
+<Meta of={RatingStories} />
+
+<Title />
+<Description />
+
+## Использование
+
+### По умолчанию
+Стандартный компонент рейтинга.
+<Canvas of={RatingStories.Default} />
+
+#### Аргументы и события
+<Controls of={RatingStories.Default} />
+
+### Только для чтения (ReadOnly)
+<Canvas of={RatingStories.ReadOnly} />
+
+### Отключен (Disabled)
+<Canvas of={RatingStories.Disabled} />
+
+
+
+

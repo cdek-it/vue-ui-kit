@@ -1,8 +1,8 @@
 import { ref } from 'vue';
 import type { MenuItem } from 'primevue/menuitem';
-import { baseMenuItems } from '@/plugins/prime/stories/Menu/_common/consts';
+import { baseMenuItems } from '../consts';
 import { cloneDeep } from 'lodash';
-import { selectedMenuItemClass } from '@/plugins/prime/consts';
+import { selectedMenuItemClass } from '../../../../consts';
 
 export const useMenu = () => {
   const items = ref<MenuItem[]>(cloneDeep(baseMenuItems) as MenuItem[]);

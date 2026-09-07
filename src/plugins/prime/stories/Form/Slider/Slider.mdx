@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls, Title, Description } from '@storybook/addon-docs/blocks';
+import * as SliderStories from './Slider.stories';
+
+<Meta of={SliderStories} />
+
+<Title />
+<Description />
+
+## Варианты использования
+
+### Default
+Базовый слайдер для выбора одного значения. Используйте таблицу ниже для настройки пропсов в реальном времени.
+<Canvas of={SliderStories.SliderDefault} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={SliderStories.SliderDefault} />
+
+### Range
+Выбор диапазона значений с двумя ползунками.
+<Canvas of={SliderStories.Range} />
+
+### Step
+Слайдер с заданным шагом изменения значения.
+<Canvas of={SliderStories.Step} />
+
+### Vertical
+Слайдер с вертикальной ориентацией.
+<Canvas of={SliderStories.Vertical} />
+
+### Disabled
+Неактивное состояние слайдера.
+<Canvas of={SliderStories.Disabled} />

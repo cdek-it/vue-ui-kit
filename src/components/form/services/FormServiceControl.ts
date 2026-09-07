@@ -25,6 +25,12 @@ export default class FormServiceControl {
    * реактивность нормально реагировала
    */
   init(initialValue: string) {
+    // На сервере (SSR) onUnmounted не вызывается — подписки копятся и дают утечку.
+    // Для одноразового рендера реакция на showErrors/changeLocale не нужна.
+    if (typeof window === 'undefined') {
+      return;
+    }
+
     this.register(initialValue || '');
     this.formService.subscribeOnShowErrors(this.showError.bind(this));
     getValidators().subscribeOnLanguageChange(

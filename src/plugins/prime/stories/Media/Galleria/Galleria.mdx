@@ -1,0 +1,52 @@
+import { Meta, Canvas, Title, Description, Controls } from '@storybook/addon-docs/blocks';
+import * as GalleriaStories from './Galleria.stories';
+
+<Meta of={GalleriaStories} />
+
+<Title />
+<Description />
+
+```javascript
+import Galleria from 'primevue/galleria';
+```
+
+## Варианты использования
+
+### Default
+
+Базовый вариант галереи. Используйте таблицу ниже для настройки пропсов в реальном времени.
+
+<Canvas of={GalleriaStories.GalleriaDefault} />
+
+#### Полный список аргументов и событий компонента.
+<Controls of={GalleriaStories.GalleriaDefault} />
+
+### Indicators
+
+Галерея с индикаторами текущего изображения и кнопками навигации.
+
+<Canvas of={GalleriaStories.Indicators} />
+
+### Thumbnails
+
+Галерея с миниатюрами изображений для быстрой навигации.
+
+<Canvas of={GalleriaStories.Thumbnails} />
+
+### Caption
+
+Галерея с подписями к изображениям (слот `#caption`).
+
+<Canvas of={GalleriaStories.Caption} />
+
+### FullScreen
+
+Галерея в полноэкранном режиме, открывается через `v-model:visible`.
+
+<Canvas of={GalleriaStories.FullScreen} />
+
+### Autoplay
+
+Галерея с автоматической сменой изображений (`autoPlay`, `transitionInterval`, `circular`).
+
+<Canvas of={GalleriaStories.Autoplay} />
