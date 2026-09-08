@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import type { Component } from 'vue';
 import { IconChevronRight, IconMenu2 } from '@tabler/icons-vue';
-import { MegaMenu, type MegaMenuProps } from 'primevue';
+import { MegaMenu } from 'primevue';
 import type { MegaMenuSlots } from 'primevue/megamenu';
-import PBlockMenuItem from '../PBlockMenuItem/PBlockMenuItem.vue';
-
-interface IPBlockMegaMenu extends MegaMenuProps {
-  itemAs?: string | Component;
-}
+import ExtraMenuItem from '../ExtraMenuItem/ExtraMenuItem.vue';
+import type { ExtraMegaMenuProps } from './types';
 
 type MegaMenuItemSlotProps = Parameters<NonNullable<MegaMenuSlots['item']>>[0];
 
@@ -17,7 +13,7 @@ function getItemAttrs(
   return { ...slotProps.item, ...slotProps.props.action };
 }
 
-defineProps<IPBlockMegaMenu>();
+defineProps<ExtraMegaMenuProps>();
 </script>
 
 <template>
@@ -30,7 +26,7 @@ defineProps<IPBlockMegaMenu>();
     </template>
     <template #item="slotProps">
       <slot name="item" v-bind="slotProps">
-        <PBlockMenuItem
+        <ExtraMenuItem
           v-bind="getItemAttrs(slotProps)"
           :as="itemAs"
           :root="false"
@@ -43,7 +39,7 @@ defineProps<IPBlockMegaMenu>();
               <IconChevronRight size="0.875rem" />
             </slot>
           </template>
-        </PBlockMenuItem>
+        </ExtraMenuItem>
       </slot>
     </template>
     <template v-if="$slots.itemicon" #itemicon="slotProps">
@@ -61,14 +57,14 @@ defineProps<IPBlockMegaMenu>();
 </template>
 
 <style lang="scss" scoped>
-:deep(.p-megamenu .p-block-menuitem-submenu-icon),
-:deep(.p-megamenu .p-block-menuitem-icon),
+:deep(.p-megamenu .extra-menuitem-submenu-icon),
+:deep(.p-megamenu .extra-menuitem-icon),
 :deep(.p-megamenu-mobile-button-icon) {
   font-size: var(--p-megamenu-extend-icon-size);
 }
 
-:deep(.p-megamenu .p-block-menuitem-label) {
-  font-size: var(--p-fonts-font-size-base);
+:deep(.p-megamenu .extra-menuitem-label) {
+  font-size: var(--p-fonts-font-size-300);
   font-weight: var(--p-fonts-font-weight-regular);
 }
 
@@ -84,16 +80,18 @@ defineProps<IPBlockMegaMenu>();
   background: var(--p-megamenu-item-active-background);
 }
 
-:deep(.p-megamenu .p-megamenu-item-link.p-block-menuitem-link) {
-  --p-block-menuitem-padding: var(--p-megamenu-item-padding);
-  --p-block-menuitem-gap: var(--p-megamenu-item-gap);
-  --p-block-menuitem-border-radius: var(--p-megamenu-item-border-radius);
-  --p-block-menuitem-icon-size: 0.875rem;
-  --p-block-menuitem-label-font-size: var(--p-fonts-font-size-base);
-  --p-block-menuitem-label-font-weight: var(--p-fonts-font-weight-regular);
-  --p-block-menuitem-caption-gap: var(--p-megamenu-extend-ext-item-caption-gap);
-  --p-block-menuitem-description-font-size: var(--p-fonts-font-size-sm);
-  --p-block-menuitem-description-color: var(
+:deep(.p-megamenu .p-megamenu-item-link.extra-menuitem-link) {
+  --p-navigation-item-padding: var(--p-megamenu-item-padding);
+  --p-navigation-item-gap: var(--p-megamenu-item-gap);
+  --p-navigation-item-border-radius: var(--p-megamenu-item-border-radius);
+  --p-navigation-item-icon-size: 0.875rem;
+  --p-navigation-item-label-font-size: var(--p-fonts-font-size-300);
+  --p-navigation-item-label-font-weight: var(--p-fonts-font-weight-regular);
+  --p-navigation-item-caption-gap: var(
+    --p-megamenu-extend-ext-item-caption-gap
+  );
+  --p-navigation-item-description-font-size: var(--p-fonts-font-size-200);
+  --p-navigation-item-description-color: var(
     --p-megamenu-extend-ext-item-caption-color
   );
 }

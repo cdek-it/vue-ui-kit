@@ -1,4 +1,4 @@
-import { PBlockToast } from '@/primeBlocks';
+import { ExtraToast } from '@/primeBlocks';
 
 import {
   Template,
@@ -10,8 +10,8 @@ import {
 } from './Toast.template';
 
 const meta = {
-  title: 'Prime/Messages/Toast',
-  component: PBlockToast,
+  title: 'Prime/Messages/ExtraToast',
+  component: ExtraToast,
   tags: ['autodocs'],
   parameters: {
     docs: {
@@ -82,7 +82,7 @@ const meta = {
 export default meta;
 
 export const Default = {
-  name: 'Toast',
+  name: 'ExtraToast',
   render: Template,
   args: {
     group: 'basic',
@@ -95,9 +95,9 @@ export const Default = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
+import { ExtraToast, useExtraToast } from '@cdek-it/vue-ui-kit';
 
-const toast = usePBlockToast();
+const toast = useExtraToast();
 
 const showToast = () => {
   toast.add({
@@ -111,7 +111,7 @@ const showToast = () => {
 
 <template>
   <div>
-    <PBlockToast />
+    <ExtraToast />
     <Button label="Показать toast" @click="showToast" />
   </div>
 </template>
@@ -122,7 +122,7 @@ const showToast = () => {
 };
 
 export const DefaultButton = {
-  name: 'Toast',
+  name: 'ExtraToast / Closable',
   render: TemplateCloseButton,
   args: {
     group: 'basic-button',
@@ -135,9 +135,9 @@ export const DefaultButton = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
+import { ExtraToast, useExtraToast } from '@cdek-it/vue-ui-kit';
 
-const toast = usePBlockToast();
+const toast = useExtraToast();
 
 const showToast = () => {
   toast.add({
@@ -152,7 +152,7 @@ const showToast = () => {
 
 <template>
   <div>
-    <PBlockToast />
+    <ExtraToast />
     <Button label="Показать toast" @click="showToast" />
   </div>
 </template>
@@ -175,10 +175,10 @@ export const WithContent = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
+import { ExtraToast, useExtraToast } from '@cdek-it/vue-ui-kit';
 import { IconCircleCheck } from '@tabler/icons-vue'; // Указано для примера.
 
-const toast = usePBlockToast();
+const toast = useExtraToast();
 
 const showToast = () => {
   toast.add({
@@ -193,7 +193,7 @@ const showToast = () => {
 
 <template>
   <div>
-    <PBlockToast>
+    <ExtraToast>
       <template #container="{ message }">
         <div class="p-toast-message-content">
           <div class="p-toast-accent-line"></div>
@@ -213,7 +213,7 @@ const showToast = () => {
           </div>
         </div>
       </template>
-    </PBlockToast>
+    </ExtraToast>
     <Button label="Показать toast" @click="showToast" />
   </div>
 </template>
@@ -235,9 +235,9 @@ export const WithContentAndCloseButton = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
+import { ExtraToast, useExtraToast } from '@cdek-it/vue-ui-kit';
 
-const toast = usePBlockToast();
+const toast = useExtraToast();
 
 const showToast = () => {
   toast.add({
@@ -252,7 +252,7 @@ const showToast = () => {
 
 <template>
   <div>
-     <PBlockToast>
+     <ExtraToast>
       <template #container="{ message, closeCallback }">
         <div class="p-toast-message-content">
           <div class="p-toast-accent-line"></div>
@@ -270,7 +270,7 @@ const showToast = () => {
           </button>
         </div>
       </template>
-    </PBlockToast>
+    </ExtraToast>
     <Button label="Показать toast" @click="showToast" />
   </div>
 </template>
@@ -293,9 +293,9 @@ export const Width = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
+import { ExtraToast, useExtraToast } from '@cdek-it/vue-ui-kit';
 
-const toast = usePBlockToast();
+const toast = useExtraToast();
 
 const showToast = () => {
   toast.add({
@@ -309,7 +309,7 @@ const showToast = () => {
 
 <template>
   <div>
-    <PBlockToast width="sm" />
+    <ExtraToast width="sm" />
     <Button label="Показать уведомление" @click="showToast" />
   </div>
 </template>
@@ -327,9 +327,9 @@ export const Position = {
         language: 'html',
         code: `
 <script setup lang="ts">
-import { PBlockToast, usePBlockToast } from '@cdek-it/vue-ui-kit';
+import { ExtraToast, useExtraToast } from '@cdek-it/vue-ui-kit';
 
-const toast = usePBlockToast();
+const toast = useExtraToast();
 
 const showToast = (position) => {
   toast.add({
@@ -343,12 +343,12 @@ const showToast = (position) => {
 </script>
 
 <template>
-  <PBlockToast position="top-left" group="top-left" />
-  <PBlockToast position="top-center" group="top-center" />
-  <PBlockToast position="top-right" group="top-right" />
-  <PBlockToast position="bottom-left" group="bottom-left" />
-  <PBlockToast position="bottom-center" group="bottom-center" />
-  <PBlockToast position="bottom-right" group="bottom-right" />
+  <ExtraToast position="top-left" group="top-left" />
+  <ExtraToast position="top-center" group="top-center" />
+  <ExtraToast position="top-right" group="top-right" />
+  <ExtraToast position="bottom-left" group="bottom-left" />
+  <ExtraToast position="bottom-center" group="bottom-center" />
+  <ExtraToast position="bottom-right" group="bottom-right" />
 
   <Button label="Вверх слева" @click="showToast('top-left')" />
   <Button label="Вверх по центру" @click="showToast('top-center')" />

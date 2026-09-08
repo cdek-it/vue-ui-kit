@@ -11,8 +11,8 @@ import * as ToastStories from './Toast.stories';
 <br />
 
 ### Базовый
-Базовый вариант `Toast`. Используйте таблицу ниже для настройки пропсов. Кнопки внизу позволяют показать живые тосты.
-Иконки для каждого типа `Toast` уже "вшиты", но это поведение можно изменить (см. ниже).
+Базовый вариант `ExtraToast`. Используйте таблицу ниже для настройки пропсов. Кнопки внизу позволяют показать живые тосты.
+Иконки для каждого типа `ExtraToast` уже "вшиты", но это поведение можно изменить (см. ниже).
 <Canvas of={ToastStories.Default} />
 
 #### Полный список аргументов и событий компонента.
@@ -21,11 +21,11 @@ import * as ToastStories from './Toast.stories';
 <hr />
 
 ### С кнопкой закрытия
-Базовый вариант `Toast` с кнопкой закрытия.
+Базовый вариант `ExtraToast` с кнопкой закрытия.
 <Canvas of={ToastStories.DefaultButton} />
 
 ### Кастомный контент
-`Toast` с кастомным контейнером.
+`ExtraToast` с кастомным контейнером.
 <Canvas of={ToastStories.WithContent} />
 
 #### Аргументы и события
@@ -34,7 +34,7 @@ import * as ToastStories from './Toast.stories';
 <hr />
 
 ### С кастомным контейнером и кнопкой закрытия
-`Toast` с кастомным контейнером и кнопкой закрытия.
+`ExtraToast` с кастомным контейнером и кнопкой закрытия.
 <Canvas of={ToastStories.WithContentAndCloseButton} />
 
 #### Аргументы и события
@@ -43,25 +43,25 @@ import * as ToastStories from './Toast.stories';
 <hr />
 
 ### Ширина Toast
-Ширина `Toast` задаётся через `props` — `width`. Доступные значения:
+Ширина `ExtraToast` задаётся через `props` — `width`. Доступные значения:
 <details>
   <summary>Примеры кода</summary>
 
   - `sm` (20rem)
   ```html dark
-  <PBlockToast width="sm" />
+  <ExtraToast width="sm" />
   ```
   - `md` (25rem, по умолчанию)
   ```html dark
-  <PBlockToast />
+  <ExtraToast />
   ```
   - `lg` (30rem)
   ```html dark
-  <PBlockToast width="lg" />
+  <ExtraToast width="lg" />
   ```
   - `xlg` (45rem)
   ```html dark
-  <PBlockToast width="xlg" />
+  <ExtraToast width="xlg" />
   ```
 </details>
 
@@ -71,7 +71,7 @@ import * as ToastStories from './Toast.stories';
 <Controls of={ToastStories.Width} />
 
 ### Позиция
-Демонстрация всех доступных позиций `Toast`. Каждая кнопка показывает уведомление в соответствующей позиции.
+Демонстрация всех доступных позиций `ExtraToast`. Каждая кнопка показывает уведомление в соответствующей позиции.
 <Canvas of={ToastStories.Position} />
 
 #### Аргументы и события

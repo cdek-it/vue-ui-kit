@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue';
-import { PBlockPanelMenu, PBlockMenuItem } from '@/primeBlocks';
+import { ExtraPanelMenu, ExtraMenuItem } from '@/primeBlocks';
 
 const createItems = (showIcons) => [
   {
@@ -40,31 +40,31 @@ const createItems = (showIcons) => [
 ];
 
 export const BasicTemplate = (args) => ({
-  components: { PBlockPanelMenu },
+  components: { ExtraPanelMenu },
   setup() {
     const items = computed(() => createItems(args.showIcons));
 
     return { args, items };
   },
   template: `
-    <PBlockPanelMenu :model="items" />
+    <ExtraPanelMenu :model="items" />
   `,
 });
 
 export const MultipleTemplate = (args) => ({
-  components: { PBlockPanelMenu },
+  components: { ExtraPanelMenu },
   setup() {
     const items = computed(() => createItems(args.showIcons));
 
     return { args, items };
   },
   template: `
-    <PBlockPanelMenu :model="items" multiple />
+    <ExtraPanelMenu :model="items" multiple />
   `,
 });
 
 export const CustomTemplate = (args) => ({
-  components: { PBlockPanelMenu, PBlockMenuItem },
+  components: { ExtraPanelMenu, ExtraMenuItem },
   setup() {
     const items = ref([
       {
@@ -119,10 +119,10 @@ export const CustomTemplate = (args) => ({
     return { args, items };
   },
   template: `
-    <PBlockPanelMenu :model="items" multiple v-bind="args">
+    <ExtraPanelMenu :model="items" multiple v-bind="args">
       <template #item="{ item, props, root }">
-        <PBlockMenuItem v-bind="{ ...item, ...props.action }" :root="root" />
+        <ExtraMenuItem v-bind="{ ...item, ...props.action }" :root="root" />
       </template>
-    </PBlockPanelMenu>
+    </ExtraPanelMenu>
   `,
 });

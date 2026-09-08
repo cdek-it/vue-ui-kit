@@ -1,9 +1,9 @@
 import InputGroup from 'primevue/inputgroup';
 import InputGroupAddon from 'primevue/inputgroupaddon';
-import InputText from 'primevue/inputtext';
+import ExtraInputText from '@/primeBlocks/ExtraInputText/ExtraInputText.vue';
 
 export const Template = (args) => ({
-  components: { InputGroup, InputGroupAddon, InputText },
+  components: { InputGroup, InputGroupAddon, InputText: ExtraInputText },
   setup() {
     return { args };
   },
