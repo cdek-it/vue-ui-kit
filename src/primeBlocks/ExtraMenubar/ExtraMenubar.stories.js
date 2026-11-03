@@ -9,7 +9,7 @@ import {
   WithSubmenuIconActiveStateTemplate,
   WithButtonSlotTemplate,
   WithButtonIconSlotTemplate,
-} from './MenuBar.template';
+} from './ExtraMenubar.template';
 import { ExtraMenubar } from '@/primeBlocks';
 
 const DOC_ITEMS_NESTED = `[

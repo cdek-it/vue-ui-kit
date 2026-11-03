@@ -63,6 +63,45 @@ class ExtraToggleButtonBuilder {
 }
 
 describe('Unit: ExtraToggleButton', () => {
+  test('maps xlarge to Prime large and a wrapper modifier', () => {
+    const wrapper = mount(ExtraToggleButton, {
+      props: { size: 'xlarge', baseLabel: 'Toggle' },
+    });
+
+    expect(wrapper.classes()).toContain('p-togglebutton-lg');
+    expect(wrapper.classes()).toContain('extra-togglebutton--xlg');
+    expect(wrapper.attributes('size')).toBeUndefined();
+  });
+
+  test('right icons use the wrapper modifier instead of an unsupported Prime prop', () => {
+    const wrapper = mount(ExtraToggleButton, {
+      props: { iconPos: 'right', baseIcon: 'ti ti-check', baseLabel: 'Toggle' },
+    });
+
+    expect(wrapper.classes()).toContain('extra-togglebutton--icon-right');
+    expect(wrapper.find('.extra-togglebutton__icon .ti-check').exists()).toBe(
+      true
+    );
+    expect(wrapper.attributes('iconpos')).toBeUndefined();
+  });
+
+  test('icon-only keeps an accessible label and disabled state', async () => {
+    const wrapper = mount(ExtraToggleButton, {
+      props: {
+        iconOnly: true,
+        baseLabel: 'Toggle',
+        baseIcon: 'ti ti-check',
+        disabled: true,
+      },
+    });
+
+    expect(wrapper.classes()).toContain('extra-togglebutton--icon-only');
+    expect(wrapper.get('button').attributes('aria-label')).toBe('Toggle');
+    expect(wrapper.get('button').attributes('disabled')).toBeDefined();
+    await wrapper.get('button').trigger('click');
+    expect(wrapper.emitted('update:modelValue')).toBeUndefined();
+  });
+
   test('Если задан baseLabel, то он должен отображаться в тексте кнопки', () => {
     const wrapper = new ExtraToggleButtonBuilder()
       .setBaseLabel('Base Label')

@@ -5,9 +5,30 @@ import path from 'node:path';
 const ROOT = process.cwd();
 const TOKENS_PATH = path.join(ROOT, 'src/plugins/prime/theme3.0/tokens.json');
 const WRAPPERS_DIR = path.join(ROOT, 'src/primeBlocks');
+const THEME_COMPONENTS_DIR = path.join(
+  ROOT,
+  'src/plugins/prime/theme3.0/components/css'
+);
 const BUILD_DIR = path.join(ROOT, 'storybook-static');
 
 const STYLE_FILE_EXTENSIONS = new Set(['.vue', '.scss', '.css']);
+const THEME_FILE_EXTENSIONS = new Set(['.ts']);
+const EXCLUDED_TOKEN_SEGMENTS = new Set([
+  'primitive',
+  'semantic',
+  'components',
+  'directives',
+  'variables',
+  'colorscheme',
+  'color-scheme',
+  'light',
+  'dark',
+  'common',
+  'root',
+  'states',
+  'extend',
+  'css',
+]);
 
 function toKebab(value) {
   return value
@@ -35,52 +56,10 @@ function flattenTokenLeaves(obj, pathParts = [], result = []) {
   return result;
 }
 
-function removeAllSegments(parts, segment) {
-  if (!parts.includes(segment)) {
-    return [parts];
-  }
+function buildVarName(parts) {
+  const normalized = parts.filter((part) => !EXCLUDED_TOKEN_SEGMENTS.has(part));
 
-  return [parts, parts.filter((part) => part !== segment)];
-}
-
-function buildVarNameCandidates(parts) {
-  const prefixVariants = [parts];
-  const topPrefix = parts[0];
-
-  if (['primitive', 'semantic', 'components'].includes(topPrefix)) {
-    prefixVariants.push(parts.slice(1));
-  }
-
-  const candidates = new Set();
-
-  for (const variant of prefixVariants) {
-    if (variant.length === 0) {
-      continue;
-    }
-
-    let variants = [variant];
-
-    for (const segment of [
-      'extend',
-      'root',
-      'color-scheme',
-      'light',
-      'dark',
-      'colors',
-      'solid',
-      'alpha',
-    ]) {
-      variants = variants.flatMap((v) => removeAllSegments(v, segment));
-    }
-
-    for (const normalized of variants) {
-      if (normalized.length > 0) {
-        candidates.add(`--p-${normalized.join('-')}`);
-      }
-    }
-  }
-
-  return candidates;
+  return normalized.length > 0 ? `--p-${normalized.join('-')}` : null;
 }
 
 async function collectFiles(dirPath, allowedExts) {
@@ -130,6 +109,31 @@ function extractDefinedVars(content) {
   return vars;
 }
 
+function extractDtVars(content) {
+  const vars = new Set();
+  const regex = /\bdt\(\s*['"]([^'"]+)['"]/g;
+
+  for (const match of content.matchAll(regex)) {
+    const cssVar = buildVarName(match[1].split('.').map(toKebab));
+    if (cssVar) {
+      vars.add(cssVar);
+    }
+  }
+
+  return vars;
+}
+
+function extractExtraSelectors(content) {
+  const selectors = new Set();
+  const regex = /(^|[\s,{])\.(extra-[a-z0-9_-]+)/gm;
+
+  for (const match of content.matchAll(regex)) {
+    selectors.add(match[2]);
+  }
+
+  return selectors;
+}
+
 async function main() {
   try {
     await fs.access(BUILD_DIR);
@@ -145,8 +149,9 @@ async function main() {
   const leafPaths = flattenTokenLeaves(tokens);
   const knownVars = new Set();
   for (const leafPath of leafPaths) {
-    for (const candidate of buildVarNameCandidates(leafPath)) {
-      knownVars.add(candidate);
+    const cssVar = buildVarName(leafPath);
+    if (cssVar) {
+      knownVars.add(cssVar);
     }
   }
 
@@ -155,46 +160,137 @@ async function main() {
   ).filter((filePath) => filePath.includes(`${path.sep}Extra`));
 
   const usageInWrappers = new Map();
-  const locallyDefinedInWrappers = new Set();
+  const locallyDefinedInWrappers = new Map();
+  const primitiveColorUsageInWrappers = new Map();
 
   for (const filePath of wrapperStyleFiles) {
     const content = await fs.readFile(filePath, 'utf8');
     const usedVars = extractUsedVars(content);
     const definedVars = extractDefinedVars(content);
+    const relativeFilePath = path.relative(ROOT, filePath);
 
     for (const cssVar of definedVars) {
-      locallyDefinedInWrappers.add(cssVar);
+      if (!locallyDefinedInWrappers.has(cssVar)) {
+        locallyDefinedInWrappers.set(cssVar, new Set());
+      }
+      locallyDefinedInWrappers.get(cssVar).add(relativeFilePath);
     }
 
     for (const cssVar of usedVars) {
       if (!usageInWrappers.has(cssVar)) {
         usageInWrappers.set(cssVar, new Set());
       }
-      usageInWrappers.get(cssVar).add(path.relative(ROOT, filePath));
+      usageInWrappers.get(cssVar).add(relativeFilePath);
+
+      if (cssVar.startsWith('--p-colors-')) {
+        if (!primitiveColorUsageInWrappers.has(cssVar)) {
+          primitiveColorUsageInWrappers.set(cssVar, new Set());
+        }
+        primitiveColorUsageInWrappers.get(cssVar).add(relativeFilePath);
+      }
     }
   }
 
   const unresolved = [...usageInWrappers.keys()]
-    .filter(
-      (cssVar) =>
-        !knownVars.has(cssVar) && !locallyDefinedInWrappers.has(cssVar)
-    )
+    .filter((cssVar) => !knownVars.has(cssVar))
     .sort();
 
-  if (unresolved.length === 0) {
+  const themeFiles = await collectFiles(
+    THEME_COMPONENTS_DIR,
+    THEME_FILE_EXTENSIONS
+  );
+  const unresolvedThemeRefs = new Map();
+  const wrapperSelectorsInThemeFiles = new Map();
+
+  for (const filePath of themeFiles) {
+    const content = await fs.readFile(filePath, 'utf8');
+    const relativeFilePath = path.relative(ROOT, filePath);
+
+    for (const cssVar of extractDtVars(content)) {
+      if (!knownVars.has(cssVar)) {
+        if (!unresolvedThemeRefs.has(cssVar)) {
+          unresolvedThemeRefs.set(cssVar, new Set());
+        }
+        unresolvedThemeRefs.get(cssVar).add(relativeFilePath);
+      }
+    }
+
+    for (const selector of extractExtraSelectors(content)) {
+      if (!wrapperSelectorsInThemeFiles.has(selector)) {
+        wrapperSelectorsInThemeFiles.set(selector, new Set());
+      }
+      wrapperSelectorsInThemeFiles.get(selector).add(relativeFilePath);
+    }
+  }
+
+  if (
+    unresolved.length === 0 &&
+    unresolvedThemeRefs.size === 0 &&
+    locallyDefinedInWrappers.size === 0 &&
+    primitiveColorUsageInWrappers.size === 0 &&
+    wrapperSelectorsInThemeFiles.size === 0
+  ) {
     // eslint-disable-next-line no-console
     console.log(
-      `CSS vars check passed: ${usageInWrappers.size} vars resolved (build-gated).`
+      `CSS vars check passed: ${usageInWrappers.size} wrapper vars and theme dt() refs resolved (build-gated).`
     );
     return;
   }
 
-  // eslint-disable-next-line no-console
-  console.error('Unresolved --p-* CSS variables found:');
-  for (const cssVar of unresolved) {
-    const files = [...usageInWrappers.get(cssVar)].sort().join(', ');
+  if (unresolved.length > 0) {
     // eslint-disable-next-line no-console
-    console.error(`- ${cssVar} (used in: ${files})`);
+    console.error('Unresolved --p-* CSS variables found:');
+    for (const cssVar of unresolved) {
+      const files = [...usageInWrappers.get(cssVar)].sort().join(', ');
+      // eslint-disable-next-line no-console
+      console.error(`- ${cssVar} (used in: ${files})`);
+    }
+  }
+
+  if (locallyDefinedInWrappers.size > 0) {
+    // eslint-disable-next-line no-console
+    console.error(
+      'Prime theme CSS variables must not be defined inside wrapper styles:'
+    );
+    for (const [cssVar, files] of [...locallyDefinedInWrappers].sort()) {
+      // eslint-disable-next-line no-console
+      console.error(
+        `- ${cssVar} (defined in: ${[...files].sort().join(', ')})`
+      );
+    }
+  }
+
+  if (primitiveColorUsageInWrappers.size > 0) {
+    // eslint-disable-next-line no-console
+    console.error(
+      'Primitive color CSS variables must not be used directly inside wrapper styles:'
+    );
+    for (const [cssVar, files] of [...primitiveColorUsageInWrappers].sort()) {
+      // eslint-disable-next-line no-console
+      console.error(`- ${cssVar} (used in: ${[...files].sort().join(', ')})`);
+    }
+  }
+
+  if (unresolvedThemeRefs.size > 0) {
+    // eslint-disable-next-line no-console
+    console.error('Unresolved theme dt() references found:');
+    for (const [cssVar, files] of [...unresolvedThemeRefs].sort()) {
+      // eslint-disable-next-line no-console
+      console.error(`- ${cssVar} (used in: ${[...files].sort().join(', ')})`);
+    }
+  }
+
+  if (wrapperSelectorsInThemeFiles.size > 0) {
+    // eslint-disable-next-line no-console
+    console.error(
+      'Wrapper selectors (.extra-*) must not be used inside theme3.0/components/css files:'
+    );
+    for (const [selector, files] of [...wrapperSelectorsInThemeFiles].sort()) {
+      // eslint-disable-next-line no-console
+      console.error(
+        `- .${selector} (used in: ${[...files].sort().join(', ')})`
+      );
+    }
   }
 
   process.exitCode = 1;

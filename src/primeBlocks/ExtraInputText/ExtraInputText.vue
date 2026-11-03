@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useAttrs, useId } from 'vue';
-import { IconInfoCircle } from '@tabler/icons-vue';
+import { IconAlertCircle, IconInfoCircle } from '@tabler/icons-vue';
 import { FloatLabel } from 'primevue';
 import ExtraInputTextField from './ExtraInputTextField.vue';
 import type { ExtraInputTextProps } from './types';
@@ -35,15 +35,35 @@ defineEmits<{
 <template>
   <div
     class="extra-inputtext"
-    :class="{ 'extra-inputtext--left-label': isLeftLabel }"
+    :class="{
+      'extra-inputtext--left-label': isLeftLabel,
+      'extra-inputtext--default-label': labelPosition === 'default',
+    }"
   >
+    <label
+      v-if="labelPosition === 'default' && label"
+      :for="inputId"
+      class="extra-inputtext__label"
+    >
+      <span v-if="required" class="extra-inputtext__required">*</span
+      >{{ label }}
+      <span
+        v-if="info"
+        class="extra-inputtext__info"
+        :title="info"
+        :aria-label="info"
+      >
+        <IconInfoCircle class="extra-inputtext__info-icon" />
+      </span>
+    </label>
+
     <label
       v-if="isLeftLabel && label"
       :for="inputId"
       class="extra-inputtext__left-label"
     >
-      {{ label }}
-      <span v-if="required" class="extra-inputtext__required">*</span>
+      <span v-if="required" class="extra-inputtext__required">*</span
+      >{{ label }}
     </label>
 
     <component
@@ -55,7 +75,7 @@ defineEmits<{
         v-bind="attrs"
         :id="inputId"
         :modelValue="modelValue"
-        :placeholder="placeholder"
+        :placeholder="isFloatLabel && label ? undefined : placeholder"
         :type="type"
         :disabled="disabled"
         :readonly="readonly"
@@ -71,23 +91,41 @@ defineEmits<{
           <slot name="clear-icon" />
         </template>
       </ExtraInputTextField>
-      <label v-if="isFloatLabel" :for="inputId">
-        {{ label
-        }}<span v-if="required" class="extra-inputtext__required">*</span>
+      <label
+        v-if="isFloatLabel"
+        :for="inputId"
+        class="extra-inputtext__float-label"
+      >
+        <span v-if="required" class="extra-inputtext__required">*</span
+        >{{ label }}
       </label>
     </component>
 
-    <div v-if="caption || info || $slots.caption" class="extra-inputtext__meta">
+    <div
+      v-if="
+        caption ||
+        $slots.caption ||
+        (info && (labelPosition !== 'default' || !label))
+      "
+      class="extra-inputtext__meta"
+      :class="{ 'extra-inputtext__meta--invalid': invalid }"
+    >
       <slot name="caption">
-        <span>{{ caption }}</span>
+        <span v-if="caption" class="extra-inputtext__caption">
+          <IconAlertCircle
+            class="extra-inputtext__caption-icon"
+            aria-hidden="true"
+          />
+          <span>{{ caption }}</span>
+        </span>
       </slot>
       <span
-        v-if="info"
+        v-if="info && (labelPosition !== 'default' || !label)"
         class="extra-inputtext__info"
         :title="info"
         :aria-label="info"
       >
-        <IconInfoCircle size="1rem" />
+        <IconInfoCircle class="extra-inputtext__info-icon" />
       </span>
     </div>
   </div>
@@ -99,34 +137,155 @@ defineEmits<{
     width: 100%;
   }
 
+  &--default-label {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    // Flex avoids an extra inline baseline pixel from the smaller required mark.
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--p-dimension-space-100);
+    font-size: var(--p-fonts-font-size-200);
+    line-height: var(--p-fonts-line-height-200);
+    color: var(--p-color-fg-default);
+  }
+
   &--left-label {
     display: flex;
     align-items: center;
-    gap: var(--p-spacing-2x, 0.5rem);
+    gap: var(--p-dimension-space-200);
   }
 
   &__left-label {
     white-space: nowrap;
   }
 
+  // Float text/radius have no variant-specific Prime token. Its visual height
+  // excludes an extra border term; native text placement is adapted below.
+  &__control.p-floatlabel-in :deep(.p-inputtext) {
+    font-size: var(--p-fonts-font-size-200);
+    line-height: var(--p-fonts-line-height-200);
+    border-radius: var(--p-dimension-border-radius-400);
+    height: calc(
+      var(--p-fonts-line-height-200) + var(--p-floatlabel-in-input-padding-top) +
+        var(--p-floatlabel-in-input-padding-bottom)
+    );
+  }
+
+  // Native input line-box centering differs from Figma layered text.
+  &__control.p-floatlabel-in :deep(.p-inputtext) {
+    padding-block-start: calc(
+      var(--p-floatlabel-in-input-padding-top) - 2 *
+        (var(--p-dimension-space-50) + var(--p-inputtext-border-width))
+    );
+  }
+
+  &__control.p-floatlabel-in :deep(.p-iconfield.extra-inputtext) {
+    --extra-inputtext-icon-size: var(--p-dimension-size-450);
+  }
+
+  &__float-label {
+    // Label coordinates include the native control border and optical inset.
+    translate: calc(-1 * var(--p-inputtext-border-width))
+      calc(-1 * var(--p-dimension-space-50));
+    font-size: var(--p-fonts-font-size-200);
+    line-height: var(--p-fonts-line-height-400);
+  }
+
+  // Keep invalid color after Prime's filled/focus label rules.
+  &__control:has(.p-invalid) :deep(.extra-inputtext__float-label) {
+    color: var(--p-floatlabel-invalid-color);
+  }
+
+  &__control:has(input.p-filled) :deep(.extra-inputtext__float-label),
+  &__control:has(input:-webkit-autofill) :deep(.extra-inputtext__float-label) {
+    font-family: var(--p-fonts-font-family-base);
+    line-height: var(--p-fonts-line-height-200);
+  }
+
+  // Empty focus keeps the label centered; only a value activates the label.
+  &__control:has(input:focus:not(.p-filled):not(:-webkit-autofill))
+    :deep(.extra-inputtext__float-label) {
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: var(--p-fonts-font-size-200);
+    font-weight: var(--p-floatlabel-font-weight);
+  }
+
   &__meta {
-    margin-top: var(--p-spacing-1x, 0.25rem);
-    display: inline-flex;
+    margin-top: var(--p-dimension-space-100);
+    // A block flex row has no anonymous baseline gap below FloatLabel.
+    display: flex;
     align-items: center;
-    gap: var(--p-spacing-1x, 0.25rem);
-    color: var(--p-text-muted-color, inherit);
-    font-size: var(--p-fonts-font-size-200, 0.875rem);
+    gap: var(--p-dimension-space-100);
+    color: var(--p-color-fg-muted);
+    letter-spacing: var(--p-fonts-letter-spacing-200);
+    font-size: var(--p-fonts-font-size-200);
+    line-height: var(--p-fonts-line-height-200);
+  }
+
+  &__meta--invalid {
+    color: var(--p-color-fg-status-danger-default);
+  }
+
+  // Keep the design's leading icon inside the fallback, so a slot replaces it.
+  &__caption {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--p-dimension-space-50);
+    min-width: 0;
+  }
+
+  &__caption-icon {
+    flex-shrink: 0;
+    width: var(--p-dimension-size-400);
+    height: var(--p-dimension-size-400);
   }
 
   &__info {
     display: inline-flex;
     align-items: center;
     cursor: help;
+    flex-shrink: 0;
+    color: var(--p-color-fg-muted);
+  }
+
+  &__label &__info {
+    margin-inline-start: var(--p-dimension-space-100);
+  }
+
+  &__info-icon {
+    width: var(--p-dimension-size-400);
+    height: var(--p-dimension-size-400);
   }
 }
 
 .extra-inputtext__required {
-  color: var(--p-red-500);
-  margin-left: var(--p-spacing-1x);
+  color: var(--p-color-fg-status-danger-default);
+  margin-inline-end: var(--p-dimension-space-100);
+  font-family: var(--p-fonts-font-family-base);
+}
+.extra-inputtext__label .extra-inputtext__required,
+.extra-inputtext__left-label .extra-inputtext__required {
+  font-size: var(--p-fonts-font-size-100);
+}
+
+.extra-inputtext__float-label .extra-inputtext__required {
+  margin-inline-end: var(--p-dimension-space-50);
+  color: var(--p-floatlabel-invalid-color);
+}
+
+// Design conflict DTC-004: keep the label's interaction timing with its field.
+.extra-inputtext__float-label {
+  transition-duration: var(--p-effects-transition-duration-100);
+  transition-timing-function: ease-in;
+}
+
+.extra-inputtext__control:has(input:enabled:is(:hover, :focus):not(:read-only))
+  :deep(.extra-inputtext__float-label) {
+  transition-duration: var(--p-inputtext-transition-duration);
+  transition-timing-function: ease-out;
 }
 </style>

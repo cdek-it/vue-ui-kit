@@ -32,26 +32,26 @@ const POSITIONS = [
 const SIZES = [
   {
     key: 'sm',
-    label: 'Small (20rem)',
-    width: '20rem',
+    label: 'Small (17rem)',
+    width: '17rem',
     group: 'width-sm',
   },
   {
-    key: 'base',
-    label: 'Base (25rem)',
-    width: '25rem',
-    group: 'width-base',
+    key: 'md',
+    label: 'Medium (21rem)',
+    width: '21rem',
+    group: 'width-md',
   },
   {
     key: 'lg',
-    label: 'Large (30rem)',
-    width: '30rem',
+    label: 'Large (25rem)',
+    width: '25rem',
     group: 'width-lg',
   },
   {
     key: 'xlg',
-    label: 'X-Large (45rem)',
-    width: '45rem',
+    label: 'X-Large (39.375rem)',
+    width: '39.375rem',
     group: 'width-xlg',
   },
 ];
@@ -83,7 +83,7 @@ export const Template = (args) => ({
     };
   },
   template: `
-    <div>
+    <div class="extra-toast">
       <ExtraToast
         :position="args.position"
         :group="args.group"
@@ -95,7 +95,7 @@ export const Template = (args) => ({
         <div v-for="({ type, icon }, index) in severities" :key="index">
           <div :class="'p-toast-message p-toast-message-' + type">
             <div class="p-toast-message-content">
-              <div class="p-toast-accent-line"></div>
+              <div class="extra-toast__accent-line"></div>
               <i :class="'p-toast-message-icon ti ' + icon"></i>
               <div class="p-toast-message-text">
                 <span class="p-toast-summary">Заголовок сообщения</span>
@@ -143,7 +143,7 @@ export const TemplateCloseButton = (args) => ({
     };
   },
   template: `
-    <div>
+    <div class="extra-toast">
       <ExtraToast
         :position="args.position"
         :group="args.group"
@@ -155,7 +155,7 @@ export const TemplateCloseButton = (args) => ({
         <div v-for="({ type, icon }, index) in severities" :key="index">
           <div :class="'p-toast-message p-toast-message-' + type">
             <div class="p-toast-message-content">
-              <div class="p-toast-accent-line"></div>
+              <div class="extra-toast__accent-line"></div>
               <i :class="'p-toast-message-icon ti ' + icon"></i>
               <div class="p-toast-message-text">
                 <span class="p-toast-summary">Заголовок сообщения</span>
@@ -205,11 +205,11 @@ export const TemplateWithContent = (args) => ({
     };
   },
   template: `
-    <div>
+    <div class="extra-toast">
       <ExtraToast :group="args.group" :width="args.width" style="z-index:1">
         <template #container="{ message }">
           <div class="p-toast-message-content">
-            <div class="p-toast-accent-line"></div>
+            <div class="extra-toast__accent-line"></div>
             <i :class="'p-toast-message-icon ti ' + message.icon"></i>
             <div class="p-toast-message-text">
               <span class="p-toast-summary">{{ message.summary }}</span>
@@ -229,7 +229,7 @@ export const TemplateWithContent = (args) => ({
         <div v-for="({ type, icon }, idx) in severities" :key="idx">
           <div :class="'p-toast-message p-toast-message-' + type">
             <div class="p-toast-message-content">
-              <div class="p-toast-accent-line"></div>
+              <div class="extra-toast__accent-line"></div>
               <i :class="'p-toast-message-icon ti ' + icon"></i>
               <div class="p-toast-message-text">
                 <span class="p-toast-summary">Заголовок сообщения</span>
@@ -283,11 +283,11 @@ export const TemplateCustomContentWithCloseButton = (args) => ({
     };
   },
   template: `
-    <div>
+    <div class="extra-toast">
       <ExtraToast :group="args.group" :width="args.width" style="z-index:1">
         <template #container="{ message, closeCallback }">
           <div class="p-toast-message-content">
-            <div class="p-toast-accent-line"></div>
+            <div class="extra-toast__accent-line"></div>
             <i :class="'p-toast-message-icon ti ' + message.icon"></i>
             <div class="p-toast-message-text">
               <span class="p-toast-summary">{{ message.summary }}</span>
@@ -317,7 +317,7 @@ export const TemplateCustomContentWithCloseButton = (args) => ({
         >
           <div :class="'p-toast-message p-toast-message-' + type">
             <div class="p-toast-message-content">
-              <div class="p-toast-accent-line"></div>
+              <div class="extra-toast__accent-line"></div>
               <i :class="'p-toast-message-icon ti ' + icon"></i>
               <div class="p-toast-message-text">
                 <span class="p-toast-summary">Заголовок сообщения</span>
@@ -379,7 +379,7 @@ export const TemplateWidth = (args) => ({
     };
   },
   template: `
-    <div>
+    <div class="extra-toast">
       <ExtraToast
         group="width-preview"
         :width="currentSize.key"
@@ -393,7 +393,7 @@ export const TemplateWidth = (args) => ({
           :style="'width:' + width"
         >
           <div class="p-toast-message-content">
-            <div class="p-toast-accent-line"></div>
+            <div class="extra-toast__accent-line"></div>
             <i class="p-toast-message-icon ti ti-info-circle"></i>
             <div class="p-toast-message-text">
               <span class="p-toast-summary">Заголовок сообщения</span>
@@ -436,7 +436,7 @@ export const TemplatePosition = (args) => ({
     };
   },
   template: `
-    <div>
+    <div class="extra-toast">
       <ExtraToast
         v-for="({ position, group }) in positions"
         :key="group"
