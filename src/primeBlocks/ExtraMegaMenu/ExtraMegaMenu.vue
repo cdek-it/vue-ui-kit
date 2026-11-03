@@ -64,6 +64,11 @@ defineProps<ExtraMegaMenuProps>();
   min-width: 11.375rem;
 }
 
+.extra-megamenu.p-megamenu-mobile {
+  // Compact header keeps the button's 32px height, without desktop inset.
+  padding: var(--p-dimension-space-none);
+}
+
 .extra-megamenu :deep(.p-megamenu-overlay) {
   // Submenu owns the 8px inset; don't add Prime's second overlay inset.
   padding: 0;
@@ -97,8 +102,9 @@ defineProps<ExtraMegaMenuProps>();
 }
 
 .extra-megamenu :deep(.extra-megamenu__mobile-button-icon) {
-  width: var(--p-megamenu-icon-size);
-  height: var(--p-megamenu-icon-size);
+  // Mobile glyph is 14px; item icons keep their component-level 18px size.
+  width: var(--p-dimension-size-400);
+  height: var(--p-dimension-size-400);
 }
 
 .extra-megamenu :deep(.extra-menuitem-submenu-icon),

@@ -51,18 +51,29 @@ defineProps<ExtraMenubarProps>();
     </template>
     <template #buttonicon>
       <slot name="buttonicon">
-        <IconMenu2 size="1.125rem" />
+        <IconMenu2 class="extra-menubar__mobile-button-icon" />
       </slot>
     </template>
   </Menubar>
 </template>
 
 <style lang="scss" scoped>
-.extra-menubar :deep(.p-menubar-submenu) {
+.extra-menubar.p-menubar-mobile {
+  // The compact Figma variant has only the 32px button, without desktop inset.
+  padding: var(--p-dimension-space-none);
+}
+
+.extra-menubar:not(.p-menubar-mobile) :deep(.p-menubar-submenu) {
   // An outside Figma stroke must not add 1px to the content inset.
   border-width: 0;
   outline: var(--p-dimension-border-width-100) solid
     var(--p-menubar-submenu-border-color);
+}
+
+// The mobile glyph is 14px in Figma; Prime has no separate glyph-size token.
+.extra-menubar :deep(.extra-menubar__mobile-button-icon) {
+  width: var(--p-dimension-size-400);
+  height: var(--p-dimension-size-400);
 }
 
 .extra-menubar :deep(.extra-menubar__submenu-icon) {

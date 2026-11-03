@@ -140,7 +140,7 @@ export const VisualAudit = {
     components: { ExtraInputText },
     setup: () => ({ cases: getFieldVisualCases() }),
     template: `
-      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 24px;">
         <section v-for="item in cases" :key="item.id" :data-visual-case="item.id" :data-visual-state="item.state">
           <p>{{ item.id }}</p>
           <ExtraInputText
@@ -170,7 +170,7 @@ export const Sizes = {
       positions: ['default', 'float', 'left'],
     }),
     template: `
-      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 24px;">
         <template v-for="size in sizes" :key="size">
           <section v-for="position in positions" :key="position" :data-visual-case="size + '-' + position">
             <p>{{ size }} / {{ position }}</p>

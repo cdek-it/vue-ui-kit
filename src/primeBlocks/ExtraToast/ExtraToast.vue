@@ -95,6 +95,9 @@ const emit = defineEmits<{
 // viewport/scroll deltas to its own extra-toast root; keep Prime transitions.
 :global(.p-toast.extra-toast) {
   --extra-toast-viewport-offset: var(--p-dimension-space-600);
+  // Preserve the selected width on desktop; keep the entire message and close
+  // control within a narrow viewport, including centered teleported toasts.
+  max-width: calc(100vw - 2 * var(--extra-toast-viewport-offset));
   display: flex;
   flex-direction: column;
   max-block-size: calc(100dvh - 2 * var(--extra-toast-viewport-offset));

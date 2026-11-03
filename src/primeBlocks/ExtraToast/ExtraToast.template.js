@@ -390,7 +390,7 @@ export const TemplateWidth = (args) => ({
           v-for="({ key, width }, index) in sizes"
           :key="index"
           class="p-toast-message p-toast-message-info"
-          :style="'width:' + width"
+          :style="{ width, maxWidth: '100%' }"
         >
           <div class="p-toast-message-content">
             <div class="extra-toast__accent-line"></div>

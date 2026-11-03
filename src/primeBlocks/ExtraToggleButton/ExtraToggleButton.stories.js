@@ -18,7 +18,7 @@ export const VisualAudit = {
     components: { ExtraToggleButton },
     setup: () => ({ cases: getToggleVisualCases() }),
     template: `
-      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 24px;">
         <section v-for="item in cases" :key="item.id" :data-visual-case="item.id" :data-visual-state="item.state">
           <p>{{ item.id }}</p>
           <ExtraToggleButton
@@ -208,6 +208,7 @@ export const Sizes = {
       return { args, checked, label, icon };
     },
     template: `
+      <div style="max-width: 100%; overflow-x: auto;">
       <div :style="{ display: 'grid', gridTemplateColumns: 'repeat(6, max-content)', gap: '15px', alignItems: 'center', justifyItems: 'center' }">
         <span></span>
         <span></span>
@@ -236,6 +237,7 @@ export const Sizes = {
         <ExtraToggleButton size="small" v-model="checked" :off-icon="icon" :on-icon="icon" v-bind="args"  :off-label="label" :on-label="label"/>
         <ExtraToggleButton size="small" disabled v-bind="args" :off-label="label" :on-label="label" />
         <ExtraToggleButton size="small" :off-icon="icon" :on-icon="icon" disabled v-bind="args" :off-label="label" :on-label="label" />
+      </div>
       </div>
     `,
   }),

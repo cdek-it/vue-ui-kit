@@ -72,7 +72,7 @@ export const VisualAudit = {
     components: { ExtraTextarea },
     setup: () => ({ cases: getFieldVisualCases() }),
     template: `
-      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 24px;">
         <section v-for="item in cases" :key="item.id" :data-visual-case="item.id" :data-visual-state="item.state">
           <p>{{ item.id }}</p>
           <ExtraTextarea
