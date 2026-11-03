@@ -68,12 +68,12 @@ const meta = {
     },
     labelPosition: {
       control: 'select',
-      options: ['default', 'float', 'left'],
+      options: ['default', 'float'],
       description: 'Положение лейбла по спецификации',
       table: {
         category: 'Props',
         defaultValue: { summary: 'default' },
-        type: { summary: "'default' | 'float' | 'left'" },
+        type: { summary: "'default' | 'float'" },
       },
     },
     label: {
@@ -167,7 +167,7 @@ export const Sizes = {
     components: { ExtraInputText },
     setup: () => ({
       sizes: ['sm', 'base', 'lg', 'xlg'],
-      positions: ['default', 'float', 'left'],
+      positions: ['default', 'float'],
     }),
     template: `
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 24px;">
@@ -481,67 +481,6 @@ export const FloatLabelInvalid = {
         code: `
 <template>
   <ExtraInputText v-model="value" label-position="float" label="Обязательное поле" required invalid />
-</template>
-        `,
-      },
-    },
-  },
-};
-
-export const LeftLabelWithMeta = {
-  name: 'Left Label + Caption + Info',
-  render: (args) => ({
-    components: { ExtraInputText },
-    setup() {
-      const value = ref('');
-      return { args, value };
-    },
-    template: `
-      <ExtraInputText
-        v-model="value"
-        label-position="left"
-        :label="args.label"
-        :caption="args.caption"
-        :info="args.info"
-        :placeholder="args.placeholder"
-        :clearable="args.clearable"
-        :size="args.size"
-      />
-    `,
-  }),
-  args: {
-    label: 'Телефон',
-    caption: 'Формат: +7 (XXX) XXX-XX-XX',
-    info: 'Используется для связи с получателем',
-    placeholder: '+7 (900) 000-00-00',
-    clearable: true,
-    size: 'base',
-  },
-  argTypes: {
-    labelPosition: { table: { disable: true } },
-    required: { table: { disable: true } },
-    invalid: { table: { disable: true } },
-    disabled: { table: { disable: true } },
-    readonly: { table: { disable: true } },
-    fluid: { table: { disable: true } },
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Сценарий по спецификации с левым лейблом, подписью под полем и инфо-иконкой.',
-      },
-      source: {
-        code: `
-<template>
-  <ExtraInputText
-    v-model="value"
-    label-position="left"
-    label="Телефон"
-    caption="Формат: +7 (XXX) XXX-XX-XX"
-    info="Используется для связи с получателем"
-    placeholder="+7 (900) 000-00-00"
-  />
 </template>
         `,
       },

@@ -16,7 +16,6 @@ const attrs = useAttrs();
 const autoInputId = useId();
 
 const isFloatLabel = computed(() => props.labelPosition === 'float');
-const isLeftLabel = computed(() => props.labelPosition === 'left');
 
 const inputId = computed(() => {
   if (typeof attrs.id === 'string' && attrs.id) {
@@ -36,7 +35,6 @@ defineEmits<{
   <div
     class="extra-inputtext"
     :class="{
-      'extra-inputtext--left-label': isLeftLabel,
       'extra-inputtext--default-label': labelPosition === 'default',
     }"
   >
@@ -55,15 +53,6 @@ defineEmits<{
       >
         <IconInfoCircle class="extra-inputtext__info-icon" />
       </span>
-    </label>
-
-    <label
-      v-if="isLeftLabel && label"
-      :for="inputId"
-      class="extra-inputtext__left-label"
-    >
-      <span v-if="required" class="extra-inputtext__required">*</span
-      >{{ label }}
     </label>
 
     <component
@@ -152,16 +141,6 @@ defineEmits<{
     color: var(--p-color-fg-default);
   }
 
-  &--left-label {
-    display: flex;
-    align-items: center;
-    gap: var(--p-dimension-space-200);
-  }
-
-  &__left-label {
-    white-space: nowrap;
-  }
-
   // Float text/radius have no variant-specific Prime token. Its visual height
   // excludes an extra border term; native text placement is adapted below.
   &__control.p-floatlabel-in :deep(.p-inputtext) {
@@ -231,8 +210,8 @@ defineEmits<{
   }
 
   // Caption wraps to the control width without contributing its own intrinsic
-  // width to the field. The left-label row has a separate horizontal layout.
-  &:not(.extra-inputtext--left-label) > .extra-inputtext__meta {
+  // width to the field.
+  & > .extra-inputtext__meta {
     width: 0;
     min-width: 100%;
   }
@@ -274,8 +253,7 @@ defineEmits<{
   margin-inline-end: var(--p-dimension-space-100);
   font-family: var(--p-fonts-font-family-base);
 }
-.extra-inputtext__label .extra-inputtext__required,
-.extra-inputtext__left-label .extra-inputtext__required {
+.extra-inputtext__label .extra-inputtext__required {
   font-size: var(--p-fonts-font-size-100);
 }
 
