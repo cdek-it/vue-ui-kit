@@ -15,7 +15,6 @@ const attrs = useAttrs();
 const autoTextareaId = useId();
 
 const isFloatLabel = computed(() => props.labelPosition === 'float');
-const isLeftLabel = computed(() => props.labelPosition === 'left');
 const isDefaultLabel = computed(() => props.labelPosition === 'default');
 
 const textareaId = computed(() =>
@@ -60,7 +59,6 @@ const onUpdateModelValue = (value: string) => {
     class="extra-textarea"
     :class="[
       { 'extra-textarea--default-label': isDefaultLabel },
-      { 'extra-textarea--left-label': isLeftLabel },
       { 'extra-textarea--float': isFloatLabel },
       { 'extra-textarea--base': !size || size === 'base' },
       { 'extra-textarea--sm': size === 'sm' },
@@ -82,14 +80,6 @@ const onUpdateModelValue = (value: string) => {
       >
         <IconInfoCircle class="extra-textarea__info-icon" />
       </span>
-    </label>
-
-    <label
-      v-if="isLeftLabel && label"
-      :for="textareaId"
-      class="extra-textarea__left-label"
-    >
-      <span v-if="required" class="extra-textarea__required">*</span>{{ label }}
     </label>
 
     <component
@@ -219,12 +209,6 @@ const onUpdateModelValue = (value: string) => {
     margin-top: 0;
   }
 
-  &--left-label {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--p-dimension-space-100);
-  }
-
   &--resize-none :deep(.p-textarea) {
     resize: none;
   }
@@ -286,14 +270,6 @@ const onUpdateModelValue = (value: string) => {
     line-height: var(--p-fonts-line-height-400);
   }
 
-  &__left-label {
-    white-space: nowrap;
-    padding-top: var(--p-textarea-padding-y);
-    font-size: var(--p-fonts-font-size-200);
-    line-height: var(--p-fonts-line-height-200);
-    color: var(--p-color-fg-default);
-  }
-
   &__meta {
     margin-top: var(--p-dimension-space-100);
     display: flex;
@@ -306,7 +282,7 @@ const onUpdateModelValue = (value: string) => {
   }
 
   // Caption must wrap within the control instead of widening the native field.
-  &:not(.extra-textarea--left-label) > .extra-textarea__meta {
+  & > .extra-textarea__meta {
     width: 0;
     min-width: 100%;
   }
@@ -352,8 +328,7 @@ const onUpdateModelValue = (value: string) => {
   margin-inline-end: var(--p-dimension-space-100);
   font-family: var(--p-fonts-font-family-base);
 }
-.extra-textarea__label .extra-textarea__required,
-.extra-textarea__left-label .extra-textarea__required {
+.extra-textarea__label .extra-textarea__required {
   font-size: var(--p-fonts-font-size-100);
 }
 

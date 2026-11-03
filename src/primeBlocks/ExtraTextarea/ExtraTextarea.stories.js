@@ -20,11 +20,11 @@ export default {
     },
     labelPosition: {
       control: 'select',
-      options: ['default', 'float', 'left'],
+      options: ['default', 'float'],
       table: {
         category: 'Props',
         defaultValue: { summary: 'default' },
-        type: { summary: "'default' | 'float' | 'left'" },
+        type: { summary: "'default' | 'float'" },
       },
     },
     resize: {
@@ -126,7 +126,6 @@ export const LabelPositions = {
       const values = ref({
         default: '',
         float: 'Текст с плавающим label',
-        left: '',
       });
 
       return { values };
@@ -148,14 +147,6 @@ export const LabelPositions = {
           placeholder="Введите текст..."
           rows="3"
         />
-        <h3 style="margin: 0;">labelPosition="left"</h3>
-        <ExtraTextarea
-          v-model="values.left"
-          label="Left label"
-          label-position="left"
-          placeholder="Введите текст..."
-          rows="3"
-        />
       </div>
     `,
   }),
@@ -163,7 +154,7 @@ export const LabelPositions = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Все варианты расположения label: default, float и left.',
+        story: 'Все варианты расположения label: default и float.',
       },
     },
   },

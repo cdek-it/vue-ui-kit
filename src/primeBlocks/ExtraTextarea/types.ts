@@ -1,4 +1,4 @@
-export type ExtraTextareaLabelPosition = 'default' | 'float' | 'left';
+export type ExtraTextareaLabelPosition = 'default' | 'float';
 
 export type ExtraTextareaSize = 'sm' | 'base' | 'lg';
 

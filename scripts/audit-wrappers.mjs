@@ -100,7 +100,7 @@ await send('CSS.enable');
 await send('Emulation.setFocusEmulationEnabled', { enabled: true });
 const results = [];
 const selector =
-  'input.p-inputtext,textarea.p-textarea,.p-togglebutton,.p-toast,.p-toast-message,.p-toast-summary,.p-toast-detail,.p-toast-close-button,.p-toast-message-icon,.extra-toast__accent-line,.p-megamenu,.p-menubar,.p-panelmenu,.extra-menuitem-link,.extra-menuitem-label,.extra-menuitem-icon,.extra-menuitem-description,.extra-menuitem-submenu-icon,.extra-textarea__left-label,.p-floatlabel label';
+  'input.p-inputtext,textarea.p-textarea,.p-togglebutton,.p-toast,.p-toast-message,.p-toast-summary,.p-toast-detail,.p-toast-close-button,.p-toast-message-icon,.extra-toast__accent-line,.p-megamenu,.p-menubar,.p-panelmenu,.extra-menuitem-link,.extra-menuitem-label,.extra-menuitem-icon,.extra-menuitem-description,.extra-menuitem-submenu-icon,.p-floatlabel label';
 async function capture(story, theme, viewport, interaction = 'default') {
   const data = await evaluate(`(() => {
     const paint = element => {
