@@ -7,8 +7,9 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Нижняя граница и отступ */
 .p-drawer-header {
-  border-bottom: 1px solid ${dt('drawer.extend.borderColor')};
-  padding-bottom: ${dt('drawer.extend.extHeader.paddingBottom')};
+  border-bottom: ${dt('drawer.extend.borderWidth')} solid ${dt(
+  'drawer.extend.extHeader.borderColor'
+)};
 }
 
 /* Типографика */
@@ -25,33 +26,33 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 /* Боковые drawer (слева/справа) - базовые размеры и отступы от краев экрана */
 .p-drawer-left .p-drawer.p-component,
 .p-drawer-right .p-drawer.p-component {
-  margin: ${dt('drawer.extend.padding')};;
-  width: ${dt('drawer.root.width')};
-  height: calc(100% - ${dt('drawer.extend.padding')} * ${dt(
+  margin: ${dt('drawer.extend.margin')};
+  width: ${dt('drawer.extend.width')};
+  height: calc(100% - ${dt('drawer.extend.margin')} * ${dt(
   'drawer.extend.scale'
 )});
 }
 
 .p-drawer-left .p-drawer.p-component.p-drawer-sm,
 .p-drawer-right .p-drawer.p-component.p-drawer-sm {
-  width: ${dt('drawer.sm.width')};
+  width: ${dt('drawer.extend.overlayWidth.sm')};
 }
 
 .p-drawer-left .p-drawer.p-component.p-drawer-lg,
 .p-drawer-right .p-drawer.p-component.p-drawer-lg {
-  width: ${dt('drawer.lg.width')};
+  width: ${dt('drawer.extend.overlayWidth.lg')};
 }
 
 .p-drawer-left .p-drawer.p-component.p-drawer-xlg,
 .p-drawer-right .p-drawer.p-component.p-drawer-xlg {
-  width: ${dt('drawer.xlg.width')};
+  width: ${dt('drawer.extend.overlayWidth.xlg')};
 }
 
 /* Горизонтальные drawer (сверху/снизу) - базовые размеры и отступы от краев экрана */
 .p-drawer-top .p-drawer.p-component,
 .p-drawer-bottom .p-drawer.p-component {
-  margin: ${dt('drawer.extend.padding')};;
-  width: calc(100% - ${dt('drawer.extend.padding')} * ${dt(
+  margin: ${dt('drawer.extend.margin')};
+  width: calc(100% - ${dt('drawer.extend.margin')} * ${dt(
   'drawer.extend.scale'
 )});
 }

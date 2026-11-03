@@ -2,8 +2,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 /* Типографика для Dialog */
 .p-dialog .p-dialog-title {
   font-family: ${dt('fonts.fontFamily.heading')};
-  font-size: ${dt('dialog.title.fontSize')};
-  font-weight: ${dt('dialog.title.fontWeight')};
   line-height: ${dt('fonts.lineHeight.550')};
 }
 
@@ -16,7 +14,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Разделитель между header и content */
 .p-dialog .p-dialog-header {
-  border-bottom: ${dt('borderWidth.100')} solid ${dt(
+  border-bottom: ${dt('dialog.extend.borderWidth')} solid ${dt(
   'dialog.root.borderColor'
 )};
 }
@@ -45,22 +43,22 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Размеры диалога */
 .p-dialog {
-  width: ${dt('sizing.80x')};
+  width: ${dt('dimension.size.1900')};
 }
 
 /* Размер SM (small) */
 .p-dialog.p-component.p-dialog-sm {
-  width: ${dt('overlay.sm.width')};
+  width: ${dt('dimension.size.1700')};
 }
 
 /* Размер LG (large) */
 .p-dialog.p-component.p-dialog-lg {
-  width: ${dt('overlay.lg.width')};
+  width: ${dt('dimension.size.2000')};
 }
 
 /* Размер XLG (extra large) */
 .p-dialog.p-component.p-dialog-xlg {
-  width: ${dt('overlay.xlg.width')};
+  width: ${dt('dimension.size.2200')};
 }
 `;
 

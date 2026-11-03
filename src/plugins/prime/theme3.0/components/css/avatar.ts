@@ -7,7 +7,9 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-avatar-group[data-pc-name="avatargroup"] .p-avatar[data-pc-name="avatar"] {
-  border: ${dt('borderWidth.200')} solid ${dt('avatar.group.borderColor')};
+  border: ${dt('dimension.borderWidth.200')} solid ${dt(
+  'avatar.group.borderColor'
+)};
 }
 
 .p-avatar-group[data-pc-name="avatargroup"] .p-avatar[data-pc-name="avatar"] + .p-avatar[data-pc-name="avatar"] {

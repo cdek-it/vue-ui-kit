@@ -6,7 +6,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-menu .p-menu-item-content .p-menu-item-link {
   font-family: ${dt('fonts.fontFamily.base')};
-  font-size: ${dt('fonts.fontSize.base')};
+  font-size: ${dt('fonts.fontSize.300')};
   font-weight: ${dt('fonts.fontWeight.regular')};
   line-height: ${dt('fonts.lineHeight.250')};
 }
@@ -19,15 +19,15 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-menu .p-menu-item-content .menu-item-caption {
   font-family: ${dt('fonts.fontFamily.base')};
-  font-size: ${dt('fonts.fontSize.sm')};
+  font-size: ${dt('fonts.fontSize.200')};
   font-weight: ${dt('fonts.fontWeight.regular')};
-  color: ${dt('menu.colorScheme.light.extend.extItem.caption.color')};
+  color: ${dt('menu.extend.extItem.caption.color')};
 }
 
 .p-menu .p-menu-item:not(.p-disabled) .p-menu-item-content:hover,
 .p-menu .p-menu-item:not(.p-disabled) .p-menu-item-content:hover .p-menu-item-link,
 .p-menu .p-menu-item:not(.p-disabled) .p-menu-item-content:hover .p-menu-item-label {
-  color: ${dt('menu.colorScheme.light.item.color')};
+  color: ${dt('menu.item.color')};
 }
 
 .p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content,
@@ -45,7 +45,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-menu .p-menu-item.p-menuitem-checked > .p-menu-item-content .p-menu-item-icon,
 .p-menu .p-menu-item.p-focus > .p-menu-item-content .p-menu-item-icon {
-  color: ${dt('menu.colorScheme.light.extend.extItem.icon.activeColor')};
+  color: ${dt('menu.extend.extItem.icon.activeColor')};
 }
 
 .p-menu .p-menu-item.p-menuitem-checked:not(.p-disabled) > .p-menu-item-content:hover {
@@ -54,12 +54,12 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-menu .p-menu-item.p-menuitem-checked:not(.p-disabled) > .p-menu-item-content:hover .p-menu-item-icon {
-  color: ${dt('menu.colorScheme.light.extend.extItem.icon.activeColor')};
+  color: ${dt('menu.extend.extItem.icon.activeColor')};
 }
 
 .p-menu .p-menu-submenu-label {
   text-transform: uppercase;
-  font-size: ${dt('fonts.fontSize.sm')};
+  font-size: ${dt('fonts.fontSize.200')};
   font-family: ${dt('fonts.fontFamily.heading')};
   line-height: ${dt('fonts.lineHeight.250')};
 }

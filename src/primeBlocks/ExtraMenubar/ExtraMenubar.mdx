@@ -1,5 +1,5 @@
 import { Meta, Canvas, Title, Description } from '@storybook/addon-docs/blocks';
-import * as MenuBarStories from './MenuBar.stories';
+import * as MenuBarStories from './ExtraMenubar.stories';
 
 <Meta of={MenuBarStories} />
 
@@ -55,12 +55,6 @@ Menubar с рендером пунктов через `<button>` вместо `<
 Кастомная иконка стрелки подменю. Слот получает `{ item, root }`, где `root: true` — верхний уровень, `root: false` — вложенное подменю.
 
 <Canvas of={MenuBarStories.WithSubmenuIconSlot} />
-
-### submenuicon (active state)
-
-Иконка подменю с вращением при открытии через `data-p-active`. Откройте `Features → Core`, чтобы увидеть nested-состояние.
-
-<Canvas of={MenuBarStories.WithSubmenuIconActiveState} />
 
 ### button
 

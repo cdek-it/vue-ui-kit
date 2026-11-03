@@ -192,7 +192,7 @@ export const WithSlotsTemplate = () => ({
         <span class="ti ti-brand-vue" style="font-size: 1.5rem; margin-right: 0.5rem;" />
       </template>
       <template #submenuicon>
-        <span class="ti ti-chevron-down" style="font-size: 0.75rem;" />
+        <span class="ti ti-chevron-down" />
       </template>
       <template #end>
         <button class="p-button p-button-text p-button-sm">Logout</button>
@@ -223,26 +223,8 @@ export const WithSubmenuIconSlotTemplate = () => ({
   template: `
     <ExtraMenubar :model="items">
       <template #submenuicon="{ root }">
-        <span :class="root ? 'ti ti-caret-down-filled text-emerald-500' : 'ti ti-caret-right-filled text-emerald-500'" />
-      </template>
-    </ExtraMenubar>
-  `,
-});
-
-export const WithSubmenuIconActiveStateTemplate = () => ({
-  components: { ExtraMenubar },
-  setup() {
-    return { items: baseItems() };
-  },
-  template: `
-    <ExtraMenubar :model="items">
-      <template #submenuicon="{ root }">
         <span
-          :class="[
-            root ? 'ti ti-chevron-down' : 'ti ti-chevron-right',
-            'text-emerald-500 transition-transform duration-200',
-            '[li[data-p-active=true]_&]:rotate-180',
-          ]"
+          :class="['ti', root ? 'ti-caret-down-filled' : 'ti-caret-right-filled', 'text-emerald-500']"
         />
       </template>
     </ExtraMenubar>

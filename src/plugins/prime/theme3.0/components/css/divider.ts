@@ -3,7 +3,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-family: ${dt('fonts.fontFamily.heading')};
   font-size: ${dt('fonts.fontSize.100')};
   font-weight: ${dt('fonts.fontWeight.demibold')};
-  line-height: ${dt('fonts.lineHeight.150')};
+  line-height: ${dt('fonts.lineHeight.200')};
   text-transform: uppercase;
 }
 
@@ -13,7 +13,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   gap: ${dt('divider.extend.content.gap')};
 }
 
-  color: ${dt('divider.colorScheme.light.content.color')};
+.p-divider-content i {
+  color: ${dt('divider.content.color')};
   font-size: ${dt('divider.extend.iconSize')};
 }
 

@@ -424,6 +424,14 @@ yarn test:cli
 
 Каждый компонент должен иметь Storybook истории:
 
+Для `Extra*`-оберток правила по выбору токенов и размещению стилей зафиксированы в `AGENTS.md` и `src/plugins/prime/docs/2_tokens.mdx`.
+Коротко:
+
+- для `skin/state/size` Prime-компонента использовать component-level токены `--p-<component>-*`;
+- для собственной разметки wrapper-слоя использовать semantic-токены (`--p-color-*`, `--p-dimension-*`, `--p-effects-*`, `--p-fonts-*`);
+- не использовать напрямую primitive `--p-colors-*`;
+- не менять базу токенов, приходящую из Figma, под локальную wrapper-задачу.
+
 ```javascript
 import BaseButton from './BaseButton.vue'
 
@@ -518,6 +526,7 @@ interface Props {
 - Все тесты проходят
 - Линтер не выдает ошибок
 - TypeScript проверка проходит успешно
+- Для style-правок в `Extra*` пройдена проверка `yarn -s check:style-tokens`
 - Добавлены/обновлены тесты
 - Обновлена документация
 - Storybook истории созданы/обновлены

@@ -16,7 +16,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-family: ${dt('fonts.fontFamily.heading')};
   font-weight: ${dt('fonts.fontWeight.demibold')};
   line-height: ${dt('fonts.lineHeight.500')};
-  height: ${dt('controls.iconOnly.700')};
+  height: ${dt('togglebutton.extend.iconOnlyWidth')};
   border-radius: ${dt('selectbutton.extend.ext.borderRadius')};
 }
 
@@ -43,7 +43,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 /* Размер Small */
 .p-selectbutton.p-selectbutton.p-selectbutton-sm.p-component .p-togglebutton.p-component {
   line-height: ${dt('fonts.lineHeight.300')};
-  height: ${dt('controls.iconOnly.600')};
+  height: ${dt('togglebutton.extend.extSm.iconOnlyWidth')};
 }
 
 .p-selectbutton.p-selectbutton.p-selectbutton-sm.p-component .p-togglebutton .p-togglebutton-label,
@@ -65,7 +65,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 /* Размер Large */
 .p-selectbutton.p-selectbutton.p-selectbutton-lg.p-component .p-togglebutton.p-component {
   line-height: ${dt('fonts.lineHeight.550')};
-  height: ${dt('controls.iconOnly.850')};
+  height: ${dt('togglebutton.extend.extLg.iconOnlyWidth')};
   gap: ${dt('togglebutton.extend.ext.gap')};
 }
 
@@ -87,7 +87,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-selectbutton.p-selectbutton.p-selectbutton-xlg.p-component .p-togglebutton.p-component {
   font-size: ${dt('fonts.fontSize.600')};
   line-height: ${dt('fonts.lineHeight.550')};
-  height: ${dt('controls.iconOnly.900')};
+  height: ${dt('togglebutton.extend.extXlg.iconOnlyWidth')};
   display: flex;
   align-items: center;
   justify-content: center;

@@ -2,7 +2,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-galleria .p-galleria-caption {
   background: ${dt('galleria.caption.background')};
-  padding: ${dt('spacing.2x')};
+  padding: ${dt('galleria.caption.padding')};
 }
 
 
