@@ -57,6 +57,7 @@ const onClear = () => {
       'extra-inputtext--sm': props.size === 'sm',
       'extra-inputtext--lg': props.size === 'lg',
       'extra-inputtext--fluid': fluid,
+      'extra-inputtext--clearable': clearable,
       'extra-inputtext--xlg': props.size === 'xlg',
     }"
   >
@@ -119,9 +120,9 @@ const onClear = () => {
     --extra-inputtext-padding-y: var(--p-inputtext-lg-padding-y);
   }
 
-  // IconField reserves space for a generic icon; our clear button also needs
-  // its own component inset and the semantic gap between text and icon.
-  &.p-iconfield :deep(.p-inputtext:not(:last-child)) {
+  // Reserve the clear-button inset even when empty, disabled or readonly:
+  // changing intrinsic input padding must not resize the fit-content root.
+  &.p-iconfield.extra-inputtext--clearable :deep(.p-inputtext) {
     padding-inline-end: calc(
       var(--p-inputtext-padding-x) + var(--extra-inputtext-icon-size) +
         var(--p-dimension-space-100)

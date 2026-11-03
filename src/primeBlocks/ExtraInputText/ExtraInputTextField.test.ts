@@ -34,7 +34,7 @@ describe('ExtraInputText visual states', () => {
     expect(wrapper.emitted('value-change')).toEqual([['']]);
   });
 
-  test('empty fields do not reserve a hidden clear icon', () => {
+  test('empty fields do not render a hidden clear button', () => {
     const wrapper = mount(ExtraInputTextField, {
       global,
       props: { modelValue: '', clearable: true },
