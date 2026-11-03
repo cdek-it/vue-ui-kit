@@ -6,7 +6,6 @@ import {
   WithSlotsTemplate,
   WithItemIconSlotTemplate,
   WithSubmenuIconSlotTemplate,
-  WithSubmenuIconActiveStateTemplate,
   WithButtonSlotTemplate,
   WithButtonIconSlotTemplate,
 } from './ExtraMenubar.template';
@@ -241,7 +240,7 @@ export const WithSlots = {
       <span class="ti ti-brand-vue" style="font-size: 1.5rem; margin-right: 0.5rem;" />
     </template>
     <template #submenuicon>
-      <span class="ti ti-chevron-down" style="font-size: 0.75rem;" />
+      <span class="ti ti-chevron-down" />
     </template>
     <template #end>
       <button class="p-button p-button-text p-button-sm">Logout</button>
@@ -304,43 +303,8 @@ export const WithSubmenuIconSlot = {
 <template>
   <ExtraMenubar :model="items">
     <template #submenuicon="{ root }">
-      <span :class="root ? 'ti ti-caret-down-filled text-emerald-500' : 'ti ti-caret-right-filled text-emerald-500'" />
-    </template>
-  </ExtraMenubar>
-</template>
-
-<script setup lang="ts">
-import { ref } from 'vue';
-import { ExtraMenubar } from '@cdek-it/vue-ui-kit';
-
-const items = ref(${DOC_ITEMS_NESTED});
-</script>
-        `,
-      },
-    },
-  },
-};
-
-export const WithSubmenuIconActiveState = {
-  render: WithSubmenuIconActiveStateTemplate,
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Иконка подменю с визуальной реакцией на активный пункт через `data-p-active`. Откройте `Features → Core`, чтобы увидеть nested-состояние.',
-      },
-      source: {
-        language: 'html',
-        code: `
-<template>
-  <ExtraMenubar :model="items">
-    <template #submenuicon="{ root }">
       <span
-        :class="[
-          root ? 'ti ti-chevron-down' : 'ti ti-chevron-right',
-          'text-emerald-500 transition-transform duration-200',
-          '[li[data-p-active=true]_&]:rotate-180',
-        ]"
+        :class="['ti', root ? 'ti-caret-down-filled' : 'ti-caret-right-filled', 'text-emerald-500']"
       />
     </template>
   </ExtraMenubar>

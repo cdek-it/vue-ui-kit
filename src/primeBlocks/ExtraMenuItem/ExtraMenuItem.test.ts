@@ -41,3 +41,23 @@ describe('ExtraMenuItem disabled actions', () => {
     }
   );
 });
+
+describe('ExtraMenuItem submenu icon', () => {
+  const items = [{ label: 'Child' }];
+
+  test('uses chevron-right by default, even for root items', () => {
+    const wrapper = mount(ExtraMenuItem, {
+      props: { label: 'Root', root: true, items },
+    });
+    expect(wrapper.find('.tabler-icon-chevron-right').exists()).toBe(true);
+    expect(wrapper.find('.tabler-icon-chevron-down').exists()).toBe(false);
+  });
+
+  test('switches to chevron-down when expanded', () => {
+    const wrapper = mount(ExtraMenuItem, {
+      props: { label: 'Root', expanded: true, items },
+    });
+    expect(wrapper.find('.tabler-icon-chevron-down').exists()).toBe(true);
+    expect(wrapper.find('.tabler-icon-chevron-right').exists()).toBe(false);
+  });
+});

@@ -15,4 +15,6 @@ export interface ExtraMenuItemProps extends ExtraMenuItemModel {
   badge?: string;
   as?: string | Component;
   root?: boolean;
+  // TODO(spec): перенести expanded в исходную спецификацию ExtraMenuItem.
+  expanded?: boolean;
 }

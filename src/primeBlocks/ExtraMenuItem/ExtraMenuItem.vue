@@ -54,7 +54,7 @@ const hasSubmenu = computed(
     <span v-if="hasSubmenu" class="extra-menuitem-submenu-icon">
       <slot name="submenuicon" v-bind="{ item: props, root }">
         <component
-          :is="root ? IconChevronDown : IconChevronRight"
+          :is="expanded ? IconChevronDown : IconChevronRight"
           class="extra-menuitem-chevron"
         />
       </slot>
@@ -126,6 +126,8 @@ const hasSubmenu = computed(
   display: flex;
   flex-direction: column;
   gap: var(--extra-menuitem-caption-gap, 0);
+  // A <button> item centers text by default; links keep the start alignment.
+  text-align: start;
   flex: 1 1 auto;
   min-width: var(--extra-menuitem-caption-min-width, 0);
 }

@@ -294,10 +294,12 @@ const onUpdateModelValue = (value: string) => {
     color: var(--p-color-fg-default);
   }
 
-  // Native textarea includes its border in the layered float layout.
+  // Native textarea includes its border in the layered float layout. The caret
+  // is taller than the 16px line box, so the text keeps a 2px clearance below
+  // the floated label to stop the caret from touching it.
   &__control.p-floatlabel-in :deep(.p-textarea) {
     padding-block-start: calc(
-      var(--p-floatlabel-in-input-padding-top) - var(--p-dimension-space-100)
+      var(--p-floatlabel-in-input-padding-top) - var(--p-dimension-space-50)
     );
   }
 
@@ -322,21 +324,14 @@ const onUpdateModelValue = (value: string) => {
     color: var(--p-floatlabel-invalid-color);
   }
 
+  // The label floats on focus as well as on a value (Prime's own rule), so the
+  // floated typography must not depend on the filled state alone.
   &__control:has(textarea.p-filled) :deep(.extra-textarea__float-label),
+  &__control:has(textarea:focus) :deep(.extra-textarea__float-label),
   &__control:has(textarea:-webkit-autofill)
     :deep(.extra-textarea__float-label) {
     font-family: var(--p-fonts-font-family-heading);
     line-height: var(--p-fonts-line-height-200);
-  }
-
-  // Empty focus is not a filled label in the design, despite Prime's :focus rule.
-  &__control:has(textarea:focus:not(.p-filled):not(:-webkit-autofill))
-    :deep(.extra-textarea__float-label) {
-    top: var(--p-floatlabel-position-y);
-    font-family: var(--p-fonts-font-family-base);
-    font-size: var(--p-fonts-font-size-200);
-    font-weight: var(--p-floatlabel-font-weight);
-    line-height: var(--p-fonts-line-height-400);
   }
 
   &__meta {

@@ -178,19 +178,13 @@ defineEmits<{
     color: var(--p-floatlabel-invalid-color);
   }
 
+  // The label floats on focus as well as on a value (Prime's own rule), so the
+  // floated typography must not depend on the filled state alone.
   &__control:has(input.p-filled) :deep(.extra-inputtext__float-label),
+  &__control:has(input:focus) :deep(.extra-inputtext__float-label),
   &__control:has(input:-webkit-autofill) :deep(.extra-inputtext__float-label) {
     font-family: var(--p-fonts-font-family-base);
     line-height: var(--p-fonts-line-height-200);
-  }
-
-  // Empty focus keeps the label centered; only a value activates the label.
-  &__control:has(input:focus:not(.p-filled):not(:-webkit-autofill))
-    :deep(.extra-inputtext__float-label) {
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: var(--p-fonts-font-size-200);
-    font-weight: var(--p-floatlabel-font-weight);
   }
 
   &__meta {

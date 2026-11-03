@@ -84,6 +84,33 @@ defineProps<ExtraMegaMenuProps>();
   min-width: 0;
 }
 
+// Prime keeps root items static, so the absolute overlay is aligned to the
+// menu edge instead of the opened item. A positioned item cannot be its
+// containing block: the root list has inline `overflow: auto` and would clip
+// the overlay. Anchor the overlay to the active item instead; browsers without
+// anchor positioning keep Prime's menu-edge alignment.
+@supports (anchor-name: --extra-megamenu-active-item) {
+  .extra-megamenu.p-megamenu-horizontal:not(.p-megamenu-mobile) {
+    :deep(.p-megamenu-root-list > .p-megamenu-item-active) {
+      anchor-name: --extra-megamenu-active-item;
+    }
+
+    :deep(
+        .p-megamenu-root-list > .p-megamenu-item-active > .p-megamenu-overlay
+      ) {
+      position-anchor: --extra-megamenu-active-item;
+      inset-inline-start: anchor(start);
+    }
+  }
+}
+
+// A vertical overlay starts at the menu edge and has no free inline space, so
+// it shrinks to min-content and wraps labels without an explicit <br>.
+.extra-megamenu :deep(.p-megamenu-submenu-label),
+.extra-megamenu :deep(.extra-menuitem-label) {
+  white-space: nowrap;
+}
+
 .extra-megamenu :deep(.p-megamenu-submenu-label:empty) {
   display: none;
 }
