@@ -222,6 +222,10 @@ export const States = {
         invalid: '',
         disabled: 'Недоступное значение',
         readonly: 'Значение только для чтения',
+        floatDefault: 'Заполненное значение',
+        floatInvalid: 'Некорректное значение',
+        floatDisabled: 'Недоступное значение',
+        floatReadonly: 'Значение только для чтения',
       });
 
       return { values };
@@ -257,6 +261,38 @@ export const States = {
           readonly
           rows="3"
         />
+        <h3 style="margin: 0;">Float default</h3>
+        <ExtraTextarea
+          v-model="values.floatDefault"
+          label="Float default"
+          label-position="float"
+
+          rows="2"
+        />
+        <h3 style="margin: 0;">Float invalid</h3>
+        <ExtraTextarea
+          v-model="values.floatInvalid"
+          label="Float invalid"
+          label-position="float"
+          invalid
+          rows="2"
+        />
+        <h3 style="margin: 0;">Float disabled</h3>
+        <ExtraTextarea
+          v-model="values.floatDisabled"
+          label="Float disabled"
+          label-position="float"
+          disabled
+          rows="2"
+        />
+        <h3 style="margin: 0;">Float readonly</h3>
+        <ExtraTextarea
+          v-model="values.floatReadonly"
+          label="Float readonly"
+          label-position="float"
+          readonly
+          rows="2"
+        />
       </div>
     `,
   }),
@@ -264,7 +300,8 @@ export const States = {
     controls: { disable: true },
     docs: {
       description: {
-        story: 'Основные состояния: default, invalid, disabled и readonly.',
+        story:
+          'Основные состояния default, invalid, disabled и readonly с обычным и заполненным float label. Hover и focus проверяются взаимодействием с доступными полями.',
       },
     },
   },
