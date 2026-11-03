@@ -4,6 +4,9 @@ export type ExtraTextareaSize = 'sm' | 'base' | 'lg';
 
 // Spec-first публичный API (textarea spec)
 export interface ExtraTextareaSpecProps {
+  // TODO(spec): перенести clearable в исходную спецификацию Textarea.
+  // Имя соответствует аналогичному свойству ExtraInputText.
+  clearable?: boolean;
   placeholder?: string;
   label?: string;
   labelPosition?: ExtraTextareaLabelPosition;

@@ -36,6 +36,7 @@ export default {
         type: { summary: "'none' | 'vertical'" },
       },
     },
+    clearable: { control: 'boolean', table: { category: 'Props' } },
     autoResize: { control: 'boolean', table: { category: 'Props' } },
     invalid: { control: 'boolean', table: { category: 'Props' } },
     disabled: { control: 'boolean', table: { category: 'Props' } },
@@ -76,6 +77,7 @@ export const VisualAudit = {
         <section v-for="item in cases" :key="item.id" :data-visual-case="item.id" :data-visual-state="item.state">
           <p>{{ item.id }}</p>
           <ExtraTextarea
+            clearable
             :model-value="item.value"
             :label-position="item.labelPosition"
             :placeholder="item.placeholder"
@@ -392,4 +394,24 @@ export const Custom = {
       },
     },
   },
+};
+
+export const Clearable = {
+  render: () => ({
+    components: { ExtraTextarea },
+    setup: () => ({
+      values: ref([
+        'Текст для очистки',
+        'Float текст',
+        'Нельзя очистить',
+        'Только чтение',
+      ]),
+    }),
+    template: `<div style="display: grid; gap: 1rem; max-width: 32rem;">
+      <ExtraTextarea v-model="values[0]" clearable label="Описание" />
+      <ExtraTextarea v-model="values[1]" clearable label-position="float" label="Описание" invalid />
+      <ExtraTextarea v-model="values[2]" clearable label="Disabled" disabled />
+      <ExtraTextarea v-model="values[3]" clearable label="Readonly" readonly />
+    </div>`,
+  }),
 };

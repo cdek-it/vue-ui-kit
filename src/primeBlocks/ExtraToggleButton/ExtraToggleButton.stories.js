@@ -72,7 +72,7 @@ const Template = (args) => ({
         @value-change="(e) => onEmit(e, 'value-change')" 
         @blur="(e) => onEmit(e, 'blur')"
         @change="(e) => onEmit(e, 'change')"
-        @update:modelValue="onEmit(e, 'update:modelValue')"
+        @update:modelValue="onEmit($event, 'update:modelValue')"
     >
       <div v-if="args.story === 'DefaultSlot'">Дефолтный слот</div>
       <template #icon>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, useAttrs, useId } from 'vue';
-import { IconAlertCircle, IconInfoCircle } from '@tabler/icons-vue';
+import { IconAlertCircle, IconInfoCircle, IconX } from '@tabler/icons-vue';
 import { FloatLabel, Textarea } from 'primevue';
 import type { ExtraTextareaProps } from './types';
 
@@ -48,6 +48,12 @@ const emit = defineEmits<{
   (e: 'value-change', value: string): void;
 }>();
 
+const onClear = () => {
+  if (!props.disabled && !props.readonly) {
+    onUpdateModelValue('');
+  }
+};
+
 const onUpdateModelValue = (value: string) => {
   emit('update:modelValue', value);
   emit('value-change', value);
@@ -60,6 +66,7 @@ const onUpdateModelValue = (value: string) => {
     :class="[
       { 'extra-textarea--default-label': isDefaultLabel },
       { 'extra-textarea--float': isFloatLabel },
+      { 'extra-textarea--clearable': clearable },
       { 'extra-textarea--base': !size || size === 'base' },
       { 'extra-textarea--sm': size === 'sm' },
       { 'extra-textarea--lg': size === 'lg' },
@@ -111,6 +118,18 @@ const onUpdateModelValue = (value: string) => {
         <span v-if="required" class="extra-textarea__required">*</span
         >{{ label }}
       </label>
+      <button
+        v-if="clearable && modelValue && !disabled && !readonly"
+        type="button"
+        aria-label="Очистить поле"
+        class="extra-textarea__clear"
+        @mousedown.prevent
+        @click.stop="onClear"
+      >
+        <slot name="clear-icon"
+          ><IconX class="extra-textarea__clear-icon"
+        /></slot>
+      </button>
     </component>
 
     <div
@@ -144,7 +163,11 @@ const onUpdateModelValue = (value: string) => {
 
 <style scoped lang="scss">
 .extra-textarea {
+  --extra-textarea-icon-size: var(--p-textarea-icon-size);
+  --extra-textarea-padding-x: var(--p-textarea-padding-x);
+  --extra-textarea-padding-y: var(--p-textarea-padding-y);
   &__control {
+    position: relative;
     width: 100%;
 
     :deep(.p-textarea) {
@@ -181,6 +204,52 @@ const onUpdateModelValue = (value: string) => {
     :deep(.p-textarea.p-invalid:enabled:hover) {
       border-color: var(--p-textarea-invalid-border-color);
     }
+  }
+
+  // Prime Textarea has no clear action. Reserve its inset even while empty.
+  &--clearable :deep(.p-textarea) {
+    padding-inline-end: calc(
+      var(--extra-textarea-padding-x) + var(--extra-textarea-icon-size) +
+        var(--p-dimension-space-100)
+    );
+  }
+
+  // Prime has no size-specific clear-icon setting; follow the sizing mode.
+  &--sm {
+    --extra-textarea-icon-size: var(--p-sizing-small-form-icon-size);
+    --extra-textarea-padding-x: var(--p-textarea-sm-padding-x);
+    --extra-textarea-padding-y: var(--p-textarea-sm-padding-y);
+  }
+
+  &--lg {
+    --extra-textarea-icon-size: var(--p-sizing-large-form-icon-size);
+    --extra-textarea-padding-x: var(--p-textarea-lg-padding-x);
+    --extra-textarea-padding-y: var(--p-textarea-lg-padding-y);
+  }
+
+  &__clear {
+    position: absolute;
+    top: calc(
+      var(--extra-textarea-padding-y) + var(--p-dimension-border-width-100)
+    );
+    inset-inline-end: calc(
+      var(--extra-textarea-padding-x) + var(--p-dimension-border-width-100)
+    );
+    width: var(--extra-textarea-icon-size);
+    height: var(--extra-textarea-icon-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--p-textarea-placeholder-color);
+    cursor: pointer;
+  }
+
+  &__clear-icon {
+    width: 100%;
+    height: 100%;
   }
 
   // Prime has no base typography tokens; use the current export sizing mode.
