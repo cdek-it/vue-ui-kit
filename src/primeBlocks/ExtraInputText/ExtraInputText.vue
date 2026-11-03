@@ -230,6 +230,13 @@ defineEmits<{
     color: var(--p-color-fg-status-danger-default);
   }
 
+  // Caption wraps to the control width without contributing its own intrinsic
+  // width to the field. The left-label row has a separate horizontal layout.
+  &:not(.extra-inputtext--left-label) > .extra-inputtext__meta {
+    width: 0;
+    min-width: 100%;
+  }
+
   // Keep the design's leading icon inside the fallback, so a slot replaces it.
   &__caption {
     display: flex;

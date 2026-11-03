@@ -305,6 +305,12 @@ const onUpdateModelValue = (value: string) => {
     line-height: var(--p-fonts-line-height-200);
   }
 
+  // Caption must wrap within the control instead of widening the native field.
+  &:not(.extra-textarea--left-label) > .extra-textarea__meta {
+    width: 0;
+    min-width: 100%;
+  }
+
   &__caption--danger {
     color: var(--p-color-fg-status-danger-default);
   }
