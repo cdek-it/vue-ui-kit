@@ -8,7 +8,7 @@ export default {
     docs: {
       description: {
         component:
-          'Самостоятельный disabled-пункт блокирует активацию и навигацию. Для as=button применяется нативный disabled; внутри меню сохраняются состояния родительского Prime-компонента.',
+          'Самостоятельный disabled-пункт блокирует активацию и навигацию. Для as=button применяется нативный disabled; внутри меню сохраняются состояния родительского Prime-компонента. Иконка подменю по умолчанию chevron-right; проп expanded переключает её на chevron-down (расширение API, в composite-меню значение передаёт родитель).',
       },
     },
   },
@@ -24,6 +24,15 @@ export const WithDescription = {
     description: 'Description',
     icon: 'ti ti-box',
     badge: '2',
+    items: [{ label: 'Child' }],
+  },
+};
+
+export const Expanded = {
+  args: {
+    label: 'Menu item',
+    icon: 'ti ti-box',
+    expanded: true,
     items: [{ label: 'Child' }],
   },
 };
