@@ -27,3 +27,15 @@ describe('ExtraPanelMenu icon slots', () => {
     );
   });
 });
+
+describe('ExtraPanelMenu submenu icon', () => {
+  test.each([
+    [{}, 'chevron-right'],
+    [{ root: true }, 'chevron-down'],
+  ])('shows the expected icon for expandedKeys %j', (expandedKeys, icon) => {
+    const wrapper = mount(ExtraPanelMenu, { props: { model, expandedKeys } });
+    expect(
+      wrapper.find(`.p-panelmenu-header .tabler-icon-${icon}`).exists()
+    ).toBe(true);
+  });
+});

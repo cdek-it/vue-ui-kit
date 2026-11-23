@@ -124,8 +124,12 @@ export const Custom = {
         code: `
 <template>
   <ExtraPanelMenu :model="items" multiple>
-    <template #item="{ item, props, root }">
-      <ExtraMenuItem v-bind="{ ...item, ...props.action }" :root="root" />
+    <template #item="{ item, props, root, active }">
+      <ExtraMenuItem
+        v-bind="{ ...item, ...props.action }"
+        :root="root"
+        :expanded="active"
+      />
     </template>
   </ExtraPanelMenu>
 </template>
