@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { IconChevronRight, IconMenu2 } from '@tabler/icons-vue';
+import {
+  IconChevronDown,
+  IconChevronRight,
+  IconMenu2,
+} from '@tabler/icons-vue';
 import { Menubar } from 'primevue';
 import type { MenubarSlots } from 'primevue/menubar';
 import ExtraMenuItem from '../ExtraMenuItem/ExtraMenuItem.vue';
@@ -37,7 +41,10 @@ defineProps<ExtraMenubarProps>();
           </template>
           <template #submenuicon="submenuIconProps">
             <slot name="submenuicon" v-bind="submenuIconProps">
-              <IconChevronRight class="extra-menubar__submenu-icon" />
+              <component
+                :is="slotProps.root ? IconChevronDown : IconChevronRight"
+                class="extra-menubar__submenu-icon"
+              />
             </slot>
           </template>
         </ExtraMenuItem>
