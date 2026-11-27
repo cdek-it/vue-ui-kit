@@ -119,7 +119,11 @@ async function capture(story, theme, viewport, interaction = 'default') {
       )})].filter(element => element.getBoundingClientRect().height > 0).map(paint),
       bodyText: document.body.innerText.slice(0,500), overflow: document.documentElement.scrollWidth > innerWidth};
   })()`);
-  assert.equal(data.rootFont, '16px');
+  assert.equal(
+    data.rootFont,
+    '16px',
+    'Для эталонной сверки настройте браузер: базовый шрифт 16px, масштаб 100%. Не компенсируйте размер через CSS Storybook или токены.'
+  );
   const metrics = await send('Page.getLayoutMetrics');
   const screenshot = await send('Page.captureScreenshot', {
     format: 'png',
