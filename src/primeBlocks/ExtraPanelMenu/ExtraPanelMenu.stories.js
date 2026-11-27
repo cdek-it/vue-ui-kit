@@ -2,7 +2,7 @@ import {
   BasicTemplate,
   MultipleTemplate,
   CustomTemplate,
-} from './PanelMenu.template';
+} from './ExtraPanelMenu.template';
 import { ExtraPanelMenu } from '@/primeBlocks';
 
 export default {
@@ -22,7 +22,7 @@ export default {
     docs: {
       description: {
         component:
-          'Аккордеон-меню с поддержкой вложенных подменю и раскрытием нескольких панелей.',
+          'Аккордеон-меню с поддержкой вложенных подменю и раскрытием нескольких панелей. В стандартном шаблоне headericon задаёт иконку корневого заголовка, itemicon — иконки дочерних пунктов и fallback корневых. Пользовательский item полностью заменяет пункт.',
       },
     },
     designTokens: { prefix: '--p-panelmenu' },
@@ -124,8 +124,12 @@ export const Custom = {
         code: `
 <template>
   <ExtraPanelMenu :model="items" multiple>
-    <template #item="{ item, props, root }">
-      <ExtraMenuItem v-bind="{ ...item, ...props.action }" :root="root" />
+    <template #item="{ item, props, root, active }">
+      <ExtraMenuItem
+        v-bind="{ ...item, ...props.action }"
+        :root="root"
+        :expanded="active"
+      />
     </template>
   </ExtraPanelMenu>
 </template>
@@ -172,4 +176,22 @@ const items = ref([
       },
     },
   },
+};
+
+export const IconSlots = {
+  render: () => ({
+    components: { ExtraPanelMenu },
+    setup: () => ({
+      model: [
+        { key: 'root', label: 'Root header', items: [{ label: 'Child item' }] },
+      ],
+      expandedKeys: { root: true },
+    }),
+    template: `
+      <ExtraPanelMenu :model="model" :expandedKeys="expandedKeys">
+        <template #headericon="{ item }"><span class="ti ti-star" :title="item.label" data-header-icon /></template>
+        <template #itemicon="{ item }"><span class="ti ti-box" :title="item.label" data-item-icon /></template>
+      </ExtraPanelMenu>
+    `,
+  }),
 };

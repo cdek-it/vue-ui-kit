@@ -2,7 +2,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-breadcrumb-item-link {
   padding: ${dt('breadcrumb.extend.extItem.padding')};
-  font-size: ${dt('fonts.fontSize.base')};
+  font-size: ${dt('fonts.fontSize.300')};
 }
 
 .p-breadcrumb-item-link:hover {
@@ -14,12 +14,12 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-breadcrumb-item:last-child .p-breadcrumb-item-link {
-  opacity: ${dt('opacity.500')};
+  opacity: ${dt('effects.opacity.50')};
   pointer-events: none;
   cursor: default;
   
   &:hover {
-    background: ${dt('colorScheme.light.transparent')};
+    background: transparent;
   }
 }
 `;

@@ -6,11 +6,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   position: relative;
 }
 
-/* border-radius для контента message */
-.p-message .p-message-content {
-  border-radius: ${dt('message.root.borderRadius')};
-}
-
 /* Контент message с приоритизацией align-items */
 .p-message .p-message-content {
   display: flex;
@@ -27,9 +22,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Заголовок message */
 .p-message-summary {
-  font-weight: ${dt('message.text.fontWeight')};
   line-height: ${dt('fonts.lineHeight.250')};
-  font-size: ${dt('message.text.fontSize')};
 }
 
 /* Детальное описание message */
@@ -41,8 +34,6 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Кнопка закрытия message */
 .p-message .p-message-content .p-message-close-button {
-  width: ${dt('message.closeButton.width')};
-  height: ${dt('message.closeButton.height')};
   margin: 0;
   padding: 0;
   right: 0;

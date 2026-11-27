@@ -7,6 +7,7 @@ module.exports = {
   stories: [
     '../src/plugins/prime/**/*.mdx',
     '../src/plugins/prime/**/*.stories.@(js|jsx|mjs|ts|tsx)',
+    '../src/primeBlocks/**/*.mdx',
     '../src/primeBlocks/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
 

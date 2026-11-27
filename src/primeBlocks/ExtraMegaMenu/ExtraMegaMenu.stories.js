@@ -2,7 +2,7 @@ import {
   HorizontalTemplate,
   VerticalTemplate,
   CustomTemplate,
-} from './MegaMenu.template';
+} from './ExtraMegaMenu.template';
 import { ExtraMegaMenu } from '@/primeBlocks';
 
 export default {

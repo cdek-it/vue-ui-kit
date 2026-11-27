@@ -51,7 +51,7 @@ setup((app) => {
 });
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
+  // Register real events explicitly; onLabel/onIcon and similar names are props.
   options: {
     storySort: {
       order: [

@@ -14,7 +14,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-family: ${dt('fonts.fontFamily.base')};
   font-size: ${dt('fonts.fontSize.200')};
   font-weight: ${dt('fonts.fontWeight.medium')};
-  color: ${dt('text.color')};
+  color: ${dt('color.fg.default')};
 }
 
 /* PrimeVue sets both width and height as the same percentage via inline style.

@@ -8,7 +8,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 }
 
 .p-card.shadow-md {
-  box-shadow: ${dt('overlay.popover.shadow')};
+  box-shadow: ${dt('card.overlay.shadow')};
 }
 
 .p-card-subtitle {

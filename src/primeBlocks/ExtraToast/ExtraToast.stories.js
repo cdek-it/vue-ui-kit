@@ -1,4 +1,8 @@
 import { ExtraToast } from '@/primeBlocks';
+import { extraToastSpec } from './spec';
+import { buildStoryParameters } from '../storybook/storyMeta';
+import { useExtraToast } from './useExtraToast';
+import { liveToastVisualAudit } from './visualAudit';
 
 import {
   Template,
@@ -7,22 +11,13 @@ import {
   TemplateWithContent,
   TemplateWidth,
   TemplatePosition,
-} from './Toast.template';
+} from './ExtraToast.template';
 
 const meta = {
   title: 'Prime/Messages/ExtraToast',
   component: ExtraToast,
   tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `\`Toast\` используется для отображения всплывающих уведомлений поверх интерфейса.\nТребует подключения \`toastService\` при инициализации приложения.\n
-\`\`\`ts dark \nimport { toastService } from '@cdek-it/vue-ui-kit';\n\nconst app = new Vue();\napp.use(toastService);\`\`\` `,
-      },
-    },
-    designToken: { disable: false },
-    designTokens: { prefix: '--p-toast' },
-  },
+  parameters: buildStoryParameters(extraToastSpec),
   argTypes: {
     position: {
       control: 'select',
@@ -80,6 +75,8 @@ const meta = {
 };
 
 export default meta;
+
+export const VisualAudit = liveToastVisualAudit;
 
 export const Default = {
   name: 'ExtraToast',
@@ -196,7 +193,7 @@ const showToast = () => {
     <ExtraToast>
       <template #container="{ message }">
         <div class="p-toast-message-content">
-          <div class="p-toast-accent-line"></div>
+          <div class="extra-toast__accent-line"></div>
           <!-- Можно указать через icon или через как IconCircleCheck. -->
           <!-- В случае использования иконки как IconCircleCheck, то icon в конфиге не указываем. -->
           <i :class="'p-toast-message-icon ti ' + message.icon"></i>
@@ -255,7 +252,7 @@ const showToast = () => {
      <ExtraToast>
       <template #container="{ message, closeCallback }">
         <div class="p-toast-message-content">
-          <div class="p-toast-accent-line"></div>
+          <div class="extra-toast__accent-line"></div>
           <i :class="'p-toast-message-icon ti ' + message.icon"></i>
           <div class="p-toast-message-text">
             <span class="p-toast-summary">{{ message.summary }}</span>
@@ -361,4 +358,31 @@ const showToast = (position) => {
       },
     },
   },
+};
+
+export const MessageIconSlot = {
+  render: () => ({
+    components: { ExtraToast },
+    setup() {
+      const toast = useExtraToast();
+      const show = () => {
+        toast.removeGroup('custom-message-icon');
+        toast.add({
+          group: 'custom-message-icon',
+          severity: 'success',
+          summary: 'Сохранено',
+          detail: 'Пользовательская иконка со стандартным содержимым',
+          closable: true,
+          life: 60000,
+        });
+      };
+      return { show };
+    },
+    template: `
+      <button @click="show" data-message-icon-trigger>Показать Toast</button>
+      <ExtraToast group="custom-message-icon">
+        <template #messageicon="iconProps"><span v-bind="iconProps" class="ti ti-star" data-message-icon /></template>
+      </ExtraToast>
+    `,
+  }),
 };

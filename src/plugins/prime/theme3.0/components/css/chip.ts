@@ -15,12 +15,12 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 .p-chip-remove-icon:focus-visible {
   outline: ${dt('chip.removeIcon.focusRing.width')} solid ${dt(
-  'focusRing.extend.success'
+  'chip.removeIcon.focusRing.color'
 )};
 }
 
 .p-chip[disabled="true"] {
-  opacity: ${dt('opacity.500')};
+  opacity: ${dt('effects.opacity.50')};
   pointer-events: none;
 }
 

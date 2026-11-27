@@ -1,8 +1,8 @@
-export type ExtraInputTextLabelPosition = 'default' | 'float' | 'left';
+export type ExtraInputTextLabelPosition = 'default' | 'float';
 
 export type ExtraInputTextSize = 'sm' | 'base' | 'lg' | 'xlg';
 
-// Spec-first публичный API (components-api/inputtext.md)
+// Публичный API обёртки.
 export interface ExtraInputTextSpecProps {
   placeholder?: string;
   label?: string;

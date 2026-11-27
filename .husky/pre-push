@@ -1,0 +1,38 @@
+#!/usr/bin/env sh
+
+# Display the policy locally; GitHub remains responsible for checking permissions.
+remote_url=${2%/}
+remote_url=${remote_url%.git}
+case "$remote_url" in
+  https://github.com/cdek-it/vue-ui-kit|git@github.com:cdek-it/vue-ui-kit|ssh://git@github.com/cdek-it/vue-ui-kit) ;;
+  *) exit 0 ;;
+esac
+
+while read -r local_ref local_oid remote_ref remote_oid; do
+  case "$remote_ref" in
+    refs/heads/*) ;;
+    *) continue ;;
+  esac
+
+  # New branches and deletions are not history rewrites (also supports SHA-256).
+  case "$local_oid" in *[!0]*) ;; *) continue ;; esac
+  case "$remote_oid" in *[!0]*) ;; *) continue ;; esac
+
+  if ! git cat-file -e "$remote_oid^{commit}" 2>/dev/null; then
+    printf '%s\n' "Не удалось проверить историю ${remote_ref#refs/heads/} локально. Права проверит GitHub: force push в main запрещён всем, в остальные ветки разрешён только @Skosov." >&2
+    continue
+  fi
+
+  if git merge-base --is-ancestor "$remote_oid" "$local_oid"; then
+    continue
+  fi
+
+  if [ "$remote_ref" = refs/heads/main ]; then
+    printf '%s\n' 'Force push в main запрещён всем, включая @Skosov. Создайте pull request и получите approve другого участника.' >&2
+  else
+    printf '%s\n' "Force push в ${remote_ref#refs/heads/} разрешён только @Skosov. Остальным: force push запрещён, обратитесь к @Skosov." >&2
+  fi
+done
+
+# Do not infer GitHub identity from git user.name/email or block Skosov locally.
+exit 0

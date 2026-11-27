@@ -14,15 +14,15 @@ export default ({ dt }: { dt: (token: string) => string }) => `
 
 /* Размеры */
 .p-confirmdialog-sm.p-dialog {
-  width: ${dt('overlay.sm.width')};
+  width: ${dt('dimension.size.1700')};
 }
 
 .p-confirmdialog-lg.p-dialog {
-  width: ${dt('overlay.lg.width')};
+  width: ${dt('dimension.size.2000')};
 }
 
 .p-confirmdialog-xlg.p-dialog {
-  width: ${dt('overlay.xlg.width')};
+  width: ${dt('dimension.size.2200')};
 }
 
 /* Цвета иконок по severity */

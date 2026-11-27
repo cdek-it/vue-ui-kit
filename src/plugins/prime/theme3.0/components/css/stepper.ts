@@ -18,7 +18,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-size: ${dt('fonts.fontSize.200')};
   font-weight: ${dt('fonts.fontWeight.regular')};
   line-height: normal;
-  color: ${dt('text.mutedColor')};
+  color: ${dt('color.fg.muted')};
 }
 
 /* Номер шага */
@@ -26,7 +26,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
   font-family: ${dt('fonts.fontFamily.base')};
   font-size: ${dt('fonts.fontSize.300')};
   font-weight: ${dt('fonts.fontWeight.medium')};
-  line-height: ${dt('fonts.lineHeight.150')};
+  line-height: ${dt('fonts.lineHeight.200')};
 }
 
 /* Border для номера шага */
@@ -43,8 +43,8 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Step-number с иконкой */
 .p-stepper .p-step-number:has(i) {
-  background: ${dt('colorScheme.light.transparent')};
-  border-color: ${dt('colorScheme.light.transparent')};
+  background: transparent;
+  border-color: transparent;
 }
 
 /* Размер иконок в step-number */
@@ -59,7 +59,7 @@ const css = ({ dt }: { dt: (token: string) => string }) => `
 
 /* Прозрачный фон для панелей */
 .p-stepper .p-steppanel {
-  background: ${dt('colorScheme.light.transparent')};
+  background: transparent;
 }
 `;
 

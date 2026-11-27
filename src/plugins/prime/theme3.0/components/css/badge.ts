@@ -1,8 +1,6 @@
 const css = ({ dt }: { dt: (token: string) => string }) => `
 .p-badge {
   font-family: ${dt('fonts.fontFamily.heading')};
-  font-size: ${dt('badge.root.fontSize')};
-  font-weight: ${dt('badge.root.fontWeight')};
   line-height: ${dt('fonts.lineHeight.100')};
 }
 

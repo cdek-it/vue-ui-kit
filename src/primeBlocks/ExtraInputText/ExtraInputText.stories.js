@@ -1,27 +1,17 @@
-import ExtraInputText from '@/primeBlocks/ExtraInputText/ExtraInputText.vue';
+import ExtraInputText from './ExtraInputText.vue';
 import { ref } from 'vue';
-import { Template } from './InputText.template';
+import { extraInputTextSpec } from './spec';
+import { buildStoryParameters } from '../storybook/storyMeta';
+import { getFieldVisualCases } from '../storybook/visualAudit';
 
 /**
  * Компонент текстового ввода.
  */
 const meta = {
-  title: 'Prime/Form/ExtraInputText',
+  title: 'Prime Blocks/ExtraInputText',
   component: ExtraInputText,
   tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component: `Обёртка над PrimeVue InputText с поддержкой очистки, размеров и кастомной иконки.
-
-\`\`\`js
-import { ExtraInputText } from '@cdek-it/vue-ui-kit';
-\`\`\``,
-      },
-    },
-    designToken: { disable: false },
-    designTokens: { prefix: '--p-inputtext' },
-  },
+  parameters: buildStoryParameters(extraInputTextSpec),
   argTypes: {
     size: {
       control: 'select',
@@ -78,12 +68,12 @@ import { ExtraInputText } from '@cdek-it/vue-ui-kit';
     },
     labelPosition: {
       control: 'select',
-      options: ['default', 'float', 'left'],
+      options: ['default', 'float'],
       description: 'Положение лейбла по спецификации',
       table: {
         category: 'Props',
         defaultValue: { summary: 'default' },
-        type: { summary: "'default' | 'float' | 'left'" },
+        type: { summary: "'default' | 'float'" },
       },
     },
     label: {
@@ -145,10 +135,85 @@ import { ExtraInputText } from '@cdek-it/vue-ui-kit';
 
 export default meta;
 
+export const VisualAudit = {
+  render: () => ({
+    components: { ExtraInputText },
+    setup: () => ({ cases: getFieldVisualCases() }),
+    template: `
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: 24px;">
+        <section v-for="item in cases" :key="item.id" :data-visual-case="item.id" :data-visual-state="item.state">
+          <p>{{ item.id }}</p>
+          <ExtraInputText
+            :model-value="item.value"
+            :label-position="item.labelPosition"
+            :placeholder="item.placeholder"
+            :invalid="item.invalid"
+            :disabled="item.disabled"
+            :readonly="item.readonly"
+            label="FloatLabel"
+            caption="Caption"
+          />
+        </section>
+      </div>
+    `,
+  }),
+  parameters: { controls: { disable: true } },
+};
+
 // ── Stories ──────────────────────────────────────────────────────────────────
 
+export const Sizes = {
+  render: () => ({
+    components: { ExtraInputText },
+    setup: () => ({
+      sizes: ['sm', 'base', 'lg', 'xlg'],
+      positions: ['default', 'float'],
+    }),
+    template: `
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr)); gap: 24px;">
+        <template v-for="size in sizes" :key="size">
+          <section v-for="position in positions" :key="position" :data-visual-case="size + '-' + position">
+            <p>{{ size }} / {{ position }}</p>
+            <ExtraInputText
+              :size="size"
+              :label-position="position"
+              model-value="InputText"
+              label="Label"
+              placeholder="Placeholder"
+            />
+          </section>
+        </template>
+      </div>
+    `,
+  }),
+  parameters: { controls: { disable: true } },
+};
+
 export const Default = {
-  render: Template,
+  render: (args) => ({
+    components: { ExtraInputText },
+    setup() {
+      const value = ref('');
+      return { args, value };
+    },
+    template: `
+      <ExtraInputText
+        v-model="value"
+        :size="args.size"
+        :clearable="args.clearable"
+        :label-position="args.labelPosition"
+        :label="args.label"
+        :caption="args.caption"
+        :info="args.info"
+        :required="args.required"
+        :invalid="args.invalid"
+        :disabled="args.disabled"
+        :readonly="args.readonly"
+        :placeholder="args.placeholder"
+        :fluid="args.fluid"
+      />
+    `,
+  }),
   parameters: {
     docs: {
       description: {
@@ -416,67 +481,6 @@ export const FloatLabelInvalid = {
         code: `
 <template>
   <ExtraInputText v-model="value" label-position="float" label="Обязательное поле" required invalid />
-</template>
-        `,
-      },
-    },
-  },
-};
-
-export const LeftLabelWithMeta = {
-  name: 'Left Label + Caption + Info',
-  render: (args) => ({
-    components: { ExtraInputText },
-    setup() {
-      const value = ref('');
-      return { args, value };
-    },
-    template: `
-      <ExtraInputText
-        v-model="value"
-        label-position="left"
-        :label="args.label"
-        :caption="args.caption"
-        :info="args.info"
-        :placeholder="args.placeholder"
-        :clearable="args.clearable"
-        :size="args.size"
-      />
-    `,
-  }),
-  args: {
-    label: 'Телефон',
-    caption: 'Формат: +7 (XXX) XXX-XX-XX',
-    info: 'Используется для связи с получателем',
-    placeholder: '+7 (900) 000-00-00',
-    clearable: true,
-    size: 'base',
-  },
-  argTypes: {
-    labelPosition: { table: { disable: true } },
-    required: { table: { disable: true } },
-    invalid: { table: { disable: true } },
-    disabled: { table: { disable: true } },
-    readonly: { table: { disable: true } },
-    fluid: { table: { disable: true } },
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Сценарий по спецификации с левым лейблом, подписью под полем и инфо-иконкой.',
-      },
-      source: {
-        code: `
-<template>
-  <ExtraInputText
-    v-model="value"
-    label-position="left"
-    label="Телефон"
-    caption="Формат: +7 (XXX) XXX-XX-XX"
-    info="Используется для связи с получателем"
-    placeholder="+7 (900) 000-00-00"
-  />
 </template>
         `,
       },
