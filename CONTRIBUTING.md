@@ -66,9 +66,10 @@ yarn storybook
 
 ## MCP (Figma)
 
-Для работы с Figma MCP используйте шаблон `mcp.json` в корне проекта.
+Для работы с Figma MCP используйте общий конфиг `.ai/mcp/mcp.json`.
 
 - Подробная инструкция: `MCP_SETUP.md`
+- Два способа: официальный `figma` через OAuth и локальный `figma-local` через `FIGMA_TOKEN`
 - Пользовательский конфиг JetBrains Copilot: `~/.config/github-copilot/intellij/mcp.json`
 - В репозитории хранится только шаблон (без реального токена)
 

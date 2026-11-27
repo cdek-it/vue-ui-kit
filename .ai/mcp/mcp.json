@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "figma-local": {
+      "type": "stdio",
+      "command": "figma-mcp",
+      "args": []
+    }
+  }
+}
