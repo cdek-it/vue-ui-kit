@@ -24,6 +24,8 @@ yarn check:token-conflicts --remove-verified DTC-BUTTON-001
 
 На тёмных слоях залитых [Warning disabled](https://www.figma.com/design/Q1BWgZ7zoV5UzlBOnjW0cM/UI-Kit--DS--v2.1?node-id=24646-66113), [Warning loading](https://www.figma.com/design/Q1BWgZ7zoV5UzlBOnjW0cM/UI-Kit--DS--v2.1?node-id=24646-66119), [Success disabled](https://www.figma.com/design/Q1BWgZ7zoV5UzlBOnjW0cM/UI-Kit--DS--v2.1?node-id=24646-66752) и [Success loading](https://www.figma.com/design/Q1BWgZ7zoV5UzlBOnjW0cM/UI-Kit--DS--v2.1?node-id=24646-66758) фон из `button/extend/disabledBackground` (components/default) → `form/disabledBackground` разрешается в режиме theme/light → zinc.200 → `#e2e2e4`. Рендер тёмной темы использует `#404348`. Здесь нужно уточнение режима в Figma, CSS по светлому значению не адаптирован.
 
+Тот же светлый режим фона обнаружен у текстовых [Warning disabled](https://www.figma.com/design/Q1BWgZ7zoV5UzlBOnjW0cM/UI-Kit--DS--v2.1?node-id=24646-66456) и [Warning loading](https://www.figma.com/design/Q1BWgZ7zoV5UzlBOnjW0cM/UI-Kit--DS--v2.1?node-id=24646-66468) на тёмной секции.
+
 ## Пути для автоматической проверки
 
 <!-- token-conflicts:start -->

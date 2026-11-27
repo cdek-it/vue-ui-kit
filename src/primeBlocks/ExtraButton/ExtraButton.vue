@@ -43,7 +43,7 @@ const primeSeverity = computed(() => {
     :size="size === 'small' || size === 'large' ? size : undefined"
     :rounded="rounded"
     :fluid="fluid"
-    :disabled="disabled"
+    :disabled="disabled || loading"
     :loading="loading"
     :aria-busy="loading || undefined"
   >
@@ -126,7 +126,7 @@ const primeSeverity = computed(() => {
     .p-button-info,
     .p-button-warn,
     .p-button-danger
-  ):disabled {
+  ):is(:disabled, .p-button-loading) {
   background: var(--p-button-disabled-background);
 }
 
@@ -239,6 +239,7 @@ const primeSeverity = computed(() => {
   .extra-button.p-button-success:not(
     .p-button-text,
     .p-button-link,
+    .p-button-loading,
     :disabled,
     :active
   ) {
@@ -249,6 +250,7 @@ const primeSeverity = computed(() => {
   .extra-button.p-button-success:not(
     .p-button-text,
     .p-button-link,
+    .p-button-loading,
     :disabled,
     :active
   ):hover {
