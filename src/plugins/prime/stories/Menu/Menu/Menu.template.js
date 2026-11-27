@@ -1,9 +1,9 @@
 import Menu from 'primevue/menu';
-import Button from 'primevue/button';
+import { ExtraButton } from '@/primeBlocks';
 import { ref } from 'vue';
 
 export const PopupTemplate = () => ({
-  components: { Menu, Button },
+  components: { Menu, ExtraButton },
   setup() {
     const menu = ref();
     const items = ref([
@@ -18,7 +18,7 @@ export const PopupTemplate = () => ({
     return { menu, items, toggle };
   },
   template: `
-    <Button type="button" label="Show Menu" @click="toggle" />
+    <ExtraButton type="button" label="Show Menu" @click="toggle" />
     <Menu ref="menu" :model="items" :popup="true" />
   `,
 });

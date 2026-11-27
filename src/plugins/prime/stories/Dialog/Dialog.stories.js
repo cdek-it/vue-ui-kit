@@ -56,15 +56,15 @@ export const Basic = {
       source: {
         code: `
 <template>
-  <Button label="Open Dialog" @click="visible = true" />
+  <ExtraButton label="Open Dialog" @click="visible = true" />
   
   <Dialog v-model:visible="visible" header="Dialog Header" modal>
     <p>
       Ваш контент здесь...
     </p>
     <template #footer>
-      <Button label="Cancel" variant="text" @click="visible = false" />
-      <Button label="Save" severity="tertiary" @click="visible = false" />
+      <ExtraButton label="Cancel" variant="text" @click="visible = false" />
+      <ExtraButton label="Save" variant="tertiary" @click="visible = false" />
     </template>
   </Dialog>
 </template>

@@ -46,7 +46,7 @@ export const Default = {
       <p class="text-sm">Контент карточки.</p>
     </template>
     <template #footer>
-      <Button label="Действие" size="small" />
+      <ExtraButton label="Действие" size="small" />
     </template>
   </Card>
 </template>
@@ -77,7 +77,7 @@ export const Overlay = {
       <p class="text-sm">Карточка с тенью.</p>
     </template>
     <template #footer>
-      <Button label="Действие" size="small" style="width: 100%" />
+      <ExtraButton label="Действие" size="small" style="width: 100%" />
     </template>
   </Card>
 </template>
@@ -98,7 +98,7 @@ export const WithoutHeader = {
     <template #title>Title</template>
     <template #subtitle>Caption</template>
     <template #content><p class="text-sm">Контент.</p></template>
-    <template #footer><Button label="Действие" size="small" /></template>
+    <template #footer><ExtraButton label="Действие" size="small" /></template>
   </Card>
 </template>
         `,
@@ -138,7 +138,7 @@ export const WithoutSubtitle = {
     <template #header>...</template>
     <template #title>Title</template>
     <template #content><p class="text-sm">Контент.</p></template>
-    <template #footer><Button label="Действие" size="small" /></template>
+    <template #footer><ExtraButton label="Действие" size="small" /></template>
   </Card>
 </template>
         `,

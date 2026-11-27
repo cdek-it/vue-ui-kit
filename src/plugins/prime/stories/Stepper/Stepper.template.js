@@ -4,11 +4,11 @@ import Step from 'primevue/step';
 import StepPanels from 'primevue/steppanels';
 import StepPanel from 'primevue/steppanel';
 import StepItem from 'primevue/stepitem';
-import Button from 'primevue/button';
+import { ExtraButton } from '@/primeBlocks';
 import { ref } from 'vue';
 
 export const HorizontalTemplate = () => ({
-  components: { Stepper, StepList, Step, StepPanels, StepPanel, Button },
+  components: { Stepper, StepList, Step, StepPanels, StepPanel, ExtraButton },
   setup() {
     const activeStep = ref('1');
     return { activeStep };
@@ -34,7 +34,7 @@ export const HorizontalTemplate = () => ({
           <div class="flex flex-col gap-4">
             <div>Step 1 Content</div>
             <div class="flex justify-end">
-              <Button label="Next" severity="secondary" @click="activeStep = '2'" />
+              <ExtraButton label="Next" variant="secondary" @click="activeStep = '2'" />
             </div>
           </div>
         </StepPanel>
@@ -42,8 +42,8 @@ export const HorizontalTemplate = () => ({
           <div class="flex flex-col gap-4">
             <div>Step 2 Content</div>
             <div class="flex justify-between">
-              <Button label="Back" severity="contrast" @click="activeStep = '1'" />
-              <Button label="Next" severity="secondary" @click="activeStep = '3'" />
+              <ExtraButton label="Back" variant="tertiary" @click="activeStep = '1'" />
+              <ExtraButton label="Next" variant="secondary" @click="activeStep = '3'" />
             </div>
           </div>
         </StepPanel>
@@ -51,7 +51,7 @@ export const HorizontalTemplate = () => ({
           <div class="flex flex-col gap-4">
             <div>Step 3 Content</div>
             <div class="flex justify-start">
-              <Button label="Back" severity="contrast" @click="activeStep = '2'" />
+              <ExtraButton label="Back" variant="tertiary" @click="activeStep = '2'" />
             </div>
           </div>
         </StepPanel>
@@ -61,7 +61,7 @@ export const HorizontalTemplate = () => ({
 });
 
 export const VerticalTemplate = () => ({
-  components: { Stepper, StepItem, Step, StepPanel, Button },
+  components: { Stepper, StepItem, Step, StepPanel, ExtraButton },
   setup() {
     const activeStep = ref('1');
     return { activeStep };
@@ -77,7 +77,7 @@ export const VerticalTemplate = () => ({
           <div class="flex flex-col gap-4 pb-4">
             <div>Step 1 Content</div>
             <div class="flex justify-start">
-              <Button label="Next" severity="secondary" @click="activeStep = '2'" />
+              <ExtraButton label="Next" variant="secondary" @click="activeStep = '2'" />
             </div>
           </div>
         </StepPanel>
@@ -91,8 +91,8 @@ export const VerticalTemplate = () => ({
           <div class="flex flex-col gap-4 pb-4">
             <div>Step 2 Content</div>
             <div class="flex justify-start gap-2">
-              <Button label="Back" severity="contrast" @click="activeStep = '1'" />
-              <Button label="Next" severity="secondary" @click="activeStep = '3'" />
+              <ExtraButton label="Back" variant="tertiary" @click="activeStep = '1'" />
+              <ExtraButton label="Next" variant="secondary" @click="activeStep = '3'" />
             </div>
           </div>
         </StepPanel>
@@ -106,7 +106,7 @@ export const VerticalTemplate = () => ({
           <div class="flex flex-col gap-4 pb-4">
             <div>Step 3 Content</div>
             <div class="flex justify-start">
-              <Button label="Back" severity="contrast" @click="activeStep = '2'" />
+              <ExtraButton label="Back" variant="tertiary" @click="activeStep = '2'" />
             </div>
           </div>
         </StepPanel>
@@ -116,7 +116,7 @@ export const VerticalTemplate = () => ({
 });
 
 export const LinearTemplate = () => ({
-  components: { Stepper, StepList, Step, StepPanels, StepPanel, Button },
+  components: { Stepper, StepList, Step, StepPanels, StepPanel, ExtraButton },
   setup() {
     const activeStep = ref('1');
     return { activeStep };
@@ -142,7 +142,7 @@ export const LinearTemplate = () => ({
           <div class="flex flex-col gap-4">
             <div>Step 1 Content</div>
             <div class="flex justify-end">
-              <Button label="Next" severity="secondary" @click="activeStep = '2'" />
+              <ExtraButton label="Next" variant="secondary" @click="activeStep = '2'" />
             </div>
           </div>
         </StepPanel>
@@ -150,8 +150,8 @@ export const LinearTemplate = () => ({
           <div class="flex flex-col gap-4">
             <div>Step 2 Content</div>
             <div class="flex justify-between">
-              <Button label="Back" severity="contrast" @click="activeStep = '1'" />
-              <Button label="Next" severity="secondary" @click="activeStep = '3'" />
+              <ExtraButton label="Back" variant="tertiary" @click="activeStep = '1'" />
+              <ExtraButton label="Next" variant="secondary" @click="activeStep = '3'" />
             </div>
           </div>
         </StepPanel>
@@ -159,7 +159,7 @@ export const LinearTemplate = () => ({
           <div class="flex flex-col gap-4">
             <div>Step 3 Content</div>
             <div class="flex justify-start">
-              <Button label="Back" severity="contrast" @click="activeStep = '2'" />
+              <ExtraButton label="Back" variant="tertiary" @click="activeStep = '2'" />
             </div>
           </div>
         </StepPanel>
@@ -195,7 +195,7 @@ export const StepsOnlyTemplate = () => ({
 });
 
 export const ErrorTemplate = () => ({
-  components: { Stepper, StepList, Step, StepPanels, StepPanel, Button },
+  components: { Stepper, StepList, Step, StepPanels, StepPanel, ExtraButton },
   setup() {
     const activeStep = ref('2');
     return { activeStep };
@@ -221,7 +221,7 @@ export const ErrorTemplate = () => ({
           <div class="flex flex-col gap-4">
             <div>Step 1 Content</div>
             <div class="flex justify-end">
-              <Button label="Next" severity="secondary" @click="activeStep = '2'" />
+              <ExtraButton label="Next" variant="secondary" @click="activeStep = '2'" />
             </div>
           </div>
         </StepPanel>
@@ -229,8 +229,8 @@ export const ErrorTemplate = () => ({
           <div class="flex flex-col gap-4">
             <div>Step 2 Content (Invalid)</div>
             <div class="flex justify-between">
-              <Button label="Back" severity="contrast" @click="activeStep = '1'" />
-              <Button label="Next" severity="secondary" disabled />
+              <ExtraButton label="Back" variant="tertiary" @click="activeStep = '1'" />
+              <ExtraButton label="Next" variant="secondary" disabled />
             </div>
           </div>
         </StepPanel>
@@ -238,7 +238,7 @@ export const ErrorTemplate = () => ({
           <div class="flex flex-col gap-4">
             <div>Step 3 Content</div>
             <div class="flex justify-start">
-              <Button label="Back" severity="contrast" @click="activeStep = '2'" />
+              <ExtraButton label="Back" variant="tertiary" @click="activeStep = '2'" />
             </div>
           </div>
         </StepPanel>

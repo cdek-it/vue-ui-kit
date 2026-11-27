@@ -54,7 +54,7 @@ const toggle = (event) => op.value.toggle(event);
 </script>
 
 <template>
-  <Button type="button" label="Показать" @click="toggle" />
+  <ExtraButton type="button" label="Показать" @click="toggle" />
   <Popover ref="op">
     <div class="flex flex-col gap-2 p-2">
       <p class="m-0 text-sm">Содержимое popover.</p>
@@ -82,14 +82,14 @@ const toggle = (event) => op.value.toggle(event);
 </script>
 
 <template>
-  <Button type="button" label="Показать" @click="toggle" />
+  <ExtraButton type="button" label="Показать" @click="toggle" />
   <Popover ref="op">
     <div class="flex flex-col gap-3 p-1" style="min-width: 200px">
       <p class="m-0 font-semibold">Заголовок</p>
       <p class="m-0 text-sm">Дополнительное описание или любой произвольный контент.</p>
       <div class="flex gap-2">
-        <Button label="Действие" size="small" />
-        <Button label="Отмена" size="small" severity="contrast" />
+        <ExtraButton label="Действие" size="small" />
+        <ExtraButton label="Отмена" size="small" variant="tertiary" />
       </div>
     </div>
   </Popover>

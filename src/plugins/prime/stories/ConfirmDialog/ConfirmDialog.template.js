@@ -1,5 +1,5 @@
 import ConfirmDialog from 'primevue/confirmdialog';
-import Button from 'primevue/button';
+import { ExtraButton } from '@/primeBlocks';
 import ConfirmationEventBus from 'primevue/confirmationeventbus';
 
 const SEVERITIES = [
@@ -65,7 +65,7 @@ const SIZES = [
 const require = (options) => ConfirmationEventBus.emit('confirm', options);
 
 export const Template = (args) => ({
-  components: { ConfirmDialog, Button },
+  components: { ConfirmDialog, ExtraButton },
   setup() {
     const showConfirm = () => {
       require({
@@ -97,18 +97,18 @@ export const Template = (args) => ({
             <p>{{ message.message }}</p>
           </div>
           <div class="p-dialog-footer">
-            <Button :label="message.rejectLabel" severity="secondary" variant="text" @click="rejectCallback" />
-            <Button :label="message.acceptLabel" @click="acceptCallback" />
+            <ExtraButton :label="message.rejectLabel" variant="text" @click="rejectCallback" />
+            <ExtraButton :label="message.acceptLabel" @click="acceptCallback" />
           </div>
         </template>
       </ConfirmDialog>
-      <Button label="Показать диалог" severity="contrast" @click="showConfirm" />
+      <ExtraButton label="Показать диалог" variant="tertiary" @click="showConfirm" />
     </div>
   `,
 });
 
 export const TemplateSeverities = () => ({
-  components: { ConfirmDialog, Button },
+  components: { ConfirmDialog, ExtraButton },
   setup() {
     const showConfirm = (severity) => {
       require({
@@ -146,13 +146,13 @@ export const TemplateSeverities = () => ({
             <p>{{ message.message }}</p>
           </div>
           <div class="p-dialog-footer">
-            <Button :label="message.rejectLabel" severity="secondary" variant="text" @click="rejectCallback" />
-            <Button :label="message.acceptLabel" :severity="message.acceptProps?.severity" @click="acceptCallback" />
+            <ExtraButton :label="message.rejectLabel" variant="text" @click="rejectCallback" />
+            <ExtraButton :label="message.acceptLabel" :severity="message.acceptProps?.severity" @click="acceptCallback" />
           </div>
         </template>
       </ConfirmDialog>
       <div class="flex flex-wrap gap-2">
-        <Button
+        <ExtraButton
           v-for="severity in severities"
           :key="severity.type"
           :label="'Показать: ' + severity.label"
@@ -166,7 +166,7 @@ export const TemplateSeverities = () => ({
 });
 
 export const TemplateSizes = () => ({
-  components: { ConfirmDialog, Button },
+  components: { ConfirmDialog, ExtraButton },
   setup() {
     const showConfirm = (size) => {
       require({
@@ -203,17 +203,17 @@ export const TemplateSizes = () => ({
             <p>{{ message.message }}</p>
           </div>
           <div class="p-dialog-footer">
-            <Button :label="message.rejectLabel" severity="secondary" variant="text" @click="rejectCallback" />
-            <Button :label="message.acceptLabel" @click="acceptCallback" />
+            <ExtraButton :label="message.rejectLabel" variant="text" @click="rejectCallback" />
+            <ExtraButton :label="message.acceptLabel" @click="acceptCallback" />
           </div>
         </template>
       </ConfirmDialog>
       <div class="flex flex-wrap gap-2">
-        <Button
+        <ExtraButton
           v-for="size in sizes"
           :key="size.key"
           :label="size.label"
-          severity="contrast"
+          variant="tertiary"
           @click="showConfirm(size)"
         />
       </div>

@@ -65,7 +65,7 @@ export const Horizontal = {
         <div class="flex flex-col gap-4">
           <div>Step 1 Content</div>
           <div class="flex justify-start">
-            <Button label="Next" severity="secondary" @click="activeStep = '2'" />
+            <ExtraButton label="Next" variant="secondary" @click="activeStep = '2'" />
           </div>
         </div>
       </StepPanel>
@@ -73,8 +73,8 @@ export const Horizontal = {
         <div class="flex flex-col gap-4">
           <div>Step 2 Content</div>
           <div class="flex justify-between">
-            <Button label="Back" severity="contrast" @click="activeStep = '1'" />
-            <Button label="Next" severity="secondary" @click="activeStep = '3'" />
+            <ExtraButton label="Back" variant="tertiary" @click="activeStep = '1'" />
+            <ExtraButton label="Next" variant="secondary" @click="activeStep = '3'" />
           </div>
         </div>
       </StepPanel>
@@ -82,7 +82,7 @@ export const Horizontal = {
         <div class="flex flex-col gap-4">
           <div>Step 3 Content</div>
           <div class="flex justify-start">
-            <Button label="Back" severity="contrast" @click="activeStep = '2'" />
+            <ExtraButton label="Back" variant="tertiary" @click="activeStep = '2'" />
           </div>
         </div>
       </StepPanel>
@@ -109,7 +109,7 @@ export const Vertical = {
         <div class="flex flex-col gap-4">
           <div>Step 1 Content</div>
           <div class="flex justify-start">
-            <Button label="Next" severity="secondary" @click="activeStep = '2'" />
+            <ExtraButton label="Next" variant="secondary" @click="activeStep = '2'" />
           </div>
         </div>
       </StepPanel>
@@ -120,8 +120,8 @@ export const Vertical = {
         <div class="flex flex-col gap-4">
           <div>Step 2 Content</div>
           <div class="flex justify-start gap-2">
-            <Button label="Back" severity="contrast" @click="activeStep = '1'" />
-            <Button label="Next" severity="secondary" @click="activeStep = '3'" />
+            <ExtraButton label="Back" variant="tertiary" @click="activeStep = '1'" />
+            <ExtraButton label="Next" variant="secondary" @click="activeStep = '3'" />
           </div>
         </div>
       </StepPanel>
@@ -132,7 +132,7 @@ export const Vertical = {
         <div class="flex flex-col gap-4">
           <div>Step 3 Content</div>
           <div class="flex justify-start">
-            <Button label="Back" severity="contrast" @click="activeStep = '2'" />
+            <ExtraButton label="Back" variant="tertiary" @click="activeStep = '2'" />
           </div>
         </div>
       </StepPanel>

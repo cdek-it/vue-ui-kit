@@ -1,8 +1,8 @@
 import Card from 'primevue/card';
-import Button from 'primevue/button';
+import { ExtraButton } from '@/primeBlocks';
 
 export const Template = () => ({
-  components: { Card, Button },
+  components: { Card, ExtraButton },
   template: `
     <Card style="width: 20rem">
       <template #header>
@@ -16,14 +16,14 @@ export const Template = () => ({
         <p class="text-sm">Контент карточки. Гибкая область для любого содержимого.</p>
       </template>
       <template #footer>
-        <Button label="Действие" size="small" style="width: 100%" />
+        <ExtraButton label="Действие" size="small" style="width: 100%" />
       </template>
     </Card>
   `,
 });
 
 export const TemplateOverlay = () => ({
-  components: { Card, Button },
+  components: { Card, ExtraButton },
   template: `
     <Card style="width: 20rem" class="shadow-md">
       <template #header>
@@ -37,14 +37,14 @@ export const TemplateOverlay = () => ({
         <p class="text-sm">Карточка с тенью.</p>
       </template>
       <template #footer>
-        <Button label="Действие" size="small" style="width: 100%" />
+        <ExtraButton label="Действие" size="small" style="width: 100%" />
       </template>
     </Card>
   `,
 });
 
 export const TemplateWithoutHeader = () => ({
-  components: { Card, Button },
+  components: { Card, ExtraButton },
   template: `
     <Card style="width: 20rem">
       <template #title>Title</template>
@@ -53,7 +53,7 @@ export const TemplateWithoutHeader = () => ({
         <p class="text-sm">Карточка без изображения в шапке.</p>
       </template>
       <template #footer>
-        <Button label="Действие" size="small" style="width: 100%" />
+        <ExtraButton label="Действие" size="small" style="width: 100%" />
       </template>
     </Card>
   `,
@@ -78,7 +78,7 @@ export const TemplateWithoutFooter = () => ({
 });
 
 export const TemplateWithoutSubtitle = () => ({
-  components: { Card, Button },
+  components: { Card, ExtraButton },
   template: `
     <Card style="width: 20rem">
       <template #header>
@@ -91,7 +91,7 @@ export const TemplateWithoutSubtitle = () => ({
         <p class="text-sm">Карточка без подзаголовка.</p>
       </template>
       <template #footer>
-        <Button label="Действие" size="small" style="width: 100%" />
+        <ExtraButton label="Действие" size="small" style="width: 100%" />
       </template>
     </Card>
   `,

@@ -1,5 +1,5 @@
 import Message from 'primevue/message';
-import Button from 'primevue/button';
+import { ExtraButton } from '@/primeBlocks';
 
 const SEVERITIES = [
   { type: 'info', icon: 'ti ti-info-circle' },
@@ -9,7 +9,7 @@ const SEVERITIES = [
 ];
 
 export const Template = (args) => ({
-  components: { Message, Button },
+  components: { Message, ExtraButton },
   setup() {
     return { args };
   },
@@ -23,7 +23,7 @@ export const Template = (args) => ({
             <span class="p-message-summary">Message</span>
             <div class="p-message-detail">caption</div>
           </div>
-          <Button
+          <ExtraButton
             v-if="args.closable"
             class="p-message-close-button"
             icon="ti ti-x"
@@ -64,7 +64,7 @@ export const TemplateSeverities = () => ({
 });
 
 export const TemplateWithCloseButton = () => ({
-  components: { Message, Button },
+  components: { Message, ExtraButton },
   setup() {
     return { severities: SEVERITIES };
   },
@@ -84,7 +84,7 @@ export const TemplateWithCloseButton = () => ({
               <span class="p-message-summary">Message</span>
               <div class="p-message-detail">caption</div>
             </div>
-            <Button
+            <ExtraButton
               class="p-message-close-button"
               icon="ti ti-x"
               variant="text"
@@ -98,7 +98,7 @@ export const TemplateWithCloseButton = () => ({
 });
 
 export const TemplateWithContent = () => ({
-  components: { Message, Button },
+  components: { Message, ExtraButton },
   setup() {
     return { severities: SEVERITIES };
   },
@@ -125,7 +125,7 @@ export const TemplateWithContent = () => ({
                 <div class="text-sm">Cell 2</div>
               </div>
             </div>
-            <Button
+            <ExtraButton
               class="p-message-close-button"
               icon="ti ti-x"
               variant="text"
