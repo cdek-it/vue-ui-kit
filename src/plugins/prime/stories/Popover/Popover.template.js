@@ -1,9 +1,9 @@
 import { ref } from 'vue';
 import Popover from 'primevue/popover';
-import Button from 'primevue/button';
+import { ExtraButton } from '@/primeBlocks';
 
 export const Template = (args) => ({
-  components: { Popover, Button },
+  components: { Popover, ExtraButton },
   setup() {
     const op = ref();
     const toggle = (event) => op.value.toggle(event);
@@ -11,7 +11,7 @@ export const Template = (args) => ({
   },
   template: `
     <div class="flex justify-center items-center" style="min-height: 200px">
-      <Button type="button" label="Показать" @click="toggle" />
+      <ExtraButton type="button" label="Показать" @click="toggle" />
       <Popover ref="op" v-bind="args">
         <div class="flex flex-col gap-2 p-2">
           <p class="m-0 text-sm">Содержимое popover.</p>
@@ -22,7 +22,7 @@ export const Template = (args) => ({
 });
 
 export const TemplateRichContent = (args) => ({
-  components: { Popover, Button },
+  components: { Popover, ExtraButton },
   setup() {
     const op = ref();
     const toggle = (event) => op.value.toggle(event);
@@ -30,14 +30,14 @@ export const TemplateRichContent = (args) => ({
   },
   template: `
     <div class="flex justify-center items-center" style="min-height: 200px">
-      <Button type="button" label="Показать" @click="toggle" />
+      <ExtraButton type="button" label="Показать" @click="toggle" />
       <Popover ref="op" v-bind="args">
         <div class="flex flex-col gap-3 p-1" style="min-width: 200px">
           <p class="m-0 font-semibold">Заголовок</p>
           <p class="m-0 text-sm">Дополнительное описание или любой произвольный контент внутри popover.</p>
           <div class="flex gap-2">
-            <Button label="Действие" size="small" />
-            <Button label="Отмена" size="small" severity="contrast" />
+            <ExtraButton label="Действие" size="small" />
+            <ExtraButton label="Отмена" size="small" variant="tertiary" />
           </div>
         </div>
       </Popover>

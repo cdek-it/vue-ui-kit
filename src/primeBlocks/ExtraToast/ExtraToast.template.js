@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { ExtraToast, useExtraToast } from '@/primeBlocks';
-import Button from 'primevue/button';
+import { ExtraButton } from '@/primeBlocks';
 
 const MessageIcons = {
   success: 'ti-circle-check',
@@ -62,7 +62,7 @@ const commonToastConfig = {
 };
 
 export const Template = (args) => ({
-  components: { ExtraToast, Button },
+  components: { ExtraToast, ExtraButton },
   setup() {
     const toast = useExtraToast();
 
@@ -108,7 +108,7 @@ export const Template = (args) => ({
       <br>
       <hr>
       <div class="flex flex-wrap gap-2 mt-6">
-        <Button
+        <ExtraButton
           v-for="({ type, icon, label }, index) in severities"
           :key="index"
           :label="'Показать Toast: ' + label"
@@ -121,7 +121,7 @@ export const Template = (args) => ({
 });
 
 export const TemplateCloseButton = (args) => ({
-  components: { ExtraToast, Button },
+  components: { ExtraToast, ExtraButton },
   setup() {
     const toast = useExtraToast();
 
@@ -171,7 +171,7 @@ export const TemplateCloseButton = (args) => ({
       <br>
       <hr>
       <div class="flex flex-wrap gap-2 mt-6">
-        <Button
+        <ExtraButton
           v-for="({ type, icon, label }, index) in severities"
           :key="index"
           :label="'Показать Toast: ' + label"
@@ -184,7 +184,7 @@ export const TemplateCloseButton = (args) => ({
 });
 
 export const TemplateWithContent = (args) => ({
-  components: { ExtraToast, Button },
+  components: { ExtraToast, ExtraButton },
   setup() {
     const toast = useExtraToast();
 
@@ -249,7 +249,7 @@ export const TemplateWithContent = (args) => ({
       <br>
       <hr>
       <div class="flex flex-wrap gap-2 mt-6">
-        <Button
+        <ExtraButton
           v-for="({ type, icon, label }, index) in severities"
           :key="index"
           :label="'Показать Toast: ' + label"
@@ -262,7 +262,7 @@ export const TemplateWithContent = (args) => ({
 });
 
 export const TemplateCustomContentWithCloseButton = (args) => ({
-  components: { ExtraToast, Button },
+  components: { ExtraToast, ExtraButton },
   setup() {
     const toast = useExtraToast();
 
@@ -340,7 +340,7 @@ export const TemplateCustomContentWithCloseButton = (args) => ({
       <br>
       <hr>
       <div class="flex flex-wrap gap-2 mt-6">
-        <Button
+        <ExtraButton
           v-for="({ type, icon, label }, index) in severities"
           :key="index"
           :label="'Показать Toast: ' + label"
@@ -353,7 +353,7 @@ export const TemplateCustomContentWithCloseButton = (args) => ({
 });
 
 export const TemplateWidth = (args) => ({
-  components: { ExtraToast, Button },
+  components: { ExtraToast, ExtraButton },
   setup() {
     const toast = useExtraToast();
     const currentSize = ref(SIZES[1]);
@@ -403,7 +403,7 @@ export const TemplateWidth = (args) => ({
         </div>
       </div>
       <div class="flex flex-wrap gap-2 mt-6">
-        <Button
+        <ExtraButton
           v-for="(size) in sizes"
           :key="size.label"
           :label="size.label"
@@ -415,7 +415,7 @@ export const TemplateWidth = (args) => ({
 });
 
 export const TemplatePosition = (args) => ({
-  components: { ExtraToast, Button },
+  components: { ExtraToast, ExtraButton },
   setup() {
     const toast = useExtraToast();
 
@@ -446,7 +446,7 @@ export const TemplatePosition = (args) => ({
         style="z-index:1"
       />
       <div class="grid grid-cols-3 gap-2">
-        <Button
+        <ExtraButton
           v-for="({ position, label, group }) in positions"
           :key="group"
           :label="label"

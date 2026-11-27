@@ -109,7 +109,7 @@ const showToast = () => {
 <template>
   <div>
     <ExtraToast />
-    <Button label="Показать toast" @click="showToast" />
+    <ExtraButton label="Показать toast" @click="showToast" />
   </div>
 </template>
         `,
@@ -150,7 +150,7 @@ const showToast = () => {
 <template>
   <div>
     <ExtraToast />
-    <Button label="Показать toast" @click="showToast" />
+    <ExtraButton label="Показать toast" @click="showToast" />
   </div>
 </template>
         `,
@@ -211,7 +211,7 @@ const showToast = () => {
         </div>
       </template>
     </ExtraToast>
-    <Button label="Показать toast" @click="showToast" />
+    <ExtraButton label="Показать toast" @click="showToast" />
   </div>
 </template>
         `,
@@ -268,7 +268,7 @@ const showToast = () => {
         </div>
       </template>
     </ExtraToast>
-    <Button label="Показать toast" @click="showToast" />
+    <ExtraButton label="Показать toast" @click="showToast" />
   </div>
 </template>
         `,
@@ -307,7 +307,7 @@ const showToast = () => {
 <template>
   <div>
     <ExtraToast width="sm" />
-    <Button label="Показать уведомление" @click="showToast" />
+    <ExtraButton label="Показать уведомление" @click="showToast" />
   </div>
 </template>
         `,
@@ -347,12 +347,12 @@ const showToast = (position) => {
   <ExtraToast position="bottom-center" group="bottom-center" />
   <ExtraToast position="bottom-right" group="bottom-right" />
 
-  <Button label="Вверх слева" @click="showToast('top-left')" />
-  <Button label="Вверх по центру" @click="showToast('top-center')" />
-  <Button label="Вверх справа" @click="showToast('top-right')" />
-  <Button label="Вниз слева" @click="showToast('bottom-left')" />
-  <Button label="Вниз по центру" @click="showToast('bottom-center')" />
-  <Button label="Вниз справа" @click="showToast('bottom-right')" />
+  <ExtraButton label="Вверх слева" @click="showToast('top-left')" />
+  <ExtraButton label="Вверх по центру" @click="showToast('top-center')" />
+  <ExtraButton label="Вверх справа" @click="showToast('top-right')" />
+  <ExtraButton label="Вниз слева" @click="showToast('bottom-left')" />
+  <ExtraButton label="Вниз по центру" @click="showToast('bottom-center')" />
+  <ExtraButton label="Вниз справа" @click="showToast('bottom-right')" />
 </template>
         `,
       },

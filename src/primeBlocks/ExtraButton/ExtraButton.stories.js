@@ -1,20 +1,20 @@
-import Button from 'primevue/button';
+import ExtraButton from './ExtraButton.vue';
 import {
   Template,
   TemplateBadge,
   TemplateSeverity,
   TemplateSeverityDisabled,
-} from './Button.template';
+} from './ExtraButton.template';
 
 const meta = {
-  title: 'Prime/Button',
-  component: Button,
+  title: 'Prime Blocks/ExtraButton',
+  component: ExtraButton,
   tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component:
-          'Кнопка — базовый интерактивный элемент. [PrimeVue Button](https://primevue.org/button), [Figma Design](https://www.figma.com/design/HOLKdvQJ8jCLeX17s9d0Yf/UI-Kit--DS--v2.0?node-id=160-5223)',
+          'Кнопка — базовый интерактивный элемент. [PrimeVue Button](https://primevue.org/button), [Figma Design](https://www.figma.com/design/Q1BWgZ7zoV5UzlBOnjW0cM/UI-Kit--DS--v2.1?node-id=24040-56)',
       },
     },
     designToken: { disable: false },
@@ -33,45 +33,14 @@ const meta = {
     },
     severity: {
       control: 'select',
-      options: [
-        null,
-        'secondary',
-        'contrast',
-        'danger',
-        'warn',
-        'success',
-        'info',
-      ],
-      description: 'Семантический вариант кнопки',
-      table: {
-        category: 'Props',
-        defaultValue: { summary: 'null (primary)' },
-        type: {
-          summary:
-            "'secondary' | 'contrast' | 'danger' | 'warn' | 'success' | 'info'",
-        },
-      },
+      options: ['base', 'danger', 'warning', 'success', 'info'],
     },
     variant: {
       control: 'select',
-      options: [null, 'outlined', 'text', 'link'],
-      description: 'Вариант отображения кнопки',
-      table: {
-        category: 'Props',
-        defaultValue: { summary: 'null (filled)' },
-        type: { summary: "'outlined' | 'text' | 'link'" },
-      },
+      options: ['primary', 'secondary', 'tertiary', 'text', 'link'],
     },
-    size: {
-      control: 'select',
-      options: ['small', null, 'large'],
-      description: 'Размер кнопки',
-      table: {
-        category: 'Props',
-        defaultValue: { summary: 'null (base)' },
-        type: { summary: "'small' | 'large'" },
-      },
-    },
+    size: { control: 'select', options: ['small', 'base', 'large', 'xlarge'] },
+    fluid: { control: 'boolean' },
     icon: {
       control: 'text',
       description: 'CSS-класс иконки (например: ti ti-check)',
@@ -81,14 +50,14 @@ const meta = {
         type: { summary: 'string' },
       },
     },
-    iconPos: {
+    iconPosition: {
       control: 'select',
-      options: ['left', 'right', 'top', 'bottom'],
+      options: ['left', 'right'],
       description: 'Позиция иконки относительно текста',
       table: {
         category: 'Props',
         defaultValue: { summary: 'left' },
-        type: { summary: "'left' | 'right' | 'top' | 'bottom'" },
+        type: { summary: "'left' | 'right'" },
       },
     },
     rounded: {
@@ -133,11 +102,11 @@ export default meta;
 export const ButtonDefault = {
   name: 'Button',
   render: (args) => ({
-    components: { Button },
+    components: { ExtraButton },
     setup() {
       return { args };
     },
-    template: '<Button v-bind="args" />',
+    template: '<ExtraButton v-bind="args" />',
   }),
   args: {
     label: 'Button',
@@ -151,7 +120,7 @@ export const ButtonDefault = {
       source: {
         code: `
 <template>
-  <Button label="Button" />
+  <ExtraButton label="Button" />
 </template>
         `,
       },
@@ -177,10 +146,10 @@ export const Icons = {
         code: `
 <template>
   <div class="flex items-center gap-4">
-    <Button label="Button" icon="ti ti-check" size="small" />
-    <Button label="Button" icon="ti ti-check" />
-    <Button label="Button" icon="ti ti-check" size="large" />
-    <Button label="Button" icon="ti ti-check" class="p-button-xlg" />
+    <ExtraButton label="Button" icon="ti ti-check" size="small" />
+    <ExtraButton label="Button" icon="ti ti-check" />
+    <ExtraButton label="Button" icon="ti ti-check" size="large" />
+    <ExtraButton label="Button" icon="ti ti-check" size="xlarge" />
   </div>
 </template>
         `,
@@ -204,10 +173,10 @@ export const Loading = {
         code: `
 <template>
   <div class="flex items-center gap-4">
-    <Button label="Button" loading size="small" />
-    <Button label="Button" loading />
-    <Button label="Button" loading size="large" />
-    <Button label="Button" loading class="p-button-xlg" />
+    <ExtraButton label="Button" loading size="small" />
+    <ExtraButton label="Button" loading />
+    <ExtraButton label="Button" loading size="large" />
+    <ExtraButton label="Button" loading size="xlarge" />
   </div>
 </template>
         `,
@@ -231,10 +200,10 @@ export const Link = {
         code: `
 <template>
   <div class="flex items-center gap-4">
-    <Button label="Button" variant="link" size="small" />
-    <Button label="Button" variant="link" />
-    <Button label="Button" variant="link" size="large" />
-    <Button label="Button" variant="link" class="p-button-xlg" />
+    <ExtraButton label="Button" variant="link" size="small" />
+    <ExtraButton label="Button" variant="link" />
+    <ExtraButton label="Button" variant="link" size="large" />
+    <ExtraButton label="Button" variant="link" size="xlarge" />
   </div>
 </template>
         `,
@@ -245,6 +214,9 @@ export const Link = {
 
 export const Severity = {
   render: TemplateSeverity,
+  args: {
+    variant: 'primary',
+  },
   parameters: {
     docs: {
       source: {
@@ -252,15 +224,24 @@ export const Severity = {
 <template>
   <!-- Пример для Success. Аналогично для info, warn, danger -->
   <div class="flex items-center gap-4">
-    <Button label="Button" severity="success" size="small" />
-    <Button label="Button" severity="success" />
-    <Button label="Button" severity="success" size="large" />
-    <Button label="Button" severity="success" class="p-button-xlg" />
+    <ExtraButton label="Button" severity="success" size="small" />
+    <ExtraButton label="Button" severity="success" />
+    <ExtraButton label="Button" severity="success" size="large" />
+    <ExtraButton label="Button" severity="success" size="xlarge" />
   </div>
 </template>
         `,
       },
     },
+  },
+};
+
+export const SeverityText = {
+  render: TemplateSeverity,
+  args: {
+    variant: 'text',
+    disabled: false,
+    loading: false,
   },
 };
 
@@ -271,7 +252,7 @@ export const Disabled = {
       source: {
         code: `
 <template>
-  <Button label="Button" disabled />
+  <ExtraButton label="Button" disabled />
 </template>
         `,
       },
@@ -294,10 +275,10 @@ export const Rounded = {
         code: `
 <template>
   <div class="flex items-center gap-4">
-    <Button label="Button" rounded size="small" />
-    <Button label="Button" rounded />
-    <Button label="Button" rounded size="large" />
-    <Button label="Button" rounded class="p-button-xlg" />
+    <ExtraButton label="Button" rounded size="small" />
+    <ExtraButton label="Button" rounded />
+    <ExtraButton label="Button" rounded size="large" />
+    <ExtraButton label="Button" rounded size="xlarge" />
   </div>
 </template>
         `,
@@ -321,10 +302,10 @@ export const Text = {
         code: `
 <template>
   <div class="flex items-center gap-4">
-    <Button label="Button" variant="text" size="small" />
-    <Button label="Button" variant="text" />
-    <Button label="Button" variant="text" size="large" />
-    <Button label="Button" variant="text" class="p-button-xlg" />
+    <ExtraButton label="Button" variant="text" size="small" />
+    <ExtraButton label="Button" variant="text" />
+    <ExtraButton label="Button" variant="text" size="large" />
+    <ExtraButton label="Button" variant="text" size="xlarge" />
   </div>
 </template>
         `,
@@ -347,10 +328,10 @@ export const IconOnly = {
         code: `
 <template>
   <div class="flex items-center gap-4">
-    <Button icon="ti ti-check" size="small" />
-    <Button icon="ti ti-check" />
-    <Button icon="ti ti-check" size="large" />
-    <Button icon="ti ti-check" class="p-button-xlg" />
+    <ExtraButton aria-label="Подтвердить" icon="ti ti-check" size="small" />
+    <ExtraButton aria-label="Подтвердить" icon="ti ti-check" />
+    <ExtraButton aria-label="Подтвердить" icon="ti ti-check" size="large" />
+    <ExtraButton aria-label="Подтвердить" icon="ti ti-check" size="xlarge" />
   </div>
 </template>
         `,
@@ -372,19 +353,19 @@ export const Badge = {
 <template>
   <div class="flex items-center gap-8">
     <OverlayBadge value="8" severity="danger">
-      <Button label="Button" size="small" />
+      <ExtraButton label="Button" size="small" />
     </OverlayBadge>
 
     <OverlayBadge value="8" severity="danger">
-      <Button label="Button" />
+      <ExtraButton label="Button" />
     </OverlayBadge>
 
     <OverlayBadge value="8" severity="danger">
-      <Button label="Button" size="large" />
+      <ExtraButton label="Button" size="large" />
     </OverlayBadge>
 
     <OverlayBadge value="8" severity="danger">
-      <Button label="Button" class="p-button-xlg" />
+      <ExtraButton label="Button" size="xlarge" />
     </OverlayBadge>
   </div>
 </template>
@@ -408,14 +389,51 @@ export const Sizes = {
         code: `
 <template>
   <div class="flex items-center gap-4">
-    <Button label="Button" size="small" />
-    <Button label="Button" />
-    <Button label="Button" size="large" />
-    <Button label="Button" class="p-button-xlg" />
+    <ExtraButton label="Button" size="small" />
+    <ExtraButton label="Button" />
+    <ExtraButton label="Button" size="large" />
+    <ExtraButton label="Button" size="xlarge" />
   </div>
 </template>
         `,
       },
     },
   },
+};
+
+export const CustomIcon = {
+  render: () => ({
+    components: { ExtraButton },
+    template: `
+      <ExtraButton label="Сохранить" icon-position="right">
+        <template #icon="{ class: iconClass }">
+          <i :class="[iconClass, 'ti ti-check']" aria-hidden="true" />
+        </template>
+      </ExtraButton>
+    `,
+  }),
+};
+
+export const Variants = {
+  render: () => ({
+    components: { ExtraButton },
+    setup: () => ({
+      variants: ['primary', 'secondary', 'tertiary', 'text', 'link'],
+      sizes: ['small', 'base', 'large', 'xlarge'],
+    }),
+    template: `
+      <div style="display: grid; gap: 1rem">
+        <section v-for="variant in variants" :key="variant">
+          <h3>{{ variant }}</h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 1rem">
+            <ExtraButton v-for="size in sizes" :key="size" :variant="variant"
+              :size="size" label="Button" />
+            <ExtraButton :variant="variant" label="Button" disabled />
+            <ExtraButton :variant="variant" label="Button" loading />
+            <ExtraButton :variant="variant" icon="ti ti-check" aria-label="Подтвердить" />
+          </div>
+        </section>
+      </div>
+    `,
+  }),
 };

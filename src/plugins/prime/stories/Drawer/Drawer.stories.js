@@ -1,13 +1,13 @@
 import { ref } from 'vue';
 import { Drawer } from 'primevue';
-import Button from 'primevue/button';
+import { ExtraButton } from '@/primeBlocks';
 
 export default {
   title: 'Prime/Drawer',
 };
 
 export const Basic = () => ({
-  components: { Drawer, Button },
+  components: { Drawer, ExtraButton },
   setup() {
     const visible = ref(false);
 
@@ -15,7 +15,7 @@ export const Basic = () => ({
   },
   template: `
     <div>
-      <Button label="Открыть Drawer" @click="visible = true" />
+      <ExtraButton label="Открыть Drawer" @click="visible = true" />
       <Drawer v-model:visible="visible" header="Drawer Header">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -27,7 +27,7 @@ export const Basic = () => ({
 });
 
 export const Sizes = () => ({
-  components: { Drawer, Button },
+  components: { Drawer, ExtraButton },
   setup() {
     const visibleDefault = ref(false);
     const visibleSm = ref(false);
@@ -38,10 +38,10 @@ export const Sizes = () => ({
   },
   template: `
     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-      <Button label="Default (100)" @click="visibleDefault = true" />
-      <Button label="Small (80)" @click="visibleSm = true" />
-      <Button label="Large (120)" @click="visibleLg = true" />
-      <Button label="Extra Large (128)" @click="visibleXlg = true" />
+      <ExtraButton label="Default (100)" @click="visibleDefault = true" />
+      <ExtraButton label="Small (80)" @click="visibleSm = true" />
+      <ExtraButton label="Large (120)" @click="visibleLg = true" />
+      <ExtraButton label="Extra Large (128)" @click="visibleXlg = true" />
 
       <Drawer v-model:visible="visibleDefault" header="Default Drawer">
         <p>Default width drawer (sizing.100)</p>
@@ -63,7 +63,7 @@ export const Sizes = () => ({
 });
 
 export const Position = () => ({
-  components: { Drawer, Button },
+  components: { Drawer, ExtraButton },
   setup() {
     const visibleLeft = ref(false);
     const visibleRight = ref(false);
@@ -74,10 +74,10 @@ export const Position = () => ({
   },
   template: `
     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-      <Button label="Left" @click="visibleLeft = true" />
-      <Button label="Right" @click="visibleRight = true" />
-      <Button label="Top" @click="visibleTop = true" />
-      <Button label="Bottom" @click="visibleBottom = true" />
+      <ExtraButton label="Left" @click="visibleLeft = true" />
+      <ExtraButton label="Right" @click="visibleRight = true" />
+      <ExtraButton label="Top" @click="visibleTop = true" />
+      <ExtraButton label="Bottom" @click="visibleBottom = true" />
 
       <Drawer v-model:visible="visibleLeft" header="Left Drawer" position="left">
         <p>Content for left drawer</p>
@@ -99,7 +99,7 @@ export const Position = () => ({
 });
 
 export const WithFooter = () => ({
-  components: { Drawer, Button },
+  components: { Drawer, ExtraButton },
   setup() {
     const visible = ref(false);
 
@@ -111,15 +111,15 @@ export const WithFooter = () => ({
   },
   template: `
     <div>
-      <Button label="Открыть с Footer" @click="visible = true" />
+      <ExtraButton label="Открыть с Footer" @click="visible = true" />
       <Drawer v-model:visible="visible" header="Drawer with Footer">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
         <template #footer>
           <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
-            <Button label="Cancel" severity="text" @click="visible = false" />
-            <Button label="Save" severity="tertiary" @click="save" />
+            <ExtraButton label="Cancel" variant="text" @click="visible = false" />
+            <ExtraButton label="Save" variant="tertiary" @click="save" />
           </div>
         </template>
       </Drawer>
@@ -128,7 +128,7 @@ export const WithFooter = () => ({
 });
 
 export const CustomHeader = () => ({
-  components: { Drawer, Button },
+  components: { Drawer, ExtraButton },
   setup() {
     const visible = ref(false);
 
@@ -136,7 +136,7 @@ export const CustomHeader = () => ({
   },
   template: `
     <div>
-      <Button label="Открыть с Custom Header" @click="visible = true" />
+      <ExtraButton label="Открыть с Custom Header" @click="visible = true" />
       <Drawer v-model:visible="visible">
         <template #header>
           <div style="display: flex; align-items: center; gap: 0.5rem;">
@@ -151,7 +151,7 @@ export const CustomHeader = () => ({
 });
 
 export const FullScreen = () => ({
-  components: { Drawer, Button },
+  components: { Drawer, ExtraButton },
   setup() {
     const visible = ref(false);
 
@@ -159,7 +159,7 @@ export const FullScreen = () => ({
   },
   template: `
     <div>
-      <Button label="Открыть Full Screen" @click="visible = true" />
+      <ExtraButton label="Открыть Full Screen" @click="visible = true" />
       <Drawer v-model:visible="visible" header="Full Screen Drawer" position="full">
         <p>
           This drawer takes up the full screen. Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
@@ -171,7 +171,7 @@ export const FullScreen = () => ({
 });
 
 export const WithoutModal = () => ({
-  components: { Drawer, Button },
+  components: { Drawer, ExtraButton },
   setup() {
     const visible = ref(false);
 
@@ -179,7 +179,7 @@ export const WithoutModal = () => ({
   },
   template: `
     <div>
-      <Button label="Открыть без Modal" @click="visible = true" />
+      <ExtraButton label="Открыть без Modal" @click="visible = true" />
       <Drawer v-model:visible="visible" header="Drawer without Modal" :modal="false">
         <p>This drawer doesn't have a modal backdrop</p>
       </Drawer>

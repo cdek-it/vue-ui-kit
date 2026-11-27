@@ -35,6 +35,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "STORYBOOK_BASE_HREF=vue-ui-kit storybook build",
     "check:css-vars": "node ./scripts/check-css-vars.mjs",
+    "check:token-conflicts": "node ./scripts/check-token-conflicts.mjs",
     "check:style-tokens": "yarn -s build-storybook && yarn -s check:css-vars",
     "gen:component": "bash ./scripts/generate-component.sh",
     "prepare": "husky install"

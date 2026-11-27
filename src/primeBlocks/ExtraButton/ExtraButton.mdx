@@ -1,5 +1,5 @@
 import { Meta, Story, Canvas, ArgTypes, Title, Subtitle, Description, Controls } from '@storybook/addon-docs/blocks';
-import * as ButtonStories from './Button.stories';
+import * as ButtonStories from './ExtraButton.stories';
 
 <Meta of={ButtonStories} />
 
@@ -18,11 +18,11 @@ import * as ButtonStories from './Button.stories';
 <Controls of={ButtonStories.ButtonDefault} />
 
 ### Sizes
-Кнопка поддерживает три размера: `small`, `base`, `large`.
+Кнопка поддерживает четыре размера: `small`, `base`, `large`, `xlarge`.
 <Canvas of={ButtonStories.Sizes} />
 
 ### Icons
-Кнопки могут содержать иконки слева, справа или с обеих сторон.
+Кнопки могут содержать иконки слева или справа.
 <Canvas of={ButtonStories.Icons} />
 
 ### Icon Only
@@ -30,7 +30,7 @@ import * as ButtonStories from './Button.stories';
 <Canvas of={ButtonStories.IconOnly} />
 
 ### Severity
-Цветовые схемы для различных контекстов: `success`, `info`, `warn`, `danger`.
+Цветовые схемы для различных контекстов: `success`, `info`, `warning`, `danger`.
 <Canvas of={ButtonStories.Severity} />
 
 ### Text
@@ -56,3 +56,21 @@ import * as ButtonStories from './Button.stories';
 ### Badge
 Кнопка с уведомлением или числовым индикатором (OverlayBadge).
 <Canvas of={ButtonStories.Badge} />
+
+## API обёртки
+
+`variant` управляет видом кнопки: `primary`, `secondary`, `tertiary`, `text`, `link`.
+`severity` задаёт смысловой акцент: `base`, `danger`, `warning`, `success`, `info`.
+`icon-position` принимает `left` или `right`. Для кнопки без текста передайте `aria-label`.
+
+```vue
+<script setup>
+import { ExtraButton } from '@cdek-it/vue-ui-kit';
+</script>
+
+<template>
+  <ExtraButton label="Сохранить" size="large" icon="ti ti-check" />
+</template>
+```
+
+<Canvas of={ButtonStories.CustomIcon} />

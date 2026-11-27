@@ -121,12 +121,12 @@ const show = () => {
         <p>{{ message.message }}</p>
       </div>
       <div class="p-dialog-footer">
-        <Button :label="message.rejectLabel" severity="secondary" variant="text" @click="rejectCallback" />
-        <Button :label="message.acceptLabel" @click="acceptCallback" />
+        <ExtraButton :label="message.rejectLabel" variant="text" @click="rejectCallback" />
+        <ExtraButton :label="message.acceptLabel" @click="acceptCallback" />
       </div>
     </template>
   </ConfirmDialog>
-  <Button label="Показать диалог" @click="show" />
+  <ExtraButton label="Показать диалог" @click="show" />
 </template>
         `,
       },

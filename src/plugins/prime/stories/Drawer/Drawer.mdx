@@ -10,7 +10,7 @@ Drawer is a panel component displayed as an overlay at the edges of the screen.
 ### Basic
 
 ```html dark
-<Button label="Show Drawer" @click="visible = true" />
+<ExtraButton label="Show Drawer" @click="visible = true" />
 <Drawer v-model:visible="visible" header="Drawer Header">
   <p>Content here...</p>
 </Drawer>
@@ -50,8 +50,8 @@ Use the footer slot to add action buttons or additional content at the bottom.
 <Drawer v-model:visible="visible" header="Drawer with Footer">
   <p>Content...</p>
   <template #footer>
-    <Button label="Cancel" severity="secondary" />
-    <Button label="Save" />
+    <ExtraButton label="Cancel" variant="secondary" />
+    <ExtraButton label="Save" />
   </template>
 </Drawer>
 ```

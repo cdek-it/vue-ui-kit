@@ -30,12 +30,16 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 ### Vue-компонент
 
-```html dark
+```vue
+<script setup>
+import { ExtraButton } from '@cdek-it/vue-ui-kit';
+</script>
+
 <template>
-  <PrimeButton>
+  <ExtraButton>
     <i class="ti ti-plus" />
     Добавить
-  </PrimeButton>
+  </ExtraButton>
 </template>
 ```
 

@@ -147,7 +147,7 @@ export const WithCloseButton = {
           <span class="p-message-summary">Message</span>
           <div class="p-message-detail">caption</div>
         </div>
-        <Button
+        <ExtraButton
           class="p-message-close-button"
           icon="ti ti-x"
           variant="text"
@@ -186,7 +186,7 @@ export const WithContent = {
             <div class="text-sm">Cell 2</div>
           </div>
         </div>
-        <Button
+        <ExtraButton
           class="p-message-close-button"
           icon="ti ti-x"
           variant="text"

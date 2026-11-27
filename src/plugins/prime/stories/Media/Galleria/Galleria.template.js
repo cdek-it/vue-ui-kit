@@ -1,5 +1,5 @@
 import Galleria from 'primevue/galleria';
-import Button from 'primevue/button';
+import { ExtraButton } from '@/primeBlocks';
 import { ref } from 'vue';
 import ChevronLeft from './icons/ChevronLeft.svg';
 import ChevronRight from './icons/ChevronRight.svg';
@@ -226,7 +226,7 @@ export const TemplateCaption = (args) => ({
 });
 
 export const TemplateFullScreen = (args) => ({
-  components: { Galleria, Button, ChevronLeft, ChevronRight },
+  components: { Galleria, ExtraButton, ChevronLeft, ChevronRight },
   setup() {
     const visible = ref(false);
     const responsiveOptions = ref([
@@ -251,7 +251,7 @@ export const TemplateFullScreen = (args) => ({
   },
   template: `
     <div class="px-3 flex flex-col gap-3">
-      <Button label="Открыть галерею" @click="visible = true" />
+      <ExtraButton label="Открыть галерею" @click="visible = true" />
       <Galleria
         :value="images"
         :responsiveOptions="responsiveOptions"

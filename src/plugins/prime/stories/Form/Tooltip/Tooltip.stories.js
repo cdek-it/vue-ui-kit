@@ -1,4 +1,4 @@
-import Button from 'primevue/button';
+import { ExtraButton } from '@/primeBlocks';
 import {
   Template,
   TemplatePositions,
@@ -8,7 +8,7 @@ import {
 
 const meta = {
   title: 'Prime/Form/Tooltip',
-  component: Button,
+  component: ExtraButton,
   tags: ['autodocs'],
   parameters: {
     docs: {

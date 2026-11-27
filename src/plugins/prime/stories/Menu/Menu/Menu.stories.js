@@ -26,7 +26,7 @@ export const Popup = {
       source: {
         code: `
 <template>
-  <Button type="button" label="Show Menu" @click="toggle" />
+  <ExtraButton type="button" label="Show Menu" @click="toggle" />
   <Menu ref="menu" :model="items" :popup="true" />
 </template>
 
@@ -56,7 +56,7 @@ export const Basic = {
       source: {
         code: `
 <template>
-  <Button type="button" label="Show Menu" @click="toggle" />
+  <ExtraButton type="button" label="Show Menu" @click="toggle" />
   <Menu ref="menu" :model="items" :popup="true" />
 </template>
 
@@ -86,7 +86,7 @@ export const WithIcon = {
       source: {
         code: `
 <template>
-  <Button type="button" label="Options" @click="toggle" />
+  <ExtraButton type="button" label="Options" @click="toggle" />
   <Menu ref="menu" :model="items" :popup="true" />
 </template>
 
@@ -118,7 +118,7 @@ export const Grouped = {
       source: {
         code: `
 <template>
-  <Button type="button" label="Show Grouped Menu" @click="toggle" />
+  <ExtraButton type="button" label="Show Grouped Menu" @click="toggle" />
   <Menu ref="menu" :model="items" :popup="true" />
 </template>
 
@@ -160,7 +160,7 @@ export const Custom = {
       source: {
         code: `
 <template>
-  <Button type="button" label="Show Menu with Captions" @click="toggle" />
+  <ExtraButton type="button" label="Show Menu with Captions" @click="toggle" />
   <Menu ref="menu" :model="items" :popup="true">
     <template #item="{ item, props }">
       <a v-bind="props.action" class="p-menu-item-link">
